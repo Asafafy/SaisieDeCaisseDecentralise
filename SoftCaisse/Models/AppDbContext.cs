@@ -1,0 +1,269 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Linq;
+
+namespace SoftCaisse.Models
+{
+    public partial class AppDbContext : DbContext
+    {
+        public AppDbContext()
+            : base("name=AppDbContext")
+        {
+        }
+
+        public virtual DbSet<F_COMPTET> F_COMPTET { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Num)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Intitule)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CG_NumPrinc)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Qualite)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Classement)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Contact)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Adresse)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Complement)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_CodePostal)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Ville)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_CodeRegion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Pays)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Raccourci)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Ape)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Identifiant)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Siret)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique01)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique02)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique03)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique04)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique05)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique06)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique07)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique08)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique09)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Statistique10)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Commentaire)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Encours)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Assurance)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_NumPayeur)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Taux01)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Taux02)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Taux03)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Taux04)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CA_Num)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Telephone)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Telecopie)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_EMail)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Site)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Coface)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_SvFormeJuri)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_SvEffectif)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_SvCA)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_SvResultat)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_SvRegul)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_SvCotation)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_SvObjetMaj)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CA_NumIFRS)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_NumCentrale)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_RepresentInt)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_RepresentNIF)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_EdiCode)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_EdiCodeSage)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_LangueISO2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_Facebook)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.CT_LinkedIn)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.cbCreateur)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.Capital_social)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.Actionnaire_Pal)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.Score_Banque_de_France)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.Total_points_fidélité)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_COMPTET>()
+                .Property(e => e.Points_fidélité_restants)
+                .HasPrecision(24, 6);
+        }
+    }
+}

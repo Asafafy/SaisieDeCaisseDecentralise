@@ -85,12 +85,25 @@ namespace SoftCaisse.Forms.User
         {
             if (userDatagridView.CurrentRow.Index != -1)
             {
-                int UserId = Convert.ToInt32(userDatagridView.CurrentRow.Cells["UserId"].Value);
+                UserId = Convert.ToInt32(userDatagridView.CurrentRow.Cells["Column1"].Value);
+              
+            }  
+        }
+
+        private void btnUpdateUser_Click(object sender, EventArgs e)
+        {
+            if (UserId == 0)
+            {
+                MessageBox.Show("Veuillez séléctionner un utilisateur.", "Important", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
                 dynamic userWithId = _users.FirstOrDefault(user => user.UserId == UserId);
                 txtLogin.Text = userWithId.Login;
                 txtUserPassword.Text = userWithId.Password;
                 RoleCmbx.Text = userWithId.Role;
-            }  
+            }
+            
         }
     }
 }

@@ -45,6 +45,7 @@
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -123,6 +124,7 @@
             this.btnUpdateUser.Size = new System.Drawing.Size(95, 33);
             this.btnUpdateUser.TabIndex = 13;
             this.btnUpdateUser.Values.Text = "Modifier";
+            this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
             // 
             // groupBox1
             // 
@@ -139,6 +141,7 @@
             this.userDatagridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userDatagridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userDatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
             this.Login,
             this.UserPassword,
             this.Role});
@@ -237,8 +240,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informations";
             // 
-            // UserId
+            // Column1
             // 
+            this.Column1.DataPropertyName = "UserId";
+            this.Column1.HeaderText = "UserId";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
             // 
             // Login
             // 
@@ -307,6 +315,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userPasswordDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView userDatagridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Login;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserPassword;
         private System.Windows.Forms.DataGridViewTextBoxColumn Role;

@@ -28,7 +28,7 @@ namespace SoftCaisse.Repositories
         {
             return _context.Roles.ToList(); ;
         }
-        Role IRepository<Role>.GetById(int id)
+        public IEnumerable<Role> GetById(int id)
         {
             throw new NotImplementedException();
         }

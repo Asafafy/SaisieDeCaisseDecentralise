@@ -1,4 +1,5 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
+using SoftCaisse.Migrations;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
 using System;
@@ -19,7 +20,9 @@ namespace SoftCaisse.Forms.User
         private readonly SCDContext _scdContext;
         private readonly UserRepository _userRepository;
         private readonly RoleRepository _roleRepository;
+        private List<dynamic> _users;
         private int IdRole;
+        private int UserId;
         public UserManagementForm()
         {
             InitializeComponent();
@@ -59,9 +62,11 @@ namespace SoftCaisse.Forms.User
             txtLogin.Text = "";
             txtUserPassword.Text = "";
             var data = _userRepository.GetAll();
+            _users = new List<dynamic>();
             var listUser = data
-              .Select(user => new { Login = user.Login, Password = user.UserPassword, Role = user.Role.RoleName }).ToList();
+              .Select(user => new { UserId = user.UserId, Login = user.Login, Password = user.UserPassword, Role = user.Role.RoleName }).ToList();
             userDatagridView.DataSource = listUser;
+            _users.AddRange(listUser);
         }
         private void RoleCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -74,6 +79,18 @@ namespace SoftCaisse.Forms.User
                 string roleIdString = selectedValue.Substring(startIndex, endIndex - startIndex).Trim();
                 int.TryParse(roleIdString, out IdRole);
             }
+        }
+
+        private void userDatagridView_Click(object sender, EventArgs e)
+        {
+            if (userDatagridView.CurrentRow.Index != -1)
+            {
+                int UserId = Convert.ToInt32(userDatagridView.CurrentRow.Cells["UserId"].Value);
+                dynamic userWithId = _users.FirstOrDefault(user => user.UserId == UserId);
+                txtLogin.Text = userWithId.Login;
+                txtUserPassword.Text = userWithId.Password;
+                RoleCmbx.Text = userWithId.Role;
+            }  
         }
     }
 }

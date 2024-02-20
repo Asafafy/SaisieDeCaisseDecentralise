@@ -142,12 +142,14 @@
             this.Login,
             this.UserPassword,
             this.Role});
-            this.userDatagridView.Location = new System.Drawing.Point(14, 24);
+            this.userDatagridView.Location = new System.Drawing.Point(20, 24);
             this.userDatagridView.Name = "userDatagridView";
+            this.userDatagridView.RowHeadersVisible = false;
             this.userDatagridView.RowHeadersWidth = 51;
             this.userDatagridView.RowTemplate.Height = 24;
-            this.userDatagridView.Size = new System.Drawing.Size(576, 369);
+            this.userDatagridView.Size = new System.Drawing.Size(570, 369);
             this.userDatagridView.TabIndex = 0;
+            this.userDatagridView.Click += new System.EventHandler(this.userDatagridView_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -234,6 +236,9 @@
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informations";
+            // 
+            // UserId
+            // 
             // 
             // Login
             // 

@@ -30,10 +30,10 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-     
-        User IRepository<User>.GetById(int id)
+
+        public IEnumerable<User> GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Users.Where(user=>user.UserId==id).ToList();
         }
 
         void IRepository<User>.Update(User entity)

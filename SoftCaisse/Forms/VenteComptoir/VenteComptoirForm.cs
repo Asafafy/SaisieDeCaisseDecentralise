@@ -16,5 +16,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         {
             InitializeComponent();
         }
+
+      
     }
 }

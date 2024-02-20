@@ -31,7 +31,7 @@ namespace SoftCaisse.Forms.User
 
             var data1 = _roleRepository.GetAll();
             var data = _userRepository.GetAll();
-            LoadData();
+            //LoadData();
             var listRole = data1.Select(role => new { RoleId = role.RoleId, RoleName = role.RoleName }).ToArray();
             //var listUser = data
             //    .Select(user => new { Login = user.Login, Password = user.UserPassword, Role = user.Role.RoleName}).ToList();

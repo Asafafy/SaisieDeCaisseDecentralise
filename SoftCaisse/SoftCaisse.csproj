@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -92,6 +93,12 @@
       <DependentUpon>DeviseControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DTO\DataInfo.cs" />
+    <Compile Include="Forms\Article\ArticleARechercher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Article\ArticleARechercher.Designer.cs">
+      <DependentUpon>ArticleARechercher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Billetage\BilletageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DeviseControl.resx">
       <DependentUpon>DeviseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Article\ArticleARechercher.resx">
+      <DependentUpon>ArticleARechercher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Billetage\BilletageForm.resx">
       <DependentUpon>BilletageForm.cs</DependentUpon>

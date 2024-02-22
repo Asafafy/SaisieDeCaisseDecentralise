@@ -324,6 +324,10 @@
     <Content Include="Images\Société\Coins_96px.png" />
     <Content Include="Images\Société\ProfilPic.png" />
     <Content Include="LOGO SOFTWELL.ico" />
+    <None Include="Resources\icons8-star-50.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\parameter.png" />
+    <None Include="Resources\Image1.bmp" />
     <None Include="Resources\icons8-points-de-suspension-48.png" />
     <None Include="Resources\icons8-points-de-suspension-50.png" />
   </ItemGroup>

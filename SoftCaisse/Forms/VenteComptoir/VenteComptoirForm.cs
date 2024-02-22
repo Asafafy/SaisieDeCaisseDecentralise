@@ -30,19 +30,6 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         }
 
-        private void ButtonFinDeSaisie_Click(object sender, EventArgs e)
-        {
-            groupBoxInvisibleCommand.Visible = true;
-            ButtonSupprimerDesignation.Enabled=false;
-            ButtonFinDeSaisie.Enabled = false;
-            ButtonAnnuler.Enabled = true;
-            ButtonFacture.Enabled = true;
-            ButtonTicket.Enabled=true;
-            ButtonValider.Enabled=true;
-            ButtonRaccourci.Enabled=true;
-            ButtonRaccourci.Enabled =true;
-        }
-
         private void ButtonEnregistrerEnregistrement_Click(object sender, EventArgs e)
         {
             ButtonSupprimerEnregistrement.Enabled = true;
@@ -59,6 +46,19 @@ namespace SoftCaisse.Forms.VenteComptoir
             ButtonRaccourci.Enabled = true;
             ButtonValider.Enabled = false;
             ButtonFacture.Enabled = false;
+
+            groupBoxInvisibleEnregistrement.Visible = false;
+            dataGridViewEnregistrement.Dock = DockStyle.Fill;
+
+        }
+
+        private void textBoxReference_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ArticleARechercher articleARechercher = new ArticleARechercher();
+                articleARechercher.ShowDialog(this);
+            }
         }
 
         private void ButtonClose_Click(object sender, EventArgs e)
@@ -66,9 +66,22 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Close();
         }
 
-        private void textBoxReference_TextChanged(object sender, EventArgs e)
+        private void ButtonFinDeSaisie_Click(object sender, EventArgs e)
         {
-            textBoxReference.Text = string.Empty;
+            dataGridViewEnregistrement.Dock = DockStyle.Bottom;
+            dataGridViewEnregistrement.Width = 627;
+            dataGridViewEnregistrement.Height = 153;
+
+            groupBoxInvisibleEnregistrement.Visible = true;
+            dataGridViewEnregistrement.Enabled = true;
+
+            ButtonFinDeSaisie.Enabled = false;
+            ButtonAnnuler.Enabled = true;
+            ButtonEnAttente.Enabled=true;
+            ButtonRaccourci.Enabled=true;
+            ButtonValider.Enabled=true;
+            ButtonFacture.Enabled=true;
+
         }
     }
 }

@@ -33,23 +33,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VenteComptoirForm));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.groupBoxGeneral = new System.Windows.Forms.GroupBox();
-            this.groupBoxInvisibleCommand = new System.Windows.Forms.GroupBox();
-            this.ButtonEnregistrerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.ButtonSupprimerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonNouveauEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ButtonEnregistrerDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanelDesignation = new System.Windows.Forms.TableLayoutPanel();
-            this.textBoxReference = new System.Windows.Forms.TextBox();
+            this.textBoxRerence = new System.Windows.Forms.TextBox();
             this.textBoxDesignation = new System.Windows.Forms.TextBox();
             this.textBoxGamme1 = new System.Windows.Forms.TextBox();
             this.textBoxNumLot = new System.Windows.Forms.TextBox();
@@ -83,11 +72,20 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxEnregistrement = new System.Windows.Forms.GroupBox();
             this.dataGridViewEnregistrement = new System.Windows.Forms.DataGridView();
-            this.kryptonDataGridViewTextBoxColumn1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModeDeReception = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Montant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Libelle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Devise = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateEcheance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBoxInvisibleEnregistrement = new System.Windows.Forms.GroupBox();
+            this.ButtonEnregistrerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ButtonSupprimerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ButtonNouveauEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.dateTimePickerEnregistrement = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxDeviseEnregistrement = new System.Windows.Forms.ComboBox();
+            this.textBoxLibelleEnregistrement = new System.Windows.Forms.TextBox();
+            this.comboBoxEspeceEnregistrement = new System.Windows.Forms.ComboBox();
+            this.textBoxMontantEnregistrement = new System.Windows.Forms.TextBox();
             this.groupBoxCommand = new System.Windows.Forms.GroupBox();
             this.ButtonValider = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ButtonCreerDoc = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -122,13 +120,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.comboBoxVendeur = new System.Windows.Forms.ComboBox();
             this.ButtonClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBoxGeneral.SuspendLayout();
-            this.groupBoxInvisibleCommand.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanelDesignation.SuspendLayout();
             this.groupBoxTotal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticle)).BeginInit();
             this.groupBoxEnregistrement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEnregistrement)).BeginInit();
+            this.groupBoxInvisibleEnregistrement.SuspendLayout();
             this.groupBoxCommand.SuspendLayout();
             this.groupBoxReste.SuspendLayout();
             this.groupBoxinfoCaissier.SuspendLayout();
@@ -164,7 +161,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxGeneral.Controls.Add(this.groupBoxInvisibleCommand);
             this.groupBoxGeneral.Controls.Add(this.ButtonEnregistrerDesignation);
             this.groupBoxGeneral.Controls.Add(this.tableLayoutPanelDesignation);
             this.groupBoxGeneral.Controls.Add(this.ButtonSupprimerDesignation);
@@ -180,105 +176,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxGeneral.Size = new System.Drawing.Size(1063, 727);
             this.groupBoxGeneral.TabIndex = 0;
             this.groupBoxGeneral.TabStop = false;
-            // 
-            // groupBoxInvisibleCommand
-            // 
-            this.groupBoxInvisibleCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxInvisibleCommand.Controls.Add(this.ButtonEnregistrerEnregistrement);
-            this.groupBoxInvisibleCommand.Controls.Add(this.tableLayoutPanel1);
-            this.groupBoxInvisibleCommand.Controls.Add(this.ButtonSupprimerEnregistrement);
-            this.groupBoxInvisibleCommand.Controls.Add(this.ButtonNouveauEnregistrement);
-            this.groupBoxInvisibleCommand.Location = new System.Drawing.Point(19, 448);
-            this.groupBoxInvisibleCommand.Name = "groupBoxInvisibleCommand";
-            this.groupBoxInvisibleCommand.Size = new System.Drawing.Size(639, 91);
-            this.groupBoxInvisibleCommand.TabIndex = 6;
-            this.groupBoxInvisibleCommand.TabStop = false;
-            this.groupBoxInvisibleCommand.Visible = false;
-            // 
-            // ButtonEnregistrerEnregistrement
-            // 
-            this.ButtonEnregistrerEnregistrement.Location = new System.Drawing.Point(532, 56);
-            this.ButtonEnregistrerEnregistrement.Name = "ButtonEnregistrerEnregistrement";
-            this.ButtonEnregistrerEnregistrement.Size = new System.Drawing.Size(90, 25);
-            this.ButtonEnregistrerEnregistrement.TabIndex = 15;
-            this.ButtonEnregistrerEnregistrement.Values.Text = "Enregistrer";
-            this.ButtonEnregistrerEnregistrement.Click += new System.EventHandler(this.ButtonEnregistrerEnregistrement_Click);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker2, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox2, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 9);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(639, 44);
-            this.tableLayoutPanel1.TabIndex = 6;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(553, 3);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(94, 20);
-            this.dateTimePicker2.TabIndex = 5;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(94, 21);
-            this.comboBox1.TabIndex = 6;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(103, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(94, 20);
-            this.textBox1.TabIndex = 7;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(453, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(94, 21);
-            this.comboBox2.TabIndex = 9;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(203, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(244, 20);
-            this.textBox3.TabIndex = 8;
-            // 
-            // ButtonSupprimerEnregistrement
-            // 
-            this.ButtonSupprimerEnregistrement.Enabled = false;
-            this.ButtonSupprimerEnregistrement.Location = new System.Drawing.Point(418, 56);
-            this.ButtonSupprimerEnregistrement.Name = "ButtonSupprimerEnregistrement";
-            this.ButtonSupprimerEnregistrement.Size = new System.Drawing.Size(90, 25);
-            this.ButtonSupprimerEnregistrement.TabIndex = 14;
-            this.ButtonSupprimerEnregistrement.Values.Text = "Supprimer";
-            // 
-            // ButtonNouveauEnregistrement
-            // 
-            this.ButtonNouveauEnregistrement.Location = new System.Drawing.Point(303, 56);
-            this.ButtonNouveauEnregistrement.Name = "ButtonNouveauEnregistrement";
-            this.ButtonNouveauEnregistrement.Size = new System.Drawing.Size(90, 25);
-            this.ButtonNouveauEnregistrement.TabIndex = 13;
-            this.ButtonNouveauEnregistrement.Values.Text = "Nouveau";
             // 
             // ButtonEnregistrerDesignation
             // 
@@ -308,7 +205,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxReference, 0, 0);
+            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxRerence, 0, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxDesignation, 1, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxGamme1, 2, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxNumLot, 3, 0);
@@ -327,15 +224,15 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanelDesignation.Size = new System.Drawing.Size(1025, 48);
             this.tableLayoutPanelDesignation.TabIndex = 6;
             // 
-            // textBoxReference
+            // textBoxRerence
             // 
-            this.textBoxReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxReference.Location = new System.Drawing.Point(3, 3);
-            this.textBoxReference.Name = "textBoxReference";
-            this.textBoxReference.Size = new System.Drawing.Size(94, 23);
-            this.textBoxReference.TabIndex = 1;
-            this.textBoxReference.Text = "Référence article";
-            this.textBoxReference.TextChanged += new System.EventHandler(this.textBoxReference_TextChanged);
+            this.textBoxRerence.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRerence.Location = new System.Drawing.Point(3, 3);
+            this.textBoxRerence.Name = "textBoxRerence";
+            this.textBoxRerence.Size = new System.Drawing.Size(94, 23);
+            this.textBoxRerence.TabIndex = 13;
+            this.textBoxRerence.Text = "Référence";
+            this.textBoxRerence.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxReference_KeyDown);
             // 
             // textBoxDesignation
             // 
@@ -518,7 +415,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             // dataGridViewArticle
             // 
-            this.dataGridViewArticle.AllowUserToAddRows = false;
             this.dataGridViewArticle.AllowUserToDeleteRows = false;
             this.dataGridViewArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -551,7 +447,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.dataGridViewArticle.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridViewArticle.Location = new System.Drawing.Point(19, 254);
             this.dataGridViewArticle.Name = "dataGridViewArticle";
-            this.dataGridViewArticle.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
@@ -561,14 +456,13 @@ namespace SoftCaisse.Forms.VenteComptoir
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewArticle.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewArticle.RowHeadersVisible = false;
-            this.dataGridViewArticle.Size = new System.Drawing.Size(1025, 188);
+            this.dataGridViewArticle.Size = new System.Drawing.Size(1025, 224);
             this.dataGridViewArticle.TabIndex = 4;
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Référence article";
             this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column1.Width = 85;
             // 
@@ -576,142 +470,203 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.Column2.HeaderText = "Désignation";
             this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
             // 
             // Gamme1
             // 
             this.Gamme1.HeaderText = "Gamme 1";
             this.Gamme1.Name = "Gamme1";
-            this.Gamme1.ReadOnly = true;
             // 
             // serielot
             // 
             this.serielot.HeaderText = "N° série/lot";
             this.serielot.Name = "serielot";
-            this.serielot.ReadOnly = true;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "P.U HT";
             this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "P.U TTC";
             this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Quantité";
             this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
             // 
             // Column6
             // 
             this.Column6.HeaderText = "Conditionnement";
             this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
             // 
             // Column7
             // 
             this.Column7.HeaderText = "Remise";
             this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
             // 
             // Column8
             // 
             this.Column8.HeaderText = "P.U Net";
             this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
             // 
             // Column9
             // 
             this.Column9.HeaderText = "Montant HT";
             this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
             // 
             // Column10
             // 
             this.Column10.HeaderText = "Montant TTC";
             this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
             // 
             // groupBoxEnregistrement
             // 
             this.groupBoxEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxEnregistrement.Controls.Add(this.dataGridViewEnregistrement);
-            this.groupBoxEnregistrement.Enabled = false;
-            this.groupBoxEnregistrement.Location = new System.Drawing.Point(19, 535);
+            this.groupBoxEnregistrement.Controls.Add(this.groupBoxInvisibleEnregistrement);
+            this.groupBoxEnregistrement.Location = new System.Drawing.Point(25, 484);
             this.groupBoxEnregistrement.Name = "groupBoxEnregistrement";
-            this.groupBoxEnregistrement.Size = new System.Drawing.Size(639, 182);
+            this.groupBoxEnregistrement.Size = new System.Drawing.Size(626, 233);
             this.groupBoxEnregistrement.TabIndex = 2;
             this.groupBoxEnregistrement.TabStop = false;
             // 
             // dataGridViewEnregistrement
             // 
-            this.dataGridViewEnregistrement.AllowUserToAddRows = false;
-            this.dataGridViewEnregistrement.AllowUserToDeleteRows = false;
             this.dataGridViewEnregistrement.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewEnregistrement.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewEnregistrement.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewEnregistrement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewEnregistrement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEnregistrement.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.kryptonDataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
+            this.ModeDeReception,
+            this.Montant,
+            this.Libelle,
+            this.Devise,
+            this.DateEcheance});
             this.dataGridViewEnregistrement.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewEnregistrement.GridColor = System.Drawing.SystemColors.ActiveBorder;
+            this.dataGridViewEnregistrement.Enabled = false;
             this.dataGridViewEnregistrement.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewEnregistrement.Name = "dataGridViewEnregistrement";
-            this.dataGridViewEnregistrement.ReadOnly = true;
             this.dataGridViewEnregistrement.RowHeadersVisible = false;
-            this.dataGridViewEnregistrement.Size = new System.Drawing.Size(633, 163);
-            this.dataGridViewEnregistrement.TabIndex = 5;
+            this.dataGridViewEnregistrement.Size = new System.Drawing.Size(620, 214);
+            this.dataGridViewEnregistrement.TabIndex = 1;
             // 
-            // kryptonDataGridViewTextBoxColumn1
+            // ModeDeReception
             // 
-            this.kryptonDataGridViewTextBoxColumn1.HeaderText = "Mode de règlement";
-            this.kryptonDataGridViewTextBoxColumn1.Name = "kryptonDataGridViewTextBoxColumn1";
-            this.kryptonDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.kryptonDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.kryptonDataGridViewTextBoxColumn1.Width = 126;
+            this.ModeDeReception.HeaderText = "Mode de Réception";
+            this.ModeDeReception.Name = "ModeDeReception";
             // 
-            // dataGridViewTextBoxColumn1
+            // Montant
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Montant";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.Montant.HeaderText = "Montant";
+            this.Montant.Name = "Montant";
             // 
-            // dataGridViewTextBoxColumn2
+            // Libelle
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Libellé";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.Libelle.HeaderText = "Libellé";
+            this.Libelle.Name = "Libelle";
             // 
-            // dataGridViewTextBoxColumn3
+            // Devise
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Devise";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.Devise.HeaderText = "Devise";
+            this.Devise.Name = "Devise";
             // 
-            // dataGridViewTextBoxColumn4
+            // DateEcheance
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Date d\'échéance";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.DateEcheance.HeaderText = "Date d\'échéance";
+            this.DateEcheance.Name = "DateEcheance";
+            // 
+            // groupBoxInvisibleEnregistrement
+            // 
+            this.groupBoxInvisibleEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxInvisibleEnregistrement.Controls.Add(this.ButtonEnregistrerEnregistrement);
+            this.groupBoxInvisibleEnregistrement.Controls.Add(this.ButtonSupprimerEnregistrement);
+            this.groupBoxInvisibleEnregistrement.Controls.Add(this.ButtonNouveauEnregistrement);
+            this.groupBoxInvisibleEnregistrement.Controls.Add(this.dateTimePickerEnregistrement);
+            this.groupBoxInvisibleEnregistrement.Controls.Add(this.comboBoxDeviseEnregistrement);
+            this.groupBoxInvisibleEnregistrement.Controls.Add(this.textBoxLibelleEnregistrement);
+            this.groupBoxInvisibleEnregistrement.Controls.Add(this.comboBoxEspeceEnregistrement);
+            this.groupBoxInvisibleEnregistrement.Controls.Add(this.textBoxMontantEnregistrement);
+            this.groupBoxInvisibleEnregistrement.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxInvisibleEnregistrement.Name = "groupBoxInvisibleEnregistrement";
+            this.groupBoxInvisibleEnregistrement.Size = new System.Drawing.Size(626, 85);
+            this.groupBoxInvisibleEnregistrement.TabIndex = 0;
+            this.groupBoxInvisibleEnregistrement.TabStop = false;
+            this.groupBoxInvisibleEnregistrement.Visible = false;
+            // 
+            // ButtonEnregistrerEnregistrement
+            // 
+            this.ButtonEnregistrerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonEnregistrerEnregistrement.Location = new System.Drawing.Point(522, 50);
+            this.ButtonEnregistrerEnregistrement.Name = "ButtonEnregistrerEnregistrement";
+            this.ButtonEnregistrerEnregistrement.Size = new System.Drawing.Size(90, 25);
+            this.ButtonEnregistrerEnregistrement.TabIndex = 15;
+            this.ButtonEnregistrerEnregistrement.Values.Text = "Enregistrer";
+            // 
+            // ButtonSupprimerEnregistrement
+            // 
+            this.ButtonSupprimerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonSupprimerEnregistrement.Enabled = false;
+            this.ButtonSupprimerEnregistrement.Location = new System.Drawing.Point(408, 50);
+            this.ButtonSupprimerEnregistrement.Name = "ButtonSupprimerEnregistrement";
+            this.ButtonSupprimerEnregistrement.Size = new System.Drawing.Size(90, 25);
+            this.ButtonSupprimerEnregistrement.TabIndex = 14;
+            this.ButtonSupprimerEnregistrement.Values.Text = "Supprimer";
+            // 
+            // ButtonNouveauEnregistrement
+            // 
+            this.ButtonNouveauEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonNouveauEnregistrement.Location = new System.Drawing.Point(293, 50);
+            this.ButtonNouveauEnregistrement.Name = "ButtonNouveauEnregistrement";
+            this.ButtonNouveauEnregistrement.Size = new System.Drawing.Size(90, 25);
+            this.ButtonNouveauEnregistrement.TabIndex = 13;
+            this.ButtonNouveauEnregistrement.Values.Text = "Nouveau";
+            // 
+            // dateTimePickerEnregistrement
+            // 
+            this.dateTimePickerEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerEnregistrement.Location = new System.Drawing.Point(510, 17);
+            this.dateTimePickerEnregistrement.Name = "dateTimePickerEnregistrement";
+            this.dateTimePickerEnregistrement.Size = new System.Drawing.Size(113, 23);
+            this.dateTimePickerEnregistrement.TabIndex = 4;
+            // 
+            // comboBoxDeviseEnregistrement
+            // 
+            this.comboBoxDeviseEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxDeviseEnregistrement.FormattingEnabled = true;
+            this.comboBoxDeviseEnregistrement.Location = new System.Drawing.Point(383, 16);
+            this.comboBoxDeviseEnregistrement.Name = "comboBoxDeviseEnregistrement";
+            this.comboBoxDeviseEnregistrement.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxDeviseEnregistrement.TabIndex = 3;
+            this.comboBoxDeviseEnregistrement.Text = "Aucune";
+            // 
+            // textBoxLibelleEnregistrement
+            // 
+            this.textBoxLibelleEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxLibelleEnregistrement.Location = new System.Drawing.Point(211, 16);
+            this.textBoxLibelleEnregistrement.Name = "textBoxLibelleEnregistrement";
+            this.textBoxLibelleEnregistrement.Size = new System.Drawing.Size(166, 22);
+            this.textBoxLibelleEnregistrement.TabIndex = 2;
+            // 
+            // comboBoxEspeceEnregistrement
+            // 
+            this.comboBoxEspeceEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxEspeceEnregistrement.FormattingEnabled = true;
+            this.comboBoxEspeceEnregistrement.Location = new System.Drawing.Point(3, 16);
+            this.comboBoxEspeceEnregistrement.Name = "comboBoxEspeceEnregistrement";
+            this.comboBoxEspeceEnregistrement.Size = new System.Drawing.Size(88, 24);
+            this.comboBoxEspeceEnregistrement.TabIndex = 0;
+            // 
+            // textBoxMontantEnregistrement
+            // 
+            this.textBoxMontantEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxMontantEnregistrement.Location = new System.Drawing.Point(97, 16);
+            this.textBoxMontantEnregistrement.Name = "textBoxMontantEnregistrement";
+            this.textBoxMontantEnregistrement.Size = new System.Drawing.Size(108, 23);
+            this.textBoxMontantEnregistrement.TabIndex = 1;
             // 
             // groupBoxCommand
             // 
@@ -825,9 +780,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxReste.Controls.Add(this.label11);
             this.groupBoxReste.Controls.Add(this.comboBox9);
             this.groupBoxReste.Controls.Add(this.labelResteDu);
-            this.groupBoxReste.Location = new System.Drawing.Point(687, 448);
+            this.groupBoxReste.Location = new System.Drawing.Point(687, 484);
             this.groupBoxReste.Name = "groupBoxReste";
-            this.groupBoxReste.Size = new System.Drawing.Size(357, 127);
+            this.groupBoxReste.Size = new System.Drawing.Size(357, 91);
             this.groupBoxReste.TabIndex = 2;
             this.groupBoxReste.TabStop = false;
             // 
@@ -848,7 +803,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(47, 84);
+            this.label11.Location = new System.Drawing.Point(47, 52);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(51, 17);
             this.label11.TabIndex = 13;
@@ -857,7 +812,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // comboBox9
             // 
             this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(138, 83);
+            this.comboBox9.Location = new System.Drawing.Point(138, 51);
             this.comboBox9.Name = "comboBox9";
             this.comboBox9.Size = new System.Drawing.Size(210, 21);
             this.comboBox9.TabIndex = 13;
@@ -1059,6 +1014,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.ClientSize = new System.Drawing.Size(1049, 760);
             this.Controls.Add(this.ButtonClose);
             this.Controls.Add(this.groupBoxGeneral);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "VenteComptoirForm";
@@ -1068,9 +1024,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Text = "Vente comptoir";
             this.TopMost = true;
             this.groupBoxGeneral.ResumeLayout(false);
-            this.groupBoxInvisibleCommand.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanelDesignation.ResumeLayout(false);
             this.tableLayoutPanelDesignation.PerformLayout();
             this.groupBoxTotal.ResumeLayout(false);
@@ -1078,6 +1031,8 @@ namespace SoftCaisse.Forms.VenteComptoir
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticle)).EndInit();
             this.groupBoxEnregistrement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEnregistrement)).EndInit();
+            this.groupBoxInvisibleEnregistrement.ResumeLayout(false);
+            this.groupBoxInvisibleEnregistrement.PerformLayout();
             this.groupBoxCommand.ResumeLayout(false);
             this.groupBoxReste.ResumeLayout(false);
             this.groupBoxReste.PerformLayout();
@@ -1126,9 +1081,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.ComboBox comboBoxNumero;
         private System.Windows.Forms.Label labelTitleCaissier;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.DataGridView dataGridViewEnregistrement;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelDesignation;
-        private System.Windows.Forms.TextBox textBoxReference;
         private System.Windows.Forms.TextBox textBoxDesignation;
         private System.Windows.Forms.TextBox textBoxGamme1;
         private System.Windows.Forms.TextBox textBoxNumLot;
@@ -1141,24 +1094,9 @@ namespace SoftCaisse.Forms.VenteComptoir
         private KryptonButton ButtonEnregistrerDesignation;
         private KryptonButton ButtonSupprimerDesignation;
         private KryptonButton ButtonNouveauDesignation;
-        private KryptonDataGridViewTextBoxColumn kryptonDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox textBoxMontantHT;
         private System.Windows.Forms.TextBox textBoxMontantTTC;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.GroupBox groupBoxInvisibleCommand;
-        private KryptonButton ButtonEnregistrerEnregistrement;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private KryptonButton ButtonSupprimerEnregistrement;
-        private KryptonButton ButtonNouveauEnregistrement;
         private KryptonDataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Gamme1;
@@ -1175,5 +1113,21 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.Label labelPrixTotalTTC;
         private System.Windows.Forms.Label labelPrixTotalHT;
         private System.Windows.Forms.Label labelPrixResteDu;
+        private System.Windows.Forms.TextBox textBoxRerence;
+        private System.Windows.Forms.DataGridView dataGridViewEnregistrement;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ModeDeReception;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Montant;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Libelle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Devise;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateEcheance;
+        private System.Windows.Forms.GroupBox groupBoxInvisibleEnregistrement;
+        private KryptonButton ButtonEnregistrerEnregistrement;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEnregistrement;
+        private KryptonButton ButtonSupprimerEnregistrement;
+        private KryptonButton ButtonNouveauEnregistrement;
+        private System.Windows.Forms.ComboBox comboBoxDeviseEnregistrement;
+        private System.Windows.Forms.TextBox textBoxLibelleEnregistrement;
+        private System.Windows.Forms.TextBox textBoxMontantEnregistrement;
+        private System.Windows.Forms.ComboBox comboBoxEspeceEnregistrement;
     }
 }

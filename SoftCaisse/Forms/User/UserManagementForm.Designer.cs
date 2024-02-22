@@ -49,6 +49,7 @@
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnClean = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDatagridView)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -84,7 +85,7 @@
             // 
             this.kryptonButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonButton2.Location = new System.Drawing.Point(472, 509);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Palette = this.kryptonPalette1;
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -96,7 +97,7 @@
             // 
             this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddUser.Location = new System.Drawing.Point(472, 184);
-            this.btnAddUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Palette = this.kryptonPalette1;
             this.btnAddUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -109,7 +110,7 @@
             // 
             this.kryptonButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonButton3.Location = new System.Drawing.Point(472, 248);
-            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonButton3.Name = "kryptonButton3";
             this.kryptonButton3.Palette = this.kryptonPalette1;
             this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -121,7 +122,7 @@
             // 
             this.btnUpdateUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpdateUser.Location = new System.Drawing.Point(472, 216);
-            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateUser.Name = "btnUpdateUser";
             this.btnUpdateUser.Palette = this.kryptonPalette1;
             this.btnUpdateUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -134,9 +135,9 @@
             // 
             this.groupBox1.Controls.Add(this.userDatagridView);
             this.groupBox1.Location = new System.Drawing.Point(3, 180);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(454, 329);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
@@ -151,13 +152,12 @@
             this.Login,
             this.UserPassword,
             this.Role});
-            this.userDatagridView.Location = new System.Drawing.Point(15, 20);
-            this.userDatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.userDatagridView.Location = new System.Drawing.Point(18, 21);
             this.userDatagridView.Name = "userDatagridView";
             this.userDatagridView.RowHeadersVisible = false;
             this.userDatagridView.RowHeadersWidth = 51;
             this.userDatagridView.RowTemplate.Height = 24;
-            this.userDatagridView.Size = new System.Drawing.Size(428, 300);
+            this.userDatagridView.Size = new System.Drawing.Size(573, 369);
             this.userDatagridView.TabIndex = 0;
             this.userDatagridView.Click += new System.EventHandler(this.userDatagridView_Click);
             // 
@@ -195,6 +195,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.37765F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.62234F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.37765F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.62234F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -202,9 +204,12 @@
             this.tableLayoutPanel1.Controls.Add(this.txtLogin, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtUserPassword, 1, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 26);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.18033F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.81967F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.18033F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.81967F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -215,7 +220,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 49);
+            this.label3.Location = new System.Drawing.Point(23, 43);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
@@ -227,7 +232,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(65, 24);
+            this.label2.Location = new System.Drawing.Point(65, 21);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
@@ -250,8 +255,8 @@
             // RoleCmbx
             // 
             this.RoleCmbx.FormattingEnabled = true;
-            this.RoleCmbx.Location = new System.Drawing.Point(104, 26);
-            this.RoleCmbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RoleCmbx.Location = new System.Drawing.Point(104, 23);
+            this.RoleCmbx.Margin = new System.Windows.Forms.Padding(2);
             this.RoleCmbx.Name = "RoleCmbx";
             this.RoleCmbx.Size = new System.Drawing.Size(424, 21);
             this.RoleCmbx.TabIndex = 3;
@@ -260,30 +265,43 @@
             // txtLogin
             // 
             this.txtLogin.Location = new System.Drawing.Point(104, 2);
-            this.txtLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtLogin.Margin = new System.Windows.Forms.Padding(2);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(424, 20);
             this.txtLogin.TabIndex = 4;
             // 
             // txtUserPassword
             // 
-            this.txtUserPassword.Location = new System.Drawing.Point(104, 51);
-            this.txtUserPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUserPassword.Location = new System.Drawing.Point(104, 45);
+            this.txtUserPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserPassword.Name = "txtUserPassword";
             this.txtUserPassword.Size = new System.Drawing.Size(424, 20);
             this.txtUserPassword.TabIndex = 6;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnClean);
             this.groupBox2.Controls.Add(this.tableLayoutPanel1);
             this.groupBox2.Location = new System.Drawing.Point(3, 24);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(540, 118);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informations";
+            // 
+            // btnClean
+            // 
+            this.btnClean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClean.Location = new System.Drawing.Point(617, 139);
+            this.btnClean.Name = "btnClean";
+            this.btnClean.Palette = this.kryptonPalette1;
+            this.btnClean.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnClean.Size = new System.Drawing.Size(95, 33);
+            this.btnClean.TabIndex = 16;
+            this.btnClean.Values.Text = "Effacer";
+            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
             // 
             // UserManagementForm
             // 
@@ -297,7 +315,7 @@
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.btnAddUser);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UserManagementForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -336,5 +354,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Login;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserPassword;
         private System.Windows.Forms.DataGridViewTextBoxColumn Role;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnClean;
     }
 }

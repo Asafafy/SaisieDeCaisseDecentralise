@@ -1,6 +1,7 @@
 ﻿using SoftCaisse.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,9 +37,9 @@ namespace SoftCaisse.Repositories
             return _context.Users.Where(user=>user.UserId==id).ToList();
         }
 
-        void IRepository<User>.Update(User entity)
+        public void Update(User user)
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
     }
 }

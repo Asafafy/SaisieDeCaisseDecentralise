@@ -64,7 +64,7 @@ namespace SoftCaisse.Forms.User
             var data = _userRepository.GetAll();
             _users = new List<dynamic>();
             var listUser = data
-              .Select(user => new { UserId = user.UserId, Login = user.Login, Password = user.UserPassword, Role = user.Role.RoleName }).ToList();
+              .Select(user => new { UserId = user.UserId, Login = user.Login, Password = user.UserPassword, Role = user.Role.RoleName}).ToList();
             userDatagridView.DataSource = listUser;
             _users.AddRange(listUser);
         }
@@ -86,7 +86,11 @@ namespace SoftCaisse.Forms.User
             if (userDatagridView.CurrentRow.Index != -1)
             {
                 UserId = Convert.ToInt32(userDatagridView.CurrentRow.Cells["Column1"].Value);
-              
+                dynamic userWithId = _users.FirstOrDefault(user => user.UserId == UserId);
+                txtLogin.Text = userWithId.Login;
+                txtUserPassword.Text = userWithId.Password;
+                RoleCmbx.Text = userWithId.Role;
+
             }  
         }
 
@@ -99,10 +103,31 @@ namespace SoftCaisse.Forms.User
             else
             {
                 dynamic userWithId = _users.FirstOrDefault(user => user.UserId == UserId);
-                txtLogin.Text = userWithId.Login;
-                txtUserPassword.Text = userWithId.Password;
-                RoleCmbx.Text = userWithId.Role;
+                var userToUpdate = _scdContext.Users.Where(user=>user.UserId == UserId).FirstOrDefault();
+                DialogResult result = MessageBox.Show("Confirmer vous la modification?", "Important", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // Check the result
+                if (result == DialogResult.Yes)
+                {
+                    userToUpdate.Login = txtLogin.Text;
+                    userToUpdate.UserPassword = txtUserPassword.Text;
+                    userToUpdate.RoleId = IdRole;
+                    _userRepository.Update(userToUpdate);
+                    //Eto ndray petahana
+                    MessageBox.Show("Modification réussie");
+                    Clear();
+                    LoadData();
+                }
             }
+        }
+        private void Clear()
+        {
+            txtLogin.Text = "";
+            txtUserPassword.Text = "";
+            RoleCmbx.Text = "";
+        }
+        private void btnClean_Click(object sender, EventArgs e)
+        {
             
         }
     }

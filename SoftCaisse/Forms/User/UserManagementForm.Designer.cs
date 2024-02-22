@@ -37,6 +37,10 @@
             this.btnUpdateUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.userDatagridView = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,10 +49,7 @@
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnClean = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDatagridView)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -145,14 +146,43 @@
             this.Login,
             this.UserPassword,
             this.Role});
-            this.userDatagridView.Location = new System.Drawing.Point(20, 24);
+            this.userDatagridView.Location = new System.Drawing.Point(18, 21);
             this.userDatagridView.Name = "userDatagridView";
             this.userDatagridView.RowHeadersVisible = false;
             this.userDatagridView.RowHeadersWidth = 51;
             this.userDatagridView.RowTemplate.Height = 24;
-            this.userDatagridView.Size = new System.Drawing.Size(570, 369);
+            this.userDatagridView.Size = new System.Drawing.Size(573, 369);
             this.userDatagridView.TabIndex = 0;
             this.userDatagridView.Click += new System.EventHandler(this.userDatagridView_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "UserId";
+            this.Column1.HeaderText = "UserId";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            // 
+            // Login
+            // 
+            this.Login.DataPropertyName = "Login";
+            this.Login.HeaderText = "Login";
+            this.Login.MinimumWidth = 6;
+            this.Login.Name = "Login";
+            // 
+            // UserPassword
+            // 
+            this.UserPassword.DataPropertyName = "Password";
+            this.UserPassword.HeaderText = "Mot de passe";
+            this.UserPassword.MinimumWidth = 6;
+            this.UserPassword.Name = "UserPassword";
+            // 
+            // Role
+            // 
+            this.Role.DataPropertyName = "Role";
+            this.Role.HeaderText = "Rôle";
+            this.Role.MinimumWidth = 6;
+            this.Role.Name = "Role";
             // 
             // tableLayoutPanel1
             // 
@@ -232,42 +262,26 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnClean);
             this.groupBox2.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox2.Location = new System.Drawing.Point(4, 29);
+            this.groupBox2.Location = new System.Drawing.Point(4, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(720, 145);
+            this.groupBox2.Size = new System.Drawing.Size(720, 189);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informations";
             // 
-            // Column1
+            // btnClean
             // 
-            this.Column1.DataPropertyName = "UserId";
-            this.Column1.HeaderText = "UserId";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            // 
-            // Login
-            // 
-            this.Login.DataPropertyName = "Login";
-            this.Login.HeaderText = "Login";
-            this.Login.MinimumWidth = 6;
-            this.Login.Name = "Login";
-            // 
-            // UserPassword
-            // 
-            this.UserPassword.DataPropertyName = "Password";
-            this.UserPassword.HeaderText = "Mot de passe";
-            this.UserPassword.MinimumWidth = 6;
-            this.UserPassword.Name = "UserPassword";
-            // 
-            // Role
-            // 
-            this.Role.DataPropertyName = "Role";
-            this.Role.HeaderText = "Rôle";
-            this.Role.MinimumWidth = 6;
-            this.Role.Name = "Role";
+            this.btnClean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClean.Location = new System.Drawing.Point(617, 139);
+            this.btnClean.Name = "btnClean";
+            this.btnClean.Palette = this.kryptonPalette1;
+            this.btnClean.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnClean.Size = new System.Drawing.Size(95, 33);
+            this.btnClean.TabIndex = 16;
+            this.btnClean.Values.Text = "Effacer";
+            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
             // 
             // UserManagementForm
             // 
@@ -319,5 +333,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Login;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserPassword;
         private System.Windows.Forms.DataGridViewTextBoxColumn Role;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnClean;
     }
 }

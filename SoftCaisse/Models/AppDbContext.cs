@@ -18,6 +18,8 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_JOURNAUX> F_JOURNAUX { get; set; }
         public virtual DbSet<F_COLLABORATEUR> F_COLLABORATEUR { get;set; }
 
+        public virtual DbSet<F_ARTICLE> F_ARTICLE {  get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<F_COMPTET>()

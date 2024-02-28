@@ -216,6 +216,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\F_ARTICLE.cs" />
     <Compile Include="Models\F_CAISSE.cs" />
     <Compile Include="Models\F_COLLABORATEUR.cs" />
     <Compile Include="Models\F_COMPTET.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ArticleRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\FCaisseRepository.cs" />
     <Compile Include="Repositories\FCollaborateurRepository.cs" />
@@ -342,6 +344,10 @@
     <Content Include="Images\Société\Coins_96px.png" />
     <Content Include="Images\Société\ProfilPic.png" />
     <Content Include="LOGO SOFTWELL.ico" />
+    <None Include="Resources\icons8-star-50.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\parameter.png" />
+    <None Include="Resources\Image1.bmp" />
     <None Include="Resources\icons8-points-de-suspension-48.png" />
     <None Include="Resources\icons8-points-de-suspension-50.png" />
   </ItemGroup>

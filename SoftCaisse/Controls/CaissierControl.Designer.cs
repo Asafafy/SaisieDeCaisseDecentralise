@@ -30,19 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.CaissierDataGridView = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnCaissierClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.CA_Intitule = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CaissierDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.kryptonDataGridView1);
+            this.groupBox1.Controls.Add(this.CaissierDataGridView);
             this.groupBox1.Location = new System.Drawing.Point(8, 16);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(783, 392);
@@ -50,15 +51,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Caissiers";
             // 
-            // kryptonDataGridView1
+            // CaissierDataGridView
             // 
-            this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.kryptonDataGridView1.Location = new System.Drawing.Point(21, 30);
-            this.kryptonDataGridView1.Name = "kryptonDataGridView1";
-            this.kryptonDataGridView1.RowHeadersWidth = 51;
-            this.kryptonDataGridView1.RowTemplate.Height = 24;
-            this.kryptonDataGridView1.Size = new System.Drawing.Size(743, 344);
-            this.kryptonDataGridView1.TabIndex = 0;
+            this.CaissierDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.CaissierDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CaissierDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CA_Intitule});
+            this.CaissierDataGridView.Location = new System.Drawing.Point(21, 30);
+            this.CaissierDataGridView.Name = "CaissierDataGridView";
+            this.CaissierDataGridView.RowHeadersVisible = false;
+            this.CaissierDataGridView.RowHeadersWidth = 51;
+            this.CaissierDataGridView.RowTemplate.Height = 24;
+            this.CaissierDataGridView.Size = new System.Drawing.Size(743, 344);
+            this.CaissierDataGridView.TabIndex = 0;
+            this.CaissierDataGridView.DoubleClick += new System.EventHandler(this.CaissierDataGridView_DoubleClick);
             // 
             // kryptonPalette1
             // 
@@ -126,6 +132,13 @@
             this.btnCaissierClose.Values.Text = "Fermer";
             this.btnCaissierClose.Click += new System.EventHandler(this.btnCaissierClose_Click);
             // 
+            // CA_Intitule
+            // 
+            this.CA_Intitule.DataPropertyName = "Intitule";
+            this.CA_Intitule.HeaderText = "Intitulé";
+            this.CA_Intitule.MinimumWidth = 6;
+            this.CA_Intitule.Name = "CA_Intitule";
+            // 
             // CaissierControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -138,7 +151,7 @@
             this.Name = "CaissierControl";
             this.Size = new System.Drawing.Size(798, 460);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CaissierDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,11 +159,12 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView CaissierDataGridView;
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnCaissierClose;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CA_Intitule;
     }
 }

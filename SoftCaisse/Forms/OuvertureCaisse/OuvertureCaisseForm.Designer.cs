@@ -31,22 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OuvertureCaisseForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.kryptonComboBox2 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.OuvertureCaissierCmbx = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.kryptonDateTimePicker1 = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
-            this.kryptonComboBox1 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.kryptonTextBox1 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.OuvertureCaisseCmbx = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.txtOuvertureCaissePwd = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.btnOuvrCaisseClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OuvertureCaissierCmbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OuvertureCaisseCmbx)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,15 +55,15 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.kryptonComboBox2, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.OuvertureCaissierCmbx, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.kryptonDateTimePicker1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.kryptonComboBox1, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.kryptonTextBox1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.OuvertureCaisseCmbx, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtOuvertureCaissePwd, 1, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 21);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -75,13 +75,13 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(541, 151);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // kryptonComboBox2
+            // OuvertureCaissierCmbx
             // 
-            this.kryptonComboBox2.DropDownWidth = 121;
-            this.kryptonComboBox2.Location = new System.Drawing.Point(273, 67);
-            this.kryptonComboBox2.Name = "kryptonComboBox2";
-            this.kryptonComboBox2.Size = new System.Drawing.Size(254, 25);
-            this.kryptonComboBox2.TabIndex = 10;
+            this.OuvertureCaissierCmbx.DropDownWidth = 121;
+            this.OuvertureCaissierCmbx.Location = new System.Drawing.Point(273, 67);
+            this.OuvertureCaissierCmbx.Name = "OuvertureCaissierCmbx";
+            this.OuvertureCaissierCmbx.Size = new System.Drawing.Size(254, 25);
+            this.OuvertureCaissierCmbx.TabIndex = 10;
             // 
             // label2
             // 
@@ -149,20 +149,21 @@
             this.kryptonDateTimePicker1.StateCommon.Border.Rounding = 5;
             this.kryptonDateTimePicker1.TabIndex = 9;
             // 
-            // kryptonComboBox1
+            // OuvertureCaisseCmbx
             // 
-            this.kryptonComboBox1.DropDownWidth = 121;
-            this.kryptonComboBox1.Location = new System.Drawing.Point(273, 38);
-            this.kryptonComboBox1.Name = "kryptonComboBox1";
-            this.kryptonComboBox1.Size = new System.Drawing.Size(254, 25);
-            this.kryptonComboBox1.TabIndex = 0;
+            this.OuvertureCaisseCmbx.DropDownWidth = 121;
+            this.OuvertureCaisseCmbx.Location = new System.Drawing.Point(273, 38);
+            this.OuvertureCaisseCmbx.Name = "OuvertureCaisseCmbx";
+            this.OuvertureCaisseCmbx.Size = new System.Drawing.Size(252, 25);
+            this.OuvertureCaisseCmbx.TabIndex = 0;
+            this.OuvertureCaisseCmbx.Click += new System.EventHandler(this.OuvertureCaisseCmbx_Click);
             // 
-            // kryptonTextBox1
+            // txtOuvertureCaissePwd
             // 
-            this.kryptonTextBox1.Location = new System.Drawing.Point(273, 97);
-            this.kryptonTextBox1.Name = "kryptonTextBox1";
-            this.kryptonTextBox1.Size = new System.Drawing.Size(254, 27);
-            this.kryptonTextBox1.TabIndex = 11;
+            this.txtOuvertureCaissePwd.Location = new System.Drawing.Point(273, 97);
+            this.txtOuvertureCaissePwd.Name = "txtOuvertureCaissePwd";
+            this.txtOuvertureCaissePwd.Size = new System.Drawing.Size(254, 27);
+            this.txtOuvertureCaissePwd.TabIndex = 11;
             // 
             // groupBox2
             // 
@@ -236,8 +237,8 @@
             this.TopMost = true;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OuvertureCaissierCmbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OuvertureCaisseCmbx)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -256,8 +257,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnOuvrCaisseClose;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker kryptonDateTimePicker1;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox OuvertureCaissierCmbx;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox OuvertureCaisseCmbx;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox txtOuvertureCaissePwd;
     }
 }

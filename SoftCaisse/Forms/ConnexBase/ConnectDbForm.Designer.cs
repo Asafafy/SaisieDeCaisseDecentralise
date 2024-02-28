@@ -201,7 +201,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.96101F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.03899F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel3.Controls.Add(this.txtBoxSagePath, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnOpenSageFile, 2, 0);
@@ -220,7 +220,7 @@
             // 
             this.txtBoxSagePath.Location = new System.Drawing.Point(205, 3);
             this.txtBoxSagePath.Name = "txtBoxSagePath";
-            this.txtBoxSagePath.Size = new System.Drawing.Size(298, 22);
+            this.txtBoxSagePath.Size = new System.Drawing.Size(297, 22);
             this.txtBoxSagePath.TabIndex = 6;
             // 
             // label1
@@ -234,7 +234,7 @@
             // 
             // btnOpenSageFile
             // 
-            this.btnOpenSageFile.Location = new System.Drawing.Point(509, 3);
+            this.btnOpenSageFile.Location = new System.Drawing.Point(508, 3);
             this.btnOpenSageFile.Name = "btnOpenSageFile";
             this.btnOpenSageFile.Size = new System.Drawing.Size(41, 24);
             this.btnOpenSageFile.TabIndex = 7;

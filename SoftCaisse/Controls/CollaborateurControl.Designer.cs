@@ -31,15 +31,17 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.collaboDataGridView = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.btnCollaboClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.NomCollabo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumCollabo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.collaboDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -58,7 +60,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.kryptonDataGridView1);
+            this.groupBox1.Controls.Add(this.collaboDataGridView);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(783, 392);
@@ -66,15 +68,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Collaborateurs";
             // 
-            // kryptonDataGridView1
+            // collaboDataGridView
             // 
-            this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.kryptonDataGridView1.Location = new System.Drawing.Point(19, 34);
-            this.kryptonDataGridView1.Name = "kryptonDataGridView1";
-            this.kryptonDataGridView1.RowHeadersWidth = 51;
-            this.kryptonDataGridView1.RowTemplate.Height = 24;
-            this.kryptonDataGridView1.Size = new System.Drawing.Size(743, 344);
-            this.kryptonDataGridView1.TabIndex = 1;
+            this.collaboDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.collaboDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.collaboDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NomCollabo,
+            this.NumCollabo});
+            this.collaboDataGridView.Location = new System.Drawing.Point(6, 34);
+            this.collaboDataGridView.Name = "collaboDataGridView";
+            this.collaboDataGridView.RowHeadersVisible = false;
+            this.collaboDataGridView.RowHeadersWidth = 51;
+            this.collaboDataGridView.RowTemplate.Height = 24;
+            this.collaboDataGridView.Size = new System.Drawing.Size(756, 344);
+            this.collaboDataGridView.TabIndex = 1;
             // 
             // kryptonPalette1
             // 
@@ -142,6 +149,21 @@
             this.kryptonButton1.TabIndex = 22;
             this.kryptonButton1.Values.Text = "Ouvrir";
             // 
+            // NomCollabo
+            // 
+            this.NomCollabo.DataPropertyName = "NomCollabo";
+            this.NomCollabo.HeaderText = "Nom";
+            this.NomCollabo.MinimumWidth = 6;
+            this.NomCollabo.Name = "NomCollabo";
+            // 
+            // NumCollabo
+            // 
+            this.NumCollabo.DataPropertyName = "NumCollabo";
+            this.NumCollabo.HeaderText = "NumCollabo";
+            this.NumCollabo.MinimumWidth = 6;
+            this.NumCollabo.Name = "NumCollabo";
+            this.NumCollabo.Visible = false;
+            // 
             // CollaborateurControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -155,7 +177,7 @@
             this.Size = new System.Drawing.Size(808, 461);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.collaboDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -169,6 +191,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView collaboDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomCollabo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumCollabo;
     }
 }

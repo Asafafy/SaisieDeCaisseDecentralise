@@ -126,6 +126,7 @@
             this.ButtonRechercherArticle.Size = new System.Drawing.Size(71, 27);
             this.ButtonRechercherArticle.TabIndex = 20;
             this.ButtonRechercherArticle.Values.Text = "Rechercher";
+            this.ButtonRechercherArticle.Click += new System.EventHandler(this.ButtonRechercherArticle_Click);
             // 
             // labelMesFiltres
             // 
@@ -161,6 +162,7 @@
             // 
             // dataGridViewArticle
             // 
+            this.dataGridViewArticle.AllowUserToAddRows = false;
             this.dataGridViewArticle.AllowUserToDeleteRows = false;
             this.dataGridViewArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewArticle.BackgroundColor = System.Drawing.Color.White;
@@ -175,24 +177,32 @@
             this.dataGridViewArticle.GridColor = System.Drawing.Color.White;
             this.dataGridViewArticle.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewArticle.Name = "dataGridViewArticle";
+            this.dataGridViewArticle.ReadOnly = true;
             this.dataGridViewArticle.RowHeadersVisible = false;
+            this.dataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewArticle.Size = new System.Drawing.Size(740, 427);
             this.dataGridViewArticle.TabIndex = 0;
             // 
             // reference
             // 
+            this.reference.DataPropertyName = "reference";
             this.reference.HeaderText = "Référence";
             this.reference.Name = "reference";
+            this.reference.ReadOnly = true;
             // 
             // designation
             // 
+            this.designation.DataPropertyName = "reference";
             this.designation.HeaderText = "Désignation";
             this.designation.Name = "designation";
+            this.designation.ReadOnly = true;
             // 
             // famille
             // 
+            this.famille.DataPropertyName = "famille";
             this.famille.HeaderText = "Famille";
             this.famille.Name = "famille";
+            this.famille.ReadOnly = true;
             // 
             // groupBoxFiltre
             // 
@@ -346,12 +356,13 @@
             // 
             // textBoxBarreDeRecherche
             // 
-            this.textBoxBarreDeRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxBarreDeRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxBarreDeRecherche.Location = new System.Drawing.Point(338, 22);
             this.textBoxBarreDeRecherche.Name = "textBoxBarreDeRecherche";
             this.textBoxBarreDeRecherche.Size = new System.Drawing.Size(517, 23);
             this.textBoxBarreDeRecherche.TabIndex = 2;
             this.textBoxBarreDeRecherche.Text = "Rechercher des mots dans la liste";
+            this.textBoxBarreDeRecherche.TextChanged += new System.EventHandler(this.textBoxBarreDeRecherche_TextChanged);
             // 
             // panel1
             // 
@@ -452,6 +463,7 @@
             this.ButtonOKArticle.Size = new System.Drawing.Size(71, 27);
             this.ButtonOKArticle.TabIndex = 11;
             this.ButtonOKArticle.Values.Text = "OK";
+            this.ButtonOKArticle.Click += new System.EventHandler(this.ButtonOKArticle_Click);
             // 
             // ButtonCloseArticle
             // 
@@ -526,12 +538,12 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonSupprimerFiltre;
         private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonEnregistrerFiltre;
         private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonAppliquerFiltre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn reference;
-        private System.Windows.Forms.DataGridViewTextBoxColumn designation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn famille;
         private System.Windows.Forms.Label labelParametreFiltre;
         private System.Windows.Forms.Label labelPrestations;
         private System.Windows.Forms.Label labelMesFiltres;
         private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonRechercherArticle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn reference;
+        private System.Windows.Forms.DataGridViewTextBoxColumn designation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn famille;
     }
 }

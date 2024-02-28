@@ -26,7 +26,7 @@ namespace SoftCaisse.Repositories
 
         public IEnumerable<Role> GetAll()
         {
-            return _context.Roles.ToList(); ;
+            return _context.Roles.ToList();
         }
         public IEnumerable<Role> GetById(int id)
         {

@@ -20,6 +20,8 @@ namespace SoftCaisse.Models
 
         public virtual DbSet<F_ARTICLE> F_ARTICLE {  get; set; }
 
+        public virtual DbSet<P_DEVISE> P_DEVISE { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<F_COMPTET>()

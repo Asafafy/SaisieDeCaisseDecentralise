@@ -126,7 +126,6 @@
             this.ButtonRechercherArticle.Size = new System.Drawing.Size(71, 27);
             this.ButtonRechercherArticle.TabIndex = 20;
             this.ButtonRechercherArticle.Values.Text = "Rechercher";
-            this.ButtonRechercherArticle.Click += new System.EventHandler(this.ButtonRechercherArticle_Click);
             // 
             // labelMesFiltres
             // 
@@ -182,6 +181,7 @@
             this.dataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewArticle.Size = new System.Drawing.Size(740, 427);
             this.dataGridViewArticle.TabIndex = 0;
+            this.dataGridViewArticle.DoubleClick += new System.EventHandler(this.ButtonOKArticle_Click);
             // 
             // reference
             // 
@@ -363,6 +363,7 @@
             this.textBoxBarreDeRecherche.TabIndex = 2;
             this.textBoxBarreDeRecherche.Text = "Rechercher des mots dans la liste";
             this.textBoxBarreDeRecherche.TextChanged += new System.EventHandler(this.textBoxBarreDeRecherche_TextChanged);
+            
             // 
             // panel1
             // 

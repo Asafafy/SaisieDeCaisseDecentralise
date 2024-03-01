@@ -63,10 +63,10 @@ namespace SoftCaisse.Forms.Article
             }
         }
 
-       private void ButtonRechercherArticle_Click(object sender, EventArgs e)
+  /*     private void ButtonRechercherArticle_Click(object sender, EventArgs e)
         {
   
-        }
+        }*/
         private void labelParametreFiltre_Click(object sender, EventArgs e)
         { 
             groupBoxFiltre.Visible = !groupBoxFiltre.Visible;
@@ -89,14 +89,18 @@ namespace SoftCaisse.Forms.Article
             this.Close();
         }
 
-        private void ChargerDonnees()
+        private void dataGridViewArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridViewArticle.Rows.Count)
+            {
+                DataGridViewRow selectedRow = dataGridViewArticle.Rows[e.RowIndex];
+                ButtonOKArticle_Click(sender, e);
+            }
         }
-
+        //AJOUT DE L'ARTICLE SELECTIONNE
         private void ButtonOKArticle_Click(object sender, EventArgs e)
         {
-            List<F_ARTICLE> _articles = _articleRepository.GetAll().ToList();
+           // List<F_ARTICLE> _articles = _articleRepository.GetAll().ToList();
             if (dataGridViewArticle.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridViewArticle.SelectedRows[0];

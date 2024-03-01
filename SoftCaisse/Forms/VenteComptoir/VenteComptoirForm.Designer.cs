@@ -41,7 +41,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxGeneral = new System.Windows.Forms.GroupBox();
             this.ButtonEnregistrerDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanelDesignation = new System.Windows.Forms.TableLayoutPanel();
-            this.textBoxRerence = new System.Windows.Forms.TextBox();
+            this.textBoxReference = new System.Windows.Forms.TextBox();
             this.textBoxDesignation = new System.Windows.Forms.TextBox();
             this.textBoxGamme1 = new System.Windows.Forms.TextBox();
             this.textBoxNumLot = new System.Windows.Forms.TextBox();
@@ -92,7 +92,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxReste = new System.Windows.Forms.GroupBox();
             this.labelPrixResteDu = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.comboBoxResteDu = new System.Windows.Forms.ComboBox();
             this.labelResteDu = new System.Windows.Forms.Label();
             this.groupBoxinfoCaissier = new System.Windows.Forms.GroupBox();
             this.labelNomCaissier = new System.Windows.Forms.Label();
@@ -193,7 +193,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxRerence, 0, 0);
+            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxReference, 0, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxDesignation, 1, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxGamme1, 2, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxNumLot, 3, 0);
@@ -207,19 +207,23 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanelDesignation.Size = new System.Drawing.Size(1088, 36);
             this.tableLayoutPanelDesignation.TabIndex = 6;
             // 
-            // textBoxRerence
+            // textBoxReference
             // 
-            this.textBoxRerence.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRerence.Location = new System.Drawing.Point(3, 3);
-            this.textBoxRerence.Name = "textBoxRerence";
-            this.textBoxRerence.Size = new System.Drawing.Size(100, 25);
-            this.textBoxRerence.TabIndex = 13;
-            this.textBoxRerence.Text = "Référence";
-            this.textBoxRerence.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxReference_KeyDown);
+            this.textBoxReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxReference.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.textBoxReference.Location = new System.Drawing.Point(3, 3);
+            this.textBoxReference.Name = "textBoxReference";
+            this.textBoxReference.Size = new System.Drawing.Size(100, 25);
+            this.textBoxReference.TabIndex = 13;
+            this.textBoxReference.Text = "Référence";
+            this.textBoxReference.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.textBoxReference.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxReference_KeyDown);
+            this.textBoxReference.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // textBoxDesignation
             // 
             this.textBoxDesignation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDesignation.ForeColor = System.Drawing.SystemColors.GrayText;
             this.textBoxDesignation.Location = new System.Drawing.Point(111, 3);
             this.textBoxDesignation.Name = "textBoxDesignation";
             this.textBoxDesignation.Size = new System.Drawing.Size(320, 25);
@@ -247,6 +251,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // textBoxPUHT
             // 
             this.textBoxPUHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPUHT.ForeColor = System.Drawing.SystemColors.GrayText;
             this.textBoxPUHT.Location = new System.Drawing.Point(653, 3);
             this.textBoxPUHT.Name = "textBoxPUHT";
             this.textBoxPUHT.Size = new System.Drawing.Size(102, 25);
@@ -265,6 +270,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // textBoxQuantite
             // 
             this.textBoxQuantite.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxQuantite.ForeColor = System.Drawing.SystemColors.GrayText;
             this.textBoxQuantite.Location = new System.Drawing.Point(924, 3);
             this.textBoxQuantite.Name = "textBoxQuantite";
             this.textBoxQuantite.Size = new System.Drawing.Size(161, 25);
@@ -294,6 +300,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.ButtonNouveauDesignation.Size = new System.Drawing.Size(90, 25);
             this.ButtonNouveauDesignation.TabIndex = 10;
             this.ButtonNouveauDesignation.Values.Text = "Nouveau";
+            this.ButtonNouveauDesignation.Click += new System.EventHandler(this.ButtonNouveauDesignation_Click);
             // 
             // groupBoxTotal
             // 
@@ -407,6 +414,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.dataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewArticle.Size = new System.Drawing.Size(1088, 224);
             this.dataGridViewArticle.TabIndex = 4;
+            this.dataGridViewArticle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewArticle_CellContentClick);
             // 
             // Column1
             // 
@@ -596,28 +604,35 @@ namespace SoftCaisse.Forms.VenteComptoir
             // dateTimePickerEnregistrement
             // 
             this.dateTimePickerEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerEnregistrement.Location = new System.Drawing.Point(511, 15);
+            this.dateTimePickerEnregistrement.Location = new System.Drawing.Point(558, 15);
             this.dateTimePickerEnregistrement.Name = "dateTimePickerEnregistrement";
-            this.dateTimePickerEnregistrement.Size = new System.Drawing.Size(160, 23);
+            this.dateTimePickerEnregistrement.Size = new System.Drawing.Size(113, 23);
             this.dateTimePickerEnregistrement.TabIndex = 4;
             // 
             // comboBoxDeviseEnregistrement
             // 
             this.comboBoxDeviseEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxDeviseEnregistrement.FormattingEnabled = true;
-            this.comboBoxDeviseEnregistrement.Location = new System.Drawing.Point(357, 14);
+            this.comboBoxDeviseEnregistrement.Items.AddRange(new object[] {
+            "Dollar US",
+            "Ariary Malgache",
+            "Euro",
+            "Franc CFA"});
+            this.comboBoxDeviseEnregistrement.Location = new System.Drawing.Point(430, 14);
             this.comboBoxDeviseEnregistrement.Name = "comboBoxDeviseEnregistrement";
-            this.comboBoxDeviseEnregistrement.Size = new System.Drawing.Size(148, 24);
+            this.comboBoxDeviseEnregistrement.Size = new System.Drawing.Size(120, 24);
             this.comboBoxDeviseEnregistrement.TabIndex = 3;
+            this.comboBoxDeviseEnregistrement.Text = "Euro";
             this.comboBoxDeviseEnregistrement.SelectedIndexChanged += new System.EventHandler(this.comboBoxDeviseEnregistrement_SelectedIndexChanged);
             // 
             // textBoxLibelleEnregistrement
             // 
             this.textBoxLibelleEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLibelleEnregistrement.Location = new System.Drawing.Point(211, 16);
+            this.textBoxLibelleEnregistrement.Location = new System.Drawing.Point(270, 15);
             this.textBoxLibelleEnregistrement.Name = "textBoxLibelleEnregistrement";
-            this.textBoxLibelleEnregistrement.Size = new System.Drawing.Size(140, 22);
+            this.textBoxLibelleEnregistrement.Size = new System.Drawing.Size(152, 22);
             this.textBoxLibelleEnregistrement.TabIndex = 2;
+            this.textBoxLibelleEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // comboBoxEspeceEnregistrement
             // 
@@ -627,19 +642,21 @@ namespace SoftCaisse.Forms.VenteComptoir
             "Espèce",
             "Virement",
             "Chèque"});
-            this.comboBoxEspeceEnregistrement.Location = new System.Drawing.Point(3, 16);
+            this.comboBoxEspeceEnregistrement.Location = new System.Drawing.Point(6, 13);
             this.comboBoxEspeceEnregistrement.Name = "comboBoxEspeceEnregistrement";
-            this.comboBoxEspeceEnregistrement.Size = new System.Drawing.Size(88, 24);
+            this.comboBoxEspeceEnregistrement.Size = new System.Drawing.Size(71, 24);
             this.comboBoxEspeceEnregistrement.TabIndex = 0;
             this.comboBoxEspeceEnregistrement.Text = "Espèce";
             // 
             // textBoxMontantEnregistrement
             // 
             this.textBoxMontantEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMontantEnregistrement.Location = new System.Drawing.Point(97, 16);
+            this.textBoxMontantEnregistrement.Location = new System.Drawing.Point(91, 14);
             this.textBoxMontantEnregistrement.Name = "textBoxMontantEnregistrement";
-            this.textBoxMontantEnregistrement.Size = new System.Drawing.Size(108, 23);
+            this.textBoxMontantEnregistrement.Size = new System.Drawing.Size(173, 23);
             this.textBoxMontantEnregistrement.TabIndex = 1;
+            this.textBoxMontantEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxMontantEnregistrement.TextChanged += new System.EventHandler(this.textBoxMontantEnregistrement_TextChanged);
             // 
             // groupBoxCommand
             // 
@@ -769,7 +786,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxReste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxReste.Controls.Add(this.labelPrixResteDu);
             this.groupBoxReste.Controls.Add(this.label11);
-            this.groupBoxReste.Controls.Add(this.comboBox9);
+            this.groupBoxReste.Controls.Add(this.comboBoxResteDu);
             this.groupBoxReste.Controls.Add(this.labelResteDu);
             this.groupBoxReste.Location = new System.Drawing.Point(714, 484);
             this.groupBoxReste.Name = "groupBoxReste";
@@ -800,13 +817,20 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.label11.TabIndex = 13;
             this.label11.Text = "Devise";
             // 
-            // comboBox9
+            // comboBoxResteDu
             // 
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(138, 54);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(245, 21);
-            this.comboBox9.TabIndex = 13;
+            this.comboBoxResteDu.FormattingEnabled = true;
+            this.comboBoxResteDu.Items.AddRange(new object[] {
+            "Ariary Malgache",
+            "Dollar US",
+            "Euro",
+            "Franc CFA"});
+            this.comboBoxResteDu.Location = new System.Drawing.Point(138, 54);
+            this.comboBoxResteDu.Name = "comboBoxResteDu";
+            this.comboBoxResteDu.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxResteDu.TabIndex = 13;
+            this.comboBoxResteDu.Text = "Euro";
+            this.comboBoxResteDu.SelectedIndexChanged += new System.EventHandler(this.comboBoxResteDu_SelectedIndexChanged);
             // 
             // labelResteDu
             // 
@@ -1016,6 +1040,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Vente comptoir";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.VenteComptoirForm_Load);
             this.groupBoxGeneral.ResumeLayout(false);
             this.tableLayoutPanelDesignation.ResumeLayout(false);
             this.tableLayoutPanelDesignation.PerformLayout();
@@ -1064,7 +1089,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.ComboBox comboBoxCentrale;
         private System.Windows.Forms.ComboBox comboBoxTarif;
         private System.Windows.Forms.ComboBox comboBoxVendeur;
-        private System.Windows.Forms.ComboBox comboBox9;
+        private System.Windows.Forms.ComboBox comboBoxResteDu;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label labelCentrale;
@@ -1089,7 +1114,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.Label labelPrixTotalTTC;
         private System.Windows.Forms.Label labelPrixTotalHT;
         private System.Windows.Forms.Label labelPrixResteDu;
-        private System.Windows.Forms.TextBox textBoxRerence;
+        private System.Windows.Forms.TextBox textBoxReference;
         private System.Windows.Forms.DataGridView dataGridViewEnregistrement;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModeDeReception;
         private System.Windows.Forms.DataGridViewTextBoxColumn Montant;

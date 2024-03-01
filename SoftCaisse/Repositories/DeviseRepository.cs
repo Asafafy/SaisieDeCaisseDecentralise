@@ -10,6 +10,11 @@ namespace SoftCaisse.Repositories
     internal class DeviseRepository : IRepository<P_DEVISE>
     {
         private readonly AppDbContext _context;
+
+        public DeviseRepository(AppDbContext context)
+        {
+            _context = context;
+        }
         public void Add(P_DEVISE entity)
         {
             throw new NotImplementedException();

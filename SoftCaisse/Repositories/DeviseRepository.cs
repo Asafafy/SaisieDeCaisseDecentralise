@@ -33,7 +33,8 @@ namespace SoftCaisse.Repositories
                     a.D_Intitule,
                     a.D_Cours,
                     a.D_Monnaie,
-                    a.D_CodeISO
+                    a.D_CodeISO,
+                    a.cbMarq
                 })
                 .ToList()
                 .Select( a => new P_DEVISE
@@ -41,7 +42,8 @@ namespace SoftCaisse.Repositories
                     D_Intitule = a.D_Intitule,
                     D_Cours = a.D_Cours,
                     D_Monnaie = a.D_Monnaie,
-                    D_CodeISO = a.D_CodeISO
+                    D_CodeISO = a.D_CodeISO,
+                    cbMarq = a.cbMarq
                 });
         }
 

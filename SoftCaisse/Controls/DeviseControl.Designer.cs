@@ -37,6 +37,11 @@
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.cbMarque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Devise = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code_ISO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code_ISO_Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -129,13 +134,58 @@
             // 
             // kryptonDataGridView1
             // 
+            this.kryptonDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.kryptonDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cbMarque,
+            this.Devise,
+            this.Code_ISO,
+            this.Code_ISO_Num,
+            this.Cours});
             this.kryptonDataGridView1.Location = new System.Drawing.Point(7, 14);
             this.kryptonDataGridView1.Name = "kryptonDataGridView1";
+            this.kryptonDataGridView1.RowHeadersVisible = false;
             this.kryptonDataGridView1.RowHeadersWidth = 51;
             this.kryptonDataGridView1.RowTemplate.Height = 24;
             this.kryptonDataGridView1.Size = new System.Drawing.Size(744, 439);
             this.kryptonDataGridView1.TabIndex = 26;
+            this.kryptonDataGridView1.DoubleClick += new System.EventHandler(this.kryptonDataGridView1_DoubleClick);
+            // 
+            // cbMarque
+            // 
+            this.cbMarque.DataPropertyName = "cbMarque";
+            this.cbMarque.HeaderText = "cbMarque";
+            this.cbMarque.MinimumWidth = 6;
+            this.cbMarque.Name = "cbMarque";
+            this.cbMarque.Visible = false;
+            // 
+            // Devise
+            // 
+            this.Devise.DataPropertyName = "Devise";
+            this.Devise.HeaderText = "Devise";
+            this.Devise.MinimumWidth = 6;
+            this.Devise.Name = "Devise";
+            // 
+            // Code_ISO
+            // 
+            this.Code_ISO.DataPropertyName = "Code_ISO";
+            this.Code_ISO.HeaderText = "Code ISO";
+            this.Code_ISO.MinimumWidth = 6;
+            this.Code_ISO.Name = "Code_ISO";
+            // 
+            // Code_ISO_Num
+            // 
+            this.Code_ISO_Num.DataPropertyName = "Code_ISO_NUM";
+            this.Code_ISO_Num.HeaderText = "Code ISO NUM";
+            this.Code_ISO_Num.MinimumWidth = 6;
+            this.Code_ISO_Num.Name = "Code_ISO_Num";
+            // 
+            // Cours
+            // 
+            this.Cours.DataPropertyName = "Cours";
+            this.Cours.HeaderText = "Cours";
+            this.Cours.MinimumWidth = 6;
+            this.Cours.Name = "Cours";
             // 
             // DeviseControl
             // 
@@ -163,5 +213,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cbMarque;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Devise;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Code_ISO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Code_ISO_Num;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cours;
     }
 }

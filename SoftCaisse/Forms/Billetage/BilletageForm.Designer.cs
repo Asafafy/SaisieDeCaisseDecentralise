@@ -33,10 +33,13 @@
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.cbMarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Intitulé = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valeur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -68,9 +71,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.kryptonDataGridView1);
             this.groupBox1.Controls.Add(this.kryptonButton2);
             this.groupBox1.Controls.Add(this.kryptonButton1);
-            this.groupBox1.Controls.Add(this.kryptonDataGridView1);
             this.groupBox1.Location = new System.Drawing.Point(6, 11);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(653, 550);
@@ -80,23 +83,21 @@
             // 
             // kryptonDataGridView1
             // 
+            this.kryptonDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.kryptonDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cbMarq,
+            this.Intitulé,
+            this.Valeur});
             this.kryptonDataGridView1.Location = new System.Drawing.Point(13, 24);
             this.kryptonDataGridView1.Name = "kryptonDataGridView1";
+            this.kryptonDataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.kryptonDataGridView1.RowHeadersVisible = false;
             this.kryptonDataGridView1.RowHeadersWidth = 51;
             this.kryptonDataGridView1.RowTemplate.Height = 24;
+            this.kryptonDataGridView1.ShowCellToolTips = false;
             this.kryptonDataGridView1.Size = new System.Drawing.Size(500, 513);
             this.kryptonDataGridView1.TabIndex = 0;
-            // 
-            // kryptonButton1
-            // 
-            this.kryptonButton1.Location = new System.Drawing.Point(528, 24);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Palette = this.kryptonPalette1;
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton1.Size = new System.Drawing.Size(117, 33);
-            this.kryptonButton1.TabIndex = 8;
-            this.kryptonButton1.Values.Text = "Ajouter";
             // 
             // kryptonButton2
             // 
@@ -107,6 +108,16 @@
             this.kryptonButton2.Size = new System.Drawing.Size(117, 33);
             this.kryptonButton2.TabIndex = 9;
             this.kryptonButton2.Values.Text = "Supprimer";
+            // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.Location = new System.Drawing.Point(528, 24);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.Palette = this.kryptonPalette1;
+            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton1.Size = new System.Drawing.Size(117, 33);
+            this.kryptonButton1.TabIndex = 8;
+            this.kryptonButton1.Values.Text = "Ajouter";
             // 
             // kryptonButton4
             // 
@@ -128,6 +139,28 @@
             this.kryptonButton3.TabIndex = 28;
             this.kryptonButton3.Values.Text = "Annuler";
             // 
+            // cbMarq
+            // 
+            this.cbMarq.DataPropertyName = "cbMarq";
+            this.cbMarq.HeaderText = "cbMarq";
+            this.cbMarq.MinimumWidth = 6;
+            this.cbMarq.Name = "cbMarq";
+            this.cbMarq.Visible = false;
+            // 
+            // Intitulé
+            // 
+            this.Intitulé.DataPropertyName = "Intitulé";
+            this.Intitulé.HeaderText = "Intitulé";
+            this.Intitulé.MinimumWidth = 6;
+            this.Intitulé.Name = "Intitulé";
+            // 
+            // Valeur
+            // 
+            this.Valeur.DataPropertyName = "Valeur";
+            this.Valeur.HeaderText = "Valeur";
+            this.Valeur.MinimumWidth = 6;
+            this.Valeur.Name = "Valeur";
+            // 
             // BilletageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -142,6 +175,7 @@
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BilletageForm";
+            this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -157,5 +191,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cbMarq;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Intitulé;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valeur;
     }
 }

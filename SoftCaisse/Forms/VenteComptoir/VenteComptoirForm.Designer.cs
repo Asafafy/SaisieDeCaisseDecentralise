@@ -71,6 +71,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Devise = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateEcheance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxInvisibleEnregistrement = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.ButtonEnregistrerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ButtonSupprimerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ButtonNouveauEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -94,6 +95,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.label11 = new System.Windows.Forms.Label();
             this.comboBoxResteDu = new System.Windows.Forms.ComboBox();
             this.labelResteDu = new System.Windows.Forms.Label();
+            this.labelResteDuDevise = new System.Windows.Forms.Label();
             this.groupBoxinfoCaissier = new System.Windows.Forms.GroupBox();
             this.labelNomCaissier = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -173,6 +175,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // ButtonEnregistrerDesignation
             // 
             this.ButtonEnregistrerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonEnregistrerDesignation.Enabled = false;
             this.ButtonEnregistrerDesignation.Location = new System.Drawing.Point(1017, 214);
             this.ButtonEnregistrerDesignation.Name = "ButtonEnregistrerDesignation";
             this.ButtonEnregistrerDesignation.Palette = this.kryptonPalette1;
@@ -550,6 +553,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.groupBoxInvisibleEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxInvisibleEnregistrement.Controls.Add(this.label2);
             this.groupBoxInvisibleEnregistrement.Controls.Add(this.ButtonEnregistrerEnregistrement);
             this.groupBoxInvisibleEnregistrement.Controls.Add(this.ButtonSupprimerEnregistrement);
             this.groupBoxInvisibleEnregistrement.Controls.Add(this.ButtonNouveauEnregistrement);
@@ -564,6 +568,15 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxInvisibleEnregistrement.TabIndex = 0;
             this.groupBoxInvisibleEnregistrement.TabStop = false;
             this.groupBoxInvisibleEnregistrement.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(256, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 16);
+            this.label2.TabIndex = 17;
             // 
             // ButtonEnregistrerEnregistrement
             // 
@@ -618,9 +631,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             "Ariary Malgache",
             "Euro",
             "Franc CFA"});
-            this.comboBoxDeviseEnregistrement.Location = new System.Drawing.Point(430, 14);
+            this.comboBoxDeviseEnregistrement.Location = new System.Drawing.Point(458, 14);
             this.comboBoxDeviseEnregistrement.Name = "comboBoxDeviseEnregistrement";
-            this.comboBoxDeviseEnregistrement.Size = new System.Drawing.Size(120, 24);
+            this.comboBoxDeviseEnregistrement.Size = new System.Drawing.Size(94, 24);
             this.comboBoxDeviseEnregistrement.TabIndex = 3;
             this.comboBoxDeviseEnregistrement.Text = "Euro";
             this.comboBoxDeviseEnregistrement.SelectedIndexChanged += new System.EventHandler(this.comboBoxDeviseEnregistrement_SelectedIndexChanged);
@@ -628,7 +641,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // textBoxLibelleEnregistrement
             // 
             this.textBoxLibelleEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLibelleEnregistrement.Location = new System.Drawing.Point(270, 15);
+            this.textBoxLibelleEnregistrement.Location = new System.Drawing.Point(300, 15);
             this.textBoxLibelleEnregistrement.Name = "textBoxLibelleEnregistrement";
             this.textBoxLibelleEnregistrement.Size = new System.Drawing.Size(152, 22);
             this.textBoxLibelleEnregistrement.TabIndex = 2;
@@ -651,7 +664,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // textBoxMontantEnregistrement
             // 
             this.textBoxMontantEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMontantEnregistrement.Location = new System.Drawing.Point(91, 14);
+            this.textBoxMontantEnregistrement.Location = new System.Drawing.Point(82, 14);
             this.textBoxMontantEnregistrement.Name = "textBoxMontantEnregistrement";
             this.textBoxMontantEnregistrement.Size = new System.Drawing.Size(173, 23);
             this.textBoxMontantEnregistrement.TabIndex = 1;
@@ -788,6 +801,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxReste.Controls.Add(this.label11);
             this.groupBoxReste.Controls.Add(this.comboBoxResteDu);
             this.groupBoxReste.Controls.Add(this.labelResteDu);
+            this.groupBoxReste.Controls.Add(this.labelResteDuDevise);
             this.groupBoxReste.Location = new System.Drawing.Point(714, 484);
             this.groupBoxReste.Name = "groupBoxReste";
             this.groupBoxReste.Size = new System.Drawing.Size(393, 102);
@@ -829,8 +843,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.comboBoxResteDu.Name = "comboBoxResteDu";
             this.comboBoxResteDu.Size = new System.Drawing.Size(245, 21);
             this.comboBoxResteDu.TabIndex = 13;
-            this.comboBoxResteDu.Text = "Euro";
-            this.comboBoxResteDu.SelectedIndexChanged += new System.EventHandler(this.comboBoxResteDu_SelectedIndexChanged);
             // 
             // labelResteDu
             // 
@@ -842,6 +854,20 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.labelResteDu.TabIndex = 0;
             this.labelResteDu.Text = "Reste dû";
             this.labelResteDu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelResteDuDevise
+            // 
+            this.labelResteDuDevise.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelResteDuDevise.AutoSize = true;
+            this.labelResteDuDevise.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelResteDuDevise.Location = new System.Drawing.Point(195, 14);
+            this.labelResteDuDevise.Name = "labelResteDuDevise";
+            this.labelResteDuDevise.Size = new System.Drawing.Size(71, 31);
+            this.labelResteDuDevise.TabIndex = 18;
+            this.labelResteDuDevise.Text = "0,00";
+            this.labelResteDuDevise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelResteDuDevise.Visible = false;
             // 
             // groupBoxinfoCaissier
             // 
@@ -1137,5 +1163,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.DataGridViewTextBoxColumn prixUnitaireHT;
         private System.Windows.Forms.DataGridViewTextBoxColumn prixUnitaireTTC;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantiteVendue;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelResteDuDevise;
     }
 }

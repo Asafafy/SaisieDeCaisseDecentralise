@@ -100,7 +100,6 @@ namespace SoftCaisse.Forms.Article
         //AJOUT DE L'ARTICLE SELECTIONNE
         private void ButtonOKArticle_Click(object sender, EventArgs e)
         {
-           // List<F_ARTICLE> _articles = _articleRepository.GetAll().ToList();
             if (dataGridViewArticle.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridViewArticle.SelectedRows[0];
@@ -120,6 +119,7 @@ namespace SoftCaisse.Forms.Article
                 if (venteComptoirForm != null)
                 {
                     venteComptoirForm.AjouterArticle(afRef, afDesign, faCodeFamille, (int)infoSupplementaire.QuantiteStock, (decimal)infoSupplementaire.PuHT, (decimal)infoSupplementaire.PuTTC, (int)infoSupplementaire.QuantiteVendue);
+
                 }
 
             }

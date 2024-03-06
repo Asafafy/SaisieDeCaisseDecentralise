@@ -15,6 +15,7 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_COMPTET> F_COMPTET { get; set; }
         public virtual DbSet<F_CAISSE> F_CAISSE { get; set; }
         public virtual DbSet<F_DEPOT> F_DEPOT { get; set; }
+        public virtual DbSet<F_BILLETPIECE> F_BILLETPIECE { get; set; }
         public virtual DbSet<F_JOURNAUX> F_JOURNAUX { get; set; }
         public virtual DbSet<F_COLLABORATEUR> F_COLLABORATEUR { get;set; }
 

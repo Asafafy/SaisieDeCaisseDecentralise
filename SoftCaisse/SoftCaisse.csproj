@@ -229,6 +229,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\F_ARTICLE.cs" />
+    <Compile Include="Models\F_BILLETPIECE.cs" />
     <Compile Include="Models\F_CAISSE.cs" />
     <Compile Include="Models\F_COLLABORATEUR.cs" />
     <Compile Include="Models\F_COMPTET.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArticleRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\FBilletageRepository.cs" />
     <Compile Include="Repositories\FCaisseRepository.cs" />
     <Compile Include="Repositories\FCollaborateurRepository.cs" />
     <Compile Include="Repositories\FDepotRepository.cs" />

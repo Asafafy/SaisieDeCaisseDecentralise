@@ -33,13 +33,19 @@
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.cbMarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbProt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbCreateur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbModification = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbReplication = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.N_Devise = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Intitulé = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valeur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.cbMarq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Intitulé = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valeur = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +93,12 @@
             this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.kryptonDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cbMarq,
+            this.cbProt,
+            this.cbCreateur,
+            this.cbModification,
+            this.cbReplication,
+            this.cbFlag,
+            this.N_Devise,
             this.Intitulé,
             this.Valeur});
             this.kryptonDataGridView1.Location = new System.Drawing.Point(13, 24);
@@ -99,6 +111,76 @@
             this.kryptonDataGridView1.Size = new System.Drawing.Size(500, 513);
             this.kryptonDataGridView1.TabIndex = 0;
             // 
+            // cbMarq
+            // 
+            this.cbMarq.DataPropertyName = "cbMarq";
+            this.cbMarq.HeaderText = "cbMarq";
+            this.cbMarq.MinimumWidth = 6;
+            this.cbMarq.Name = "cbMarq";
+            this.cbMarq.Visible = false;
+            // 
+            // cbProt
+            // 
+            this.cbProt.DataPropertyName = "cbProt";
+            this.cbProt.HeaderText = "cbProt";
+            this.cbProt.MinimumWidth = 6;
+            this.cbProt.Name = "cbProt";
+            this.cbProt.Visible = false;
+            // 
+            // cbCreateur
+            // 
+            this.cbCreateur.DataPropertyName = "cbCreateur";
+            this.cbCreateur.HeaderText = "cbCreateur";
+            this.cbCreateur.MinimumWidth = 6;
+            this.cbCreateur.Name = "cbCreateur";
+            this.cbCreateur.Visible = false;
+            // 
+            // cbModification
+            // 
+            this.cbModification.DataPropertyName = "cbModification";
+            this.cbModification.HeaderText = "cbModification";
+            this.cbModification.MinimumWidth = 6;
+            this.cbModification.Name = "cbModification";
+            this.cbModification.Visible = false;
+            // 
+            // cbReplication
+            // 
+            this.cbReplication.DataPropertyName = "cbReplication";
+            this.cbReplication.HeaderText = "cbReplication";
+            this.cbReplication.MinimumWidth = 6;
+            this.cbReplication.Name = "cbReplication";
+            this.cbReplication.Visible = false;
+            // 
+            // cbFlag
+            // 
+            this.cbFlag.DataPropertyName = "cbFlag";
+            this.cbFlag.HeaderText = "cbFlag";
+            this.cbFlag.MinimumWidth = 6;
+            this.cbFlag.Name = "cbFlag";
+            this.cbFlag.Visible = false;
+            // 
+            // N_Devise
+            // 
+            this.N_Devise.DataPropertyName = "N_Devise";
+            this.N_Devise.HeaderText = "N_Devise";
+            this.N_Devise.MinimumWidth = 6;
+            this.N_Devise.Name = "N_Devise";
+            this.N_Devise.Visible = false;
+            // 
+            // Intitulé
+            // 
+            this.Intitulé.DataPropertyName = "BI_Intitule";
+            this.Intitulé.HeaderText = "Intitulé";
+            this.Intitulé.MinimumWidth = 6;
+            this.Intitulé.Name = "Intitulé";
+            // 
+            // Valeur
+            // 
+            this.Valeur.DataPropertyName = "BI_Valeur";
+            this.Valeur.HeaderText = "Valeur";
+            this.Valeur.MinimumWidth = 6;
+            this.Valeur.Name = "Valeur";
+            // 
             // kryptonButton2
             // 
             this.kryptonButton2.Location = new System.Drawing.Point(528, 67);
@@ -108,6 +190,7 @@
             this.kryptonButton2.Size = new System.Drawing.Size(117, 33);
             this.kryptonButton2.TabIndex = 9;
             this.kryptonButton2.Values.Text = "Supprimer";
+            this.kryptonButton2.Click += new System.EventHandler(this.newrow_click);
             // 
             // kryptonButton1
             // 
@@ -118,6 +201,7 @@
             this.kryptonButton1.Size = new System.Drawing.Size(117, 33);
             this.kryptonButton1.TabIndex = 8;
             this.kryptonButton1.Values.Text = "Ajouter";
+            this.kryptonButton1.Click += new System.EventHandler(this.focus_row);
             // 
             // kryptonButton4
             // 
@@ -127,7 +211,8 @@
             this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.kryptonButton4.Size = new System.Drawing.Size(97, 34);
             this.kryptonButton4.TabIndex = 27;
-            this.kryptonButton4.Values.Text = "OK";
+            this.kryptonButton4.Values.Text = "Sauvegarde";
+            this.kryptonButton4.Click += new System.EventHandler(this.add_newBilletage);
             // 
             // kryptonButton3
             // 
@@ -138,28 +223,6 @@
             this.kryptonButton3.Size = new System.Drawing.Size(97, 34);
             this.kryptonButton3.TabIndex = 28;
             this.kryptonButton3.Values.Text = "Annuler";
-            // 
-            // cbMarq
-            // 
-            this.cbMarq.DataPropertyName = "cbMarq";
-            this.cbMarq.HeaderText = "cbMarq";
-            this.cbMarq.MinimumWidth = 6;
-            this.cbMarq.Name = "cbMarq";
-            this.cbMarq.Visible = false;
-            // 
-            // Intitulé
-            // 
-            this.Intitulé.DataPropertyName = "Intitulé";
-            this.Intitulé.HeaderText = "Intitulé";
-            this.Intitulé.MinimumWidth = 6;
-            this.Intitulé.Name = "Intitulé";
-            // 
-            // Valeur
-            // 
-            this.Valeur.DataPropertyName = "Valeur";
-            this.Valeur.HeaderText = "Valeur";
-            this.Valeur.MinimumWidth = 6;
-            this.Valeur.Name = "Valeur";
             // 
             // BilletageForm
             // 
@@ -192,6 +255,12 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private System.Windows.Forms.DataGridViewTextBoxColumn cbMarq;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cbProt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cbCreateur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cbModification;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cbReplication;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cbFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn N_Devise;
         private System.Windows.Forms.DataGridViewTextBoxColumn Intitulé;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valeur;
     }

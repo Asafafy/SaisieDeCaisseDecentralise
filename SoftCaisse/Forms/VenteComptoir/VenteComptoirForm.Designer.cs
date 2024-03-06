@@ -43,11 +43,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanelDesignation = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxReference = new System.Windows.Forms.TextBox();
             this.textBoxDesignation = new System.Windows.Forms.TextBox();
-            this.textBoxGamme1 = new System.Windows.Forms.TextBox();
-            this.textBoxNumLot = new System.Windows.Forms.TextBox();
+            this.textBoxCodeFamille = new System.Windows.Forms.TextBox();
+            this.textBoxQuantiteEnStock = new System.Windows.Forms.TextBox();
             this.textBoxPUHT = new System.Windows.Forms.TextBox();
             this.textBoxPUTTC = new System.Windows.Forms.TextBox();
-            this.textBoxQuantite = new System.Windows.Forms.TextBox();
+            this.textBoxQuantiteVendue = new System.Windows.Forms.TextBox();
             this.ButtonSupprimerDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ButtonNouveauDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBoxTotal = new System.Windows.Forms.GroupBox();
@@ -201,13 +201,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxReference, 0, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxDesignation, 1, 0);
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxGamme1, 2, 0);
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxNumLot, 3, 0);
+            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxCodeFamille, 2, 0);
+            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxQuantiteEnStock, 3, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxPUHT, 4, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxPUTTC, 5, 0);
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxQuantite, 6, 0);
-            this.tableLayoutPanelDesignation.Location = new System.Drawing.Point(25, 206);
-            this.tableLayoutPanelDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxQuantiteVendue, 6, 0);
+            this.tableLayoutPanelDesignation.Location = new System.Drawing.Point(19, 167);
             this.tableLayoutPanelDesignation.Name = "tableLayoutPanelDesignation";
             this.tableLayoutPanelDesignation.RowCount = 1;
             this.tableLayoutPanelDesignation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -231,33 +230,32 @@ namespace SoftCaisse.Forms.VenteComptoir
             // textBoxDesignation
             // 
             this.textBoxDesignation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxDesignation.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxDesignation.Location = new System.Drawing.Point(149, 4);
-            this.textBoxDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxDesignation.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.textBoxDesignation.Location = new System.Drawing.Point(111, 3);
             this.textBoxDesignation.Name = "textBoxDesignation";
-            this.textBoxDesignation.Size = new System.Drawing.Size(425, 29);
+            this.textBoxDesignation.ReadOnly = true;
+            this.textBoxDesignation.Size = new System.Drawing.Size(320, 25);
             this.textBoxDesignation.TabIndex = 2;
             this.textBoxDesignation.Text = "Désignation";
             // 
-            // textBoxGamme1
+            // textBoxCodeFamille
             // 
-            this.textBoxGamme1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxGamme1.Location = new System.Drawing.Point(584, 4);
-            this.textBoxGamme1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxGamme1.Name = "textBoxGamme1";
-            this.textBoxGamme1.ReadOnly = true;
-            this.textBoxGamme1.Size = new System.Drawing.Size(135, 29);
-            this.textBoxGamme1.TabIndex = 3;
+            this.textBoxCodeFamille.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxCodeFamille.Location = new System.Drawing.Point(437, 3);
+            this.textBoxCodeFamille.Name = "textBoxCodeFamille";
+            this.textBoxCodeFamille.ReadOnly = true;
+            this.textBoxCodeFamille.Size = new System.Drawing.Size(102, 25);
+            this.textBoxCodeFamille.TabIndex = 3;
             // 
-            // textBoxNumLot
+            // textBoxQuantiteEnStock
             // 
-            this.textBoxNumLot.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNumLot.Location = new System.Drawing.Point(729, 4);
-            this.textBoxNumLot.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxNumLot.Name = "textBoxNumLot";
-            this.textBoxNumLot.ReadOnly = true;
-            this.textBoxNumLot.Size = new System.Drawing.Size(135, 29);
-            this.textBoxNumLot.TabIndex = 4;
+            this.textBoxQuantiteEnStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxQuantiteEnStock.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.textBoxQuantiteEnStock.Location = new System.Drawing.Point(545, 3);
+            this.textBoxQuantiteEnStock.Name = "textBoxQuantiteEnStock";
+            this.textBoxQuantiteEnStock.Size = new System.Drawing.Size(102, 25);
+            this.textBoxQuantiteEnStock.TabIndex = 4;
+            this.textBoxQuantiteEnStock.Text = "En Stock";
             // 
             // textBoxPUHT
             // 
@@ -266,30 +264,32 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.textBoxPUHT.Location = new System.Drawing.Point(874, 4);
             this.textBoxPUHT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPUHT.Name = "textBoxPUHT";
-            this.textBoxPUHT.Size = new System.Drawing.Size(135, 29);
+            this.textBoxPUHT.ReadOnly = true;
+            this.textBoxPUHT.Size = new System.Drawing.Size(102, 25);
             this.textBoxPUHT.TabIndex = 5;
             this.textBoxPUHT.Text = "P.U. HT";
             // 
             // textBoxPUTTC
             // 
             this.textBoxPUTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPUTTC.Location = new System.Drawing.Point(1019, 4);
-            this.textBoxPUTTC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPUTTC.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.textBoxPUTTC.Location = new System.Drawing.Point(761, 3);
             this.textBoxPUTTC.Name = "textBoxPUTTC";
             this.textBoxPUTTC.ReadOnly = true;
             this.textBoxPUTTC.Size = new System.Drawing.Size(208, 29);
             this.textBoxPUTTC.TabIndex = 6;
+            this.textBoxPUTTC.Text = "P.U. TTC";
             // 
-            // textBoxQuantite
+            // textBoxQuantiteVendue
             // 
-            this.textBoxQuantite.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxQuantite.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxQuantite.Location = new System.Drawing.Point(1236, 4);
-            this.textBoxQuantite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxQuantite.Name = "textBoxQuantite";
-            this.textBoxQuantite.Size = new System.Drawing.Size(211, 29);
-            this.textBoxQuantite.TabIndex = 7;
-            this.textBoxQuantite.Text = "Quantité";
+            this.textBoxQuantiteVendue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxQuantiteVendue.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.textBoxQuantiteVendue.Location = new System.Drawing.Point(924, 3);
+            this.textBoxQuantiteVendue.Name = "textBoxQuantiteVendue";
+            this.textBoxQuantiteVendue.ReadOnly = true;
+            this.textBoxQuantiteVendue.Size = new System.Drawing.Size(161, 25);
+            this.textBoxQuantiteVendue.TabIndex = 7;
+            this.textBoxQuantiteVendue.Text = "Vendu";
             // 
             // ButtonSupprimerDesignation
             // 
@@ -438,7 +438,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.dataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewArticle.Size = new System.Drawing.Size(1451, 276);
             this.dataGridViewArticle.TabIndex = 4;
-            this.dataGridViewArticle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewArticle_CellContentClick);
+            
             // 
             // Column1
             // 
@@ -751,6 +751,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.ButtonValider.Size = new System.Drawing.Size(120, 31);
             this.ButtonValider.TabIndex = 9;
             this.ButtonValider.Values.Text = "Valider";
+            this.ButtonValider.Click += new System.EventHandler(this.ButtonValider_Click);
             // 
             // ButtonCreerDoc
             // 
@@ -1212,11 +1213,11 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelDesignation;
         private System.Windows.Forms.TextBox textBoxDesignation;
-        private System.Windows.Forms.TextBox textBoxGamme1;
-        private System.Windows.Forms.TextBox textBoxNumLot;
+        private System.Windows.Forms.TextBox textBoxCodeFamille;
+        private System.Windows.Forms.TextBox textBoxQuantiteEnStock;
         private System.Windows.Forms.TextBox textBoxPUHT;
         private System.Windows.Forms.TextBox textBoxPUTTC;
-        private System.Windows.Forms.TextBox textBoxQuantite;
+        private System.Windows.Forms.TextBox textBoxQuantiteVendue;
         private KryptonButton ButtonEnregistrerDesignation;
         private KryptonButton ButtonSupprimerDesignation;
         private KryptonButton ButtonNouveauDesignation;

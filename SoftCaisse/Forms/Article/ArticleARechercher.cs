@@ -63,10 +63,6 @@ namespace SoftCaisse.Forms.Article
             }
         }
 
-  /*     private void ButtonRechercherArticle_Click(object sender, EventArgs e)
-        {
-  
-        }*/
         private void labelParametreFiltre_Click(object sender, EventArgs e)
         { 
             groupBoxFiltre.Visible = !groupBoxFiltre.Visible;
@@ -114,16 +110,17 @@ namespace SoftCaisse.Forms.Article
                     PuTTC = article.AR_PrixTTC,
                     QuantiteVendue = article.AR_UniteVen
                 }).FirstOrDefault();
-                
+
                 VenteComptoirForm venteComptoirForm = Application.OpenForms.OfType<VenteComptoirForm>().FirstOrDefault();
                 if (venteComptoirForm != null)
                 {
-                    venteComptoirForm.AjouterArticle(afRef, afDesign, faCodeFamille, (int)infoSupplementaire.QuantiteStock, (decimal)infoSupplementaire.PuHT, (decimal)infoSupplementaire.PuTTC, (int)infoSupplementaire.QuantiteVendue);
+                    decimal puTTC = (decimal)infoSupplementaire.PuTTC;
+                    decimal puHT = (decimal)infoSupplementaire.PuHT;
 
+                    puTTC = puHT + ( puHT * 20 / 100);
+                    venteComptoirForm.AjouterArticleDesigne(afRef, afDesign, faCodeFamille, (int)infoSupplementaire.QuantiteStock, (decimal)infoSupplementaire.PuHT, puTTC, (int)infoSupplementaire.QuantiteVendue);    
                 }
-
             }
-
             this.Close();
         }
     }

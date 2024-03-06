@@ -150,5 +150,10 @@ namespace SoftCaisse.Forms.Caisse
             ClientCaisseCmbx.Text = caisse.Client;
             CodeJournalCaisseCmbx.Text = caisse.CodeJournal;
         }
+
+        private void btnModifCaisse_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

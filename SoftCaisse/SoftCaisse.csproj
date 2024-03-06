@@ -68,6 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BIJOUDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BIJOUDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CaisseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -338,6 +343,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="BIJOUDataSet.xsc">
+      <DependentUpon>BIJOUDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BIJOUDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BIJOUDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BIJOUDataSet.xss">
+      <DependentUpon>BIJOUDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

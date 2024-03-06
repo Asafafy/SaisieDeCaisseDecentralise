@@ -236,6 +236,7 @@
     <Compile Include="Models\F_DEPOT.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
     <Compile Include="Models\P_DEVISE.cs" />
+    <Compile Include="Models\P_SOUCHEVENTE.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SCDContext.cs" />
     <Compile Include="Models\User.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Repositories\FJournauxRepository.cs" />
     <Compile Include="Repositories\DeviseRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\PSoucheVenteRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\F_COMPTETService.cs" />

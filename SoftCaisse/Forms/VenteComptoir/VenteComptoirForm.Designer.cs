@@ -166,9 +166,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxGeneral.Controls.Add(this.groupBoxCommand);
             this.groupBoxGeneral.Controls.Add(this.groupBoxReste);
             this.groupBoxGeneral.Controls.Add(this.groupBoxinfoCaissier);
-            this.groupBoxGeneral.Location = new System.Drawing.Point(-7, 0);
+            this.groupBoxGeneral.Location = new System.Drawing.Point(-9, 0);
+            this.groupBoxGeneral.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxGeneral.Name = "groupBoxGeneral";
-            this.groupBoxGeneral.Size = new System.Drawing.Size(1126, 727);
+            this.groupBoxGeneral.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxGeneral.Size = new System.Drawing.Size(1501, 895);
             this.groupBoxGeneral.TabIndex = 0;
             this.groupBoxGeneral.TabStop = false;
             // 
@@ -176,11 +178,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ButtonEnregistrerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonEnregistrerDesignation.Enabled = false;
-            this.ButtonEnregistrerDesignation.Location = new System.Drawing.Point(1017, 214);
+            this.ButtonEnregistrerDesignation.Location = new System.Drawing.Point(1356, 263);
+            this.ButtonEnregistrerDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonEnregistrerDesignation.Name = "ButtonEnregistrerDesignation";
             this.ButtonEnregistrerDesignation.Palette = this.kryptonPalette1;
             this.ButtonEnregistrerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonEnregistrerDesignation.Size = new System.Drawing.Size(90, 25);
+            this.ButtonEnregistrerDesignation.Size = new System.Drawing.Size(120, 31);
             this.ButtonEnregistrerDesignation.TabIndex = 12;
             this.ButtonEnregistrerDesignation.Values.Text = "Enregistrer";
             this.ButtonEnregistrerDesignation.Click += new System.EventHandler(this.ButtonEnregistrerDesignation_Click);
@@ -203,20 +206,22 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxPUHT, 4, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxPUTTC, 5, 0);
             this.tableLayoutPanelDesignation.Controls.Add(this.textBoxQuantite, 6, 0);
-            this.tableLayoutPanelDesignation.Location = new System.Drawing.Point(19, 167);
+            this.tableLayoutPanelDesignation.Location = new System.Drawing.Point(25, 206);
+            this.tableLayoutPanelDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanelDesignation.Name = "tableLayoutPanelDesignation";
             this.tableLayoutPanelDesignation.RowCount = 1;
             this.tableLayoutPanelDesignation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelDesignation.Size = new System.Drawing.Size(1088, 36);
+            this.tableLayoutPanelDesignation.Size = new System.Drawing.Size(1451, 44);
             this.tableLayoutPanelDesignation.TabIndex = 6;
             // 
             // textBoxReference
             // 
             this.textBoxReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxReference.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxReference.Location = new System.Drawing.Point(3, 3);
+            this.textBoxReference.Location = new System.Drawing.Point(4, 4);
+            this.textBoxReference.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxReference.Name = "textBoxReference";
-            this.textBoxReference.Size = new System.Drawing.Size(100, 25);
+            this.textBoxReference.Size = new System.Drawing.Size(132, 29);
             this.textBoxReference.TabIndex = 13;
             this.textBoxReference.Text = "Référence";
             this.textBoxReference.Enter += new System.EventHandler(this.TextBox_Enter);
@@ -227,56 +232,62 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.textBoxDesignation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxDesignation.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxDesignation.Location = new System.Drawing.Point(111, 3);
+            this.textBoxDesignation.Location = new System.Drawing.Point(149, 4);
+            this.textBoxDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxDesignation.Name = "textBoxDesignation";
-            this.textBoxDesignation.Size = new System.Drawing.Size(320, 25);
+            this.textBoxDesignation.Size = new System.Drawing.Size(425, 29);
             this.textBoxDesignation.TabIndex = 2;
             this.textBoxDesignation.Text = "Désignation";
             // 
             // textBoxGamme1
             // 
             this.textBoxGamme1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxGamme1.Location = new System.Drawing.Point(437, 3);
+            this.textBoxGamme1.Location = new System.Drawing.Point(584, 4);
+            this.textBoxGamme1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxGamme1.Name = "textBoxGamme1";
             this.textBoxGamme1.ReadOnly = true;
-            this.textBoxGamme1.Size = new System.Drawing.Size(102, 25);
+            this.textBoxGamme1.Size = new System.Drawing.Size(135, 29);
             this.textBoxGamme1.TabIndex = 3;
             // 
             // textBoxNumLot
             // 
             this.textBoxNumLot.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNumLot.Location = new System.Drawing.Point(545, 3);
+            this.textBoxNumLot.Location = new System.Drawing.Point(729, 4);
+            this.textBoxNumLot.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNumLot.Name = "textBoxNumLot";
             this.textBoxNumLot.ReadOnly = true;
-            this.textBoxNumLot.Size = new System.Drawing.Size(102, 25);
+            this.textBoxNumLot.Size = new System.Drawing.Size(135, 29);
             this.textBoxNumLot.TabIndex = 4;
             // 
             // textBoxPUHT
             // 
             this.textBoxPUHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPUHT.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxPUHT.Location = new System.Drawing.Point(653, 3);
+            this.textBoxPUHT.Location = new System.Drawing.Point(874, 4);
+            this.textBoxPUHT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPUHT.Name = "textBoxPUHT";
-            this.textBoxPUHT.Size = new System.Drawing.Size(102, 25);
+            this.textBoxPUHT.Size = new System.Drawing.Size(135, 29);
             this.textBoxPUHT.TabIndex = 5;
             this.textBoxPUHT.Text = "P.U. HT";
             // 
             // textBoxPUTTC
             // 
             this.textBoxPUTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPUTTC.Location = new System.Drawing.Point(761, 3);
+            this.textBoxPUTTC.Location = new System.Drawing.Point(1019, 4);
+            this.textBoxPUTTC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPUTTC.Name = "textBoxPUTTC";
             this.textBoxPUTTC.ReadOnly = true;
-            this.textBoxPUTTC.Size = new System.Drawing.Size(157, 25);
+            this.textBoxPUTTC.Size = new System.Drawing.Size(208, 29);
             this.textBoxPUTTC.TabIndex = 6;
             // 
             // textBoxQuantite
             // 
             this.textBoxQuantite.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxQuantite.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxQuantite.Location = new System.Drawing.Point(924, 3);
+            this.textBoxQuantite.Location = new System.Drawing.Point(1236, 4);
+            this.textBoxQuantite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxQuantite.Name = "textBoxQuantite";
-            this.textBoxQuantite.Size = new System.Drawing.Size(161, 25);
+            this.textBoxQuantite.Size = new System.Drawing.Size(211, 29);
             this.textBoxQuantite.TabIndex = 7;
             this.textBoxQuantite.Text = "Quantité";
             // 
@@ -284,11 +295,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ButtonSupprimerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonSupprimerDesignation.Enabled = false;
-            this.ButtonSupprimerDesignation.Location = new System.Drawing.Point(903, 214);
+            this.ButtonSupprimerDesignation.Location = new System.Drawing.Point(1204, 263);
+            this.ButtonSupprimerDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonSupprimerDesignation.Name = "ButtonSupprimerDesignation";
             this.ButtonSupprimerDesignation.Palette = this.kryptonPalette1;
             this.ButtonSupprimerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonSupprimerDesignation.Size = new System.Drawing.Size(90, 25);
+            this.ButtonSupprimerDesignation.Size = new System.Drawing.Size(120, 31);
             this.ButtonSupprimerDesignation.TabIndex = 11;
             this.ButtonSupprimerDesignation.Values.Text = "Supprimer";
             this.ButtonSupprimerDesignation.Click += new System.EventHandler(this.ButtonSupprimerDesignation_Click);
@@ -296,11 +308,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             // ButtonNouveauDesignation
             // 
             this.ButtonNouveauDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonNouveauDesignation.Location = new System.Drawing.Point(788, 214);
+            this.ButtonNouveauDesignation.Location = new System.Drawing.Point(1051, 263);
+            this.ButtonNouveauDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonNouveauDesignation.Name = "ButtonNouveauDesignation";
             this.ButtonNouveauDesignation.Palette = this.kryptonPalette1;
             this.ButtonNouveauDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonNouveauDesignation.Size = new System.Drawing.Size(90, 25);
+            this.ButtonNouveauDesignation.Size = new System.Drawing.Size(120, 31);
             this.ButtonNouveauDesignation.TabIndex = 10;
             this.ButtonNouveauDesignation.Values.Text = "Nouveau";
             this.ButtonNouveauDesignation.Click += new System.EventHandler(this.ButtonNouveauDesignation_Click);
@@ -312,9 +325,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxTotal.Controls.Add(this.labelPrixTotalHT);
             this.groupBoxTotal.Controls.Add(this.labelTotalHT);
             this.groupBoxTotal.Controls.Add(this.labelTotalTTC);
-            this.groupBoxTotal.Location = new System.Drawing.Point(574, 12);
+            this.groupBoxTotal.Location = new System.Drawing.Point(765, 15);
+            this.groupBoxTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxTotal.Name = "groupBoxTotal";
-            this.groupBoxTotal.Size = new System.Drawing.Size(533, 149);
+            this.groupBoxTotal.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxTotal.Size = new System.Drawing.Size(711, 183);
             this.groupBoxTotal.TabIndex = 5;
             this.groupBoxTotal.TabStop = false;
             // 
@@ -324,9 +339,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPrixTotalTTC.AutoSize = true;
             this.labelPrixTotalTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPrixTotalTTC.Location = new System.Drawing.Point(335, 102);
+            this.labelPrixTotalTTC.Location = new System.Drawing.Point(447, 126);
+            this.labelPrixTotalTTC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPrixTotalTTC.Name = "labelPrixTotalTTC";
-            this.labelPrixTotalTTC.Size = new System.Drawing.Size(71, 31);
+            this.labelPrixTotalTTC.Size = new System.Drawing.Size(87, 39);
             this.labelPrixTotalTTC.TabIndex = 16;
             this.labelPrixTotalTTC.Text = "0,00";
             this.labelPrixTotalTTC.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -337,9 +353,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPrixTotalHT.AutoSize = true;
             this.labelPrixTotalHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPrixTotalHT.Location = new System.Drawing.Point(335, 39);
+            this.labelPrixTotalHT.Location = new System.Drawing.Point(447, 48);
+            this.labelPrixTotalHT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPrixTotalHT.Name = "labelPrixTotalHT";
-            this.labelPrixTotalHT.Size = new System.Drawing.Size(71, 31);
+            this.labelPrixTotalHT.Size = new System.Drawing.Size(87, 39);
             this.labelPrixTotalHT.TabIndex = 15;
             this.labelPrixTotalHT.Text = "0,00";
             this.labelPrixTotalHT.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -349,9 +366,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.labelTotalHT.AutoSize = true;
             this.labelTotalHT.BackColor = System.Drawing.Color.Transparent;
             this.labelTotalHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalHT.Location = new System.Drawing.Point(6, 34);
+            this.labelTotalHT.Location = new System.Drawing.Point(8, 42);
+            this.labelTotalHT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTotalHT.Name = "labelTotalHT";
-            this.labelTotalHT.Size = new System.Drawing.Size(127, 31);
+            this.labelTotalHT.Size = new System.Drawing.Size(156, 39);
             this.labelTotalHT.TabIndex = 2;
             this.labelTotalHT.Text = "Total HT";
             // 
@@ -360,9 +378,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.labelTotalTTC.AutoSize = true;
             this.labelTotalTTC.BackColor = System.Drawing.Color.Transparent;
             this.labelTotalTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalTTC.Location = new System.Drawing.Point(6, 97);
+            this.labelTotalTTC.Location = new System.Drawing.Point(8, 119);
+            this.labelTotalTTC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTotalTTC.Name = "labelTotalTTC";
-            this.labelTotalTTC.Size = new System.Drawing.Size(145, 31);
+            this.labelTotalTTC.Size = new System.Drawing.Size(178, 39);
             this.labelTotalTTC.TabIndex = 3;
             this.labelTotalTTC.Text = "Total TTC";
             // 
@@ -402,7 +421,8 @@ namespace SoftCaisse.Forms.VenteComptoir
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewArticle.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewArticle.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dataGridViewArticle.Location = new System.Drawing.Point(19, 254);
+            this.dataGridViewArticle.Location = new System.Drawing.Point(25, 313);
+            this.dataGridViewArticle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewArticle.Name = "dataGridViewArticle";
             this.dataGridViewArticle.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -414,28 +434,32 @@ namespace SoftCaisse.Forms.VenteComptoir
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewArticle.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewArticle.RowHeadersVisible = false;
+            this.dataGridViewArticle.RowHeadersWidth = 51;
             this.dataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewArticle.Size = new System.Drawing.Size(1088, 224);
+            this.dataGridViewArticle.Size = new System.Drawing.Size(1451, 276);
             this.dataGridViewArticle.TabIndex = 4;
             this.dataGridViewArticle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewArticle_CellContentClick);
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Référence article";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.Width = 155;
+            this.Column1.Width = 207;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Désignation";
+            this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
             // CodeFamille
             // 
             this.CodeFamille.HeaderText = "Famille";
+            this.CodeFamille.MinimumWidth = 6;
             this.CodeFamille.Name = "CodeFamille";
             this.CodeFamille.ReadOnly = true;
             // 
@@ -443,6 +467,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.quantiteEnStock.DataPropertyName = "quantiteEnStock";
             this.quantiteEnStock.HeaderText = "Quantité en Stock";
+            this.quantiteEnStock.MinimumWidth = 6;
             this.quantiteEnStock.Name = "quantiteEnStock";
             this.quantiteEnStock.ReadOnly = true;
             // 
@@ -450,6 +475,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.prixUnitaireHT.DataPropertyName = "prixUnitaireHT";
             this.prixUnitaireHT.HeaderText = "P.U HT";
+            this.prixUnitaireHT.MinimumWidth = 6;
             this.prixUnitaireHT.Name = "prixUnitaireHT";
             this.prixUnitaireHT.ReadOnly = true;
             // 
@@ -457,6 +483,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.prixUnitaireTTC.DataPropertyName = "prixUnitaireTTC";
             this.prixUnitaireTTC.HeaderText = "P.U TTC";
+            this.prixUnitaireTTC.MinimumWidth = 6;
             this.prixUnitaireTTC.Name = "prixUnitaireTTC";
             this.prixUnitaireTTC.ReadOnly = true;
             // 
@@ -464,6 +491,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.quantiteVendue.DataPropertyName = "quantiteVendue";
             this.quantiteVendue.HeaderText = "Quantité vendue";
+            this.quantiteVendue.MinimumWidth = 6;
             this.quantiteVendue.Name = "quantiteVendue";
             this.quantiteVendue.ReadOnly = true;
             // 
@@ -473,9 +501,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxEnregistrement.Controls.Add(this.dataGridViewEnregistrement);
             this.groupBoxEnregistrement.Controls.Add(this.groupBoxInvisibleEnregistrement);
-            this.groupBoxEnregistrement.Location = new System.Drawing.Point(25, 484);
+            this.groupBoxEnregistrement.Location = new System.Drawing.Point(33, 596);
+            this.groupBoxEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxEnregistrement.Name = "groupBoxEnregistrement";
-            this.groupBoxEnregistrement.Size = new System.Drawing.Size(683, 233);
+            this.groupBoxEnregistrement.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxEnregistrement.Size = new System.Drawing.Size(911, 287);
             this.groupBoxEnregistrement.TabIndex = 2;
             this.groupBoxEnregistrement.TabStop = false;
             // 
@@ -511,41 +541,48 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.dataGridViewEnregistrement.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewEnregistrement.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridViewEnregistrement.Enabled = false;
-            this.dataGridViewEnregistrement.Location = new System.Drawing.Point(3, 108);
+            this.dataGridViewEnregistrement.Location = new System.Drawing.Point(4, 133);
+            this.dataGridViewEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewEnregistrement.Name = "dataGridViewEnregistrement";
             this.dataGridViewEnregistrement.ReadOnly = true;
             this.dataGridViewEnregistrement.RowHeadersVisible = false;
+            this.dataGridViewEnregistrement.RowHeadersWidth = 51;
             this.dataGridViewEnregistrement.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEnregistrement.Size = new System.Drawing.Size(677, 122);
+            this.dataGridViewEnregistrement.Size = new System.Drawing.Size(903, 150);
             this.dataGridViewEnregistrement.TabIndex = 1;
             // 
             // ModeDeReception
             // 
             this.ModeDeReception.HeaderText = "Mode de Réception";
+            this.ModeDeReception.MinimumWidth = 6;
             this.ModeDeReception.Name = "ModeDeReception";
             this.ModeDeReception.ReadOnly = true;
             // 
             // Montant
             // 
             this.Montant.HeaderText = "Montant";
+            this.Montant.MinimumWidth = 6;
             this.Montant.Name = "Montant";
             this.Montant.ReadOnly = true;
             // 
             // Libelle
             // 
             this.Libelle.HeaderText = "Libellé";
+            this.Libelle.MinimumWidth = 6;
             this.Libelle.Name = "Libelle";
             this.Libelle.ReadOnly = true;
             // 
             // Devise
             // 
             this.Devise.HeaderText = "Devise";
+            this.Devise.MinimumWidth = 6;
             this.Devise.Name = "Devise";
             this.Devise.ReadOnly = true;
             // 
             // DateEcheance
             // 
             this.DateEcheance.HeaderText = "Date d\'échéance";
+            this.DateEcheance.MinimumWidth = 6;
             this.DateEcheance.Name = "DateEcheance";
             this.DateEcheance.ReadOnly = true;
             // 
@@ -562,9 +599,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxInvisibleEnregistrement.Controls.Add(this.textBoxLibelleEnregistrement);
             this.groupBoxInvisibleEnregistrement.Controls.Add(this.comboBoxEspeceEnregistrement);
             this.groupBoxInvisibleEnregistrement.Controls.Add(this.textBoxMontantEnregistrement);
-            this.groupBoxInvisibleEnregistrement.Location = new System.Drawing.Point(3, 16);
+            this.groupBoxInvisibleEnregistrement.Location = new System.Drawing.Point(4, 20);
+            this.groupBoxInvisibleEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxInvisibleEnregistrement.Name = "groupBoxInvisibleEnregistrement";
-            this.groupBoxInvisibleEnregistrement.Size = new System.Drawing.Size(677, 80);
+            this.groupBoxInvisibleEnregistrement.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxInvisibleEnregistrement.Size = new System.Drawing.Size(903, 98);
             this.groupBoxInvisibleEnregistrement.TabIndex = 0;
             this.groupBoxInvisibleEnregistrement.TabStop = false;
             this.groupBoxInvisibleEnregistrement.Visible = false;
@@ -573,19 +612,21 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(256, 17);
+            this.label2.Location = new System.Drawing.Point(341, 21);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 16);
+            this.label2.Size = new System.Drawing.Size(0, 20);
             this.label2.TabIndex = 17;
             // 
             // ButtonEnregistrerEnregistrement
             // 
             this.ButtonEnregistrerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonEnregistrerEnregistrement.Location = new System.Drawing.Point(572, 47);
+            this.ButtonEnregistrerEnregistrement.Location = new System.Drawing.Point(763, 58);
+            this.ButtonEnregistrerEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonEnregistrerEnregistrement.Name = "ButtonEnregistrerEnregistrement";
             this.ButtonEnregistrerEnregistrement.Palette = this.kryptonPalette1;
             this.ButtonEnregistrerEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonEnregistrerEnregistrement.Size = new System.Drawing.Size(90, 25);
+            this.ButtonEnregistrerEnregistrement.Size = new System.Drawing.Size(120, 31);
             this.ButtonEnregistrerEnregistrement.TabIndex = 15;
             this.ButtonEnregistrerEnregistrement.Values.Text = "Enregistrer";
             this.ButtonEnregistrerEnregistrement.Click += new System.EventHandler(this.ButtonEnregistrerEnregistrement_Click);
@@ -594,11 +635,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ButtonSupprimerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonSupprimerEnregistrement.Enabled = false;
-            this.ButtonSupprimerEnregistrement.Location = new System.Drawing.Point(458, 47);
+            this.ButtonSupprimerEnregistrement.Location = new System.Drawing.Point(611, 58);
+            this.ButtonSupprimerEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonSupprimerEnregistrement.Name = "ButtonSupprimerEnregistrement";
             this.ButtonSupprimerEnregistrement.Palette = this.kryptonPalette1;
             this.ButtonSupprimerEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonSupprimerEnregistrement.Size = new System.Drawing.Size(90, 25);
+            this.ButtonSupprimerEnregistrement.Size = new System.Drawing.Size(120, 31);
             this.ButtonSupprimerEnregistrement.TabIndex = 14;
             this.ButtonSupprimerEnregistrement.Values.Text = "Supprimer";
             this.ButtonSupprimerEnregistrement.Click += new System.EventHandler(this.ButtonSupprimerEnregistrement_Click);
@@ -606,20 +648,22 @@ namespace SoftCaisse.Forms.VenteComptoir
             // ButtonNouveauEnregistrement
             // 
             this.ButtonNouveauEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonNouveauEnregistrement.Location = new System.Drawing.Point(343, 47);
+            this.ButtonNouveauEnregistrement.Location = new System.Drawing.Point(457, 58);
+            this.ButtonNouveauEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonNouveauEnregistrement.Name = "ButtonNouveauEnregistrement";
             this.ButtonNouveauEnregistrement.Palette = this.kryptonPalette1;
             this.ButtonNouveauEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonNouveauEnregistrement.Size = new System.Drawing.Size(90, 25);
+            this.ButtonNouveauEnregistrement.Size = new System.Drawing.Size(120, 31);
             this.ButtonNouveauEnregistrement.TabIndex = 13;
             this.ButtonNouveauEnregistrement.Values.Text = "Nouveau";
             // 
             // dateTimePickerEnregistrement
             // 
             this.dateTimePickerEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerEnregistrement.Location = new System.Drawing.Point(558, 15);
+            this.dateTimePickerEnregistrement.Location = new System.Drawing.Point(744, 18);
+            this.dateTimePickerEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTimePickerEnregistrement.Name = "dateTimePickerEnregistrement";
-            this.dateTimePickerEnregistrement.Size = new System.Drawing.Size(113, 23);
+            this.dateTimePickerEnregistrement.Size = new System.Drawing.Size(149, 26);
             this.dateTimePickerEnregistrement.TabIndex = 4;
             // 
             // comboBoxDeviseEnregistrement
@@ -631,9 +675,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             "Ariary Malgache",
             "Euro",
             "Franc CFA"});
-            this.comboBoxDeviseEnregistrement.Location = new System.Drawing.Point(458, 14);
+            this.comboBoxDeviseEnregistrement.Location = new System.Drawing.Point(611, 17);
+            this.comboBoxDeviseEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxDeviseEnregistrement.Name = "comboBoxDeviseEnregistrement";
-            this.comboBoxDeviseEnregistrement.Size = new System.Drawing.Size(94, 24);
+            this.comboBoxDeviseEnregistrement.Size = new System.Drawing.Size(124, 28);
             this.comboBoxDeviseEnregistrement.TabIndex = 3;
             this.comboBoxDeviseEnregistrement.Text = "Euro";
             this.comboBoxDeviseEnregistrement.SelectedIndexChanged += new System.EventHandler(this.comboBoxDeviseEnregistrement_SelectedIndexChanged);
@@ -641,9 +686,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // textBoxLibelleEnregistrement
             // 
             this.textBoxLibelleEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLibelleEnregistrement.Location = new System.Drawing.Point(300, 15);
+            this.textBoxLibelleEnregistrement.Location = new System.Drawing.Point(400, 18);
+            this.textBoxLibelleEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLibelleEnregistrement.Name = "textBoxLibelleEnregistrement";
-            this.textBoxLibelleEnregistrement.Size = new System.Drawing.Size(152, 22);
+            this.textBoxLibelleEnregistrement.Size = new System.Drawing.Size(201, 26);
             this.textBoxLibelleEnregistrement.TabIndex = 2;
             this.textBoxLibelleEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -655,18 +701,20 @@ namespace SoftCaisse.Forms.VenteComptoir
             "Espèce",
             "Virement",
             "Chèque"});
-            this.comboBoxEspeceEnregistrement.Location = new System.Drawing.Point(6, 13);
+            this.comboBoxEspeceEnregistrement.Location = new System.Drawing.Point(8, 16);
+            this.comboBoxEspeceEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxEspeceEnregistrement.Name = "comboBoxEspeceEnregistrement";
-            this.comboBoxEspeceEnregistrement.Size = new System.Drawing.Size(71, 24);
+            this.comboBoxEspeceEnregistrement.Size = new System.Drawing.Size(93, 28);
             this.comboBoxEspeceEnregistrement.TabIndex = 0;
             this.comboBoxEspeceEnregistrement.Text = "Espèce";
             // 
             // textBoxMontantEnregistrement
             // 
             this.textBoxMontantEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMontantEnregistrement.Location = new System.Drawing.Point(82, 14);
+            this.textBoxMontantEnregistrement.Location = new System.Drawing.Point(109, 17);
+            this.textBoxMontantEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxMontantEnregistrement.Name = "textBoxMontantEnregistrement";
-            this.textBoxMontantEnregistrement.Size = new System.Drawing.Size(173, 23);
+            this.textBoxMontantEnregistrement.Size = new System.Drawing.Size(229, 26);
             this.textBoxMontantEnregistrement.TabIndex = 1;
             this.textBoxMontantEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxMontantEnregistrement.TextChanged += new System.EventHandler(this.textBoxMontantEnregistrement_TextChanged);
@@ -683,9 +731,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxCommand.Controls.Add(this.ButtonFacture);
             this.groupBoxCommand.Controls.Add(this.ButtonAnnuler);
             this.groupBoxCommand.Controls.Add(this.ButtonFinDeSaisie);
-            this.groupBoxCommand.Location = new System.Drawing.Point(714, 592);
+            this.groupBoxCommand.Location = new System.Drawing.Point(952, 729);
+            this.groupBoxCommand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxCommand.Name = "groupBoxCommand";
-            this.groupBoxCommand.Size = new System.Drawing.Size(393, 125);
+            this.groupBoxCommand.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCommand.Size = new System.Drawing.Size(524, 154);
             this.groupBoxCommand.TabIndex = 3;
             this.groupBoxCommand.TabStop = false;
             // 
@@ -693,33 +743,36 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ButtonValider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonValider.Enabled = false;
-            this.ButtonValider.Location = new System.Drawing.Point(294, 92);
+            this.ButtonValider.Location = new System.Drawing.Point(392, 113);
+            this.ButtonValider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonValider.Name = "ButtonValider";
             this.ButtonValider.Palette = this.kryptonPalette1;
             this.ButtonValider.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonValider.Size = new System.Drawing.Size(90, 25);
+            this.ButtonValider.Size = new System.Drawing.Size(120, 31);
             this.ButtonValider.TabIndex = 9;
             this.ButtonValider.Values.Text = "Valider";
             // 
             // ButtonCreerDoc
             // 
             this.ButtonCreerDoc.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.ButtonCreerDoc.Location = new System.Drawing.Point(156, 92);
+            this.ButtonCreerDoc.Location = new System.Drawing.Point(208, 113);
+            this.ButtonCreerDoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonCreerDoc.Name = "ButtonCreerDoc";
             this.ButtonCreerDoc.Palette = this.kryptonPalette1;
             this.ButtonCreerDoc.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonCreerDoc.Size = new System.Drawing.Size(90, 25);
+            this.ButtonCreerDoc.Size = new System.Drawing.Size(120, 31);
             this.ButtonCreerDoc.TabIndex = 8;
             this.ButtonCreerDoc.Values.Text = "Créer doc.";
             // 
             // ButtonRappelTicket
             // 
             this.ButtonRappelTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonRappelTicket.Location = new System.Drawing.Point(12, 92);
+            this.ButtonRappelTicket.Location = new System.Drawing.Point(16, 113);
+            this.ButtonRappelTicket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonRappelTicket.Name = "ButtonRappelTicket";
             this.ButtonRappelTicket.Palette = this.kryptonPalette1;
             this.ButtonRappelTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonRappelTicket.Size = new System.Drawing.Size(90, 25);
+            this.ButtonRappelTicket.Size = new System.Drawing.Size(120, 31);
             this.ButtonRappelTicket.TabIndex = 7;
             this.ButtonRappelTicket.Values.Text = "Rappel Ticket";
             // 
@@ -727,22 +780,24 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ButtonEnAttente.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ButtonEnAttente.Enabled = false;
-            this.ButtonEnAttente.Location = new System.Drawing.Point(293, 53);
+            this.ButtonEnAttente.Location = new System.Drawing.Point(391, 65);
+            this.ButtonEnAttente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonEnAttente.Name = "ButtonEnAttente";
             this.ButtonEnAttente.Palette = this.kryptonPalette1;
             this.ButtonEnAttente.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonEnAttente.Size = new System.Drawing.Size(90, 25);
+            this.ButtonEnAttente.Size = new System.Drawing.Size(120, 31);
             this.ButtonEnAttente.TabIndex = 6;
             this.ButtonEnAttente.Values.Text = "En attente";
             // 
             // ButtonRaccourci
             // 
             this.ButtonRaccourci.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ButtonRaccourci.Location = new System.Drawing.Point(155, 53);
+            this.ButtonRaccourci.Location = new System.Drawing.Point(207, 65);
+            this.ButtonRaccourci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonRaccourci.Name = "ButtonRaccourci";
             this.ButtonRaccourci.Palette = this.kryptonPalette1;
             this.ButtonRaccourci.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonRaccourci.Size = new System.Drawing.Size(90, 25);
+            this.ButtonRaccourci.Size = new System.Drawing.Size(120, 31);
             this.ButtonRaccourci.TabIndex = 5;
             this.ButtonRaccourci.Values.Text = "Raccourcis";
             // 
@@ -750,11 +805,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ButtonTicket.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ButtonTicket.Enabled = false;
-            this.ButtonTicket.Location = new System.Drawing.Point(11, 53);
+            this.ButtonTicket.Location = new System.Drawing.Point(15, 65);
+            this.ButtonTicket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonTicket.Name = "ButtonTicket";
             this.ButtonTicket.Palette = this.kryptonPalette1;
             this.ButtonTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonTicket.Size = new System.Drawing.Size(90, 25);
+            this.ButtonTicket.Size = new System.Drawing.Size(120, 31);
             this.ButtonTicket.TabIndex = 4;
             this.ButtonTicket.Values.Text = "Ticket";
             // 
@@ -762,22 +818,24 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ButtonFacture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonFacture.Enabled = false;
-            this.ButtonFacture.Location = new System.Drawing.Point(293, 11);
+            this.ButtonFacture.Location = new System.Drawing.Point(391, 14);
+            this.ButtonFacture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonFacture.Name = "ButtonFacture";
             this.ButtonFacture.Palette = this.kryptonPalette1;
             this.ButtonFacture.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonFacture.Size = new System.Drawing.Size(90, 25);
+            this.ButtonFacture.Size = new System.Drawing.Size(120, 31);
             this.ButtonFacture.TabIndex = 3;
             this.ButtonFacture.Values.Text = "Facture";
             // 
             // ButtonAnnuler
             // 
             this.ButtonAnnuler.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.ButtonAnnuler.Location = new System.Drawing.Point(155, 11);
+            this.ButtonAnnuler.Location = new System.Drawing.Point(207, 14);
+            this.ButtonAnnuler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonAnnuler.Name = "ButtonAnnuler";
             this.ButtonAnnuler.Palette = this.kryptonPalette1;
             this.ButtonAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonAnnuler.Size = new System.Drawing.Size(90, 25);
+            this.ButtonAnnuler.Size = new System.Drawing.Size(120, 31);
             this.ButtonAnnuler.TabIndex = 2;
             this.ButtonAnnuler.Values.Text = "Annuler";
             this.ButtonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
@@ -785,11 +843,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             // ButtonFinDeSaisie
             // 
             this.ButtonFinDeSaisie.Enabled = false;
-            this.ButtonFinDeSaisie.Location = new System.Drawing.Point(11, 11);
+            this.ButtonFinDeSaisie.Location = new System.Drawing.Point(15, 14);
+            this.ButtonFinDeSaisie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonFinDeSaisie.Name = "ButtonFinDeSaisie";
             this.ButtonFinDeSaisie.Palette = this.kryptonPalette1;
             this.ButtonFinDeSaisie.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonFinDeSaisie.Size = new System.Drawing.Size(90, 25);
+            this.ButtonFinDeSaisie.Size = new System.Drawing.Size(120, 31);
             this.ButtonFinDeSaisie.TabIndex = 1;
             this.ButtonFinDeSaisie.Values.Text = "Fin de saisie";
             this.ButtonFinDeSaisie.Click += new System.EventHandler(this.ButtonFinDeSaisie_Click);
@@ -802,9 +861,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxReste.Controls.Add(this.comboBoxResteDu);
             this.groupBoxReste.Controls.Add(this.labelResteDu);
             this.groupBoxReste.Controls.Add(this.labelResteDuDevise);
-            this.groupBoxReste.Location = new System.Drawing.Point(714, 484);
+            this.groupBoxReste.Location = new System.Drawing.Point(952, 596);
+            this.groupBoxReste.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxReste.Name = "groupBoxReste";
-            this.groupBoxReste.Size = new System.Drawing.Size(393, 102);
+            this.groupBoxReste.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxReste.Size = new System.Drawing.Size(524, 126);
             this.groupBoxReste.TabIndex = 2;
             this.groupBoxReste.TabStop = false;
             // 
@@ -814,9 +875,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPrixResteDu.AutoSize = true;
             this.labelPrixResteDu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPrixResteDu.Location = new System.Drawing.Point(195, 13);
+            this.labelPrixResteDu.Location = new System.Drawing.Point(260, 16);
+            this.labelPrixResteDu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPrixResteDu.Name = "labelPrixResteDu";
-            this.labelPrixResteDu.Size = new System.Drawing.Size(71, 31);
+            this.labelPrixResteDu.Size = new System.Drawing.Size(87, 39);
             this.labelPrixResteDu.TabIndex = 17;
             this.labelPrixResteDu.Text = "0,00";
             this.labelPrixResteDu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -825,9 +887,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(47, 55);
+            this.label11.Location = new System.Drawing.Point(63, 68);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(51, 17);
+            this.label11.Size = new System.Drawing.Size(61, 20);
             this.label11.TabIndex = 13;
             this.label11.Text = "Devise";
             // 
@@ -839,18 +902,20 @@ namespace SoftCaisse.Forms.VenteComptoir
             "Dollar US",
             "Euro",
             "Franc CFA"});
-            this.comboBoxResteDu.Location = new System.Drawing.Point(138, 54);
+            this.comboBoxResteDu.Location = new System.Drawing.Point(184, 66);
+            this.comboBoxResteDu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxResteDu.Name = "comboBoxResteDu";
-            this.comboBoxResteDu.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxResteDu.Size = new System.Drawing.Size(325, 24);
             this.comboBoxResteDu.TabIndex = 13;
             // 
             // labelResteDu
             // 
             this.labelResteDu.AutoSize = true;
             this.labelResteDu.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResteDu.Location = new System.Drawing.Point(6, 16);
+            this.labelResteDu.Location = new System.Drawing.Point(8, 20);
+            this.labelResteDu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelResteDu.Name = "labelResteDu";
-            this.labelResteDu.Size = new System.Drawing.Size(117, 29);
+            this.labelResteDu.Size = new System.Drawing.Size(142, 36);
             this.labelResteDu.TabIndex = 0;
             this.labelResteDu.Text = "Reste dû";
             this.labelResteDu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -861,9 +926,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelResteDuDevise.AutoSize = true;
             this.labelResteDuDevise.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResteDuDevise.Location = new System.Drawing.Point(195, 14);
+            this.labelResteDuDevise.Location = new System.Drawing.Point(260, 17);
+            this.labelResteDuDevise.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelResteDuDevise.Name = "labelResteDuDevise";
-            this.labelResteDuDevise.Size = new System.Drawing.Size(71, 31);
+            this.labelResteDuDevise.Size = new System.Drawing.Size(87, 39);
             this.labelResteDuDevise.TabIndex = 18;
             this.labelResteDuDevise.Text = "0,00";
             this.labelResteDuDevise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -887,9 +953,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxinfoCaissier.Controls.Add(this.comboBoxCentrale);
             this.groupBoxinfoCaissier.Controls.Add(this.comboBoxTarif);
             this.groupBoxinfoCaissier.Controls.Add(this.comboBoxVendeur);
-            this.groupBoxinfoCaissier.Location = new System.Drawing.Point(19, 12);
+            this.groupBoxinfoCaissier.Location = new System.Drawing.Point(25, 15);
+            this.groupBoxinfoCaissier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxinfoCaissier.Name = "groupBoxinfoCaissier";
-            this.groupBoxinfoCaissier.Size = new System.Drawing.Size(549, 149);
+            this.groupBoxinfoCaissier.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxinfoCaissier.Size = new System.Drawing.Size(732, 183);
             this.groupBoxinfoCaissier.TabIndex = 0;
             this.groupBoxinfoCaissier.TabStop = false;
             // 
@@ -897,17 +965,19 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.labelNomCaissier.AutoSize = true;
             this.labelNomCaissier.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomCaissier.Location = new System.Drawing.Point(292, 19);
+            this.labelNomCaissier.Location = new System.Drawing.Point(389, 23);
+            this.labelNomCaissier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNomCaissier.Name = "labelNomCaissier";
-            this.labelNomCaissier.Size = new System.Drawing.Size(127, 18);
+            this.labelNomCaissier.Size = new System.Drawing.Size(154, 24);
             this.labelNomCaissier.TabIndex = 14;
             this.labelNomCaissier.Text = "NomCaissierN1";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(6, 23);
+            this.dateTimePicker1.Location = new System.Drawing.Point(8, 28);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(121, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(160, 22);
             this.dateTimePicker1.TabIndex = 13;
             this.dateTimePicker1.Value = new System.DateTime(2024, 2, 21, 10, 37, 44, 0);
             // 
@@ -915,9 +985,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.labelTitleCaissier.AutoSize = true;
             this.labelTitleCaissier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitleCaissier.Location = new System.Drawing.Point(197, 19);
+            this.labelTitleCaissier.Location = new System.Drawing.Point(263, 23);
+            this.labelTitleCaissier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitleCaissier.Name = "labelTitleCaissier";
-            this.labelTitleCaissier.Size = new System.Drawing.Size(65, 20);
+            this.labelTitleCaissier.Size = new System.Drawing.Size(83, 25);
             this.labelTitleCaissier.TabIndex = 6;
             this.labelTitleCaissier.Text = "Caissier";
             // 
@@ -925,9 +996,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(328, 103);
+            this.label8.Location = new System.Drawing.Point(437, 127);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 17);
+            this.label8.Size = new System.Drawing.Size(58, 20);
             this.label8.TabIndex = 12;
             this.label8.Text = "Affaire";
             // 
@@ -935,9 +1007,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(328, 76);
+            this.label9.Location = new System.Drawing.Point(437, 94);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 17);
+            this.label9.Size = new System.Drawing.Size(54, 20);
             this.label9.TabIndex = 11;
             this.label9.Text = "Dépôt";
             // 
@@ -945,9 +1018,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.labelCentrale.AutoSize = true;
             this.labelCentrale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCentrale.Location = new System.Drawing.Point(133, 106);
+            this.labelCentrale.Location = new System.Drawing.Point(177, 130);
+            this.labelCentrale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCentrale.Name = "labelCentrale";
-            this.labelCentrale.Size = new System.Drawing.Size(61, 17);
+            this.labelCentrale.Size = new System.Drawing.Size(72, 20);
             this.labelCentrale.TabIndex = 10;
             this.labelCentrale.Text = "Centrale";
             // 
@@ -955,9 +1029,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.labelTarif.AutoSize = true;
             this.labelTarif.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTarif.Location = new System.Drawing.Point(133, 79);
+            this.labelTarif.Location = new System.Drawing.Point(177, 97);
+            this.labelTarif.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTarif.Name = "labelTarif";
-            this.labelTarif.Size = new System.Drawing.Size(37, 17);
+            this.labelTarif.Size = new System.Drawing.Size(43, 20);
             this.labelTarif.TabIndex = 9;
             this.labelTarif.Text = "Tarif";
             // 
@@ -965,9 +1040,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.labelVendeur.AutoSize = true;
             this.labelVendeur.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVendeur.Location = new System.Drawing.Point(133, 52);
+            this.labelVendeur.Location = new System.Drawing.Point(177, 64);
+            this.labelVendeur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelVendeur.Name = "labelVendeur";
-            this.labelVendeur.Size = new System.Drawing.Size(62, 17);
+            this.labelVendeur.Size = new System.Drawing.Size(71, 20);
             this.labelVendeur.TabIndex = 8;
             this.labelVendeur.Text = "Vendeur";
             // 
@@ -975,91 +1051,100 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.labelDate.AutoSize = true;
             this.labelDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDate.Location = new System.Drawing.Point(133, 25);
+            this.labelDate.Location = new System.Drawing.Point(177, 31);
+            this.labelDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(38, 17);
+            this.labelDate.Size = new System.Drawing.Size(45, 20);
             this.labelDate.TabIndex = 6;
             this.labelDate.Text = "Date";
             // 
             // comboBoxNumero
             // 
             this.comboBoxNumero.FormattingEnabled = true;
-            this.comboBoxNumero.Location = new System.Drawing.Point(328, 46);
+            this.comboBoxNumero.Location = new System.Drawing.Point(437, 57);
+            this.comboBoxNumero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxNumero.Name = "comboBoxNumero";
-            this.comboBoxNumero.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxNumero.Size = new System.Drawing.Size(171, 24);
             this.comboBoxNumero.TabIndex = 7;
             this.comboBoxNumero.Text = "Numéro";
             // 
             // comboBoxAffaire
             // 
             this.comboBoxAffaire.FormattingEnabled = true;
-            this.comboBoxAffaire.Location = new System.Drawing.Point(201, 100);
+            this.comboBoxAffaire.Location = new System.Drawing.Point(268, 123);
+            this.comboBoxAffaire.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxAffaire.Name = "comboBoxAffaire";
-            this.comboBoxAffaire.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAffaire.Size = new System.Drawing.Size(160, 24);
             this.comboBoxAffaire.TabIndex = 6;
             // 
             // comboBoxDepot
             // 
             this.comboBoxDepot.FormattingEnabled = true;
-            this.comboBoxDepot.Location = new System.Drawing.Point(201, 73);
+            this.comboBoxDepot.Location = new System.Drawing.Point(268, 90);
+            this.comboBoxDepot.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxDepot.Name = "comboBoxDepot";
-            this.comboBoxDepot.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDepot.Size = new System.Drawing.Size(160, 24);
             this.comboBoxDepot.TabIndex = 5;
             // 
             // comboBoxType
             // 
             this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Location = new System.Drawing.Point(201, 46);
+            this.comboBoxType.Location = new System.Drawing.Point(268, 57);
+            this.comboBoxType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxType.Name = "comboBoxType";
-            this.comboBoxType.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxType.Size = new System.Drawing.Size(160, 24);
             this.comboBoxType.TabIndex = 4;
             // 
             // comboBoxCentrale
             // 
             this.comboBoxCentrale.FormattingEnabled = true;
-            this.comboBoxCentrale.Location = new System.Drawing.Point(6, 103);
+            this.comboBoxCentrale.Location = new System.Drawing.Point(8, 127);
+            this.comboBoxCentrale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxCentrale.Name = "comboBoxCentrale";
-            this.comboBoxCentrale.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCentrale.Size = new System.Drawing.Size(160, 24);
             this.comboBoxCentrale.TabIndex = 3;
             // 
             // comboBoxTarif
             // 
             this.comboBoxTarif.FormattingEnabled = true;
-            this.comboBoxTarif.Location = new System.Drawing.Point(6, 76);
+            this.comboBoxTarif.Location = new System.Drawing.Point(8, 94);
+            this.comboBoxTarif.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxTarif.Name = "comboBoxTarif";
-            this.comboBoxTarif.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTarif.Size = new System.Drawing.Size(160, 24);
             this.comboBoxTarif.TabIndex = 2;
             // 
             // comboBoxVendeur
             // 
             this.comboBoxVendeur.FormattingEnabled = true;
-            this.comboBoxVendeur.Location = new System.Drawing.Point(6, 49);
+            this.comboBoxVendeur.Location = new System.Drawing.Point(8, 60);
+            this.comboBoxVendeur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxVendeur.Name = "comboBoxVendeur";
-            this.comboBoxVendeur.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxVendeur.Size = new System.Drawing.Size(160, 24);
             this.comboBoxVendeur.TabIndex = 1;
             // 
             // ButtonClose
             // 
             this.ButtonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonClose.Location = new System.Drawing.Point(1000, 733);
+            this.ButtonClose.Location = new System.Drawing.Point(1333, 902);
+            this.ButtonClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Palette = this.kryptonPalette1;
             this.ButtonClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonClose.Size = new System.Drawing.Size(90, 25);
+            this.ButtonClose.Size = new System.Drawing.Size(120, 31);
             this.ButtonClose.TabIndex = 0;
             this.ButtonClose.Values.Text = "Fermer";
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
             // VenteComptoirForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 760);
+            this.ClientSize = new System.Drawing.Size(1483, 935);
             this.Controls.Add(this.ButtonClose);
             this.Controls.Add(this.groupBoxGeneral);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "VenteComptoirForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;

@@ -48,7 +48,7 @@
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.soucheVenteCmbx = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -286,7 +286,7 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.comboBox4, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.soucheVenteCmbx, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(5, 30);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -298,13 +298,13 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(545, 32);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // comboBox4
+            // soucheVenteCmbx
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(275, 3);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(267, 24);
-            this.comboBox4.TabIndex = 4;
+            this.soucheVenteCmbx.FormattingEnabled = true;
+            this.soucheVenteCmbx.Location = new System.Drawing.Point(275, 3);
+            this.soucheVenteCmbx.Name = "soucheVenteCmbx";
+            this.soucheVenteCmbx.Size = new System.Drawing.Size(267, 24);
+            this.soucheVenteCmbx.TabIndex = 4;
             // 
             // label8
             // 
@@ -433,7 +433,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox soucheVenteCmbx;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.ComboBox caissierCmbx;

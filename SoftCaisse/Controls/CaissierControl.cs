@@ -21,9 +21,11 @@ namespace SoftCaisse.Controls
         private readonly FCaisseRepository _fCaisseRepository;
         private readonly FDepotRepository _fDepotRepository;
         private readonly FCollaborateurRepository _fCollaborateurRepository;
+        private readonly PSoucheVenteRepository _pSoucheVenteRepository;
         public List<dynamic> detailCaisser = new List<dynamic>();
         public List<dynamic> detailVendeur = new List<dynamic>();
         public List<dynamic> detailCaisse = new List<dynamic>();
+        public List<dynamic> soucheVente = new List<dynamic>();
         public CaisseInfo CaisseInfo;
         public CaissierControl()
         {
@@ -31,6 +33,7 @@ namespace SoftCaisse.Controls
             _context = new AppDbContext();
             _fCaisseRepository = new FCaisseRepository(_context);
             _fCollaborateurRepository = new FCollaborateurRepository(_context);
+            _pSoucheVenteRepository =  new PSoucheVenteRepository(_context);
             var data = _fCaisseRepository.GetAll();
             var listCaissier  = data.Select(caissier=> new { Intitule = caissier.CA_Intitule }).ToList();
 
@@ -57,8 +60,9 @@ namespace SoftCaisse.Controls
                 detailCaisser.AddRange(query);
                 detailVendeurCaisse();
                 detailCaissier();
+                detailSoucheVente();
             }
-            DetailCaisseForm detailCaisseForm = new DetailCaisseForm(detailCaisser, detailVendeur, detailCaisse);
+            DetailCaisseForm detailCaisseForm = new DetailCaisseForm(detailCaisser, detailVendeur, detailCaisse, soucheVente);
             detailCaisseForm.Show();
         }
 
@@ -70,8 +74,9 @@ namespace SoftCaisse.Controls
             detailCaisser.AddRange(query);
             detailVendeurCaisse();
             detailCaissier();
+            detailSoucheVente();
             bool test = true;
-            DetailCaisseForm detailCaisseForm = new DetailCaisseForm(detailCaisser, detailVendeur, detailCaisse, test);
+            DetailCaisseForm detailCaisseForm = new DetailCaisseForm(detailCaisser, detailVendeur, detailCaisse, soucheVente, test);
             detailCaisseForm.Show();
         }
         public void detailVendeurCaisse()
@@ -95,6 +100,17 @@ namespace SoftCaisse.Controls
             }).ToList();
             detailCaisse.Clear();
             detailCaisse.AddRange(cassier);
+        }
+        public void detailSoucheVente()
+        {
+            var souche = _context.P_SOUCHEVENTE
+                .Where(s => s.S_Valide == 1)
+                .Select(s => new {
+                        Intitule = s.S_Intitule,
+                        cbMarque = s.cbMarq
+                    }).ToList();
+            soucheVente.Clear();
+            soucheVente.AddRange(souche);
         }
     }
 }

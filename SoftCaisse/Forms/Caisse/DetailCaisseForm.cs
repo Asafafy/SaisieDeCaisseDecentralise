@@ -19,6 +19,7 @@ namespace SoftCaisse.Forms.Caisse
         private List<dynamic> _caissier = new List<dynamic>();
         private List<dynamic> _vendeur = new List<dynamic>();
         private List<dynamic> _caisse = new List<dynamic>();
+        private List<dynamic> _vente = new List<dynamic>();
         private readonly AppDbContext _context;
         private readonly ClientRepository _clientRepository;
         private readonly FDepotRepository _depotRepository;
@@ -37,7 +38,7 @@ namespace SoftCaisse.Forms.Caisse
             DepotCaisseCmbx.DisplayMember = "Depot";
             DepotCaisseCmbx.ValueMember = "NumDepot";
         }
-        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse)
+        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse, List<dynamic> soucheVente)
         {
             InitializeComponent();
             _context = new AppDbContext();
@@ -50,6 +51,8 @@ namespace SoftCaisse.Forms.Caisse
             _vendeur = vendeur;
             _caisse.Clear();
             _caisse = detailCaisse;
+            _vente.Clear();
+            _vente = soucheVente;
             LoadAll();
             LoadCaissier();
             LoadDetailsCaisse();
@@ -61,8 +64,10 @@ namespace SoftCaisse.Forms.Caisse
             vendeurCmbx.ValueMember = "NumCo";
             caissierCmbx.DisplayMember = "InfoCaisse";
             caissierCmbx.ValueMember = "NumCo";
+            soucheVenteCmbx.DisplayMember = "Intitule";
+            soucheVenteCmbx.ValueMember = "cbMarque";
         }
-        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse, bool test)
+        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse, List<dynamic> soucheVente, bool test)
         {
             InitializeComponent();
             _context = new AppDbContext();
@@ -75,6 +80,8 @@ namespace SoftCaisse.Forms.Caisse
             _vendeur = vendeur;
             _caisse.Clear();
             _caisse = detailCaisse;
+            _vente.Clear();
+            _vente = soucheVente;
             LoadCaissier();
             LoadNewDetailsCaisse();
             LoadVendeur();
@@ -84,16 +91,23 @@ namespace SoftCaisse.Forms.Caisse
             vendeurCmbx.ValueMember = "NumCo";
             caissierCmbx.DisplayMember = "InfoCaisse";
             caissierCmbx.ValueMember = "NumCo";
+            soucheVenteCmbx.DisplayMember = "Intitule";
+            soucheVenteCmbx.ValueMember = "cbMarque";
 
         }
         public void LoadVendeur()
         {
             var cmbxVendeur = _vendeur.Select(ve => new { NumCo = ve.NumCo, InfoVendeur = ve.InfoVendeur });
             var caissier = _caisse.Select(ca => new { NumCo = ca.NumCo, InfoCaisse = ca.InfoCaisse });
+            var souche = _vente.Select(s => new { Intitule = s.Intitule, cbMarque = s.cbMarque });
             vendeurCmbx.Items.Clear();
             vendeurCmbx.Items.AddRange(cmbxVendeur.ToArray());
             caissierCmbx.Items.Clear();
             caissierCmbx.Items.AddRange(caissier.ToArray());
+            soucheVenteCmbx.Items.Clear();
+            soucheVenteCmbx.Items.AddRange(souche.ToArray());
+
+
 
         }
         public void LoadAll()

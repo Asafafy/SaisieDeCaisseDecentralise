@@ -24,7 +24,7 @@ namespace SoftCaisse.Controls
             context = new AppDbContext();
             _fCollaborateurRepository = new FCollaborateurRepository(context);
             var listCollabo = _fCollaborateurRepository.GetAll();
-            var data = listCollabo.Select(collab => new { NomCollabo = collab.CO_Nom, NumCollabo = collab.CO_Caissier }).Where(collab=>collab.NumCollabo == 1).ToList();
+            var data = listCollabo.Select(collab => new { NomCollabo = collab.CO_Nom, PrenomCollabo = collab.CO_Prenom, FonctionCollab = collab.CO_Fonction, NumCollabo = collab.CO_Caissier }).Where(collab=>collab.NumCollabo == 1).ToList();
             collaboDataGridView.DataSource = data;
         }
 

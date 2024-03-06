@@ -204,7 +204,7 @@
             this.kryptonDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.kryptonDateTimePicker1.Location = new System.Drawing.Point(114, 3);
             this.kryptonDateTimePicker1.Name = "kryptonDateTimePicker1";
-            this.kryptonDateTimePicker1.Size = new System.Drawing.Size(107, 25);
+            this.kryptonDateTimePicker1.Size = new System.Drawing.Size(107, 23);
             this.kryptonDateTimePicker1.TabIndex = 3;
             // 
             // comboBox1

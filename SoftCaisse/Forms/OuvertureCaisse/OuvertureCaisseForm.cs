@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
+using SoftCaisse.Forms.FondCaisse;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -62,6 +63,17 @@ namespace SoftCaisse.Forms.OuvertureCaisse
         }
         private void OuvertureCaisseCmbx_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void btnOuvertureCaisse_Click(object sender, EventArgs e)
+        {
+            if (fondCaisseCbox.Checked)
+            {
+                this.Close();
+                FondCaisseForm fondCaisseForm = new FondCaisseForm();
+                fondCaisseForm.Show();
+            }
            
         }
     }

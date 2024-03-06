@@ -10,6 +10,7 @@ using ComponentFactory.Krypton.Toolkit;
 using System.Windows.Forms;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
+using SoftCaisse.Forms.CollaboDetail;
 
 namespace SoftCaisse.Controls
 {
@@ -34,6 +35,12 @@ namespace SoftCaisse.Controls
             {
                 StructureCaisseForm.Close();
             }
+        }
+
+        private void collaboDataGridView_DoubleClick(object sender, EventArgs e)
+        {
+            CollaboDetailForm collaboDetailForm = new CollaboDetailForm();
+            collaboDetailForm.Show();
         }
     }
 }

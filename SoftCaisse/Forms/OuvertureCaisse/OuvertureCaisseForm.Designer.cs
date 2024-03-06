@@ -36,14 +36,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.fondCaisseCbox = new System.Windows.Forms.CheckBox();
             this.kryptonDateTimePicker1 = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
             this.OuvertureCaisseCmbx = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.txtOuvertureCaissePwd = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.btnOuvrCaisseClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnOuvertureCaisse = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OuvertureCaissierCmbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OuvertureCaisseCmbx)).BeginInit();
@@ -60,7 +60,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.fondCaisseCbox, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.kryptonDateTimePicker1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.OuvertureCaisseCmbx, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtOuvertureCaissePwd, 1, 3);
@@ -80,7 +80,7 @@
             this.OuvertureCaissierCmbx.DropDownWidth = 121;
             this.OuvertureCaissierCmbx.Location = new System.Drawing.Point(273, 67);
             this.OuvertureCaissierCmbx.Name = "OuvertureCaissierCmbx";
-            this.OuvertureCaissierCmbx.Size = new System.Drawing.Size(254, 25);
+            this.OuvertureCaissierCmbx.Size = new System.Drawing.Size(318, 25);
             this.OuvertureCaissierCmbx.TabIndex = 10;
             // 
             // label2
@@ -127,15 +127,15 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Cassier";
             // 
-            // checkBox1
+            // fondCaisseCbox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(3, 129);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(189, 19);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Déclarer un fond de caisse";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.fondCaisseCbox.AutoSize = true;
+            this.fondCaisseCbox.Location = new System.Drawing.Point(3, 129);
+            this.fondCaisseCbox.Name = "fondCaisseCbox";
+            this.fondCaisseCbox.Size = new System.Drawing.Size(189, 19);
+            this.fondCaisseCbox.TabIndex = 8;
+            this.fondCaisseCbox.Text = "Déclarer un fond de caisse";
+            this.fondCaisseCbox.UseVisualStyleBackColor = true;
             // 
             // kryptonDateTimePicker1
             // 
@@ -154,7 +154,7 @@
             this.OuvertureCaisseCmbx.DropDownWidth = 121;
             this.OuvertureCaisseCmbx.Location = new System.Drawing.Point(273, 38);
             this.OuvertureCaisseCmbx.Name = "OuvertureCaisseCmbx";
-            this.OuvertureCaisseCmbx.Size = new System.Drawing.Size(252, 25);
+            this.OuvertureCaisseCmbx.Size = new System.Drawing.Size(315, 25);
             this.OuvertureCaisseCmbx.TabIndex = 0;
             this.OuvertureCaisseCmbx.Click += new System.EventHandler(this.OuvertureCaisseCmbx_Click);
             // 
@@ -210,22 +210,23 @@
             this.btnOuvrCaisseClose.Values.Text = "Annuler";
             this.btnOuvrCaisseClose.Click += new System.EventHandler(this.btnOuvrCaisseClose_Click);
             // 
-            // kryptonButton1
+            // btnOuvertureCaisse
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(314, 205);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Palette = this.kryptonPalette1;
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton1.Size = new System.Drawing.Size(117, 33);
-            this.kryptonButton1.TabIndex = 12;
-            this.kryptonButton1.Values.Text = "OK";
+            this.btnOuvertureCaisse.Location = new System.Drawing.Point(314, 205);
+            this.btnOuvertureCaisse.Name = "btnOuvertureCaisse";
+            this.btnOuvertureCaisse.Palette = this.kryptonPalette1;
+            this.btnOuvertureCaisse.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnOuvertureCaisse.Size = new System.Drawing.Size(117, 33);
+            this.btnOuvertureCaisse.TabIndex = 12;
+            this.btnOuvertureCaisse.Values.Text = "OK";
+            this.btnOuvertureCaisse.Click += new System.EventHandler(this.btnOuvertureCaisse_Click);
             // 
             // OuvertureCaisseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 244);
-            this.Controls.Add(this.kryptonButton1);
+            this.Controls.Add(this.btnOuvertureCaisse);
             this.Controls.Add(this.btnOuvrCaisseClose);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -251,11 +252,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox fondCaisseCbox;
         private System.Windows.Forms.GroupBox groupBox2;
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnOuvrCaisseClose;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOuvertureCaisse;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker kryptonDateTimePicker1;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox OuvertureCaissierCmbx;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox OuvertureCaisseCmbx;

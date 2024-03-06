@@ -17,13 +17,14 @@ namespace SoftCaisse.Forms.Caisse
     public partial class DetailCaisseForm : KryptonForm
     {
         private List<dynamic> _caissier = new List<dynamic>();
+        private List<dynamic> _vendeur = new List<dynamic>();
+        private List<dynamic> _caisse = new List<dynamic>();
         private readonly AppDbContext _context;
         private readonly ClientRepository _clientRepository;
         private readonly FDepotRepository _depotRepository;
         private readonly FJournauxRepository _fJournauxRepository;
         public DetailCaisseForm(List<dynamic> caissier)
         {
-            CaissierControl caissierControl = new CaissierControl();
             InitializeComponent();
             _context = new AppDbContext();
             _clientRepository = new ClientRepository(_context);
@@ -35,6 +36,65 @@ namespace SoftCaisse.Forms.Caisse
             LoadDetailsCaisse();
             DepotCaisseCmbx.DisplayMember = "Depot";
             DepotCaisseCmbx.ValueMember = "NumDepot";
+        }
+        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse)
+        {
+            InitializeComponent();
+            _context = new AppDbContext();
+            _clientRepository = new ClientRepository(_context);
+            _depotRepository = new FDepotRepository(_context);
+            _fJournauxRepository = new FJournauxRepository(_context);
+            _caissier.Clear();
+            _caissier = caissier;
+            _vendeur.Clear();
+            _vendeur = vendeur;
+            _caisse.Clear();
+            _caisse = detailCaisse;
+            LoadAll();
+            LoadCaissier();
+            LoadDetailsCaisse();
+            LoadNewDetailsCaisse();
+            LoadVendeur();
+            DepotCaisseCmbx.DisplayMember = "Depot";
+            DepotCaisseCmbx.ValueMember = "NumDepot";
+            vendeurCmbx.DisplayMember = "InfoVendeur";
+            vendeurCmbx.ValueMember = "NumCo";
+            caissierCmbx.DisplayMember = "InfoCaisse";
+            caissierCmbx.ValueMember = "NumCo";
+        }
+        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse, bool test)
+        {
+            InitializeComponent();
+            _context = new AppDbContext();
+            _clientRepository = new ClientRepository(_context);
+            _depotRepository = new FDepotRepository(_context);
+            _fJournauxRepository = new FJournauxRepository(_context);
+            _caissier.Clear();
+            _caissier = caissier;
+            _vendeur.Clear();
+            _vendeur = vendeur;
+            _caisse.Clear();
+            _caisse = detailCaisse;
+            LoadCaissier();
+            LoadNewDetailsCaisse();
+            LoadVendeur();
+            DepotCaisseCmbx.DisplayMember = "Depot";
+            DepotCaisseCmbx.ValueMember = "NumDepot";
+            vendeurCmbx.DisplayMember = "InfoVendeur";
+            vendeurCmbx.ValueMember = "NumCo";
+            caissierCmbx.DisplayMember = "InfoCaisse";
+            caissierCmbx.ValueMember = "NumCo";
+
+        }
+        public void LoadVendeur()
+        {
+            var cmbxVendeur = _vendeur.Select(ve => new { NumCo = ve.NumCo, InfoVendeur = ve.InfoVendeur });
+            var caissier = _caisse.Select(ca => new { NumCo = ca.NumCo, InfoCaisse = ca.InfoCaisse });
+            vendeurCmbx.Items.Clear();
+            vendeurCmbx.Items.AddRange(cmbxVendeur.ToArray());
+            caissierCmbx.Items.Clear();
+            caissierCmbx.Items.AddRange(caissier.ToArray());
+
         }
         public void LoadAll()
         {
@@ -49,6 +109,23 @@ namespace SoftCaisse.Forms.Caisse
             DepotCaisseCmbx.Items.AddRange(cmbxDepot);
             ClientCaisseCmbx.Items.AddRange(listClient.ToArray());
             CodeJournalCaisseCmbx.Items.AddRange(numJournaux);
+        }
+        public void LoadCaissier()
+        {
+            var listdepot = _depotRepository.GetAll();
+            var cmbxDepot = listdepot.Select(depot => new { NumDepot = depot.DE_No, Depot = depot.DE_Intitule }).ToArray();
+            var listClient = _clientRepository.GetCTNumF_CompteT();
+            DepotCaisseCmbx.Items.Clear();
+            DepotCaisseCmbx.Items.AddRange(cmbxDepot);
+            ClientCaisseCmbx.Items.Clear();
+            ClientCaisseCmbx.Items.AddRange(listClient.ToArray());
+        }
+        public void LoadNewDetailsCaisse()
+        {
+            var caisse = _caissier.FirstOrDefault();
+            var cmbxDepot = _caissier.Select(depot => new { NumDepot = depot.NumDepot, Depot = depot.Depot }).ToArray();
+            DepotCaisseCmbx.Text = cmbxDepot[cmbxDepot.Length - 1].ToString();
+            ClientCaisseCmbx.Text = caisse.Client;
         }
         public void LoadDetailsCaisse()
         {

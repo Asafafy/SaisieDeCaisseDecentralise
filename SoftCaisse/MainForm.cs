@@ -23,6 +23,7 @@ using SoftCaisse.Forms.Statistiques;
 using SoftCaisse.Forms.ControlCaisse;
 using SoftCaisse.Forms.User;
 using SoftCaisse.Models;
+using SoftCaisse.Forms.MouvementCaisse;
 
 namespace SoftCaisse
 {
@@ -123,6 +124,12 @@ namespace SoftCaisse
         {
             UserManagementForm userManagementForm = new UserManagementForm();
             userManagementForm.Show();
+        }
+
+        private void mouvementsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MouvementCaisseForm mouvementCaisseForm = new MouvementCaisseForm();
+            mouvementCaisseForm.Show();
         }
     }
 }

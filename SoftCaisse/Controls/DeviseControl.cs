@@ -42,7 +42,7 @@ namespace SoftCaisse.Controls
         {
 
             object datagrid = kryptonDataGridView1.CurrentRow.Cells["cbMarque"].Value;
-            int cbMarq = Convert.ToInt32(datagrid.ToString());
+            short cbMarq = Convert.ToInt16(datagrid.ToString());
             BilletageForm form = new BilletageForm(cbMarq);
             form.ShowDialog();
         }

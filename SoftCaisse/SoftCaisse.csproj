@@ -227,6 +227,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\Controle.cs" />
     <Compile Include="Models\F_ARTICLE.cs" />
     <Compile Include="Models\F_BILLETPIECE.cs" />
     <Compile Include="Models\F_CAISSE.cs" />

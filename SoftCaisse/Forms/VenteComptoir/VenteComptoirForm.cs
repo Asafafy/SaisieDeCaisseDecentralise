@@ -23,6 +23,17 @@ namespace SoftCaisse.Forms.VenteComptoir
             _context = new AppDbContext();
             _deviseRepository = new DeviseRepository(_context);
             InitializeComponent();
+
+            foreach (Control control in tableLayoutPanelDesignation.Controls)
+            {
+                if (control is TextBox)
+                {
+                    control.Enter += TextBox_Enter;
+                    control.Leave += TextBox_Leave;
+
+                    control.Tag = control.Text;
+                }
+            }
         }
 
         private dynamic GetDeviseInfo(string devise)
@@ -48,15 +59,6 @@ namespace SoftCaisse.Forms.VenteComptoir
                 ButtonEnregistrerDesignation.Enabled = false;
             else
                 ButtonEnregistrerDesignation.Enabled = true;
-        }
-
-        private void ButtonEnregistrerDesignation_Click(object sender, EventArgs e)
-        {
-            ButtonEnAttente.Enabled = true;
-            ButtonFinDeSaisie.Enabled = true;
-            ButtonCreerDoc.Enabled = false;
-            ButtonRappelTicket.Enabled = false;
-            ButtonTicket.Enabled = false;
         }
 
         private void ButtonAnnuler_Click(object sender, EventArgs e)
@@ -94,12 +96,43 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private int compteurClick = 0;
 
-        public void AjouterArticle(string arRef, string arDesign, string faCodeFamille, int quantiteEnStock, decimal puHT, decimal puTTC, int quantiteVendue)
+        public void AjouterArticleDesigne(string arRef, string arDesign, string faCodeFamille, int quantiteEnStock, decimal puHT, decimal puTTC, int quantiteVendue)
         {
-            puTTC = puHT + (puHT * 20 / 100);
+            textBoxReference.Text = arRef;
+            textBoxDesignation.Text = arDesign;
+            textBoxCodeFamille.Text = faCodeFamille;
+            textBoxQuantiteEnStock.Text = quantiteEnStock.ToString("N0");
+            textBoxPUHT.Text = puHT.ToString("N2");
+            textBoxPUTTC.Text = puTTC.ToString("N2");
+            textBoxQuantiteVendue.Text = quantiteVendue.ToString("N0");
+        }
+        private void ButtonEnregistrerDesignation_Click(object sender, EventArgs e)
+        {
+            ButtonEnAttente.Enabled = true;
+            ButtonFinDeSaisie.Enabled = true;
+            ButtonSupprimerDesignation.Enabled = true;
+            ButtonCreerDoc.Enabled = false;
+            ButtonRappelTicket.Enabled = false;
+            ButtonTicket.Enabled = false;
+           
+            string arRef = textBoxReference.Text;
+            string arDesign = textBoxDesignation.Text;
+            string faCodeFamille = textBoxCodeFamille.Text;
+            int quantiteEnStock = int.Parse(textBoxQuantiteEnStock.Text);
+            decimal puHT = decimal.Parse(textBoxPUHT.Text);
+            decimal puTTC = decimal.Parse(textBoxPUTTC.Text);
+            int quantiteVendue = int.Parse(textBoxQuantiteVendue.Text);
 
-            dataGridViewArticle.Rows.Add(arRef, arDesign, faCodeFamille, quantiteEnStock, puHT, puTTC, quantiteVendue);
-            dataGridViewArticle.ClearSelection();
+            var articleBaseDeDonneesMiseAJour = _context.F_ARTICLE.FirstOrDefault(article => article.AR_Ref == arRef);
+
+            if (quantiteEnStock <= articleBaseDeDonneesMiseAJour.AR_UnitePoids)
+            {
+                dataGridViewArticle.Rows.Add(arRef,arDesign,faCodeFamille,quantiteEnStock,puHT,puTTC,quantiteVendue);
+            }
+            else
+            {
+                MessageBox.Show("La quantité voulu dépasse la quantité en Stock.");
+            }
 
             decimal TotalPrixHT = 0;
             decimal TotalPrixTTC = 0;
@@ -108,8 +141,8 @@ namespace SoftCaisse.Forms.VenteComptoir
             {
                 if (!row.IsNewRow)
                 {
-                    decimal puHTCourant = Convert.ToDecimal(row.Cells[4].Value);
-                    decimal puTTCCourant = Convert.ToDecimal(row.Cells[5].Value);
+                    decimal puHTCourant = Convert.ToDecimal(row.Cells[4].Value) * Convert.ToInt16(row.Cells[3].Value);
+                    decimal puTTCCourant = Convert.ToDecimal(row.Cells[5].Value) * Convert.ToInt16(row.Cells[3].Value);
 
                     if (dataGridViewArticle.Rows.Count == 1)
                     {
@@ -119,8 +152,8 @@ namespace SoftCaisse.Forms.VenteComptoir
 
                     else if (dataGridViewArticle.Rows.Count == 2)
                     {
-                        TotalPrixHT = Convert.ToDecimal(dataGridViewArticle.Rows[0].Cells[4].Value) + puHTCourant;
-                        TotalPrixTTC = Convert.ToDecimal(dataGridViewArticle.Rows[0].Cells[5].Value) + puTTCCourant;
+                        TotalPrixHT = Convert.ToDecimal(dataGridViewArticle.Rows[0].Cells[4].Value) * Convert.ToInt32(row.Cells[3].Value) + puHTCourant;
+                        TotalPrixTTC = Convert.ToDecimal(dataGridViewArticle.Rows[0].Cells[5].Value) * Convert.ToInt32(row.Cells[3].Value) + puTTCCourant;
                     }
 
                     else
@@ -133,7 +166,18 @@ namespace SoftCaisse.Forms.VenteComptoir
 
             labelPrixTotalHT.Text = TotalPrixHT.ToString("N2");
             labelPrixTotalTTC.Text = TotalPrixTTC.ToString("N2");
+
+            foreach (Control control in tableLayoutPanelDesignation.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = textBox.Tag.ToString();
+                }
+            }
+
+            textBoxReference.Focus();
         }
+
         decimal variableTemporaire;
         private void ButtonFinDeSaisie_Click(object sender, EventArgs e)
         {
@@ -153,7 +197,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             ButtonAnnuler.Enabled = true;
             ButtonEnAttente.Enabled = true;
             ButtonRaccourci.Enabled = true;
-            ButtonValider.Enabled = true;
             ButtonFacture.Enabled = true;
             ButtonSupprimerDesignation.Enabled = false;
 
@@ -244,6 +287,8 @@ namespace SoftCaisse.Forms.VenteComptoir
         {
             cpt++;
             ButtonSupprimerEnregistrement.Enabled = true;
+            ButtonValider.Enabled = true;
+
             Console.WriteLine(variableTemporaire);
 
             string modeReception = comboBoxEspeceEnregistrement.SelectedItem.ToString();
@@ -329,7 +374,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             {
                 DataGridViewRow selectedRow = dataGridViewArticle.SelectedRows[0];
                 dataGridViewArticle.Rows.Remove(selectedRow);
-
             }
         }
 
@@ -392,7 +436,8 @@ namespace SoftCaisse.Forms.VenteComptoir
             ButtonEnregistrerDesignation.Enabled = true;
 
             TextBox textBox = (TextBox)sender;
-            if (textBox.Text == "Référence")
+
+            if (textBox.Text == textBox.Tag.ToString())
             {
                 textBox.Text = "";
                 textBox.ForeColor = SystemColors.WindowText;
@@ -402,9 +447,10 @@ namespace SoftCaisse.Forms.VenteComptoir
         private void TextBox_Leave(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
+
             if (string.IsNullOrWhiteSpace(textBox.Text))
             {
-                textBox.Text = "Référence";
+                textBox.Text = textBox.Tag.ToString();
                 textBox.ForeColor = SystemColors.GrayText;
             }
         }
@@ -432,19 +478,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             labelResteDuDevise.Visible = true;*/
 
         }
-
-        private void dataGridViewArticle_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridViewArticle.SelectedRows.Count > 0)
-            {
-                ButtonSupprimerDesignation.Enabled = true;
-            }
-            else
-            {
-                ButtonSupprimerDesignation.Enabled = false;
-            }
-        }
-
         private void ButtonNouveauDesignation_Click(object sender, EventArgs e)
         {
             textBoxReference.Focus();
@@ -454,6 +487,56 @@ namespace SoftCaisse.Forms.VenteComptoir
         private void ButtonClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ButtonValider_Click(object sender, EventArgs e)
+        {
+            ButtonValider.Enabled = false;
+
+            if (dataGridViewArticle.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dataGridViewArticle.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        string afRef = row.Cells[0].Value.ToString();
+                        int quantiteVendue = Convert.ToInt32(row.Cells["quantiteVendue"].Value);
+
+                        var articleBaseDeDonneesMiseAJour = _context.F_ARTICLE.FirstOrDefault(article => article.AR_Ref == afRef);
+
+                        if (articleBaseDeDonneesMiseAJour != null)
+                        {
+                            int nouvelleQuantiteStock = (int)articleBaseDeDonneesMiseAJour.AR_UnitePoids - (int)dataGridViewArticle.Rows[0].Cells[3].Value;
+                                
+                            if (nouvelleQuantiteStock >= 0)
+                            {
+                                articleBaseDeDonneesMiseAJour.AR_UnitePoids = (short)nouvelleQuantiteStock;
+                            }
+                            else
+                            {
+                                MessageBox.Show("La quantité en stock de l'article " + afRef + " est insuffisante. Opération annulée.");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("L'article " + afRef + " n'existe pas dans la base de données. Opération annulée.");
+                            return;
+                        }
+                    }
+                }
+
+                _context.SaveChanges();
+                MessageBox.Show("Opération validée. Stock mis à jour.");
+            }
+            else
+            {
+                MessageBox.Show("Aucun article à valider.");
+            }
+
+            dataGridViewEnregistrement.Rows.Clear();
+            dataGridViewArticle.Rows.Clear();
+            textBoxReference.Focus();
         }
     }
 }

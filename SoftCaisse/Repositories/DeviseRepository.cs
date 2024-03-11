@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    internal class DeviseRepository : IRepository<P_DEVISE>
+    public class DeviseRepository : IRepository<P_DEVISE>
     {
         private readonly AppDbContext _context;
 

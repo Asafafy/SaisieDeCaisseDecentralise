@@ -77,7 +77,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Devise = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateEcheance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupBoxInvisibleEnregistrement = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.BouttonEnregistrerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.BouttonSupprimerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.BouttonNouveauEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -631,7 +630,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.GroupBoxInvisibleEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupBoxInvisibleEnregistrement.Controls.Add(this.label2);
             this.GroupBoxInvisibleEnregistrement.Controls.Add(this.BouttonEnregistrerEnregistrement);
             this.GroupBoxInvisibleEnregistrement.Controls.Add(this.BouttonSupprimerEnregistrement);
             this.GroupBoxInvisibleEnregistrement.Controls.Add(this.BouttonNouveauEnregistrement);
@@ -646,15 +644,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxInvisibleEnregistrement.TabIndex = 0;
             this.GroupBoxInvisibleEnregistrement.TabStop = false;
             this.GroupBoxInvisibleEnregistrement.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(256, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 16);
-            this.label2.TabIndex = 17;
             // 
             // BouttonEnregistrerEnregistrement
             // 
@@ -711,14 +700,15 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.ComboBoxDeviseEnregistrement.Name = "ComboBoxDeviseEnregistrement";
             this.ComboBoxDeviseEnregistrement.Size = new System.Drawing.Size(94, 24);
             this.ComboBoxDeviseEnregistrement.TabIndex = 3;
+            this.ComboBoxDeviseEnregistrement.TabStop = false;
             this.ComboBoxDeviseEnregistrement.SelectedIndexChanged += new System.EventHandler(this.ComboBoxDeviseEnregistrement_SelectedIndexChanged);
             // 
             // TextBoxLibelleEnregistrement
             // 
-            this.TextBoxLibelleEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxLibelleEnregistrement.Location = new System.Drawing.Point(300, 15);
+            this.TextBoxLibelleEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxLibelleEnregistrement.Location = new System.Drawing.Point(287, 14);
             this.TextBoxLibelleEnregistrement.Name = "TextBoxLibelleEnregistrement";
-            this.TextBoxLibelleEnregistrement.Size = new System.Drawing.Size(152, 22);
+            this.TextBoxLibelleEnregistrement.Size = new System.Drawing.Size(165, 23);
             this.TextBoxLibelleEnregistrement.TabIndex = 2;
             this.TextBoxLibelleEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -740,7 +730,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxMontantEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMontantEnregistrement.Location = new System.Drawing.Point(83, 14);
             this.TextBoxMontantEnregistrement.Name = "TextBoxMontantEnregistrement";
-            this.TextBoxMontantEnregistrement.Size = new System.Drawing.Size(173, 23);
+            this.TextBoxMontantEnregistrement.Size = new System.Drawing.Size(198, 23);
             this.TextBoxMontantEnregistrement.TabIndex = 1;
             this.TextBoxMontantEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TextBoxMontantEnregistrement.TextChanged += new System.EventHandler(this.TextBoxMontantEnregistrement_TextChanged);
@@ -1261,7 +1251,6 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.TextBox TextBoxLibelleEnregistrement;
         private System.Windows.Forms.TextBox TextBoxMontantEnregistrement;
         private System.Windows.Forms.ComboBox ComboBoxReglementEnregistrement;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelResteDuDevise;
         private KryptonDataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

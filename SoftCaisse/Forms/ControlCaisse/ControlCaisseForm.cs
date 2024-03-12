@@ -17,12 +17,14 @@ namespace SoftCaisse.Forms.ControlCaisse
         private readonly AppDbContext _context;
         public FCaisseRepository _fcaisserepository { get; set; }
         public DeviseRepository _fdeviserepository { get; set; }
+        public FReglementRepository _freglementrepository { get; set; }
         public ControlCaisseForm()
         {
             InitializeComponent();
             _context = new AppDbContext();
             _fcaisserepository = new FCaisseRepository(_context);
             _fdeviserepository = new DeviseRepository(_context);
+            _freglementrepository = new FReglementRepository(_context);
             var caisse = _fcaisserepository.GetAll();
             Caisse.Items.Clear();
             var DataCaisse = caisse.Select(c => new { Item = c.CA_No,Value = c.CA_Intitule }).ToArray();
@@ -44,6 +46,13 @@ namespace SoftCaisse.Forms.ControlCaisse
             Controlecmbx.DataSource = listeControle;
             Controlecmbx.DisplayMember = "valeur";
             Controlecmbx.ValueMember = "item";
+            List<object> liste_objet = new List<object>()
+            {
+                new {Item="1" , valeur ="Fond de caisse"},
+                new {Item="2" , valeur ="Entrées de caisse"},
+                new {Item="3" , valeur ="Sorties de caisse"},
+                new {Item="4" , valeur ="Remise à zéro"}
+            };
 
         }
 

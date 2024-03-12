@@ -15,6 +15,7 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private readonly DeviseRepository _deviseRepository;
 
+        private static string dernierCours = "Euro";
         public VenteComptoirForm()
         {
             _context = new AppDbContext();
@@ -33,10 +34,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             }
 
             ChargerComboBoxes();
-
+/*
             ComboBoxReglementEnregistrement.SelectedItem = "Espèces";
 
-            ComboBoxDeviseEnregistrement.SelectedItem = "Euro";
+            ComboBoxDeviseEnregistrement.SelectedItem = "Euro";*/
         }
 
         private void ChargerComboBoxes()
@@ -310,17 +311,39 @@ namespace SoftCaisse.Forms.VenteComptoir
         private decimal ChoixDevise(decimal PrixTotalAConvertir)
         {
             string devise = ComboBoxDeviseEnregistrement.SelectedItem.ToString();
-            var recuperation = GetDeviseInfo(devise);
+            var coursCible = GetDeviseInfo(devise);
 
-            if(recuperation.D_Intitule != "Euro") 
+            if(coursCible.D_Intitule != "Euro") 
             {
-                PrixTotalAConvertir *= (decimal)recuperation.D_Cours;
-                Console.WriteLine(PrixTotalAConvertir);
+                if(dernierCours == "Euro")
+                {
+                    PrixTotalAConvertir = PrixTotalAConvertir * (decimal)Math.Round(coursCible.D_Cours,2);
+                    Console.WriteLine(PrixTotalAConvertir);
+                }
+                else
+                {
+                    var x = GetDeviseInfo(dernierCours);
 
+                    PrixTotalAConvertir = PrixTotalAConvertir / x.D_Cours * (decimal)Math.Round(coursCible.D_Cours,2);
+                }
+
+                dernierCours = coursCible.D_Intitule;
+                
                 return PrixTotalAConvertir;
             }
-            else
+            
+            if(dernierCours == "Euro")
+            {
                 return PrixTotalAConvertir;
+
+            }
+            var y = GetDeviseInfo(dernierCours);
+
+            PrixTotalAConvertir = PrixTotalAConvertir / Math.Round(y.D_Cours,2);
+            dernierCours = coursCible.D_Intitule;
+
+            return PrixTotalAConvertir;
+
         }
 
         private int cpt = 0;
@@ -342,6 +365,7 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void ComboBoxDeviseEnregistrement_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if(TextBoxMontantEnregistrement.Text != "")
             {
                 TextBoxMontantEnregistrement.Text = ChoixDevise(MontantInitial).ToString("N2");

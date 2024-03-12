@@ -68,11 +68,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BIJOUDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BIJOUDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="BIJOUDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -246,6 +241,7 @@
     <Compile Include="Models\F_COMPTET.cs" />
     <Compile Include="Models\F_DEPOT.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
+    <Compile Include="Models\F_REGLECH.cs" />
     <Compile Include="Models\F_TAXE.cs" />
     <Compile Include="Models\P_DEVISE.cs" />
     <Compile Include="Models\P_REGLEMENT.cs" />
@@ -263,6 +259,7 @@
     <Compile Include="Repositories\FDepotRepository.cs" />
     <Compile Include="Repositories\FJournauxRepository.cs" />
     <Compile Include="Repositories\DeviseRepository.cs" />
+    <Compile Include="Repositories\FReglementRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\ModeReglementRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
@@ -360,17 +357,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="BIJOUDataSet.xsc">
-      <DependentUpon>BIJOUDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="BIJOUDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BIJOUDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="BIJOUDataSet.xss">
-      <DependentUpon>BIJOUDataSet.xsd</DependentUpon>
-    </None>
     <None Include="BIJOUDataSet1.xsc">
       <DependentUpon>BIJOUDataSet1.xsd</DependentUpon>
     </None>

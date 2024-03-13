@@ -15,11 +15,14 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private readonly DeviseRepository _deviseRepository;
 
+        private readonly ModeReglementRepository _reglementRepository;
+
         private static string dernierCours = "Euro";
         public VenteComptoirForm()
         {
             _context = new AppDbContext();
             _deviseRepository = new DeviseRepository(_context);
+            _reglementRepository = new ModeReglementRepository(_context);
             InitializeComponent();
 
             foreach (Control control in TableLayoutPanelDesignation.Controls)
@@ -38,17 +41,21 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void ChargerComboBoxes()
         {
-            var deviseASelectionne = _context.P_DEVISE.Select(d => d.D_Intitule).ToList();
-            var modeDeReglement = _context.P_REGLEMENT.Select(r => r.R_Intitule).ToList();
+            var deviseASelectionne = _deviseRepository.GetAll();
+            var deviseObtenu = deviseASelectionne.Select(d => d.D_Intitule).ToList();
+
+            var modeDeReglement = _reglementRepository.GetAll();
+            var reglementObtenu = modeDeReglement.Select(r => r.R_Intitule).ToList();
 
             ComboBoxReglementEnregistrement.Items.Clear();
             ComboBoxDeviseEnregistrement.Items.Clear();
-            foreach (var devise in deviseASelectionne)
+
+            foreach (var devise in deviseObtenu)
             {
                 ComboBoxDeviseEnregistrement.Items.Add(devise.ToString());
             }
 
-            foreach (var mode in modeDeReglement)
+            foreach (var mode in reglementObtenu)
             {
                 ComboBoxReglementEnregistrement.Items.Add(mode.ToString());
             }
@@ -281,8 +288,8 @@ namespace SoftCaisse.Forms.VenteComptoir
             compteurClick++;
 
             DataGridViewEnregistrement.Dock = DockStyle.Bottom;
-            DataGridViewEnregistrement.Width = 677;
-            DataGridViewEnregistrement.Height = 122;
+            DataGridViewEnregistrement.Width = 581; 
+            DataGridViewEnregistrement.Height = 177;
 
             GroupBoxInvisibleEnregistrement.Visible = true;
 
@@ -386,19 +393,18 @@ namespace SoftCaisse.Forms.VenteComptoir
                 cpt++;
                 BouttonSupprimerEnregistrement.Enabled = true;
                 BouttonValider.Enabled = true;
-
-                Console.WriteLine(variableTemporaire);
+                BouttonEnregistrerDesignation.Enabled = false;
+                
+                if (string.IsNullOrEmpty(ComboBoxReglementEnregistrement.Text) || string.IsNullOrEmpty(ComboBoxDeviseEnregistrement.Text))
+                {
+                    throw new Exception("Veuillez sélectionner une devise et un mode de règlement");
+                }
 
                 string modeReception = ComboBoxReglementEnregistrement.SelectedItem.ToString();
                 string libelle = TextBoxLibelleEnregistrement.Text;
                 decimal ResteDu;
                 decimal montantEnregistrement = Convert.ToDecimal(TextBoxMontantEnregistrement.Text);
                 string devise = ComboBoxDeviseEnregistrement.SelectedItem.ToString();
-
-                if(string.IsNullOrEmpty(modeReception) || string.IsNullOrEmpty(devise)) 
-                {
-                    throw new Exception("Veuillez sélectionner une devise et un mode de règlement");
-                }
 
                 var recuperation = GetDeviseInfo(devise);
 

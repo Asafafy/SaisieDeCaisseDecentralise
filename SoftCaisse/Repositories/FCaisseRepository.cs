@@ -14,9 +14,10 @@ namespace SoftCaisse.Repositories
         {
             _context = context;
         }
-        void IRepository<F_CAISSE>.Add(F_CAISSE entity)
+        public void Add(F_CAISSE entity)
         {
-            throw new NotImplementedException();
+            _context.F_CAISSE.Add(entity);
+            _context.SaveChanges();
         }
 
         void IRepository<F_CAISSE>.Delete(int id)
@@ -34,9 +35,9 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        void IRepository<F_CAISSE>.Update(F_CAISSE entity)
+        public void Update(F_CAISSE entity)
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
     }
 }

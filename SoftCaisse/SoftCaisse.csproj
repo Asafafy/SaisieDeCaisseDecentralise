@@ -238,6 +238,7 @@
     <Compile Include="Models\F_CAISSE.cs" />
     <Compile Include="Models\F_COLLABORATEUR.cs" />
     <Compile Include="Models\F_COMPTET.cs" />
+    <Compile Include="Models\F_CREGLEMENT.cs" />
     <Compile Include="Models\F_DEPOT.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
     <Compile Include="Models\P_DEVISE.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Repositories\FBilletageRepository.cs" />
     <Compile Include="Repositories\FCaisseRepository.cs" />
     <Compile Include="Repositories\FCollaborateurRepository.cs" />
+    <Compile Include="Repositories\FCReglementRepository.cs" />
     <Compile Include="Repositories\FDepotRepository.cs" />
     <Compile Include="Repositories\FJournauxRepository.cs" />
     <Compile Include="Repositories\DeviseRepository.cs" />

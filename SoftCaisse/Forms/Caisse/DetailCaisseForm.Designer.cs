@@ -32,8 +32,6 @@
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnModifCaisse = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnAddUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.CodeJournalCaisseCmbx = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,8 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.DepotCaisseCmbx = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.soucheVenteCmbx = new System.Windows.Forms.ComboBox();
@@ -56,6 +52,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.vendeurCmbx = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnModifCaisse = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnAddUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -95,48 +93,22 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(600, 270);
+            this.tabControl1.Size = new System.Drawing.Size(600, 228);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btnModifCaisse);
-            this.tabPage1.Controls.Add(this.btnAddUser);
             this.tabPage1.Controls.Add(this.tableLayoutPanel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(592, 241);
+            this.tabPage1.Size = new System.Drawing.Size(592, 199);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Identification";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btnModifCaisse
-            // 
-            this.btnModifCaisse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModifCaisse.Location = new System.Drawing.Point(372, 195);
-            this.btnModifCaisse.Name = "btnModifCaisse";
-            this.btnModifCaisse.Palette = this.kryptonPalette1;
-            this.btnModifCaisse.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnModifCaisse.Size = new System.Drawing.Size(95, 33);
-            this.btnModifCaisse.TabIndex = 12;
-            this.btnModifCaisse.Values.Text = "OK";
-            this.btnModifCaisse.Click += new System.EventHandler(this.btnModifCaisse_Click);
-            // 
-            // btnAddUser
-            // 
-            this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddUser.Location = new System.Drawing.Point(474, 195);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Palette = this.kryptonPalette1;
-            this.btnAddUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnAddUser.Size = new System.Drawing.Size(95, 33);
-            this.btnAddUser.TabIndex = 11;
-            this.btnAddUser.Values.Text = "Annuler";
             // 
             // tableLayoutPanel1
             // 
@@ -235,42 +207,19 @@
             this.DepotCaisseCmbx.Name = "DepotCaisseCmbx";
             this.DepotCaisseCmbx.Size = new System.Drawing.Size(267, 24);
             this.DepotCaisseCmbx.TabIndex = 3;
+            this.DepotCaisseCmbx.SelectedIndexChanged += new System.EventHandler(this.DepotCaisseCmbx_SelectedIndexChanged);
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.kryptonButton2);
-            this.tabPage2.Controls.Add(this.kryptonButton3);
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(592, 241);
+            this.tabPage2.Size = new System.Drawing.Size(592, 199);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Paramètres";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // kryptonButton2
-            // 
-            this.kryptonButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonButton2.Location = new System.Drawing.Point(371, 195);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Palette = this.kryptonPalette1;
-            this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(95, 33);
-            this.kryptonButton2.TabIndex = 14;
-            this.kryptonButton2.Values.Text = "OK";
-            // 
-            // kryptonButton3
-            // 
-            this.kryptonButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonButton3.Location = new System.Drawing.Point(473, 195);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Palette = this.kryptonPalette1;
-            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton3.Size = new System.Drawing.Size(95, 33);
-            this.kryptonButton3.TabIndex = 13;
-            this.kryptonButton3.Values.Text = "Annuler";
             // 
             // groupBox2
             // 
@@ -306,6 +255,7 @@
             this.soucheVenteCmbx.Name = "soucheVenteCmbx";
             this.soucheVenteCmbx.Size = new System.Drawing.Size(267, 24);
             this.soucheVenteCmbx.TabIndex = 4;
+            this.soucheVenteCmbx.SelectedIndexChanged += new System.EventHandler(this.soucheVenteCmbx_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -354,6 +304,7 @@
             this.caissierCmbx.Name = "caissierCmbx";
             this.caissierCmbx.Size = new System.Drawing.Size(267, 24);
             this.caissierCmbx.TabIndex = 6;
+            this.caissierCmbx.SelectedIndexChanged += new System.EventHandler(this.caissierCmbx_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -373,6 +324,7 @@
             this.vendeurCmbx.Name = "vendeurCmbx";
             this.vendeurCmbx.Size = new System.Drawing.Size(267, 24);
             this.vendeurCmbx.TabIndex = 4;
+            this.vendeurCmbx.SelectedIndexChanged += new System.EventHandler(this.vendeurCmbx_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -385,11 +337,36 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Vendeur par défaut";
             // 
+            // btnModifCaisse
+            // 
+            this.btnModifCaisse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnModifCaisse.Location = new System.Drawing.Point(377, 234);
+            this.btnModifCaisse.Name = "btnModifCaisse";
+            this.btnModifCaisse.Palette = this.kryptonPalette1;
+            this.btnModifCaisse.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnModifCaisse.Size = new System.Drawing.Size(95, 33);
+            this.btnModifCaisse.TabIndex = 14;
+            this.btnModifCaisse.Values.Text = "OK";
+            this.btnModifCaisse.Click += new System.EventHandler(this.btnModifCaisse_Click);
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddUser.Location = new System.Drawing.Point(479, 234);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Palette = this.kryptonPalette1;
+            this.btnAddUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnAddUser.Size = new System.Drawing.Size(95, 33);
+            this.btnAddUser.TabIndex = 13;
+            this.btnAddUser.Values.Text = "Annuler";
+            // 
             // DetailCaisseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 270);
+            this.Controls.Add(this.btnModifCaisse);
+            this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.Name = "DetailCaisseForm";
@@ -427,11 +404,7 @@
         private System.Windows.Forms.TextBox txtIntituleCaisse;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox DepotCaisseCmbx;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnModifCaisse;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddUser;
         private System.Windows.Forms.GroupBox groupBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.ComboBox soucheVenteCmbx;
@@ -441,5 +414,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox vendeurCmbx;
         private System.Windows.Forms.Label label5;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnModifCaisse;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddUser;
     }
 }

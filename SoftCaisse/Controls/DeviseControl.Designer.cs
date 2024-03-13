@@ -33,9 +33,6 @@
             this.btnDeviseClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.cbMarque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Devise = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +55,7 @@
             // 
             // btnDeviseClose
             // 
-            this.btnDeviseClose.Location = new System.Drawing.Point(701, 15);
+            this.btnDeviseClose.Location = new System.Drawing.Point(752, 15);
             this.btnDeviseClose.Name = "btnDeviseClose";
             this.btnDeviseClose.Palette = this.kryptonPalette1;
             this.btnDeviseClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -94,43 +91,13 @@
             // 
             // kryptonButton4
             // 
-            this.kryptonButton4.Location = new System.Drawing.Point(592, 15);
+            this.kryptonButton4.Location = new System.Drawing.Point(643, 15);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.Palette = this.kryptonPalette1;
             this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.kryptonButton4.Size = new System.Drawing.Size(105, 34);
             this.kryptonButton4.TabIndex = 26;
             this.kryptonButton4.Values.Text = "OK";
-            // 
-            // kryptonButton1
-            // 
-            this.kryptonButton1.Location = new System.Drawing.Point(761, 15);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Palette = this.kryptonPalette1;
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton1.Size = new System.Drawing.Size(105, 34);
-            this.kryptonButton1.TabIndex = 23;
-            this.kryptonButton1.Values.Text = "Ouvrir";
-            // 
-            // kryptonButton2
-            // 
-            this.kryptonButton2.Location = new System.Drawing.Point(761, 55);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Palette = this.kryptonPalette1;
-            this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(105, 34);
-            this.kryptonButton2.TabIndex = 24;
-            this.kryptonButton2.Values.Text = "Ajouter";
-            // 
-            // kryptonButton3
-            // 
-            this.kryptonButton3.Location = new System.Drawing.Point(761, 95);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Palette = this.kryptonPalette1;
-            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton3.Size = new System.Drawing.Size(105, 34);
-            this.kryptonButton3.TabIndex = 25;
-            this.kryptonButton3.Values.Text = "Supprimer";
             // 
             // kryptonDataGridView1
             // 
@@ -147,7 +114,7 @@
             this.kryptonDataGridView1.RowHeadersVisible = false;
             this.kryptonDataGridView1.RowHeadersWidth = 51;
             this.kryptonDataGridView1.RowTemplate.Height = 24;
-            this.kryptonDataGridView1.Size = new System.Drawing.Size(744, 439);
+            this.kryptonDataGridView1.Size = new System.Drawing.Size(859, 439);
             this.kryptonDataGridView1.TabIndex = 26;
             this.kryptonDataGridView1.DoubleClick += new System.EventHandler(this.kryptonDataGridView1_DoubleClick);
             // 
@@ -192,9 +159,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.kryptonDataGridView1);
-            this.Controls.Add(this.kryptonButton3);
-            this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.groupBox1);
             this.Name = "DeviseControl";
             this.Size = new System.Drawing.Size(875, 525);
@@ -209,9 +173,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnDeviseClose;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn cbMarque;
         private System.Windows.Forms.DataGridViewTextBoxColumn Devise;

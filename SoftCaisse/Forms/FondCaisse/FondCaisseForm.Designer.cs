@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.kryptonComboBox1 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.deviseCmbx = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.btnFondCaisseClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deviseCmbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.kryptonComboBox1);
+            this.panel1.Controls.Add(this.deviseCmbx);
             this.panel1.Controls.Add(this.kryptonDataGridView1);
             this.panel1.Controls.Add(this.btnFondCaisseClose);
             this.panel1.Controls.Add(this.groupBox1);
@@ -53,13 +53,13 @@
             this.panel1.Size = new System.Drawing.Size(620, 653);
             this.panel1.TabIndex = 0;
             // 
-            // kryptonComboBox1
+            // deviseCmbx
             // 
-            this.kryptonComboBox1.DropDownWidth = 156;
-            this.kryptonComboBox1.Location = new System.Drawing.Point(94, 13);
-            this.kryptonComboBox1.Name = "kryptonComboBox1";
-            this.kryptonComboBox1.Size = new System.Drawing.Size(156, 25);
-            this.kryptonComboBox1.TabIndex = 11;
+            this.deviseCmbx.DropDownWidth = 156;
+            this.deviseCmbx.Location = new System.Drawing.Point(94, 13);
+            this.deviseCmbx.Name = "deviseCmbx";
+            this.deviseCmbx.Size = new System.Drawing.Size(156, 25);
+            this.deviseCmbx.TabIndex = 11;
             // 
             // kryptonDataGridView1
             // 
@@ -138,7 +138,7 @@
             this.TopMost = true;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deviseCmbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -151,7 +151,7 @@
         private System.Windows.Forms.Label label1;
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnFondCaisseClose;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox deviseCmbx;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
     }
 }

@@ -153,7 +153,7 @@
             this.UserPassword,
             this.Role});
             this.userDatagridView.Location = new System.Drawing.Point(24, 26);
-            this.userDatagridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.userDatagridView.Margin = new System.Windows.Forms.Padding(4);
             this.userDatagridView.Name = "userDatagridView";
             this.userDatagridView.RowHeadersVisible = false;
             this.userDatagridView.RowHeadersWidth = 51;
@@ -293,7 +293,7 @@
             // 
             this.btnClean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClean.Location = new System.Drawing.Point(823, 171);
-            this.btnClean.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClean.Margin = new System.Windows.Forms.Padding(4);
             this.btnClean.Name = "btnClean";
             this.btnClean.Palette = this.kryptonPalette1;
             this.btnClean.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;

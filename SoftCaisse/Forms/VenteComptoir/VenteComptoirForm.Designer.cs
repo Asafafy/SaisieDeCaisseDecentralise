@@ -187,9 +187,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxGeneral.Controls.Add(this.DataGridViewArticle);
             this.GroupBoxGeneral.Controls.Add(this.GroupBoxinfoCaissier);
             this.GroupBoxGeneral.Location = new System.Drawing.Point(-5, 0);
-            this.GroupBoxGeneral.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxGeneral.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBoxGeneral.Name = "GroupBoxGeneral";
-            this.GroupBoxGeneral.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxGeneral.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBoxGeneral.Size = new System.Drawing.Size(844, 604);
             this.GroupBoxGeneral.TabIndex = 0;
             this.GroupBoxGeneral.TabStop = false;
@@ -204,7 +204,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanel3.Controls.Add(this.GroupBoxEnregistrement, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.GroupBoxCommandDroite, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(14, 404);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -217,9 +217,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxEnregistrement.Controls.Add(this.GroupBoxInvisibleEnregistrement);
             this.GroupBoxEnregistrement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBoxEnregistrement.Location = new System.Drawing.Point(2, 2);
-            this.GroupBoxEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBoxEnregistrement.Name = "GroupBoxEnregistrement";
-            this.GroupBoxEnregistrement.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxEnregistrement.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBoxEnregistrement.Size = new System.Drawing.Size(441, 191);
             this.GroupBoxEnregistrement.TabIndex = 2;
             this.GroupBoxEnregistrement.TabStop = false;
@@ -258,7 +258,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.DataGridViewEnregistrement.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataGridViewEnregistrement.Enabled = false;
             this.DataGridViewEnregistrement.Location = new System.Drawing.Point(2, 74);
-            this.DataGridViewEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DataGridViewEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.DataGridViewEnregistrement.Name = "DataGridViewEnregistrement";
             this.DataGridViewEnregistrement.ReadOnly = true;
             this.DataGridViewEnregistrement.RowHeadersVisible = false;
@@ -305,9 +305,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxInvisibleEnregistrement.Controls.Add(this.BouttonSupprimerEnregistrement);
             this.GroupBoxInvisibleEnregistrement.Controls.Add(this.BouttonNouveauEnregistrement);
             this.GroupBoxInvisibleEnregistrement.Location = new System.Drawing.Point(2, 9);
-            this.GroupBoxInvisibleEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxInvisibleEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBoxInvisibleEnregistrement.Name = "GroupBoxInvisibleEnregistrement";
-            this.GroupBoxInvisibleEnregistrement.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxInvisibleEnregistrement.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBoxInvisibleEnregistrement.Size = new System.Drawing.Size(437, 65);
             this.GroupBoxInvisibleEnregistrement.TabIndex = 0;
             this.GroupBoxInvisibleEnregistrement.TabStop = false;
@@ -329,7 +329,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanel1.Controls.Add(this.DateTimePickerEnregistrement, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.ComboBoxDeviseEnregistrement, 3, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 9);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -346,7 +346,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.ComboBoxReglementEnregistrement.IntegralHeight = false;
             this.ComboBoxReglementEnregistrement.ItemHeight = 16;
             this.ComboBoxReglementEnregistrement.Location = new System.Drawing.Point(2, 2);
-            this.ComboBoxReglementEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxReglementEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxReglementEnregistrement.Name = "ComboBoxReglementEnregistrement";
             this.ComboBoxReglementEnregistrement.Size = new System.Drawing.Size(82, 24);
             this.ComboBoxReglementEnregistrement.TabIndex = 0;
@@ -356,7 +356,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxMontantEnregistrement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxMontantEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMontantEnregistrement.Location = new System.Drawing.Point(88, 2);
-            this.TextBoxMontantEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxMontantEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxMontantEnregistrement.Name = "TextBoxMontantEnregistrement";
             this.TextBoxMontantEnregistrement.Size = new System.Drawing.Size(82, 23);
             this.TextBoxMontantEnregistrement.TabIndex = 1;
@@ -368,7 +368,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxLibelleEnregistrement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxLibelleEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxLibelleEnregistrement.Location = new System.Drawing.Point(174, 2);
-            this.TextBoxLibelleEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxLibelleEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxLibelleEnregistrement.Name = "TextBoxLibelleEnregistrement";
             this.TextBoxLibelleEnregistrement.Size = new System.Drawing.Size(82, 23);
             this.TextBoxLibelleEnregistrement.TabIndex = 2;
@@ -379,7 +379,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.DateTimePickerEnregistrement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DateTimePickerEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateTimePickerEnregistrement.Location = new System.Drawing.Point(346, 2);
-            this.DateTimePickerEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DateTimePickerEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.DateTimePickerEnregistrement.Name = "DateTimePickerEnregistrement";
             this.DateTimePickerEnregistrement.Size = new System.Drawing.Size(83, 23);
             this.DateTimePickerEnregistrement.TabIndex = 4;
@@ -393,7 +393,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.ComboBoxDeviseEnregistrement.FormattingEnabled = true;
             this.ComboBoxDeviseEnregistrement.IntegralHeight = false;
             this.ComboBoxDeviseEnregistrement.Location = new System.Drawing.Point(260, 2);
-            this.ComboBoxDeviseEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxDeviseEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxDeviseEnregistrement.Name = "ComboBoxDeviseEnregistrement";
             this.ComboBoxDeviseEnregistrement.Size = new System.Drawing.Size(82, 24);
             this.ComboBoxDeviseEnregistrement.TabIndex = 3;
@@ -404,7 +404,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonEnregistrerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonEnregistrerEnregistrement.Location = new System.Drawing.Point(365, 38);
-            this.BouttonEnregistrerEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonEnregistrerEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonEnregistrerEnregistrement.Name = "BouttonEnregistrerEnregistrement";
             this.BouttonEnregistrerEnregistrement.Palette = this.kryptonPalette1;
             this.BouttonEnregistrerEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -418,7 +418,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonSupprimerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonSupprimerEnregistrement.Enabled = false;
             this.BouttonSupprimerEnregistrement.Location = new System.Drawing.Point(279, 38);
-            this.BouttonSupprimerEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonSupprimerEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonSupprimerEnregistrement.Name = "BouttonSupprimerEnregistrement";
             this.BouttonSupprimerEnregistrement.Palette = this.kryptonPalette1;
             this.BouttonSupprimerEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -431,7 +431,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonNouveauEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonNouveauEnregistrement.Location = new System.Drawing.Point(193, 38);
-            this.BouttonNouveauEnregistrement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonNouveauEnregistrement.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonNouveauEnregistrement.Name = "BouttonNouveauEnregistrement";
             this.BouttonNouveauEnregistrement.Palette = this.kryptonPalette1;
             this.BouttonNouveauEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -445,9 +445,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxCommandDroite.Controls.Add(this.groupBoxCommand);
             this.GroupBoxCommandDroite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBoxCommandDroite.Location = new System.Drawing.Point(447, 2);
-            this.GroupBoxCommandDroite.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxCommandDroite.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBoxCommandDroite.Name = "GroupBoxCommandDroite";
-            this.GroupBoxCommandDroite.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxCommandDroite.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBoxCommandDroite.Size = new System.Drawing.Size(367, 191);
             this.GroupBoxCommandDroite.TabIndex = 13;
             this.GroupBoxCommandDroite.TabStop = false;
@@ -461,9 +461,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxReste.Controls.Add(this.ComboBoxDeviseReste);
             this.GroupBoxReste.Controls.Add(this.LabelResteDu);
             this.GroupBoxReste.Location = new System.Drawing.Point(4, 10);
-            this.GroupBoxReste.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxReste.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBoxReste.Name = "GroupBoxReste";
-            this.GroupBoxReste.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxReste.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBoxReste.Size = new System.Drawing.Size(358, 74);
             this.GroupBoxReste.TabIndex = 2;
             this.GroupBoxReste.TabStop = false;
@@ -503,7 +503,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             "Euro",
             "Franc CFA"});
             this.ComboBoxDeviseReste.Location = new System.Drawing.Point(214, 43);
-            this.ComboBoxDeviseReste.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxDeviseReste.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxDeviseReste.Name = "ComboBoxDeviseReste";
             this.ComboBoxDeviseReste.Size = new System.Drawing.Size(138, 21);
             this.ComboBoxDeviseReste.TabIndex = 13;
@@ -526,9 +526,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxCommand.Controls.Add(this.tableLayoutPanel2);
             this.groupBoxCommand.Location = new System.Drawing.Point(4, 90);
-            this.groupBoxCommand.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxCommand.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxCommand.Name = "groupBoxCommand";
-            this.groupBoxCommand.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxCommand.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxCommand.Size = new System.Drawing.Size(362, 95);
             this.groupBoxCommand.TabIndex = 3;
             this.groupBoxCommand.TabStop = false;
@@ -550,7 +550,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanel2.Controls.Add(this.BouttonTicket, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 15);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -564,7 +564,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonValider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonValider.Enabled = false;
             this.BouttonValider.Location = new System.Drawing.Point(240, 54);
-            this.BouttonValider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonValider.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonValider.Name = "BouttonValider";
             this.BouttonValider.Palette = this.kryptonPalette1;
             this.BouttonValider.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -578,7 +578,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonFinDeSaisie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonFinDeSaisie.Enabled = false;
             this.BouttonFinDeSaisie.Location = new System.Drawing.Point(2, 2);
-            this.BouttonFinDeSaisie.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonFinDeSaisie.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonFinDeSaisie.Name = "BouttonFinDeSaisie";
             this.BouttonFinDeSaisie.Palette = this.kryptonPalette1;
             this.BouttonFinDeSaisie.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -591,7 +591,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonCreerDoc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonCreerDoc.Location = new System.Drawing.Point(121, 54);
-            this.BouttonCreerDoc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonCreerDoc.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonCreerDoc.Name = "BouttonCreerDoc";
             this.BouttonCreerDoc.Palette = this.kryptonPalette1;
             this.BouttonCreerDoc.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -603,7 +603,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonAnnuler.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonAnnuler.Location = new System.Drawing.Point(121, 2);
-            this.BouttonAnnuler.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonAnnuler.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonAnnuler.Name = "BouttonAnnuler";
             this.BouttonAnnuler.Palette = this.kryptonPalette1;
             this.BouttonAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -617,7 +617,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonEnAttente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonEnAttente.Enabled = false;
             this.BouttonEnAttente.Location = new System.Drawing.Point(240, 28);
-            this.BouttonEnAttente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonEnAttente.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonEnAttente.Name = "BouttonEnAttente";
             this.BouttonEnAttente.Palette = this.kryptonPalette1;
             this.BouttonEnAttente.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -629,7 +629,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonRappelTicket.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonRappelTicket.Location = new System.Drawing.Point(2, 54);
-            this.BouttonRappelTicket.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonRappelTicket.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonRappelTicket.Name = "BouttonRappelTicket";
             this.BouttonRappelTicket.Palette = this.kryptonPalette1;
             this.BouttonRappelTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -641,7 +641,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonRaccourci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonRaccourci.Location = new System.Drawing.Point(121, 28);
-            this.BouttonRaccourci.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonRaccourci.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonRaccourci.Name = "BouttonRaccourci";
             this.BouttonRaccourci.Palette = this.kryptonPalette1;
             this.BouttonRaccourci.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -654,7 +654,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonFacture.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonFacture.Enabled = false;
             this.BouttonFacture.Location = new System.Drawing.Point(240, 2);
-            this.BouttonFacture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonFacture.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonFacture.Name = "BouttonFacture";
             this.BouttonFacture.Palette = this.kryptonPalette1;
             this.BouttonFacture.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -667,7 +667,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonTicket.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonTicket.Enabled = false;
             this.BouttonTicket.Location = new System.Drawing.Point(2, 28);
-            this.BouttonTicket.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonTicket.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonTicket.Name = "BouttonTicket";
             this.BouttonTicket.Palette = this.kryptonPalette1;
             this.BouttonTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -680,7 +680,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonEnregistrerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonEnregistrerDesignation.Enabled = false;
             this.BouttonEnregistrerDesignation.Location = new System.Drawing.Point(763, 176);
-            this.BouttonEnregistrerDesignation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonEnregistrerDesignation.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonEnregistrerDesignation.Name = "BouttonEnregistrerDesignation";
             this.BouttonEnregistrerDesignation.Palette = this.kryptonPalette1;
             this.BouttonEnregistrerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -716,7 +716,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxConditionnement, 5, 0);
             this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxQuantiteDisponibleEnStock, 4, 0);
             this.TableLayoutPanelDesignation.Location = new System.Drawing.Point(14, 136);
-            this.TableLayoutPanelDesignation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TableLayoutPanelDesignation.Margin = new System.Windows.Forms.Padding(2);
             this.TableLayoutPanelDesignation.Name = "TableLayoutPanelDesignation";
             this.TableLayoutPanelDesignation.RowCount = 1;
             this.TableLayoutPanelDesignation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -730,7 +730,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxReference.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxReference.Location = new System.Drawing.Point(2, 2);
-            this.TextBoxReference.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxReference.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxReference.Name = "TextBoxReference";
             this.TextBoxReference.Size = new System.Drawing.Size(77, 25);
             this.TextBoxReference.TabIndex = 13;
@@ -746,7 +746,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxDesignation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxDesignation.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxDesignation.Location = new System.Drawing.Point(83, 2);
-            this.TextBoxDesignation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxDesignation.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxDesignation.Name = "TextBoxDesignation";
             this.TextBoxDesignation.Size = new System.Drawing.Size(77, 25);
             this.TextBoxDesignation.TabIndex = 2;
@@ -758,7 +758,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxPUHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPUHT.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxPUHT.Location = new System.Drawing.Point(164, 2);
-            this.TextBoxPUHT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxPUHT.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxPUHT.Name = "TextBoxPUHT";
             this.TextBoxPUHT.ReadOnly = true;
             this.TextBoxPUHT.Size = new System.Drawing.Size(77, 25);
@@ -770,7 +770,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxPUTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPUTTC.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxPUTTC.Location = new System.Drawing.Point(245, 2);
-            this.TextBoxPUTTC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxPUTTC.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxPUTTC.Name = "TextBoxPUTTC";
             this.TextBoxPUTTC.ReadOnly = true;
             this.TextBoxPUTTC.Size = new System.Drawing.Size(77, 25);
@@ -782,7 +782,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxRemise.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxRemise.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxRemise.Location = new System.Drawing.Point(488, 2);
-            this.TextBoxRemise.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxRemise.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxRemise.Name = "TextBoxRemise";
             this.TextBoxRemise.ReadOnly = true;
             this.TextBoxRemise.Size = new System.Drawing.Size(77, 25);
@@ -794,7 +794,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxPUnet.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPUnet.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxPUnet.Location = new System.Drawing.Point(569, 2);
-            this.TextBoxPUnet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxPUnet.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxPUnet.Name = "TextBoxPUnet";
             this.TextBoxPUnet.ReadOnly = true;
             this.TextBoxPUnet.Size = new System.Drawing.Size(77, 25);
@@ -806,7 +806,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxMontantHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMontantHT.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxMontantHT.Location = new System.Drawing.Point(650, 2);
-            this.TextBoxMontantHT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxMontantHT.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxMontantHT.Name = "TextBoxMontantHT";
             this.TextBoxMontantHT.ReadOnly = true;
             this.TextBoxMontantHT.Size = new System.Drawing.Size(77, 25);
@@ -818,7 +818,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxMontantTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMontantTTC.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxMontantTTC.Location = new System.Drawing.Point(731, 2);
-            this.TextBoxMontantTTC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxMontantTTC.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxMontantTTC.Name = "TextBoxMontantTTC";
             this.TextBoxMontantTTC.ReadOnly = true;
             this.TextBoxMontantTTC.Size = new System.Drawing.Size(83, 25);
@@ -830,7 +830,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxConditionnement.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxConditionnement.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxConditionnement.Location = new System.Drawing.Point(407, 2);
-            this.TextBoxConditionnement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxConditionnement.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxConditionnement.Name = "TextBoxConditionnement";
             this.TextBoxConditionnement.ReadOnly = true;
             this.TextBoxConditionnement.Size = new System.Drawing.Size(77, 25);
@@ -842,7 +842,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TextBoxQuantiteDisponibleEnStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxQuantiteDisponibleEnStock.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxQuantiteDisponibleEnStock.Location = new System.Drawing.Point(326, 2);
-            this.TextBoxQuantiteDisponibleEnStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TextBoxQuantiteDisponibleEnStock.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxQuantiteDisponibleEnStock.Name = "TextBoxQuantiteDisponibleEnStock";
             this.TextBoxQuantiteDisponibleEnStock.Size = new System.Drawing.Size(77, 25);
             this.TextBoxQuantiteDisponibleEnStock.TabIndex = 4;
@@ -853,7 +853,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonSupprimerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonSupprimerDesignation.Enabled = false;
             this.BouttonSupprimerDesignation.Location = new System.Drawing.Point(677, 176);
-            this.BouttonSupprimerDesignation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonSupprimerDesignation.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonSupprimerDesignation.Name = "BouttonSupprimerDesignation";
             this.BouttonSupprimerDesignation.Palette = this.kryptonPalette1;
             this.BouttonSupprimerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -866,7 +866,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonNouveauDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonNouveauDesignation.Location = new System.Drawing.Point(591, 176);
-            this.BouttonNouveauDesignation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonNouveauDesignation.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonNouveauDesignation.Name = "BouttonNouveauDesignation";
             this.BouttonNouveauDesignation.Palette = this.kryptonPalette1;
             this.BouttonNouveauDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -884,9 +884,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxTotal.Controls.Add(this.LabelTotalHT);
             this.GroupBoxTotal.Controls.Add(this.LabelTotalTTC);
             this.GroupBoxTotal.Location = new System.Drawing.Point(430, 10);
-            this.GroupBoxTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxTotal.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBoxTotal.Name = "GroupBoxTotal";
-            this.GroupBoxTotal.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxTotal.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBoxTotal.Size = new System.Drawing.Size(400, 121);
             this.GroupBoxTotal.TabIndex = 5;
             this.GroupBoxTotal.TabStop = false;
@@ -981,7 +981,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.DataGridViewArticle.DefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewArticle.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.DataGridViewArticle.Location = new System.Drawing.Point(14, 202);
-            this.DataGridViewArticle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DataGridViewArticle.Margin = new System.Windows.Forms.Padding(2);
             this.DataGridViewArticle.Name = "DataGridViewArticle";
             this.DataGridViewArticle.ReadOnly = true;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1004,7 +1004,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.Width = 82;
+            this.Column1.Width = 81;
             // 
             // Column2
             // 
@@ -1086,9 +1086,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxinfoCaissier.Controls.Add(this.ComboBoxTarif);
             this.GroupBoxinfoCaissier.Controls.Add(this.ComboBoxVendeur);
             this.GroupBoxinfoCaissier.Location = new System.Drawing.Point(14, 10);
-            this.GroupBoxinfoCaissier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxinfoCaissier.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBoxinfoCaissier.Name = "GroupBoxinfoCaissier";
-            this.GroupBoxinfoCaissier.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBoxinfoCaissier.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBoxinfoCaissier.Size = new System.Drawing.Size(412, 121);
             this.GroupBoxinfoCaissier.TabIndex = 0;
             this.GroupBoxinfoCaissier.TabStop = false;
@@ -1107,7 +1107,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // DateTimePicker1
             // 
             this.DateTimePicker1.Location = new System.Drawing.Point(4, 19);
-            this.DateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.DateTimePicker1.Name = "DateTimePicker1";
             this.DateTimePicker1.Size = new System.Drawing.Size(92, 20);
             this.DateTimePicker1.TabIndex = 13;
@@ -1194,7 +1194,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxNumero.FormattingEnabled = true;
             this.ComboBoxNumero.Location = new System.Drawing.Point(246, 37);
-            this.ComboBoxNumero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxNumero.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxNumero.Name = "ComboBoxNumero";
             this.ComboBoxNumero.Size = new System.Drawing.Size(98, 21);
             this.ComboBoxNumero.TabIndex = 7;
@@ -1204,7 +1204,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxAffaire.FormattingEnabled = true;
             this.ComboBoxAffaire.Location = new System.Drawing.Point(151, 81);
-            this.ComboBoxAffaire.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxAffaire.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxAffaire.Name = "ComboBoxAffaire";
             this.ComboBoxAffaire.Size = new System.Drawing.Size(92, 21);
             this.ComboBoxAffaire.TabIndex = 6;
@@ -1213,7 +1213,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxDepot.FormattingEnabled = true;
             this.ComboBoxDepot.Location = new System.Drawing.Point(151, 59);
-            this.ComboBoxDepot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxDepot.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxDepot.Name = "ComboBoxDepot";
             this.ComboBoxDepot.Size = new System.Drawing.Size(92, 21);
             this.ComboBoxDepot.TabIndex = 5;
@@ -1222,7 +1222,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxType.FormattingEnabled = true;
             this.ComboBoxType.Location = new System.Drawing.Point(151, 37);
-            this.ComboBoxType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxType.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxType.Name = "ComboBoxType";
             this.ComboBoxType.Size = new System.Drawing.Size(92, 21);
             this.ComboBoxType.TabIndex = 4;
@@ -1231,7 +1231,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxCentrale.FormattingEnabled = true;
             this.ComboBoxCentrale.Location = new System.Drawing.Point(4, 84);
-            this.ComboBoxCentrale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxCentrale.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxCentrale.Name = "ComboBoxCentrale";
             this.ComboBoxCentrale.Size = new System.Drawing.Size(92, 21);
             this.ComboBoxCentrale.TabIndex = 3;
@@ -1240,7 +1240,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxTarif.FormattingEnabled = true;
             this.ComboBoxTarif.Location = new System.Drawing.Point(4, 62);
-            this.ComboBoxTarif.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxTarif.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxTarif.Name = "ComboBoxTarif";
             this.ComboBoxTarif.Size = new System.Drawing.Size(92, 21);
             this.ComboBoxTarif.TabIndex = 2;
@@ -1249,7 +1249,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxVendeur.FormattingEnabled = true;
             this.ComboBoxVendeur.Location = new System.Drawing.Point(4, 40);
-            this.ComboBoxVendeur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBoxVendeur.Margin = new System.Windows.Forms.Padding(2);
             this.ComboBoxVendeur.Name = "ComboBoxVendeur";
             this.ComboBoxVendeur.Size = new System.Drawing.Size(92, 21);
             this.ComboBoxVendeur.TabIndex = 1;
@@ -1278,7 +1278,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonFermer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonFermer.Location = new System.Drawing.Point(750, 609);
-            this.BouttonFermer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BouttonFermer.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonFermer.Name = "BouttonFermer";
             this.BouttonFermer.Palette = this.kryptonPalette1;
             this.BouttonFermer.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -1304,7 +1304,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Controls.Add(this.GroupBoxGeneral);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "VenteComptoirForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;

@@ -34,10 +34,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             }
 
             ChargerComboBoxes();
-/*
-            ComboBoxReglementEnregistrement.SelectedItem = "Espèces";
-
-            ComboBoxDeviseEnregistrement.SelectedItem = "Euro";*/
         }
 
         private void ChargerComboBoxes()
@@ -317,14 +313,14 @@ namespace SoftCaisse.Forms.VenteComptoir
             {
                 if(dernierCours == "Euro")
                 {
-                    PrixTotalAConvertir = PrixTotalAConvertir * (decimal)Math.Round(coursCible.D_Cours,2);
+                    PrixTotalAConvertir *= (decimal)Math.Round(coursCible.D_Cours,2);
                     Console.WriteLine(PrixTotalAConvertir);
                 }
                 else
                 {
-                    var x = GetDeviseInfo(dernierCours);
+                    var dernierDeviseCours = GetDeviseInfo(dernierCours);
 
-                    PrixTotalAConvertir = PrixTotalAConvertir / x.D_Cours * (decimal)Math.Round(coursCible.D_Cours,2);
+                    PrixTotalAConvertir = PrixTotalAConvertir / dernierDeviseCours.D_Cours * (decimal)Math.Round(coursCible.D_Cours,2);
                 }
 
                 dernierCours = coursCible.D_Intitule;
@@ -337,9 +333,9 @@ namespace SoftCaisse.Forms.VenteComptoir
                 return PrixTotalAConvertir;
 
             }
-            var y = GetDeviseInfo(dernierCours);
+            var dernierDeviseNonEuro = GetDeviseInfo(dernierCours);
 
-            PrixTotalAConvertir = PrixTotalAConvertir / Math.Round(y.D_Cours,2);
+            PrixTotalAConvertir /= Math.Round(dernierDeviseNonEuro.D_Cours,2);
             dernierCours = coursCible.D_Intitule;
 
             return PrixTotalAConvertir;
@@ -385,87 +381,100 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void BouttonEnregistrerEnregistrement_Click(object sender, EventArgs e)
         {
-            cpt++;
-            BouttonSupprimerEnregistrement.Enabled = true;
-            BouttonValider.Enabled = true;
-
-            Console.WriteLine(variableTemporaire);
-
-            string modeReception = ComboBoxReglementEnregistrement.SelectedItem.ToString();
-            string libelle = TextBoxLibelleEnregistrement.Text;
-            decimal ResteDu;
-            decimal montantEnregistrement = Convert.ToDecimal(TextBoxMontantEnregistrement.Text);
-            string devise = ComboBoxDeviseEnregistrement.SelectedItem.ToString();
-            
-            var recuperation = GetDeviseInfo(devise);
-
-            decimal coursDeChange = recuperation.D_Cours;
-
-            DateTime dateEcheance = DateTimePickerEnregistrement.Value;
-
-            DataGridViewRow newRow = new DataGridViewRow();
-
-            Console.WriteLine(coursDeChange);
-
-            if (cpt == 1)
+            try 
             {
-                if (devise != "Euro")
+                cpt++;
+                BouttonSupprimerEnregistrement.Enabled = true;
+                BouttonValider.Enabled = true;
+
+                Console.WriteLine(variableTemporaire);
+
+                string modeReception = ComboBoxReglementEnregistrement.SelectedItem.ToString();
+                string libelle = TextBoxLibelleEnregistrement.Text;
+                decimal ResteDu;
+                decimal montantEnregistrement = Convert.ToDecimal(TextBoxMontantEnregistrement.Text);
+                string devise = ComboBoxDeviseEnregistrement.SelectedItem.ToString();
+
+                if(string.IsNullOrEmpty(modeReception) || string.IsNullOrEmpty(devise)) 
                 {
-                    ResteDu = CalculerResteDu(variableTemporaire, coursDeChange, montantEnregistrement);
+                    throw new Exception("Veuillez sélectionner une devise et un mode de règlement");
+                }
+
+                var recuperation = GetDeviseInfo(devise);
+
+                decimal coursDeChange = recuperation.D_Cours;
+
+                DateTime dateEcheance = DateTimePickerEnregistrement.Value;
+
+                DataGridViewRow newRow = new DataGridViewRow();
+
+                Console.WriteLine(coursDeChange);
+
+                if (cpt == 1)
+                {
+                    if (devise != "Euro")
+                    {
+                        ResteDu = CalculerResteDu(variableTemporaire, coursDeChange, montantEnregistrement);
+                    }
+                    else
+                    {
+                        ResteDu = variableTemporaire - montantEnregistrement;
+                    }
                 }
                 else
                 {
-                    ResteDu = variableTemporaire - montantEnregistrement;
-                }
-            }
-            else
-            {
-                decimal resteDuAvecCpt = Convert.ToDecimal(LabelPrixResteDu.Text);
+                    decimal resteDuAvecCpt = Convert.ToDecimal(LabelPrixResteDu.Text);
 
-                if (devise != "Euro")
+                    if (devise != "Euro")
+                    {
+                        ResteDu = CalculerResteDu(resteDuAvecCpt, coursDeChange, montantEnregistrement);
+                    }
+                    else
+                    {
+                        ResteDu = resteDuAvecCpt - montantEnregistrement;
+                    }
+                }
+
+                newRow.Cells.Add(new DataGridViewTextBoxCell { Value = modeReception });
+                newRow.Cells.Add(new DataGridViewTextBoxCell
                 {
-                    ResteDu = CalculerResteDu(resteDuAvecCpt, coursDeChange, montantEnregistrement);
+                    Value = Convert.ToDecimal(TextBoxMontantEnregistrement.Text)
+                });
+                newRow.Cells.Add(new DataGridViewTextBoxCell { Value = libelle });
+                newRow.Cells.Add(new DataGridViewTextBoxCell { Value = devise });
+                newRow.Cells.Add(new DataGridViewTextBoxCell { Value = dateEcheance });
+
+                DataGridViewEnregistrement.Rows.Add(newRow);
+
+                if (Math.Round(ResteDu, 2) > 0)
+                {
+                    LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                    LabelResteDu.Text = "Reste dû";
+                }
+                else if (Math.Round(ResteDu, 2) < 0)
+                {
+                    ResteDu = Math.Abs(ResteDu);
+                    LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                    LabelResteDu.Text = "A rendre";
                 }
                 else
                 {
-                    ResteDu = resteDuAvecCpt - montantEnregistrement;
+                    LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                    LabelResteDu.Text = "Soldé";
                 }
+
+                ComboBoxReglementEnregistrement.SelectedIndex = 0;
+                ComboBoxDeviseEnregistrement.SelectedIndex = 0;
+
+                variableTemporaire = ResteDu;
+                TextBoxMontantEnregistrement.Text = LabelPrixResteDu.Text;
+                DateTimePickerEnregistrement.Value = DateTime.Now;
             }
 
-            newRow.Cells.Add(new DataGridViewTextBoxCell { Value = modeReception });
-            newRow.Cells.Add(new DataGridViewTextBoxCell
+            catch (Exception ex)
             {
-                Value = Convert.ToDecimal(TextBoxMontantEnregistrement.Text)
-            });
-            newRow.Cells.Add(new DataGridViewTextBoxCell { Value = libelle });
-            newRow.Cells.Add(new DataGridViewTextBoxCell { Value = devise });
-            newRow.Cells.Add(new DataGridViewTextBoxCell { Value = dateEcheance });
-
-            DataGridViewEnregistrement.Rows.Add(newRow);
-
-            if (Math.Round(ResteDu, 2) > 0)
-            {
-                LabelPrixResteDu.Text = ResteDu.ToString("N2");
-                LabelResteDu.Text = "Reste dû";
-            }
-            else if (Math.Round(ResteDu, 2) < 0)
-            {
-                ResteDu = Math.Abs(ResteDu);
-                LabelPrixResteDu.Text = ResteDu.ToString("N2");
-                LabelResteDu.Text = "A rendre";
-            }
-            else
-            {
-                LabelPrixResteDu.Text = ResteDu.ToString("N2");
-                LabelResteDu.Text = "Soldé";
-            }
-
-            ComboBoxReglementEnregistrement.SelectedIndex = 0;
-            ComboBoxDeviseEnregistrement.SelectedIndex = 0;
-
-            variableTemporaire = ResteDu;
-            TextBoxMontantEnregistrement.Text = LabelPrixResteDu.Text;
-            DateTimePickerEnregistrement.Value = DateTime.Now;
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            } 
         }
 
         private void BouttonSupprimerDesignation_Click(object sender, EventArgs e)

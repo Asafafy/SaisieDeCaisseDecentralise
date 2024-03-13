@@ -51,9 +51,6 @@
             this.comboBoxComprisEntre = new System.Windows.Forms.ComboBox();
             this.comboBoxCommercialisation = new System.Windows.Forms.ComboBox();
             this.labelGroupBoxFiltrer = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.checkBoxArticleActifs = new System.Windows.Forms.CheckBox();
-            this.checkBoxArticleInactifs = new System.Windows.Forms.CheckBox();
             this.TextBoxBarreDeRecherche = new System.Windows.Forms.TextBox();
             this.PanelFiltre = new System.Windows.Forms.Panel();
             this.labelPrestations = new System.Windows.Forms.Label();
@@ -70,7 +67,6 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).BeginInit();
             this.groupBoxFiltre.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.PanelFiltre.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,7 +101,6 @@
             this.GroupBoxGeneralArticle.Controls.Add(this.LabelMesFiltres);
             this.GroupBoxGeneralArticle.Controls.Add(this.LabelParametreFiltre);
             this.GroupBoxGeneralArticle.Controls.Add(this.panel3);
-            this.GroupBoxGeneralArticle.Controls.Add(this.panel2);
             this.GroupBoxGeneralArticle.Controls.Add(this.TextBoxBarreDeRecherche);
             this.GroupBoxGeneralArticle.Controls.Add(this.PanelFiltre);
             this.GroupBoxGeneralArticle.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -324,36 +319,6 @@
             this.labelGroupBoxFiltrer.TabIndex = 0;
             this.labelGroupBoxFiltrer.Text = "Filtrer";
             // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.checkBoxArticleActifs);
-            this.panel2.Controls.Add(this.checkBoxArticleInactifs);
-            this.panel2.Location = new System.Drawing.Point(0, 421);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(207, 57);
-            this.panel2.TabIndex = 7;
-            // 
-            // checkBoxArticleActifs
-            // 
-            this.checkBoxArticleActifs.AutoSize = true;
-            this.checkBoxArticleActifs.Location = new System.Drawing.Point(6, 3);
-            this.checkBoxArticleActifs.Name = "checkBoxArticleActifs";
-            this.checkBoxArticleActifs.Size = new System.Drawing.Size(52, 17);
-            this.checkBoxArticleActifs.TabIndex = 3;
-            this.checkBoxArticleActifs.Text = "Actifs";
-            this.checkBoxArticleActifs.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxArticleInactifs
-            // 
-            this.checkBoxArticleInactifs.AutoSize = true;
-            this.checkBoxArticleInactifs.Location = new System.Drawing.Point(6, 26);
-            this.checkBoxArticleInactifs.Name = "checkBoxArticleInactifs";
-            this.checkBoxArticleInactifs.Size = new System.Drawing.Size(60, 17);
-            this.checkBoxArticleInactifs.TabIndex = 4;
-            this.checkBoxArticleInactifs.Text = "Inactifs";
-            this.checkBoxArticleInactifs.UseVisualStyleBackColor = true;
-            // 
             // TextBoxBarreDeRecherche
             // 
             this.TextBoxBarreDeRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -377,7 +342,7 @@
             this.PanelFiltre.Controls.Add(this.labelTous);
             this.PanelFiltre.Location = new System.Drawing.Point(0, 51);
             this.PanelFiltre.Name = "PanelFiltre";
-            this.PanelFiltre.Size = new System.Drawing.Size(207, 364);
+            this.PanelFiltre.Size = new System.Drawing.Size(207, 427);
             this.PanelFiltre.TabIndex = 1;
             // 
             // labelPrestations
@@ -499,8 +464,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).EndInit();
             this.groupBoxFiltre.ResumeLayout(false);
             this.groupBoxFiltre.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.PanelFiltre.ResumeLayout(false);
             this.PanelFiltre.PerformLayout();
             this.ResumeLayout(false);
@@ -513,9 +476,6 @@
         private System.Windows.Forms.GroupBox GroupBoxGeneralArticle;
         private System.Windows.Forms.TextBox TextBoxBarreDeRecherche;
         private System.Windows.Forms.Panel PanelFiltre;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.CheckBox checkBoxArticleActifs;
-        private System.Windows.Forms.CheckBox checkBoxArticleInactifs;
         private System.Windows.Forms.Label labelOrfevrerie;
         private System.Windows.Forms.Label labelObjetPrecieux;
         private System.Windows.Forms.Label labelMontres;

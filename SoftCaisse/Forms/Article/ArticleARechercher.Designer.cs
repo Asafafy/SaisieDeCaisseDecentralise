@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArticleARechercher));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ButtonRechercherArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.labelMesFiltres = new System.Windows.Forms.Label();
-            this.labelParametreFiltre = new System.Windows.Forms.Label();
+            this.GroupBoxGeneralArticle = new System.Windows.Forms.GroupBox();
+            this.BouttonRechercherArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.LabelMesFiltres = new System.Windows.Forms.Label();
+            this.LabelParametreFiltre = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridViewArticle = new System.Windows.Forms.DataGridView();
+            this.DataGridViewArticle = new System.Windows.Forms.DataGridView();
             this.reference = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.designation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.famille = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,8 +54,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.checkBoxArticleActifs = new System.Windows.Forms.CheckBox();
             this.checkBoxArticleInactifs = new System.Windows.Forms.CheckBox();
-            this.textBoxBarreDeRecherche = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.TextBoxBarreDeRecherche = new System.Windows.Forms.TextBox();
+            this.PanelFiltre = new System.Windows.Forms.Panel();
             this.labelPrestations = new System.Windows.Forms.Label();
             this.labelOrfevrerie = new System.Windows.Forms.Label();
             this.labelObjetPrecieux = new System.Windows.Forms.Label();
@@ -64,14 +64,14 @@
             this.labelBijoux = new System.Windows.Forms.Label();
             this.labelAccessoires = new System.Windows.Forms.Label();
             this.labelTous = new System.Windows.Forms.Label();
-            this.ButtonOKArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonCloseArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.groupBox1.SuspendLayout();
+            this.BouttonOKArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonCloseArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.GroupBoxGeneralArticle.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).BeginInit();
             this.groupBoxFiltre.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.PanelFiltre.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -99,89 +99,89 @@
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.ButtonEdgeInset = 10;
             // 
-            // groupBox1
+            // GroupBoxGeneralArticle
             // 
-            this.groupBox1.Controls.Add(this.ButtonRechercherArticle);
-            this.groupBox1.Controls.Add(this.labelMesFiltres);
-            this.groupBox1.Controls.Add(this.labelParametreFiltre);
-            this.groupBox1.Controls.Add(this.panel3);
-            this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Controls.Add(this.textBoxBarreDeRecherche);
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(965, 514);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
+            this.GroupBoxGeneralArticle.Controls.Add(this.BouttonRechercherArticle);
+            this.GroupBoxGeneralArticle.Controls.Add(this.LabelMesFiltres);
+            this.GroupBoxGeneralArticle.Controls.Add(this.LabelParametreFiltre);
+            this.GroupBoxGeneralArticle.Controls.Add(this.panel3);
+            this.GroupBoxGeneralArticle.Controls.Add(this.panel2);
+            this.GroupBoxGeneralArticle.Controls.Add(this.TextBoxBarreDeRecherche);
+            this.GroupBoxGeneralArticle.Controls.Add(this.PanelFiltre);
+            this.GroupBoxGeneralArticle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GroupBoxGeneralArticle.Location = new System.Drawing.Point(0, 0);
+            this.GroupBoxGeneralArticle.Name = "GroupBoxGeneralArticle";
+            this.GroupBoxGeneralArticle.Size = new System.Drawing.Size(965, 514);
+            this.GroupBoxGeneralArticle.TabIndex = 0;
+            this.GroupBoxGeneralArticle.TabStop = false;
             // 
-            // ButtonRechercherArticle
+            // BouttonRechercherArticle
             // 
-            this.ButtonRechercherArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonRechercherArticle.Location = new System.Drawing.Point(867, 18);
-            this.ButtonRechercherArticle.Margin = new System.Windows.Forms.Padding(2);
-            this.ButtonRechercherArticle.Name = "ButtonRechercherArticle";
-            this.ButtonRechercherArticle.Palette = this.kryptonPalette1;
-            this.ButtonRechercherArticle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonRechercherArticle.Size = new System.Drawing.Size(71, 27);
-            this.ButtonRechercherArticle.TabIndex = 20;
-            this.ButtonRechercherArticle.Values.Text = "Rechercher";
+            this.BouttonRechercherArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonRechercherArticle.Location = new System.Drawing.Point(867, 18);
+            this.BouttonRechercherArticle.Margin = new System.Windows.Forms.Padding(2);
+            this.BouttonRechercherArticle.Name = "BouttonRechercherArticle";
+            this.BouttonRechercherArticle.Palette = this.kryptonPalette1;
+            this.BouttonRechercherArticle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonRechercherArticle.Size = new System.Drawing.Size(71, 27);
+            this.BouttonRechercherArticle.TabIndex = 20;
+            this.BouttonRechercherArticle.Values.Text = "Rechercher";
             // 
-            // labelMesFiltres
+            // LabelMesFiltres
             // 
-            this.labelMesFiltres.AutoSize = true;
-            this.labelMesFiltres.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelMesFiltres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMesFiltres.Location = new System.Drawing.Point(77, 22);
-            this.labelMesFiltres.Name = "labelMesFiltres";
-            this.labelMesFiltres.Size = new System.Drawing.Size(81, 20);
-            this.labelMesFiltres.TabIndex = 16;
-            this.labelMesFiltres.Text = "Mes filtres";
+            this.LabelMesFiltres.AutoSize = true;
+            this.LabelMesFiltres.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelMesFiltres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMesFiltres.Location = new System.Drawing.Point(77, 22);
+            this.LabelMesFiltres.Name = "LabelMesFiltres";
+            this.LabelMesFiltres.Size = new System.Drawing.Size(81, 20);
+            this.LabelMesFiltres.TabIndex = 16;
+            this.LabelMesFiltres.Text = "Mes filtres";
             // 
-            // labelParametreFiltre
+            // LabelParametreFiltre
             // 
-            this.labelParametreFiltre.AutoSize = true;
-            this.labelParametreFiltre.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelParametreFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelParametreFiltre.Location = new System.Drawing.Point(4, 22);
-            this.labelParametreFiltre.Name = "labelParametreFiltre";
-            this.labelParametreFiltre.Size = new System.Drawing.Size(49, 20);
-            this.labelParametreFiltre.TabIndex = 15;
-            this.labelParametreFiltre.Text = "Filtrer";
-            this.labelParametreFiltre.Click += new System.EventHandler(this.labelParametreFiltre_Click);
+            this.LabelParametreFiltre.AutoSize = true;
+            this.LabelParametreFiltre.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelParametreFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelParametreFiltre.Location = new System.Drawing.Point(4, 22);
+            this.LabelParametreFiltre.Name = "LabelParametreFiltre";
+            this.LabelParametreFiltre.Size = new System.Drawing.Size(49, 20);
+            this.LabelParametreFiltre.TabIndex = 15;
+            this.LabelParametreFiltre.Text = "Filtrer";
+            this.LabelParametreFiltre.Click += new System.EventHandler(this.labelParametreFiltre_Click);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridViewArticle);
+            this.panel3.Controls.Add(this.DataGridViewArticle);
             this.panel3.Controls.Add(this.groupBoxFiltre);
             this.panel3.Location = new System.Drawing.Point(213, 51);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(740, 427);
             this.panel3.TabIndex = 14;
             // 
-            // dataGridViewArticle
+            // DataGridViewArticle
             // 
-            this.dataGridViewArticle.AllowUserToAddRows = false;
-            this.dataGridViewArticle.AllowUserToDeleteRows = false;
-            this.dataGridViewArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewArticle.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewArticle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dataGridViewArticle.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dataGridViewArticle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewArticle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DataGridViewArticle.AllowUserToAddRows = false;
+            this.DataGridViewArticle.AllowUserToDeleteRows = false;
+            this.DataGridViewArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewArticle.BackgroundColor = System.Drawing.Color.White;
+            this.DataGridViewArticle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DataGridViewArticle.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.DataGridViewArticle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewArticle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.reference,
             this.designation,
             this.famille});
-            this.dataGridViewArticle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewArticle.GridColor = System.Drawing.Color.White;
-            this.dataGridViewArticle.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewArticle.Name = "dataGridViewArticle";
-            this.dataGridViewArticle.ReadOnly = true;
-            this.dataGridViewArticle.RowHeadersVisible = false;
-            this.dataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewArticle.Size = new System.Drawing.Size(740, 427);
-            this.dataGridViewArticle.TabIndex = 0;
-            this.dataGridViewArticle.DoubleClick += new System.EventHandler(this.ButtonOKArticle_Click);
+            this.DataGridViewArticle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridViewArticle.GridColor = System.Drawing.Color.White;
+            this.DataGridViewArticle.Location = new System.Drawing.Point(0, 0);
+            this.DataGridViewArticle.Name = "DataGridViewArticle";
+            this.DataGridViewArticle.ReadOnly = true;
+            this.DataGridViewArticle.RowHeadersVisible = false;
+            this.DataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridViewArticle.Size = new System.Drawing.Size(740, 427);
+            this.DataGridViewArticle.TabIndex = 0;
+            this.DataGridViewArticle.DoubleClick += new System.EventHandler(this.ButtonOKArticle_Click);
             // 
             // reference
             // 
@@ -354,32 +354,31 @@
             this.checkBoxArticleInactifs.Text = "Inactifs";
             this.checkBoxArticleInactifs.UseVisualStyleBackColor = true;
             // 
-            // textBoxBarreDeRecherche
+            // TextBoxBarreDeRecherche
             // 
-            this.textBoxBarreDeRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBarreDeRecherche.Location = new System.Drawing.Point(338, 22);
-            this.textBoxBarreDeRecherche.Name = "textBoxBarreDeRecherche";
-            this.textBoxBarreDeRecherche.Size = new System.Drawing.Size(517, 23);
-            this.textBoxBarreDeRecherche.TabIndex = 2;
-            this.textBoxBarreDeRecherche.Text = "Rechercher des mots dans la liste";
-            this.textBoxBarreDeRecherche.TextChanged += new System.EventHandler(this.textBoxBarreDeRecherche_TextChanged);
-            
+            this.TextBoxBarreDeRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxBarreDeRecherche.Location = new System.Drawing.Point(338, 22);
+            this.TextBoxBarreDeRecherche.Name = "TextBoxBarreDeRecherche";
+            this.TextBoxBarreDeRecherche.Size = new System.Drawing.Size(517, 23);
+            this.TextBoxBarreDeRecherche.TabIndex = 2;
+            this.TextBoxBarreDeRecherche.Text = "Rechercher des mots dans la liste";
+            this.TextBoxBarreDeRecherche.TextChanged += new System.EventHandler(this.TextBoxBarreDeRecherche_TextChanged);
             // 
-            // panel1
+            // PanelFiltre
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.labelPrestations);
-            this.panel1.Controls.Add(this.labelOrfevrerie);
-            this.panel1.Controls.Add(this.labelObjetPrecieux);
-            this.panel1.Controls.Add(this.labelMontres);
-            this.panel1.Controls.Add(this.labelHorsCatalogue);
-            this.panel1.Controls.Add(this.labelBijoux);
-            this.panel1.Controls.Add(this.labelAccessoires);
-            this.panel1.Controls.Add(this.labelTous);
-            this.panel1.Location = new System.Drawing.Point(0, 51);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(207, 364);
-            this.panel1.TabIndex = 1;
+            this.PanelFiltre.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelFiltre.Controls.Add(this.labelPrestations);
+            this.PanelFiltre.Controls.Add(this.labelOrfevrerie);
+            this.PanelFiltre.Controls.Add(this.labelObjetPrecieux);
+            this.PanelFiltre.Controls.Add(this.labelMontres);
+            this.PanelFiltre.Controls.Add(this.labelHorsCatalogue);
+            this.PanelFiltre.Controls.Add(this.labelBijoux);
+            this.PanelFiltre.Controls.Add(this.labelAccessoires);
+            this.PanelFiltre.Controls.Add(this.labelTous);
+            this.PanelFiltre.Location = new System.Drawing.Point(0, 51);
+            this.PanelFiltre.Name = "PanelFiltre";
+            this.PanelFiltre.Size = new System.Drawing.Size(207, 364);
+            this.PanelFiltre.TabIndex = 1;
             // 
             // labelPrestations
             // 
@@ -453,40 +452,40 @@
             this.labelTous.TabIndex = 9;
             this.labelTous.Text = "Tous";
             // 
-            // ButtonOKArticle
+            // BouttonOKArticle
             // 
-            this.ButtonOKArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonOKArticle.Location = new System.Drawing.Point(776, 482);
-            this.ButtonOKArticle.Margin = new System.Windows.Forms.Padding(2);
-            this.ButtonOKArticle.Name = "ButtonOKArticle";
-            this.ButtonOKArticle.Palette = this.kryptonPalette1;
-            this.ButtonOKArticle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonOKArticle.Size = new System.Drawing.Size(71, 27);
-            this.ButtonOKArticle.TabIndex = 11;
-            this.ButtonOKArticle.Values.Text = "OK";
-            this.ButtonOKArticle.Click += new System.EventHandler(this.ButtonOKArticle_Click);
+            this.BouttonOKArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonOKArticle.Location = new System.Drawing.Point(776, 482);
+            this.BouttonOKArticle.Margin = new System.Windows.Forms.Padding(2);
+            this.BouttonOKArticle.Name = "BouttonOKArticle";
+            this.BouttonOKArticle.Palette = this.kryptonPalette1;
+            this.BouttonOKArticle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonOKArticle.Size = new System.Drawing.Size(71, 27);
+            this.BouttonOKArticle.TabIndex = 11;
+            this.BouttonOKArticle.Values.Text = "OK";
+            this.BouttonOKArticle.Click += new System.EventHandler(this.ButtonOKArticle_Click);
             // 
-            // ButtonCloseArticle
+            // BouttonCloseArticle
             // 
-            this.ButtonCloseArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCloseArticle.Location = new System.Drawing.Point(851, 482);
-            this.ButtonCloseArticle.Margin = new System.Windows.Forms.Padding(2);
-            this.ButtonCloseArticle.Name = "ButtonCloseArticle";
-            this.ButtonCloseArticle.Palette = this.kryptonPalette1;
-            this.ButtonCloseArticle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonCloseArticle.Size = new System.Drawing.Size(71, 27);
-            this.ButtonCloseArticle.TabIndex = 12;
-            this.ButtonCloseArticle.Values.Text = "Annuler";
-            this.ButtonCloseArticle.Click += new System.EventHandler(this.ButtonCloseArticle_Click);
+            this.BouttonCloseArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonCloseArticle.Location = new System.Drawing.Point(851, 482);
+            this.BouttonCloseArticle.Margin = new System.Windows.Forms.Padding(2);
+            this.BouttonCloseArticle.Name = "BouttonCloseArticle";
+            this.BouttonCloseArticle.Palette = this.kryptonPalette1;
+            this.BouttonCloseArticle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonCloseArticle.Size = new System.Drawing.Size(71, 27);
+            this.BouttonCloseArticle.TabIndex = 12;
+            this.BouttonCloseArticle.Values.Text = "Annuler";
+            this.BouttonCloseArticle.Click += new System.EventHandler(this.ButtonCloseArticle_Click);
             // 
             // ArticleARechercher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 514);
-            this.Controls.Add(this.ButtonCloseArticle);
-            this.Controls.Add(this.ButtonOKArticle);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.BouttonCloseArticle);
+            this.Controls.Add(this.BouttonOKArticle);
+            this.Controls.Add(this.GroupBoxGeneralArticle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -494,16 +493,16 @@
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.Text = "Article à rechercher";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GroupBoxGeneralArticle.ResumeLayout(false);
+            this.GroupBoxGeneralArticle.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).EndInit();
             this.groupBoxFiltre.ResumeLayout(false);
             this.groupBoxFiltre.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.PanelFiltre.ResumeLayout(false);
+            this.PanelFiltre.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -511,9 +510,9 @@
         #endregion
 
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBoxBarreDeRecherche;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox GroupBoxGeneralArticle;
+        private System.Windows.Forms.TextBox TextBoxBarreDeRecherche;
+        private System.Windows.Forms.Panel PanelFiltre;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox checkBoxArticleActifs;
         private System.Windows.Forms.CheckBox checkBoxArticleInactifs;
@@ -524,10 +523,10 @@
         private System.Windows.Forms.Label labelBijoux;
         private System.Windows.Forms.Label labelAccessoires;
         private System.Windows.Forms.Label labelTous;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonOKArticle;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonCloseArticle;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton BouttonOKArticle;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton BouttonCloseArticle;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dataGridViewArticle;
+        private System.Windows.Forms.DataGridView DataGridViewArticle;
         private System.Windows.Forms.GroupBox groupBoxFiltre;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label10;
@@ -539,10 +538,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonSupprimerFiltre;
         private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonEnregistrerFiltre;
         private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonAppliquerFiltre;
-        private System.Windows.Forms.Label labelParametreFiltre;
+        private System.Windows.Forms.Label LabelParametreFiltre;
         private System.Windows.Forms.Label labelPrestations;
-        private System.Windows.Forms.Label labelMesFiltres;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonRechercherArticle;
+        private System.Windows.Forms.Label LabelMesFiltres;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton BouttonRechercherArticle;
         private System.Windows.Forms.DataGridViewTextBoxColumn reference;
         private System.Windows.Forms.DataGridViewTextBoxColumn designation;
         private System.Windows.Forms.DataGridViewTextBoxColumn famille;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 
 namespace SoftCaisse.Models
 {
@@ -18,13 +15,16 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_BILLETPIECE> F_BILLETPIECE { get; set; }
         public virtual DbSet<F_JOURNAUX> F_JOURNAUX { get; set; }
         public virtual DbSet<F_COLLABORATEUR> F_COLLABORATEUR { get;set; }
-
         public virtual DbSet<F_ARTICLE> F_ARTICLE {  get; set; }
-
         public virtual DbSet<P_DEVISE> P_DEVISE { get; set; }
         public virtual DbSet<P_SOUCHEVENTE> P_SOUCHEVENTE { get; set; }
         public virtual DbSet<F_CREGLEMENT> F_CREGLEMENT { get; set; }
 
+        public virtual DbSet<F_REGLECH> F_REGLECH { get; set; }
+
+        public virtual DbSet<F_TAXE> F_TAXE { get; set; }
+        public virtual DbSet<F_ARTCOMPTA> F_ARTCOMPTA { get; set; }
+        public virtual DbSet<P_REGLEMENT> P_REGLEMENT { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<F_COMPTET>()

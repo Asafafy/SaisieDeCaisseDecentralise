@@ -38,92 +38,107 @@ namespace SoftCaisse.Forms.VenteComptoir
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VenteComptoirForm));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
-            this.groupBoxGeneral = new System.Windows.Forms.GroupBox();
-            this.ButtonEnregistrerDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.tableLayoutPanelDesignation = new System.Windows.Forms.TableLayoutPanel();
-            this.textBoxReference = new System.Windows.Forms.TextBox();
-            this.textBoxDesignation = new System.Windows.Forms.TextBox();
-            this.textBoxCodeFamille = new System.Windows.Forms.TextBox();
-            this.textBoxQuantiteEnStock = new System.Windows.Forms.TextBox();
-            this.textBoxPUHT = new System.Windows.Forms.TextBox();
-            this.textBoxPUTTC = new System.Windows.Forms.TextBox();
-            this.textBoxQuantiteVendue = new System.Windows.Forms.TextBox();
-            this.ButtonSupprimerDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonNouveauDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.groupBoxTotal = new System.Windows.Forms.GroupBox();
-            this.labelPrixTotalTTC = new System.Windows.Forms.Label();
-            this.labelPrixTotalHT = new System.Windows.Forms.Label();
-            this.labelTotalHT = new System.Windows.Forms.Label();
-            this.labelTotalTTC = new System.Windows.Forms.Label();
-            this.dataGridViewArticle = new System.Windows.Forms.DataGridView();
+            this.GroupBoxGeneral = new System.Windows.Forms.GroupBox();
+            this.BouttonEnregistrerDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.TableLayoutPanelDesignation = new System.Windows.Forms.TableLayoutPanel();
+            this.TextBoxReference = new System.Windows.Forms.TextBox();
+            this.TextBoxDesignation = new System.Windows.Forms.TextBox();
+            this.TextBoxPUHT = new System.Windows.Forms.TextBox();
+            this.TextBoxPUTTC = new System.Windows.Forms.TextBox();
+            this.TextBoxRemise = new System.Windows.Forms.TextBox();
+            this.TextBoxPUnet = new System.Windows.Forms.TextBox();
+            this.TextBoxMontantHT = new System.Windows.Forms.TextBox();
+            this.TextBoxMontantTTC = new System.Windows.Forms.TextBox();
+            this.TextBoxConditionnement = new System.Windows.Forms.TextBox();
+            this.TextBoxQuantiteDisponibleEnStock = new System.Windows.Forms.TextBox();
+            this.BouttonSupprimerDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonNouveauDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.GroupBoxTotal = new System.Windows.Forms.GroupBox();
+            this.LabelPrixTotalTTC = new System.Windows.Forms.Label();
+            this.LabelPrixTotalHT = new System.Windows.Forms.Label();
+            this.LabelTotalHT = new System.Windows.Forms.Label();
+            this.LabelTotalTTC = new System.Windows.Forms.Label();
+            this.DataGridViewArticle = new System.Windows.Forms.DataGridView();
             this.Column1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodeFamille = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantiteEnStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prixUnitaireHT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prixUnitaireTTC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantiteEnStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantiteVendue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBoxEnregistrement = new System.Windows.Forms.GroupBox();
-            this.dataGridViewEnregistrement = new System.Windows.Forms.DataGridView();
+            this.remise = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.punet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.montantHT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.montantTTC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupBoxEnregistrement = new System.Windows.Forms.GroupBox();
+            this.DataGridViewEnregistrement = new System.Windows.Forms.DataGridView();
             this.ModeDeReception = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Montant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Libelle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Devise = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateEcheance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBoxInvisibleEnregistrement = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ButtonEnregistrerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonSupprimerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonNouveauEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.dateTimePickerEnregistrement = new System.Windows.Forms.DateTimePicker();
-            this.comboBoxDeviseEnregistrement = new System.Windows.Forms.ComboBox();
-            this.textBoxLibelleEnregistrement = new System.Windows.Forms.TextBox();
-            this.comboBoxEspeceEnregistrement = new System.Windows.Forms.ComboBox();
-            this.textBoxMontantEnregistrement = new System.Windows.Forms.TextBox();
+            this.GroupBoxInvisibleEnregistrement = new System.Windows.Forms.GroupBox();
+            this.BouttonEnregistrerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonSupprimerEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonNouveauEnregistrement = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.DateTimePickerEnregistrement = new System.Windows.Forms.DateTimePicker();
+            this.ComboBoxDeviseEnregistrement = new System.Windows.Forms.ComboBox();
+            this.TextBoxLibelleEnregistrement = new System.Windows.Forms.TextBox();
+            this.ComboBoxReglementEnregistrement = new System.Windows.Forms.ComboBox();
+            this.TextBoxMontantEnregistrement = new System.Windows.Forms.TextBox();
             this.groupBoxCommand = new System.Windows.Forms.GroupBox();
-            this.ButtonValider = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonCreerDoc = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonRappelTicket = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonEnAttente = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonRaccourci = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonTicket = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonFacture = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.ButtonFinDeSaisie = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.groupBoxReste = new System.Windows.Forms.GroupBox();
-            this.labelPrixResteDu = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.comboBoxResteDu = new System.Windows.Forms.ComboBox();
-            this.labelResteDu = new System.Windows.Forms.Label();
+            this.BouttonValider = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonCreerDoc = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonRappelTicket = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonEnAttente = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonRaccourci = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonTicket = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonFacture = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BouttonFinDeSaisie = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.GroupBoxReste = new System.Windows.Forms.GroupBox();
+            this.LabelPrixResteDu = new System.Windows.Forms.Label();
+            this.LabelDeviseReste = new System.Windows.Forms.Label();
+            this.ComboBoxDeviseReste = new System.Windows.Forms.ComboBox();
+            this.LabelResteDu = new System.Windows.Forms.Label();
             this.labelResteDuDevise = new System.Windows.Forms.Label();
-            this.groupBoxinfoCaissier = new System.Windows.Forms.GroupBox();
-            this.labelNomCaissier = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.labelTitleCaissier = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.labelCentrale = new System.Windows.Forms.Label();
-            this.labelTarif = new System.Windows.Forms.Label();
-            this.labelVendeur = new System.Windows.Forms.Label();
-            this.labelDate = new System.Windows.Forms.Label();
-            this.comboBoxNumero = new System.Windows.Forms.ComboBox();
-            this.comboBoxAffaire = new System.Windows.Forms.ComboBox();
-            this.comboBoxDepot = new System.Windows.Forms.ComboBox();
-            this.comboBoxType = new System.Windows.Forms.ComboBox();
-            this.comboBoxCentrale = new System.Windows.Forms.ComboBox();
-            this.comboBoxTarif = new System.Windows.Forms.ComboBox();
-            this.comboBoxVendeur = new System.Windows.Forms.ComboBox();
-            this.ButtonClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.groupBoxGeneral.SuspendLayout();
-            this.tableLayoutPanelDesignation.SuspendLayout();
-            this.groupBoxTotal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticle)).BeginInit();
-            this.groupBoxEnregistrement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEnregistrement)).BeginInit();
-            this.groupBoxInvisibleEnregistrement.SuspendLayout();
+            this.GroupBoxinfoCaissier = new System.Windows.Forms.GroupBox();
+            this.LabelNomCaissier = new System.Windows.Forms.Label();
+            this.DateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.LabelTitleCaissier = new System.Windows.Forms.Label();
+            this.LabelAffaire = new System.Windows.Forms.Label();
+            this.LabelDepot = new System.Windows.Forms.Label();
+            this.LabelCentrale = new System.Windows.Forms.Label();
+            this.LabelTarif = new System.Windows.Forms.Label();
+            this.LabelVendeur = new System.Windows.Forms.Label();
+            this.LabelDate = new System.Windows.Forms.Label();
+            this.ComboBoxNumero = new System.Windows.Forms.ComboBox();
+            this.ComboBoxAffaire = new System.Windows.Forms.ComboBox();
+            this.ComboBoxDepot = new System.Windows.Forms.ComboBox();
+            this.ComboBoxType = new System.Windows.Forms.ComboBox();
+            this.ComboBoxCentrale = new System.Windows.Forms.ComboBox();
+            this.ComboBoxTarif = new System.Windows.Forms.ComboBox();
+            this.ComboBoxVendeur = new System.Windows.Forms.ComboBox();
+            this.pDEVISEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bIJOUDataSet2 = new SoftCaisse.BIJOUDataSet2();
+            this.pREGLEMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bIJOUDataSet1 = new SoftCaisse.BIJOUDataSet1();
+            this.BouttonFermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.p_REGLEMENTTableAdapter = new SoftCaisse.BIJOUDataSet1TableAdapters.P_REGLEMENTTableAdapter();
+            this.p_DEVISETableAdapter = new SoftCaisse.BIJOUDataSet2TableAdapters.P_DEVISETableAdapter();
+            this.GroupBoxGeneral.SuspendLayout();
+            this.TableLayoutPanelDesignation.SuspendLayout();
+            this.GroupBoxTotal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).BeginInit();
+            this.GroupBoxEnregistrement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewEnregistrement)).BeginInit();
+            this.GroupBoxInvisibleEnregistrement.SuspendLayout();
             this.groupBoxCommand.SuspendLayout();
-            this.groupBoxReste.SuspendLayout();
-            this.groupBoxinfoCaissier.SuspendLayout();
+            this.GroupBoxReste.SuspendLayout();
+            this.GroupBoxinfoCaissier.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pDEVISEBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bIJOUDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pREGLEMENTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bIJOUDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -151,250 +166,272 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.ButtonEdgeInset = 10;
             // 
-            // groupBoxGeneral
+            // GroupBoxGeneral
             // 
-            this.groupBoxGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.GroupBoxGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxGeneral.Controls.Add(this.ButtonEnregistrerDesignation);
-            this.groupBoxGeneral.Controls.Add(this.tableLayoutPanelDesignation);
-            this.groupBoxGeneral.Controls.Add(this.ButtonSupprimerDesignation);
-            this.groupBoxGeneral.Controls.Add(this.ButtonNouveauDesignation);
-            this.groupBoxGeneral.Controls.Add(this.groupBoxTotal);
-            this.groupBoxGeneral.Controls.Add(this.dataGridViewArticle);
-            this.groupBoxGeneral.Controls.Add(this.groupBoxEnregistrement);
-            this.groupBoxGeneral.Controls.Add(this.groupBoxCommand);
-            this.groupBoxGeneral.Controls.Add(this.groupBoxReste);
-            this.groupBoxGeneral.Controls.Add(this.groupBoxinfoCaissier);
-            this.groupBoxGeneral.Location = new System.Drawing.Point(-9, 0);
-            this.groupBoxGeneral.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxGeneral.Name = "groupBoxGeneral";
-            this.groupBoxGeneral.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxGeneral.Size = new System.Drawing.Size(1501, 895);
-            this.groupBoxGeneral.TabIndex = 0;
-            this.groupBoxGeneral.TabStop = false;
+            this.GroupBoxGeneral.Controls.Add(this.BouttonEnregistrerDesignation);
+            this.GroupBoxGeneral.Controls.Add(this.TableLayoutPanelDesignation);
+            this.GroupBoxGeneral.Controls.Add(this.BouttonSupprimerDesignation);
+            this.GroupBoxGeneral.Controls.Add(this.BouttonNouveauDesignation);
+            this.GroupBoxGeneral.Controls.Add(this.GroupBoxTotal);
+            this.GroupBoxGeneral.Controls.Add(this.DataGridViewArticle);
+            this.GroupBoxGeneral.Controls.Add(this.GroupBoxEnregistrement);
+            this.GroupBoxGeneral.Controls.Add(this.groupBoxCommand);
+            this.GroupBoxGeneral.Controls.Add(this.GroupBoxReste);
+            this.GroupBoxGeneral.Controls.Add(this.GroupBoxinfoCaissier);
+            this.GroupBoxGeneral.Location = new System.Drawing.Point(-7, 0);
+            this.GroupBoxGeneral.Name = "GroupBoxGeneral";
+            this.GroupBoxGeneral.Size = new System.Drawing.Size(1126, 743);
+            this.GroupBoxGeneral.TabIndex = 0;
+            this.GroupBoxGeneral.TabStop = false;
             // 
-            // ButtonEnregistrerDesignation
+            // BouttonEnregistrerDesignation
             // 
-            this.ButtonEnregistrerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonEnregistrerDesignation.Enabled = false;
-            this.ButtonEnregistrerDesignation.Location = new System.Drawing.Point(1356, 263);
-            this.ButtonEnregistrerDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonEnregistrerDesignation.Name = "ButtonEnregistrerDesignation";
-            this.ButtonEnregistrerDesignation.Palette = this.kryptonPalette1;
-            this.ButtonEnregistrerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonEnregistrerDesignation.Size = new System.Drawing.Size(120, 31);
-            this.ButtonEnregistrerDesignation.TabIndex = 12;
-            this.ButtonEnregistrerDesignation.Values.Text = "Enregistrer";
-            this.ButtonEnregistrerDesignation.Click += new System.EventHandler(this.ButtonEnregistrerDesignation_Click);
+            this.BouttonEnregistrerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonEnregistrerDesignation.Enabled = false;
+            this.BouttonEnregistrerDesignation.Location = new System.Drawing.Point(1017, 218);
+            this.BouttonEnregistrerDesignation.Name = "BouttonEnregistrerDesignation";
+            this.BouttonEnregistrerDesignation.Palette = this.kryptonPalette1;
+            this.BouttonEnregistrerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonEnregistrerDesignation.Size = new System.Drawing.Size(90, 25);
+            this.BouttonEnregistrerDesignation.TabIndex = 12;
+            this.BouttonEnregistrerDesignation.Values.Text = "Enregistrer";
+            this.BouttonEnregistrerDesignation.Click += new System.EventHandler(this.BouttonEnregistrerDesignation_Click);
             // 
-            // tableLayoutPanelDesignation
+            // TableLayoutPanelDesignation
             // 
-            this.tableLayoutPanelDesignation.AutoScroll = true;
-            this.tableLayoutPanelDesignation.ColumnCount = 7;
-            this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxReference, 0, 0);
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxDesignation, 1, 0);
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxCodeFamille, 2, 0);
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxQuantiteEnStock, 3, 0);
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxPUHT, 4, 0);
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxPUTTC, 5, 0);
-            this.tableLayoutPanelDesignation.Controls.Add(this.textBoxQuantiteVendue, 6, 0);
-            this.tableLayoutPanelDesignation.Location = new System.Drawing.Point(19, 167);
-            this.tableLayoutPanelDesignation.Name = "tableLayoutPanelDesignation";
-            this.tableLayoutPanelDesignation.RowCount = 1;
-            this.tableLayoutPanelDesignation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelDesignation.Size = new System.Drawing.Size(1451, 44);
-            this.tableLayoutPanelDesignation.TabIndex = 6;
+            this.TableLayoutPanelDesignation.AutoScroll = true;
+            this.TableLayoutPanelDesignation.ColumnCount = 10;
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.TableLayoutPanelDesignation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxReference, 0, 0);
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxDesignation, 1, 0);
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxPUHT, 2, 0);
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxPUTTC, 3, 0);
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxRemise, 6, 0);
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxPUnet, 7, 0);
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxMontantHT, 8, 0);
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxMontantTTC, 9, 0);
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxConditionnement, 5, 0);
+            this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxQuantiteDisponibleEnStock, 4, 0);
+            this.TableLayoutPanelDesignation.Location = new System.Drawing.Point(19, 167);
+            this.TableLayoutPanelDesignation.Name = "TableLayoutPanelDesignation";
+            this.TableLayoutPanelDesignation.RowCount = 1;
+            this.TableLayoutPanelDesignation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TableLayoutPanelDesignation.Size = new System.Drawing.Size(1088, 46);
+            this.TableLayoutPanelDesignation.TabIndex = 6;
             // 
-            // textBoxReference
+            // TextBoxReference
             // 
-            this.textBoxReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxReference.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxReference.Location = new System.Drawing.Point(4, 4);
-            this.textBoxReference.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxReference.Name = "textBoxReference";
-            this.textBoxReference.Size = new System.Drawing.Size(132, 29);
-            this.textBoxReference.TabIndex = 13;
-            this.textBoxReference.Text = "Référence";
-            this.textBoxReference.Enter += new System.EventHandler(this.TextBox_Enter);
-            this.textBoxReference.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxReference_KeyDown);
-            this.textBoxReference.Leave += new System.EventHandler(this.TextBox_Leave);
+            this.TextBoxReference.AccessibleName = "";
+            this.TextBoxReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxReference.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxReference.Location = new System.Drawing.Point(3, 3);
+            this.TextBoxReference.Name = "TextBoxReference";
+            this.TextBoxReference.Size = new System.Drawing.Size(94, 25);
+            this.TextBoxReference.TabIndex = 13;
+            this.TextBoxReference.Text = "Référence";
+            this.TextBoxReference.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.TextBoxReference.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxReference_KeyPress);
+            this.TextBoxReference.Leave += new System.EventHandler(this.TextBox_Leave);
+            this.TextBoxReference.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TextBoxReference_PreviewKeyDown);
             // 
-            // textBoxDesignation
+            // TextBoxDesignation
             // 
-            this.textBoxDesignation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxDesignation.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.textBoxDesignation.Location = new System.Drawing.Point(111, 3);
-            this.textBoxDesignation.Name = "textBoxDesignation";
-            this.textBoxDesignation.ReadOnly = true;
-            this.textBoxDesignation.Size = new System.Drawing.Size(320, 25);
-            this.textBoxDesignation.TabIndex = 2;
-            this.textBoxDesignation.Text = "Désignation";
+            this.TextBoxDesignation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxDesignation.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxDesignation.Location = new System.Drawing.Point(103, 3);
+            this.TextBoxDesignation.Name = "TextBoxDesignation";
+            this.TextBoxDesignation.Size = new System.Drawing.Size(244, 25);
+            this.TextBoxDesignation.TabIndex = 2;
+            this.TextBoxDesignation.Text = "Désignation";
             // 
-            // textBoxCodeFamille
+            // TextBoxPUHT
             // 
-            this.textBoxCodeFamille.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCodeFamille.Location = new System.Drawing.Point(437, 3);
-            this.textBoxCodeFamille.Name = "textBoxCodeFamille";
-            this.textBoxCodeFamille.ReadOnly = true;
-            this.textBoxCodeFamille.Size = new System.Drawing.Size(102, 25);
-            this.textBoxCodeFamille.TabIndex = 3;
+            this.TextBoxPUHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPUHT.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxPUHT.Location = new System.Drawing.Point(353, 3);
+            this.TextBoxPUHT.Name = "TextBoxPUHT";
+            this.TextBoxPUHT.ReadOnly = true;
+            this.TextBoxPUHT.Size = new System.Drawing.Size(94, 25);
+            this.TextBoxPUHT.TabIndex = 5;
             // 
-            // textBoxQuantiteEnStock
+            // TextBoxPUTTC
             // 
-            this.textBoxQuantiteEnStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxQuantiteEnStock.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxQuantiteEnStock.Location = new System.Drawing.Point(545, 3);
-            this.textBoxQuantiteEnStock.Name = "textBoxQuantiteEnStock";
-            this.textBoxQuantiteEnStock.Size = new System.Drawing.Size(102, 25);
-            this.textBoxQuantiteEnStock.TabIndex = 4;
-            this.textBoxQuantiteEnStock.Text = "En Stock";
+            this.TextBoxPUTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPUTTC.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxPUTTC.Location = new System.Drawing.Point(453, 3);
+            this.TextBoxPUTTC.Name = "TextBoxPUTTC";
+            this.TextBoxPUTTC.ReadOnly = true;
+            this.TextBoxPUTTC.Size = new System.Drawing.Size(94, 25);
+            this.TextBoxPUTTC.TabIndex = 6;
             // 
-            // textBoxPUHT
+            // TextBoxRemise
             // 
-            this.textBoxPUHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPUHT.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxPUHT.Location = new System.Drawing.Point(874, 4);
-            this.textBoxPUHT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxPUHT.Name = "textBoxPUHT";
-            this.textBoxPUHT.ReadOnly = true;
-            this.textBoxPUHT.Size = new System.Drawing.Size(102, 25);
-            this.textBoxPUHT.TabIndex = 5;
-            this.textBoxPUHT.Text = "P.U. HT";
+            this.TextBoxRemise.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxRemise.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxRemise.Location = new System.Drawing.Point(753, 3);
+            this.TextBoxRemise.Name = "TextBoxRemise";
+            this.TextBoxRemise.ReadOnly = true;
+            this.TextBoxRemise.Size = new System.Drawing.Size(94, 25);
+            this.TextBoxRemise.TabIndex = 14;
             // 
-            // textBoxPUTTC
+            // TextBoxPUnet
             // 
-            this.textBoxPUTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPUTTC.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxPUTTC.Location = new System.Drawing.Point(761, 3);
-            this.textBoxPUTTC.Name = "textBoxPUTTC";
-            this.textBoxPUTTC.ReadOnly = true;
-            this.textBoxPUTTC.Size = new System.Drawing.Size(208, 29);
-            this.textBoxPUTTC.TabIndex = 6;
-            this.textBoxPUTTC.Text = "P.U. TTC";
+            this.TextBoxPUnet.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPUnet.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxPUnet.Location = new System.Drawing.Point(853, 3);
+            this.TextBoxPUnet.Name = "TextBoxPUnet";
+            this.TextBoxPUnet.ReadOnly = true;
+            this.TextBoxPUnet.Size = new System.Drawing.Size(94, 25);
+            this.TextBoxPUnet.TabIndex = 15;
             // 
-            // textBoxQuantiteVendue
+            // TextBoxMontantHT
             // 
-            this.textBoxQuantiteVendue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxQuantiteVendue.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxQuantiteVendue.Location = new System.Drawing.Point(924, 3);
-            this.textBoxQuantiteVendue.Name = "textBoxQuantiteVendue";
-            this.textBoxQuantiteVendue.ReadOnly = true;
-            this.textBoxQuantiteVendue.Size = new System.Drawing.Size(161, 25);
-            this.textBoxQuantiteVendue.TabIndex = 7;
-            this.textBoxQuantiteVendue.Text = "Vendu";
+            this.TextBoxMontantHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxMontantHT.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxMontantHT.Location = new System.Drawing.Point(953, 3);
+            this.TextBoxMontantHT.Name = "TextBoxMontantHT";
+            this.TextBoxMontantHT.ReadOnly = true;
+            this.TextBoxMontantHT.Size = new System.Drawing.Size(94, 25);
+            this.TextBoxMontantHT.TabIndex = 16;
             // 
-            // ButtonSupprimerDesignation
+            // TextBoxMontantTTC
             // 
-            this.ButtonSupprimerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonSupprimerDesignation.Enabled = false;
-            this.ButtonSupprimerDesignation.Location = new System.Drawing.Point(1204, 263);
-            this.ButtonSupprimerDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonSupprimerDesignation.Name = "ButtonSupprimerDesignation";
-            this.ButtonSupprimerDesignation.Palette = this.kryptonPalette1;
-            this.ButtonSupprimerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonSupprimerDesignation.Size = new System.Drawing.Size(120, 31);
-            this.ButtonSupprimerDesignation.TabIndex = 11;
-            this.ButtonSupprimerDesignation.Values.Text = "Supprimer";
-            this.ButtonSupprimerDesignation.Click += new System.EventHandler(this.ButtonSupprimerDesignation_Click);
+            this.TextBoxMontantTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxMontantTTC.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxMontantTTC.Location = new System.Drawing.Point(1053, 3);
+            this.TextBoxMontantTTC.Name = "TextBoxMontantTTC";
+            this.TextBoxMontantTTC.ReadOnly = true;
+            this.TextBoxMontantTTC.Size = new System.Drawing.Size(94, 25);
+            this.TextBoxMontantTTC.TabIndex = 17;
             // 
-            // ButtonNouveauDesignation
+            // TextBoxConditionnement
             // 
-            this.ButtonNouveauDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonNouveauDesignation.Location = new System.Drawing.Point(1051, 263);
-            this.ButtonNouveauDesignation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonNouveauDesignation.Name = "ButtonNouveauDesignation";
-            this.ButtonNouveauDesignation.Palette = this.kryptonPalette1;
-            this.ButtonNouveauDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonNouveauDesignation.Size = new System.Drawing.Size(120, 31);
-            this.ButtonNouveauDesignation.TabIndex = 10;
-            this.ButtonNouveauDesignation.Values.Text = "Nouveau";
-            this.ButtonNouveauDesignation.Click += new System.EventHandler(this.ButtonNouveauDesignation_Click);
+            this.TextBoxConditionnement.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxConditionnement.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxConditionnement.Location = new System.Drawing.Point(653, 3);
+            this.TextBoxConditionnement.Name = "TextBoxConditionnement";
+            this.TextBoxConditionnement.ReadOnly = true;
+            this.TextBoxConditionnement.Size = new System.Drawing.Size(94, 25);
+            this.TextBoxConditionnement.TabIndex = 7;
             // 
-            // groupBoxTotal
+            // TextBoxQuantiteDisponibleEnStock
             // 
-            this.groupBoxTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxTotal.Controls.Add(this.labelPrixTotalTTC);
-            this.groupBoxTotal.Controls.Add(this.labelPrixTotalHT);
-            this.groupBoxTotal.Controls.Add(this.labelTotalHT);
-            this.groupBoxTotal.Controls.Add(this.labelTotalTTC);
-            this.groupBoxTotal.Location = new System.Drawing.Point(765, 15);
-            this.groupBoxTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxTotal.Name = "groupBoxTotal";
-            this.groupBoxTotal.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxTotal.Size = new System.Drawing.Size(711, 183);
-            this.groupBoxTotal.TabIndex = 5;
-            this.groupBoxTotal.TabStop = false;
+            this.TextBoxQuantiteDisponibleEnStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxQuantiteDisponibleEnStock.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxQuantiteDisponibleEnStock.Location = new System.Drawing.Point(553, 3);
+            this.TextBoxQuantiteDisponibleEnStock.Name = "TextBoxQuantiteDisponibleEnStock";
+            this.TextBoxQuantiteDisponibleEnStock.Size = new System.Drawing.Size(94, 25);
+            this.TextBoxQuantiteDisponibleEnStock.TabIndex = 4;
+            this.TextBoxQuantiteDisponibleEnStock.TextChanged += new System.EventHandler(this.TextBoxQuantiteDisponibleEnStock_TextChanged);
             // 
-            // labelPrixTotalTTC
+            // BouttonSupprimerDesignation
             // 
-            this.labelPrixTotalTTC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.BouttonSupprimerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonSupprimerDesignation.Enabled = false;
+            this.BouttonSupprimerDesignation.Location = new System.Drawing.Point(903, 218);
+            this.BouttonSupprimerDesignation.Name = "BouttonSupprimerDesignation";
+            this.BouttonSupprimerDesignation.Palette = this.kryptonPalette1;
+            this.BouttonSupprimerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonSupprimerDesignation.Size = new System.Drawing.Size(90, 25);
+            this.BouttonSupprimerDesignation.TabIndex = 11;
+            this.BouttonSupprimerDesignation.Values.Text = "Supprimer";
+            this.BouttonSupprimerDesignation.Click += new System.EventHandler(this.BouttonSupprimerDesignation_Click);
+            // 
+            // BouttonNouveauDesignation
+            // 
+            this.BouttonNouveauDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonNouveauDesignation.Location = new System.Drawing.Point(788, 218);
+            this.BouttonNouveauDesignation.Name = "BouttonNouveauDesignation";
+            this.BouttonNouveauDesignation.Palette = this.kryptonPalette1;
+            this.BouttonNouveauDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonNouveauDesignation.Size = new System.Drawing.Size(90, 25);
+            this.BouttonNouveauDesignation.TabIndex = 10;
+            this.BouttonNouveauDesignation.Values.Text = "Nouveau";
+            this.BouttonNouveauDesignation.Click += new System.EventHandler(this.BouttonNouveauDesignation_Click);
+            // 
+            // GroupBoxTotal
+            // 
+            this.GroupBoxTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBoxTotal.Controls.Add(this.LabelPrixTotalTTC);
+            this.GroupBoxTotal.Controls.Add(this.LabelPrixTotalHT);
+            this.GroupBoxTotal.Controls.Add(this.LabelTotalHT);
+            this.GroupBoxTotal.Controls.Add(this.LabelTotalTTC);
+            this.GroupBoxTotal.Location = new System.Drawing.Point(574, 12);
+            this.GroupBoxTotal.Name = "GroupBoxTotal";
+            this.GroupBoxTotal.Size = new System.Drawing.Size(533, 149);
+            this.GroupBoxTotal.TabIndex = 5;
+            this.GroupBoxTotal.TabStop = false;
+            // 
+            // LabelPrixTotalTTC
+            // 
+            this.LabelPrixTotalTTC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelPrixTotalTTC.AutoSize = true;
-            this.labelPrixTotalTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPrixTotalTTC.Location = new System.Drawing.Point(447, 126);
-            this.labelPrixTotalTTC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelPrixTotalTTC.Name = "labelPrixTotalTTC";
-            this.labelPrixTotalTTC.Size = new System.Drawing.Size(87, 39);
-            this.labelPrixTotalTTC.TabIndex = 16;
-            this.labelPrixTotalTTC.Text = "0,00";
-            this.labelPrixTotalTTC.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.LabelPrixTotalTTC.AutoSize = true;
+            this.LabelPrixTotalTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelPrixTotalTTC.Location = new System.Drawing.Point(335, 102);
+            this.LabelPrixTotalTTC.Name = "LabelPrixTotalTTC";
+            this.LabelPrixTotalTTC.Size = new System.Drawing.Size(71, 31);
+            this.LabelPrixTotalTTC.TabIndex = 16;
+            this.LabelPrixTotalTTC.Text = "0,00";
+            this.LabelPrixTotalTTC.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // labelPrixTotalHT
+            // LabelPrixTotalHT
             // 
-            this.labelPrixTotalHT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LabelPrixTotalHT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelPrixTotalHT.AutoSize = true;
-            this.labelPrixTotalHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPrixTotalHT.Location = new System.Drawing.Point(447, 48);
-            this.labelPrixTotalHT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelPrixTotalHT.Name = "labelPrixTotalHT";
-            this.labelPrixTotalHT.Size = new System.Drawing.Size(87, 39);
-            this.labelPrixTotalHT.TabIndex = 15;
-            this.labelPrixTotalHT.Text = "0,00";
-            this.labelPrixTotalHT.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.LabelPrixTotalHT.AutoSize = true;
+            this.LabelPrixTotalHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelPrixTotalHT.Location = new System.Drawing.Point(335, 39);
+            this.LabelPrixTotalHT.Name = "LabelPrixTotalHT";
+            this.LabelPrixTotalHT.Size = new System.Drawing.Size(71, 31);
+            this.LabelPrixTotalHT.TabIndex = 15;
+            this.LabelPrixTotalHT.Text = "0,00";
+            this.LabelPrixTotalHT.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // labelTotalHT
+            // LabelTotalHT
             // 
-            this.labelTotalHT.AutoSize = true;
-            this.labelTotalHT.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalHT.Location = new System.Drawing.Point(8, 42);
-            this.labelTotalHT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTotalHT.Name = "labelTotalHT";
-            this.labelTotalHT.Size = new System.Drawing.Size(156, 39);
-            this.labelTotalHT.TabIndex = 2;
-            this.labelTotalHT.Text = "Total HT";
+            this.LabelTotalHT.AutoSize = true;
+            this.LabelTotalHT.BackColor = System.Drawing.Color.Transparent;
+            this.LabelTotalHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTotalHT.Location = new System.Drawing.Point(6, 34);
+            this.LabelTotalHT.Name = "LabelTotalHT";
+            this.LabelTotalHT.Size = new System.Drawing.Size(127, 31);
+            this.LabelTotalHT.TabIndex = 2;
+            this.LabelTotalHT.Text = "Total HT";
             // 
-            // labelTotalTTC
+            // LabelTotalTTC
             // 
-            this.labelTotalTTC.AutoSize = true;
-            this.labelTotalTTC.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalTTC.Location = new System.Drawing.Point(8, 119);
-            this.labelTotalTTC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTotalTTC.Name = "labelTotalTTC";
-            this.labelTotalTTC.Size = new System.Drawing.Size(178, 39);
-            this.labelTotalTTC.TabIndex = 3;
-            this.labelTotalTTC.Text = "Total TTC";
+            this.LabelTotalTTC.AutoSize = true;
+            this.LabelTotalTTC.BackColor = System.Drawing.Color.Transparent;
+            this.LabelTotalTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTotalTTC.Location = new System.Drawing.Point(6, 97);
+            this.LabelTotalTTC.Name = "LabelTotalTTC";
+            this.LabelTotalTTC.Size = new System.Drawing.Size(145, 31);
+            this.LabelTotalTTC.TabIndex = 3;
+            this.LabelTotalTTC.Text = "Total TTC";
             // 
-            // dataGridViewArticle
+            // DataGridViewArticle
             // 
-            this.dataGridViewArticle.AllowUserToAddRows = false;
-            this.dataGridViewArticle.AllowUserToDeleteRows = false;
-            this.dataGridViewArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DataGridViewArticle.AllowUserToAddRows = false;
+            this.DataGridViewArticle.AllowUserToDeleteRows = false;
+            this.DataGridViewArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewArticle.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewArticle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridViewArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewArticle.BackgroundColor = System.Drawing.Color.White;
+            this.DataGridViewArticle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -402,16 +439,19 @@ namespace SoftCaisse.Forms.VenteComptoir
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewArticle.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewArticle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewArticle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DataGridViewArticle.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGridViewArticle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewArticle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.CodeFamille,
-            this.quantiteEnStock,
             this.prixUnitaireHT,
             this.prixUnitaireTTC,
-            this.quantiteVendue});
+            this.quantiteEnStock,
+            this.quantiteVendue,
+            this.remise,
+            this.punet,
+            this.montantHT,
+            this.montantTTC});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -419,12 +459,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewArticle.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewArticle.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dataGridViewArticle.Location = new System.Drawing.Point(25, 313);
-            this.dataGridViewArticle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dataGridViewArticle.Name = "dataGridViewArticle";
-            this.dataGridViewArticle.ReadOnly = true;
+            this.DataGridViewArticle.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGridViewArticle.GridColor = System.Drawing.SystemColors.ActiveBorder;
+            this.DataGridViewArticle.Location = new System.Drawing.Point(19, 249);
+            this.DataGridViewArticle.Name = "DataGridViewArticle";
+            this.DataGridViewArticle.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
@@ -432,13 +471,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewArticle.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewArticle.RowHeadersVisible = false;
-            this.dataGridViewArticle.RowHeadersWidth = 51;
-            this.dataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewArticle.Size = new System.Drawing.Size(1451, 276);
-            this.dataGridViewArticle.TabIndex = 4;
-            
+            this.DataGridViewArticle.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.DataGridViewArticle.RowHeadersVisible = false;
+            this.DataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridViewArticle.Size = new System.Drawing.Size(1088, 245);
+            this.DataGridViewArticle.TabIndex = 4;
             // 
             // Column1
             // 
@@ -447,7 +484,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.Width = 207;
+            this.Column1.Width = 109;
             // 
             // Column2
             // 
@@ -455,21 +492,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            // 
-            // CodeFamille
-            // 
-            this.CodeFamille.HeaderText = "Famille";
-            this.CodeFamille.MinimumWidth = 6;
-            this.CodeFamille.Name = "CodeFamille";
-            this.CodeFamille.ReadOnly = true;
-            // 
-            // quantiteEnStock
-            // 
-            this.quantiteEnStock.DataPropertyName = "quantiteEnStock";
-            this.quantiteEnStock.HeaderText = "Quantité en Stock";
-            this.quantiteEnStock.MinimumWidth = 6;
-            this.quantiteEnStock.Name = "quantiteEnStock";
-            this.quantiteEnStock.ReadOnly = true;
             // 
             // prixUnitaireHT
             // 
@@ -487,35 +509,64 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.prixUnitaireTTC.Name = "prixUnitaireTTC";
             this.prixUnitaireTTC.ReadOnly = true;
             // 
+            // quantiteEnStock
+            // 
+            this.quantiteEnStock.DataPropertyName = "quantiteEnStock";
+            this.quantiteEnStock.HeaderText = "Quantité Disponible";
+            this.quantiteEnStock.Name = "quantiteEnStock";
+            this.quantiteEnStock.ReadOnly = true;
+            // 
             // quantiteVendue
             // 
             this.quantiteVendue.DataPropertyName = "quantiteVendue";
-            this.quantiteVendue.HeaderText = "Quantité vendue";
-            this.quantiteVendue.MinimumWidth = 6;
+            this.quantiteVendue.HeaderText = "Conditionnement";
             this.quantiteVendue.Name = "quantiteVendue";
             this.quantiteVendue.ReadOnly = true;
             // 
-            // groupBoxEnregistrement
+            // remise
             // 
-            this.groupBoxEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.remise.HeaderText = "Remise";
+            this.remise.Name = "remise";
+            this.remise.ReadOnly = true;
+            // 
+            // punet
+            // 
+            this.punet.HeaderText = "P.U. net";
+            this.punet.Name = "punet";
+            this.punet.ReadOnly = true;
+            // 
+            // montantHT
+            // 
+            this.montantHT.HeaderText = "Montant HT";
+            this.montantHT.Name = "montantHT";
+            this.montantHT.ReadOnly = true;
+            // 
+            // montantTTC
+            // 
+            this.montantTTC.HeaderText = "Montant TTC";
+            this.montantTTC.Name = "montantTTC";
+            this.montantTTC.ReadOnly = true;
+            // 
+            // GroupBoxEnregistrement
+            // 
+            this.GroupBoxEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxEnregistrement.Controls.Add(this.dataGridViewEnregistrement);
-            this.groupBoxEnregistrement.Controls.Add(this.groupBoxInvisibleEnregistrement);
-            this.groupBoxEnregistrement.Location = new System.Drawing.Point(33, 596);
-            this.groupBoxEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxEnregistrement.Name = "groupBoxEnregistrement";
-            this.groupBoxEnregistrement.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxEnregistrement.Size = new System.Drawing.Size(911, 287);
-            this.groupBoxEnregistrement.TabIndex = 2;
-            this.groupBoxEnregistrement.TabStop = false;
+            this.GroupBoxEnregistrement.Controls.Add(this.DataGridViewEnregistrement);
+            this.GroupBoxEnregistrement.Controls.Add(this.GroupBoxInvisibleEnregistrement);
+            this.GroupBoxEnregistrement.Location = new System.Drawing.Point(19, 500);
+            this.GroupBoxEnregistrement.Name = "GroupBoxEnregistrement";
+            this.GroupBoxEnregistrement.Size = new System.Drawing.Size(689, 233);
+            this.GroupBoxEnregistrement.TabIndex = 2;
+            this.GroupBoxEnregistrement.TabStop = false;
             // 
-            // dataGridViewEnregistrement
+            // DataGridViewEnregistrement
             // 
-            this.dataGridViewEnregistrement.AllowUserToAddRows = false;
-            this.dataGridViewEnregistrement.AllowUserToDeleteRows = false;
-            this.dataGridViewEnregistrement.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewEnregistrement.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewEnregistrement.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridViewEnregistrement.AllowUserToAddRows = false;
+            this.DataGridViewEnregistrement.AllowUserToDeleteRows = false;
+            this.DataGridViewEnregistrement.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewEnregistrement.BackgroundColor = System.Drawing.Color.White;
+            this.DataGridViewEnregistrement.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridViewEnregistrement.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -523,9 +574,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewEnregistrement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewEnregistrement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEnregistrement.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DataGridViewEnregistrement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.DataGridViewEnregistrement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewEnregistrement.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ModeDeReception,
             this.Montant,
             this.Libelle,
@@ -538,18 +589,16 @@ namespace SoftCaisse.Forms.VenteComptoir
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewEnregistrement.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewEnregistrement.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridViewEnregistrement.Enabled = false;
-            this.dataGridViewEnregistrement.Location = new System.Drawing.Point(4, 133);
-            this.dataGridViewEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dataGridViewEnregistrement.Name = "dataGridViewEnregistrement";
-            this.dataGridViewEnregistrement.ReadOnly = true;
-            this.dataGridViewEnregistrement.RowHeadersVisible = false;
-            this.dataGridViewEnregistrement.RowHeadersWidth = 51;
-            this.dataGridViewEnregistrement.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEnregistrement.Size = new System.Drawing.Size(903, 150);
-            this.dataGridViewEnregistrement.TabIndex = 1;
+            this.DataGridViewEnregistrement.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGridViewEnregistrement.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.DataGridViewEnregistrement.Enabled = false;
+            this.DataGridViewEnregistrement.Location = new System.Drawing.Point(3, 108);
+            this.DataGridViewEnregistrement.Name = "DataGridViewEnregistrement";
+            this.DataGridViewEnregistrement.ReadOnly = true;
+            this.DataGridViewEnregistrement.RowHeadersVisible = false;
+            this.DataGridViewEnregistrement.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridViewEnregistrement.Size = new System.Drawing.Size(683, 122);
+            this.DataGridViewEnregistrement.TabIndex = 1;
             // 
             // ModeDeReception
             // 
@@ -586,340 +635,300 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.DateEcheance.Name = "DateEcheance";
             this.DateEcheance.ReadOnly = true;
             // 
-            // groupBoxInvisibleEnregistrement
+            // GroupBoxInvisibleEnregistrement
             // 
-            this.groupBoxInvisibleEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GroupBoxInvisibleEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxInvisibleEnregistrement.Controls.Add(this.label2);
-            this.groupBoxInvisibleEnregistrement.Controls.Add(this.ButtonEnregistrerEnregistrement);
-            this.groupBoxInvisibleEnregistrement.Controls.Add(this.ButtonSupprimerEnregistrement);
-            this.groupBoxInvisibleEnregistrement.Controls.Add(this.ButtonNouveauEnregistrement);
-            this.groupBoxInvisibleEnregistrement.Controls.Add(this.dateTimePickerEnregistrement);
-            this.groupBoxInvisibleEnregistrement.Controls.Add(this.comboBoxDeviseEnregistrement);
-            this.groupBoxInvisibleEnregistrement.Controls.Add(this.textBoxLibelleEnregistrement);
-            this.groupBoxInvisibleEnregistrement.Controls.Add(this.comboBoxEspeceEnregistrement);
-            this.groupBoxInvisibleEnregistrement.Controls.Add(this.textBoxMontantEnregistrement);
-            this.groupBoxInvisibleEnregistrement.Location = new System.Drawing.Point(4, 20);
-            this.groupBoxInvisibleEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxInvisibleEnregistrement.Name = "groupBoxInvisibleEnregistrement";
-            this.groupBoxInvisibleEnregistrement.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxInvisibleEnregistrement.Size = new System.Drawing.Size(903, 98);
-            this.groupBoxInvisibleEnregistrement.TabIndex = 0;
-            this.groupBoxInvisibleEnregistrement.TabStop = false;
-            this.groupBoxInvisibleEnregistrement.Visible = false;
+            this.GroupBoxInvisibleEnregistrement.Controls.Add(this.BouttonEnregistrerEnregistrement);
+            this.GroupBoxInvisibleEnregistrement.Controls.Add(this.BouttonSupprimerEnregistrement);
+            this.GroupBoxInvisibleEnregistrement.Controls.Add(this.BouttonNouveauEnregistrement);
+            this.GroupBoxInvisibleEnregistrement.Controls.Add(this.DateTimePickerEnregistrement);
+            this.GroupBoxInvisibleEnregistrement.Controls.Add(this.ComboBoxDeviseEnregistrement);
+            this.GroupBoxInvisibleEnregistrement.Controls.Add(this.TextBoxLibelleEnregistrement);
+            this.GroupBoxInvisibleEnregistrement.Controls.Add(this.ComboBoxReglementEnregistrement);
+            this.GroupBoxInvisibleEnregistrement.Controls.Add(this.TextBoxMontantEnregistrement);
+            this.GroupBoxInvisibleEnregistrement.Location = new System.Drawing.Point(3, 16);
+            this.GroupBoxInvisibleEnregistrement.Name = "GroupBoxInvisibleEnregistrement";
+            this.GroupBoxInvisibleEnregistrement.Size = new System.Drawing.Size(683, 80);
+            this.GroupBoxInvisibleEnregistrement.TabIndex = 0;
+            this.GroupBoxInvisibleEnregistrement.TabStop = false;
+            this.GroupBoxInvisibleEnregistrement.Visible = false;
             // 
-            // label2
+            // BouttonEnregistrerEnregistrement
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(341, 21);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 20);
-            this.label2.TabIndex = 17;
+            this.BouttonEnregistrerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonEnregistrerEnregistrement.Location = new System.Drawing.Point(578, 47);
+            this.BouttonEnregistrerEnregistrement.Name = "BouttonEnregistrerEnregistrement";
+            this.BouttonEnregistrerEnregistrement.Palette = this.kryptonPalette1;
+            this.BouttonEnregistrerEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonEnregistrerEnregistrement.Size = new System.Drawing.Size(90, 25);
+            this.BouttonEnregistrerEnregistrement.TabIndex = 15;
+            this.BouttonEnregistrerEnregistrement.Values.Text = "Enregistrer";
+            this.BouttonEnregistrerEnregistrement.Click += new System.EventHandler(this.BouttonEnregistrerEnregistrement_Click);
             // 
-            // ButtonEnregistrerEnregistrement
+            // BouttonSupprimerEnregistrement
             // 
-            this.ButtonEnregistrerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonEnregistrerEnregistrement.Location = new System.Drawing.Point(763, 58);
-            this.ButtonEnregistrerEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonEnregistrerEnregistrement.Name = "ButtonEnregistrerEnregistrement";
-            this.ButtonEnregistrerEnregistrement.Palette = this.kryptonPalette1;
-            this.ButtonEnregistrerEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonEnregistrerEnregistrement.Size = new System.Drawing.Size(120, 31);
-            this.ButtonEnregistrerEnregistrement.TabIndex = 15;
-            this.ButtonEnregistrerEnregistrement.Values.Text = "Enregistrer";
-            this.ButtonEnregistrerEnregistrement.Click += new System.EventHandler(this.ButtonEnregistrerEnregistrement_Click);
+            this.BouttonSupprimerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonSupprimerEnregistrement.Enabled = false;
+            this.BouttonSupprimerEnregistrement.Location = new System.Drawing.Point(464, 47);
+            this.BouttonSupprimerEnregistrement.Name = "BouttonSupprimerEnregistrement";
+            this.BouttonSupprimerEnregistrement.Palette = this.kryptonPalette1;
+            this.BouttonSupprimerEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonSupprimerEnregistrement.Size = new System.Drawing.Size(90, 25);
+            this.BouttonSupprimerEnregistrement.TabIndex = 14;
+            this.BouttonSupprimerEnregistrement.Values.Text = "Supprimer";
+            this.BouttonSupprimerEnregistrement.Click += new System.EventHandler(this.BouttonSupprimerEnregistrement_Click);
             // 
-            // ButtonSupprimerEnregistrement
+            // BouttonNouveauEnregistrement
             // 
-            this.ButtonSupprimerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonSupprimerEnregistrement.Enabled = false;
-            this.ButtonSupprimerEnregistrement.Location = new System.Drawing.Point(611, 58);
-            this.ButtonSupprimerEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonSupprimerEnregistrement.Name = "ButtonSupprimerEnregistrement";
-            this.ButtonSupprimerEnregistrement.Palette = this.kryptonPalette1;
-            this.ButtonSupprimerEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonSupprimerEnregistrement.Size = new System.Drawing.Size(120, 31);
-            this.ButtonSupprimerEnregistrement.TabIndex = 14;
-            this.ButtonSupprimerEnregistrement.Values.Text = "Supprimer";
-            this.ButtonSupprimerEnregistrement.Click += new System.EventHandler(this.ButtonSupprimerEnregistrement_Click);
+            this.BouttonNouveauEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonNouveauEnregistrement.Location = new System.Drawing.Point(349, 47);
+            this.BouttonNouveauEnregistrement.Name = "BouttonNouveauEnregistrement";
+            this.BouttonNouveauEnregistrement.Palette = this.kryptonPalette1;
+            this.BouttonNouveauEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonNouveauEnregistrement.Size = new System.Drawing.Size(90, 25);
+            this.BouttonNouveauEnregistrement.TabIndex = 13;
+            this.BouttonNouveauEnregistrement.Values.Text = "Nouveau";
             // 
-            // ButtonNouveauEnregistrement
+            // DateTimePickerEnregistrement
             // 
-            this.ButtonNouveauEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonNouveauEnregistrement.Location = new System.Drawing.Point(457, 58);
-            this.ButtonNouveauEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonNouveauEnregistrement.Name = "ButtonNouveauEnregistrement";
-            this.ButtonNouveauEnregistrement.Palette = this.kryptonPalette1;
-            this.ButtonNouveauEnregistrement.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonNouveauEnregistrement.Size = new System.Drawing.Size(120, 31);
-            this.ButtonNouveauEnregistrement.TabIndex = 13;
-            this.ButtonNouveauEnregistrement.Values.Text = "Nouveau";
+            this.DateTimePickerEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePickerEnregistrement.Location = new System.Drawing.Point(558, 15);
+            this.DateTimePickerEnregistrement.Name = "DateTimePickerEnregistrement";
+            this.DateTimePickerEnregistrement.Size = new System.Drawing.Size(113, 23);
+            this.DateTimePickerEnregistrement.TabIndex = 4;
             // 
-            // dateTimePickerEnregistrement
+            // ComboBoxDeviseEnregistrement
             // 
-            this.dateTimePickerEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerEnregistrement.Location = new System.Drawing.Point(744, 18);
-            this.dateTimePickerEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dateTimePickerEnregistrement.Name = "dateTimePickerEnregistrement";
-            this.dateTimePickerEnregistrement.Size = new System.Drawing.Size(149, 26);
-            this.dateTimePickerEnregistrement.TabIndex = 4;
+            this.ComboBoxDeviseEnregistrement.DropDownHeight = 120;
+            this.ComboBoxDeviseEnregistrement.DropDownWidth = 120;
+            this.ComboBoxDeviseEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxDeviseEnregistrement.FormattingEnabled = true;
+            this.ComboBoxDeviseEnregistrement.IntegralHeight = false;
+            this.ComboBoxDeviseEnregistrement.Location = new System.Drawing.Point(458, 14);
+            this.ComboBoxDeviseEnregistrement.Name = "ComboBoxDeviseEnregistrement";
+            this.ComboBoxDeviseEnregistrement.Size = new System.Drawing.Size(94, 24);
+            this.ComboBoxDeviseEnregistrement.TabIndex = 3;
+            this.ComboBoxDeviseEnregistrement.TabStop = false;
+            this.ComboBoxDeviseEnregistrement.SelectedIndexChanged += new System.EventHandler(this.ComboBoxDeviseEnregistrement_SelectedIndexChanged);
             // 
-            // comboBoxDeviseEnregistrement
+            // TextBoxLibelleEnregistrement
             // 
-            this.comboBoxDeviseEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxDeviseEnregistrement.FormattingEnabled = true;
-            this.comboBoxDeviseEnregistrement.Items.AddRange(new object[] {
-            "Dollar US",
-            "Ariary Malgache",
-            "Euro",
-            "Franc CFA"});
-            this.comboBoxDeviseEnregistrement.Location = new System.Drawing.Point(611, 17);
-            this.comboBoxDeviseEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxDeviseEnregistrement.Name = "comboBoxDeviseEnregistrement";
-            this.comboBoxDeviseEnregistrement.Size = new System.Drawing.Size(124, 28);
-            this.comboBoxDeviseEnregistrement.TabIndex = 3;
-            this.comboBoxDeviseEnregistrement.Text = "Euro";
-            this.comboBoxDeviseEnregistrement.SelectedIndexChanged += new System.EventHandler(this.comboBoxDeviseEnregistrement_SelectedIndexChanged);
+            this.TextBoxLibelleEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxLibelleEnregistrement.Location = new System.Drawing.Point(287, 14);
+            this.TextBoxLibelleEnregistrement.Name = "TextBoxLibelleEnregistrement";
+            this.TextBoxLibelleEnregistrement.Size = new System.Drawing.Size(165, 23);
+            this.TextBoxLibelleEnregistrement.TabIndex = 2;
+            this.TextBoxLibelleEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBoxLibelleEnregistrement
+            // ComboBoxReglementEnregistrement
             // 
-            this.textBoxLibelleEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLibelleEnregistrement.Location = new System.Drawing.Point(400, 18);
-            this.textBoxLibelleEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxLibelleEnregistrement.Name = "textBoxLibelleEnregistrement";
-            this.textBoxLibelleEnregistrement.Size = new System.Drawing.Size(201, 26);
-            this.textBoxLibelleEnregistrement.TabIndex = 2;
-            this.textBoxLibelleEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ComboBoxReglementEnregistrement.DropDownHeight = 140;
+            this.ComboBoxReglementEnregistrement.DropDownWidth = 120;
+            this.ComboBoxReglementEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxReglementEnregistrement.FormattingEnabled = true;
+            this.ComboBoxReglementEnregistrement.IntegralHeight = false;
+            this.ComboBoxReglementEnregistrement.ItemHeight = 16;
+            this.ComboBoxReglementEnregistrement.Location = new System.Drawing.Point(3, 13);
+            this.ComboBoxReglementEnregistrement.Name = "ComboBoxReglementEnregistrement";
+            this.ComboBoxReglementEnregistrement.Size = new System.Drawing.Size(74, 24);
+            this.ComboBoxReglementEnregistrement.TabIndex = 0;
             // 
-            // comboBoxEspeceEnregistrement
+            // TextBoxMontantEnregistrement
             // 
-            this.comboBoxEspeceEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEspeceEnregistrement.FormattingEnabled = true;
-            this.comboBoxEspeceEnregistrement.Items.AddRange(new object[] {
-            "Espèce",
-            "Virement",
-            "Chèque"});
-            this.comboBoxEspeceEnregistrement.Location = new System.Drawing.Point(8, 16);
-            this.comboBoxEspeceEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxEspeceEnregistrement.Name = "comboBoxEspeceEnregistrement";
-            this.comboBoxEspeceEnregistrement.Size = new System.Drawing.Size(93, 28);
-            this.comboBoxEspeceEnregistrement.TabIndex = 0;
-            this.comboBoxEspeceEnregistrement.Text = "Espèce";
-            // 
-            // textBoxMontantEnregistrement
-            // 
-            this.textBoxMontantEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMontantEnregistrement.Location = new System.Drawing.Point(109, 17);
-            this.textBoxMontantEnregistrement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxMontantEnregistrement.Name = "textBoxMontantEnregistrement";
-            this.textBoxMontantEnregistrement.Size = new System.Drawing.Size(229, 26);
-            this.textBoxMontantEnregistrement.TabIndex = 1;
-            this.textBoxMontantEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBoxMontantEnregistrement.TextChanged += new System.EventHandler(this.textBoxMontantEnregistrement_TextChanged);
+            this.TextBoxMontantEnregistrement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxMontantEnregistrement.Location = new System.Drawing.Point(83, 14);
+            this.TextBoxMontantEnregistrement.Name = "TextBoxMontantEnregistrement";
+            this.TextBoxMontantEnregistrement.Size = new System.Drawing.Size(198, 23);
+            this.TextBoxMontantEnregistrement.TabIndex = 1;
+            this.TextBoxMontantEnregistrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TextBoxMontantEnregistrement.TextChanged += new System.EventHandler(this.TextBoxMontantEnregistrement_TextChanged);
             // 
             // groupBoxCommand
             // 
             this.groupBoxCommand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxCommand.Controls.Add(this.ButtonValider);
-            this.groupBoxCommand.Controls.Add(this.ButtonCreerDoc);
-            this.groupBoxCommand.Controls.Add(this.ButtonRappelTicket);
-            this.groupBoxCommand.Controls.Add(this.ButtonEnAttente);
-            this.groupBoxCommand.Controls.Add(this.ButtonRaccourci);
-            this.groupBoxCommand.Controls.Add(this.ButtonTicket);
-            this.groupBoxCommand.Controls.Add(this.ButtonFacture);
-            this.groupBoxCommand.Controls.Add(this.ButtonAnnuler);
-            this.groupBoxCommand.Controls.Add(this.ButtonFinDeSaisie);
-            this.groupBoxCommand.Location = new System.Drawing.Point(952, 729);
-            this.groupBoxCommand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCommand.Controls.Add(this.BouttonValider);
+            this.groupBoxCommand.Controls.Add(this.BouttonCreerDoc);
+            this.groupBoxCommand.Controls.Add(this.BouttonRappelTicket);
+            this.groupBoxCommand.Controls.Add(this.BouttonEnAttente);
+            this.groupBoxCommand.Controls.Add(this.BouttonRaccourci);
+            this.groupBoxCommand.Controls.Add(this.BouttonTicket);
+            this.groupBoxCommand.Controls.Add(this.BouttonFacture);
+            this.groupBoxCommand.Controls.Add(this.BouttonAnnuler);
+            this.groupBoxCommand.Controls.Add(this.BouttonFinDeSaisie);
+            this.groupBoxCommand.Location = new System.Drawing.Point(714, 608);
             this.groupBoxCommand.Name = "groupBoxCommand";
             this.groupBoxCommand.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxCommand.Size = new System.Drawing.Size(524, 154);
             this.groupBoxCommand.TabIndex = 3;
             this.groupBoxCommand.TabStop = false;
             // 
-            // ButtonValider
+            // BouttonValider
             // 
-            this.ButtonValider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonValider.Enabled = false;
-            this.ButtonValider.Location = new System.Drawing.Point(392, 113);
-            this.ButtonValider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonValider.Name = "ButtonValider";
-            this.ButtonValider.Palette = this.kryptonPalette1;
-            this.ButtonValider.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonValider.Size = new System.Drawing.Size(120, 31);
-            this.ButtonValider.TabIndex = 9;
-            this.ButtonValider.Values.Text = "Valider";
-            this.ButtonValider.Click += new System.EventHandler(this.ButtonValider_Click);
+            this.BouttonValider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonValider.Enabled = false;
+            this.BouttonValider.Location = new System.Drawing.Point(294, 92);
+            this.BouttonValider.Name = "BouttonValider";
+            this.BouttonValider.Palette = this.kryptonPalette1;
+            this.BouttonValider.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonValider.Size = new System.Drawing.Size(90, 25);
+            this.BouttonValider.TabIndex = 9;
+            this.BouttonValider.Values.Text = "Valider";
+            this.BouttonValider.Click += new System.EventHandler(this.BouttonValider_Click);
             // 
-            // ButtonCreerDoc
+            // BouttonCreerDoc
             // 
-            this.ButtonCreerDoc.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.ButtonCreerDoc.Location = new System.Drawing.Point(208, 113);
-            this.ButtonCreerDoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonCreerDoc.Name = "ButtonCreerDoc";
-            this.ButtonCreerDoc.Palette = this.kryptonPalette1;
-            this.ButtonCreerDoc.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonCreerDoc.Size = new System.Drawing.Size(120, 31);
-            this.ButtonCreerDoc.TabIndex = 8;
-            this.ButtonCreerDoc.Values.Text = "Créer doc.";
+            this.BouttonCreerDoc.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.BouttonCreerDoc.Location = new System.Drawing.Point(156, 92);
+            this.BouttonCreerDoc.Name = "BouttonCreerDoc";
+            this.BouttonCreerDoc.Palette = this.kryptonPalette1;
+            this.BouttonCreerDoc.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonCreerDoc.Size = new System.Drawing.Size(90, 25);
+            this.BouttonCreerDoc.TabIndex = 8;
+            this.BouttonCreerDoc.Values.Text = "Créer doc.";
             // 
-            // ButtonRappelTicket
+            // BouttonRappelTicket
             // 
-            this.ButtonRappelTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonRappelTicket.Location = new System.Drawing.Point(16, 113);
-            this.ButtonRappelTicket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonRappelTicket.Name = "ButtonRappelTicket";
-            this.ButtonRappelTicket.Palette = this.kryptonPalette1;
-            this.ButtonRappelTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonRappelTicket.Size = new System.Drawing.Size(120, 31);
-            this.ButtonRappelTicket.TabIndex = 7;
-            this.ButtonRappelTicket.Values.Text = "Rappel Ticket";
+            this.BouttonRappelTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BouttonRappelTicket.Location = new System.Drawing.Point(12, 92);
+            this.BouttonRappelTicket.Name = "BouttonRappelTicket";
+            this.BouttonRappelTicket.Palette = this.kryptonPalette1;
+            this.BouttonRappelTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonRappelTicket.Size = new System.Drawing.Size(90, 25);
+            this.BouttonRappelTicket.TabIndex = 7;
+            this.BouttonRappelTicket.Values.Text = "Rappel Ticket";
             // 
-            // ButtonEnAttente
+            // BouttonEnAttente
             // 
-            this.ButtonEnAttente.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.ButtonEnAttente.Enabled = false;
-            this.ButtonEnAttente.Location = new System.Drawing.Point(391, 65);
-            this.ButtonEnAttente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonEnAttente.Name = "ButtonEnAttente";
-            this.ButtonEnAttente.Palette = this.kryptonPalette1;
-            this.ButtonEnAttente.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonEnAttente.Size = new System.Drawing.Size(120, 31);
-            this.ButtonEnAttente.TabIndex = 6;
-            this.ButtonEnAttente.Values.Text = "En attente";
+            this.BouttonEnAttente.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BouttonEnAttente.Enabled = false;
+            this.BouttonEnAttente.Location = new System.Drawing.Point(293, 53);
+            this.BouttonEnAttente.Name = "BouttonEnAttente";
+            this.BouttonEnAttente.Palette = this.kryptonPalette1;
+            this.BouttonEnAttente.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonEnAttente.Size = new System.Drawing.Size(90, 25);
+            this.BouttonEnAttente.TabIndex = 6;
+            this.BouttonEnAttente.Values.Text = "En attente";
             // 
-            // ButtonRaccourci
+            // BouttonRaccourci
             // 
-            this.ButtonRaccourci.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ButtonRaccourci.Location = new System.Drawing.Point(207, 65);
-            this.ButtonRaccourci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonRaccourci.Name = "ButtonRaccourci";
-            this.ButtonRaccourci.Palette = this.kryptonPalette1;
-            this.ButtonRaccourci.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonRaccourci.Size = new System.Drawing.Size(120, 31);
-            this.ButtonRaccourci.TabIndex = 5;
-            this.ButtonRaccourci.Values.Text = "Raccourcis";
+            this.BouttonRaccourci.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BouttonRaccourci.Location = new System.Drawing.Point(155, 53);
+            this.BouttonRaccourci.Name = "BouttonRaccourci";
+            this.BouttonRaccourci.Palette = this.kryptonPalette1;
+            this.BouttonRaccourci.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonRaccourci.Size = new System.Drawing.Size(90, 25);
+            this.BouttonRaccourci.TabIndex = 5;
+            this.BouttonRaccourci.Values.Text = "Raccourcis";
             // 
-            // ButtonTicket
+            // BouttonTicket
             // 
-            this.ButtonTicket.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ButtonTicket.Enabled = false;
-            this.ButtonTicket.Location = new System.Drawing.Point(15, 65);
-            this.ButtonTicket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonTicket.Name = "ButtonTicket";
-            this.ButtonTicket.Palette = this.kryptonPalette1;
-            this.ButtonTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonTicket.Size = new System.Drawing.Size(120, 31);
-            this.ButtonTicket.TabIndex = 4;
-            this.ButtonTicket.Values.Text = "Ticket";
+            this.BouttonTicket.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.BouttonTicket.Enabled = false;
+            this.BouttonTicket.Location = new System.Drawing.Point(11, 53);
+            this.BouttonTicket.Name = "BouttonTicket";
+            this.BouttonTicket.Palette = this.kryptonPalette1;
+            this.BouttonTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonTicket.Size = new System.Drawing.Size(90, 25);
+            this.BouttonTicket.TabIndex = 4;
+            this.BouttonTicket.Values.Text = "Ticket";
             // 
-            // ButtonFacture
+            // BouttonFacture
             // 
-            this.ButtonFacture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonFacture.Enabled = false;
-            this.ButtonFacture.Location = new System.Drawing.Point(391, 14);
-            this.ButtonFacture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonFacture.Name = "ButtonFacture";
-            this.ButtonFacture.Palette = this.kryptonPalette1;
-            this.ButtonFacture.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonFacture.Size = new System.Drawing.Size(120, 31);
-            this.ButtonFacture.TabIndex = 3;
-            this.ButtonFacture.Values.Text = "Facture";
+            this.BouttonFacture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonFacture.Enabled = false;
+            this.BouttonFacture.Location = new System.Drawing.Point(293, 11);
+            this.BouttonFacture.Name = "BouttonFacture";
+            this.BouttonFacture.Palette = this.kryptonPalette1;
+            this.BouttonFacture.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonFacture.Size = new System.Drawing.Size(90, 25);
+            this.BouttonFacture.TabIndex = 3;
+            this.BouttonFacture.Values.Text = "Facture";
             // 
-            // ButtonAnnuler
+            // BouttonAnnuler
             // 
-            this.ButtonAnnuler.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.ButtonAnnuler.Location = new System.Drawing.Point(207, 14);
-            this.ButtonAnnuler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonAnnuler.Name = "ButtonAnnuler";
-            this.ButtonAnnuler.Palette = this.kryptonPalette1;
-            this.ButtonAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonAnnuler.Size = new System.Drawing.Size(120, 31);
-            this.ButtonAnnuler.TabIndex = 2;
-            this.ButtonAnnuler.Values.Text = "Annuler";
-            this.ButtonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
+            this.BouttonAnnuler.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BouttonAnnuler.Location = new System.Drawing.Point(155, 11);
+            this.BouttonAnnuler.Name = "BouttonAnnuler";
+            this.BouttonAnnuler.Palette = this.kryptonPalette1;
+            this.BouttonAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonAnnuler.Size = new System.Drawing.Size(90, 25);
+            this.BouttonAnnuler.TabIndex = 2;
+            this.BouttonAnnuler.Values.Text = "Annuler";
+            this.BouttonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
             // 
-            // ButtonFinDeSaisie
+            // BouttonFinDeSaisie
             // 
-            this.ButtonFinDeSaisie.Enabled = false;
-            this.ButtonFinDeSaisie.Location = new System.Drawing.Point(15, 14);
-            this.ButtonFinDeSaisie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonFinDeSaisie.Name = "ButtonFinDeSaisie";
-            this.ButtonFinDeSaisie.Palette = this.kryptonPalette1;
-            this.ButtonFinDeSaisie.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonFinDeSaisie.Size = new System.Drawing.Size(120, 31);
-            this.ButtonFinDeSaisie.TabIndex = 1;
-            this.ButtonFinDeSaisie.Values.Text = "Fin de saisie";
-            this.ButtonFinDeSaisie.Click += new System.EventHandler(this.ButtonFinDeSaisie_Click);
+            this.BouttonFinDeSaisie.Enabled = false;
+            this.BouttonFinDeSaisie.Location = new System.Drawing.Point(11, 11);
+            this.BouttonFinDeSaisie.Name = "BouttonFinDeSaisie";
+            this.BouttonFinDeSaisie.Palette = this.kryptonPalette1;
+            this.BouttonFinDeSaisie.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonFinDeSaisie.Size = new System.Drawing.Size(90, 25);
+            this.BouttonFinDeSaisie.TabIndex = 1;
+            this.BouttonFinDeSaisie.Values.Text = "Fin de saisie";
+            this.BouttonFinDeSaisie.Click += new System.EventHandler(this.BouttonFinDeSaisie_Click);
             // 
-            // groupBoxReste
+            // GroupBoxReste
             // 
-            this.groupBoxReste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxReste.Controls.Add(this.labelPrixResteDu);
-            this.groupBoxReste.Controls.Add(this.label11);
-            this.groupBoxReste.Controls.Add(this.comboBoxResteDu);
-            this.groupBoxReste.Controls.Add(this.labelResteDu);
-            this.groupBoxReste.Controls.Add(this.labelResteDuDevise);
-            this.groupBoxReste.Location = new System.Drawing.Point(952, 596);
-            this.groupBoxReste.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxReste.Name = "groupBoxReste";
-            this.groupBoxReste.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxReste.Size = new System.Drawing.Size(524, 126);
-            this.groupBoxReste.TabIndex = 2;
-            this.groupBoxReste.TabStop = false;
+            this.GroupBoxReste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBoxReste.Controls.Add(this.LabelPrixResteDu);
+            this.GroupBoxReste.Controls.Add(this.LabelDeviseReste);
+            this.GroupBoxReste.Controls.Add(this.ComboBoxDeviseReste);
+            this.GroupBoxReste.Controls.Add(this.LabelResteDu);
+            this.GroupBoxReste.Controls.Add(this.labelResteDuDevise);
+            this.GroupBoxReste.Location = new System.Drawing.Point(714, 500);
+            this.GroupBoxReste.Name = "GroupBoxReste";
+            this.GroupBoxReste.Size = new System.Drawing.Size(393, 102);
+            this.GroupBoxReste.TabIndex = 2;
+            this.GroupBoxReste.TabStop = false;
             // 
-            // labelPrixResteDu
+            // LabelPrixResteDu
             // 
-            this.labelPrixResteDu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LabelPrixResteDu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelPrixResteDu.AutoSize = true;
-            this.labelPrixResteDu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPrixResteDu.Location = new System.Drawing.Point(260, 16);
-            this.labelPrixResteDu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelPrixResteDu.Name = "labelPrixResteDu";
-            this.labelPrixResteDu.Size = new System.Drawing.Size(87, 39);
-            this.labelPrixResteDu.TabIndex = 17;
-            this.labelPrixResteDu.Text = "0,00";
-            this.labelPrixResteDu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LabelPrixResteDu.AutoSize = true;
+            this.LabelPrixResteDu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelPrixResteDu.Location = new System.Drawing.Point(195, 13);
+            this.LabelPrixResteDu.Name = "LabelPrixResteDu";
+            this.LabelPrixResteDu.Size = new System.Drawing.Size(71, 31);
+            this.LabelPrixResteDu.TabIndex = 17;
+            this.LabelPrixResteDu.Text = "0,00";
+            this.LabelPrixResteDu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label11
+            // LabelDeviseReste
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(63, 68);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 20);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "Devise";
+            this.LabelDeviseReste.AutoSize = true;
+            this.LabelDeviseReste.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDeviseReste.Location = new System.Drawing.Point(47, 55);
+            this.LabelDeviseReste.Name = "LabelDeviseReste";
+            this.LabelDeviseReste.Size = new System.Drawing.Size(51, 17);
+            this.LabelDeviseReste.TabIndex = 13;
+            this.LabelDeviseReste.Text = "Devise";
             // 
-            // comboBoxResteDu
+            // ComboBoxDeviseReste
             // 
-            this.comboBoxResteDu.FormattingEnabled = true;
-            this.comboBoxResteDu.Items.AddRange(new object[] {
+            this.ComboBoxDeviseReste.FormattingEnabled = true;
+            this.ComboBoxDeviseReste.Items.AddRange(new object[] {
             "Ariary Malgache",
             "Dollar US",
             "Euro",
             "Franc CFA"});
-            this.comboBoxResteDu.Location = new System.Drawing.Point(184, 66);
-            this.comboBoxResteDu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxResteDu.Name = "comboBoxResteDu";
-            this.comboBoxResteDu.Size = new System.Drawing.Size(325, 24);
-            this.comboBoxResteDu.TabIndex = 13;
+            this.ComboBoxDeviseReste.Location = new System.Drawing.Point(138, 54);
+            this.ComboBoxDeviseReste.Name = "ComboBoxDeviseReste";
+            this.ComboBoxDeviseReste.Size = new System.Drawing.Size(245, 21);
+            this.ComboBoxDeviseReste.TabIndex = 13;
             // 
-            // labelResteDu
+            // LabelResteDu
             // 
-            this.labelResteDu.AutoSize = true;
-            this.labelResteDu.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResteDu.Location = new System.Drawing.Point(8, 20);
-            this.labelResteDu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelResteDu.Name = "labelResteDu";
-            this.labelResteDu.Size = new System.Drawing.Size(142, 36);
-            this.labelResteDu.TabIndex = 0;
-            this.labelResteDu.Text = "Reste dû";
-            this.labelResteDu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelResteDu.AutoSize = true;
+            this.LabelResteDu.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelResteDu.Location = new System.Drawing.Point(6, 16);
+            this.LabelResteDu.Name = "LabelResteDu";
+            this.LabelResteDu.Size = new System.Drawing.Size(117, 29);
+            this.LabelResteDu.TabIndex = 0;
+            this.LabelResteDu.Text = "Reste dû";
+            this.LabelResteDu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelResteDuDevise
             // 
@@ -936,213 +945,222 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.labelResteDuDevise.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.labelResteDuDevise.Visible = false;
             // 
-            // groupBoxinfoCaissier
+            // GroupBoxinfoCaissier
             // 
-            this.groupBoxinfoCaissier.Controls.Add(this.labelNomCaissier);
-            this.groupBoxinfoCaissier.Controls.Add(this.dateTimePicker1);
-            this.groupBoxinfoCaissier.Controls.Add(this.labelTitleCaissier);
-            this.groupBoxinfoCaissier.Controls.Add(this.label8);
-            this.groupBoxinfoCaissier.Controls.Add(this.label9);
-            this.groupBoxinfoCaissier.Controls.Add(this.labelCentrale);
-            this.groupBoxinfoCaissier.Controls.Add(this.labelTarif);
-            this.groupBoxinfoCaissier.Controls.Add(this.labelVendeur);
-            this.groupBoxinfoCaissier.Controls.Add(this.labelDate);
-            this.groupBoxinfoCaissier.Controls.Add(this.comboBoxNumero);
-            this.groupBoxinfoCaissier.Controls.Add(this.comboBoxAffaire);
-            this.groupBoxinfoCaissier.Controls.Add(this.comboBoxDepot);
-            this.groupBoxinfoCaissier.Controls.Add(this.comboBoxType);
-            this.groupBoxinfoCaissier.Controls.Add(this.comboBoxCentrale);
-            this.groupBoxinfoCaissier.Controls.Add(this.comboBoxTarif);
-            this.groupBoxinfoCaissier.Controls.Add(this.comboBoxVendeur);
-            this.groupBoxinfoCaissier.Location = new System.Drawing.Point(25, 15);
-            this.groupBoxinfoCaissier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxinfoCaissier.Name = "groupBoxinfoCaissier";
-            this.groupBoxinfoCaissier.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxinfoCaissier.Size = new System.Drawing.Size(732, 183);
-            this.groupBoxinfoCaissier.TabIndex = 0;
-            this.groupBoxinfoCaissier.TabStop = false;
+            this.GroupBoxinfoCaissier.Controls.Add(this.LabelNomCaissier);
+            this.GroupBoxinfoCaissier.Controls.Add(this.DateTimePicker1);
+            this.GroupBoxinfoCaissier.Controls.Add(this.LabelTitleCaissier);
+            this.GroupBoxinfoCaissier.Controls.Add(this.LabelAffaire);
+            this.GroupBoxinfoCaissier.Controls.Add(this.LabelDepot);
+            this.GroupBoxinfoCaissier.Controls.Add(this.LabelCentrale);
+            this.GroupBoxinfoCaissier.Controls.Add(this.LabelTarif);
+            this.GroupBoxinfoCaissier.Controls.Add(this.LabelVendeur);
+            this.GroupBoxinfoCaissier.Controls.Add(this.LabelDate);
+            this.GroupBoxinfoCaissier.Controls.Add(this.ComboBoxNumero);
+            this.GroupBoxinfoCaissier.Controls.Add(this.ComboBoxAffaire);
+            this.GroupBoxinfoCaissier.Controls.Add(this.ComboBoxDepot);
+            this.GroupBoxinfoCaissier.Controls.Add(this.ComboBoxType);
+            this.GroupBoxinfoCaissier.Controls.Add(this.ComboBoxCentrale);
+            this.GroupBoxinfoCaissier.Controls.Add(this.ComboBoxTarif);
+            this.GroupBoxinfoCaissier.Controls.Add(this.ComboBoxVendeur);
+            this.GroupBoxinfoCaissier.Location = new System.Drawing.Point(19, 12);
+            this.GroupBoxinfoCaissier.Name = "GroupBoxinfoCaissier";
+            this.GroupBoxinfoCaissier.Size = new System.Drawing.Size(549, 149);
+            this.GroupBoxinfoCaissier.TabIndex = 0;
+            this.GroupBoxinfoCaissier.TabStop = false;
             // 
-            // labelNomCaissier
+            // LabelNomCaissier
             // 
-            this.labelNomCaissier.AutoSize = true;
-            this.labelNomCaissier.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomCaissier.Location = new System.Drawing.Point(389, 23);
-            this.labelNomCaissier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelNomCaissier.Name = "labelNomCaissier";
-            this.labelNomCaissier.Size = new System.Drawing.Size(154, 24);
-            this.labelNomCaissier.TabIndex = 14;
-            this.labelNomCaissier.Text = "NomCaissierN1";
+            this.LabelNomCaissier.AutoSize = true;
+            this.LabelNomCaissier.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelNomCaissier.Location = new System.Drawing.Point(292, 19);
+            this.LabelNomCaissier.Name = "LabelNomCaissier";
+            this.LabelNomCaissier.Size = new System.Drawing.Size(127, 18);
+            this.LabelNomCaissier.TabIndex = 14;
+            this.LabelNomCaissier.Text = "NomCaissierN1";
             // 
-            // dateTimePicker1
+            // DateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(8, 28);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(160, 22);
-            this.dateTimePicker1.TabIndex = 13;
-            this.dateTimePicker1.Value = new System.DateTime(2024, 2, 21, 10, 37, 44, 0);
+            this.DateTimePicker1.Location = new System.Drawing.Point(6, 23);
+            this.DateTimePicker1.Name = "DateTimePicker1";
+            this.DateTimePicker1.Size = new System.Drawing.Size(121, 20);
+            this.DateTimePicker1.TabIndex = 13;
+            this.DateTimePicker1.Value = new System.DateTime(2024, 2, 21, 10, 37, 44, 0);
             // 
-            // labelTitleCaissier
+            // LabelTitleCaissier
             // 
-            this.labelTitleCaissier.AutoSize = true;
-            this.labelTitleCaissier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitleCaissier.Location = new System.Drawing.Point(263, 23);
-            this.labelTitleCaissier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTitleCaissier.Name = "labelTitleCaissier";
-            this.labelTitleCaissier.Size = new System.Drawing.Size(83, 25);
-            this.labelTitleCaissier.TabIndex = 6;
-            this.labelTitleCaissier.Text = "Caissier";
+            this.LabelTitleCaissier.AutoSize = true;
+            this.LabelTitleCaissier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTitleCaissier.Location = new System.Drawing.Point(197, 19);
+            this.LabelTitleCaissier.Name = "LabelTitleCaissier";
+            this.LabelTitleCaissier.Size = new System.Drawing.Size(65, 20);
+            this.LabelTitleCaissier.TabIndex = 6;
+            this.LabelTitleCaissier.Text = "Caissier";
             // 
-            // label8
+            // LabelAffaire
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(437, 127);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 20);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Affaire";
+            this.LabelAffaire.AutoSize = true;
+            this.LabelAffaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelAffaire.Location = new System.Drawing.Point(328, 103);
+            this.LabelAffaire.Name = "LabelAffaire";
+            this.LabelAffaire.Size = new System.Drawing.Size(49, 17);
+            this.LabelAffaire.TabIndex = 12;
+            this.LabelAffaire.Text = "Affaire";
             // 
-            // label9
+            // LabelDepot
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(437, 94);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 20);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "Dépôt";
+            this.LabelDepot.AutoSize = true;
+            this.LabelDepot.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDepot.Location = new System.Drawing.Point(328, 76);
+            this.LabelDepot.Name = "LabelDepot";
+            this.LabelDepot.Size = new System.Drawing.Size(46, 17);
+            this.LabelDepot.TabIndex = 11;
+            this.LabelDepot.Text = "Dépôt";
             // 
-            // labelCentrale
+            // LabelCentrale
             // 
-            this.labelCentrale.AutoSize = true;
-            this.labelCentrale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCentrale.Location = new System.Drawing.Point(177, 130);
-            this.labelCentrale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelCentrale.Name = "labelCentrale";
-            this.labelCentrale.Size = new System.Drawing.Size(72, 20);
-            this.labelCentrale.TabIndex = 10;
-            this.labelCentrale.Text = "Centrale";
+            this.LabelCentrale.AutoSize = true;
+            this.LabelCentrale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCentrale.Location = new System.Drawing.Point(133, 106);
+            this.LabelCentrale.Name = "LabelCentrale";
+            this.LabelCentrale.Size = new System.Drawing.Size(61, 17);
+            this.LabelCentrale.TabIndex = 10;
+            this.LabelCentrale.Text = "Centrale";
             // 
-            // labelTarif
+            // LabelTarif
             // 
-            this.labelTarif.AutoSize = true;
-            this.labelTarif.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTarif.Location = new System.Drawing.Point(177, 97);
-            this.labelTarif.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTarif.Name = "labelTarif";
-            this.labelTarif.Size = new System.Drawing.Size(43, 20);
-            this.labelTarif.TabIndex = 9;
-            this.labelTarif.Text = "Tarif";
+            this.LabelTarif.AutoSize = true;
+            this.LabelTarif.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTarif.Location = new System.Drawing.Point(133, 79);
+            this.LabelTarif.Name = "LabelTarif";
+            this.LabelTarif.Size = new System.Drawing.Size(37, 17);
+            this.LabelTarif.TabIndex = 9;
+            this.LabelTarif.Text = "Tarif";
             // 
-            // labelVendeur
+            // LabelVendeur
             // 
-            this.labelVendeur.AutoSize = true;
-            this.labelVendeur.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVendeur.Location = new System.Drawing.Point(177, 64);
-            this.labelVendeur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelVendeur.Name = "labelVendeur";
-            this.labelVendeur.Size = new System.Drawing.Size(71, 20);
-            this.labelVendeur.TabIndex = 8;
-            this.labelVendeur.Text = "Vendeur";
+            this.LabelVendeur.AutoSize = true;
+            this.LabelVendeur.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelVendeur.Location = new System.Drawing.Point(133, 52);
+            this.LabelVendeur.Name = "LabelVendeur";
+            this.LabelVendeur.Size = new System.Drawing.Size(62, 17);
+            this.LabelVendeur.TabIndex = 8;
+            this.LabelVendeur.Text = "Vendeur";
             // 
-            // labelDate
+            // LabelDate
             // 
-            this.labelDate.AutoSize = true;
-            this.labelDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDate.Location = new System.Drawing.Point(177, 31);
-            this.labelDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(45, 20);
-            this.labelDate.TabIndex = 6;
-            this.labelDate.Text = "Date";
+            this.LabelDate.AutoSize = true;
+            this.LabelDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDate.Location = new System.Drawing.Point(133, 25);
+            this.LabelDate.Name = "LabelDate";
+            this.LabelDate.Size = new System.Drawing.Size(38, 17);
+            this.LabelDate.TabIndex = 6;
+            this.LabelDate.Text = "Date";
             // 
-            // comboBoxNumero
+            // ComboBoxNumero
             // 
-            this.comboBoxNumero.FormattingEnabled = true;
-            this.comboBoxNumero.Location = new System.Drawing.Point(437, 57);
-            this.comboBoxNumero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxNumero.Name = "comboBoxNumero";
-            this.comboBoxNumero.Size = new System.Drawing.Size(171, 24);
-            this.comboBoxNumero.TabIndex = 7;
-            this.comboBoxNumero.Text = "Numéro";
+            this.ComboBoxNumero.FormattingEnabled = true;
+            this.ComboBoxNumero.Location = new System.Drawing.Point(328, 46);
+            this.ComboBoxNumero.Name = "ComboBoxNumero";
+            this.ComboBoxNumero.Size = new System.Drawing.Size(129, 21);
+            this.ComboBoxNumero.TabIndex = 7;
+            this.ComboBoxNumero.Text = "Numéro";
             // 
-            // comboBoxAffaire
+            // ComboBoxAffaire
             // 
-            this.comboBoxAffaire.FormattingEnabled = true;
-            this.comboBoxAffaire.Location = new System.Drawing.Point(268, 123);
-            this.comboBoxAffaire.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxAffaire.Name = "comboBoxAffaire";
-            this.comboBoxAffaire.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxAffaire.TabIndex = 6;
+            this.ComboBoxAffaire.FormattingEnabled = true;
+            this.ComboBoxAffaire.Location = new System.Drawing.Point(201, 100);
+            this.ComboBoxAffaire.Name = "ComboBoxAffaire";
+            this.ComboBoxAffaire.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxAffaire.TabIndex = 6;
             // 
-            // comboBoxDepot
+            // ComboBoxDepot
             // 
-            this.comboBoxDepot.FormattingEnabled = true;
-            this.comboBoxDepot.Location = new System.Drawing.Point(268, 90);
-            this.comboBoxDepot.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxDepot.Name = "comboBoxDepot";
-            this.comboBoxDepot.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxDepot.TabIndex = 5;
+            this.ComboBoxDepot.FormattingEnabled = true;
+            this.ComboBoxDepot.Location = new System.Drawing.Point(201, 73);
+            this.ComboBoxDepot.Name = "ComboBoxDepot";
+            this.ComboBoxDepot.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxDepot.TabIndex = 5;
             // 
-            // comboBoxType
+            // ComboBoxType
             // 
-            this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Location = new System.Drawing.Point(268, 57);
-            this.comboBoxType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxType.Name = "comboBoxType";
-            this.comboBoxType.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxType.TabIndex = 4;
+            this.ComboBoxType.FormattingEnabled = true;
+            this.ComboBoxType.Location = new System.Drawing.Point(201, 46);
+            this.ComboBoxType.Name = "ComboBoxType";
+            this.ComboBoxType.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxType.TabIndex = 4;
             // 
-            // comboBoxCentrale
+            // ComboBoxCentrale
             // 
-            this.comboBoxCentrale.FormattingEnabled = true;
-            this.comboBoxCentrale.Location = new System.Drawing.Point(8, 127);
-            this.comboBoxCentrale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxCentrale.Name = "comboBoxCentrale";
-            this.comboBoxCentrale.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxCentrale.TabIndex = 3;
+            this.ComboBoxCentrale.FormattingEnabled = true;
+            this.ComboBoxCentrale.Location = new System.Drawing.Point(6, 103);
+            this.ComboBoxCentrale.Name = "ComboBoxCentrale";
+            this.ComboBoxCentrale.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxCentrale.TabIndex = 3;
             // 
-            // comboBoxTarif
+            // ComboBoxTarif
             // 
-            this.comboBoxTarif.FormattingEnabled = true;
-            this.comboBoxTarif.Location = new System.Drawing.Point(8, 94);
-            this.comboBoxTarif.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxTarif.Name = "comboBoxTarif";
-            this.comboBoxTarif.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxTarif.TabIndex = 2;
+            this.ComboBoxTarif.FormattingEnabled = true;
+            this.ComboBoxTarif.Location = new System.Drawing.Point(6, 76);
+            this.ComboBoxTarif.Name = "ComboBoxTarif";
+            this.ComboBoxTarif.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxTarif.TabIndex = 2;
             // 
-            // comboBoxVendeur
+            // ComboBoxVendeur
             // 
-            this.comboBoxVendeur.FormattingEnabled = true;
-            this.comboBoxVendeur.Location = new System.Drawing.Point(8, 60);
-            this.comboBoxVendeur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBoxVendeur.Name = "comboBoxVendeur";
-            this.comboBoxVendeur.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxVendeur.TabIndex = 1;
+            this.ComboBoxVendeur.FormattingEnabled = true;
+            this.ComboBoxVendeur.Location = new System.Drawing.Point(6, 49);
+            this.ComboBoxVendeur.Name = "ComboBoxVendeur";
+            this.ComboBoxVendeur.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxVendeur.TabIndex = 1;
             // 
-            // ButtonClose
+            // pDEVISEBindingSource
             // 
-            this.ButtonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonClose.Location = new System.Drawing.Point(1333, 902);
-            this.ButtonClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Palette = this.kryptonPalette1;
-            this.ButtonClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonClose.Size = new System.Drawing.Size(120, 31);
-            this.ButtonClose.TabIndex = 0;
-            this.ButtonClose.Values.Text = "Fermer";
-            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            this.pDEVISEBindingSource.DataMember = "P_DEVISE";
+            this.pDEVISEBindingSource.DataSource = this.bIJOUDataSet2;
+            // 
+            // bIJOUDataSet2
+            // 
+            this.bIJOUDataSet2.DataSetName = "BIJOUDataSet2";
+            this.bIJOUDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // pREGLEMENTBindingSource
+            // 
+            this.pREGLEMENTBindingSource.DataMember = "P_REGLEMENT";
+            this.pREGLEMENTBindingSource.DataSource = this.bIJOUDataSet1;
+            // 
+            // bIJOUDataSet1
+            // 
+            this.bIJOUDataSet1.DataSetName = "BIJOUDataSet1";
+            this.bIJOUDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // BouttonFermer
+            // 
+            this.BouttonFermer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonFermer.Location = new System.Drawing.Point(1000, 749);
+            this.BouttonFermer.Name = "BouttonFermer";
+            this.BouttonFermer.Palette = this.kryptonPalette1;
+            this.BouttonFermer.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BouttonFermer.Size = new System.Drawing.Size(90, 25);
+            this.BouttonFermer.TabIndex = 0;
+            this.BouttonFermer.Values.Text = "Fermer";
+            this.BouttonFermer.Click += new System.EventHandler(this.BouttonFermer_Click);
+            // 
+            // p_REGLEMENTTableAdapter
+            // 
+            this.p_REGLEMENTTableAdapter.ClearBeforeFill = true;
+            // 
+            // p_DEVISETableAdapter
+            // 
+            this.p_DEVISETableAdapter.ClearBeforeFill = true;
             // 
             // VenteComptoirForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1483, 935);
-            this.Controls.Add(this.ButtonClose);
-            this.Controls.Add(this.groupBoxGeneral);
+            this.ClientSize = new System.Drawing.Size(1112, 776);
+            this.Controls.Add(this.BouttonFermer);
+            this.Controls.Add(this.GroupBoxGeneral);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1153,21 +1171,25 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Text = "Vente comptoir";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.VenteComptoirForm_Load);
-            this.groupBoxGeneral.ResumeLayout(false);
-            this.tableLayoutPanelDesignation.ResumeLayout(false);
-            this.tableLayoutPanelDesignation.PerformLayout();
-            this.groupBoxTotal.ResumeLayout(false);
-            this.groupBoxTotal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewArticle)).EndInit();
-            this.groupBoxEnregistrement.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEnregistrement)).EndInit();
-            this.groupBoxInvisibleEnregistrement.ResumeLayout(false);
-            this.groupBoxInvisibleEnregistrement.PerformLayout();
+            this.GroupBoxGeneral.ResumeLayout(false);
+            this.TableLayoutPanelDesignation.ResumeLayout(false);
+            this.TableLayoutPanelDesignation.PerformLayout();
+            this.GroupBoxTotal.ResumeLayout(false);
+            this.GroupBoxTotal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).EndInit();
+            this.GroupBoxEnregistrement.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewEnregistrement)).EndInit();
+            this.GroupBoxInvisibleEnregistrement.ResumeLayout(false);
+            this.GroupBoxInvisibleEnregistrement.PerformLayout();
             this.groupBoxCommand.ResumeLayout(false);
-            this.groupBoxReste.ResumeLayout(false);
-            this.groupBoxReste.PerformLayout();
-            this.groupBoxinfoCaissier.ResumeLayout(false);
-            this.groupBoxinfoCaissier.PerformLayout();
+            this.GroupBoxReste.ResumeLayout(false);
+            this.GroupBoxReste.PerformLayout();
+            this.GroupBoxinfoCaissier.ResumeLayout(false);
+            this.GroupBoxinfoCaissier.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pDEVISEBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bIJOUDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pREGLEMENTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bIJOUDataSet1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1175,81 +1197,92 @@ namespace SoftCaisse.Forms.VenteComptoir
         #endregion
 
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
-        private System.Windows.Forms.GroupBox groupBoxGeneral;
-        private System.Windows.Forms.GroupBox groupBoxinfoCaissier;
+        private System.Windows.Forms.GroupBox GroupBoxGeneral;
+        private System.Windows.Forms.GroupBox GroupBoxinfoCaissier;
         private System.Windows.Forms.GroupBox groupBoxCommand;
-        private System.Windows.Forms.GroupBox groupBoxReste;
-        private System.Windows.Forms.GroupBox groupBoxEnregistrement;
-        private KryptonButton ButtonClose;
-        private System.Windows.Forms.DataGridView dataGridViewArticle;
-        private KryptonButton ButtonValider;
-        private KryptonButton ButtonCreerDoc;
-        private KryptonButton ButtonRappelTicket;
-        private KryptonButton ButtonEnAttente;
-        private KryptonButton ButtonRaccourci;
-        private KryptonButton ButtonTicket;
-        private KryptonButton ButtonFacture;
-        private KryptonButton ButtonAnnuler;
-        private KryptonButton ButtonFinDeSaisie;
-        private System.Windows.Forms.Label labelResteDu;
-        private System.Windows.Forms.Label labelTotalTTC;
-        private System.Windows.Forms.Label labelTotalHT;
-        private System.Windows.Forms.GroupBox groupBoxTotal;
-        private System.Windows.Forms.ComboBox comboBoxAffaire;
-        private System.Windows.Forms.ComboBox comboBoxDepot;
-        private System.Windows.Forms.ComboBox comboBoxType;
-        private System.Windows.Forms.ComboBox comboBoxCentrale;
-        private System.Windows.Forms.ComboBox comboBoxTarif;
-        private System.Windows.Forms.ComboBox comboBoxVendeur;
-        private System.Windows.Forms.ComboBox comboBoxResteDu;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label labelCentrale;
-        private System.Windows.Forms.Label labelTarif;
-        private System.Windows.Forms.Label labelVendeur;
-        private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.ComboBox comboBoxNumero;
-        private System.Windows.Forms.Label labelTitleCaissier;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelDesignation;
-        private System.Windows.Forms.TextBox textBoxDesignation;
-        private System.Windows.Forms.TextBox textBoxCodeFamille;
-        private System.Windows.Forms.TextBox textBoxQuantiteEnStock;
-        private System.Windows.Forms.TextBox textBoxPUHT;
-        private System.Windows.Forms.TextBox textBoxPUTTC;
-        private System.Windows.Forms.TextBox textBoxQuantiteVendue;
-        private KryptonButton ButtonEnregistrerDesignation;
-        private KryptonButton ButtonSupprimerDesignation;
-        private KryptonButton ButtonNouveauDesignation;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label labelNomCaissier;
-        private System.Windows.Forms.Label labelPrixTotalTTC;
-        private System.Windows.Forms.Label labelPrixTotalHT;
-        private System.Windows.Forms.Label labelPrixResteDu;
-        private System.Windows.Forms.TextBox textBoxReference;
-        private System.Windows.Forms.DataGridView dataGridViewEnregistrement;
+        private System.Windows.Forms.GroupBox GroupBoxReste;
+        private System.Windows.Forms.GroupBox GroupBoxEnregistrement;
+        private KryptonButton BouttonFermer;
+        private System.Windows.Forms.DataGridView DataGridViewArticle;
+        private KryptonButton BouttonValider;
+        private KryptonButton BouttonCreerDoc;
+        private KryptonButton BouttonRappelTicket;
+        private KryptonButton BouttonEnAttente;
+        private KryptonButton BouttonRaccourci;
+        private KryptonButton BouttonTicket;
+        private KryptonButton BouttonFacture;
+        private KryptonButton BouttonAnnuler;
+        private KryptonButton BouttonFinDeSaisie;
+        private System.Windows.Forms.Label LabelResteDu;
+        private System.Windows.Forms.Label LabelTotalTTC;
+        private System.Windows.Forms.Label LabelTotalHT;
+        private System.Windows.Forms.GroupBox GroupBoxTotal;
+        private System.Windows.Forms.ComboBox ComboBoxAffaire;
+        private System.Windows.Forms.ComboBox ComboBoxDepot;
+        private System.Windows.Forms.ComboBox ComboBoxType;
+        private System.Windows.Forms.ComboBox ComboBoxCentrale;
+        private System.Windows.Forms.ComboBox ComboBoxTarif;
+        private System.Windows.Forms.ComboBox ComboBoxVendeur;
+        private System.Windows.Forms.ComboBox ComboBoxDeviseReste;
+        private System.Windows.Forms.Label LabelAffaire;
+        private System.Windows.Forms.Label LabelDepot;
+        private System.Windows.Forms.Label LabelCentrale;
+        private System.Windows.Forms.Label LabelTarif;
+        private System.Windows.Forms.Label LabelVendeur;
+        private System.Windows.Forms.Label LabelDate;
+        private System.Windows.Forms.ComboBox ComboBoxNumero;
+        private System.Windows.Forms.Label LabelTitleCaissier;
+        private System.Windows.Forms.Label LabelDeviseReste;
+        private System.Windows.Forms.TableLayoutPanel TableLayoutPanelDesignation;
+        private System.Windows.Forms.TextBox TextBoxDesignation;
+        private System.Windows.Forms.TextBox TextBoxQuantiteDisponibleEnStock;
+        private System.Windows.Forms.TextBox TextBoxPUTTC;
+        private System.Windows.Forms.TextBox TextBoxConditionnement;
+        private KryptonButton BouttonEnregistrerDesignation;
+        private KryptonButton BouttonSupprimerDesignation;
+        private KryptonButton BouttonNouveauDesignation;
+        private System.Windows.Forms.DateTimePicker DateTimePicker1;
+        private System.Windows.Forms.Label LabelNomCaissier;
+        private System.Windows.Forms.Label LabelPrixTotalTTC;
+        private System.Windows.Forms.Label LabelPrixTotalHT;
+        private System.Windows.Forms.Label LabelPrixResteDu;
+        private System.Windows.Forms.TextBox TextBoxReference;
+        private System.Windows.Forms.DataGridView DataGridViewEnregistrement;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModeDeReception;
         private System.Windows.Forms.DataGridViewTextBoxColumn Montant;
         private System.Windows.Forms.DataGridViewTextBoxColumn Libelle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Devise;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateEcheance;
-        private System.Windows.Forms.GroupBox groupBoxInvisibleEnregistrement;
-        private KryptonButton ButtonEnregistrerEnregistrement;
-        private System.Windows.Forms.DateTimePicker dateTimePickerEnregistrement;
-        private KryptonButton ButtonSupprimerEnregistrement;
-        private KryptonButton ButtonNouveauEnregistrement;
-        private System.Windows.Forms.ComboBox comboBoxDeviseEnregistrement;
-        private System.Windows.Forms.TextBox textBoxLibelleEnregistrement;
-        private System.Windows.Forms.TextBox textBoxMontantEnregistrement;
-        private System.Windows.Forms.ComboBox comboBoxEspeceEnregistrement;
+        private System.Windows.Forms.GroupBox GroupBoxInvisibleEnregistrement;
+        private KryptonButton BouttonEnregistrerEnregistrement;
+        private System.Windows.Forms.DateTimePicker DateTimePickerEnregistrement;
+        private KryptonButton BouttonSupprimerEnregistrement;
+        private KryptonButton BouttonNouveauEnregistrement;
+        private System.Windows.Forms.ComboBox ComboBoxDeviseEnregistrement;
+        private System.Windows.Forms.TextBox TextBoxLibelleEnregistrement;
+        private System.Windows.Forms.TextBox TextBoxMontantEnregistrement;
+        private System.Windows.Forms.ComboBox ComboBoxReglementEnregistrement;
+        private System.Windows.Forms.Label labelResteDuDevise;
         private KryptonDataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodeFamille;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantiteEnStock;
         private System.Windows.Forms.DataGridViewTextBoxColumn prixUnitaireHT;
         private System.Windows.Forms.DataGridViewTextBoxColumn prixUnitaireTTC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantiteEnStock;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantiteVendue;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelResteDuDevise;
+        private System.Windows.Forms.DataGridViewTextBoxColumn remise;
+        private System.Windows.Forms.DataGridViewTextBoxColumn punet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn montantHT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn montantTTC;
+        private System.Windows.Forms.TextBox TextBoxPUHT;
+        private System.Windows.Forms.TextBox TextBoxRemise;
+        private System.Windows.Forms.TextBox TextBoxPUnet;
+        private System.Windows.Forms.TextBox TextBoxMontantHT;
+        private System.Windows.Forms.TextBox TextBoxMontantTTC;
+        private BIJOUDataSet1 bIJOUDataSet1;
+        private System.Windows.Forms.BindingSource pREGLEMENTBindingSource;
+        private BIJOUDataSet1TableAdapters.P_REGLEMENTTableAdapter p_REGLEMENTTableAdapter;
+        private BIJOUDataSet2 bIJOUDataSet2;
+        private System.Windows.Forms.BindingSource pDEVISEBindingSource;
+        private BIJOUDataSet2TableAdapters.P_DEVISETableAdapter p_DEVISETableAdapter;
     }
 }

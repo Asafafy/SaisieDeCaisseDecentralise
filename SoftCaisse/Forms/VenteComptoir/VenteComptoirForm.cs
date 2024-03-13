@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Forms.Article;
@@ -18,13 +14,15 @@ namespace SoftCaisse.Forms.VenteComptoir
         private readonly AppDbContext _context;
 
         private readonly DeviseRepository _deviseRepository;
+
+        private static string dernierCours = "Euro";
         public VenteComptoirForm()
         {
             _context = new AppDbContext();
             _deviseRepository = new DeviseRepository(_context);
             InitializeComponent();
 
-            foreach (Control control in tableLayoutPanelDesignation.Controls)
+            foreach (Control control in TableLayoutPanelDesignation.Controls)
             {
                 if (control is TextBox)
                 {
@@ -34,7 +32,235 @@ namespace SoftCaisse.Forms.VenteComptoir
                     control.Tag = control.Text;
                 }
             }
+
+            ChargerComboBoxes();
+/*
+            ComboBoxReglementEnregistrement.SelectedItem = "Espèces";
+
+            ComboBoxDeviseEnregistrement.SelectedItem = "Euro";*/
         }
+
+        private void ChargerComboBoxes()
+        {
+            var deviseASelectionne = _context.P_DEVISE.Select(d => d.D_Intitule).ToList();
+            var modeDeReglement = _context.P_REGLEMENT.Select(r => r.R_Intitule).ToList();
+
+            ComboBoxReglementEnregistrement.Items.Clear();
+            ComboBoxDeviseEnregistrement.Items.Clear();
+            foreach (var devise in deviseASelectionne)
+            {
+                ComboBoxDeviseEnregistrement.Items.Add(devise.ToString());
+            }
+
+            foreach (var mode in modeDeReglement)
+            {
+                ComboBoxReglementEnregistrement.Items.Add(mode.ToString());
+            }
+        }
+
+        private void VenteComptoirForm_Load(object sender, EventArgs e)
+        {
+            TextBoxReference.Focus();
+            if(DataGridViewArticle.Rows.Count < 1)
+                BouttonEnregistrerDesignation.Enabled = false;
+            else
+                BouttonEnregistrerDesignation.Enabled = true;
+        }
+
+        private void ButtonAnnuler_Click(object sender, EventArgs e)
+        {
+            BouttonAnnuler.Enabled = true;
+            BouttonCreerDoc.Enabled = true;
+            BouttonRappelTicket.Enabled = true;
+            BouttonTicket.Enabled = false;
+            BouttonEnAttente.Enabled = false;
+            BouttonRaccourci.Enabled = true;
+            BouttonValider.Enabled = false;
+            BouttonFacture.Enabled = false;
+
+            GroupBoxInvisibleEnregistrement.Visible = false;
+            DataGridViewEnregistrement.Dock = DockStyle.Fill;
+
+            LabelPrixResteDu.Text = "0,00";
+            LabelPrixTotalHT.Text = "0,00";
+            LabelPrixTotalTTC.Text = "0,00";
+
+            i = 0;
+
+            DataGridViewEnregistrement.Rows.Clear();
+            DataGridViewArticle.Rows.Clear();
+            TextBoxReference.Focus();
+
+        }
+
+        public void TextBoxReference_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                e.IsInputKey = true;
+
+                string codeFamilleARechercher = TextBoxReference.Text;
+
+                var codeFamilleBD = _context.F_ARTICLE.Where(a => a.FA_CodeFamille == codeFamilleARechercher).Select(a => new
+                {
+                    a.AR_Ref,
+                    a.AR_Design,
+                    a.AR_PrixAch,
+                    a.AR_UnitePoids
+                }).FirstOrDefault();
+
+                if(codeFamilleBD != null)
+                {
+                    var infoSupplementaireArticleTaxe = _context.F_ARTCOMPTA
+                    .Where(article => article.AR_Ref == codeFamilleBD.AR_Ref)
+                    .Select(article => new
+                    {
+                        IdentifiantChamp = article.ACP_Champ,
+                        CodeTaxeAComptabiliser = article.ACP_ComptaCPT_Taxe1
+                    }).FirstOrDefault();
+
+                    var infoSupplementaireTaxe = _context.F_TAXE
+                    .Where(article => article.TA_Code == infoSupplementaireArticleTaxe.CodeTaxeAComptabiliser)
+                    .Select(article => new
+                    {
+                        TauxPriseEnCompte = article.TA_Taux,
+                    }).FirstOrDefault();
+
+                    decimal puTTC = (decimal)codeFamilleBD.AR_PrixAch + (decimal)(codeFamilleBD.AR_PrixAch * infoSupplementaireTaxe.TauxPriseEnCompte / 100);
+                    AjouterArticleDesigne(codeFamilleBD.AR_Ref,codeFamilleBD.AR_Design,(Int16)codeFamilleBD.AR_UnitePoids,(decimal)codeFamilleBD.AR_PrixAch,puTTC);
+                }
+                else
+                {
+                    ArticleARechercher articleARechercher = new ArticleARechercher(codeFamilleARechercher);
+                    articleARechercher.ShowDialog(this);
+
+                }
+            }
+        }
+
+        private int compteurClick = 0;
+
+        public void AjouterArticleDesigne(string arRef, string arDesign, int quantiteDisponibleEnStock, decimal puHT, decimal puTTC)
+        {
+            TextBoxReference.Text = arRef;
+            TextBoxDesignation.Text = arDesign;
+            TextBoxQuantiteDisponibleEnStock.Text = quantiteDisponibleEnStock.ToString("N0");
+            TextBoxPUHT.Text = puHT.ToString("N2");
+            TextBoxPUTTC.Text = puTTC.ToString("N2");
+            TextBoxPUnet.Text = puTTC.ToString("N2");
+            TextBoxMontantHT.Text = (puHT * quantiteDisponibleEnStock).ToString("N2");
+            TextBoxMontantTTC.Text = (puTTC * quantiteDisponibleEnStock).ToString("N2");
+            //textBoxConditionnement.Text = quantiteVendue.ToString("N0");
+        }
+
+        private int i = 0;
+
+        decimal TotalPrixHT;
+        decimal TotalPrixTTC;
+
+        private void BouttonEnregistrerDesignation_Click(object sender, EventArgs e)
+        {
+            BouttonEnAttente.Enabled = true;
+            BouttonFinDeSaisie.Enabled = true;
+            BouttonSupprimerDesignation.Enabled = true;
+            BouttonCreerDoc.Enabled = false;
+            BouttonRappelTicket.Enabled = false;
+            BouttonTicket.Enabled = false;
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(TextBoxReference.Text) ||
+                    string.IsNullOrWhiteSpace(TextBoxDesignation.Text) ||
+                    string.IsNullOrWhiteSpace(TextBoxQuantiteDisponibleEnStock.Text))
+                {
+                    throw new Exception("Veuillez remplir tous les champs.");
+                }
+
+                string arRef = TextBoxReference.Text;
+                string arDesign = TextBoxDesignation.Text;
+                int quantiteEnStock = int.Parse(TextBoxQuantiteDisponibleEnStock.Text);
+                decimal puHT = Convert.ToDecimal(TextBoxPUHT.Text);
+                decimal puTTC = Convert.ToDecimal(TextBoxPUTTC.Text);
+                decimal puNet = Convert.ToDecimal(TextBoxPUnet.Text);
+                decimal montantHT = Convert.ToDecimal(TextBoxMontantHT.Text);
+                decimal montantTTC = Convert.ToDecimal(TextBoxMontantTTC.Text);
+
+                DataGridViewArticle.Rows.Add(arRef, arDesign, puHT, puTTC, quantiteEnStock, "unité", 1, puNet, montantHT, montantTTC);
+
+                if (DataGridViewArticle.Rows.Count == 1)
+                {
+                    TotalPrixHT = Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[8].Value);
+                    TotalPrixTTC = Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[9].Value);
+                }
+                else if (DataGridViewArticle.Rows.Count == 2)
+                {
+                    decimal TotalPrixHTPrecedent = Convert.ToDecimal(DataGridViewArticle.Rows[i - 1].Cells[8].Value);
+                    decimal TotalPrixTTCPrecedent = Convert.ToDecimal(DataGridViewArticle.Rows[i - 1].Cells[9].Value);
+
+                    TotalPrixHT = TotalPrixHTPrecedent + Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[8].Value);
+                    TotalPrixTTC = TotalPrixTTCPrecedent + Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[9].Value);
+
+                }
+                else
+                {
+                    TotalPrixHT += Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[8].Value);
+                    TotalPrixTTC += Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[9].Value);
+                }
+
+                i++;
+                LabelPrixTotalHT.Text = TotalPrixHT.ToString("N2");
+                LabelPrixTotalTTC.Text = TotalPrixTTC.ToString("N2");
+
+                foreach (Control control in TableLayoutPanelDesignation.Controls)
+                {
+                    if (control is TextBox textBox)
+                    {
+                        textBox.Text = textBox.Tag.ToString();
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Erreur de format dans les champs numériques.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            TextBoxReference.Focus();
+        }
+
+        private void TextBoxQuantiteDisponibleEnStock_TextChanged(object sender, EventArgs e)
+        {
+            var articleBaseDeDonneesMiseAJour = _context.F_ARTICLE.FirstOrDefault(article => article.AR_Ref == TextBoxReference.Text);
+            if (TextBoxQuantiteDisponibleEnStock.Text != "")
+            {
+                if (Convert.ToInt16(TextBoxQuantiteDisponibleEnStock.Text) <= articleBaseDeDonneesMiseAJour.AR_UnitePoids)
+                {
+                    if (int.TryParse(TextBoxQuantiteDisponibleEnStock.Text, out int quantiteDisponible))
+                    {
+                        if (TextBoxPUHT.Text != "" && TextBoxPUTTC.Text != "")
+                        {
+                            decimal puHT = Convert.ToDecimal(TextBoxPUHT.Text);
+                            decimal puTTC = Convert.ToDecimal(TextBoxPUTTC.Text);
+
+                            decimal montantHT = puHT * quantiteDisponible;
+                            decimal montantTTC = puTTC * quantiteDisponible;
+                            TextBoxMontantHT.Text = montantHT.ToString("N2");
+                            TextBoxMontantTTC.Text = montantTTC.ToString("N2");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La quantité voulu dépasse la quantité en Stock.");
+                    TextBoxQuantiteDisponibleEnStock.Text = articleBaseDeDonneesMiseAJour.AR_UnitePoids.ToString();
+                }
+            }
+        }
+
 
         private dynamic GetDeviseInfo(string devise)
         {
@@ -42,236 +268,108 @@ namespace SoftCaisse.Forms.VenteComptoir
                 .Where(devises => devises.D_Intitule == devise)
                 .Select(devises => new
                 {
-                    DeviseCours = devises.D_Cours,
-                    DeviseMonnaie = devises.D_Monnaie,
-                    DeviseCodeISO = devises.D_CodeISO,
-                    DeviseSigle = devises.D_Sigle
+                    devises.D_Intitule,
+                    devises.D_Cours,
+                    devises.D_Monnaie,
+                    devises.D_CodeISO,
+                    devises.D_Sigle
                 })
                 .FirstOrDefault();
 
             return recuperationDevise;
         }
 
-        private void VenteComptoirForm_Load(object sender, EventArgs e)
-        {
-            textBoxReference.Focus();
-            if(dataGridViewArticle.Rows.Count < 1)
-                ButtonEnregistrerDesignation.Enabled = false;
-            else
-                ButtonEnregistrerDesignation.Enabled = true;
-        }
-
-        private void ButtonAnnuler_Click(object sender, EventArgs e)
-        {
-            ButtonAnnuler.Enabled = true;
-            ButtonCreerDoc.Enabled = true;
-            ButtonRappelTicket.Enabled = true;
-            ButtonTicket.Enabled = false;
-            ButtonEnAttente.Enabled = false;
-            ButtonRaccourci.Enabled = true;
-            ButtonValider.Enabled = false;
-            ButtonFacture.Enabled = false;
-
-            groupBoxInvisibleEnregistrement.Visible = false;
-            dataGridViewEnregistrement.Dock = DockStyle.Fill;
-
-            labelPrixResteDu.Text = "0,00";
-            labelPrixTotalHT.Text = "0,00";
-            labelPrixTotalTTC.Text = "0,00";
-
-            dataGridViewEnregistrement.Rows.Clear();
-            dataGridViewArticle.Rows.Clear();
-            textBoxReference.Focus();
-
-        }
-
-        private void textBoxReference_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                ArticleARechercher articleARechercher = new ArticleARechercher();
-                articleARechercher.ShowDialog(this);
-            }
-        }
-
-        private int compteurClick = 0;
-
-        public void AjouterArticleDesigne(string arRef, string arDesign, string faCodeFamille, int quantiteEnStock, decimal puHT, decimal puTTC, int quantiteVendue)
-        {
-            textBoxReference.Text = arRef;
-            textBoxDesignation.Text = arDesign;
-            textBoxCodeFamille.Text = faCodeFamille;
-            textBoxQuantiteEnStock.Text = quantiteEnStock.ToString("N0");
-            textBoxPUHT.Text = puHT.ToString("N2");
-            textBoxPUTTC.Text = puTTC.ToString("N2");
-            textBoxQuantiteVendue.Text = quantiteVendue.ToString("N0");
-        }
-        private void ButtonEnregistrerDesignation_Click(object sender, EventArgs e)
-        {
-            ButtonEnAttente.Enabled = true;
-            ButtonFinDeSaisie.Enabled = true;
-            ButtonSupprimerDesignation.Enabled = true;
-            ButtonCreerDoc.Enabled = false;
-            ButtonRappelTicket.Enabled = false;
-            ButtonTicket.Enabled = false;
-           
-            string arRef = textBoxReference.Text;
-            string arDesign = textBoxDesignation.Text;
-            string faCodeFamille = textBoxCodeFamille.Text;
-            int quantiteEnStock = int.Parse(textBoxQuantiteEnStock.Text);
-            decimal puHT = decimal.Parse(textBoxPUHT.Text);
-            decimal puTTC = decimal.Parse(textBoxPUTTC.Text);
-            int quantiteVendue = int.Parse(textBoxQuantiteVendue.Text);
-
-            var articleBaseDeDonneesMiseAJour = _context.F_ARTICLE.FirstOrDefault(article => article.AR_Ref == arRef);
-
-            if (quantiteEnStock <= articleBaseDeDonneesMiseAJour.AR_UnitePoids)
-            {
-                dataGridViewArticle.Rows.Add(arRef,arDesign,faCodeFamille,quantiteEnStock,puHT,puTTC,quantiteVendue);
-            }
-            else
-            {
-                MessageBox.Show("La quantité voulu dépasse la quantité en Stock.");
-            }
-
-            decimal TotalPrixHT = 0;
-            decimal TotalPrixTTC = 0;
-
-            foreach (DataGridViewRow row in dataGridViewArticle.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    decimal puHTCourant = Convert.ToDecimal(row.Cells[4].Value) * Convert.ToInt16(row.Cells[3].Value);
-                    decimal puTTCCourant = Convert.ToDecimal(row.Cells[5].Value) * Convert.ToInt16(row.Cells[3].Value);
-
-                    if (dataGridViewArticle.Rows.Count == 1)
-                    {
-                        TotalPrixHT = puHTCourant;
-                        TotalPrixTTC = puTTCCourant;
-                    }
-
-                    else if (dataGridViewArticle.Rows.Count == 2)
-                    {
-                        TotalPrixHT = Convert.ToDecimal(dataGridViewArticle.Rows[0].Cells[4].Value) * Convert.ToInt32(row.Cells[3].Value) + puHTCourant;
-                        TotalPrixTTC = Convert.ToDecimal(dataGridViewArticle.Rows[0].Cells[5].Value) * Convert.ToInt32(row.Cells[3].Value) + puTTCCourant;
-                    }
-
-                    else
-                    {
-                        TotalPrixHT += puHTCourant;
-                        TotalPrixTTC += puTTCCourant;
-                    }
-                }
-            }
-
-            labelPrixTotalHT.Text = TotalPrixHT.ToString("N2");
-            labelPrixTotalTTC.Text = TotalPrixTTC.ToString("N2");
-
-            foreach (Control control in tableLayoutPanelDesignation.Controls)
-            {
-                if (control is TextBox textBox)
-                {
-                    textBox.Text = textBox.Tag.ToString();
-                }
-            }
-
-            textBoxReference.Focus();
-        }
-
         decimal variableTemporaire;
-        private void ButtonFinDeSaisie_Click(object sender, EventArgs e)
+        private void BouttonFinDeSaisie_Click(object sender, EventArgs e)
         {
-            string devise = comboBoxDeviseEnregistrement.SelectedItem.ToString();
-            var recuperationDevise = GetDeviseInfo(devise);
-            Console.WriteLine(variableTemporaire);
             compteurClick++;
 
-            dataGridViewEnregistrement.Dock = DockStyle.Bottom;
-            dataGridViewEnregistrement.Width = 677;
-            dataGridViewEnregistrement.Height = 122;
+            DataGridViewEnregistrement.Dock = DockStyle.Bottom;
+            DataGridViewEnregistrement.Width = 677;
+            DataGridViewEnregistrement.Height = 122;
 
-            groupBoxInvisibleEnregistrement.Visible = true;
+            GroupBoxInvisibleEnregistrement.Visible = true;
 
-            dataGridViewEnregistrement.Enabled = true;
-            ButtonFinDeSaisie.Enabled = false;
-            ButtonAnnuler.Enabled = true;
-            ButtonEnAttente.Enabled = true;
-            ButtonRaccourci.Enabled = true;
-            ButtonFacture.Enabled = true;
-            ButtonSupprimerDesignation.Enabled = false;
+            DataGridViewEnregistrement.Enabled = true;
+            BouttonFinDeSaisie.Enabled = false;
+            BouttonAnnuler.Enabled = true;
+            BouttonEnAttente.Enabled = true;
+            BouttonRaccourci.Enabled = true;
+            BouttonFacture.Enabled = true;
+            BouttonSupprimerDesignation.Enabled = false;
 
-            textBoxMontantEnregistrement.Text = labelPrixTotalTTC.Text;
-            variableTemporaire = Convert.ToDecimal(textBoxMontantEnregistrement.Text);
+            TextBoxMontantEnregistrement.Text = LabelPrixTotalTTC.Text;
+            variableTemporaire = Convert.ToDecimal(TextBoxMontantEnregistrement.Text);
+
             Console.WriteLine(variableTemporaire);
-            labelPrixResteDu.Text = labelPrixTotalTTC.Text;
-            label2.Text = recuperationDevise.DeviseSigle;
+            
+            LabelPrixResteDu.Text = LabelPrixTotalTTC.Text;
 
-            textBoxLibelleEnregistrement.Text = "Ticket " + compteurClick + " du " + DateTime.Now.ToString("dd/MM/yyyy");
+            TextBoxLibelleEnregistrement.Text = "Ticket " + compteurClick + " du " + DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         private decimal ChoixDevise(decimal PrixTotalAConvertir)
         {
-            string devise = comboBoxDeviseEnregistrement.SelectedItem.ToString();
-            var recuperation = GetDeviseInfo(devise);
+            string devise = ComboBoxDeviseEnregistrement.SelectedItem.ToString();
+            var coursCible = GetDeviseInfo(devise);
 
-            Console.WriteLine(recuperation.DeviseCours);
+            if(coursCible.D_Intitule != "Euro") 
+            {
+                if(dernierCours == "Euro")
+                {
+                    PrixTotalAConvertir = PrixTotalAConvertir * (decimal)Math.Round(coursCible.D_Cours,2);
+                    Console.WriteLine(PrixTotalAConvertir);
+                }
+                else
+                {
+                    var x = GetDeviseInfo(dernierCours);
 
-            if (devise == "Ariary Malgache")
-            {
-                PrixTotalAConvertir *= (decimal)recuperation.DeviseCours;
-                Console.WriteLine(PrixTotalAConvertir);
+                    PrixTotalAConvertir = PrixTotalAConvertir / x.D_Cours * (decimal)Math.Round(coursCible.D_Cours,2);
+                }
+
+                dernierCours = coursCible.D_Intitule;
+                
                 return PrixTotalAConvertir;
             }
-            else if (devise == "Dollar US")
+            
+            if(dernierCours == "Euro")
             {
-                PrixTotalAConvertir *= (decimal)recuperation.DeviseCours;
                 return PrixTotalAConvertir;
+
             }
-            else if (devise == "Franc CFA")
-            {
-                PrixTotalAConvertir *= (decimal)recuperation.DeviseCours;
-                return PrixTotalAConvertir;
-            }
-            else
-                Console.WriteLine(PrixTotalAConvertir);
-                return PrixTotalAConvertir;
+            var y = GetDeviseInfo(dernierCours);
+
+            PrixTotalAConvertir = PrixTotalAConvertir / Math.Round(y.D_Cours,2);
+            dernierCours = coursCible.D_Intitule;
+
+            return PrixTotalAConvertir;
+
         }
 
         private int cpt = 0;
 
-        private decimal PrixTotalAConvertirInitial;
-        private void textBoxMontantEnregistrement_TextChanged(object sender, EventArgs e)
+        private decimal MontantInitial;
+        private void TextBoxMontantEnregistrement_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBoxMontantEnregistrement.Text))
+            if (!string.IsNullOrEmpty(TextBoxMontantEnregistrement.Text))
             {
-               PrixTotalAConvertirInitial = Convert.ToDecimal(textBoxMontantEnregistrement.Text);
-                Console.WriteLine(PrixTotalAConvertirInitial);
+                MontantInitial = Convert.ToDecimal(TextBoxMontantEnregistrement.Text);
             }
          
-            if (textBoxMontantEnregistrement.Text == "0,00" || textBoxMontantEnregistrement.Text == "")
-                ButtonEnregistrerEnregistrement.Enabled = false;
+            if (TextBoxMontantEnregistrement.Text == "0,00" || TextBoxMontantEnregistrement.Text == "")
+                BouttonEnregistrerEnregistrement.Enabled = false;
             else
-                ButtonEnregistrerEnregistrement.Enabled = true;
+                BouttonEnregistrerEnregistrement.Enabled = true;
 
         }
-        private void comboBoxDeviseEnregistrement_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cpt++;
-            Console.WriteLine(cpt);
-            string devise = comboBoxDeviseEnregistrement.SelectedItem.ToString();
-            decimal PrixTotalAConvertir;
-            var recuperationDevise = GetDeviseInfo(devise);
-            Console.WriteLine(recuperationDevise.DeviseCours);
 
-            if (PrixTotalAConvertirInitial == 0)
+        private void ComboBoxDeviseEnregistrement_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if(TextBoxMontantEnregistrement.Text != "")
             {
-                 PrixTotalAConvertirInitial = Convert.ToDecimal(textBoxMontantEnregistrement.Text);
+                TextBoxMontantEnregistrement.Text = ChoixDevise(MontantInitial).ToString("N2");
             }
-            
-            PrixTotalAConvertir = PrixTotalAConvertirInitial;
-            textBoxMontantEnregistrement.Text = ChoixDevise(PrixTotalAConvertir).ToString("N2");
-           
-            label2.Text = recuperationDevise.DeviseSigle;
         }
 
         private decimal CalculerResteDu(decimal montant, decimal coursDeChange, decimal montantEnregistrement)
@@ -281,26 +379,29 @@ namespace SoftCaisse.Forms.VenteComptoir
             montant *= coursDeChange;
             ResteDu = montant - montantEnregistrement;
             ResteDu /= coursDeChange;
+            
             return ResteDu;
         }
-        private void ButtonEnregistrerEnregistrement_Click(object sender, EventArgs e)
+
+        private void BouttonEnregistrerEnregistrement_Click(object sender, EventArgs e)
         {
             cpt++;
-            ButtonSupprimerEnregistrement.Enabled = true;
-            ButtonValider.Enabled = true;
+            BouttonSupprimerEnregistrement.Enabled = true;
+            BouttonValider.Enabled = true;
 
             Console.WriteLine(variableTemporaire);
 
-            string modeReception = comboBoxEspeceEnregistrement.SelectedItem.ToString();
-            string libelle = textBoxLibelleEnregistrement.Text;
+            string modeReception = ComboBoxReglementEnregistrement.SelectedItem.ToString();
+            string libelle = TextBoxLibelleEnregistrement.Text;
             decimal ResteDu;
-            decimal montantEnregistrement = Convert.ToDecimal(textBoxMontantEnregistrement.Text);
-            string devise = comboBoxDeviseEnregistrement.SelectedItem.ToString();
+            decimal montantEnregistrement = Convert.ToDecimal(TextBoxMontantEnregistrement.Text);
+            string devise = ComboBoxDeviseEnregistrement.SelectedItem.ToString();
+            
             var recuperation = GetDeviseInfo(devise);
 
-            decimal coursDeChange = recuperation.DeviseCours;
+            decimal coursDeChange = recuperation.D_Cours;
 
-            DateTime dateEcheance = dateTimePickerEnregistrement.Value;
+            DateTime dateEcheance = DateTimePickerEnregistrement.Value;
 
             DataGridViewRow newRow = new DataGridViewRow();
 
@@ -319,7 +420,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             }
             else
             {
-                decimal resteDuAvecCpt = Convert.ToDecimal(labelPrixResteDu.Text);
+                decimal resteDuAvecCpt = Convert.ToDecimal(LabelPrixResteDu.Text);
 
                 if (devise != "Euro")
                 {
@@ -334,73 +435,90 @@ namespace SoftCaisse.Forms.VenteComptoir
             newRow.Cells.Add(new DataGridViewTextBoxCell { Value = modeReception });
             newRow.Cells.Add(new DataGridViewTextBoxCell
             {
-                Value = Convert.ToDecimal(textBoxMontantEnregistrement.Text)
+                Value = Convert.ToDecimal(TextBoxMontantEnregistrement.Text)
             });
             newRow.Cells.Add(new DataGridViewTextBoxCell { Value = libelle });
             newRow.Cells.Add(new DataGridViewTextBoxCell { Value = devise });
             newRow.Cells.Add(new DataGridViewTextBoxCell { Value = dateEcheance });
 
-            dataGridViewEnregistrement.Rows.Add(newRow);
+            DataGridViewEnregistrement.Rows.Add(newRow);
 
             if (Math.Round(ResteDu, 2) > 0)
             {
-                labelPrixResteDu.Text = ResteDu.ToString("N2");
-                labelResteDu.Text = "Reste dû";
+                LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                LabelResteDu.Text = "Reste dû";
             }
             else if (Math.Round(ResteDu, 2) < 0)
             {
                 ResteDu = Math.Abs(ResteDu);
-                labelPrixResteDu.Text = ResteDu.ToString("N2");
-                labelResteDu.Text = "A rendre";
+                LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                LabelResteDu.Text = "A rendre";
             }
             else
             {
-                labelPrixResteDu.Text = ResteDu.ToString("N2");
-                labelResteDu.Text = "Soldé";
+                LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                LabelResteDu.Text = "Soldé";
             }
 
-            comboBoxEspeceEnregistrement.SelectedIndex = 0;
+            ComboBoxReglementEnregistrement.SelectedIndex = 0;
+            ComboBoxDeviseEnregistrement.SelectedIndex = 0;
+
             variableTemporaire = ResteDu;
-            Console.WriteLine(variableTemporaire);
-            textBoxMontantEnregistrement.Text = labelPrixResteDu.Text;
-            Console.WriteLine(Convert.ToDecimal(textBoxMontantEnregistrement.Text));
-            comboBoxDeviseEnregistrement.SelectedIndex = 2;
-            dateTimePickerEnregistrement.Value = DateTime.Now;
+            TextBoxMontantEnregistrement.Text = LabelPrixResteDu.Text;
+            DateTimePickerEnregistrement.Value = DateTime.Now;
         }
 
-        private void ButtonSupprimerDesignation_Click(object sender, EventArgs e)
+        private void BouttonSupprimerDesignation_Click(object sender, EventArgs e)
         {
-            if (dataGridViewArticle.SelectedRows.Count > 0)
+            if (DataGridViewArticle.SelectedRows.Count > 0)
             {
-                DataGridViewRow selectedRow = dataGridViewArticle.SelectedRows[0];
-                dataGridViewArticle.Rows.Remove(selectedRow);
+                DataGridViewRow selectedRow = DataGridViewArticle.SelectedRows[0];
+
+                TextBoxReference.Text = selectedRow.Cells[0].Value.ToString();
+                TextBoxDesignation.Text = selectedRow.Cells[1].Value.ToString();
+                TextBoxPUHT.Text = selectedRow.Cells[2].Value.ToString();
+                TextBoxPUTTC.Text = selectedRow.Cells[3].Value.ToString();
+                TextBoxQuantiteDisponibleEnStock.Text = selectedRow.Cells[4].Value.ToString();
+                TextBoxConditionnement.Text = selectedRow.Cells[5].Value.ToString();
+                TextBoxRemise.Text = selectedRow.Cells[6].Value.ToString();
+                TextBoxPUnet.Text = selectedRow.Cells[7].Value.ToString();
+                TextBoxMontantHT.Text = selectedRow.Cells[8].Value.ToString();
+                TextBoxMontantTTC.Text = selectedRow.Cells[9].Value.ToString();
+
+                LabelPrixTotalHT.Text = (Convert.ToDecimal(LabelPrixTotalHT.Text) - Convert.ToDecimal(selectedRow.Cells[8].Value)).ToString();
+                LabelPrixTotalTTC.Text = (Convert.ToDecimal(LabelPrixTotalTTC.Text) - Convert.ToDecimal(selectedRow.Cells[9].Value)).ToString();
+
+                DataGridViewArticle.Rows.Remove(selectedRow);
             }
+            i--;
+
+            TextBoxReference.Focus();
         }
 
-        private void ButtonSupprimerEnregistrement_Click(object sender, EventArgs e)
+        private void BouttonSupprimerEnregistrement_Click(object sender, EventArgs e)
         {
-            decimal montantSupprimer = Convert.ToDecimal(dataGridViewEnregistrement.SelectedRows[0].Cells[1].Value);
+            decimal montantSupprimer = Convert.ToDecimal(DataGridViewEnregistrement.SelectedRows[0].Cells[1].Value);
             decimal ResteDu;
-            string devise = dataGridViewEnregistrement.SelectedRows[0].Cells[3].Value.ToString();
+            string devise = DataGridViewEnregistrement.SelectedRows[0].Cells[3].Value.ToString();
             var recuperation = GetDeviseInfo(devise);
-            decimal coursDeChange = recuperation.DeviseCours;
+            decimal coursDeChange = recuperation.D_Cours;
 
 
-            if (labelResteDu.Text == "Reste dû" || labelResteDu.Text == "Soldé")
+            if (LabelResteDu.Text == "Reste dû" || LabelResteDu.Text == "Soldé")
             {
                 if (devise != "Euro")
                 {
-                    ResteDu = Convert.ToDecimal(labelPrixResteDu.Text) + montantSupprimer / coursDeChange;
-                    labelResteDu.Text = "Reste dû";
-                    labelPrixResteDu.Text = ResteDu.ToString("N2");
-                    textBoxMontantEnregistrement.Text = labelPrixResteDu.Text;
+                    ResteDu = Convert.ToDecimal(LabelPrixResteDu.Text) + montantSupprimer / coursDeChange;
+                    LabelResteDu.Text = "Reste dû";
+                    LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                    TextBoxMontantEnregistrement.Text = LabelPrixResteDu.Text;
                 }
                 else
                 {
-                    ResteDu = Convert.ToDecimal(labelPrixResteDu.Text) + montantSupprimer;
-                    labelResteDu.Text = "Reste dû";
-                    labelPrixResteDu.Text = ResteDu.ToString("N2");
-                    textBoxMontantEnregistrement.Text = labelPrixResteDu.Text;
+                    ResteDu = Convert.ToDecimal(LabelPrixResteDu.Text) + montantSupprimer;
+                    LabelResteDu.Text = "Reste dû";
+                    LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                    TextBoxMontantEnregistrement.Text = LabelPrixResteDu.Text;
 
                 }
             }
@@ -408,32 +526,32 @@ namespace SoftCaisse.Forms.VenteComptoir
             {
                 if (devise != "Euro")
                 {
-                    ResteDu = montantSupprimer / coursDeChange - Convert.ToDecimal(labelPrixResteDu.Text);
-                    labelResteDu.Text = "Reste dû";
-                    labelPrixResteDu.Text = ResteDu.ToString("N2");
-                    textBoxMontantEnregistrement.Text = labelPrixResteDu.Text;
+                    ResteDu = montantSupprimer / coursDeChange - Convert.ToDecimal(LabelPrixResteDu.Text);
+                    LabelResteDu.Text = "Reste dû";
+                    LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                    TextBoxMontantEnregistrement.Text = LabelPrixResteDu.Text;
 
                 }
                 else
                 {
-                    ResteDu = montantSupprimer - Convert.ToDecimal(labelPrixResteDu.Text);
-                    labelResteDu.Text = "Reste dû";
-                    labelPrixResteDu.Text = ResteDu.ToString("N2");
-                    textBoxMontantEnregistrement.Text = labelPrixResteDu.Text;
+                    ResteDu = montantSupprimer - Convert.ToDecimal(LabelPrixResteDu.Text);
+                    LabelResteDu.Text = "Reste dû";
+                    LabelPrixResteDu.Text = ResteDu.ToString("N2");
+                    TextBoxMontantEnregistrement.Text = LabelPrixResteDu.Text;
 
                 }
             }
 
-            if (dataGridViewEnregistrement.SelectedRows.Count > 0)
+            if (DataGridViewEnregistrement.SelectedRows.Count > 0)
             {
-                DataGridViewRow selectedRow = dataGridViewEnregistrement.SelectedRows[0];
-                dataGridViewEnregistrement.Rows.Remove(selectedRow);
+                DataGridViewRow selectedRow = DataGridViewEnregistrement.SelectedRows[0];
+                DataGridViewEnregistrement.Rows.Remove(selectedRow);
             }
         }
 
         private void TextBox_Enter(object sender, EventArgs e)
         {
-            ButtonEnregistrerDesignation.Enabled = true;
+            BouttonEnregistrerDesignation.Enabled = true;
 
             TextBox textBox = (TextBox)sender;
 
@@ -455,68 +573,48 @@ namespace SoftCaisse.Forms.VenteComptoir
             }
         }
 
-        private void comboBoxResteDu_SelectedIndexChanged(object sender, EventArgs e)
+        private void BouttonNouveauDesignation_Click(object sender, EventArgs e)
         {
-           /* labelResteDuDevise.Text = labelPrixResteDu.Text;
+            BouttonFinDeSaisie.Enabled = false;
 
-            decimal prixResteDuDevise = Convert.ToDecimal(labelResteDuDevise.Text);
-
-            string devise = comboBoxResteDu.SelectedItem.ToString();
-            var recuperationDevise = GetDeviseInfo(devise);
-
-            if (devise != "Euro")
+            foreach (Control control in TableLayoutPanelDesignation.Controls)
             {
-                Console.WriteLine(recuperationDevise.DeviseCours);
-                labelResteDuDevise.Text = ChoixDevise(prixResteDuDevise).ToString("N2");
-            }
-            else
-            {
-                labelResteDuDevise.Text = prixResteDuDevise.ToString();
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = textBox.Tag?.ToString();
+                }
             }
 
-            labelPrixResteDu.Visible = false;
-            labelResteDuDevise.Visible = true;*/
-
-        }
-        private void ButtonNouveauDesignation_Click(object sender, EventArgs e)
-        {
-            textBoxReference.Focus();
-            ButtonFinDeSaisie.Enabled = false;
+            TextBoxReference.Focus();
         }
 
-        private void ButtonClose_Click(object sender, EventArgs e)
+        private void BouttonFermer_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void ButtonValider_Click(object sender, EventArgs e)
+        private void BouttonValider_Click(object sender, EventArgs e)
         {
-            ButtonValider.Enabled = false;
+            BouttonValider.Enabled = false;
 
-            if (dataGridViewArticle.Rows.Count > 0)
+            if (DataGridViewArticle.Rows.Count > 0)
             {
-                foreach (DataGridViewRow row in dataGridViewArticle.Rows)
+                foreach (DataGridViewRow row in DataGridViewArticle.Rows)
                 {
                     if (!row.IsNewRow)
                     {
                         string afRef = row.Cells[0].Value.ToString();
-                        int quantiteVendue = Convert.ToInt32(row.Cells["quantiteVendue"].Value);
+                        int quantiteVendue = Convert.ToInt32(row.Cells[4].Value);
 
-                        var articleBaseDeDonneesMiseAJour = _context.F_ARTICLE.FirstOrDefault(article => article.AR_Ref == afRef);
+                        var articleMiseAJour = _context.F_ARTICLE.FirstOrDefault(article => article.AR_Ref == afRef);
 
-                        if (articleBaseDeDonneesMiseAJour != null)
+                        if (articleMiseAJour != null)
                         {
-                            int nouvelleQuantiteStock = (int)articleBaseDeDonneesMiseAJour.AR_UnitePoids - (int)dataGridViewArticle.Rows[0].Cells[3].Value;
-                                
-                            if (nouvelleQuantiteStock >= 0)
-                            {
-                                articleBaseDeDonneesMiseAJour.AR_UnitePoids = (short)nouvelleQuantiteStock;
-                            }
-                            else
-                            {
-                                MessageBox.Show("La quantité en stock de l'article " + afRef + " est insuffisante. Opération annulée.");
-                                return;
-                            }
+                            int nouvelleQuantiteStock = (int)articleMiseAJour.AR_UnitePoids - (int)DataGridViewArticle.Rows[0].Cells[4].Value;
+                            
+                            articleMiseAJour.AR_UnitePoids = (short)nouvelleQuantiteStock;
+
+                            _context.SaveChanges();
                         }
                         else
                         {
@@ -526,7 +624,6 @@ namespace SoftCaisse.Forms.VenteComptoir
                     }
                 }
 
-                _context.SaveChanges();
                 MessageBox.Show("Opération validée. Stock mis à jour.");
             }
             else
@@ -534,9 +631,17 @@ namespace SoftCaisse.Forms.VenteComptoir
                 MessageBox.Show("Aucun article à valider.");
             }
 
-            dataGridViewEnregistrement.Rows.Clear();
-            dataGridViewArticle.Rows.Clear();
-            textBoxReference.Focus();
+            DataGridViewEnregistrement.Rows.Clear();
+            DataGridViewArticle.Rows.Clear();
+            TextBoxReference.Focus();
+        }
+
+        private void TextBoxReference_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLower(e.KeyChar))
+            { 
+                e.KeyChar = char.ToUpper(e.KeyChar);
+            }
         }
     }
 }

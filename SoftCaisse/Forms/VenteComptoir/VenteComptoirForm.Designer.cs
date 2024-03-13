@@ -1172,15 +1172,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.pDEVISEBindingSource.DataMember = "P_DEVISE";
             // 
-            // bIJOUDataSet2
-            // 
-            // 
             // pREGLEMENTBindingSource
             // 
             this.pREGLEMENTBindingSource.DataMember = "P_REGLEMENT";
-            // 
-            // bIJOUDataSet1
-            // 
             // 
             // BouttonFermer
             // 
@@ -1193,12 +1187,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonFermer.TabIndex = 0;
             this.BouttonFermer.Values.Text = "Fermer";
             this.BouttonFermer.Click += new System.EventHandler(this.BouttonFermer_Click);
-            // 
-            // p_REGLEMENTTableAdapter
-            // 
-            // 
-            // p_DEVISETableAdapter
-            // 
             // 
             // VenteComptoirForm
             // 

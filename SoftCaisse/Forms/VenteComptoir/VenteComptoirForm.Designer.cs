@@ -942,6 +942,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // Column1
             // 
             this.Column1.HeaderText = "Référence article";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -950,6 +951,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // Column2
             // 
             this.Column2.HeaderText = "Désignation";
+            this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
@@ -957,6 +959,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.prixUnitaireHT.DataPropertyName = "prixUnitaireHT";
             this.prixUnitaireHT.HeaderText = "P.U HT";
+            this.prixUnitaireHT.MinimumWidth = 6;
             this.prixUnitaireHT.Name = "prixUnitaireHT";
             this.prixUnitaireHT.ReadOnly = true;
             // 
@@ -964,6 +967,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.prixUnitaireTTC.DataPropertyName = "prixUnitaireTTC";
             this.prixUnitaireTTC.HeaderText = "P.U TTC";
+            this.prixUnitaireTTC.MinimumWidth = 6;
             this.prixUnitaireTTC.Name = "prixUnitaireTTC";
             this.prixUnitaireTTC.ReadOnly = true;
             // 
@@ -1216,14 +1220,14 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             // VenteComptoirForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1112, 776);
             this.Controls.Add(this.BouttonFermer);
             this.Controls.Add(this.GroupBoxGeneral);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "VenteComptoirForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;

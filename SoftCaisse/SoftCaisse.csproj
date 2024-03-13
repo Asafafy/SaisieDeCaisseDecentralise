@@ -122,6 +122,12 @@
     <Compile Include="Forms\Caisse\DetailCaisseForm.Designer.cs">
       <DependentUpon>DetailCaisseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CollaboDetail\CollaboDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CollaboDetail\CollaboDetailForm.Designer.cs">
+      <DependentUpon>CollaboDetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ConnexBase\ConnectDbForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,11 +164,11 @@
     <Compile Include="Forms\Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MisEnPage\MisEnPageForm.cs">
+    <Compile Include="Forms\MouvementCaisse\MouvementCaisseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MisEnPage\MisEnPageForm.Designer.cs">
-      <DependentUpon>MisEnPageForm.cs</DependentUpon>
+    <Compile Include="Forms\MouvementCaisse\MouvementCaisseForm.Designer.cs">
+      <DependentUpon>MouvementCaisseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\OuvertureCaisse\OuvertureCaisseForm.cs">
       <SubType>Form</SubType>
@@ -239,12 +245,14 @@
     <Compile Include="Models\F_CAISSE.cs" />
     <Compile Include="Models\F_COLLABORATEUR.cs" />
     <Compile Include="Models\F_COMPTET.cs" />
+    <Compile Include="Models\F_CREGLEMENT.cs" />
     <Compile Include="Models\F_DEPOT.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
     <Compile Include="Models\F_REGLECH.cs" />
     <Compile Include="Models\F_TAXE.cs" />
     <Compile Include="Models\P_DEVISE.cs" />
     <Compile Include="Models\P_REGLEMENT.cs" />
+    <Compile Include="Models\P_SOUCHEVENTE.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SCDContext.cs" />
     <Compile Include="Models\User.cs" />
@@ -256,11 +264,13 @@
     <Compile Include="Repositories\FBilletageRepository.cs" />
     <Compile Include="Repositories\FCaisseRepository.cs" />
     <Compile Include="Repositories\FCollaborateurRepository.cs" />
+    <Compile Include="Repositories\FCReglementRepository.cs" />
     <Compile Include="Repositories\FDepotRepository.cs" />
     <Compile Include="Repositories\FJournauxRepository.cs" />
     <Compile Include="Repositories\DeviseRepository.cs" />
     <Compile Include="Repositories\FReglementRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\PSoucheVenteRepository.cs" />
     <Compile Include="Repositories\ModeReglementRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TaxeRepository.cs" />
@@ -290,6 +300,9 @@
     <EmbeddedResource Include="Forms\Caisse\DetailCaisseForm.resx">
       <DependentUpon>DetailCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CollaboDetail\CollaboDetailForm.resx">
+      <DependentUpon>CollaboDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConnexBase\ConnectDbForm.resx">
       <DependentUpon>ConnectDbForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,8 +321,8 @@
     <EmbeddedResource Include="Forms\Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MisEnPage\MisEnPageForm.resx">
-      <DependentUpon>MisEnPageForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MouvementCaisse\MouvementCaisseForm.resx">
+      <DependentUpon>MouvementCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OuvertureCaisse\OuvertureCaisseForm.resx">
       <DependentUpon>OuvertureCaisseForm.cs</DependentUpon>

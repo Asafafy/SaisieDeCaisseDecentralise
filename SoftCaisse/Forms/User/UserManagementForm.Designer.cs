@@ -158,7 +158,7 @@
             this.userDatagridView.RowHeadersVisible = false;
             this.userDatagridView.RowHeadersWidth = 51;
             this.userDatagridView.RowTemplate.Height = 24;
-            this.userDatagridView.Size = new System.Drawing.Size(764, 454);
+            this.userDatagridView.Size = new System.Drawing.Size(553, 357);
             this.userDatagridView.TabIndex = 0;
             this.userDatagridView.Click += new System.EventHandler(this.userDatagridView_Click);
             // 

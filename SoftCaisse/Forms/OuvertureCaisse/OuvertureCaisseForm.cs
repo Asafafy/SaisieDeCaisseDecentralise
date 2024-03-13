@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using ComponentFactory.Krypton.Toolkit;
+using SoftCaisse.Forms.FondCaisse;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
 
@@ -56,6 +57,17 @@ namespace SoftCaisse.Forms.OuvertureCaisse
         }
         private void OuvertureCaisseCmbx_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void btnOuvertureCaisse_Click(object sender, EventArgs e)
+        {
+            if (fondCaisseCbox.Checked)
+            {
+                this.Close();
+                FondCaisseForm fondCaisseForm = new FondCaisseForm();
+                fondCaisseForm.Show();
+            }
            
         }
     }

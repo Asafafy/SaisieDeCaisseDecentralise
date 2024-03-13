@@ -145,7 +145,7 @@
             // utilsateurToolStripMenuItem
             // 
             this.utilsateurToolStripMenuItem.Name = "utilsateurToolStripMenuItem";
-            this.utilsateurToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.utilsateurToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.utilsateurToolStripMenuItem.Text = "Utilisateurs";
             this.utilsateurToolStripMenuItem.Click += new System.EventHandler(this.utilsateurToolStripMenuItem_Click);
             // 
@@ -227,6 +227,7 @@
             this.mouvementsToolStripMenuItem.Name = "mouvementsToolStripMenuItem";
             this.mouvementsToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.mouvementsToolStripMenuItem.Text = "Mouvements de caisse...";
+            this.mouvementsToolStripMenuItem.Click += new System.EventHandler(this.mouvementsToolStripMenuItem_Click);
             // 
             // fermetureDeCaisseToolStripMenuItem
             // 

@@ -201,11 +201,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
             this.tableLayoutPanel3.Controls.Add(this.GroupBoxEnregistrement, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.GroupBoxCommandDroite, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(19, 497);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(19, 462);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1088, 240);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1088, 275);
             this.tableLayoutPanel3.TabIndex = 14;
             // 
             // GroupBoxEnregistrement
@@ -215,7 +215,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxEnregistrement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBoxEnregistrement.Location = new System.Drawing.Point(3, 3);
             this.GroupBoxEnregistrement.Name = "GroupBoxEnregistrement";
-            this.GroupBoxEnregistrement.Size = new System.Drawing.Size(587, 234);
+            this.GroupBoxEnregistrement.Size = new System.Drawing.Size(587, 269);
             this.GroupBoxEnregistrement.TabIndex = 2;
             this.GroupBoxEnregistrement.TabStop = false;
             // 
@@ -257,7 +257,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.DataGridViewEnregistrement.ReadOnly = true;
             this.DataGridViewEnregistrement.RowHeadersVisible = false;
             this.DataGridViewEnregistrement.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewEnregistrement.Size = new System.Drawing.Size(581, 142);
+            this.DataGridViewEnregistrement.Size = new System.Drawing.Size(581, 177);
             this.DataGridViewEnregistrement.TabIndex = 1;
             // 
             // ModeDeReception
@@ -429,7 +429,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxCommandDroite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBoxCommandDroite.Location = new System.Drawing.Point(596, 3);
             this.GroupBoxCommandDroite.Name = "GroupBoxCommandDroite";
-            this.GroupBoxCommandDroite.Size = new System.Drawing.Size(489, 234);
+            this.GroupBoxCommandDroite.Size = new System.Drawing.Size(489, 269);
             this.GroupBoxCommandDroite.TabIndex = 13;
             this.GroupBoxCommandDroite.TabStop = false;
             // 
@@ -443,7 +443,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxReste.Controls.Add(this.LabelResteDu);
             this.GroupBoxReste.Location = new System.Drawing.Point(6, 11);
             this.GroupBoxReste.Name = "GroupBoxReste";
-            this.GroupBoxReste.Size = new System.Drawing.Size(477, 91);
+            this.GroupBoxReste.Size = new System.Drawing.Size(477, 112);
             this.GroupBoxReste.TabIndex = 2;
             this.GroupBoxReste.TabStop = false;
             // 
@@ -463,7 +463,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.LabelDeviseReste.AutoSize = true;
             this.LabelDeviseReste.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDeviseReste.Location = new System.Drawing.Point(9, 57);
+            this.LabelDeviseReste.Location = new System.Drawing.Point(8, 74);
             this.LabelDeviseReste.Name = "LabelDeviseReste";
             this.LabelDeviseReste.Size = new System.Drawing.Size(51, 17);
             this.LabelDeviseReste.TabIndex = 13;
@@ -479,7 +479,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             "Dollar US",
             "Euro",
             "Franc CFA"});
-            this.ComboBoxDeviseReste.Location = new System.Drawing.Point(285, 53);
+            this.ComboBoxDeviseReste.Location = new System.Drawing.Point(285, 74);
             this.ComboBoxDeviseReste.Name = "ComboBoxDeviseReste";
             this.ComboBoxDeviseReste.Size = new System.Drawing.Size(182, 21);
             this.ComboBoxDeviseReste.TabIndex = 13;
@@ -500,9 +500,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.groupBoxCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxCommand.Controls.Add(this.tableLayoutPanel2);
-            this.groupBoxCommand.Location = new System.Drawing.Point(6, 109);
+            this.groupBoxCommand.Location = new System.Drawing.Point(6, 129);
             this.groupBoxCommand.Name = "groupBoxCommand";
-            this.groupBoxCommand.Size = new System.Drawing.Size(483, 117);
+            this.groupBoxCommand.Size = new System.Drawing.Size(483, 132);
             this.groupBoxCommand.TabIndex = 3;
             this.groupBoxCommand.TabStop = false;
             // 
@@ -528,18 +528,18 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(477, 98);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(477, 113);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // BouttonValider
             // 
             this.BouttonValider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonValider.Enabled = false;
-            this.BouttonValider.Location = new System.Drawing.Point(320, 67);
+            this.BouttonValider.Location = new System.Drawing.Point(320, 77);
             this.BouttonValider.Name = "BouttonValider";
             this.BouttonValider.Palette = this.kryptonPalette1;
             this.BouttonValider.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonValider.Size = new System.Drawing.Size(154, 28);
+            this.BouttonValider.Size = new System.Drawing.Size(154, 33);
             this.BouttonValider.TabIndex = 9;
             this.BouttonValider.Values.Text = "Valider";
             this.BouttonValider.Click += new System.EventHandler(this.BouttonValider_Click);
@@ -552,7 +552,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonFinDeSaisie.Name = "BouttonFinDeSaisie";
             this.BouttonFinDeSaisie.Palette = this.kryptonPalette1;
             this.BouttonFinDeSaisie.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonFinDeSaisie.Size = new System.Drawing.Size(152, 26);
+            this.BouttonFinDeSaisie.Size = new System.Drawing.Size(152, 31);
             this.BouttonFinDeSaisie.TabIndex = 1;
             this.BouttonFinDeSaisie.Values.Text = "Fin de saisie";
             this.BouttonFinDeSaisie.Click += new System.EventHandler(this.BouttonFinDeSaisie_Click);
@@ -560,11 +560,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             // BouttonCreerDoc
             // 
             this.BouttonCreerDoc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BouttonCreerDoc.Location = new System.Drawing.Point(161, 67);
+            this.BouttonCreerDoc.Location = new System.Drawing.Point(161, 77);
             this.BouttonCreerDoc.Name = "BouttonCreerDoc";
             this.BouttonCreerDoc.Palette = this.kryptonPalette1;
             this.BouttonCreerDoc.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonCreerDoc.Size = new System.Drawing.Size(153, 28);
+            this.BouttonCreerDoc.Size = new System.Drawing.Size(153, 33);
             this.BouttonCreerDoc.TabIndex = 8;
             this.BouttonCreerDoc.Values.Text = "Créer doc.";
             // 
@@ -575,7 +575,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonAnnuler.Name = "BouttonAnnuler";
             this.BouttonAnnuler.Palette = this.kryptonPalette1;
             this.BouttonAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonAnnuler.Size = new System.Drawing.Size(153, 26);
+            this.BouttonAnnuler.Size = new System.Drawing.Size(153, 31);
             this.BouttonAnnuler.TabIndex = 2;
             this.BouttonAnnuler.Values.Text = "Annuler";
             this.BouttonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
@@ -584,33 +584,33 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonEnAttente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonEnAttente.Enabled = false;
-            this.BouttonEnAttente.Location = new System.Drawing.Point(320, 35);
+            this.BouttonEnAttente.Location = new System.Drawing.Point(320, 40);
             this.BouttonEnAttente.Name = "BouttonEnAttente";
             this.BouttonEnAttente.Palette = this.kryptonPalette1;
             this.BouttonEnAttente.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonEnAttente.Size = new System.Drawing.Size(154, 26);
+            this.BouttonEnAttente.Size = new System.Drawing.Size(154, 31);
             this.BouttonEnAttente.TabIndex = 6;
             this.BouttonEnAttente.Values.Text = "En attente";
             // 
             // BouttonRappelTicket
             // 
             this.BouttonRappelTicket.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BouttonRappelTicket.Location = new System.Drawing.Point(3, 67);
+            this.BouttonRappelTicket.Location = new System.Drawing.Point(3, 77);
             this.BouttonRappelTicket.Name = "BouttonRappelTicket";
             this.BouttonRappelTicket.Palette = this.kryptonPalette1;
             this.BouttonRappelTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonRappelTicket.Size = new System.Drawing.Size(152, 28);
+            this.BouttonRappelTicket.Size = new System.Drawing.Size(152, 33);
             this.BouttonRappelTicket.TabIndex = 7;
             this.BouttonRappelTicket.Values.Text = "Rappel Ticket";
             // 
             // BouttonRaccourci
             // 
             this.BouttonRaccourci.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BouttonRaccourci.Location = new System.Drawing.Point(161, 35);
+            this.BouttonRaccourci.Location = new System.Drawing.Point(161, 40);
             this.BouttonRaccourci.Name = "BouttonRaccourci";
             this.BouttonRaccourci.Palette = this.kryptonPalette1;
             this.BouttonRaccourci.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonRaccourci.Size = new System.Drawing.Size(153, 26);
+            this.BouttonRaccourci.Size = new System.Drawing.Size(153, 31);
             this.BouttonRaccourci.TabIndex = 5;
             this.BouttonRaccourci.Values.Text = "Raccourcis";
             // 
@@ -622,7 +622,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonFacture.Name = "BouttonFacture";
             this.BouttonFacture.Palette = this.kryptonPalette1;
             this.BouttonFacture.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonFacture.Size = new System.Drawing.Size(154, 26);
+            this.BouttonFacture.Size = new System.Drawing.Size(154, 31);
             this.BouttonFacture.TabIndex = 3;
             this.BouttonFacture.Values.Text = "Facture";
             // 
@@ -630,11 +630,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonTicket.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonTicket.Enabled = false;
-            this.BouttonTicket.Location = new System.Drawing.Point(3, 35);
+            this.BouttonTicket.Location = new System.Drawing.Point(3, 40);
             this.BouttonTicket.Name = "BouttonTicket";
             this.BouttonTicket.Palette = this.kryptonPalette1;
             this.BouttonTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonTicket.Size = new System.Drawing.Size(152, 26);
+            this.BouttonTicket.Size = new System.Drawing.Size(152, 31);
             this.BouttonTicket.TabIndex = 4;
             this.BouttonTicket.Values.Text = "Ticket";
             // 
@@ -642,7 +642,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonEnregistrerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonEnregistrerDesignation.Enabled = false;
-            this.BouttonEnregistrerDesignation.Location = new System.Drawing.Point(1017, 216);
+            this.BouttonEnregistrerDesignation.Location = new System.Drawing.Point(1017, 206);
             this.BouttonEnregistrerDesignation.Name = "BouttonEnregistrerDesignation";
             this.BouttonEnregistrerDesignation.Palette = this.kryptonPalette1;
             this.BouttonEnregistrerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -681,7 +681,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TableLayoutPanelDesignation.Name = "TableLayoutPanelDesignation";
             this.TableLayoutPanelDesignation.RowCount = 1;
             this.TableLayoutPanelDesignation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableLayoutPanelDesignation.Size = new System.Drawing.Size(1088, 46);
+            this.TableLayoutPanelDesignation.Size = new System.Drawing.Size(1088, 31);
             this.TableLayoutPanelDesignation.TabIndex = 6;
             // 
             // TextBoxReference
@@ -803,7 +803,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonSupprimerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonSupprimerDesignation.Enabled = false;
-            this.BouttonSupprimerDesignation.Location = new System.Drawing.Point(903, 216);
+            this.BouttonSupprimerDesignation.Location = new System.Drawing.Point(903, 206);
             this.BouttonSupprimerDesignation.Name = "BouttonSupprimerDesignation";
             this.BouttonSupprimerDesignation.Palette = this.kryptonPalette1;
             this.BouttonSupprimerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -815,7 +815,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // BouttonNouveauDesignation
             // 
             this.BouttonNouveauDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BouttonNouveauDesignation.Location = new System.Drawing.Point(788, 216);
+            this.BouttonNouveauDesignation.Location = new System.Drawing.Point(788, 206);
             this.BouttonNouveauDesignation.Name = "BouttonNouveauDesignation";
             this.BouttonNouveauDesignation.Palette = this.kryptonPalette1;
             this.BouttonNouveauDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -923,7 +923,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewArticle.DefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewArticle.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.DataGridViewArticle.Location = new System.Drawing.Point(19, 249);
+            this.DataGridViewArticle.Location = new System.Drawing.Point(19, 237);
             this.DataGridViewArticle.Name = "DataGridViewArticle";
             this.DataGridViewArticle.ReadOnly = true;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -936,7 +936,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.DataGridViewArticle.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DataGridViewArticle.RowHeadersVisible = false;
             this.DataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewArticle.Size = new System.Drawing.Size(1088, 245);
+            this.DataGridViewArticle.Size = new System.Drawing.Size(1088, 219);
             this.DataGridViewArticle.TabIndex = 4;
             // 
             // Column1

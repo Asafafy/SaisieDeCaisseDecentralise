@@ -1314,7 +1314,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.TextBox TextBoxMontantTTC;
         private System.Windows.Forms.BindingSource pREGLEMENTBindingSource;
         private System.Windows.Forms.BindingSource pDEVISEBindingSource;
-        private BIJOUDataSet2TableAdapters.P_DEVISETableAdapter p_DEVISETableAdapter;
+        //private BIJOUDataSet2TableAdapters.P_DEVISETableAdapter p_DEVISETableAdapter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBoxCommand;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

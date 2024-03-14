@@ -473,7 +473,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             "Dollar US",
             "Euro",
             "Franc CFA"});
-            this.ComboBoxDeviseReste.Location = new System.Drawing.Point(285, 74);
+            this.ComboBoxDeviseReste.Location = new System.Drawing.Point(121, 74);
             this.ComboBoxDeviseReste.Name = "ComboBoxDeviseReste";
             this.ComboBoxDeviseReste.Size = new System.Drawing.Size(351, 21);
             this.ComboBoxDeviseReste.TabIndex = 13;

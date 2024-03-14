@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,18 @@ namespace SoftCaisse.Forms.ControlCaisse
         public FCaisseRepository _fcaisserepository { get; set; }
         public DeviseRepository _fdeviserepository { get; set; }
         public FReglementRepository _freglementrepository { get; set; }
+        public static List<object> liste_objet = new List<object>()
+        {
+            new {Item="0" , valeur ="Règlement"},
+            new {Item="1" , valeur ="Acompte"},
+            new {Item="2" , valeur ="Fond de caisse"},
+            new {Item="3" , valeur ="Remise en banque"},
+            new {Item="4" , valeur ="Sortie de caisse"},
+            new {Item="5" , valeur ="Entrée de caisse"},
+            new {Item="6" , valeur ="Remise à zéro"},
+            new {Item="7" , valeur ="Contrôle de caisse"},
+            new {Item="8" , valeur ="Bon d'achat"}
+        };
         public ControlCaisseForm()
         {
             InitializeComponent();
@@ -46,15 +59,41 @@ namespace SoftCaisse.Forms.ControlCaisse
             Controlecmbx.DataSource = listeControle;
             Controlecmbx.DisplayMember = "valeur";
             Controlecmbx.ValueMember = "item";
-            List<object> liste_objet = new List<object>()
-            {
-                new {Item="1" , valeur ="Fond de caisse"},
-                new {Item="2" , valeur ="Entrées de caisse"},
-                new {Item="3" , valeur ="Sorties de caisse"},
-                new {Item="4" , valeur ="Remise à zéro"}
-            };
 
         }
 
+        private void display_caisse(object sender, EventArgs e)
+        {
+            var liste = _freglementrepository.GetAllReglement(kryptonDateTimePicker1.Value, Controlecmbx.SelectedValue.ToString(), Convert.ToInt32(Caisse.SelectedValue), Convert.ToInt32(Devise.SelectedValue));
+            decimal somme = _freglementrepository.get_somme_constate(liste);
+            label9.Text = string.Format("{0:N2}", somme) ;
+            label10.Text = string.Format("{0:N2}", somme);
+            kryptonDataGridView1.DataSource = liste;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            label10.Text = textBox1.Text;
+        }
+
+        private void Controlecmbx_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string value = Controlecmbx.SelectedValue.ToString();
+            if(value == "1")
+            {
+                label5.Show();
+                textBox1.Show();
+            }
+            else
+            {
+                label5.Hide();
+                textBox1.Hide();
+            }
+        }
     }
 }

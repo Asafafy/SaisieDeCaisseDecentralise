@@ -122,12 +122,8 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.ComboBoxTarif = new System.Windows.Forms.ComboBox();
             this.ComboBoxVendeur = new System.Windows.Forms.ComboBox();
             this.pDEVISEBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bIJOUDataSet2 = new SoftCaisse.BIJOUDataSet2();
             this.pREGLEMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bIJOUDataSet1 = new SoftCaisse.BIJOUDataSet1();
             this.BouttonFermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.p_REGLEMENTTableAdapter = new SoftCaisse.BIJOUDataSet1TableAdapters.P_REGLEMENTTableAdapter();
-            this.p_DEVISETableAdapter = new SoftCaisse.BIJOUDataSet2TableAdapters.P_DEVISETableAdapter();
             this.GroupBoxGeneral.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.GroupBoxEnregistrement.SuspendLayout();
@@ -143,9 +139,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).BeginInit();
             this.GroupBoxinfoCaissier.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pDEVISEBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bIJOUDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pREGLEMENTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bIJOUDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -481,7 +475,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             "Franc CFA"});
             this.ComboBoxDeviseReste.Location = new System.Drawing.Point(285, 74);
             this.ComboBoxDeviseReste.Name = "ComboBoxDeviseReste";
-            this.ComboBoxDeviseReste.Size = new System.Drawing.Size(182, 21);
+            this.ComboBoxDeviseReste.Size = new System.Drawing.Size(351, 21);
             this.ComboBoxDeviseReste.TabIndex = 13;
             // 
             // LabelResteDu
@@ -1177,22 +1171,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // pDEVISEBindingSource
             // 
             this.pDEVISEBindingSource.DataMember = "P_DEVISE";
-            this.pDEVISEBindingSource.DataSource = this.bIJOUDataSet2;
-            // 
-            // bIJOUDataSet2
-            // 
-            this.bIJOUDataSet2.DataSetName = "BIJOUDataSet2";
-            this.bIJOUDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // pREGLEMENTBindingSource
             // 
             this.pREGLEMENTBindingSource.DataMember = "P_REGLEMENT";
-            this.pREGLEMENTBindingSource.DataSource = this.bIJOUDataSet1;
-            // 
-            // bIJOUDataSet1
-            // 
-            this.bIJOUDataSet1.DataSetName = "BIJOUDataSet1";
-            this.bIJOUDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // BouttonFermer
             // 
@@ -1205,14 +1187,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonFermer.TabIndex = 0;
             this.BouttonFermer.Values.Text = "Fermer";
             this.BouttonFermer.Click += new System.EventHandler(this.BouttonFermer_Click);
-            // 
-            // p_REGLEMENTTableAdapter
-            // 
-            this.p_REGLEMENTTableAdapter.ClearBeforeFill = true;
-            // 
-            // p_DEVISETableAdapter
-            // 
-            this.p_DEVISETableAdapter.ClearBeforeFill = true;
             // 
             // VenteComptoirForm
             // 
@@ -1251,9 +1225,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.GroupBoxinfoCaissier.ResumeLayout(false);
             this.GroupBoxinfoCaissier.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pDEVISEBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bIJOUDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pREGLEMENTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bIJOUDataSet1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1340,12 +1312,9 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.TextBox TextBoxPUnet;
         private System.Windows.Forms.TextBox TextBoxMontantHT;
         private System.Windows.Forms.TextBox TextBoxMontantTTC;
-        private BIJOUDataSet1 bIJOUDataSet1;
         private System.Windows.Forms.BindingSource pREGLEMENTBindingSource;
-        private BIJOUDataSet1TableAdapters.P_REGLEMENTTableAdapter p_REGLEMENTTableAdapter;
-        private BIJOUDataSet2 bIJOUDataSet2;
         private System.Windows.Forms.BindingSource pDEVISEBindingSource;
-        private BIJOUDataSet2TableAdapters.P_DEVISETableAdapter p_DEVISETableAdapter;
+        //private BIJOUDataSet2TableAdapters.P_DEVISETableAdapter p_DEVISETableAdapter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBoxCommand;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

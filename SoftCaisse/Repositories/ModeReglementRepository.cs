@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    internal class ModeReglementRepository : IRepository<P_REGLEMENT>
+    internal class ModeReglementRepository : IRepository<DTO.ModeReglement>
     {
         private readonly AppDbContext _context;
         public ModeReglementRepository(AppDbContext context) 
         {
             _context = context;
         }
-        public void Add(P_REGLEMENT entity)
+        public void Add(DTO.ModeReglement entity)
         {
             throw new NotImplementedException();
         }
@@ -22,26 +22,22 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<P_REGLEMENT> GetAll()
+        public IEnumerable<DTO.ModeReglement> GetAll()
         {
-            return _context.P_REGLEMENT.Select(a => new
-            {
-                a.R_Intitule,
-                a.cbIndice
-            }).ToList()
-            .Select(a => new P_REGLEMENT
+            return _context.P_REGLEMENT
+            .Select(a => new DTO.ModeReglement
             {
                 R_Intitule = a.R_Intitule,
                 cbIndice = a.cbIndice
-            });
+            }).ToList();
         }
 
-        public IEnumerable<P_REGLEMENT> GetById(int id)
+        public IEnumerable<DTO.ModeReglement> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(P_REGLEMENT entity)
+        public void Update(DTO.ModeReglement entity)
         {
             throw new NotImplementedException();
         }

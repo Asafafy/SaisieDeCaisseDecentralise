@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    public class DeviseRepository : IRepository<P_DEVISE>
+    public class DeviseRepository : IRepository<DTO.Devise>
     {
         private readonly AppDbContext _context;
 
@@ -13,7 +13,7 @@ namespace SoftCaisse.Repositories
         {
             _context = context;
         }
-        public void Add(P_DEVISE entity)
+        public void Add(DTO.Devise entity)
         {
             throw new NotImplementedException();
         }
@@ -23,34 +23,26 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<P_DEVISE> GetAll()
+        public IEnumerable<DTO.Devise> GetAll()
         {
             return _context.P_DEVISE
-                .Select(a => new
-                {
-                    a.D_Intitule,
-                    a.D_Cours,
-                    a.D_Monnaie,
-                    a.D_CodeISO,
-                    a.cbMarq
-                })
-                .ToList()
-                .Select( a => new P_DEVISE
+                .Select( a => new DTO.Devise
                 {
                     D_Intitule = a.D_Intitule,
                     D_Cours = a.D_Cours,
                     D_Monnaie = a.D_Monnaie,
                     D_CodeISO = a.D_CodeISO,
+                    D_CodeISONum = a.D_CodeISONum,
                     cbMarq = a.cbMarq
-                });
+                }).ToList();
         }
 
-        public IEnumerable<P_DEVISE> GetById(int id)
+        public IEnumerable<DTO.Devise> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(P_DEVISE entity)
+        public void Update(DTO.Devise entity)
         {
             throw new NotImplementedException();
         }

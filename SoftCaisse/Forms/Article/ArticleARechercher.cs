@@ -15,8 +15,10 @@ namespace SoftCaisse.Forms.Article
     public partial class ArticleARechercher : KryptonForm 
     {
         private readonly AppDbContext _context;
+
         private readonly ArticleRepository _articleRepository;
-        private readonly List<F_ARTICLE> _articles;
+        
+        private readonly List<DTO.Article> _articles;
 
         public ArticleARechercher(string searchTerm)
         {
@@ -28,14 +30,17 @@ namespace SoftCaisse.Forms.Article
 
             AfficherArticleRechercher(searchTerm);
 
-            this.Load += ArticleARechercher_Load;
+            Load += ArticleARechercher_Load;
         }
+
         private void AfficherArticleRechercher(string searchTerm)
         {
             string searchTermToUpper = searchTerm.ToUpper();
 
-            IEnumerable<F_ARTICLE> articleFiltrer = _articles.Where(article => article.FA_CodeFamille.ToUpper().Contains(searchTermToUpper));
+            IEnumerable<DTO.Article> articleFiltrer = _articles.Where(article => article.FA_CodeFamille.ToUpper().Contains(searchTermToUpper) ||
+                                                                                 article.AR_Design.ToUpper().Contains(searchTermToUpper));
             DataGridViewArticle.Rows.Clear();
+
             foreach (var article in articleFiltrer)
             {
                 var row = new DataGridViewRow();
@@ -52,6 +57,7 @@ namespace SoftCaisse.Forms.Article
                 var row = new DataGridViewRow();
                 row.CreateCells(DataGridViewArticle);
                 row.SetValues(article.AR_Ref, article.AR_Design, article.FA_CodeFamille);
+
                 return row;
             }).ToArray();
 
@@ -62,6 +68,7 @@ namespace SoftCaisse.Forms.Article
         {
             AfficherTouT();
         }
+
         private void TextBoxBarreDeRecherche_TextChanged(object sender, EventArgs e)
         {
             string searchTerm = TextBoxBarreDeRecherche.Text;
@@ -72,6 +79,7 @@ namespace SoftCaisse.Forms.Article
         private void labelParametreFiltre_Click(object sender, EventArgs e)
         { 
             groupBoxFiltre.Visible = !groupBoxFiltre.Visible;
+
             if(groupBoxFiltre.Visible == true)
             {
                 LabelParametreFiltre.BackColor = Color.LightSkyBlue;
@@ -93,58 +101,73 @@ namespace SoftCaisse.Forms.Article
 
         private void dataGridViewArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.RowIndex < DataGridViewArticle.Rows.Count)
+            try
             {
-                DataGridViewRow selectedRow = DataGridViewArticle.Rows[e.RowIndex];
-                ButtonOKArticle_Click(sender, e);
+
+                if (e.RowIndex >= 0 && e.RowIndex < DataGridViewArticle.Rows.Count)
+                {
+                    DataGridViewRow selectedRow = DataGridViewArticle.Rows[e.RowIndex];
+                    ButtonOKArticle_Click(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur s'est produite : "+ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
         private void ButtonOKArticle_Click(object sender, EventArgs e)
         {
-            if (DataGridViewArticle.SelectedRows.Count > 0)
+            try
             {
-                DataGridViewRow selectedRow = DataGridViewArticle.SelectedRows[0];
 
-                string afRef = selectedRow.Cells["reference"].Value.ToString();
-                string afDesign = selectedRow.Cells["designation"].Value.ToString();
-                string faCodeFamille = selectedRow.Cells["famille"].Value.ToString();
+                if (DataGridViewArticle.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = DataGridViewArticle.SelectedRows[0];
 
-                var infoSupplementaireArticle = _context.F_ARTICLE
-                    .Where(article => article.AR_Ref == afRef)
-                    .Select(article => new
-                    {
-                        QuantiteDisponibleStock = article.AR_UnitePoids,
-                        PuHT = article.AR_PrixVen,
-                        PuTTC = article.AR_PrixTTC,
-                    }).FirstOrDefault();
+                    string afRef = selectedRow.Cells["reference"].Value.ToString();
+                    string afDesign = selectedRow.Cells["designation"].Value.ToString();
+                    string faCodeFamille = selectedRow.Cells["famille"].Value.ToString();
 
-                var infoSupplementaireArticleTaxe = _context.F_ARTCOMPTA
-                    .Where(article => article.AR_Ref == afRef)
-                    .Select(article => new
-                    {
-                        IdentifiantChamp = article.ACP_Champ,
-                        CodeTaxeAComptabiliser = article.ACP_ComptaCPT_Taxe1
-                    }).FirstOrDefault();
+                    var infoSupplementaireArticle = _context.F_ARTICLE
+                        .Where(article => article.AR_Ref == afRef)
+                        .Select(article => new
+                        {
+                            PuHT = article.AR_PrixVen,
+                            PuTTC = article.AR_PrixTTC,
+                        }).FirstOrDefault();
 
-                var infoSupplementaireTaxe = _context.F_TAXE
-                    .Where(article => article.TA_Code == infoSupplementaireArticleTaxe.CodeTaxeAComptabiliser)
-                    .Select(article => new
-                    {
-                        TauxPriseEnCompte = article.TA_Taux,
-                    }).FirstOrDefault();
+                    var infoSupplementaireArticleTaxe = _context.F_ARTCOMPTA
+                        .Where(article => article.AR_Ref == afRef)
+                        .Select(article => new
+                        {
+                            IdentifiantChamp = article.ACP_Champ,
+                            CodeTaxeAComptabiliser = article.ACP_ComptaCPT_Taxe1
+                        }).FirstOrDefault();
 
-                decimal puTTC = (decimal)infoSupplementaireArticle.PuTTC;
-                decimal puHT = (decimal)infoSupplementaireArticle.PuHT;
-                decimal tauxTaxe = infoSupplementaireTaxe?.TauxPriseEnCompte ?? 0;
+                    var infoSupplementaireTaxe = _context.F_TAXE
+                        .Where(article => article.TA_Code == infoSupplementaireArticleTaxe.CodeTaxeAComptabiliser)
+                        .Select(article => new
+                        {
+                            TauxPriseEnCompte = article.TA_Taux,
+                        }).FirstOrDefault();
 
-                VenteComptoirForm venteComptoirForm = Application.OpenForms.OfType<VenteComptoirForm>().FirstOrDefault();
-                
-                puTTC = puHT + ( puHT * tauxTaxe/ 100);
-                venteComptoirForm?.AjouterArticleDesigne(afRef, afDesign, (int)infoSupplementaireArticle.QuantiteDisponibleStock, (decimal)infoSupplementaireArticle.PuHT, puTTC);
+                    decimal puTTC = (decimal)infoSupplementaireArticle.PuTTC;
+                    decimal puHT = (decimal)infoSupplementaireArticle.PuHT;
+                    decimal tauxTaxe = infoSupplementaireTaxe?.TauxPriseEnCompte ?? 0;
 
+                    VenteComptoirForm venteComptoirForm = Application.OpenForms.OfType<VenteComptoirForm>().FirstOrDefault();
+
+                    puTTC = puHT + (puHT * tauxTaxe / 100);
+                    venteComptoirForm?.AjouterArticleDesigne(afRef, afDesign, 1, (decimal)infoSupplementaireArticle.PuHT, puTTC);
+
+                }
+                this.Close();
             }
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur s'est produite : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }     
         }
     }
 }

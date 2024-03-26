@@ -24,6 +24,8 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_ARTCOMPTA> F_ARTCOMPTA { get; set; }
         public virtual DbSet<P_REGLEMENT> P_REGLEMENT { get; set; }
         public virtual DbSet<F_ARTSTOCK> F_ARTSTOCK { get; set; }
+        public virtual DbSet<P_UNITE> P_UNITE { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

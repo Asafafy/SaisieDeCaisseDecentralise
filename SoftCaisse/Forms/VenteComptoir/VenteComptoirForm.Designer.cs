@@ -32,10 +32,11 @@ namespace SoftCaisse.Forms.VenteComptoir
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VenteComptoirForm));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.GroupBoxGeneral = new System.Windows.Forms.GroupBox();
@@ -76,7 +77,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.LabelDeviseReste = new System.Windows.Forms.Label();
             this.ComboBoxDeviseReste = new System.Windows.Forms.ComboBox();
             this.LabelPrixResteDu = new System.Windows.Forms.Label();
-            this.LabelResteDuCache = new System.Windows.Forms.Label();
             this.TableLayoutPanelCommand = new System.Windows.Forms.TableLayoutPanel();
             this.BouttonValider = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.BouttonFinDeSaisie = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -95,7 +95,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.LabelMontantTTC = new System.Windows.Forms.Label();
             this.TableLayoutPanelInfoCaissier = new System.Windows.Forms.TableLayoutPanel();
             this.LabelAffaire = new System.Windows.Forms.Label();
-            this.DateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.DateTimePickerInfoCaissier = new System.Windows.Forms.DateTimePicker();
             this.ComboBoxNumero = new System.Windows.Forms.ComboBox();
             this.ComboBoxAffaire = new System.Windows.Forms.ComboBox();
             this.ComboBoxDepot = new System.Windows.Forms.ComboBox();
@@ -199,12 +199,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.DataGridViewArticle, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TableLayoutPanelFooter, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(19, 235);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(19, 238);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1088, 502);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1088, 499);
             this.tableLayoutPanel2.TabIndex = 16;
             // 
             // DataGridViewArticle
@@ -220,7 +220,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.DataGridViewArticle.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -238,33 +238,36 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.punet,
             this.montantHT,
             this.montantTTC});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewArticle.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewArticle.DefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridViewArticle.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.DataGridViewArticle.Location = new System.Drawing.Point(3, 3);
             this.DataGridViewArticle.Name = "DataGridViewArticle";
             this.DataGridViewArticle.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewArticle.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewArticle.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewArticle.RowHeadersVisible = false;
             this.DataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewArticle.Size = new System.Drawing.Size(1082, 245);
+            this.DataGridViewArticle.Size = new System.Drawing.Size(1082, 243);
             this.DataGridViewArticle.TabIndex = 4;
             // 
             // Column1
             // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column1.HeaderText = "Référence article";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -340,12 +343,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TableLayoutPanelFooter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
             this.TableLayoutPanelFooter.Controls.Add(this.PanelEnregistrement, 0, 0);
             this.TableLayoutPanelFooter.Controls.Add(this.PanelCommandDroite, 1, 0);
-            this.TableLayoutPanelFooter.Location = new System.Drawing.Point(3, 254);
+            this.TableLayoutPanelFooter.Location = new System.Drawing.Point(3, 252);
             this.TableLayoutPanelFooter.Name = "TableLayoutPanelFooter";
             this.TableLayoutPanelFooter.RowCount = 1;
             this.TableLayoutPanelFooter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableLayoutPanelFooter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 245F));
-            this.TableLayoutPanelFooter.Size = new System.Drawing.Size(1082, 245);
+            this.TableLayoutPanelFooter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 244F));
+            this.TableLayoutPanelFooter.Size = new System.Drawing.Size(1082, 244);
             this.TableLayoutPanelFooter.TabIndex = 14;
             // 
             // PanelEnregistrement
@@ -358,7 +361,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.PanelEnregistrement.Controls.Add(this.DataGridViewEnregistrement);
             this.PanelEnregistrement.Location = new System.Drawing.Point(3, 3);
             this.PanelEnregistrement.Name = "PanelEnregistrement";
-            this.PanelEnregistrement.Size = new System.Drawing.Size(584, 239);
+            this.PanelEnregistrement.Size = new System.Drawing.Size(584, 238);
             this.PanelEnregistrement.TabIndex = 2;
             // 
             // PanelInvisibleEnregistrement
@@ -378,6 +381,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // BouttonEnregistrerEnregistrement
             // 
             this.BouttonEnregistrerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonEnregistrerEnregistrement.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonEnregistrerEnregistrement.Location = new System.Drawing.Point(476, 48);
             this.BouttonEnregistrerEnregistrement.Name = "BouttonEnregistrerEnregistrement";
             this.BouttonEnregistrerEnregistrement.Palette = this.kryptonPalette1;
@@ -474,6 +478,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // BouttonSupprimerEnregistrement
             // 
             this.BouttonSupprimerEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonSupprimerEnregistrement.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonSupprimerEnregistrement.Enabled = false;
             this.BouttonSupprimerEnregistrement.Location = new System.Drawing.Point(362, 48);
             this.BouttonSupprimerEnregistrement.Name = "BouttonSupprimerEnregistrement";
@@ -487,6 +492,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // BouttonNouveauEnregistrement
             // 
             this.BouttonNouveauEnregistrement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonNouveauEnregistrement.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonNouveauEnregistrement.Location = new System.Drawing.Point(247, 48);
             this.BouttonNouveauEnregistrement.Name = "BouttonNouveauEnregistrement";
             this.BouttonNouveauEnregistrement.Palette = this.kryptonPalette1;
@@ -507,14 +513,14 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.DataGridViewEnregistrement.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridViewEnregistrement.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.DataGridViewEnregistrement.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewEnregistrement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewEnregistrement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DataGridViewEnregistrement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridViewEnregistrement.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ModeDeReception,
@@ -522,21 +528,21 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.Libelle,
             this.Devise,
             this.DateEcheance});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewEnregistrement.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewEnregistrement.DefaultCellStyle = dataGridViewCellStyle6;
             this.DataGridViewEnregistrement.Enabled = false;
-            this.DataGridViewEnregistrement.Location = new System.Drawing.Point(1, 87);
+            this.DataGridViewEnregistrement.Location = new System.Drawing.Point(3, 87);
             this.DataGridViewEnregistrement.Name = "DataGridViewEnregistrement";
             this.DataGridViewEnregistrement.ReadOnly = true;
             this.DataGridViewEnregistrement.RowHeadersVisible = false;
             this.DataGridViewEnregistrement.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewEnregistrement.Size = new System.Drawing.Size(581, 149);
+            this.DataGridViewEnregistrement.Size = new System.Drawing.Size(578, 145);
             this.DataGridViewEnregistrement.TabIndex = 1;
             // 
             // ModeDeReception
@@ -578,7 +584,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.PanelCommandDroite.Controls.Add(this.tableLayoutPanel3);
             this.PanelCommandDroite.Location = new System.Drawing.Point(593, 3);
             this.PanelCommandDroite.Name = "PanelCommandDroite";
-            this.PanelCommandDroite.Size = new System.Drawing.Size(486, 239);
+            this.PanelCommandDroite.Size = new System.Drawing.Size(486, 238);
             this.PanelCommandDroite.TabIndex = 4;
             // 
             // tableLayoutPanel3
@@ -596,7 +602,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(479, 239);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(479, 238);
             this.tableLayoutPanel3.TabIndex = 17;
             // 
             // PanelReste
@@ -605,7 +611,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.PanelReste.Controls.Add(this.LabelDeviseReste);
             this.PanelReste.Controls.Add(this.ComboBoxDeviseReste);
             this.PanelReste.Controls.Add(this.LabelPrixResteDu);
-            this.PanelReste.Controls.Add(this.LabelResteDuCache);
             this.PanelReste.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelReste.Location = new System.Drawing.Point(3, 3);
             this.PanelReste.Name = "PanelReste";
@@ -627,10 +632,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.LabelDeviseReste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelDeviseReste.AutoSize = true;
-            this.LabelDeviseReste.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDeviseReste.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelDeviseReste.Location = new System.Drawing.Point(13, 77);
             this.LabelDeviseReste.Name = "LabelDeviseReste";
-            this.LabelDeviseReste.Size = new System.Drawing.Size(51, 17);
+            this.LabelDeviseReste.Size = new System.Drawing.Size(53, 20);
             this.LabelDeviseReste.TabIndex = 13;
             this.LabelDeviseReste.Text = "Devise";
             // 
@@ -658,24 +663,13 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.LabelPrixResteDu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LabelPrixResteDu.AutoSize = true;
             this.LabelPrixResteDu.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelPrixResteDu.Location = new System.Drawing.Point(333, 19);
+            this.LabelPrixResteDu.Location = new System.Drawing.Point(256, 17);
             this.LabelPrixResteDu.Name = "LabelPrixResteDu";
+            this.LabelPrixResteDu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.LabelPrixResteDu.Size = new System.Drawing.Size(78, 36);
             this.LabelPrixResteDu.TabIndex = 17;
             this.LabelPrixResteDu.Text = "0,00";
             this.LabelPrixResteDu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // LabelResteDuCache
-            // 
-            this.LabelResteDuCache.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LabelResteDuCache.AutoSize = true;
-            this.LabelResteDuCache.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelResteDuCache.Location = new System.Drawing.Point(333, 20);
-            this.LabelResteDuCache.Name = "LabelResteDuCache";
-            this.LabelResteDuCache.Size = new System.Drawing.Size(71, 31);
-            this.LabelResteDuCache.TabIndex = 22;
-            this.LabelResteDuCache.Text = "0,00";
-            this.LabelResteDuCache.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TableLayoutPanelCommand
             // 
@@ -699,18 +693,18 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TableLayoutPanelCommand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TableLayoutPanelCommand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TableLayoutPanelCommand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.TableLayoutPanelCommand.Size = new System.Drawing.Size(473, 114);
+            this.TableLayoutPanelCommand.Size = new System.Drawing.Size(473, 113);
             this.TableLayoutPanelCommand.TabIndex = 10;
             // 
             // BouttonValider
             // 
             this.BouttonValider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonValider.Enabled = false;
-            this.BouttonValider.Location = new System.Drawing.Point(317, 79);
+            this.BouttonValider.Location = new System.Drawing.Point(317, 77);
             this.BouttonValider.Name = "BouttonValider";
             this.BouttonValider.Palette = this.kryptonPalette1;
             this.BouttonValider.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonValider.Size = new System.Drawing.Size(153, 32);
+            this.BouttonValider.Size = new System.Drawing.Size(153, 33);
             this.BouttonValider.TabIndex = 9;
             this.BouttonValider.Values.Text = "Valider";
             this.BouttonValider.Click += new System.EventHandler(this.BouttonValider_Click);
@@ -723,7 +717,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonFinDeSaisie.Name = "BouttonFinDeSaisie";
             this.BouttonFinDeSaisie.Palette = this.kryptonPalette1;
             this.BouttonFinDeSaisie.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonFinDeSaisie.Size = new System.Drawing.Size(151, 32);
+            this.BouttonFinDeSaisie.Size = new System.Drawing.Size(151, 31);
             this.BouttonFinDeSaisie.TabIndex = 1;
             this.BouttonFinDeSaisie.Values.Text = "Fin de saisie";
             this.BouttonFinDeSaisie.Click += new System.EventHandler(this.BouttonFinDeSaisie_Click);
@@ -731,11 +725,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             // BouttonCreerDoc
             // 
             this.BouttonCreerDoc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BouttonCreerDoc.Location = new System.Drawing.Point(160, 79);
+            this.BouttonCreerDoc.Location = new System.Drawing.Point(160, 77);
             this.BouttonCreerDoc.Name = "BouttonCreerDoc";
             this.BouttonCreerDoc.Palette = this.kryptonPalette1;
             this.BouttonCreerDoc.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonCreerDoc.Size = new System.Drawing.Size(151, 32);
+            this.BouttonCreerDoc.Size = new System.Drawing.Size(151, 33);
             this.BouttonCreerDoc.TabIndex = 8;
             this.BouttonCreerDoc.Values.Text = "Créer doc.";
             // 
@@ -746,7 +740,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonAnnuler.Name = "BouttonAnnuler";
             this.BouttonAnnuler.Palette = this.kryptonPalette1;
             this.BouttonAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonAnnuler.Size = new System.Drawing.Size(151, 32);
+            this.BouttonAnnuler.Size = new System.Drawing.Size(151, 31);
             this.BouttonAnnuler.TabIndex = 2;
             this.BouttonAnnuler.Values.Text = "Annuler";
             this.BouttonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
@@ -755,33 +749,33 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonEnAttente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonEnAttente.Enabled = false;
-            this.BouttonEnAttente.Location = new System.Drawing.Point(317, 41);
+            this.BouttonEnAttente.Location = new System.Drawing.Point(317, 40);
             this.BouttonEnAttente.Name = "BouttonEnAttente";
             this.BouttonEnAttente.Palette = this.kryptonPalette1;
             this.BouttonEnAttente.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonEnAttente.Size = new System.Drawing.Size(153, 32);
+            this.BouttonEnAttente.Size = new System.Drawing.Size(153, 31);
             this.BouttonEnAttente.TabIndex = 6;
             this.BouttonEnAttente.Values.Text = "En attente";
             // 
             // BouttonRappelTicket
             // 
             this.BouttonRappelTicket.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BouttonRappelTicket.Location = new System.Drawing.Point(3, 79);
+            this.BouttonRappelTicket.Location = new System.Drawing.Point(3, 77);
             this.BouttonRappelTicket.Name = "BouttonRappelTicket";
             this.BouttonRappelTicket.Palette = this.kryptonPalette1;
             this.BouttonRappelTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonRappelTicket.Size = new System.Drawing.Size(151, 32);
+            this.BouttonRappelTicket.Size = new System.Drawing.Size(151, 33);
             this.BouttonRappelTicket.TabIndex = 7;
             this.BouttonRappelTicket.Values.Text = "Rappel Ticket";
             // 
             // BouttonRaccourci
             // 
             this.BouttonRaccourci.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BouttonRaccourci.Location = new System.Drawing.Point(160, 41);
+            this.BouttonRaccourci.Location = new System.Drawing.Point(160, 40);
             this.BouttonRaccourci.Name = "BouttonRaccourci";
             this.BouttonRaccourci.Palette = this.kryptonPalette1;
             this.BouttonRaccourci.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonRaccourci.Size = new System.Drawing.Size(151, 32);
+            this.BouttonRaccourci.Size = new System.Drawing.Size(151, 31);
             this.BouttonRaccourci.TabIndex = 5;
             this.BouttonRaccourci.Values.Text = "Raccourcis";
             // 
@@ -793,7 +787,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.BouttonFacture.Name = "BouttonFacture";
             this.BouttonFacture.Palette = this.kryptonPalette1;
             this.BouttonFacture.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonFacture.Size = new System.Drawing.Size(153, 32);
+            this.BouttonFacture.Size = new System.Drawing.Size(153, 31);
             this.BouttonFacture.TabIndex = 3;
             this.BouttonFacture.Values.Text = "Facture";
             // 
@@ -801,11 +795,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.BouttonTicket.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BouttonTicket.Enabled = false;
-            this.BouttonTicket.Location = new System.Drawing.Point(3, 41);
+            this.BouttonTicket.Location = new System.Drawing.Point(3, 40);
             this.BouttonTicket.Name = "BouttonTicket";
             this.BouttonTicket.Palette = this.kryptonPalette1;
             this.BouttonTicket.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonTicket.Size = new System.Drawing.Size(151, 32);
+            this.BouttonTicket.Size = new System.Drawing.Size(151, 31);
             this.BouttonTicket.TabIndex = 4;
             this.BouttonTicket.Values.Text = "Ticket";
             // 
@@ -846,8 +840,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.LabelPrixTotalTTC.AutoSize = true;
             this.LabelPrixTotalTTC.BackColor = System.Drawing.Color.Transparent;
             this.LabelPrixTotalTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelPrixTotalTTC.Location = new System.Drawing.Point(349, 88);
+            this.LabelPrixTotalTTC.Location = new System.Drawing.Point(262, 88);
             this.LabelPrixTotalTTC.Name = "LabelPrixTotalTTC";
+            this.LabelPrixTotalTTC.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.LabelPrixTotalTTC.Size = new System.Drawing.Size(78, 36);
             this.LabelPrixTotalTTC.TabIndex = 16;
             this.LabelPrixTotalTTC.Text = "0,00";
@@ -869,7 +864,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.LabelPrixTotalHT.AutoSize = true;
             this.LabelPrixTotalHT.BackColor = System.Drawing.Color.Transparent;
             this.LabelPrixTotalHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelPrixTotalHT.Location = new System.Drawing.Point(349, 25);
+            this.LabelPrixTotalHT.Location = new System.Drawing.Point(262, 25);
             this.LabelPrixTotalHT.Name = "LabelPrixTotalHT";
             this.LabelPrixTotalHT.Size = new System.Drawing.Size(78, 36);
             this.LabelPrixTotalHT.TabIndex = 15;
@@ -895,7 +890,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TableLayoutPanelInfoCaissier.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.TableLayoutPanelInfoCaissier.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.TableLayoutPanelInfoCaissier.Controls.Add(this.LabelAffaire, 3, 3);
-            this.TableLayoutPanelInfoCaissier.Controls.Add(this.DateTimePicker1, 0, 0);
+            this.TableLayoutPanelInfoCaissier.Controls.Add(this.DateTimePickerInfoCaissier, 0, 0);
             this.TableLayoutPanelInfoCaissier.Controls.Add(this.ComboBoxNumero, 3, 1);
             this.TableLayoutPanelInfoCaissier.Controls.Add(this.ComboBoxAffaire, 2, 3);
             this.TableLayoutPanelInfoCaissier.Controls.Add(this.ComboBoxDepot, 2, 2);
@@ -925,27 +920,29 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.LabelAffaire.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelAffaire.AutoSize = true;
-            this.LabelAffaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelAffaire.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelAffaire.Location = new System.Drawing.Point(413, 115);
             this.LabelAffaire.Name = "LabelAffaire";
-            this.LabelAffaire.Size = new System.Drawing.Size(49, 17);
+            this.LabelAffaire.Size = new System.Drawing.Size(46, 17);
             this.LabelAffaire.TabIndex = 12;
             this.LabelAffaire.Text = "Affaire";
             // 
-            // DateTimePicker1
+            // DateTimePickerInfoCaissier
             // 
-            this.DateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.DateTimePicker1.Location = new System.Drawing.Point(3, 7);
-            this.DateTimePicker1.Name = "DateTimePicker1";
-            this.DateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.DateTimePicker1.Size = new System.Drawing.Size(170, 20);
-            this.DateTimePicker1.TabIndex = 13;
-            this.DateTimePicker1.Value = new System.DateTime(2024, 2, 21, 10, 37, 44, 0);
+            this.DateTimePickerInfoCaissier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.DateTimePickerInfoCaissier.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePickerInfoCaissier.Location = new System.Drawing.Point(3, 6);
+            this.DateTimePickerInfoCaissier.Name = "DateTimePickerInfoCaissier";
+            this.DateTimePickerInfoCaissier.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.DateTimePickerInfoCaissier.Size = new System.Drawing.Size(170, 22);
+            this.DateTimePickerInfoCaissier.TabIndex = 13;
+            this.DateTimePickerInfoCaissier.Value = new System.DateTime(2024, 2, 21, 10, 37, 44, 0);
             // 
             // ComboBoxNumero
             // 
             this.ComboBoxNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxNumero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxNumero.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxNumero.FormattingEnabled = true;
             this.ComboBoxNumero.Location = new System.Drawing.Point(413, 42);
             this.ComboBoxNumero.Name = "ComboBoxNumero";
@@ -957,6 +954,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxAffaire.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxAffaire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxAffaire.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxAffaire.FormattingEnabled = true;
             this.ComboBoxAffaire.Location = new System.Drawing.Point(237, 113);
             this.ComboBoxAffaire.Name = "ComboBoxAffaire";
@@ -967,6 +965,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxDepot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxDepot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxDepot.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxDepot.FormattingEnabled = true;
             this.ComboBoxDepot.Location = new System.Drawing.Point(237, 77);
             this.ComboBoxDepot.Name = "ComboBoxDepot";
@@ -977,6 +976,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxType.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxType.FormattingEnabled = true;
             this.ComboBoxType.Location = new System.Drawing.Point(237, 42);
             this.ComboBoxType.Name = "ComboBoxType";
@@ -987,10 +987,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.LabelTitleCaissier.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LabelTitleCaissier.AutoSize = true;
-            this.LabelTitleCaissier.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelTitleCaissier.Location = new System.Drawing.Point(271, 3);
+            this.LabelTitleCaissier.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTitleCaissier.Location = new System.Drawing.Point(275, 1);
             this.LabelTitleCaissier.Name = "LabelTitleCaissier";
-            this.LabelTitleCaissier.Size = new System.Drawing.Size(101, 29);
+            this.LabelTitleCaissier.Size = new System.Drawing.Size(94, 32);
             this.LabelTitleCaissier.TabIndex = 6;
             this.LabelTitleCaissier.Text = "Caissier";
             // 
@@ -998,6 +998,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxVendeur.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxVendeur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxVendeur.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxVendeur.FormattingEnabled = true;
             this.ComboBoxVendeur.Location = new System.Drawing.Point(3, 42);
             this.ComboBoxVendeur.Name = "ComboBoxVendeur";
@@ -1008,6 +1009,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxTarif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxTarif.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxTarif.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxTarif.FormattingEnabled = true;
             this.ComboBoxTarif.Location = new System.Drawing.Point(3, 77);
             this.ComboBoxTarif.Name = "ComboBoxTarif";
@@ -1018,6 +1020,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.ComboBoxCentrale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxCentrale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxCentrale.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxCentrale.FormattingEnabled = true;
             this.ComboBoxCentrale.Location = new System.Drawing.Point(3, 113);
             this.ComboBoxCentrale.Name = "ComboBoxCentrale";
@@ -1028,10 +1031,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.LabelDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelDate.AutoSize = true;
-            this.LabelDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDate.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelDate.Location = new System.Drawing.Point(179, 11);
             this.LabelDate.Name = "LabelDate";
-            this.LabelDate.Size = new System.Drawing.Size(30, 13);
+            this.LabelDate.Size = new System.Drawing.Size(31, 13);
             this.LabelDate.TabIndex = 6;
             this.LabelDate.Text = "Date";
             // 
@@ -1039,10 +1042,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.LabelCentrale.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelCentrale.AutoSize = true;
-            this.LabelCentrale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCentrale.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelCentrale.Location = new System.Drawing.Point(179, 117);
             this.LabelCentrale.Name = "LabelCentrale";
-            this.LabelCentrale.Size = new System.Drawing.Size(46, 13);
+            this.LabelCentrale.Size = new System.Drawing.Size(50, 13);
             this.LabelCentrale.TabIndex = 10;
             this.LabelCentrale.Text = "Centrale";
             // 
@@ -1050,10 +1053,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.LabelVendeur.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelVendeur.AutoSize = true;
-            this.LabelVendeur.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelVendeur.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelVendeur.Location = new System.Drawing.Point(179, 46);
             this.LabelVendeur.Name = "LabelVendeur";
-            this.LabelVendeur.Size = new System.Drawing.Size(47, 13);
+            this.LabelVendeur.Size = new System.Drawing.Size(50, 13);
             this.LabelVendeur.TabIndex = 8;
             this.LabelVendeur.Text = "Vendeur";
             // 
@@ -1061,10 +1064,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.LabelTarif.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelTarif.AutoSize = true;
-            this.LabelTarif.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTarif.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelTarif.Location = new System.Drawing.Point(179, 81);
             this.LabelTarif.Name = "LabelTarif";
-            this.LabelTarif.Size = new System.Drawing.Size(28, 13);
+            this.LabelTarif.Size = new System.Drawing.Size(29, 13);
             this.LabelTarif.TabIndex = 9;
             this.LabelTarif.Text = "Tarif";
             // 
@@ -1072,17 +1075,17 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             this.LabelDepot.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelDepot.AutoSize = true;
-            this.LabelDepot.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDepot.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelDepot.Location = new System.Drawing.Point(413, 79);
             this.LabelDepot.Name = "LabelDepot";
-            this.LabelDepot.Size = new System.Drawing.Size(46, 17);
+            this.LabelDepot.Size = new System.Drawing.Size(44, 17);
             this.LabelDepot.TabIndex = 11;
             this.LabelDepot.Text = "Dépôt";
             // 
             // LabelNomCaissier
             // 
             this.LabelNomCaissier.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.LabelNomCaissier.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelNomCaissier.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelNomCaissier.Location = new System.Drawing.Point(413, 4);
             this.LabelNomCaissier.Name = "LabelNomCaissier";
             this.LabelNomCaissier.Size = new System.Drawing.Size(171, 27);
@@ -1092,8 +1095,9 @@ namespace SoftCaisse.Forms.VenteComptoir
             // BouttonEnregistrerDesignation
             // 
             this.BouttonEnregistrerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonEnregistrerDesignation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonEnregistrerDesignation.Enabled = false;
-            this.BouttonEnregistrerDesignation.Location = new System.Drawing.Point(1017, 204);
+            this.BouttonEnregistrerDesignation.Location = new System.Drawing.Point(1017, 206);
             this.BouttonEnregistrerDesignation.Name = "BouttonEnregistrerDesignation";
             this.BouttonEnregistrerDesignation.Palette = this.kryptonPalette1;
             this.BouttonEnregistrerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -1130,22 +1134,24 @@ namespace SoftCaisse.Forms.VenteComptoir
             this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxConditionnement, 5, 0);
             this.TableLayoutPanelDesignation.Controls.Add(this.TextBoxQuantiteDisponibleEnStock, 4, 0);
             this.TableLayoutPanelDesignation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableLayoutPanelDesignation.Location = new System.Drawing.Point(19, 167);
+            this.TableLayoutPanelDesignation.Location = new System.Drawing.Point(19, 166);
             this.TableLayoutPanelDesignation.Name = "TableLayoutPanelDesignation";
             this.TableLayoutPanelDesignation.RowCount = 1;
             this.TableLayoutPanelDesignation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableLayoutPanelDesignation.Size = new System.Drawing.Size(1088, 31);
+            this.TableLayoutPanelDesignation.Size = new System.Drawing.Size(1088, 35);
             this.TableLayoutPanelDesignation.TabIndex = 6;
             // 
             // TextBoxReference
             // 
             this.TextBoxReference.AccessibleName = "";
-            this.TextBoxReference.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxReference.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxReference.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxReference.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxReference.Location = new System.Drawing.Point(3, 3);
             this.TextBoxReference.Name = "TextBoxReference";
-            this.TextBoxReference.Size = new System.Drawing.Size(102, 25);
+            this.TextBoxReference.Size = new System.Drawing.Size(102, 30);
             this.TextBoxReference.TabIndex = 13;
             this.TextBoxReference.Text = "Référence";
             this.TextBoxReference.Enter += new System.EventHandler(this.TextBox_Enter);
@@ -1155,115 +1161,134 @@ namespace SoftCaisse.Forms.VenteComptoir
             // 
             // TextBoxDesignation
             // 
-            this.TextBoxDesignation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxDesignation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxDesignation.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxDesignation.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxDesignation.Location = new System.Drawing.Point(111, 3);
             this.TextBoxDesignation.Name = "TextBoxDesignation";
-            this.TextBoxDesignation.Size = new System.Drawing.Size(102, 25);
+            this.TextBoxDesignation.Size = new System.Drawing.Size(102, 30);
             this.TextBoxDesignation.TabIndex = 2;
             this.TextBoxDesignation.Text = "Désignation";
             // 
             // TextBoxPUHT
             // 
+            this.TextBoxPUHT.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxPUHT.BackColor = System.Drawing.Color.AliceBlue;
-            this.TextBoxPUHT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxPUHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPUHT.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxPUHT.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPUHT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TextBoxPUHT.Location = new System.Drawing.Point(219, 3);
             this.TextBoxPUHT.Name = "TextBoxPUHT";
             this.TextBoxPUHT.ReadOnly = true;
-            this.TextBoxPUHT.Size = new System.Drawing.Size(102, 25);
+            this.TextBoxPUHT.Size = new System.Drawing.Size(102, 30);
             this.TextBoxPUHT.TabIndex = 5;
             // 
             // TextBoxPUTTC
             // 
+            this.TextBoxPUTTC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxPUTTC.BackColor = System.Drawing.Color.AliceBlue;
-            this.TextBoxPUTTC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxPUTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPUTTC.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxPUTTC.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPUTTC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TextBoxPUTTC.Location = new System.Drawing.Point(327, 3);
             this.TextBoxPUTTC.Name = "TextBoxPUTTC";
             this.TextBoxPUTTC.ReadOnly = true;
-            this.TextBoxPUTTC.Size = new System.Drawing.Size(102, 25);
+            this.TextBoxPUTTC.Size = new System.Drawing.Size(102, 30);
             this.TextBoxPUTTC.TabIndex = 6;
             // 
             // TextBoxRemise
             // 
-            this.TextBoxRemise.BackColor = System.Drawing.Color.AliceBlue;
-            this.TextBoxRemise.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxRemise.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxRemise.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxRemise.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxRemise.BackColor = System.Drawing.SystemColors.Window;
+            this.TextBoxRemise.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxRemise.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TextBoxRemise.Location = new System.Drawing.Point(651, 3);
             this.TextBoxRemise.Name = "TextBoxRemise";
-            this.TextBoxRemise.ReadOnly = true;
-            this.TextBoxRemise.Size = new System.Drawing.Size(102, 25);
+            this.TextBoxRemise.Size = new System.Drawing.Size(102, 30);
             this.TextBoxRemise.TabIndex = 14;
+            this.TextBoxRemise.TextChanged += new System.EventHandler(this.TextBoxRemise_TextChanged);
             // 
             // TextBoxPUnet
             // 
+            this.TextBoxPUnet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxPUnet.BackColor = System.Drawing.Color.AliceBlue;
-            this.TextBoxPUnet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxPUnet.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPUnet.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxPUnet.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPUnet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TextBoxPUnet.Location = new System.Drawing.Point(759, 3);
             this.TextBoxPUnet.Name = "TextBoxPUnet";
             this.TextBoxPUnet.ReadOnly = true;
-            this.TextBoxPUnet.Size = new System.Drawing.Size(102, 25);
+            this.TextBoxPUnet.Size = new System.Drawing.Size(102, 30);
             this.TextBoxPUnet.TabIndex = 15;
             // 
             // TextBoxMontantHT
             // 
+            this.TextBoxMontantHT.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxMontantHT.BackColor = System.Drawing.Color.AliceBlue;
-            this.TextBoxMontantHT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxMontantHT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxMontantHT.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxMontantHT.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxMontantHT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TextBoxMontantHT.Location = new System.Drawing.Point(867, 3);
             this.TextBoxMontantHT.Name = "TextBoxMontantHT";
             this.TextBoxMontantHT.ReadOnly = true;
-            this.TextBoxMontantHT.Size = new System.Drawing.Size(102, 25);
+            this.TextBoxMontantHT.Size = new System.Drawing.Size(102, 30);
             this.TextBoxMontantHT.TabIndex = 16;
             // 
             // TextBoxMontantTTC
             // 
+            this.TextBoxMontantTTC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxMontantTTC.BackColor = System.Drawing.Color.AliceBlue;
-            this.TextBoxMontantTTC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxMontantTTC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxMontantTTC.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxMontantTTC.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxMontantTTC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TextBoxMontantTTC.Location = new System.Drawing.Point(975, 3);
             this.TextBoxMontantTTC.Name = "TextBoxMontantTTC";
             this.TextBoxMontantTTC.ReadOnly = true;
-            this.TextBoxMontantTTC.Size = new System.Drawing.Size(110, 25);
+            this.TextBoxMontantTTC.Size = new System.Drawing.Size(110, 30);
             this.TextBoxMontantTTC.TabIndex = 17;
             // 
             // TextBoxConditionnement
             // 
+            this.TextBoxConditionnement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxConditionnement.BackColor = System.Drawing.Color.AliceBlue;
-            this.TextBoxConditionnement.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxConditionnement.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxConditionnement.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxConditionnement.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxConditionnement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TextBoxConditionnement.Location = new System.Drawing.Point(543, 3);
             this.TextBoxConditionnement.Name = "TextBoxConditionnement";
             this.TextBoxConditionnement.ReadOnly = true;
-            this.TextBoxConditionnement.Size = new System.Drawing.Size(102, 25);
+            this.TextBoxConditionnement.Size = new System.Drawing.Size(102, 30);
             this.TextBoxConditionnement.TabIndex = 7;
             // 
             // TextBoxQuantiteDisponibleEnStock
             // 
-            this.TextBoxQuantiteDisponibleEnStock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxQuantiteDisponibleEnStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxQuantiteDisponibleEnStock.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.TextBoxQuantiteDisponibleEnStock.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxQuantiteDisponibleEnStock.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxQuantiteDisponibleEnStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TextBoxQuantiteDisponibleEnStock.Location = new System.Drawing.Point(435, 3);
             this.TextBoxQuantiteDisponibleEnStock.Name = "TextBoxQuantiteDisponibleEnStock";
-            this.TextBoxQuantiteDisponibleEnStock.Size = new System.Drawing.Size(102, 25);
+            this.TextBoxQuantiteDisponibleEnStock.Size = new System.Drawing.Size(102, 30);
             this.TextBoxQuantiteDisponibleEnStock.TabIndex = 4;
             this.TextBoxQuantiteDisponibleEnStock.TextChanged += new System.EventHandler(this.TextBoxQuantiteDisponibleEnStock_TextChanged);
             // 
             // BouttonSupprimerDesignation
             // 
             this.BouttonSupprimerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BouttonSupprimerDesignation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonSupprimerDesignation.Enabled = false;
-            this.BouttonSupprimerDesignation.Location = new System.Drawing.Point(903, 204);
+            this.BouttonSupprimerDesignation.Location = new System.Drawing.Point(903, 206);
             this.BouttonSupprimerDesignation.Name = "BouttonSupprimerDesignation";
             this.BouttonSupprimerDesignation.Palette = this.kryptonPalette1;
             this.BouttonSupprimerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -1275,7 +1300,8 @@ namespace SoftCaisse.Forms.VenteComptoir
             // BouttonNouveauDesignation
             // 
             this.BouttonNouveauDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BouttonNouveauDesignation.Location = new System.Drawing.Point(788, 204);
+            this.BouttonNouveauDesignation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BouttonNouveauDesignation.Location = new System.Drawing.Point(788, 206);
             this.BouttonNouveauDesignation.Name = "BouttonNouveauDesignation";
             this.BouttonNouveauDesignation.Palette = this.kryptonPalette1;
             this.BouttonNouveauDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -1379,7 +1405,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         private KryptonButton BouttonEnregistrerDesignation;
         private KryptonButton BouttonSupprimerDesignation;
         private KryptonButton BouttonNouveauDesignation;
-        private System.Windows.Forms.DateTimePicker DateTimePicker1;
+        private System.Windows.Forms.DateTimePicker DateTimePickerInfoCaissier;
         private System.Windows.Forms.Label LabelNomCaissier;
         private System.Windows.Forms.Label LabelPrixTotalTTC;
         private System.Windows.Forms.Label LabelPrixTotalHT;
@@ -1398,16 +1424,6 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.TextBox TextBoxLibelleEnregistrement;
         private System.Windows.Forms.TextBox TextBoxMontantEnregistrement;
         private System.Windows.Forms.ComboBox ComboBoxReglementEnregistrement;
-        private KryptonDataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prixUnitaireHT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prixUnitaireTTC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantiteEnStock;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantiteVendue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remise;
-        private System.Windows.Forms.DataGridViewTextBoxColumn punet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn montantHT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn montantTTC;
         private System.Windows.Forms.TextBox TextBoxPUHT;
         private System.Windows.Forms.TextBox TextBoxRemise;
         private System.Windows.Forms.TextBox TextBoxPUnet;
@@ -1439,8 +1455,17 @@ namespace SoftCaisse.Forms.VenteComptoir
         private System.Windows.Forms.Label LabelResteDu;
         private System.Windows.Forms.Label LabelDeviseReste;
         private System.Windows.Forms.ComboBox ComboBoxDeviseReste;
-        private System.Windows.Forms.Label LabelResteDuCache;
         private System.Windows.Forms.Panel PanelCommandDroite;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private KryptonDataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prixUnitaireHT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prixUnitaireTTC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantiteEnStock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantiteVendue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn remise;
+        private System.Windows.Forms.DataGridViewTextBoxColumn punet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn montantHT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn montantTTC;
     }
 }

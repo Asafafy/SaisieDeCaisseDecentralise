@@ -101,6 +101,7 @@
     <Compile Include="DTO\Devise.cs" />
     <Compile Include="DTO\ModeReglement.cs" />
     <Compile Include="DTO\Taxe.cs" />
+    <Compile Include="DTO\Unite.cs" />
     <Compile Include="Forms\Article\ArticleARechercher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +252,7 @@
     <Compile Include="Models\P_DEVISE.cs" />
     <Compile Include="Models\P_REGLEMENT.cs" />
     <Compile Include="Models\P_SOUCHEVENTE.cs" />
+    <Compile Include="Models\P_UNITE.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SCDContext.cs" />
     <Compile Include="Models\User.cs" />
@@ -273,6 +275,7 @@
     <Compile Include="Repositories\ModeReglementRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TaxeRepository.cs" />
+    <Compile Include="Repositories\UniteRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\F_COMPTETService.cs" />
     <Compile Include="Utils\ComboBox\Cmbx.cs" />

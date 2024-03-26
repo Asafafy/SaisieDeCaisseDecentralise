@@ -96,7 +96,7 @@ namespace SoftCaisse.Forms.Article
 
         private void ButtonCloseArticle_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void dataGridViewArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -135,6 +135,7 @@ namespace SoftCaisse.Forms.Article
                         {
                             PuHT = article.AR_PrixVen,
                             PuTTC = article.AR_PrixTTC,
+                            article.AR_UniteVen,
                         }).FirstOrDefault();
 
                     var infoSupplementaireArticleTaxe = _context.F_ARTCOMPTA
@@ -151,6 +152,12 @@ namespace SoftCaisse.Forms.Article
                         {
                             TauxPriseEnCompte = article.TA_Taux,
                         }).FirstOrDefault();
+                    var UniteVente = _context.P_UNITE
+                        .Where(unite => unite.cbIndice == infoSupplementaireArticle.AR_UniteVen)
+                        .Select(unite => new
+                        {
+                            UniteIntitule = unite.U_Intitule
+                        }).FirstOrDefault();
 
                     decimal puTTC = (decimal)infoSupplementaireArticle.PuTTC;
                     decimal puHT = (decimal)infoSupplementaireArticle.PuHT;
@@ -159,10 +166,10 @@ namespace SoftCaisse.Forms.Article
                     VenteComptoirForm venteComptoirForm = Application.OpenForms.OfType<VenteComptoirForm>().FirstOrDefault();
 
                     puTTC = puHT + (puHT * tauxTaxe / 100);
-                    venteComptoirForm?.AjouterArticleDesigne(afRef, afDesign, 1, (decimal)infoSupplementaireArticle.PuHT, puTTC);
+                    venteComptoirForm?.AjouterArticleDesigne(afRef, afDesign, 1, (decimal)infoSupplementaireArticle.PuHT, puTTC,UniteVente.UniteIntitule);
 
                 }
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {

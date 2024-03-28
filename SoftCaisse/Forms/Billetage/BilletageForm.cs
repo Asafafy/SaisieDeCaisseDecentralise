@@ -39,7 +39,6 @@ namespace SoftCaisse.Forms.Billetage
             object datagrid = kryptonDataGridView1.CurrentRow.Cells["cbMarq"].Value;
             int cbMarq = Convert.ToInt32(datagrid.ToString());
             _fbilletageRepository.deleteRow(cbMarq);
-
         }
 
 

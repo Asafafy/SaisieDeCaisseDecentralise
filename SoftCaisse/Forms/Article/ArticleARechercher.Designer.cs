@@ -62,6 +62,7 @@
             this.labelTous = new System.Windows.Forms.Label();
             this.BouttonOKArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.BouttonCloseArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.panelGroupBoxGeneral = new System.Windows.Forms.Panel();
             this.GroupBoxGeneralArticle.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).BeginInit();
@@ -102,22 +103,25 @@
             this.GroupBoxGeneralArticle.Controls.Add(this.panel3);
             this.GroupBoxGeneralArticle.Controls.Add(this.TextBoxBarreDeRecherche);
             this.GroupBoxGeneralArticle.Controls.Add(this.PanelFiltre);
+            this.GroupBoxGeneralArticle.Controls.Add(this.panelGroupBoxGeneral);
             this.GroupBoxGeneralArticle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBoxGeneralArticle.Location = new System.Drawing.Point(0, 0);
+            this.GroupBoxGeneralArticle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.GroupBoxGeneralArticle.Name = "GroupBoxGeneralArticle";
-            this.GroupBoxGeneralArticle.Size = new System.Drawing.Size(965, 514);
+            this.GroupBoxGeneralArticle.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.GroupBoxGeneralArticle.Size = new System.Drawing.Size(1126, 593);
             this.GroupBoxGeneralArticle.TabIndex = 0;
             this.GroupBoxGeneralArticle.TabStop = false;
             // 
             // BouttonRechercherArticle
             // 
             this.BouttonRechercherArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BouttonRechercherArticle.Location = new System.Drawing.Point(867, 18);
+            this.BouttonRechercherArticle.Location = new System.Drawing.Point(1011, 21);
             this.BouttonRechercherArticle.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonRechercherArticle.Name = "BouttonRechercherArticle";
             this.BouttonRechercherArticle.Palette = this.kryptonPalette1;
             this.BouttonRechercherArticle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonRechercherArticle.Size = new System.Drawing.Size(71, 27);
+            this.BouttonRechercherArticle.Size = new System.Drawing.Size(83, 31);
             this.BouttonRechercherArticle.TabIndex = 20;
             this.BouttonRechercherArticle.Values.Text = "Rechercher";
             // 
@@ -126,7 +130,8 @@
             this.LabelParametreFiltre.AutoSize = true;
             this.LabelParametreFiltre.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LabelParametreFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelParametreFiltre.Location = new System.Drawing.Point(4, 22);
+            this.LabelParametreFiltre.Location = new System.Drawing.Point(5, 25);
+            this.LabelParametreFiltre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelParametreFiltre.Name = "LabelParametreFiltre";
             this.LabelParametreFiltre.Size = new System.Drawing.Size(49, 20);
             this.LabelParametreFiltre.TabIndex = 15;
@@ -137,9 +142,10 @@
             // 
             this.panel3.Controls.Add(this.DataGridViewArticle);
             this.panel3.Controls.Add(this.groupBoxFiltre);
-            this.panel3.Location = new System.Drawing.Point(213, 51);
+            this.panel3.Location = new System.Drawing.Point(248, 59);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(740, 427);
+            this.panel3.Size = new System.Drawing.Size(863, 493);
             this.panel3.TabIndex = 14;
             // 
             // DataGridViewArticle
@@ -158,11 +164,12 @@
             this.DataGridViewArticle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridViewArticle.GridColor = System.Drawing.Color.White;
             this.DataGridViewArticle.Location = new System.Drawing.Point(0, 0);
+            this.DataGridViewArticle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DataGridViewArticle.Name = "DataGridViewArticle";
             this.DataGridViewArticle.ReadOnly = true;
             this.DataGridViewArticle.RowHeadersVisible = false;
             this.DataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewArticle.Size = new System.Drawing.Size(740, 427);
+            this.DataGridViewArticle.Size = new System.Drawing.Size(863, 493);
             this.DataGridViewArticle.TabIndex = 0;
             this.DataGridViewArticle.DoubleClick += new System.EventHandler(this.ButtonOKArticle_Click);
             // 
@@ -199,74 +206,77 @@
             this.groupBoxFiltre.Controls.Add(this.comboBoxComprisEntre);
             this.groupBoxFiltre.Controls.Add(this.comboBoxCommercialisation);
             this.groupBoxFiltre.Controls.Add(this.labelGroupBoxFiltrer);
-            this.groupBoxFiltre.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxFiltre.Location = new System.Drawing.Point(4, 3);
+            this.groupBoxFiltre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxFiltre.Name = "groupBoxFiltre";
-            this.groupBoxFiltre.Size = new System.Drawing.Size(734, 104);
+            this.groupBoxFiltre.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBoxFiltre.Size = new System.Drawing.Size(856, 120);
             this.groupBoxFiltre.TabIndex = 0;
             this.groupBoxFiltre.TabStop = false;
-            this.groupBoxFiltre.Text = "groupBoxFiltre";
             this.groupBoxFiltre.Visible = false;
             // 
             // ButtonReinitialiserFiltre
             // 
             this.ButtonReinitialiserFiltre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonReinitialiserFiltre.Location = new System.Drawing.Point(651, 67);
+            this.ButtonReinitialiserFiltre.Location = new System.Drawing.Point(760, 77);
             this.ButtonReinitialiserFiltre.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonReinitialiserFiltre.Name = "ButtonReinitialiserFiltre";
             this.ButtonReinitialiserFiltre.Palette = this.kryptonPalette1;
             this.ButtonReinitialiserFiltre.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonReinitialiserFiltre.Size = new System.Drawing.Size(71, 27);
+            this.ButtonReinitialiserFiltre.Size = new System.Drawing.Size(83, 31);
             this.ButtonReinitialiserFiltre.TabIndex = 19;
             this.ButtonReinitialiserFiltre.Values.Text = "Réinitialiser";
             // 
             // ButtonSupprimerFiltre
             // 
             this.ButtonSupprimerFiltre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonSupprimerFiltre.Location = new System.Drawing.Point(568, 67);
+            this.ButtonSupprimerFiltre.Location = new System.Drawing.Point(663, 77);
             this.ButtonSupprimerFiltre.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonSupprimerFiltre.Name = "ButtonSupprimerFiltre";
             this.ButtonSupprimerFiltre.Palette = this.kryptonPalette1;
             this.ButtonSupprimerFiltre.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonSupprimerFiltre.Size = new System.Drawing.Size(71, 27);
+            this.ButtonSupprimerFiltre.Size = new System.Drawing.Size(83, 31);
             this.ButtonSupprimerFiltre.TabIndex = 18;
             this.ButtonSupprimerFiltre.Values.Text = "Supprimer";
             // 
             // ButtonEnregistrerFiltre
             // 
             this.ButtonEnregistrerFiltre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonEnregistrerFiltre.Location = new System.Drawing.Point(485, 67);
+            this.ButtonEnregistrerFiltre.Location = new System.Drawing.Point(566, 77);
             this.ButtonEnregistrerFiltre.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonEnregistrerFiltre.Name = "ButtonEnregistrerFiltre";
             this.ButtonEnregistrerFiltre.Palette = this.kryptonPalette1;
             this.ButtonEnregistrerFiltre.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonEnregistrerFiltre.Size = new System.Drawing.Size(71, 27);
+            this.ButtonEnregistrerFiltre.Size = new System.Drawing.Size(83, 31);
             this.ButtonEnregistrerFiltre.TabIndex = 17;
             this.ButtonEnregistrerFiltre.Values.Text = "Enregistrer";
             // 
             // ButtonAppliquerFiltre
             // 
             this.ButtonAppliquerFiltre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonAppliquerFiltre.Location = new System.Drawing.Point(401, 67);
+            this.ButtonAppliquerFiltre.Location = new System.Drawing.Point(468, 77);
             this.ButtonAppliquerFiltre.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonAppliquerFiltre.Name = "ButtonAppliquerFiltre";
             this.ButtonAppliquerFiltre.Palette = this.kryptonPalette1;
             this.ButtonAppliquerFiltre.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.ButtonAppliquerFiltre.Size = new System.Drawing.Size(71, 27);
+            this.ButtonAppliquerFiltre.Size = new System.Drawing.Size(83, 31);
             this.ButtonAppliquerFiltre.TabIndex = 16;
             this.ButtonAppliquerFiltre.Values.Text = "Appliquer";
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(568, 40);
+            this.dateTimePicker2.Location = new System.Drawing.Point(663, 46);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(154, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(179, 23);
             this.dateTimePicker2.TabIndex = 5;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(537, 36);
+            this.label10.Location = new System.Drawing.Point(626, 42);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(19, 25);
             this.label10.TabIndex = 4;
@@ -274,26 +284,29 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(361, 40);
+            this.dateTimePicker1.Location = new System.Drawing.Point(421, 46);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(155, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(180, 23);
             this.dateTimePicker1.TabIndex = 3;
             // 
             // comboBoxComprisEntre
             // 
             this.comboBoxComprisEntre.FormattingEnabled = true;
-            this.comboBoxComprisEntre.Location = new System.Drawing.Point(178, 39);
+            this.comboBoxComprisEntre.Location = new System.Drawing.Point(208, 45);
+            this.comboBoxComprisEntre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBoxComprisEntre.Name = "comboBoxComprisEntre";
-            this.comboBoxComprisEntre.Size = new System.Drawing.Size(177, 21);
+            this.comboBoxComprisEntre.Size = new System.Drawing.Size(206, 23);
             this.comboBoxComprisEntre.TabIndex = 2;
             this.comboBoxComprisEntre.Text = "compris entre";
             // 
             // comboBoxCommercialisation
             // 
             this.comboBoxCommercialisation.FormattingEnabled = true;
-            this.comboBoxCommercialisation.Location = new System.Drawing.Point(10, 39);
+            this.comboBoxCommercialisation.Location = new System.Drawing.Point(12, 45);
+            this.comboBoxCommercialisation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBoxCommercialisation.Name = "comboBoxCommercialisation";
-            this.comboBoxCommercialisation.Size = new System.Drawing.Size(162, 21);
+            this.comboBoxCommercialisation.Size = new System.Drawing.Size(188, 23);
             this.comboBoxCommercialisation.TabIndex = 1;
             this.comboBoxCommercialisation.Text = "1ère commercialisation";
             // 
@@ -301,7 +314,8 @@
             // 
             this.labelGroupBoxFiltrer.AutoSize = true;
             this.labelGroupBoxFiltrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGroupBoxFiltrer.Location = new System.Drawing.Point(6, 16);
+            this.labelGroupBoxFiltrer.Location = new System.Drawing.Point(7, 18);
+            this.labelGroupBoxFiltrer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGroupBoxFiltrer.Name = "labelGroupBoxFiltrer";
             this.labelGroupBoxFiltrer.Size = new System.Drawing.Size(49, 20);
             this.labelGroupBoxFiltrer.TabIndex = 0;
@@ -310,9 +324,10 @@
             // TextBoxBarreDeRecherche
             // 
             this.TextBoxBarreDeRecherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxBarreDeRecherche.Location = new System.Drawing.Point(338, 22);
+            this.TextBoxBarreDeRecherche.Location = new System.Drawing.Point(394, 25);
+            this.TextBoxBarreDeRecherche.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxBarreDeRecherche.Name = "TextBoxBarreDeRecherche";
-            this.TextBoxBarreDeRecherche.Size = new System.Drawing.Size(517, 23);
+            this.TextBoxBarreDeRecherche.Size = new System.Drawing.Size(602, 23);
             this.TextBoxBarreDeRecherche.TabIndex = 2;
             this.TextBoxBarreDeRecherche.Text = "Rechercher des mots dans la liste";
             this.TextBoxBarreDeRecherche.TextChanged += new System.EventHandler(this.TextBoxBarreDeRecherche_TextChanged);
@@ -328,92 +343,101 @@
             this.PanelFiltre.Controls.Add(this.labelBijoux);
             this.PanelFiltre.Controls.Add(this.labelAccessoires);
             this.PanelFiltre.Controls.Add(this.labelTous);
-            this.PanelFiltre.Location = new System.Drawing.Point(0, 51);
+            this.PanelFiltre.Location = new System.Drawing.Point(0, 59);
+            this.PanelFiltre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.PanelFiltre.Name = "PanelFiltre";
-            this.PanelFiltre.Size = new System.Drawing.Size(207, 427);
+            this.PanelFiltre.Size = new System.Drawing.Size(241, 492);
             this.PanelFiltre.TabIndex = 1;
             // 
             // labelPrestations
             // 
             this.labelPrestations.AutoSize = true;
-            this.labelPrestations.Location = new System.Drawing.Point(3, 181);
+            this.labelPrestations.Location = new System.Drawing.Point(4, 209);
+            this.labelPrestations.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPrestations.Name = "labelPrestations";
-            this.labelPrestations.Size = new System.Drawing.Size(59, 13);
+            this.labelPrestations.Size = new System.Drawing.Size(65, 15);
             this.labelPrestations.TabIndex = 16;
             this.labelPrestations.Text = "Prestations";
             // 
             // labelOrfevrerie
             // 
             this.labelOrfevrerie.AutoSize = true;
-            this.labelOrfevrerie.Location = new System.Drawing.Point(3, 159);
+            this.labelOrfevrerie.Location = new System.Drawing.Point(4, 183);
+            this.labelOrfevrerie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelOrfevrerie.Name = "labelOrfevrerie";
-            this.labelOrfevrerie.Size = new System.Drawing.Size(53, 13);
+            this.labelOrfevrerie.Size = new System.Drawing.Size(59, 15);
             this.labelOrfevrerie.TabIndex = 15;
             this.labelOrfevrerie.Text = "Orfevrerie";
             // 
             // labelObjetPrecieux
             // 
             this.labelObjetPrecieux.AutoSize = true;
-            this.labelObjetPrecieux.Location = new System.Drawing.Point(3, 134);
+            this.labelObjetPrecieux.Location = new System.Drawing.Point(4, 155);
+            this.labelObjetPrecieux.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelObjetPrecieux.Name = "labelObjetPrecieux";
-            this.labelObjetPrecieux.Size = new System.Drawing.Size(81, 13);
+            this.labelObjetPrecieux.Size = new System.Drawing.Size(89, 15);
             this.labelObjetPrecieux.TabIndex = 14;
             this.labelObjetPrecieux.Text = "Objets Précieux";
             // 
             // labelMontres
             // 
             this.labelMontres.AutoSize = true;
-            this.labelMontres.Location = new System.Drawing.Point(3, 108);
+            this.labelMontres.Location = new System.Drawing.Point(4, 125);
+            this.labelMontres.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMontres.Name = "labelMontres";
-            this.labelMontres.Size = new System.Drawing.Size(45, 13);
+            this.labelMontres.Size = new System.Drawing.Size(51, 15);
             this.labelMontres.TabIndex = 13;
             this.labelMontres.Text = "Montres";
             // 
             // labelHorsCatalogue
             // 
             this.labelHorsCatalogue.AutoSize = true;
-            this.labelHorsCatalogue.Location = new System.Drawing.Point(3, 82);
+            this.labelHorsCatalogue.Location = new System.Drawing.Point(4, 95);
+            this.labelHorsCatalogue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelHorsCatalogue.Name = "labelHorsCatalogue";
-            this.labelHorsCatalogue.Size = new System.Drawing.Size(80, 13);
+            this.labelHorsCatalogue.Size = new System.Drawing.Size(89, 15);
             this.labelHorsCatalogue.TabIndex = 12;
             this.labelHorsCatalogue.Text = "Hors Catalogue";
             // 
             // labelBijoux
             // 
             this.labelBijoux.AutoSize = true;
-            this.labelBijoux.Location = new System.Drawing.Point(3, 56);
+            this.labelBijoux.Location = new System.Drawing.Point(4, 65);
+            this.labelBijoux.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBijoux.Name = "labelBijoux";
-            this.labelBijoux.Size = new System.Drawing.Size(35, 13);
+            this.labelBijoux.Size = new System.Drawing.Size(40, 15);
             this.labelBijoux.TabIndex = 11;
             this.labelBijoux.Text = "Bijoux";
             // 
             // labelAccessoires
             // 
             this.labelAccessoires.AutoSize = true;
-            this.labelAccessoires.Location = new System.Drawing.Point(3, 34);
+            this.labelAccessoires.Location = new System.Drawing.Point(4, 39);
+            this.labelAccessoires.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAccessoires.Name = "labelAccessoires";
-            this.labelAccessoires.Size = new System.Drawing.Size(64, 13);
+            this.labelAccessoires.Size = new System.Drawing.Size(68, 15);
             this.labelAccessoires.TabIndex = 10;
             this.labelAccessoires.Text = "Accessoires";
             // 
             // labelTous
             // 
             this.labelTous.AutoSize = true;
-            this.labelTous.Location = new System.Drawing.Point(3, 9);
+            this.labelTous.Location = new System.Drawing.Point(4, 10);
+            this.labelTous.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTous.Name = "labelTous";
-            this.labelTous.Size = new System.Drawing.Size(31, 13);
+            this.labelTous.Size = new System.Drawing.Size(31, 15);
             this.labelTous.TabIndex = 9;
             this.labelTous.Text = "Tous";
             // 
             // BouttonOKArticle
             // 
             this.BouttonOKArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BouttonOKArticle.Location = new System.Drawing.Point(776, 482);
+            this.BouttonOKArticle.Location = new System.Drawing.Point(905, 556);
             this.BouttonOKArticle.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonOKArticle.Name = "BouttonOKArticle";
             this.BouttonOKArticle.Palette = this.kryptonPalette1;
             this.BouttonOKArticle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonOKArticle.Size = new System.Drawing.Size(71, 27);
+            this.BouttonOKArticle.Size = new System.Drawing.Size(83, 31);
             this.BouttonOKArticle.TabIndex = 11;
             this.BouttonOKArticle.Values.Text = "OK";
             this.BouttonOKArticle.Click += new System.EventHandler(this.ButtonOKArticle_Click);
@@ -421,26 +445,35 @@
             // BouttonCloseArticle
             // 
             this.BouttonCloseArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BouttonCloseArticle.Location = new System.Drawing.Point(851, 482);
+            this.BouttonCloseArticle.Location = new System.Drawing.Point(993, 556);
             this.BouttonCloseArticle.Margin = new System.Windows.Forms.Padding(2);
             this.BouttonCloseArticle.Name = "BouttonCloseArticle";
             this.BouttonCloseArticle.Palette = this.kryptonPalette1;
             this.BouttonCloseArticle.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.BouttonCloseArticle.Size = new System.Drawing.Size(71, 27);
+            this.BouttonCloseArticle.Size = new System.Drawing.Size(83, 31);
             this.BouttonCloseArticle.TabIndex = 12;
             this.BouttonCloseArticle.Values.Text = "Annuler";
             this.BouttonCloseArticle.Click += new System.EventHandler(this.ButtonCloseArticle_Click);
             // 
+            // panelGroupBoxGeneral
+            // 
+            this.panelGroupBoxGeneral.Location = new System.Drawing.Point(0, 0);
+            this.panelGroupBoxGeneral.Name = "panelGroupBoxGeneral";
+            this.panelGroupBoxGeneral.Size = new System.Drawing.Size(1126, 593);
+            this.panelGroupBoxGeneral.TabIndex = 21;
+            // 
             // ArticleARechercher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 514);
+            this.ClientSize = new System.Drawing.Size(1126, 593);
             this.Controls.Add(this.BouttonCloseArticle);
             this.Controls.Add(this.BouttonOKArticle);
             this.Controls.Add(this.GroupBoxGeneralArticle);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "ArticleARechercher";
             this.Palette = this.kryptonPalette1;
@@ -492,5 +525,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn reference;
         private System.Windows.Forms.DataGridViewTextBoxColumn designation;
         private System.Windows.Forms.DataGridViewTextBoxColumn famille;
+        private System.Windows.Forms.Panel panelGroupBoxGeneral;
     }
 }

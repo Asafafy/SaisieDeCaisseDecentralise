@@ -181,6 +181,16 @@ namespace SoftCaisse.Forms.VenteComptoir
 
             return infoSupplementaireTaxe?.TauxPriseEnCompte ?? 0;
         }
+
+        private void TextBoxReference_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (char.IsLower(e.KeyChar))
+            {
+                e.KeyChar = char.ToUpper(e.KeyChar);
+            }
+        }
+
         public void TextBoxReference_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Tab)
@@ -630,6 +640,8 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void BouttonSupprimerDesignation_Click(object sender, EventArgs e)
         {
+            BouttonFinDeSaisie.Enabled = false;
+
             if (DataGridViewArticle.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = DataGridViewArticle.SelectedRows[0];
@@ -766,15 +778,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             DataGridViewEnregistrement.Rows.Clear();
             DataGridViewArticle.Rows.Clear();
             TextBoxReference.Focus();
-        }
-
-        private void TextBoxReference_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-            if (char.IsLower(e.KeyChar))
-            { 
-                e.KeyChar = char.ToUpper(e.KeyChar);
-            }
         }
 
         private void ComboBoxDeviseReste_SelectedIndexChanged(object sender, EventArgs e)

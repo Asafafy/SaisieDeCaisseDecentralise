@@ -33,7 +33,6 @@
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.GroupBoxGeneralArticle = new System.Windows.Forms.GroupBox();
             this.BouttonRechercherArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.LabelMesFiltres = new System.Windows.Forms.Label();
             this.LabelParametreFiltre = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DataGridViewArticle = new System.Windows.Forms.DataGridView();
@@ -99,7 +98,6 @@
             // 
             this.GroupBoxGeneralArticle.BackColor = System.Drawing.Color.AliceBlue;
             this.GroupBoxGeneralArticle.Controls.Add(this.BouttonRechercherArticle);
-            this.GroupBoxGeneralArticle.Controls.Add(this.LabelMesFiltres);
             this.GroupBoxGeneralArticle.Controls.Add(this.LabelParametreFiltre);
             this.GroupBoxGeneralArticle.Controls.Add(this.panel3);
             this.GroupBoxGeneralArticle.Controls.Add(this.TextBoxBarreDeRecherche);
@@ -122,17 +120,6 @@
             this.BouttonRechercherArticle.Size = new System.Drawing.Size(71, 27);
             this.BouttonRechercherArticle.TabIndex = 20;
             this.BouttonRechercherArticle.Values.Text = "Rechercher";
-            // 
-            // LabelMesFiltres
-            // 
-            this.LabelMesFiltres.AutoSize = true;
-            this.LabelMesFiltres.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LabelMesFiltres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelMesFiltres.Location = new System.Drawing.Point(77, 22);
-            this.LabelMesFiltres.Name = "LabelMesFiltres";
-            this.LabelMesFiltres.Size = new System.Drawing.Size(81, 20);
-            this.LabelMesFiltres.TabIndex = 16;
-            this.LabelMesFiltres.Text = "Mes filtres";
             // 
             // LabelParametreFiltre
             // 
@@ -501,7 +488,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton ButtonAppliquerFiltre;
         private System.Windows.Forms.Label LabelParametreFiltre;
         private System.Windows.Forms.Label labelPrestations;
-        private System.Windows.Forms.Label LabelMesFiltres;
         private ComponentFactory.Krypton.Toolkit.KryptonButton BouttonRechercherArticle;
         private System.Windows.Forms.DataGridViewTextBoxColumn reference;
         private System.Windows.Forms.DataGridViewTextBoxColumn designation;

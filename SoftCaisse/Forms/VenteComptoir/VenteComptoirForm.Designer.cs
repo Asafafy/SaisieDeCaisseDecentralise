@@ -297,7 +297,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             // quantiteEnStock
             // 
             this.quantiteEnStock.DataPropertyName = "quantiteEnStock";
-            this.quantiteEnStock.HeaderText = "Quantité Disponible";
+            this.quantiteEnStock.HeaderText = "Quantité";
             this.quantiteEnStock.Name = "quantiteEnStock";
             this.quantiteEnStock.ReadOnly = true;
             // 
@@ -1207,12 +1207,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxRemise.BackColor = System.Drawing.SystemColors.Window;
             this.TextBoxRemise.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxRemise.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TextBoxRemise.ForeColor = System.Drawing.SystemColors.GrayText;
             this.TextBoxRemise.Location = new System.Drawing.Point(651, 3);
             this.TextBoxRemise.Name = "TextBoxRemise";
             this.TextBoxRemise.Size = new System.Drawing.Size(102, 30);
             this.TextBoxRemise.TabIndex = 14;
-            this.TextBoxRemise.TextChanged += new System.EventHandler(this.TextBoxRemise_TextChanged);
             // 
             // TextBoxPUnet
             // 

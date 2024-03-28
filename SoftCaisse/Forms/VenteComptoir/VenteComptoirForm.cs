@@ -196,9 +196,12 @@ namespace SoftCaisse.Forms.VenteComptoir
                     var codeFamilleBD = articles
                         .FirstOrDefault(a => a.AR_Ref == codeFamilleOuDesignation || a.FA_CodeFamille == codeFamilleOuDesignation || Regex.IsMatch(a.AR_Design.ToUpper(), pattern));
                     
+                    var artclient = _context.F_ARTCLIENT.ToList();
 
                     if (codeFamilleBD != null)
                     {
+                        var artclientDb = artclient.FirstOrDefault(a => a.AR_Ref == codeFamilleBD.AR_Ref && a.AC_Categorie == 3);
+                        
                         var UniteVente = _context.P_UNITE
                         .Where(unite => unite.cbIndice == codeFamilleBD.AR_UniteVen)
                         .Select(unite => new
@@ -208,9 +211,20 @@ namespace SoftCaisse.Forms.VenteComptoir
 
 
                         decimal tauxPriseEnCompte = TauxPriseEnCompte(codeFamilleBD.AR_Ref);
-                        decimal puTTC = (decimal)codeFamilleBD.AR_PrixVen + (decimal)(codeFamilleBD.AR_PrixVen * tauxPriseEnCompte / 100);
+                        decimal puHT = (decimal)codeFamilleBD.AR_PrixVen;
+                        decimal puTTC;
+                        if (artclientDb.AC_PrixVen != 0.00m) 
+                        {
+                            puTTC = (decimal)artclientDb.AC_PrixVen;
+                            puHT = puTTC / (1 + tauxPriseEnCompte / 100);
+                        }
+                        else
+                        {
+
+                            puTTC = puHT + puHT * tauxPriseEnCompte / 100;
+                        }
                         
-                        AjouterArticleDesigne(codeFamilleBD.AR_Ref, codeFamilleBD.AR_Design, 1, (decimal)codeFamilleBD.AR_PrixVen, puTTC, UniteVente.UniteIntitule);
+                        AjouterArticleDesigne(codeFamilleBD.AR_Ref, codeFamilleBD.AR_Design, 1, puHT, puTTC, UniteVente.UniteIntitule);
                     }
                     else
                     {
@@ -285,9 +299,9 @@ namespace SoftCaisse.Forms.VenteComptoir
                                     {
                                         decimal tauxPriseEnCompte = TauxPriseEnCompte(TextBoxReference.Text);
 
-                                        puNet -= puNet * remiseArticle / 100;
-                                        montantHT = puNet;
-                                        montantTTC = montantHT + montantTTC * tauxPriseEnCompte / 100;
+                                        puNet *= (1 - remiseArticle / 100);
+                                        montantHT *= (1 - remiseArticle / 100);
+                                        montantTTC *= (1 - remiseArticle / 100);
                                     }
                             }
                             else
@@ -365,12 +379,12 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void TextBoxRemise_TextChanged(object sender, EventArgs e)
         {
-           if(TextBoxRemise.Text == "")
+           /*if(TextBoxRemise.Text == "")
            {
                 TextBoxPUnet.Text = TextBoxPUHT.Text;
                 TextBoxMontantHT.Text = TextBoxPUHT.Text;
                 TextBoxMontantTTC.Text = TextBoxPUTTC.Text;
-           }
+           }*/
         }
 
         private void TextBoxQuantiteDisponibleEnStock_TextChanged(object sender, EventArgs e)
@@ -394,16 +408,16 @@ namespace SoftCaisse.Forms.VenteComptoir
                                 if (int.TryParse(TextBoxQuantiteDisponibleEnStock.Text, out int quantiteDisponible))
                                 {
 
-                                    if (TextBoxPUnet.Text != "")
+                                    if (TextBoxPUHT.Text != "" && TextBoxPUTTC.Text != "")
                                     {
-                                        decimal puNet = Convert.ToDecimal(TextBoxPUnet.Text);
+                                        decimal puHT = Convert.ToDecimal(TextBoxPUHT.Text);
+                                        decimal puTTC = Convert.ToDecimal(TextBoxPUTTC.Text);
 
-                                        decimal montantHT = puNet * quantiteDisponible;
-                                        decimal tauxPriseEnCompte = TauxPriseEnCompte(TextBoxReference.Text);
-                                        decimal montantTTC = montantHT + (montantHT * tauxPriseEnCompte / 100);
+                                        decimal montantHT = puHT * quantiteDisponible;
+                                        decimal montanTTC = puTTC * quantiteDisponible;
 
                                         TextBoxMontantHT.Text = montantHT.ToString("N2");
-                                        TextBoxMontantTTC.Text = montantTTC.ToString("N2");
+                                        TextBoxMontantTTC.Text = montanTTC.ToString("N2");
                                     }
                                 }
                             }

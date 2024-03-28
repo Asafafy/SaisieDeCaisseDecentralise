@@ -93,6 +93,7 @@
       <DependentUpon>DeviseControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomModel\CaisseControl.cs" />
+    <Compile Include="DTO\ArtClient.cs" />
     <Compile Include="DTO\ArtCompta.cs" />
     <Compile Include="DTO\Article.cs" />
     <Compile Include="DTO\ArtStock.cs" />
@@ -237,6 +238,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Controle.cs" />
+    <Compile Include="Models\F_ARTCLIENT.cs" />
     <Compile Include="Models\F_ARTCOMPTA.cs" />
     <Compile Include="Models\F_ARTICLE.cs" />
     <Compile Include="Models\F_ARTSTOCK.cs" />
@@ -258,6 +260,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ArtClientRepository.cs" />
     <Compile Include="Repositories\ArtComptaRepository.cs" />
     <Compile Include="Repositories\ArticleRepository.cs" />
     <Compile Include="Repositories\ArtStockRepository.cs" />

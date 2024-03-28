@@ -291,6 +291,7 @@ namespace SoftCaisse.Forms.VenteComptoir
 
                         if (TextBoxRemise.Text != "")
                         {
+
                             if (Convert.ToInt16(TextBoxRemise.Text) != 0)
                             {
                                 decimal remiseArticle = Convert.ToInt32(TextBoxRemise.Text);
@@ -375,16 +376,6 @@ namespace SoftCaisse.Forms.VenteComptoir
 
 
             TextBoxReference.Focus();
-        }
-
-        private void TextBoxRemise_TextChanged(object sender, EventArgs e)
-        {
-           /*if(TextBoxRemise.Text == "")
-           {
-                TextBoxPUnet.Text = TextBoxPUHT.Text;
-                TextBoxMontantHT.Text = TextBoxPUHT.Text;
-                TextBoxMontantTTC.Text = TextBoxPUTTC.Text;
-           }*/
         }
 
         private void TextBoxQuantiteDisponibleEnStock_TextChanged(object sender, EventArgs e)

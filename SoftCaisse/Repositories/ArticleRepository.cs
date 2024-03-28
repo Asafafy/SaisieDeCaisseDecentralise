@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    internal class ArticleRepository : IRepository<F_ARTICLE>
+    public class ArticleRepository : IRepository<DTO.Article>
     {
         private readonly AppDbContext _context;
 
@@ -14,7 +14,7 @@ namespace SoftCaisse.Repositories
             _context = context;
         }
 
-        public void Add(F_ARTICLE entity)
+        public void Add(DTO.Article entity)
         {
             throw new NotImplementedException();
         }
@@ -24,21 +24,10 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-       public IEnumerable<F_ARTICLE> GetAll()
+       public IEnumerable<DTO.Article> GetAll()
         {
             return _context.F_ARTICLE
-                .Select(a => new
-                {
-                    a.AR_Ref,
-                    a.AR_Design,
-                    a.FA_CodeFamille,
-                    a.AR_UnitePoids,
-                    a.AR_PrixVen,
-                    a.AR_PrixTTC,
-                    a.AR_UniteVen
-                })
-                .ToList()
-                .Select(a => new F_ARTICLE
+                .Select(a => new DTO.Article
                 {
                     AR_Ref = a.AR_Ref,
                     AR_Design = a.AR_Design,
@@ -47,15 +36,15 @@ namespace SoftCaisse.Repositories
                     AR_PrixVen = a.AR_PrixVen,
                     AR_PrixTTC = a.AR_PrixTTC,
                     AR_UniteVen = a.AR_UniteVen
-                });
+                }).ToList();
         }
 
-        public IEnumerable<F_ARTICLE> GetById(int id)
+        public IEnumerable<DTO.Article> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(F_ARTICLE entity)
+        public void Update( DTO.Article entity)
         {
             throw new NotImplementedException();
         }

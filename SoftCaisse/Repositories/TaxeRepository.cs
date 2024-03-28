@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    internal class TaxeRepository : IRepository<F_TAXE>
+    public class TaxeRepository : IRepository<DTO.Taxe>
     {
         private readonly AppDbContext _context;
         public TaxeRepository(AppDbContext context)
         {
             _context = context;
         }
-        public void Add(F_TAXE entity)
+        public void Add(DTO.Taxe entity)
         {
             throw new NotImplementedException();
         }
@@ -22,27 +22,22 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<F_TAXE> GetAll()
+        public IEnumerable<DTO.Taxe> GetAll()
         {
-            return _context.F_TAXE.Select(a => new
-            {
-                a.TA_Taux,
-                a.TA_Code
-            })
-            .ToList()
-            .Select(a => new F_TAXE
+            return _context.F_TAXE
+            .Select(a => new DTO.Taxe
             {
                 TA_Taux = a.TA_Taux,
                 TA_Code = a.TA_Code
-            });
+            }).ToList();
         }
 
-        public IEnumerable<F_TAXE> GetById(int id)
+        public IEnumerable<DTO.Taxe> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(F_TAXE entity)
+        public void Update(DTO.Taxe entity)
         {
             throw new NotImplementedException();
         }

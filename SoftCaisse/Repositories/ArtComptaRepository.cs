@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    internal class ArtComptaRepository : IRepository<F_ARTCOMPTA>
+    public class ArtComptaRepository : IRepository<DTO.ArtCompta>
     {
         private readonly AppDbContext _context;
         public ArtComptaRepository(AppDbContext context)
@@ -13,7 +13,7 @@ namespace SoftCaisse.Repositories
             _context = context;
         }
 
-        public void Add(F_ARTCOMPTA entity)
+        public void Add(DTO.ArtCompta entity)
         {
             throw new NotImplementedException();
         }
@@ -23,28 +23,23 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<F_ARTCOMPTA> GetAll()
+        public IEnumerable<DTO.ArtCompta> GetAll()
         {
-            return _context.F_ARTCOMPTA.Select(a => new
-            {
-                a.ACP_ComptaCPT_Taxe1,
-                a.ACP_Champ,
-                a.AR_Ref
-            }).ToList()
-            .Select(a => new F_ARTCOMPTA
+            return _context.F_ARTCOMPTA
+            .Select(a => new DTO.ArtCompta
             {
                 ACP_ComptaCPT_Taxe1 = a.ACP_ComptaCPT_Taxe1,
                 ACP_Champ = a.ACP_Champ,
                 AR_Ref = a.AR_Ref
-            });
+            }).ToList();
         }
 
-        public IEnumerable<F_ARTCOMPTA> GetById(int id)
+        public IEnumerable<DTO.ArtCompta> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(F_ARTCOMPTA entity)
+        public void Update(DTO.ArtCompta entity)
         {
             throw new NotImplementedException();
         }

@@ -97,6 +97,7 @@
             // 
             // GroupBoxGeneralArticle
             // 
+            this.GroupBoxGeneralArticle.BackColor = System.Drawing.Color.AliceBlue;
             this.GroupBoxGeneralArticle.Controls.Add(this.BouttonRechercherArticle);
             this.GroupBoxGeneralArticle.Controls.Add(this.LabelMesFiltres);
             this.GroupBoxGeneralArticle.Controls.Add(this.LabelParametreFiltre);

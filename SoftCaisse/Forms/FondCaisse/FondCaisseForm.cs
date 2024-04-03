@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
@@ -14,9 +15,11 @@ namespace SoftCaisse.Forms.FondCaisse
         private readonly AppDbContext _context;
         private readonly DeviseRepository _deviseRepository;
         private readonly FBilletageRepository _fbilletageRepository;
+        private readonly FCReglementRepository _fcreglementRepository;
         public List<dynamic> devise = new List<dynamic>();
+        public List<dynamic> coursDevise = new List<dynamic>();
         public List<dynamic> billetage = new List<dynamic>();
-        
+        public List<dynamic> freglement = new List<dynamic>();
         private int NDevise;
         public FondCaisseForm()
         {
@@ -24,12 +27,16 @@ namespace SoftCaisse.Forms.FondCaisse
             _context = new AppDbContext();
             _deviseRepository = new DeviseRepository(_context);
             _fbilletageRepository = new FBilletageRepository(_context);
-         
+            _fcreglementRepository = new FCReglementRepository(_context);
             var dataDevise = _deviseRepository.GetAll();
             var deviseCombobox = dataDevise.Where(d=>d.D_Intitule !="").Select(d=>new {NumDevise = d.cbMarq, Intitule = d.D_Intitule});
+            var courDevise = dataDevise.Select(d => new { NumDevise = d.cbMarq, Cours = d.D_Cours });
             var dataBillet = _fbilletageRepository.GetAll();
             var dataGridBillet = dataBillet.Select(b=>new {NumDevise = b.N_Devise,IntituleBillet = b.BI_Intitule}).ToList();
+            var dataReglement = _fcreglementRepository.GetAll();
             devise.AddRange(deviseCombobox);
+            freglement.AddRange(dataReglement);
+            coursDevise.AddRange(courDevise);
             deviseCmbx.DisplayMember = "Intitule";
             deviseCmbx.ValueMember = "NumDevise";
             LoadDevise();
@@ -79,7 +86,19 @@ namespace SoftCaisse.Forms.FondCaisse
 
         private void btnValiderFondCaisse_Click(object sender, EventArgs e)
         {
-
+            int count = freglement.Count();
+            var cours = coursDevise.Where(c => c.NumDevise == NDevise).Select(c=>c.Cours).FirstOrDefault();
+            decimal total = decimal.Parse(montantTotalLbl.Text);
+            decimal montant = (decimal)total / (decimal)cours;
+            F_CREGLEMENT regl = new F_CREGLEMENT
+            {
+                RG_No = count + 1,
+                CT_NumPayeur = null,
+                RG_Date = DateTime.Now,
+                RG_Reference = "Déclaration du fond de caisse",
+                RG_Montant = Math.Round(montant, 2),
+            };
+            MessageBox.Show(regl.RG_Montant.ToString());
         }
 
     }

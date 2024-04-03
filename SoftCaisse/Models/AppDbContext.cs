@@ -25,6 +25,7 @@ namespace SoftCaisse.Models
         public virtual DbSet<P_REGLEMENT> P_REGLEMENT { get; set; }
         public virtual DbSet<F_ARTSTOCK> F_ARTSTOCK { get; set; }
         public virtual DbSet<P_UNITE> P_UNITE { get; set; }
+        public virtual DbSet<F_ARTCLIENT> F_ARTCLIENT { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

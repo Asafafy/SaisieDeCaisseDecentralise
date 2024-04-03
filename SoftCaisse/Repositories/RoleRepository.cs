@@ -22,7 +22,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Role> GetAll()
+        public IList<Role> GetAll()
         {
             return _context.Roles.ToList();
         }

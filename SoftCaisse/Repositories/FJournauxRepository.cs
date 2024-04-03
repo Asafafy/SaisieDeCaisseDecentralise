@@ -22,7 +22,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<F_JOURNAUX> GetAll()
+        public IList<F_JOURNAUX> GetAll()
         {
             return _context.F_JOURNAUX.ToList();
         }

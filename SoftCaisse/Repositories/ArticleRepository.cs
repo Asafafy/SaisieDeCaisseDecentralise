@@ -24,7 +24,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-       public IEnumerable<DTO.Article> GetAll()
+       public IList<F_ARTICLE> GetAll()
         {
             return _context.F_ARTICLE
                 .Select(a => new DTO.Article

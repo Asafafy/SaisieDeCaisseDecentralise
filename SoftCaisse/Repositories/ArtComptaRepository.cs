@@ -23,7 +23,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<DTO.ArtCompta> GetAll()
+        public IList<F_ARTCOMPTA> GetAll()
         {
             return _context.F_ARTCOMPTA
             .Select(a => new DTO.ArtCompta

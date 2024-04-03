@@ -38,19 +38,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ComponentFactory.Krypton.Docking">
-      <HintPath>..\..\..\..\Downloads\Compressed\Krypton-master\Bin\ComponentFactory.Krypton.Docking.dll</HintPath>
+      <HintPath>D:\krypton\ComponentFactory.Krypton.Docking.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Navigator">
-      <HintPath>..\..\..\..\Downloads\Compressed\Krypton-master\Bin\ComponentFactory.Krypton.Navigator.dll</HintPath>
+      <HintPath>D:\krypton\ComponentFactory.Krypton.Navigator.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Ribbon">
-      <HintPath>..\..\..\..\Downloads\Compressed\Krypton-master\Bin\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+      <HintPath>D:\krypton\ComponentFactory.Krypton.Ribbon.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit">
-      <HintPath>..\..\..\..\Downloads\Compressed\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+      <HintPath>D:\krypton\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Workspace">
-      <HintPath>..\..\..\..\Downloads\Compressed\Krypton-master\Bin\ComponentFactory.Krypton.Workspace.dll</HintPath>
+      <HintPath>D:\krypton\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -73,6 +73,12 @@
     </Compile>
     <Compile Include="Controls\CaisseControl.Designer.cs">
       <DependentUpon>CaisseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CaissieGestion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CaissieGestion.Designer.cs">
+      <DependentUpon>CaissieGestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\CaissierControl.cs">
       <SubType>UserControl</SubType>
@@ -156,6 +162,12 @@
     </Compile>
     <Compile Include="Forms\GestionCaisse\GestionCaisse.Designer.cs">
       <DependentUpon>GestionCaisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GestionCaisse\MouvementCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GestionCaisse\MouvementCaisse.Designer.cs">
+      <DependentUpon>MouvementCaisse.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Login\LoginForm.cs">
       <SubType>Form</SubType>
@@ -287,6 +299,9 @@
     <EmbeddedResource Include="Controls\CaisseControl.resx">
       <DependentUpon>CaisseControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CaissieGestion.resx">
+      <DependentUpon>CaissieGestion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\CaissierControl.resx">
       <DependentUpon>CaissierControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -322,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GestionCaisse\GestionCaisse.resx">
       <DependentUpon>GestionCaisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GestionCaisse\MouvementCaisse.resx">
+      <DependentUpon>MouvementCaisse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -412,6 +430,8 @@
       <Version>4.5.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

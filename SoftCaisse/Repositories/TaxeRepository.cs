@@ -22,7 +22,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<DTO.Taxe> GetAll()
+        public IList<F_TAXE> GetAll()
         {
             return _context.F_TAXE
             .Select(a => new DTO.Taxe

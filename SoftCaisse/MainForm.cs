@@ -24,6 +24,7 @@ namespace SoftCaisse
         Controls.DeviseControl deviseControl = new Controls.DeviseControl();
         Controls.CollaborateurControl collaborateurControl = new CollaborateurControl();
         Controls.CaissierControl caissierControl = new CaissierControl();
+        Controls.CaissieGestion caisseGestion = new CaissieGestion();
         public MainForm()
         {
             InitializeComponent();
@@ -73,7 +74,7 @@ namespace SoftCaisse
         private void gestionDesCaissesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GestionCaisse gestion = new GestionCaisse();
-            gestion.Show();
+            AddControl.ToForm(gestion, caisseGestion);
         }
 
         private void ventesComptoirToolStripMenuItem_Click(object sender, EventArgs e)

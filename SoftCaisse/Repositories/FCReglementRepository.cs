@@ -24,7 +24,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<F_CREGLEMENT>GetAll()
+        public IList<F_CREGLEMENT>GetAll()
         {
             return _context.F_CREGLEMENT.ToList();
         }

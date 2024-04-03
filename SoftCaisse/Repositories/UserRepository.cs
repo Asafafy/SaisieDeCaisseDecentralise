@@ -18,7 +18,7 @@ namespace SoftCaisse.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<User> GetAll()
+        public IList<User> GetAll()
         {
             return _context.Users.ToList();
         }

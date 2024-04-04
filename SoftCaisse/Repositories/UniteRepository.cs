@@ -27,7 +27,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Unite> GetAll()
+        public IList<Unite> GetAll()
         {
             return _context.P_UNITE
                 .Select(a => new Unite

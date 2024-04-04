@@ -23,7 +23,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<P_DEVISE> GetAll()
+        public IList<DTO.Devise> GetAll()
         {
             return _context.P_DEVISE
                 .Select( a => new DTO.Devise

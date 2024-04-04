@@ -29,9 +29,9 @@ namespace SoftCaisse.Repositories
             return _context.F_CREGLEMENT.ToList();
         }
 
-        IEnumerable<F_CREGLEMENT> IRepository<F_CREGLEMENT>.GetById(int id)
+        public F_CREGLEMENT GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.F_CREGLEMENT.FirstOrDefault(u=>u.CA_No==id);
         }
 
         void IRepository<F_CREGLEMENT>.Update(F_CREGLEMENT entity)

@@ -4,7 +4,7 @@ namespace SoftCaisse.Repositories
 {
     public  interface  IRepository<T>
     {
-        IEnumerable<T> GetById(int id);
+        T GetById(int id);
         IList<T> GetAll();
         void Add(T entity);
         void Update(T entity);

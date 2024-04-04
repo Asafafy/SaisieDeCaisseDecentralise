@@ -27,9 +27,9 @@ namespace SoftCaisse.Repositories
             return _context.F_COLLABORATEUR.ToList();
         }
 
-        IEnumerable<F_COLLABORATEUR> IRepository<F_COLLABORATEUR>.GetById(int id)
+        public F_COLLABORATEUR GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.F_COLLABORATEUR.FirstOrDefault(u=>u.CO_No==id);
         }
 
         void IRepository<F_COLLABORATEUR>.Update(F_COLLABORATEUR entity)

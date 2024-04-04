@@ -38,7 +38,7 @@ namespace SoftCaisse.Repositories
                 }).ToList();
         }
 
-        public IEnumerable<ArtClient> GetById(int id)
+        public ArtClient GetById(int id)
         {
             throw new NotImplementedException();
         }

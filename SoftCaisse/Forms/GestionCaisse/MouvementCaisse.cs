@@ -16,16 +16,41 @@ namespace SoftCaisse.Forms.GestionCaisse
     {
         private readonly AppDbContext _context;
         private readonly FCaisseRepository _fCaisseRepository;
+        private readonly FCReglementRepository _fCReglementRepository;
+        private readonly FCollaborateurRepository _fCollaborateurRepository;
 
         public MouvementCaisse(string Intitule)
         {
             InitializeComponent();
             _context = new AppDbContext();
             _fCaisseRepository = new FCaisseRepository(_context);
+            _fCReglementRepository = new FCReglementRepository(_context);
             var data = _fCaisseRepository.GetAll();
-            string select= data.FirstOrDefault(u=>u.CA_Intitule==Intitule).CA_No+"";
-            listeCaisse.DataSource =new BindingList<F_CAISSE>(data);
-            listeCaisse.SelectedIndex = listeCaisse.FindString(select);
+            tableMouvement.DataSource = _fCReglementRepository.GetAll().Select(u =>
+            {
+                var caissier = _context.F_COLLABORATEUR.FirstOrDefault(a=>a.CO_No.Value==u.CA_No);
+                var vendeur = _context.F_COLLABORATEUR.FirstOrDefault(a=>a.CO_No.Value==u.cbCA_No);
+                return new
+                {
+                    RG_No = u.RG_No,
+                    RG_Date = u.RG_Date,
+                    Caissier = caissier.CO_Nom,
+                    Vendeur = vendeur.cbCO_Nom,
+                    Montant = u.RG_Montant,
+                    RG_Libelle = u.RG_Libelle
+
+                };
+            }
+            ) ;   
+            listeCaisse.DataSource =data;
+            listeCaisse.DisplayMember = "CA_Intitule";
+            listeCaisse.ValueMember = "CA_No";
+            listeCaisse.SelectedText = Intitule;
+        }
+
+        private void document_state(object sender, EventArgs e)
+        {
+            //listeCaisse.DataSource = data;
         }
     }
 }

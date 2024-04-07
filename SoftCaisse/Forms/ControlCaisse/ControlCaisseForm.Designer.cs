@@ -34,12 +34,16 @@
             this.btnGestionCaisseClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.generation_ecart = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonDataGridView1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.intitule = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Montant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MontantConstaté = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ecart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.Devise = new System.Windows.Forms.ComboBox();
@@ -53,13 +57,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Caisse = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
@@ -101,6 +98,7 @@
             this.kryptonButton2.Size = new System.Drawing.Size(134, 34);
             this.kryptonButton2.TabIndex = 13;
             this.kryptonButton2.Values.Text = "OK";
+            this.kryptonButton2.Click += new System.EventHandler(this.generer_ecart);
             // 
             // btnGestionCaisseClose
             // 
@@ -125,7 +123,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox2);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.generation_ecart);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
@@ -140,6 +139,77 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Montants théoriques en caisse";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(810, 279);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(0, 16);
+            this.label11.TabIndex = 35;
+            // 
+            // generation_ecart
+            // 
+            this.generation_ecart.AutoSize = true;
+            this.generation_ecart.Location = new System.Drawing.Point(13, 308);
+            this.generation_ecart.Name = "generation_ecart";
+            this.generation_ecart.Size = new System.Drawing.Size(350, 20);
+            this.generation_ecart.TabIndex = 34;
+            this.generation_ecart.Text = "Générer un mouvement de régularisation en cas écart ";
+            this.generation_ecart.UseVisualStyleBackColor = true;
+            this.generation_ecart.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(-29, 308);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(18, 17);
+            this.checkBox1.TabIndex = 33;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(687, 278);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 16);
+            this.label10.TabIndex = 31;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(487, 279);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(0, 16);
+            this.label9.TabIndex = 30;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(810, 246);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 16);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "Ecart";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(588, 247);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(151, 16);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Total théorique constate";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(357, 247);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(174, 16);
+            this.label6.TabIndex = 27;
+            this.label6.Text = "Montant théorique en caisse";
             // 
             // kryptonButton1
             // 
@@ -156,11 +226,6 @@
             // 
             this.kryptonDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.kryptonDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.intitule,
-            this.Montant,
-            this.MontantConstaté,
-            this.Ecart});
             this.kryptonDataGridView1.Location = new System.Drawing.Point(13, 22);
             this.kryptonDataGridView1.Name = "kryptonDataGridView1";
             this.kryptonDataGridView1.RowHeadersVisible = false;
@@ -168,34 +233,7 @@
             this.kryptonDataGridView1.RowTemplate.Height = 24;
             this.kryptonDataGridView1.Size = new System.Drawing.Size(1004, 222);
             this.kryptonDataGridView1.TabIndex = 0;
-            // 
-            // intitule
-            // 
-            this.intitule.DataPropertyName = "intitule";
-            this.intitule.HeaderText = "Intitulé";
-            this.intitule.MinimumWidth = 6;
-            this.intitule.Name = "intitule";
-            // 
-            // Montant
-            // 
-            this.Montant.DataPropertyName = "Montant";
-            this.Montant.HeaderText = "Montant en caisse";
-            this.Montant.MinimumWidth = 6;
-            this.Montant.Name = "Montant";
-            // 
-            // MontantConstaté
-            // 
-            this.MontantConstaté.HeaderText = "Montent constaté";
-            this.MontantConstaté.MinimumWidth = 6;
-            this.MontantConstaté.Name = "MontantConstaté";
-            this.MontantConstaté.Visible = false;
-            // 
-            // Ecart
-            // 
-            this.Ecart.HeaderText = "Ecart";
-            this.Ecart.MinimumWidth = 6;
-            this.Ecart.Name = "Ecart";
-            this.Ecart.Visible = false;
+            this.kryptonDataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.kryptonDataGridView1_CellValueChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -208,7 +246,7 @@
             this.tableLayoutPanel2.Controls.Add(this.Devise, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBox1, 3, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(9, 110);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(9, 100);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -262,7 +300,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.22442F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.77558F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 428F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 430F));
             this.tableLayoutPanel1.Controls.Add(this.kryptonButton3, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.Controlecmbx, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
@@ -270,7 +308,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.Caisse, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 21);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 11);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.25373F));
@@ -293,9 +331,9 @@
             // Controlecmbx
             // 
             this.Controlecmbx.FormattingEnabled = true;
-            this.Controlecmbx.Location = new System.Drawing.Point(260, 43);
+            this.Controlecmbx.Location = new System.Drawing.Point(259, 43);
             this.Controlecmbx.Name = "Controlecmbx";
-            this.Controlecmbx.Size = new System.Drawing.Size(318, 24);
+            this.Controlecmbx.Size = new System.Drawing.Size(317, 24);
             this.Controlecmbx.TabIndex = 23;
             this.Controlecmbx.SelectedValueChanged += new System.EventHandler(this.Controlecmbx_SelectedValueChanged);
             // 
@@ -303,7 +341,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(754, 0);
+            this.label2.Location = new System.Drawing.Point(752, 0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.label2.Size = new System.Drawing.Size(49, 22);
@@ -314,7 +352,7 @@
             // kryptonDateTimePicker1
             // 
             this.kryptonDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.kryptonDateTimePicker1.Location = new System.Drawing.Point(260, 3);
+            this.kryptonDateTimePicker1.Location = new System.Drawing.Point(259, 3);
             this.kryptonDateTimePicker1.Name = "kryptonDateTimePicker1";
             this.kryptonDateTimePicker1.Size = new System.Drawing.Size(115, 25);
             this.kryptonDateTimePicker1.TabIndex = 19;
@@ -323,7 +361,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(218, 0);
+            this.label1.Location = new System.Drawing.Point(217, 0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.label1.Size = new System.Drawing.Size(36, 22);
@@ -334,7 +372,7 @@
             // Caisse
             // 
             this.Caisse.FormattingEnabled = true;
-            this.Caisse.Location = new System.Drawing.Point(809, 3);
+            this.Caisse.Location = new System.Drawing.Point(807, 3);
             this.Caisse.Name = "Caisse";
             this.Caisse.Size = new System.Drawing.Size(304, 24);
             this.Caisse.TabIndex = 21;
@@ -343,76 +381,13 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(197, 40);
+            this.label3.Location = new System.Drawing.Point(196, 40);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.label3.Size = new System.Drawing.Size(57, 22);
             this.label3.TabIndex = 22;
             this.label3.Text = "Contrôle";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(357, 247);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(174, 16);
-            this.label6.TabIndex = 27;
-            this.label6.Text = "Montant théorique en caisse";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(588, 247);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(151, 16);
-            this.label7.TabIndex = 28;
-            this.label7.Text = "Total théorique constate";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(810, 246);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 16);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "Ecart";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(487, 279);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(0, 16);
-            this.label9.TabIndex = 30;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(687, 278);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(0, 16);
-            this.label10.TabIndex = 31;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(-29, 308);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
-            this.checkBox1.TabIndex = 33;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(13, 308);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(350, 20);
-            this.checkBox2.TabIndex = 34;
-            this.checkBox2.Text = "Générer un mouvement de régularisation en cas écart ";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // ControlCaisseForm
             // 
@@ -459,16 +434,13 @@
         private System.Windows.Forms.TextBox textBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn intitule;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Montant;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MontantConstaté;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ecart;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox generation_ecart;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label11;
     }
 }

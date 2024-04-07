@@ -16,6 +16,7 @@ using SoftCaisse.Forms.ControlCaisse;
 using SoftCaisse.Forms.User;
 using SoftCaisse.Models;
 using SoftCaisse.Forms.MouvementCaisse;
+using static System.Collections.Specialized.BitVector32;
 
 namespace SoftCaisse
 {
@@ -69,12 +70,14 @@ namespace SoftCaisse
         {
             StructureCaisseForm structureCaisseForm = new StructureCaisseForm();
             AddControl.ToForm(structureCaisseForm, caissierControl);
+            structureCaisseForm.Focus();
         }
 
         private void gestionDesCaissesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GestionCaisse gestion = new GestionCaisse();
             AddControl.ToForm(gestion, caisseGestion);
+            gestion.Focus();
         }
 
         private void ventesComptoirToolStripMenuItem_Click(object sender, EventArgs e)

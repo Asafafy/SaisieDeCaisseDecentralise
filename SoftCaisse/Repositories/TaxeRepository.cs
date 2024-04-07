@@ -32,7 +32,7 @@ namespace SoftCaisse.Repositories
             }).ToList();
         }
 
-        public IEnumerable<DTO.Taxe> GetById(int id)
+        public DTO.Taxe GetById(int id)
         {
             throw new NotImplementedException();
         }

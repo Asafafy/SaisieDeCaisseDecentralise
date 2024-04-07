@@ -27,7 +27,7 @@ namespace SoftCaisse.Repositories
             return _context.F_JOURNAUX.ToList();
         }
 
-        IEnumerable<F_JOURNAUX> IRepository<F_JOURNAUX>.GetById(int id)
+        F_JOURNAUX IRepository<F_JOURNAUX>.GetById(int id)
         {
             throw new NotImplementedException();
         }

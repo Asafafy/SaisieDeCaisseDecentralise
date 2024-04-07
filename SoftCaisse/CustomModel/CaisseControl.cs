@@ -10,5 +10,7 @@ namespace SoftCaisse.CustomModel
     {
         public string intitule {  get; set; }
         public decimal? Montant { get; set; }
+        public decimal? MontantConstate { get; set; }
+        public decimal? Ecart { get; set; }
     }
 }

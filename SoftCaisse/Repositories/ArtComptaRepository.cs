@@ -34,7 +34,7 @@ namespace SoftCaisse.Repositories
             }).ToList();
         }
 
-        public IEnumerable<DTO.ArtCompta> GetById(int id)
+        public DTO.ArtCompta GetById(int id)
         {
             throw new NotImplementedException();
         }

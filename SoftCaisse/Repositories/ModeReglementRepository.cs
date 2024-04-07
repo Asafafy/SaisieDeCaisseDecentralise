@@ -32,7 +32,7 @@ namespace SoftCaisse.Repositories
             }).ToList();
         }
 
-        public IEnumerable<DTO.ModeReglement> GetById(int id)
+        public DTO.ModeReglement GetById(int id)
         {
             throw new NotImplementedException();
         }

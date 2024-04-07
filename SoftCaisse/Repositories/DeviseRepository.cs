@@ -37,7 +37,7 @@ namespace SoftCaisse.Repositories
                 }).ToList();
         }
 
-        public IEnumerable<DTO.Devise> GetById(int id)
+        public DTO.Devise GetById(int id)
         {
             throw new NotImplementedException();
         }

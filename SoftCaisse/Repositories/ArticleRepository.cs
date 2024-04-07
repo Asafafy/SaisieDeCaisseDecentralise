@@ -39,7 +39,7 @@ namespace SoftCaisse.Repositories
                 }).ToList();
         }
 
-        public IEnumerable<DTO.Article> GetById(int id)
+        public DTO.Article GetById(int id)
         {
             throw new NotImplementedException();
         }

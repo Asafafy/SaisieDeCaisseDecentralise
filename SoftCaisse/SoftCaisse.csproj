@@ -260,9 +260,12 @@
     <Compile Include="Models\F_COMPTET.cs" />
     <Compile Include="Models\F_CREGLEMENT.cs" />
     <Compile Include="Models\F_DEPOT.cs" />
+    <Compile Include="Models\F_DOCENTETE.cs" />
+    <Compile Include="Models\F_DOCLIGNE.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
     <Compile Include="Models\F_REGLECH.cs" />
     <Compile Include="Models\F_TAXE.cs" />
+    <Compile Include="Models\F_TICKETARCHIVE.cs" />
     <Compile Include="Models\P_DEVISE.cs" />
     <Compile Include="Models\P_REGLEMENT.cs" />
     <Compile Include="Models\P_SOUCHEVENTE.cs" />

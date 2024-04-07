@@ -28,7 +28,7 @@ namespace SoftCaisse.Repositories
             return _context.F_CAISSE.ToList();
         }
 
-        IEnumerable<F_CAISSE> IRepository<F_CAISSE>.GetById(int id)
+        F_CAISSE IRepository<F_CAISSE>.GetById(int id)
         {
             throw new NotImplementedException();
         }

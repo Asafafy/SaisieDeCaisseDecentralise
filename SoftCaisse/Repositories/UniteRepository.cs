@@ -37,7 +37,7 @@ namespace SoftCaisse.Repositories
                 }).ToList();
         }
 
-        public IEnumerable<Unite> GetById(int id)
+        public Unite GetById(int id)
         {
             throw new NotImplementedException();
         }

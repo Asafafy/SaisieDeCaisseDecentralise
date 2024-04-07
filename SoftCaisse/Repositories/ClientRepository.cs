@@ -28,7 +28,7 @@ namespace SoftCaisse.Repositories
             return _context.F_COMPTET.ToList();
         }
 
-        public IEnumerable<F_COMPTET> GetById(int id)
+        public F_COMPTET GetById(int id)
         {
             throw new NotImplementedException();
         }

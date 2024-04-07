@@ -70,7 +70,6 @@
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion des caisses";
-            this.TopMost = true;
             this.ResumeLayout(false);
 
         }

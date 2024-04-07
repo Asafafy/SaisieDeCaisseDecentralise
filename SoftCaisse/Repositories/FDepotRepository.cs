@@ -27,9 +27,9 @@ namespace SoftCaisse.Repositories
             return _context.F_DEPOT.ToList();
         }
 
-        public IEnumerable<F_DEPOT> GetById(int id)
+        public F_DEPOT GetById(int id)
         {
-            return _context.F_DEPOT.Where(x => x.DE_No == id).ToList();
+            return _context.F_DEPOT.FirstOrDefault(x => x.DE_No == id);
         }
 
         void IRepository<F_DEPOT>.Update(F_DEPOT entity)

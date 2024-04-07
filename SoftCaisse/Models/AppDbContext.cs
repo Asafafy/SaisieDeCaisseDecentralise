@@ -13,6 +13,9 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_CAISSE> F_CAISSE { get; set; }
         public virtual DbSet<F_DEPOT> F_DEPOT { get; set; }
         public virtual DbSet<F_BILLETPIECE> F_BILLETPIECE { get; set; }
+        public virtual DbSet<F_TICKETARCHIVE> F_TICKETARCHIVE { get; set; }
+        public virtual DbSet<F_DOCENTETE> F_DOCENTETE { get; set; }
+        public virtual DbSet<F_DOCLIGNE> F_DOCLIGNE { get; set; }
         public virtual DbSet<F_JOURNAUX> F_JOURNAUX { get; set; }
         public virtual DbSet<F_COLLABORATEUR> F_COLLABORATEUR { get;set; }
         public virtual DbSet<F_ARTICLE> F_ARTICLE {  get; set; }

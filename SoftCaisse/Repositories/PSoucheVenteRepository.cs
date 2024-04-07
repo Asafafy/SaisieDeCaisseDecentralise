@@ -29,7 +29,7 @@ namespace SoftCaisse.Repositories
             return _context.P_SOUCHEVENTE.ToList();
         }
 
-        IEnumerable<P_SOUCHEVENTE> IRepository<P_SOUCHEVENTE>.GetById(int id)
+        P_SOUCHEVENTE IRepository<P_SOUCHEVENTE>.GetById(int id)
         {
             throw new NotImplementedException();
         }

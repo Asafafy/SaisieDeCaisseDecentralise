@@ -54,11 +54,11 @@
             this.ClientComptoirCmbx = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.kryptonComboBox2 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.btnParamCaisseClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.modeReglementCmbx = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -73,7 +73,6 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -86,7 +85,7 @@
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.85149F));
@@ -103,9 +102,9 @@
             this.groupBox4.Controls.Add(this.checkBox2);
             this.groupBox4.Controls.Add(this.tableLayoutPanel5);
             this.groupBox4.Location = new System.Drawing.Point(2, 217);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(645, 165);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
@@ -115,7 +114,7 @@
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(4, 145);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(297, 17);
             this.checkBox2.TabIndex = 2;
@@ -136,7 +135,7 @@
             this.tableLayoutPanel5.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.kryptonComboBox4, 1, 0);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 17);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 4;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -151,7 +150,7 @@
             // 
             this.kryptonComboBox7.DropDownWidth = 416;
             this.kryptonComboBox7.Location = new System.Drawing.Point(318, 76);
-            this.kryptonComboBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.kryptonComboBox7.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonComboBox7.Name = "kryptonComboBox7";
             this.kryptonComboBox7.Size = new System.Drawing.Size(312, 21);
             this.kryptonComboBox7.TabIndex = 12;
@@ -160,7 +159,7 @@
             // 
             this.kryptonComboBox6.DropDownWidth = 416;
             this.kryptonComboBox6.Location = new System.Drawing.Point(318, 52);
-            this.kryptonComboBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.kryptonComboBox6.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonComboBox6.Name = "kryptonComboBox6";
             this.kryptonComboBox6.Size = new System.Drawing.Size(312, 21);
             this.kryptonComboBox6.TabIndex = 11;
@@ -169,7 +168,7 @@
             // 
             this.kryptonComboBox5.DropDownWidth = 416;
             this.kryptonComboBox5.Location = new System.Drawing.Point(318, 27);
-            this.kryptonComboBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.kryptonComboBox5.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonComboBox5.Name = "kryptonComboBox5";
             this.kryptonComboBox5.Size = new System.Drawing.Size(312, 21);
             this.kryptonComboBox5.TabIndex = 10;
@@ -226,7 +225,7 @@
             // 
             this.kryptonComboBox4.DropDownWidth = 416;
             this.kryptonComboBox4.Location = new System.Drawing.Point(318, 2);
-            this.kryptonComboBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.kryptonComboBox4.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonComboBox4.Name = "kryptonComboBox4";
             this.kryptonComboBox4.Size = new System.Drawing.Size(312, 21);
             this.kryptonComboBox4.TabIndex = 9;
@@ -235,9 +234,9 @@
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel4);
             this.groupBox3.Location = new System.Drawing.Point(2, 166);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(645, 46);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
@@ -251,7 +250,7 @@
             this.tableLayoutPanel4.Controls.Add(this.kryptonComboBox3, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(4, 17);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -263,7 +262,7 @@
             // 
             this.kryptonComboBox3.DropDownWidth = 416;
             this.kryptonComboBox3.Location = new System.Drawing.Point(318, 2);
-            this.kryptonComboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.kryptonComboBox3.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonComboBox3.Name = "kryptonComboBox3";
             this.kryptonComboBox3.Size = new System.Drawing.Size(312, 21);
             this.kryptonComboBox3.TabIndex = 6;
@@ -285,9 +284,9 @@
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
             this.groupBox1.Location = new System.Drawing.Point(2, 2);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(645, 101);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -297,7 +296,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(4, 80);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(210, 17);
             this.checkBox1.TabIndex = 1;
@@ -314,7 +313,7 @@
             this.tableLayoutPanel2.Controls.Add(this.kryptonTextBox1, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.ClientComptoirCmbx, 1, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 17);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -350,7 +349,7 @@
             // kryptonTextBox1
             // 
             this.kryptonTextBox1.Location = new System.Drawing.Point(318, 28);
-            this.kryptonTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.kryptonTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonTextBox1.Name = "kryptonTextBox1";
             this.kryptonTextBox1.Size = new System.Drawing.Size(312, 23);
             this.kryptonTextBox1.TabIndex = 5;
@@ -359,19 +358,18 @@
             // 
             this.ClientComptoirCmbx.FormattingEnabled = true;
             this.ClientComptoirCmbx.Location = new System.Drawing.Point(318, 2);
-            this.ClientComptoirCmbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClientComptoirCmbx.Margin = new System.Windows.Forms.Padding(2);
             this.ClientComptoirCmbx.Name = "ClientComptoirCmbx";
             this.ClientComptoirCmbx.Size = new System.Drawing.Size(313, 21);
             this.ClientComptoirCmbx.TabIndex = 6;
-            this.ClientComptoirCmbx.Click += new System.EventHandler(this.ClientComptoirCmbx_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Location = new System.Drawing.Point(2, 109);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(645, 53);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
@@ -382,25 +380,16 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.kryptonComboBox2, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.modeReglementCmbx, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 17);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(633, 26);
             this.tableLayoutPanel3.TabIndex = 0;
-            // 
-            // kryptonComboBox2
-            // 
-            this.kryptonComboBox2.DropDownWidth = 416;
-            this.kryptonComboBox2.Location = new System.Drawing.Point(318, 2);
-            this.kryptonComboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.kryptonComboBox2.Name = "kryptonComboBox2";
-            this.kryptonComboBox2.Size = new System.Drawing.Size(312, 21);
-            this.kryptonComboBox2.TabIndex = 5;
             // 
             // label4
             // 
@@ -417,7 +406,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.Location = new System.Drawing.Point(426, 392);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Palette = this.kryptonPalette1;
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -453,7 +442,7 @@
             // btnParamCaisseClose
             // 
             this.btnParamCaisseClose.Location = new System.Drawing.Point(531, 392);
-            this.btnParamCaisseClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnParamCaisseClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnParamCaisseClose.Name = "btnParamCaisseClose";
             this.btnParamCaisseClose.Palette = this.kryptonPalette1;
             this.btnParamCaisseClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -462,6 +451,14 @@
             this.btnParamCaisseClose.Values.Text = "Annuler";
             this.btnParamCaisseClose.Click += new System.EventHandler(this.btnParamCaisseClose_Click);
             // 
+            // modeReglementCmbx
+            // 
+            this.modeReglementCmbx.FormattingEnabled = true;
+            this.modeReglementCmbx.Location = new System.Drawing.Point(319, 3);
+            this.modeReglementCmbx.Name = "modeReglementCmbx";
+            this.modeReglementCmbx.Size = new System.Drawing.Size(311, 21);
+            this.modeReglementCmbx.TabIndex = 1;
+            // 
             // CaisseControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,7 +466,7 @@
             this.Controls.Add(this.btnParamCaisseClose);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CaisseControl";
             this.Size = new System.Drawing.Size(657, 427);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -492,7 +489,6 @@
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -527,7 +523,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox5;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox4;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox3;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox2;
         private System.Windows.Forms.ComboBox ClientComptoirCmbx;
+        private System.Windows.Forms.ComboBox modeReglementCmbx;
     }
 }

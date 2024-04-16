@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,6 +39,25 @@ namespace SoftCaisse.Utils.Connection
             {
                 throw new Exception($"Error: {ex.Message}");
             }
+        }
+        public static string GetConnectionString(string fichierTxt)
+        {
+            string connectionString = "";
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            // Construct the full path to the text file in the bin folder
+            string filePath = Path.Combine(baseDirectory, fichierTxt);
+
+            // Read connection string from file
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("La base de donnée n'est pas encore configurée");
+            }
+            else
+            {
+                connectionString = File.ReadAllText(filePath);
+            }
+            return connectionString;
         }
     }
 }

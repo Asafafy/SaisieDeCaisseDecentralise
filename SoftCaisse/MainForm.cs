@@ -17,6 +17,8 @@ using SoftCaisse.Forms.User;
 using SoftCaisse.Models;
 using SoftCaisse.Forms.MouvementCaisse;
 using static System.Collections.Specialized.BitVector32;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SoftCaisse
 {
@@ -26,6 +28,11 @@ namespace SoftCaisse
         Controls.CollaborateurControl collaborateurControl = new CollaborateurControl();
         Controls.CaissierControl caissierControl = new CaissierControl();
         Controls.CaissieGestion caisseGestion = new CaissieGestion();
+        private string dataSource = null;
+        private string initialCatalog = null;
+        private string initialCatalogSage = null;
+        private string userId = null;
+        private string password = null;
         public MainForm()
         {
             InitializeComponent();
@@ -36,19 +43,21 @@ namespace SoftCaisse
             ParamSocForm paramsoc = new ParamSocForm();
             paramsoc.Show();
         }
-
         private void ouvrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog databaseOpenFile = new OpenFileDialog();
-            //databaseOpenFile.ShowDialog();
-            //databaseOpenFile.InitialDirectory = @"C:\";
-            //databaseOpenFile.RestoreDirectory = true;
-            //databaseOpenFile.DefaultExt = "gcm";
-            //databaseOpenFile.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            ConnectDbForm connectDbForm = new ConnectDbForm();
-            connectDbForm.Show();
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = Path.Combine(baseDirectory, "ServeurCfg.txt");
+            string filePathSage = Path.Combine(baseDirectory, "ServeurSage.txt");
+            if (File.Exists(filePath) && File.Exists(filePathSage))
+            {
+                DialogResult result = MessageBox.Show("Votre base est déja configurée, souhaitez vous re-entrer les paramètres?", "Important", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    ConnectDbForm connectDbForm = new ConnectDbForm();
+                    connectDbForm.Show();
+                }
+            } 
         }
-
         private void quiterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();

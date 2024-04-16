@@ -21,7 +21,9 @@ namespace SoftCaisse.Forms.FondCaisse
         public List<dynamic> billetage = new List<dynamic>();
         public List<dynamic> freglement = new List<dynamic>();
         private int NDevise;
-        public FondCaisseForm()
+        private int IdCaisse;
+        private int IdCaissier;
+        public FondCaisseForm(int idCaisse, int idCaissier)
         {
             InitializeComponent();
             _context = new AppDbContext();
@@ -39,6 +41,8 @@ namespace SoftCaisse.Forms.FondCaisse
             coursDevise.AddRange(courDevise);
             deviseCmbx.DisplayMember = "Intitule";
             deviseCmbx.ValueMember = "NumDevise";
+            IdCaisse = idCaisse;
+            IdCaissier = idCaissier;
             LoadDevise();
         }
         private void LoadDevise()
@@ -86,19 +90,95 @@ namespace SoftCaisse.Forms.FondCaisse
 
         private void btnValiderFondCaisse_Click(object sender, EventArgs e)
         {
+            string dateString = "1753-01-01";
+            DateTime dateImpaye = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
+
+            // Get the current date and time
+            DateTime currentTime = DateTime.Now;
+
+            // Extract the hour, minute, and second components
+            int hours = currentTime.Hour;
+            int minutes = currentTime.Minute;
+            int seconds = currentTime.Second;
+
+            // Create a TimeSpan object
+            TimeSpan time = new TimeSpan(hours, minutes, seconds);
+
+            // Format the time as a string with the desired format: 000203359
+            string formattedTime = time.ToString("hhmmss");
+
+            // Add three leading zeros before the formatted time
+            formattedTime = "000" + formattedTime;
+
             int count = freglement.Count();
             var cours = coursDevise.Where(c => c.NumDevise == NDevise).Select(c=>c.Cours).FirstOrDefault();
             decimal total = decimal.Parse(montantTotalLbl.Text);
             decimal montant = (decimal)total / (decimal)cours;
-            F_CREGLEMENT regl = new F_CREGLEMENT
+            try
             {
-                RG_No = count + 1,
-                CT_NumPayeur = null,
-                RG_Date = DateTime.Now,
-                RG_Reference = "Déclaration du fond de caisse",
-                RG_Montant = Math.Round(montant, 2),
-            };
-            MessageBox.Show(regl.RG_Montant.ToString());
+                F_CREGLEMENT regl = new F_CREGLEMENT
+                {
+                    RG_No = count + 1,
+                    CT_NumPayeur = null,
+                    RG_Date = DateTime.Now,
+                    RG_Reference = "",
+                    RG_Libelle = "Déclaration fond de caisse",
+                    RG_Montant = Math.Round(montant, 2),
+                    RG_MontantDev = total,
+                    N_Reglement = 3,
+                    RG_Impute = 0,
+                    RG_Compta= 0,
+                    EC_No = 0,
+                    RG_Type = 2,
+                    RG_Cours = cours,
+                    N_Devise = (short?)NDevise,
+                    JO_Num = "CAIS",
+                    RG_Impaye = dateImpaye,
+                    RG_TypeReg = 2,
+                    RG_Heure = formattedTime,
+                    RG_Piece = "",
+                    CA_No = IdCaisse,
+                    CO_NoCaissier = IdCaissier,
+                    RG_Banque = 0,
+                    RG_Transfere = 0,
+                    RG_Cloture = 0,
+                    RG_Ticket = 1,
+                    RG_Souche = 0,
+                    CT_NumPayeurOrig = null,
+                    RG_DateEchCont = dateImpaye,
+                    CG_NumEcart = null,
+                    JO_NumEcart = null,
+                    RG_MontantEcart = (decimal?)0.000000,
+                    RG_NoBonAchat = 0,
+                    RG_Valide = 1,
+                    RG_Anterieur = (decimal?)0.000000,
+                    RG_MontantCommission = (decimal?)0.000000,
+                    RG_MontantNet = (decimal?)0.000000,
+                    cbProt = 0,
+                    cbCreateur = "COLS",
+                    cbModification = DateTime.Now,
+                    cbReplication = 0,
+                    cbFlag = 0,
+                    cbCreation = DateTime.Now,
+                    cbCreationUser = null,
+                    cbHash = null,
+                    cbHashVersion = 1,
+                    cbHashDate = DateTime.Now,
+                    cbHashOrder = null
+
+                };
+                _context.F_CREGLEMENT.Add(regl);
+                _context.SaveChanges();
+                this.Close();
+                MessageBox.Show("Opération réussie");
+            }
+            catch (Exception message)
+            {
+
+                MessageBox.Show(message.ToString());
+            }
+           
+            
         }
 
     }

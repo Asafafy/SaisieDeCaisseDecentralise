@@ -10,6 +10,7 @@ namespace SoftCaisse.Models
     {
         private static string connectionString = "";
         public SCDContext() : base("ServeurCfg.txt") { }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
     }

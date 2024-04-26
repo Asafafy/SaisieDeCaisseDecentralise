@@ -40,16 +40,32 @@ namespace SoftCaisse.Forms.User
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            Models.User user = new Models.User
+            if (txtLogin.Text == "" || txtUserPassword.Text == "")
             {
-                Login = txtLogin.Text,
-                UserPassword = txtUserPassword.Text,
-                RoleId = IdRole
-            };
-            
-            _userRepository.Add(user);
-            LoadData();
-            MessageBox.Show("Utilisateur inséré avec succès.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Veuillez remplir tous les champs.", "Important", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else{
+                var userToSearch = _scdContext.Users.Where(user => user.Login == txtLogin.Text).FirstOrDefault();
+                if (userToSearch!= null)
+                {
+                    MessageBox.Show("Le login est déja pris.", "Important", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    Models.User user = new Models.User
+                    {
+                        Login = txtLogin.Text,
+                        UserPassword = txtUserPassword.Text,
+                        RoleId = IdRole
+                    };
+
+                    _userRepository.Add(user);
+                    LoadData();
+                    MessageBox.Show("Utilisateur inséré avec succès.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+              
+            }
+          
             
         }
         public void LoadData()
@@ -124,6 +140,37 @@ namespace SoftCaisse.Forms.User
         private void btnClean_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            if (UserId == 0)
+            {
+                MessageBox.Show("Veuillez séléctionner un utilisateur.", "Important", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                dynamic userWithId = _users.FirstOrDefault(user => user.UserId == UserId);
+                var userToUpdate = _scdContext.Users.Where(user => user.UserId == UserId).FirstOrDefault();
+                DialogResult result = MessageBox.Show("Confirmer vous la suppression", "Important", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                // Check the result
+                if (result == DialogResult.Yes)
+                {
+                    if (userToUpdate.RoleId == 1)
+                    {
+                        MessageBox.Show("Ce compte est un administrateur vous ne pouvez pas le supprimer.", "Important", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        _scdContext.Users.Remove(userToUpdate);
+                        _scdContext.SaveChanges();
+                        MessageBox.Show("Opération réussie");
+                    }
+                    Clear();
+                    LoadData();
+                }
+            }
         }
     }
 }

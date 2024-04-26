@@ -50,7 +50,7 @@
       <HintPath>D:\krypton\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Workspace">
-      <HintPath>D:\krypton\ComponentFactory.Krypton.Workspace.dll</HintPath>
+      <HintPath>K:\DLL\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Forms.FondCaisse;
+using SoftCaisse.Forms.VenteComptoir;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
 using SoftCaisse.Utils.Global;
@@ -17,6 +18,8 @@ namespace SoftCaisse.Forms.OuvertureCaisse
         private readonly AppDbContext _context;
         private  FCaisseRepository _fCaisseRepository;
         private readonly FCollaborateurRepository _fCollaborateurRepository;
+        private int IdCaisse;
+        private int IdCaissier;
         public OuvertureCaisseForm()
         {
             InitializeComponent();
@@ -67,10 +70,26 @@ namespace SoftCaisse.Forms.OuvertureCaisse
             if (fondCaisseCbox.Checked)
             {
                 this.Close();
-                FondCaisseForm fondCaisseForm = new FondCaisseForm();
+                FondCaisseForm fondCaisseForm = new FondCaisseForm(IdCaisse, IdCaissier);
                 fondCaisseForm.Show();
             }
+            else
+            {
+                this.Close();
+                VenteComptoirForm venteComptoir = new VenteComptoirForm();
+                venteComptoir.Show();
+            }
            
+        }
+
+        private void OuvertureCaisseCmbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IdCaisse = Cmbx.GetValueMember(OuvertureCaisseCmbx, "Numero", "Intitule");
+        }
+
+        private void OuvertureCaissierCmbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IdCaissier = Cmbx.GetValueMember(OuvertureCaissierCmbx, "CollaboNum", "NomCollabo");
         }
     }
 }

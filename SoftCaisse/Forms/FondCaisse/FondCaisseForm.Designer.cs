@@ -62,28 +62,31 @@
             this.panel1.Controls.Add(this.btnFondCaisseClose);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(8, 8);
+            this.panel1.Location = new System.Drawing.Point(6, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(620, 653);
+            this.panel1.Size = new System.Drawing.Size(465, 531);
             this.panel1.TabIndex = 0;
             // 
             // deviseCmbx
             // 
             this.deviseCmbx.FormattingEnabled = true;
-            this.deviseCmbx.Location = new System.Drawing.Point(94, 15);
+            this.deviseCmbx.Location = new System.Drawing.Point(70, 12);
+            this.deviseCmbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.deviseCmbx.Name = "deviseCmbx";
-            this.deviseCmbx.Size = new System.Drawing.Size(148, 24);
+            this.deviseCmbx.Size = new System.Drawing.Size(112, 21);
             this.deviseCmbx.TabIndex = 13;
             this.deviseCmbx.SelectedIndexChanged += new System.EventHandler(this.deviseCmbx_SelectedIndexChanged_1);
             // 
             // btnValiderFondCaisse
             // 
             this.btnValiderFondCaisse.Enabled = false;
-            this.btnValiderFondCaisse.Location = new System.Drawing.Point(404, 613);
+            this.btnValiderFondCaisse.Location = new System.Drawing.Point(303, 498);
+            this.btnValiderFondCaisse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnValiderFondCaisse.Name = "btnValiderFondCaisse";
             this.btnValiderFondCaisse.Palette = this.kryptonPalette1;
             this.btnValiderFondCaisse.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnValiderFondCaisse.Size = new System.Drawing.Size(92, 34);
+            this.btnValiderFondCaisse.Size = new System.Drawing.Size(69, 28);
             this.btnValiderFondCaisse.TabIndex = 12;
             this.btnValiderFondCaisse.Values.Text = "OK";
             this.btnValiderFondCaisse.Click += new System.EventHandler(this.btnValiderFondCaisse_Click);
@@ -129,11 +132,12 @@
             this.ValeurSansQté,
             this.Valeur,
             this.NumDevise});
-            this.fondCaisseDatagridView.Location = new System.Drawing.Point(21, 56);
+            this.fondCaisseDatagridView.Location = new System.Drawing.Point(16, 46);
+            this.fondCaisseDatagridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fondCaisseDatagridView.Name = "fondCaisseDatagridView";
             this.fondCaisseDatagridView.RowHeadersVisible = false;
             this.fondCaisseDatagridView.RowHeadersWidth = 51;
-            this.fondCaisseDatagridView.Size = new System.Drawing.Size(572, 476);
+            this.fondCaisseDatagridView.Size = new System.Drawing.Size(429, 387);
             this.fondCaisseDatagridView.TabIndex = 10;
             this.fondCaisseDatagridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.fondCaisseDatagridView_CellValueChanged);
             // 
@@ -225,11 +229,12 @@
             // 
             // btnFondCaisseClose
             // 
-            this.btnFondCaisseClose.Location = new System.Drawing.Point(502, 612);
+            this.btnFondCaisseClose.Location = new System.Drawing.Point(376, 497);
+            this.btnFondCaisseClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnFondCaisseClose.Name = "btnFondCaisseClose";
             this.btnFondCaisseClose.Palette = this.kryptonPalette1;
             this.btnFondCaisseClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnFondCaisseClose.Size = new System.Drawing.Size(92, 34);
+            this.btnFondCaisseClose.Size = new System.Drawing.Size(69, 28);
             this.btnFondCaisseClose.TabIndex = 9;
             this.btnFondCaisseClose.Values.Text = "Annuler";
             this.btnFondCaisseClose.Click += new System.EventHandler(this.btnFondCaisseClose_Click);
@@ -237,18 +242,21 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.montantTotalLbl);
-            this.groupBox1.Location = new System.Drawing.Point(265, 543);
+            this.groupBox1.Location = new System.Drawing.Point(199, 441);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(329, 64);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(247, 52);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Total Montant Déclaré";
             // 
             // montantTotalLbl
             // 
-            this.montantTotalLbl.Location = new System.Drawing.Point(185, 21);
+            this.montantTotalLbl.Location = new System.Drawing.Point(139, 17);
+            this.montantTotalLbl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.montantTotalLbl.Name = "montantTotalLbl";
-            this.montantTotalLbl.Size = new System.Drawing.Size(20, 24);
+            this.montantTotalLbl.Size = new System.Drawing.Size(17, 22);
             this.montantTotalLbl.TabIndex = 0;
             this.montantTotalLbl.Values.Text = "0";
             this.montantTotalLbl.TextChanged += new System.EventHandler(this.montantTotalLbl_TextChanged);
@@ -256,18 +264,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 18);
+            this.label1.Location = new System.Drawing.Point(28, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 16);
+            this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Devise";
             // 
             // FondCaisseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 666);
+            this.ClientSize = new System.Drawing.Size(476, 541);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FondCaisseForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;

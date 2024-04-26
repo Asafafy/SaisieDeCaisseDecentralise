@@ -1,11 +1,16 @@
-﻿using System.Data.Entity;
+﻿using SoftCaisse.Utils.Connection;
+using System;
+using System.Data.Entity;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SoftCaisse.Models
 {
     public partial class AppDbContext : DbContext
     {
+        private static string connectionString = "";
         public AppDbContext()
-            : base("name=AppDbContext")
+            : base(Db.GetConnectionString("ServeurSage.txt"))
         {
         }
         public virtual DbSet<F_DOCCURRENTPIECE> F_DOCCURRENTPIECE { get; set; }

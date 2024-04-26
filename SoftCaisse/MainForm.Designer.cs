@@ -290,6 +290,7 @@
             this.clôtureDeCausToolStripMenuItem.Name = "clôtureDeCausToolStripMenuItem";
             this.clôtureDeCausToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.clôtureDeCausToolStripMenuItem.Text = "Clôture de caisse...";
+            this.clôtureDeCausToolStripMenuItem.Click += new System.EventHandler(this.clôtureDeCausToolStripMenuItem_Click);
             // 
             // etatToolStripMenuItem
             // 
@@ -438,6 +439,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SoftCaisse";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

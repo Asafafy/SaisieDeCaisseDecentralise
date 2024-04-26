@@ -17,6 +17,7 @@ using SoftCaisse.Forms.User;
 using SoftCaisse.Models;
 using SoftCaisse.Forms.MouvementCaisse;
 using static System.Collections.Specialized.BitVector32;
+using SoftCaisse.Forms.ClotureCaisse;
 
 namespace SoftCaisse
 {
@@ -126,6 +127,17 @@ namespace SoftCaisse
         {
             MouvementCaisseForm mouvementCaisseForm = new MouvementCaisseForm();
             mouvementCaisseForm.Show();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clôtureDeCausToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClotureCaisse cl=new ClotureCaisse();
+            cl.Show();
         }
     }
 }

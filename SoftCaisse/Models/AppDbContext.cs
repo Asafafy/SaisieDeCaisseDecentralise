@@ -8,7 +8,7 @@ namespace SoftCaisse.Models
             : base("name=AppDbContext")
         {
         }
-
+        public virtual DbSet<F_DOCCURRENTPIECE> F_DOCCURRENTPIECE { get; set; }
         public virtual DbSet<F_COMPTET> F_COMPTET { get; set; }
         public virtual DbSet<F_CAISSE> F_CAISSE { get; set; }
         public virtual DbSet<F_DEPOT> F_DEPOT { get; set; }
@@ -33,6 +33,14 @@ namespace SoftCaisse.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<F_DOCCURRENTPIECE>()
+                .Property(e => e.DC_Piece)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_DOCCURRENTPIECE>()
+                .Property(e => e.cbCreateur)
+                .IsFixedLength()
+                .IsUnicode(false);
             modelBuilder.Entity<F_COMPTET>()
                 .Property(e => e.CT_Num)
                 .IsUnicode(false);

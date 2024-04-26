@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
+using Objets100cLib;
 using SoftCaisse.Forms.Article;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
+using static System.Windows.Forms.LinkLabel;
 namespace SoftCaisse.Forms.VenteComptoir
 {
     public partial class VenteComptoirForm : KryptonForm
@@ -779,8 +783,145 @@ namespace SoftCaisse.Forms.VenteComptoir
             DataGridViewArticle.Rows.Clear();
             TextBoxReference.Focus();
         }
+        private void validerVente()
+        {
+            //F_DOCENTETE doc = new F_DOCENTETE()
+            //{
+            //    DO_Domaine = 3,
+            //    DO_Type = 30,
+            //    DO_Date =  DateTime.Now,
+            //    DO_Tiers = ComboBoxType.SelectedText,
+            //    DO_Ref="",
+            //    CO_No=0,
+            //    DO_Period=1,
+            //    DO_Devise = Int16.Parse(ComboBoxDeviseReste.SelectedValue.ToString()),
+            //    DO_Cours =,
+            //    DE_No =,
+            //    cbDE_No =,
+            //    LI_No =,
+            //    cbLI_No =,
+            //    CT_NumPayeur =,
+            //    cbCT_NumPayeur =,
+            //    DO_Expedit =,
+            //    DO_NbFacture =,
+            //    DO_BLFact =,
+            //    DO_TxEscompte =,
+            //    DO_Reliquat =,
+            //    DO_Imprim =,
+            //    CA_Num =,
+            //    cbCA_Num =,
+            //    DO_Coord01 =,
+            //    DO_Coord02 =,
+            //    DO_Coord03 =,
+            //    DO_Coord04 =,
+            //    DO_Souche =,
+            //    DO_DateLivr =,
+            //    DO_Condition =,
+            //    DO_Tarif =,
+            //    DO_Colisage =,
+            //    DO_TypeColis =,
+            //    DO_Transaction =,
+            //    DO_Langue =,
+            //    DO_Ecart =,
+            //    DO_Regime =,
+            //    N_CatCompta =,
+            //    DO_Ventile =,
+            //    AB_No =,
+            //    DO_DebutAbo =,
+            //    DO_FinAbo =,
+            //    DO_DebutPeriod =,
+            //    DO_FinPeriod =,
+            //    CG_Num =,
+            //    cbCG_Num =,
+            //    DO_Statut =,
+            //    DO_Heure =,
+            //    CA_No =,
+            //    cbCA_No =,
+            //    CO_NoCaissier =,
+            //    cbCO_NoCaissier =,
+            //    DO_Transfere =,
+            //    DO_Cloture =,
+            //    DO_NoWeb =,
+            //    DO_Attente =,
+            //    DO_Provenance=,
+            //    CA_NumIFRS =,
+            //    MR_No =,
+            //    DO_TypeFrais =,
+            //    DO_ValFrais =,
+            //    DO_TypeLigneFrais =,
+            //    DO_TypeFranco =,
+            //    DO_ValFranco =,
+            //    DO_TypeLigneFranco =,
+            //    DO_Taxe1 =,
+            //    DO_TypeTaux1 =,
+            //    DO_TypeTaxe1 =,
+            //    DO_Taxe2 =,
+            //    DO_TypeTaux2 =,
+            //    DO_TypeTaxe2 =,
+            //    DO_Taxe3 =,
+            //    DO_TypeTaux3 =,
+            //    DO_TypeTaxe3 =,
+            //    DO_MajCpta =,
+            //    DO_Motif =,
+            //    CT_NumCentrale =,
+            //    cbCT_NumCentrale =,
+            //    DO_Contact =,
+            //    DO_FactureElec =,
+            //    DO_TypeTransac =,
+            //    DO_DateLivrRealisee =,
+            //    DO_DateExpedition =,
+            //    DO_FactureFrs =,
+            //    cbDO_FactureFrs =,
+            //    DO_PieceOrig =,
+            //    cbDO_PieceOrig =,
+            //    DO_GUID =,
+            //    DO_EStatut =,
+            //    DO_DemandeRegul =,
+            //    ET_No =,
+            //    cbET_No =,
+            //    DO_Valide =,
+            //    DO_Coffre =,
+            //    DO_CodeTaxe1 =,
+            //    DO_CodeTaxe2 =,
+            //    DO_CodeTaxe3 =,
+            //    DO_TotalHT =,
+            //    DO_StatutBAP =,
+            //    DO_Escompte =,
+            //    DO_DocType =,
+            //    DO_TypeCalcul =,
+            //    DO_FactureFile =,
+            //    DO_TotalHTNet =,
+            //    DO_TotalTTC =,
+            //    DO_NetAPayer =,
+            //    DO_MontantRegle =,
+            //    DO_RefPaiement =,
+            //    DO_AdressePaiement =,
+            //    DO_PaiementLigne =,
+            //    DO_MotifDevis =,
+            //    cbProt =,
+            //    cbCreateur =,
+            //    cbModification =,
+            //    cbReplication =,
+            //    cbFlag =,
+            //    cbCreation =,
+            //    cbCreationUser =,
+            //    cbHash =,
+            //    cbHashVersion =,
+            //    cbHashDate =,
+            //    cbHashOrder =,
+            //    Commentaires =,
+            //    Divers =,
+            //    DO_Conversion =
+            //};
+
+        }
 
         private void ComboBoxDeviseReste_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

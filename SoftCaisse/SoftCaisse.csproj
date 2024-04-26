@@ -127,6 +127,12 @@
     <Compile Include="Forms\Caisse\DetailCaisseForm.Designer.cs">
       <DependentUpon>DetailCaisseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ClotureCaisse\ClotureCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ClotureCaisse\ClotureCaisse.Designer.cs">
+      <DependentUpon>ClotureCaisse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CollaboDetail\CollaboDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,12 @@
     </Compile>
     <Compile Include="Forms\DocumentVente\DocumentVenteForm.Designer.cs">
       <DependentUpon>DocumentVenteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FermetureCaisse\FermetureCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FermetureCaisse\FermetureCaisse.Designer.cs">
+      <DependentUpon>FermetureCaisse.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FondCaisse\FondCaisseForm.cs">
       <SubType>Form</SubType>
@@ -260,6 +272,7 @@
     <Compile Include="Models\F_COMPTET.cs" />
     <Compile Include="Models\F_CREGLEMENT.cs" />
     <Compile Include="Models\F_DEPOT.cs" />
+    <Compile Include="Models\F_DOCCURRENTPIECE.cs" />
     <Compile Include="Models\F_DOCENTETE.cs" />
     <Compile Include="Models\F_DOCLIGNE.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
@@ -299,6 +312,7 @@
     <Compile Include="Utils\ComboBox\Cmbx.cs" />
     <Compile Include="Utils\Connection\Db.cs" />
     <Compile Include="Utils\Controls\AddControl.cs" />
+    <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <EmbeddedResource Include="Controls\CaisseControl.resx">
       <DependentUpon>CaisseControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,6 +337,9 @@
     <EmbeddedResource Include="Forms\Caisse\DetailCaisseForm.resx">
       <DependentUpon>DetailCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ClotureCaisse\ClotureCaisse.resx">
+      <DependentUpon>ClotureCaisse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CollaboDetail\CollaboDetailForm.resx">
       <DependentUpon>CollaboDetailForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -334,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DocumentVente\DocumentVenteForm.resx">
       <DependentUpon>DocumentVenteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FermetureCaisse\FermetureCaisse.resx">
+      <DependentUpon>FermetureCaisse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FondCaisse\FondCaisseForm.resx">
       <DependentUpon>FondCaisseForm.cs</DependentUpon>
@@ -435,6 +455,17 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Objets100cLib">
+      <Guid>{8B42EFD1-11DE-4AF5-8F95-2901702D7A46}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

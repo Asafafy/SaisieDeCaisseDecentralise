@@ -6,6 +6,7 @@ using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Forms.FondCaisse;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
+using SoftCaisse.Utils.Global;
 
 namespace SoftCaisse.Forms.OuvertureCaisse
 {
@@ -57,7 +58,8 @@ namespace SoftCaisse.Forms.OuvertureCaisse
         }
         private void OuvertureCaisseCmbx_Click(object sender, EventArgs e)
         {
-           
+            CaisseOuvert.CaisseID = OuvertureCaisseCmbx.SelectedValue.ToString();
+            CaisseOuvert.CaisseText = OuvertureCaisseCmbx.SelectedText.ToString();
         }
 
         private void btnOuvertureCaisse_Click(object sender, EventArgs e)

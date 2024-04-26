@@ -34,7 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.commentaire_mouvement = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -42,8 +42,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.kryptonDateTimePicker1 = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.type_mouvement = new System.Windows.Forms.ComboBox();
+            this.montant_mouvement = new System.Windows.Forms.TextBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnAddUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1.SuspendLayout();
@@ -108,7 +108,7 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.37903F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.62096F));
-            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.commentaire_mouvement, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.comboBox2, 1, 2);
@@ -116,8 +116,8 @@
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.kryptonDateTimePicker1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.type_mouvement, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.montant_mouvement, 1, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 86);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -129,12 +129,12 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(496, 141);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // textBox2
+            // commentaire_mouvement
             // 
-            this.textBox2.Location = new System.Drawing.Point(114, 115);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(376, 22);
-            this.textBox2.TabIndex = 11;
+            this.commentaire_mouvement.Location = new System.Drawing.Point(114, 115);
+            this.commentaire_mouvement.Name = "commentaire_mouvement";
+            this.commentaire_mouvement.Size = new System.Drawing.Size(376, 22);
+            this.commentaire_mouvement.TabIndex = 11;
             // 
             // label7
             // 
@@ -207,20 +207,23 @@
             this.kryptonDateTimePicker1.Size = new System.Drawing.Size(107, 23);
             this.kryptonDateTimePicker1.TabIndex = 3;
             // 
-            // comboBox1
+            // type_mouvement
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(114, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(376, 24);
-            this.comboBox1.TabIndex = 5;
+            this.type_mouvement.FormattingEnabled = true;
+            this.type_mouvement.Items.AddRange(new object[] {
+            "Entrée",
+            "Sortie"});
+            this.type_mouvement.Location = new System.Drawing.Point(114, 32);
+            this.type_mouvement.Name = "type_mouvement";
+            this.type_mouvement.Size = new System.Drawing.Size(376, 24);
+            this.type_mouvement.TabIndex = 5;
             // 
-            // textBox1
+            // montant_mouvement
             // 
-            this.textBox1.Location = new System.Drawing.Point(114, 89);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(376, 22);
-            this.textBox1.TabIndex = 9;
+            this.montant_mouvement.Location = new System.Drawing.Point(114, 89);
+            this.montant_mouvement.Name = "montant_mouvement";
+            this.montant_mouvement.Size = new System.Drawing.Size(376, 22);
+            this.montant_mouvement.TabIndex = 9;
             // 
             // kryptonButton1
             // 
@@ -232,6 +235,7 @@
             this.kryptonButton1.Size = new System.Drawing.Size(95, 33);
             this.kryptonButton1.TabIndex = 14;
             this.kryptonButton1.Values.Text = "OK";
+            this.kryptonButton1.Click += new System.EventHandler(this.enregistrement_mouvement);
             // 
             // btnAddUser
             // 
@@ -274,15 +278,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox commentaire_mouvement;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker kryptonDateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox type_mouvement;
+        private System.Windows.Forms.TextBox montant_mouvement;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddUser;
     }

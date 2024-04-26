@@ -166,6 +166,15 @@
             // kryptonComboBox8
             // 
             this.kryptonComboBox8.DropDownWidth = 222;
+            this.kryptonComboBox8.Items.AddRange(new object[] {
+            "Aucun",
+            "Heure",
+            "Jour",
+            "Semaine",
+            "Mois",
+            "Trimestre",
+            "Semestre",
+            "Année"});
             this.kryptonComboBox8.Location = new System.Drawing.Point(175, 214);
             this.kryptonComboBox8.Name = "kryptonComboBox8";
             this.kryptonComboBox8.Size = new System.Drawing.Size(277, 25);
@@ -185,6 +194,12 @@
             // kryptonComboBox7
             // 
             this.kryptonComboBox7.DropDownWidth = 222;
+            this.kryptonComboBox7.Items.AddRange(new object[] {
+            "Aucune",
+            "Gamme 1",
+            "Gamme 2",
+            "Gamme 1 + Gamme 2",
+            "Gamme 2 + Gamme 1"});
             this.kryptonComboBox7.Location = new System.Drawing.Point(175, 184);
             this.kryptonComboBox7.Name = "kryptonComboBox7";
             this.kryptonComboBox7.Size = new System.Drawing.Size(277, 25);
@@ -204,6 +219,10 @@
             // kryptonComboBox6
             // 
             this.kryptonComboBox6.DropDownWidth = 222;
+            this.kryptonComboBox6.Items.AddRange(new object[] {
+            "Aucune",
+            "Sur rupture",
+            "Sur général"});
             this.kryptonComboBox6.Location = new System.Drawing.Point(175, 154);
             this.kryptonComboBox6.Name = "kryptonComboBox6";
             this.kryptonComboBox6.Size = new System.Drawing.Size(277, 25);
@@ -223,6 +242,11 @@
             // kryptonComboBox5
             // 
             this.kryptonComboBox5.DropDownWidth = 222;
+            this.kryptonComboBox5.Items.AddRange(new object[] {
+            "Aucune",
+            "Caissier",
+            "Vendeur",
+            "Caissier / vendeur"});
             this.kryptonComboBox5.Location = new System.Drawing.Point(175, 123);
             this.kryptonComboBox5.Name = "kryptonComboBox5";
             this.kryptonComboBox5.Size = new System.Drawing.Size(277, 25);
@@ -242,6 +266,9 @@
             // kryptonComboBox4
             // 
             this.kryptonComboBox4.DropDownWidth = 222;
+            this.kryptonComboBox4.Items.AddRange(new object[] {
+            "Chiffre d\'affaires HT",
+            "Chiffre d\'affaires TTC"});
             this.kryptonComboBox4.Location = new System.Drawing.Point(175, 93);
             this.kryptonComboBox4.Name = "kryptonComboBox4";
             this.kryptonComboBox4.Size = new System.Drawing.Size(277, 25);
@@ -250,6 +277,16 @@
             // kryptonComboBox3
             // 
             this.kryptonComboBox3.DropDownWidth = 222;
+            this.kryptonComboBox3.Items.AddRange(new object[] {
+            "Documents en cours",
+            "Documents cloturés",
+            "Tickets en cours",
+            "Tickets archivés",
+            "FC",
+            "FC + FA",
+            "FC + FA + BL ",
+            "FC + FA + BL + PL ",
+            "FC + FA + BL + PL + BC"});
             this.kryptonComboBox3.Location = new System.Drawing.Point(175, 64);
             this.kryptonComboBox3.Name = "kryptonComboBox3";
             this.kryptonComboBox3.Size = new System.Drawing.Size(277, 25);
@@ -269,6 +306,10 @@
             // kryptonComboBox2
             // 
             this.kryptonComboBox2.DropDownWidth = 222;
+            this.kryptonComboBox2.Items.AddRange(new object[] {
+            "Par article",
+            "Par famille",
+            "Par mode de règlement"});
             this.kryptonComboBox2.Location = new System.Drawing.Point(175, 33);
             this.kryptonComboBox2.Name = "kryptonComboBox2";
             this.kryptonComboBox2.Size = new System.Drawing.Size(277, 25);
@@ -299,6 +340,9 @@
             // kryptonComboBox1
             // 
             this.kryptonComboBox1.DropDownWidth = 277;
+            this.kryptonComboBox1.Items.AddRange(new object[] {
+            "Avec des critères étendus",
+            "Rapide simplifié"});
             this.kryptonComboBox1.Location = new System.Drawing.Point(175, 3);
             this.kryptonComboBox1.Name = "kryptonComboBox1";
             this.kryptonComboBox1.Size = new System.Drawing.Size(277, 25);
@@ -321,7 +365,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.72131F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.27869F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel2.Controls.Add(this.kryptonTextBox2, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.label12, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label11, 0, 1);
@@ -340,7 +384,7 @@
             // 
             // kryptonTextBox2
             // 
-            this.kryptonTextBox2.Location = new System.Drawing.Point(330, 33);
+            this.kryptonTextBox2.Location = new System.Drawing.Point(329, 33);
             this.kryptonTextBox2.Name = "kryptonTextBox2";
             this.kryptonTextBox2.Size = new System.Drawing.Size(120, 27);
             this.kryptonTextBox2.TabIndex = 23;
@@ -349,7 +393,7 @@
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(310, 30);
+            this.label12.Location = new System.Drawing.Point(309, 30);
             this.label12.Name = "label12";
             this.label12.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.label12.Size = new System.Drawing.Size(14, 24);
@@ -370,7 +414,7 @@
             // kryptonDateTimePicker2
             // 
             this.kryptonDateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.kryptonDateTimePicker2.Location = new System.Drawing.Point(330, 3);
+            this.kryptonDateTimePicker2.Location = new System.Drawing.Point(329, 3);
             this.kryptonDateTimePicker2.Name = "kryptonDateTimePicker2";
             this.kryptonDateTimePicker2.Size = new System.Drawing.Size(120, 24);
             this.kryptonDateTimePicker2.TabIndex = 19;
@@ -379,7 +423,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(310, 0);
+            this.label10.Location = new System.Drawing.Point(309, 0);
             this.label10.Name = "label10";
             this.label10.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.label10.Size = new System.Drawing.Size(14, 24);
@@ -436,6 +480,9 @@
             // kryptonComboBox11
             // 
             this.kryptonComboBox11.DropDownWidth = 274;
+            this.kryptonComboBox11.Items.AddRange(new object[] {
+            "Standard",
+            "Personnalisé"});
             this.kryptonComboBox11.Location = new System.Drawing.Point(176, 63);
             this.kryptonComboBox11.Name = "kryptonComboBox11";
             this.kryptonComboBox11.Size = new System.Drawing.Size(274, 25);
@@ -455,6 +502,11 @@
             // kryptonComboBox10
             // 
             this.kryptonComboBox10.DropDownWidth = 274;
+            this.kryptonComboBox10.Items.AddRange(new object[] {
+            "Caisse 1 Annexe Bijou",
+            "Caisse 1 Bijou SA",
+            "Caisse 2 Annexe Bijou",
+            "Caisse 2 Bijou SA"});
             this.kryptonComboBox10.Location = new System.Drawing.Point(176, 33);
             this.kryptonComboBox10.Name = "kryptonComboBox10";
             this.kryptonComboBox10.Size = new System.Drawing.Size(274, 25);
@@ -485,6 +537,11 @@
             // kryptonComboBox9
             // 
             this.kryptonComboBox9.DropDownWidth = 274;
+            this.kryptonComboBox9.Items.AddRange(new object[] {
+            "Caisse 1 Annexe Bijou",
+            "Caisse 1 Bijou SA",
+            "Caisse 2 Annexe Bijou",
+            "Caisse 2 Bijou SA"});
             this.kryptonComboBox9.Location = new System.Drawing.Point(176, 3);
             this.kryptonComboBox9.Name = "kryptonComboBox9";
             this.kryptonComboBox9.Size = new System.Drawing.Size(274, 25);

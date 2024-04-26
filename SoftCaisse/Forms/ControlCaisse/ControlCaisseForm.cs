@@ -12,6 +12,8 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Objets100cLib;
+
 namespace SoftCaisse.Forms.ControlCaisse
 {
     public partial class ControlCaisseForm : KryptonForm
@@ -98,8 +100,8 @@ namespace SoftCaisse.Forms.ControlCaisse
         {
             double debut = 0;
             double fin = 0;
-            label10.Text = textBox1.Text;
-            var boo1=Double.TryParse(label10.Text,out debut);
+            var boo1=Double.TryParse(textBox1.Text, out debut);
+            label10.Text = string.Format("{0:N2}", debut);
             var boo2=Double.TryParse(label9.Text,out fin);
             if(string.IsNullOrEmpty(label10.Text) || !boo1)
             {
@@ -172,6 +174,23 @@ namespace SoftCaisse.Forms.ControlCaisse
             if(generation_ecart.Checked)
             {
                 int caisse = Int32.Parse(Caisse.SelectedValue.ToString());
+
+                //string path = "C:\\Users\\Public\\Documents\\Sage\\Saisie de caisse décentralisée 100c\\Bijou.gcm";
+                //BSCIALApplication100c oCial = new BSCIALApplication100c();
+                //oCial.Open();
+                //IBODocumentReglement iReglt = (IBODocumentReglement)oCial.FactoryDocumentReglement.Create();
+                //iReglt.RG_Date = DateTime.Now ;
+                //iReglt.RG_Reference = "";
+                //iReglt.RG_Libelle = "Ecart contrôle de caisse";
+                //iReglt.RG_Montant = Double.Parse(label11.Text);
+                //iReglt.Journal = oCial.CptaApplication.FactoryJournal.ReadNumero("CAIS");
+                //iReglt.TiersPayeur. = ;
+                //iReglt.CompteG = ;
+                //iReglt.WriteDefault();
+
+
+
+
                 //F_CREGLEMENT reglement = new F_CREGLEMENT()
                 //{
                 //    RG_Date= DateTime.Now,
@@ -216,93 +235,93 @@ namespace SoftCaisse.Forms.ControlCaisse
                 //};
                 //_context.F_CREGLEMENT.Add(reglement);
                 //_context.SaveChanges();
-                //string query = @"
-                //Insert INTO [dbo].[F_CREGLEMENT](
-                //    [RG_Date],
-                //    [RG_Montant],
-                //    [N_Reglement],
-                //    [RG_Impute],
-                //    [RG_Libelle],
-                //    [RG_MontantDev],
-                //    [RG_Reference] ,
-                //    [RG_Compta],
-                //    [EC_No],
-                //    [RG_Type],
-                //    [RG_Cours],
-                //    [RG_TypeReg],
-                //    [N_Devise],
-                //    [JO_Num],
-                //    [RG_Impaye],
-                //    [RG_Heure],
-                //    [RG_Piece],
-                //    [CA_No],
-                //    [cbCA_No],
-                //    [CO_NoCaissier],
-                //    [RG_Banque],
-                //    [RG_Transfere],
-                //    [RG_Cloture],
-                //    [RG_Ticket],
-                //    [RG_Souche],
-                //    [RG_DateEchCont],
-                //    [RG_MontantEcart],
-                //    [RG_NoBonAchat],
-                //    [RG_Valide],
-                //    [RG_Anterieur],
-                //    [RG_MontantCommission],
-                //    [RG_MontantNet],
-                //    [cbProt],
-                //    [cbModification],
-                //    [cbReplication],
-                //    [cbFlag],
-                //    [cbCreation],
-                //    [cbHashVersion],
-                //    [cbHashDate]
-                //)
-                //values({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},
-                //{23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37},{38})
-                //";
-                //_context.Database.ExecuteSqlCommand(query,
-                //    DateTime.Now,
-                //    Decimal.Parse(label11.Text),
-                //    3,
-                //    0,
-                //    "Ecart contrôle de caisse",
-                //    0,
-                //    "",
-                //    0,
-                //    0,
-                //    2,
-                //    0,
-                //    7,
-                //    Int16.Parse(Devise.SelectedValue.ToString()),
-                //    "CAIS",
-                //    new DateTime(1753, 1, 1),
-                //    "000" + DateTime.Now.ToString("HH:mm:ss").Trim(':'),
-                //    "",
-                //    caisse,
-                //    caisse,
-                //    0,
-                //    0,
-                //    0,
-                //    0,
-                //    1,
-                //    0,
-                //    new DateTime(1753, 1, 1),
-                //    0,
-                //    0,
-                //    1,
-                //    0,
-                //    0,
-                //    0,
-                //    0,
-                //    DateTime.Now,
-                //    0,
-                //    0,
-                //    DateTime.Now,
-                //    1,
-                //    DateTime.Now
-                //);
-                
+                string query = @"
+                Insert INTO [dbo].[F_CREGLEMENT](
+                    [RG_Date],
+                    [RG_Montant],
+                    [N_Reglement],
+                    [RG_Impute],
+                    [RG_Libelle],
+                    [RG_MontantDev],
+                    [RG_Reference] ,
+                    [RG_Compta],
+                    [EC_No],
+                    [RG_Type],
+                    [RG_Cours],
+                    [RG_TypeReg],
+                    [N_Devise],
+                    [JO_Num],
+                    [RG_Impaye],
+                    [RG_Heure],
+                    [RG_Piece],
+                    [CA_No],
+                    [cbCA_No],
+                    [CO_NoCaissier],
+                    [RG_Banque],
+                    [RG_Transfere],
+                    [RG_Cloture],
+                    [RG_Ticket],
+                    [RG_Souche],
+                    [RG_DateEchCont],
+                    [RG_MontantEcart],
+                    [RG_NoBonAchat],
+                    [RG_Valide],
+                    [RG_Anterieur],
+                    [RG_MontantCommission],
+                    [RG_MontantNet],
+                    [cbProt],
+                    [cbModification],
+                    [cbReplication],
+                    [cbFlag],
+                    [cbCreation],
+                    [cbHashVersion],
+                    [cbHashDate]
+                )
+                values({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},
+                {23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37},{38})
+                ";
+                _context.Database.ExecuteSqlCommand(query,
+                    DateTime.Now,
+                    Decimal.Parse(label11.Text),
+                    3,
+                    0,
+                    "Ecart contrôle de caisse",
+                    0,
+                    "",
+                    0,
+                    0,
+                    2,
+                    0,
+                    7,
+                    Int16.Parse(Devise.SelectedValue.ToString()),
+                    "CAIS",
+                    new DateTime(1753, 1, 1),
+                    "000"+DateTime.Now.ToString("HH:mm:ss").Replace(":",""),
+                    "",
+                    caisse,
+                    caisse,
+                    0,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0,
+                    new DateTime(1753, 1, 1),
+                    0,
+                    0,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    DateTime.Now,
+                    0,
+                    0,
+                    DateTime.Now,
+                    1,
+                    DateTime.Now
+                );
+                this.Close();
             }
         }
     }

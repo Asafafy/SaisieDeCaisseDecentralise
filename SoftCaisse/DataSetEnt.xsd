@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetEnt" targetNamespace="http://tempuri.org/DataSetEnt.xsd" xmlns:mstns="http://tempuri.org/DataSetEnt.xsd" xmlns="http://tempuri.org/DataSetEnt.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetEnt" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSetEnt" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetEnt">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Ligne" msprop:Generator_RowEvHandlerName="LigneRowChangeEventHandler" msprop:Generator_RowDeletedName="LigneRowDeleted" msprop:Generator_RowDeletingName="LigneRowDeleting" msprop:Generator_RowEvArgName="LigneRowChangeEvent" msprop:Generator_TablePropName="Ligne" msprop:Generator_RowChangedName="LigneRowChanged" msprop:Generator_UserTableName="Ligne" msprop:Generator_RowChangingName="LigneRowChanging" msprop:Generator_RowClassName="LigneRow" msprop:Generator_TableClassName="LigneDataTable" msprop:Generator_TableVarName="tableLigne">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="reference" msprop:Generator_ColumnPropNameInTable="referenceColumn" msprop:Generator_ColumnPropNameInRow="reference" msprop:Generator_UserColumnName="reference" msprop:Generator_ColumnVarNameInTable="columnreference" type="xs:string" minOccurs="0" />
+              <xs:element name="designation" msprop:Generator_ColumnPropNameInTable="designationColumn" msprop:Generator_ColumnPropNameInRow="designation" msprop:Generator_UserColumnName="designation" msprop:Generator_ColumnVarNameInTable="columndesignation" type="xs:string" minOccurs="0" />
+              <xs:element name="quantite" msprop:Generator_ColumnPropNameInTable="quantiteColumn" msprop:Generator_ColumnPropNameInRow="quantite" msprop:Generator_UserColumnName="quantite" msprop:Generator_ColumnVarNameInTable="columnquantite" type="xs:string" minOccurs="0" />
+              <xs:element name="prix_unitaire" msprop:Generator_ColumnPropNameInTable="prix_unitaireColumn" msprop:Generator_ColumnPropNameInRow="prix_unitaire" msprop:Generator_UserColumnName="prix_unitaire" msprop:Generator_ColumnVarNameInTable="columnprix_unitaire" type="xs:string" minOccurs="0" />
+              <xs:element name="remise" msprop:Generator_ColumnPropNameInTable="remiseColumn" msprop:Generator_ColumnPropNameInRow="remise" msprop:Generator_UserColumnName="remise" msprop:Generator_ColumnVarNameInTable="columnremise" type="xs:string" minOccurs="0" />
+              <xs:element name="montant_ht" msprop:Generator_ColumnPropNameInTable="montant_htColumn" msprop:Generator_ColumnPropNameInRow="montant_ht" msprop:Generator_UserColumnName="montant_ht" msprop:Generator_ColumnVarNameInTable="columnmontant_ht" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Reglement" msprop:Generator_RowEvHandlerName="ReglementRowChangeEventHandler" msprop:Generator_RowDeletedName="ReglementRowDeleted" msprop:Generator_RowDeletingName="ReglementRowDeleting" msprop:Generator_RowEvArgName="ReglementRowChangeEvent" msprop:Generator_TablePropName="Reglement" msprop:Generator_RowChangedName="ReglementRowChanged" msprop:Generator_UserTableName="Reglement" msprop:Generator_RowChangingName="ReglementRowChanging" msprop:Generator_RowClassName="ReglementRow" msprop:Generator_TableClassName="ReglementDataTable" msprop:Generator_TableVarName="tableReglement">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_UserColumnName="Date" msprop:Generator_ColumnVarNameInTable="columnDate" type="xs:string" minOccurs="0" />
+              <xs:element name="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_UserColumnName="Type" msprop:Generator_ColumnVarNameInTable="columnType" type="xs:string" minOccurs="0" />
+              <xs:element name="Montant" msprop:Generator_ColumnPropNameInTable="MontantColumn" msprop:Generator_ColumnPropNameInRow="Montant" msprop:Generator_UserColumnName="Montant" msprop:Generator_ColumnVarNameInTable="columnMontant" type="xs:string" minOccurs="0" />
+              <xs:element name="Caisse" msprop:Generator_ColumnPropNameInTable="CaisseColumn" msprop:Generator_ColumnPropNameInRow="Caisse" msprop:Generator_UserColumnName="Caisse" msprop:Generator_ColumnVarNameInTable="columnCaisse" type="xs:string" minOccurs="0" />
+              <xs:element name="Client" msprop:Generator_ColumnPropNameInTable="ClientColumn" msprop:Generator_ColumnPropNameInRow="Client" msprop:Generator_UserColumnName="Client" msprop:Generator_ColumnVarNameInTable="columnClient" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Statistique" msprop:Generator_RowEvHandlerName="StatistiqueRowChangeEventHandler" msprop:Generator_RowDeletedName="StatistiqueRowDeleted" msprop:Generator_RowDeletingName="StatistiqueRowDeleting" msprop:Generator_RowEvArgName="StatistiqueRowChangeEvent" msprop:Generator_TablePropName="Statistique" msprop:Generator_RowChangedName="StatistiqueRowChanged" msprop:Generator_UserTableName="Statistique" msprop:Generator_RowChangingName="StatistiqueRowChanging" msprop:Generator_RowClassName="StatistiqueRow" msprop:Generator_TableClassName="StatistiqueDataTable" msprop:Generator_TableVarName="tableStatistique">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Reference" msprop:Generator_ColumnPropNameInTable="ReferenceColumn" msprop:Generator_ColumnPropNameInRow="Reference" msprop:Generator_UserColumnName="Reference" msprop:Generator_ColumnVarNameInTable="columnReference" type="xs:string" minOccurs="0" />
+              <xs:element name="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_UserColumnName="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" type="xs:string" minOccurs="0" />
+              <xs:element name="CANetHT" msprop:Generator_ColumnPropNameInTable="CANetHTColumn" msprop:Generator_ColumnPropNameInRow="CANetHT" msprop:Generator_UserColumnName="CANetHT" msprop:Generator_ColumnVarNameInTable="columnCANetHT" type="xs:string" minOccurs="0" />
+              <xs:element name="Marge" msprop:Generator_ColumnPropNameInTable="MargeColumn" msprop:Generator_ColumnPropNameInRow="Marge" msprop:Generator_UserColumnName="Marge" msprop:Generator_ColumnVarNameInTable="columnMarge" type="xs:string" minOccurs="0" />
+              <xs:element name="CANet" msprop:Generator_ColumnPropNameInTable="CANetColumn" msprop:Generator_ColumnPropNameInRow="CANet" msprop:Generator_UserColumnName="CANet" msprop:Generator_ColumnVarNameInTable="columnCANet" type="xs:string" minOccurs="0" />
+              <xs:element name="Caisse" msprop:Generator_UserColumnName="Caisse" msprop:Generator_ColumnPropNameInTable="CaisseColumn" msprop:Generator_ColumnPropNameInRow="Caisse" msprop:Generator_ColumnVarNameInTable="columnCaisse" type="xs:string" minOccurs="0" />
+              <xs:element name="Quantite" msprop:Generator_ColumnPropNameInRow="Quantite" msprop:Generator_ColumnPropNameInTable="QuantiteColumn" msprop:Generator_ColumnVarNameInTable="columnQuantite" msprop:Generator_UserColumnName="Quantite" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

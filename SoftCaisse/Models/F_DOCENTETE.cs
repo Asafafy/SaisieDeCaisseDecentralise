@@ -16,7 +16,6 @@ namespace SoftCaisse.Models
         public string DO_Piece { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [MaxLength(10)]
         public byte[] cbDO_Piece { get; set; }
 
         public DateTime? DO_Date { get; set; }
@@ -227,7 +226,6 @@ namespace SoftCaisse.Models
         public string DO_PieceOrig { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [MaxLength(10)]
         public byte[] cbDO_PieceOrig { get; set; }
 
         public Guid? DO_GUID { get; set; }
@@ -291,5 +289,12 @@ namespace SoftCaisse.Models
         public int? cbHashOrder { get; set; }
 
         public int? cbCA_No { get; set; }
+        public decimal DO_TotalHTNet { get; set; }
+        public decimal DO_TotalTTC { get; set; }
+        public decimal DO_NetAPayer { get; set; }
+        public decimal DO_MontantRegle { get; set; }
+
+
+
     }
 }

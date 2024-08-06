@@ -43,30 +43,38 @@
             this.label6 = new System.Windows.Forms.Label();
             this.DbListCmbx = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtBoxSagePath = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.commerciale = new System.Windows.Forms.TextBox();
             this.btnOpenSageFile = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comptabilite = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.Mot_de_passe = new System.Windows.Forms.TextBox();
+            this.Utilisateur = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtBoxSagePath = new System.Windows.Forms.TextBox();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.btnConBD = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnSaveConfigBd = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label9 = new System.Windows.Forms.Label();
+            this.ListDatabase = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(9, 11);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(12, 14);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(428, 102);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(571, 126);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Base de données Application";
@@ -83,80 +91,77 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 25);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 31);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 126F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(418, 65);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 155F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(557, 80);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // txtServBD
             // 
-            this.txtServBD.Location = new System.Drawing.Point(154, 2);
-            this.txtServBD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtServBD.Location = new System.Drawing.Point(206, 2);
+            this.txtServBD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtServBD.Name = "txtServBD";
-            this.txtServBD.Size = new System.Drawing.Size(262, 20);
+            this.txtServBD.Size = new System.Drawing.Size(348, 22);
             this.txtServBD.TabIndex = 6;
             // 
             // txtPwdBD
             // 
-            this.txtPwdBD.Location = new System.Drawing.Point(154, 44);
-            this.txtPwdBD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPwdBD.Location = new System.Drawing.Point(206, 54);
+            this.txtPwdBD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPwdBD.Name = "txtPwdBD";
-            this.txtPwdBD.Size = new System.Drawing.Size(262, 20);
+            this.txtPwdBD.Size = new System.Drawing.Size(348, 22);
             this.txtPwdBD.TabIndex = 5;
             this.txtPwdBD.UseSystemPasswordChar = true;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 42);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(3, 52);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.Size = new System.Drawing.Size(89, 16);
             this.label4.TabIndex = 4;
             this.label4.Text = "Mot de passe";
             // 
             // txtSqlUser
             // 
-            this.txtSqlUser.Location = new System.Drawing.Point(154, 23);
-            this.txtSqlUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSqlUser.Location = new System.Drawing.Point(206, 28);
+            this.txtSqlUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSqlUser.Name = "txtSqlUser";
-            this.txtSqlUser.Size = new System.Drawing.Size(262, 20);
+            this.txtSqlUser.Size = new System.Drawing.Size(348, 22);
             this.txtSqlUser.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2, 21);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(3, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
+            this.label3.Size = new System.Drawing.Size(95, 16);
             this.label3.TabIndex = 2;
             this.label3.Text = "Utilisateur SQL";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.Size = new System.Drawing.Size(54, 16);
             this.label2.TabIndex = 0;
             this.label2.Text = "Serveur";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox2.Location = new System.Drawing.Point(9, 141);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(12, 174);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(428, 67);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(571, 168);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Séléctionner la base de données";
@@ -166,102 +171,160 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.73835F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.26165F));
-            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.DbListCmbx, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ListDatabase, 1, 1);
             this.tableLayoutPanel2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 29);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 36);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.0566F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.9434F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(418, 24);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(557, 118);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 0);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(3, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 13);
+            this.label6.Size = new System.Drawing.Size(146, 16);
             this.label6.TabIndex = 0;
-            this.label6.Text = "Base de données";
+            this.label6.Text = " Base de donnée Sage";
             // 
             // DbListCmbx
             // 
             this.DbListCmbx.Enabled = false;
             this.DbListCmbx.FormattingEnabled = true;
-            this.DbListCmbx.Location = new System.Drawing.Point(155, 2);
-            this.DbListCmbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DbListCmbx.Location = new System.Drawing.Point(207, 2);
+            this.DbListCmbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DbListCmbx.Name = "DbListCmbx";
-            this.DbListCmbx.Size = new System.Drawing.Size(261, 21);
+            this.DbListCmbx.Size = new System.Drawing.Size(347, 24);
             this.DbListCmbx.TabIndex = 1;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.tableLayoutPanel3);
-            this.groupBox3.Location = new System.Drawing.Point(9, 213);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Controls.Add(this.commerciale);
+            this.groupBox3.Controls.Add(this.btnOpenSageFile);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.comptabilite);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.Mot_de_passe);
+            this.groupBox3.Controls.Add(this.Utilisateur);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Location = new System.Drawing.Point(12, 346);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox3.Size = new System.Drawing.Size(428, 67);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(571, 179);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Séléctionner le fichier de donnée sage";
             // 
-            // tableLayoutPanel3
+            // commerciale
             // 
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.96101F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.03899F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel3.Controls.Add(this.txtBoxSagePath, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnOpenSageFile, 2, 0);
-            this.tableLayoutPanel3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 29);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.0566F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.9434F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(418, 24);
-            this.tableLayoutPanel3.TabIndex = 3;
+            this.commerciale.Location = new System.Drawing.Point(208, 27);
+            this.commerciale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.commerciale.Name = "commerciale";
+            this.commerciale.Size = new System.Drawing.Size(294, 22);
+            this.commerciale.TabIndex = 13;
             // 
-            // txtBoxSagePath
+            // btnOpenSageFile
             // 
-            this.txtBoxSagePath.Location = new System.Drawing.Point(153, 2);
-            this.txtBoxSagePath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtBoxSagePath.Name = "txtBoxSagePath";
-            this.txtBoxSagePath.Size = new System.Drawing.Size(222, 20);
-            this.txtBoxSagePath.TabIndex = 6;
+            this.btnOpenSageFile.Location = new System.Drawing.Point(508, 26);
+            this.btnOpenSageFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnOpenSageFile.Name = "btnOpenSageFile";
+            this.btnOpenSageFile.Size = new System.Drawing.Size(41, 25);
+            this.btnOpenSageFile.TabIndex = 12;
+            this.btnOpenSageFile.Text = "...";
+            this.btnOpenSageFile.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnOpenSageFile.UseVisualStyleBackColor = true;
+            this.btnOpenSageFile.Click += new System.EventHandler(this.btnOpenSageGestion_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(2, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(8, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Sage 100 Gestion Commerciale";
+            this.label1.Size = new System.Drawing.Size(147, 16);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Sage 100 Commerciale";
             // 
-            // btnOpenSageFile
+            // label8
             // 
-            this.btnOpenSageFile.Location = new System.Drawing.Point(379, 2);
-            this.btnOpenSageFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnOpenSageFile.Name = "btnOpenSageFile";
-            this.btnOpenSageFile.Size = new System.Drawing.Size(31, 20);
-            this.btnOpenSageFile.TabIndex = 7;
-            this.btnOpenSageFile.Text = "...";
-            this.btnOpenSageFile.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOpenSageFile.UseVisualStyleBackColor = true;
-            this.btnOpenSageFile.Click += new System.EventHandler(this.btnOpenSageFile_Click);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 70);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(142, 16);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Sage 100 Comptabilité";
+            // 
+            // comptabilite
+            // 
+            this.comptabilite.Location = new System.Drawing.Point(208, 67);
+            this.comptabilite.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comptabilite.Name = "comptabilite";
+            this.comptabilite.Size = new System.Drawing.Size(294, 22);
+            this.comptabilite.TabIndex = 8;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(508, 66);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(41, 25);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "...";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnOpenSageCompta_Click);
+            // 
+            // Mot_de_passe
+            // 
+            this.Mot_de_passe.Location = new System.Drawing.Point(208, 139);
+            this.Mot_de_passe.Name = "Mot_de_passe";
+            this.Mot_de_passe.Size = new System.Drawing.Size(256, 22);
+            this.Mot_de_passe.TabIndex = 7;
+            // 
+            // Utilisateur
+            // 
+            this.Utilisateur.Location = new System.Drawing.Point(208, 104);
+            this.Utilisateur.Name = "Utilisateur";
+            this.Utilisateur.Size = new System.Drawing.Size(256, 22);
+            this.Utilisateur.TabIndex = 6;
+            this.Utilisateur.Text = "<Administrateur>";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 139);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 16);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Mot de passe";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 107);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 16);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Utilisateur";
+            // 
+            // txtBoxSagePath
+            // 
+            this.txtBoxSagePath.Location = new System.Drawing.Point(203, 2);
+            this.txtBoxSagePath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBoxSagePath.Name = "txtBoxSagePath";
+            this.txtBoxSagePath.Size = new System.Drawing.Size(294, 22);
+            this.txtBoxSagePath.TabIndex = 6;
             // 
             // kryptonPalette1
             // 
@@ -290,24 +353,24 @@
             // 
             // btnConBD
             // 
-            this.btnConBD.Location = new System.Drawing.Point(342, 117);
-            this.btnConBD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConBD.Location = new System.Drawing.Point(456, 144);
+            this.btnConBD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConBD.Name = "btnConBD";
             this.btnConBD.Palette = this.kryptonPalette1;
             this.btnConBD.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnConBD.Size = new System.Drawing.Size(88, 27);
+            this.btnConBD.Size = new System.Drawing.Size(117, 33);
             this.btnConBD.TabIndex = 7;
             this.btnConBD.Values.Text = "Connecter";
             this.btnConBD.Click += new System.EventHandler(this.btnConBD_Click);
             // 
             // btnSaveConfigBd
             // 
-            this.btnSaveConfigBd.Location = new System.Drawing.Point(342, 285);
-            this.btnSaveConfigBd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSaveConfigBd.Location = new System.Drawing.Point(456, 529);
+            this.btnSaveConfigBd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSaveConfigBd.Name = "btnSaveConfigBd";
             this.btnSaveConfigBd.Palette = this.kryptonPalette1;
             this.btnSaveConfigBd.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnSaveConfigBd.Size = new System.Drawing.Size(88, 27);
+            this.btnSaveConfigBd.Size = new System.Drawing.Size(117, 33);
             this.btnSaveConfigBd.TabIndex = 8;
             this.btnSaveConfigBd.Values.Text = "Sauvegarder";
             this.btnSaveConfigBd.Click += new System.EventHandler(this.btnSaveConfigBd_Click);
@@ -316,25 +379,43 @@
             // 
             this.openFileDialog1.FileName = "openFileDialogBaseSage";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 57);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(178, 16);
+            this.label9.TabIndex = 2;
+            this.label9.Text = " Base de donnée SoftCaisse";
+            // 
+            // ListDatabase
+            // 
+            this.ListDatabase.Enabled = false;
+            this.ListDatabase.FormattingEnabled = true;
+            this.ListDatabase.Location = new System.Drawing.Point(207, 59);
+            this.ListDatabase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ListDatabase.Name = "ListDatabase";
+            this.ListDatabase.Size = new System.Drawing.Size(347, 24);
+            this.ListDatabase.TabIndex = 3;
+            // 
             // ConnectDbForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 317);
+            this.ClientSize = new System.Drawing.Size(595, 580);
             this.Controls.Add(this.btnSaveConfigBd);
             this.Controls.Add(this.btnConBD);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "ConnectDbForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Paramètres bases de données";
-            this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -342,8 +423,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -361,15 +441,24 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox txtBoxSagePath;
-        private System.Windows.Forms.Label label1;
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnConBD;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSaveConfigBd;
         private System.Windows.Forms.TextBox txtServBD;
         private System.Windows.Forms.ComboBox DbListCmbx;
-        private System.Windows.Forms.Button btnOpenSageFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox Mot_de_passe;
+        private System.Windows.Forms.TextBox Utilisateur;
+        private System.Windows.Forms.TextBox comptabilite;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox commerciale;
+        private System.Windows.Forms.Button btnOpenSageFile;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox ListDatabase;
     }
 }

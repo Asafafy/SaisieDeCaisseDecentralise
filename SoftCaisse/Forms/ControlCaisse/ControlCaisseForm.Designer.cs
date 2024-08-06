@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnGestionCaisseClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -91,24 +90,14 @@
             // 
             // kryptonButton2
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(983, 508);
+            this.kryptonButton2.Location = new System.Drawing.Point(1058, 508);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Palette = this.kryptonPalette1;
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(134, 34);
+            this.kryptonButton2.Size = new System.Drawing.Size(165, 34);
             this.kryptonButton2.TabIndex = 13;
             this.kryptonButton2.Values.Text = "OK";
             this.kryptonButton2.Click += new System.EventHandler(this.generer_ecart);
-            // 
-            // btnGestionCaisseClose
-            // 
-            this.btnGestionCaisseClose.Location = new System.Drawing.Point(1123, 508);
-            this.btnGestionCaisseClose.Name = "btnGestionCaisseClose";
-            this.btnGestionCaisseClose.Palette = this.kryptonPalette1;
-            this.btnGestionCaisseClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnGestionCaisseClose.Size = new System.Drawing.Size(134, 34);
-            this.btnGestionCaisseClose.TabIndex = 12;
-            this.btnGestionCaisseClose.Values.Text = "Annuler";
             // 
             // groupBox1
             // 
@@ -300,7 +289,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.22442F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.77558F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 430F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 431F));
             this.tableLayoutPanel1.Controls.Add(this.kryptonButton3, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.Controlecmbx, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
@@ -333,7 +322,7 @@
             this.Controlecmbx.FormattingEnabled = true;
             this.Controlecmbx.Location = new System.Drawing.Point(259, 43);
             this.Controlecmbx.Name = "Controlecmbx";
-            this.Controlecmbx.Size = new System.Drawing.Size(317, 24);
+            this.Controlecmbx.Size = new System.Drawing.Size(316, 24);
             this.Controlecmbx.TabIndex = 23;
             this.Controlecmbx.SelectedValueChanged += new System.EventHandler(this.Controlecmbx_SelectedValueChanged);
             // 
@@ -341,7 +330,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(752, 0);
+            this.label2.Location = new System.Drawing.Point(751, 0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.label2.Size = new System.Drawing.Size(49, 22);
@@ -372,7 +361,7 @@
             // Caisse
             // 
             this.Caisse.FormattingEnabled = true;
-            this.Caisse.Location = new System.Drawing.Point(807, 3);
+            this.Caisse.Location = new System.Drawing.Point(806, 3);
             this.Caisse.Name = "Caisse";
             this.Caisse.Size = new System.Drawing.Size(304, 24);
             this.Caisse.TabIndex = 21;
@@ -396,7 +385,6 @@
             this.ClientSize = new System.Drawing.Size(1269, 554);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.btnGestionCaisseClose);
             this.Name = "ControlCaisseForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -416,7 +404,6 @@
         #endregion
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnGestionCaisseClose;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;

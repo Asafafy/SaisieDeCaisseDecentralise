@@ -25,7 +25,7 @@ namespace SoftCaisse.Repositories
 
         public IList<DTO.Devise> GetAll()
         {
-            return _context.P_DEVISE
+            return _context.P_DEVISE.Where(u => !string.IsNullOrEmpty(u.D_Intitule))
                 .Select( a => new DTO.Devise
                 {
                     D_Intitule = a.D_Intitule,

@@ -20,14 +20,16 @@ namespace SoftCaisse.Forms.MouvementCaisse
         private readonly AppDbContext _context;
         public MouvementCaisseForm()
         {
-            label2.Text =CaisseOuvert.CaisseText;
             _context = new AppDbContext();
             InitializeComponent();
+            label2.Text = CaisseOuvert.CaisseText;
+            type_mouvement.SelectedIndex = 0;
         }
 
         private void enregistrement_mouvement(object sender, EventArgs e)
         {
-            int typereg = type_mouvement.SelectedText == "Entrée" ? 5 : 4;
+            int text = type_mouvement.SelectedIndex;
+            int typereg =  text == 0 ? 5 : 4;
             string query = @"
                 Insert INTO [dbo].[F_CREGLEMENT](
                     [RG_Date],
@@ -50,7 +52,7 @@ namespace SoftCaisse.Forms.MouvementCaisse
                     [CA_No],
                     [cbCA_No],
                     [CO_NoCaissier],
-                    [RG_Banque],
+                    [cbCO_NoCaissier],
                     [RG_Transfere],
                     [RG_Cloture],
                     [RG_Ticket],
@@ -68,10 +70,11 @@ namespace SoftCaisse.Forms.MouvementCaisse
                     [cbFlag],
                     [cbCreation],
                     [cbHashVersion],
-                    [cbHashDate]
+                    [cbHashDate],
+                    [RG_Banque]
                 )
                 values({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},
-                {23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37},{38})
+                {23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37},{38},{39})
                 ";
             _context.Database.ExecuteSqlCommand(query,
                 kryptonDateTimePicker1.Value,
@@ -93,8 +96,8 @@ namespace SoftCaisse.Forms.MouvementCaisse
                 "",
                 CaisseOuvert.CaisseID,
                 CaisseOuvert.CaisseID,
-                0,
-                0,
+                CaisseOuvert.CaissierID,
+                CaisseOuvert.CaissierID,
                 0,
                 0,
                 1,
@@ -112,8 +115,10 @@ namespace SoftCaisse.Forms.MouvementCaisse
                 0,
                 DateTime.Now,
                 1,
-                DateTime.Now
+                DateTime.Now,
+                0
             );
+            MessageBox.Show("Mis à jour mouvement caisse réussi " , "Succes" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
             
              

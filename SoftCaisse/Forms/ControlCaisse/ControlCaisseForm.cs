@@ -68,7 +68,7 @@ namespace SoftCaisse.Forms.ControlCaisse
                 kryptonDataGridView1.Columns["Ecart"].Visible=false;
                 kryptonDataGridView1.Columns["intitule"].ReadOnly = true;
                 kryptonDataGridView1.Columns["Montant"].ReadOnly = true;
-                somme = _freglementrepository.get_somme_constate(liste);
+                somme = _freglementrepository.get_somme_constate(kryptonDateTimePicker1.Value, Convert.ToInt32(Caisse.SelectedValue));
             }
             else
             {
@@ -84,7 +84,7 @@ namespace SoftCaisse.Forms.ControlCaisse
                 kryptonDataGridView1.Columns["intitule"].ReadOnly = true;
                 kryptonDataGridView1.Columns["Montant"].ReadOnly = true;
                 kryptonDataGridView1.Columns["Ecart"].ReadOnly = true;
-                somme = _freglementrepository.get_somme_constate(liste);
+                somme = _freglementrepository.get_somme_constate(kryptonDateTimePicker1.Value, Convert.ToInt32(Caisse.SelectedValue));
             }
             label9.Text = string.Format("{0:N2}", somme) ;
             label10.Text = string.Format("{0:N2}", somme);
@@ -163,7 +163,8 @@ namespace SoftCaisse.Forms.ControlCaisse
             foreach (DataGridViewRow item in kryptonDataGridView1.Rows)
             {
                 double val = 0;
-                Double.TryParse(item.Cells[columns].Value.ToString(), out val);
+                string constat = item.Cells[columns].FormattedValue.ToString();
+                Double.TryParse(constat, out val);
                 valeur += val;
             }
             return valeur;

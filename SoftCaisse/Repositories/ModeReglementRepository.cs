@@ -24,7 +24,7 @@ namespace SoftCaisse.Repositories
 
         public IList<DTO.ModeReglement> GetAll()
         {
-            return _context.P_REGLEMENT
+            return _context.P_REGLEMENT.Where(u => !string.IsNullOrEmpty(u.R_Intitule))
             .Select(a => new DTO.ModeReglement
             {
                 R_Intitule = a.R_Intitule,

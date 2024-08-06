@@ -1,6 +1,5 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Controls;
-using SoftCaisse.Migrations;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
 using SoftCaisse.Utils;
@@ -23,12 +22,14 @@ namespace SoftCaisse.Forms.Caisse
         private readonly ClientRepository _clientRepository;
         private readonly FDepotRepository _depotRepository;
         private readonly FJournauxRepository _fJournauxRepository;
+        private readonly F_CAISSE f_caisse;
         private readonly FCaisseRepository _fCaisseRepository;
         private int IdDepot;
         private int IdCaissier;
         private int IdSouche;
         private int IdVendeur;
-        public DetailCaisseForm(List<dynamic> caissier)
+        private KryptonDataGridView _grid;
+        public DetailCaisseForm(List<dynamic> caissier,KryptonDataGridView grid)
         {
             InitializeComponent();
             _context = new AppDbContext();
@@ -42,8 +43,9 @@ namespace SoftCaisse.Forms.Caisse
             LoadDetailsCaisse();
             DepotCaisseCmbx.DisplayMember = "Depot";
             DepotCaisseCmbx.ValueMember = "NumDepot";
+            _grid=grid;
         }
-        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse, List<dynamic> soucheVente)
+        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse, List<dynamic> soucheVente, KryptonDataGridView grid)
         {
             InitializeComponent();
             _context = new AppDbContext();
@@ -61,7 +63,6 @@ namespace SoftCaisse.Forms.Caisse
             _vente = soucheVente;
             LoadAll();
             LoadCaissier();
-            LoadDetailsCaisse();
             LoadVendeur();
             DepotCaisseCmbx.DisplayMember = "Depot";
             DepotCaisseCmbx.ValueMember = "NumDepot";
@@ -71,9 +72,11 @@ namespace SoftCaisse.Forms.Caisse
             caissierCmbx.ValueMember = "NumCo";
             soucheVenteCmbx.DisplayMember = "Intitule";
             soucheVenteCmbx.ValueMember = "cbMarque";
+            LoadDetailsCaisse();
             modif = false;
+            _grid = grid;
         }
-        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse, List<dynamic> soucheVente, bool test)
+        public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse, List<dynamic> soucheVente, bool test, KryptonDataGridView grid)
         {
             InitializeComponent();
             _context = new AppDbContext();
@@ -102,6 +105,7 @@ namespace SoftCaisse.Forms.Caisse
             soucheVenteCmbx.DisplayMember = "Intitule";
             soucheVenteCmbx.ValueMember = "cbMarque";
             modif = test;
+            _grid = grid;
 
         }
         public void LoadVendeur()
@@ -152,29 +156,33 @@ namespace SoftCaisse.Forms.Caisse
             var caisse = _caissier.FirstOrDefault();
             var cmbxDepot = _caissier.Select(depot => new { NumDepot = depot.NumDepot, Depot = depot.Depot }).ToArray();
             var souche = _vente.Select(s => s.Intitule).FirstOrDefault();
-            DepotCaisseCmbx.Text = cmbxDepot[cmbxDepot.Length - 1].ToString();
-            ClientCaisseCmbx.Text = caisse.Client;
-            soucheVenteCmbx.Text = souche;
+            DepotCaisseCmbx.SelectedIndex = DepotCaisseCmbx.FindString(cmbxDepot[cmbxDepot.Length - 1].Depot);
+            ClientCaisseCmbx.SelectedIndex = ClientCaisseCmbx.FindString(caisse.Client);
+            soucheVenteCmbx.SelectedIndex = soucheVenteCmbx.FindString(souche);
         }
         public void LoadDetailsCaisse()
         {
             var caisse = _caissier.FirstOrDefault();
+
             txtIntituleCaisse.Text = caisse.Intitule;
             var cmbxDepot = _caissier.Select(depot=>new { NumDepot = depot.NumDepot, Depot = depot.Depot }).ToArray();
-            var souche = _vente.Where(s=>s.cbMarque == caisse.SoucheVente+1).Select(s=>s.Intitule).FirstOrDefault();
+            var souche = _vente.Where(s=>s.cbMarque == caisse.SoucheVente).Select(s=>s.Intitule).FirstOrDefault();
             var vendeur = _vendeur.Where(v=>v.NumCo == caisse.VendeurNum).Select(v=>v.InfoVendeur).FirstOrDefault(); 
             var detailcaisse = _caisse.Where(c=>c.NumCo == caisse.NumCaissier).Select(v => v.InfoCaisse).FirstOrDefault();
-            DepotCaisseCmbx.Text = cmbxDepot[cmbxDepot.Length-1].ToString();
-            ClientCaisseCmbx.Text = caisse.Client;
-            CodeJournalCaisseCmbx.Text = caisse.CodeJournal;
-            soucheVenteCmbx.Text = souche.ToString();
+            DepotCaisseCmbx.SelectedIndex = DepotCaisseCmbx.FindString(caisse.Depot);
+            ClientCaisseCmbx.SelectedIndex = ClientCaisseCmbx.FindString(caisse.Client);
+            CodeJournalCaisseCmbx.SelectedIndex = CodeJournalCaisseCmbx.FindString(caisse.CodeJournal);
+            if (souche != null)
+            {
+                soucheVenteCmbx.SelectedIndex = soucheVenteCmbx.FindString(souche);
+            }
             if (vendeur != null)
             {
-                vendeurCmbx.Text = vendeur.ToString();
+                vendeurCmbx.SelectedIndex = vendeurCmbx.FindString(vendeur);
             }
             if (detailcaisse != null)
             {
-                caissierCmbx.Text = detailcaisse.ToString();
+                caissierCmbx.SelectedIndex = caissierCmbx.FindString(detailcaisse);
             }
 
 
@@ -209,10 +217,6 @@ namespace SoftCaisse.Forms.Caisse
                 MessageBox.Show("Ajout effectué avec succès");
                 this.Close();
                 txtIntituleCaisse.Text = "";
-                CodeJournalCaisseCmbx.Items.Clear();
-                ClientCaisseCmbx.Items.Clear();
-                soucheVenteCmbx.Items.Clear();
-                vendeurCmbx.Items.Clear();
             }
             else
             {
@@ -242,12 +246,9 @@ namespace SoftCaisse.Forms.Caisse
                 MessageBox.Show("Mise à jour effectuée avec succès");
                 this.Close();
                 txtIntituleCaisse.Text = "";
-                CodeJournalCaisseCmbx.Items.Clear();
-                ClientCaisseCmbx.Items.Clear();
-                soucheVenteCmbx.Items.Clear();
-                vendeurCmbx.Items.Clear();
-
             }
+            var listCaissier = _context.F_CAISSE.Select(caissier => new { Intitule = caissier.CA_Intitule, CaisseNum = caissier.CA_No }).ToList();
+            _grid.DataSource = listCaissier;
         }
 
         private void DepotCaisseCmbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -264,7 +265,7 @@ namespace SoftCaisse.Forms.Caisse
         private void soucheVenteCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             int SoucheVente = Cmbx.GetValueMember(soucheVenteCmbx, "cbMarque", "Intitule");
-            IdSouche = SoucheVente - 1;
+            IdSouche = SoucheVente;
         }
 
         private void vendeurCmbx_SelectedIndexChanged(object sender, EventArgs e)

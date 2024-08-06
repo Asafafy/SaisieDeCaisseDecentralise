@@ -44,7 +44,6 @@ namespace SoftCaisse.Forms.Billetage
 
         private void focus_row(object sender, EventArgs e)
         {
-            // kryptonDataGridView1.Rows[kryptonDataGridView1.RowCount - 1].Cells[0]. = true;
             kryptonDataGridView1.CurrentCell = kryptonDataGridView1.Rows[kryptonDataGridView1.RowCount - 1].Cells["Intitulé"];
             kryptonDataGridView1.BeginEdit(true);
         }

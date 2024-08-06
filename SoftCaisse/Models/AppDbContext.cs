@@ -1,8 +1,5 @@
 ﻿using SoftCaisse.Utils.Connection;
-using System;
 using System.Data.Entity;
-using System.IO;
-using System.Windows.Forms;
 
 namespace SoftCaisse.Models
 {
@@ -13,8 +10,16 @@ namespace SoftCaisse.Models
             : base(Db.GetConnectionString("ServeurSage.txt"))
         {
         }
+        public virtual DbSet<P_PREFERENCES> P_PREFERENCES { get; set; }
+        public virtual DbSet<F_DOCREGL> F_DOCREGL { get; set; }
+        public virtual DbSet<F_CATALOGUE> F_CATALOGUE { get; set; }
+        public virtual DbSet<F_LIGNEARCHIVE> F_LIGNEARCHIVE { get; set; }
+        public virtual DbSet<F_REGLEARCHIVE> F_REGLEARCHIVE { get; set; }
+        public virtual DbSet<P_ANALYTIQUE> P_ANALYTIQUE { get; set; }
         public virtual DbSet<F_DOCCURRENTPIECE> F_DOCCURRENTPIECE { get; set; }
+        public virtual DbSet<F_FAMILLE> F_FAMILLE { get; set; }
         public virtual DbSet<F_COMPTET> F_COMPTET { get; set; }
+        public virtual DbSet<F_COMPTEA> F_COMPTEA { get; set; }
         public virtual DbSet<F_CAISSE> F_CAISSE { get; set; }
         public virtual DbSet<F_DEPOT> F_DEPOT { get; set; }
         public virtual DbSet<F_BILLETPIECE> F_BILLETPIECE { get; set; }
@@ -22,8 +27,8 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_DOCENTETE> F_DOCENTETE { get; set; }
         public virtual DbSet<F_DOCLIGNE> F_DOCLIGNE { get; set; }
         public virtual DbSet<F_JOURNAUX> F_JOURNAUX { get; set; }
-        public virtual DbSet<F_COLLABORATEUR> F_COLLABORATEUR { get;set; }
-        public virtual DbSet<F_ARTICLE> F_ARTICLE {  get; set; }
+        public virtual DbSet<F_COLLABORATEUR> F_COLLABORATEUR { get; set; }
+        public virtual DbSet<F_ARTICLE> F_ARTICLE { get; set; }
         public virtual DbSet<P_DEVISE> P_DEVISE { get; set; }
         public virtual DbSet<P_SOUCHEVENTE> P_SOUCHEVENTE { get; set; }
         public virtual DbSet<F_CREGLEMENT> F_CREGLEMENT { get; set; }
@@ -34,10 +39,117 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_ARTSTOCK> F_ARTSTOCK { get; set; }
         public virtual DbSet<P_UNITE> P_UNITE { get; set; }
         public virtual DbSet<F_ARTCLIENT> F_ARTCLIENT { get; set; }
+        public virtual DbSet<P_CATTARIF> P_CATTARIF { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<P_PREFERENCES>()
+            .Property(e => e.PR_RefEsc)
+            .IsUnicode(false);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.PR_RefTaxeNP)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.CG_NumCli)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.CG_NumFrs)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.CT_Num)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.CG_NumVirement)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.PR_EMail)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.CG_NumComptoirDebit)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.CG_NumComptoirCredit)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.PR_MontantMaxTicket)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<P_PREFERENCES>()
+                .Property(e => e.PR_Certificat)
+                .IsUnicode(false);
+            modelBuilder.Entity<F_DOCREGL>()
+                .Property(e => e.DO_Piece)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_DOCREGL>()
+                .Property(e => e.DR_Libelle)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_DOCREGL>()
+                .Property(e => e.DR_Pourcent)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_DOCREGL>()
+                .Property(e => e.DR_Montant)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_DOCREGL>()
+                .Property(e => e.DR_MontantDev)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_DOCREGL>()
+                .Property(e => e.cbCreateur)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_DOCREGL>()
+                .Property(e => e.DR_AdressePaiement)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_CATTARIF>()
+                .Property(e => e.CT_Intitule)
+                .IsUnicode(false);
+            modelBuilder.Entity<P_ANALYTIQUE>()
+                .Property(e => e.A_Intitule)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_ANALYTIQUE>()
+                .Property(e => e.A_Rupture01A_Nom)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_ANALYTIQUE>()
+                .Property(e => e.A_Rupture02A_Nom)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_ANALYTIQUE>()
+                .Property(e => e.A_Rupture03A_Nom)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_ANALYTIQUE>()
+                .Property(e => e.A_Rupture04A_Nom)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_ANALYTIQUE>()
+                .Property(e => e.A_Rupture05A_Nom)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_ANALYTIQUE>()
+                .Property(e => e.A_Rupture06A_Nom)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<P_ANALYTIQUE>()
+                .Property(e => e.CA_Num)
+                .IsUnicode(false);
             modelBuilder.Entity<F_DOCCURRENTPIECE>()
                 .Property(e => e.DC_Piece)
                 .IsUnicode(false);
@@ -294,6 +406,116 @@ namespace SoftCaisse.Models
             modelBuilder.Entity<F_COMPTET>()
                 .Property(e => e.Points_fidélité_restants)
                 .HasPrecision(24, 6);
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.TA_Piece)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.AR_Ref)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_Design)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_PrixUnitaire)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_PUTTC)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_Qte)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_Remise01REM_Valeur)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_Remise02REM_Valeur)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_Remise03REM_Valeur)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_Taxe1)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_Taxe2)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_Taxe3)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LS_NoSerie)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_PoidsNet)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_PrixRU)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LA_CMUP)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.EU_Enumere)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.EU_Qte)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.LS_Complement)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_LIGNEARCHIVE>()
+                .Property(e => e.cbCreateur)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_REGLEARCHIVE>()
+                .Property(e => e.TA_Piece)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_REGLEARCHIVE>()
+                .Property(e => e.RA_Montant)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_REGLEARCHIVE>()
+                .Property(e => e.RA_MontantDev)
+                .HasPrecision(24, 6);
+
+            modelBuilder.Entity<F_REGLEARCHIVE>()
+                .Property(e => e.cbCreateur)
+                .IsFixedLength()
+                .IsUnicode(false);
+            modelBuilder.Entity<F_CATALOGUE>()
+                .Property(e => e.CL_Intitule)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_CATALOGUE>()
+                .Property(e => e.CL_Code)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<F_CATALOGUE>()
+                .Property(e => e.cbCreateur)
+                .IsFixedLength()
+                .IsUnicode(false);
+
         }
     }
 }

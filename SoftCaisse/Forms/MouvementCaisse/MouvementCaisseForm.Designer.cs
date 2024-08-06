@@ -45,7 +45,6 @@
             this.type_mouvement = new System.Windows.Forms.ComboBox();
             this.montant_mouvement = new System.Windows.Forms.TextBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnAddUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -160,6 +159,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.Enabled = false;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(114, 61);
             this.comboBox2.Name = "comboBox2";
@@ -228,7 +228,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonButton1.Location = new System.Drawing.Point(305, 242);
+            this.kryptonButton1.Location = new System.Drawing.Point(413, 242);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Palette = this.kryptonPalette1;
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -237,24 +237,12 @@
             this.kryptonButton1.Values.Text = "OK";
             this.kryptonButton1.Click += new System.EventHandler(this.enregistrement_mouvement);
             // 
-            // btnAddUser
-            // 
-            this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddUser.Location = new System.Drawing.Point(407, 242);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Palette = this.kryptonPalette1;
-            this.btnAddUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnAddUser.Size = new System.Drawing.Size(95, 33);
-            this.btnAddUser.TabIndex = 13;
-            this.btnAddUser.Values.Text = "Annuler";
-            // 
             // MouvementCaisseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 287);
             this.Controls.Add(this.kryptonButton1);
-            this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBox1);
             this.Name = "MouvementCaisseForm";
@@ -288,6 +276,5 @@
         private System.Windows.Forms.ComboBox type_mouvement;
         private System.Windows.Forms.TextBox montant_mouvement;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddUser;
     }
 }

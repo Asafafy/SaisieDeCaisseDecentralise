@@ -1,6 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
+using SoftCaisse.Utils.Global;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,28 +15,29 @@ namespace SoftCaisse.Forms.User
     {
         private readonly SCDContext _scdContext;
         private readonly UserRepository _userRepository;
-        private readonly RoleRepository _roleRepository;
         private List<dynamic> _users;
-        private int IdRole;
         private int UserId;
         public UserManagementForm()
         {
             InitializeComponent();
             _scdContext = new SCDContext();
             _userRepository = new UserRepository(_scdContext);
-            _roleRepository = new RoleRepository(_scdContext);
-            RoleCmbx.DisplayMember = "RoleName";
-            RoleCmbx.ValueMember = "RoleId";
 
-            var data1 = _roleRepository.GetAll();
             var data = _userRepository.GetAll();
             LoadData();
-            var listRole = data1.Select(role => new { RoleId = role.RoleId, RoleName = role.RoleName }).ToArray();
-            //var listUser = data
-            //    .Select(user => new { Login = user.Login, Password = user.UserPassword, Role = user.Role.RoleName}).ToList();
-            //userDatagridView.DataSource = listUser;
+            var listRole = new List<Controle>();
+            foreach (int item in Enum.GetValues(typeof(RoleUser)))
+            {
+                listRole.Add(new Controle()
+                {
+                    item =item+"",
+                    valeur = Enum.GetName(typeof(RoleUser),item)
+                });
+            }
             RoleCmbx.Items.Clear();
-            RoleCmbx.Items.AddRange(listRole);
+            RoleCmbx.DataSource=(listRole);
+            RoleCmbx.ValueMember="item";
+            RoleCmbx.DisplayMember="valeur";
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -52,11 +54,12 @@ namespace SoftCaisse.Forms.User
                 }
                 else
                 {
-                    Models.User user = new Models.User
+                    Controle con = (Controle)RoleCmbx.SelectedItem;
+                    Models.Users user = new Models.Users
                     {
                         Login = txtLogin.Text,
                         UserPassword = txtUserPassword.Text,
-                        RoleId = IdRole
+                        RoleId = (RoleUser)int.Parse(con.item)
                     };
 
                     _userRepository.Add(user);
@@ -75,7 +78,7 @@ namespace SoftCaisse.Forms.User
             var data = _userRepository.GetAll();
             _users = new List<dynamic>();
             var listUser = data
-              .Select(user => new { UserId = user.UserId, Login = user.Login, Password = user.UserPassword, Role = user.Role.RoleName}).ToList();
+              .Select(user => new { UserId = user.UserId, Login = user.Login, Password = user.UserPassword, Role = Enum.GetName(typeof(RoleUser),user.RoleId)}).ToList();
             userDatagridView.DataSource = listUser;
             _users.AddRange(listUser);
         }
@@ -83,12 +86,11 @@ namespace SoftCaisse.Forms.User
         {
             if (RoleCmbx.SelectedItem != null)
             {
-                string selectedValue = RoleCmbx.SelectedItem.ToString();
-                // Split the selected text to extract RoleId
-                int startIndex = selectedValue.IndexOf("RoleId = ") + "RoleId = ".Length;
-                int endIndex = selectedValue.IndexOf(", RoleName");
-                string roleIdString = selectedValue.Substring(startIndex, endIndex - startIndex).Trim();
-                int.TryParse(roleIdString, out IdRole);
+                //string selectedValue = RoleCmbx.SelectedItem.ToString();
+                //int startIndex = selectedValue.IndexOf("RoleId = ") + "RoleId = ".Length;
+                //int endIndex = selectedValue.IndexOf(", RoleName");
+                //string roleIdString = selectedValue.Substring(startIndex, endIndex - startIndex).Trim();
+                //int.TryParse(roleIdString, out IdRole);
             }
         }
 
@@ -116,13 +118,14 @@ namespace SoftCaisse.Forms.User
                 dynamic userWithId = _users.FirstOrDefault(user => user.UserId == UserId);
                 var userToUpdate = _scdContext.Users.Where(user=>user.UserId == UserId).FirstOrDefault();
                 DialogResult result = MessageBox.Show("Confirmer vous la modification?", "Important", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                Controle con = (Controle)RoleCmbx.SelectedItem;
 
                 // Check the result
                 if (result == DialogResult.Yes)
                 {
                     userToUpdate.Login = txtLogin.Text;
                     userToUpdate.UserPassword = txtUserPassword.Text;
-                    userToUpdate.RoleId = IdRole;
+                    userToUpdate.RoleId = (RoleUser)int.Parse(con.item);
                     _userRepository.Update(userToUpdate);
                     //Eto ndray petahana
                     MessageBox.Show("Modification réussie");
@@ -157,7 +160,7 @@ namespace SoftCaisse.Forms.User
                 // Check the result
                 if (result == DialogResult.Yes)
                 {
-                    if (userToUpdate.RoleId == 1)
+                    if (userToUpdate.RoleId == ((int)RoleUser.Admin))
                     {
                         MessageBox.Show("Ce compte est un administrateur vous ne pouvez pas le supprimer.", "Important", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }

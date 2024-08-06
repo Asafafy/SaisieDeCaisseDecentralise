@@ -37,26 +37,17 @@
     <ApplicationIcon>cash-register_icon-icons.com_72250.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ComponentFactory.Krypton.Docking">
-      <HintPath>D:\krypton\ComponentFactory.Krypton.Docking.dll</HintPath>
-    </Reference>
-    <Reference Include="ComponentFactory.Krypton.Navigator">
-      <HintPath>D:\krypton\ComponentFactory.Krypton.Navigator.dll</HintPath>
-    </Reference>
-    <Reference Include="ComponentFactory.Krypton.Ribbon">
-      <HintPath>D:\krypton\ComponentFactory.Krypton.Ribbon.dll</HintPath>
-    </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit">
       <HintPath>D:\krypton\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="ComponentFactory.Krypton.Workspace">
-      <HintPath>K:\DLL\ComponentFactory.Krypton.Workspace.dll</HintPath>
-    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,8 +57,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -99,6 +92,18 @@
       <DependentUpon>DeviseControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomModel\CaisseControl.cs" />
+    <Compile Include="CustomModel\Farticle.cs" />
+    <Compile Include="CustomModel\Fentete.cs" />
+    <Compile Include="CustomModel\Fstatistique.cs" />
+    <Compile Include="CustomModel\Fticket.cs" />
+    <Compile Include="DataSetEnt.cs">
+      <DependentUpon>DataSetEnt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetEnt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetEnt.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DTO\ArtClient.cs" />
     <Compile Include="DTO\ArtCompta.cs" />
     <Compile Include="DTO\Article.cs" />
@@ -109,11 +114,23 @@
     <Compile Include="DTO\ModeReglement.cs" />
     <Compile Include="DTO\Taxe.cs" />
     <Compile Include="DTO\Unite.cs" />
-    <Compile Include="Forms\Article\ArticleARechercher.cs">
+    <Compile Include="Forms\Article\ListeArticles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Article\ArticleARechercher.Designer.cs">
-      <DependentUpon>ArticleARechercher.cs</DependentUpon>
+    <Compile Include="Forms\Article\ListeArticles.Designer.cs">
+      <DependentUpon>ListeArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FondCaisse\FondCaisseDevisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FondCaisse\FondCaisseDevisForm.Designer.cs">
+      <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TicketCaisse\ListAttenteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TicketCaisse\ListAttenteForm.Designer.cs">
+      <DependentUpon>ListAttenteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Billetage\BilletageForm.cs">
       <SubType>Form</SubType>
@@ -127,10 +144,10 @@
     <Compile Include="Forms\Caisse\DetailCaisseForm.Designer.cs">
       <DependentUpon>DetailCaisseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ClotureCaisse\ClotureCaisse.cs">
+    <Compile Include="Forms\Caisse\ClotureCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ClotureCaisse\ClotureCaisse.Designer.cs">
+    <Compile Include="Forms\Caisse\ClotureCaisse.Designer.cs">
       <DependentUpon>ClotureCaisse.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CollaboDetail\CollaboDetailForm.cs">
@@ -163,11 +180,17 @@
     <Compile Include="Forms\FermetureCaisse\FermetureCaisse.Designer.cs">
       <DependentUpon>FermetureCaisse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FondCaisse\FondCaisseForm.cs">
+    <Compile Include="Forms\FondCaisse\FondCaisseBilletageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FondCaisse\FondCaisseForm.Designer.cs">
-      <DependentUpon>FondCaisseForm.cs</DependentUpon>
+    <Compile Include="Forms\FondCaisse\FondCaisseBilletageForm.Designer.cs">
+      <DependentUpon>FondCaisseBilletageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormCaisse\Reporting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCaisse\Reporting.Designer.cs">
+      <DependentUpon>Reporting.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GestionCaisse\GestionCaisse.cs">
       <SubType>Form</SubType>
@@ -211,12 +234,6 @@
     <Compile Include="Forms\ParamSociete\ParamSocForm.Designer.cs">
       <DependentUpon>ParamSocForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Statistiques\StatArticleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Statistiques\StatArticleForm.Designer.cs">
-      <DependentUpon>StatArticleForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Statistiques\StatCaisseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,45 +264,46 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202402130701580_user.cs" />
-    <Compile Include="Migrations\202402130701580_user.designer.cs">
-      <DependentUpon>202402130701580_user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202402130740481_role.cs" />
-    <Compile Include="Migrations\202402130740481_role.designer.cs">
-      <DependentUpon>202402130740481_role.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202402131239299_rolekey.cs" />
-    <Compile Include="Migrations\202402131239299_rolekey.designer.cs">
-      <DependentUpon>202402131239299_rolekey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
-    <Compile Include="Models\Controle.cs" />
+    <Compile Include="CustomModel\Controle.cs" />
+    <Compile Include="CustomModel\Fligne.cs" />
+    <Compile Include="CustomModel\Freglement.cs" />
     <Compile Include="Models\F_ARTCLIENT.cs" />
     <Compile Include="Models\F_ARTCOMPTA.cs" />
     <Compile Include="Models\F_ARTICLE.cs" />
     <Compile Include="Models\F_ARTSTOCK.cs" />
     <Compile Include="Models\F_BILLETPIECE.cs" />
     <Compile Include="Models\F_CAISSE.cs" />
+    <Compile Include="Models\F_CATALOGUE.cs" />
     <Compile Include="Models\F_COLLABORATEUR.cs" />
+    <Compile Include="Models\F_COMPTEA.cs" />
     <Compile Include="Models\F_COMPTET.cs" />
     <Compile Include="Models\F_CREGLEMENT.cs" />
     <Compile Include="Models\F_DEPOT.cs" />
     <Compile Include="Models\F_DOCCURRENTPIECE.cs" />
     <Compile Include="Models\F_DOCENTETE.cs" />
     <Compile Include="Models\F_DOCLIGNE.cs" />
+    <Compile Include="Models\F_DOCREGL.cs" />
+    <Compile Include="Models\F_FAMILLE.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
+    <Compile Include="Models\F_LIGNEARCHIVE.cs" />
+    <Compile Include="Models\F_REGLEARCHIVE.cs" />
     <Compile Include="Models\F_REGLECH.cs" />
     <Compile Include="Models\F_TAXE.cs" />
     <Compile Include="Models\F_TICKETARCHIVE.cs" />
+    <Compile Include="CustomModel\Parameter.cs" />
+    <Compile Include="Models\P_ANALYTIQUE.cs" />
+    <Compile Include="Models\P_CATTARIF.cs" />
     <Compile Include="Models\P_DEVISE.cs" />
+    <Compile Include="Models\P_PARAMETRECIAL.cs" />
+    <Compile Include="Models\P_PREFERENCES.cs" />
     <Compile Include="Models\P_REGLEMENT.cs" />
+    <Compile Include="Models\P_SCDREGLEMENT.cs" />
     <Compile Include="Models\P_SOUCHEVENTE.cs" />
     <Compile Include="Models\P_UNITE.cs" />
-    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\SageContexte.cs" />
     <Compile Include="Models\SCDContext.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArtClientRepository.cs" />
@@ -301,10 +319,10 @@
     <Compile Include="Repositories\FJournauxRepository.cs" />
     <Compile Include="Repositories\DeviseRepository.cs" />
     <Compile Include="Repositories\FReglementRepository.cs" />
+    <Compile Include="Repositories\F_CatalogueRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\PSoucheVenteRepository.cs" />
     <Compile Include="Repositories\ModeReglementRepository.cs" />
-    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TaxeRepository.cs" />
     <Compile Include="Repositories\UniteRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -313,6 +331,14 @@
     <Compile Include="Utils\Connection\Db.cs" />
     <Compile Include="Utils\Controls\AddControl.cs" />
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
+    <Compile Include="Utils\Global\ConnectedUser.cs" />
+    <EmbeddedResource Include="ClotureFacture.rdlc" />
+    <EmbeddedResource Include="Forms\FondCaisse\FondCaisseDevisForm.resx">
+      <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatistiqueCaisseReglement.rdlc" />
+    <EmbeddedResource Include="StatistiqueCaisseFamille.rdlc" />
+    <EmbeddedResource Include="StatistiqueCaisseArticle.rdlc" />
     <EmbeddedResource Include="Controls\CaisseControl.resx">
       <DependentUpon>CaisseControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -328,8 +354,11 @@
     <EmbeddedResource Include="Controls\DeviseControl.resx">
       <DependentUpon>DeviseControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Article\ArticleARechercher.resx">
-      <DependentUpon>ArticleARechercher.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Article\ListeArticles.resx">
+      <DependentUpon>ListeArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TicketCaisse\ListAttenteForm.resx">
+      <DependentUpon>ListAttenteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Billetage\BilletageForm.resx">
       <DependentUpon>BilletageForm.cs</DependentUpon>
@@ -337,7 +366,7 @@
     <EmbeddedResource Include="Forms\Caisse\DetailCaisseForm.resx">
       <DependentUpon>DetailCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ClotureCaisse\ClotureCaisse.resx">
+    <EmbeddedResource Include="Forms\Caisse\ClotureCaisse.resx">
       <DependentUpon>ClotureCaisse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CollaboDetail\CollaboDetailForm.resx">
@@ -355,8 +384,11 @@
     <EmbeddedResource Include="Forms\FermetureCaisse\FermetureCaisse.resx">
       <DependentUpon>FermetureCaisse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FondCaisse\FondCaisseForm.resx">
-      <DependentUpon>FondCaisseForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FondCaisse\FondCaisseBilletageForm.resx">
+      <DependentUpon>FondCaisseBilletageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCaisse\Reporting.resx">
+      <DependentUpon>Reporting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GestionCaisse\GestionCaisse.resx">
       <DependentUpon>GestionCaisse.cs</DependentUpon>
@@ -379,9 +411,6 @@
     <EmbeddedResource Include="Forms\ParamSociete\ParamSocForm.resx">
       <DependentUpon>ParamSocForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Statistiques\StatArticleForm.resx">
-      <DependentUpon>StatArticleForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Statistiques\StatCaisseForm.resx">
       <DependentUpon>StatCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -397,15 +426,6 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202402130701580_user.resx">
-      <DependentUpon>202402130701580_user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202402130740481_role.resx">
-      <DependentUpon>202402130740481_role.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202402131239299_rolekey.resx">
-      <DependentUpon>202402131239299_rolekey.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -416,6 +436,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TicketCaisse.rdlc" />
+    <None Include="DataSetEnt.xsc">
+      <DependentUpon>DataSetEnt.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetEnt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetEnt.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetEnt.xss">
+      <DependentUpon>DataSetEnt.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -449,6 +481,12 @@
     <PackageReference Include="EntityFramework.fr">
       <Version>6.2.0</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms">
+      <Version>150.1620.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ReportViewer.WinForms">
+      <Version>10.0.40219.1</Version>
+    </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
     </PackageReference>
@@ -466,6 +504,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\FamillesArticles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

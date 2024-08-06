@@ -23,8 +23,9 @@ namespace SoftCaisse.Controls
             _modeReglementRepository = new ModeReglementRepository(_context);
             LoadClient();
             LoadModeReglement();
-            modeReglementCmbx.DisplayMember = "Intitule";
-            modeReglementCmbx.ValueMember = "Indice";
+            kryptonComboBox3.SelectedIndex = 0;
+            kryptonComboBox5.SelectedIndex = 0;
+            kryptonComboBox7.SelectedIndex = 0;
         }
 
         private void btnParamCaisseClose_Click(object sender, EventArgs e)
@@ -39,16 +40,31 @@ namespace SoftCaisse.Controls
         {
             ClientComptoirCmbx.Items.Clear();
             ClientComptoirCmbx.Items.AddRange(_caisse.ToArray());
+            ClientComptoirCmbx.SelectedIndex = 0;
+
         }
         private void LoadModeReglement()
         {
             var modereglement = _modeReglementRepository.GetAll();
-            var modeClean = modereglement.Select(r => new { Indice = r.cbIndice, Intitule = r.R_Intitule }).Where(r => r.Intitule!="").ToArray();
-            //mode.Clear();
-            //mode.AddRange(modeClean);
-            //var arrayMode = mode.ToArray();
+            var modeClean = modereglement.Where(r => r.R_Intitule != "").Select(r => new { Indice = r.cbIndice, Intitule = r.R_Intitule }).ToArray();
             modeReglementCmbx.Items.Clear();
-            modeReglementCmbx.Items.AddRange(modeClean);
+            modeReglementCmbx.DataSource = modeClean;
+            modeReglementCmbx.ValueMember = "Indice";
+            modeReglementCmbx.DisplayMember = "Intitule";
+            modeReglementCmbx.SelectedIndex = 0;
+
+            var caisseModel = _context.P_SOUCHEVENTE.Where(r => r.S_Intitule != "").Select(r => new { Indice = r.cbMarq, Intitule = r.S_Intitule }).ToArray();
+            kryptonComboBox4.Items.Clear();
+            kryptonComboBox4.DataSource=caisseModel;
+            kryptonComboBox4.ValueMember="Indice";
+            kryptonComboBox4.DisplayMember="Intitule";
+            kryptonComboBox4.SelectedIndex = 0;
+
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            ((Form)this.TopLevelControl).Close();
         }
     }
 }

@@ -1,23 +1,25 @@
-﻿using SoftCaisse.Controls;
+﻿using ComponentFactory.Krypton.Toolkit;
+using SoftCaisse.Controls;
+using SoftCaisse.Forms.Article;
+using SoftCaisse.Forms.ClotureCaisse;
 using SoftCaisse.Forms.ConnexBase;
+using SoftCaisse.Forms.ControlCaisse;
+using SoftCaisse.Forms.DocumentVente;
+using SoftCaisse.Forms.FermetureCaisse;
 using SoftCaisse.Forms.GestionCaisse;
+using SoftCaisse.Forms.Login;
+using SoftCaisse.Forms.MouvementCaisse;
 using SoftCaisse.Forms.OuvertureCaisse;
 using SoftCaisse.Forms.ParamSociete;
-using SoftCaisse.Forms.StructureCaisse;
-using SoftCaisse.Utils.Controls;
-using System;
-using ComponentFactory.Krypton.Toolkit;
-using SoftCaisse.Forms.VenteComptoir;
-using SoftCaisse.Forms.DocumentVente;
-using SoftCaisse.Forms.Login;
 using SoftCaisse.Forms.StatCaisse;
-using SoftCaisse.Forms.Statistiques;
-using SoftCaisse.Forms.ControlCaisse;
+using SoftCaisse.Forms.StructureCaisse;
 using SoftCaisse.Forms.User;
-using SoftCaisse.Models;
-using SoftCaisse.Forms.MouvementCaisse;
-using static System.Collections.Specialized.BitVector32;
-using SoftCaisse.Forms.ClotureCaisse;
+using SoftCaisse.Forms.VenteComptoir;
+using SoftCaisse.Utils.Controls;
+using SoftCaisse.Utils.Global;
+using System;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SoftCaisse
 {
@@ -47,19 +49,34 @@ namespace SoftCaisse
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string filePath = Path.Combine(baseDirectory, "ServeurCfg.txt");
             string filePathSage = Path.Combine(baseDirectory, "ServeurSage.txt");
-            if (File.Exists(filePath) && File.Exists(filePathSage))
+            string filePathObj = Path.Combine(baseDirectory, "ObjSage.txt");
+            int mid = 0;
+            if (File.Exists(filePath) && File.Exists(filePathSage) && File.Exists(filePathObj))
             {
                 DialogResult result = MessageBox.Show("Votre base est déja configurée, souhaitez vous re-entrer les paramètres?", "Important", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
-                    ConnectDbForm connectDbForm = new ConnectDbForm();
-                    connectDbForm.Show();
+                    mid = 1;
                 }
-            } 
+            }
+            else
+            {
+                mid = 1;
+            }
+            if (mid == 1)
+            {
+                ConnectDbForm connectDbForm = new ConnectDbForm();
+                connectDbForm.Show();
+            }
         }
         private void quiterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            fichierToolStripMenuItem.DropDownItems["ParamSoc"].Enabled = false;
+            fichierToolStripMenuItem.DropDownItems["autorisationAccèsToolStripMenuItem"].Enabled = false;
+            fichierToolStripMenuItem.DropDownItems["miseEnPageToolStripMenuItem"].Enabled = false;
+            traitementToolStripMenuItem.Enabled = false;
+            structureToolStripMenuItem.Enabled = false;
+            etatToolStripMenuItem.Enabled = false;
         }
 
         private void collaborateursToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,8 +87,9 @@ namespace SoftCaisse
 
         private void ouvertureDeCaisseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OuvertureCaisseForm ouvertureCaisse = new OuvertureCaisseForm();
+            OuvertureCaisseForm ouvertureCaisse = new OuvertureCaisseForm(traitementToolStripMenuItem);
             ouvertureCaisse.Show();
+
         }
 
         private void caissesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,7 +108,7 @@ namespace SoftCaisse
 
         private void ventesComptoirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            VenteComptoirForm venteComptoirForm = new VenteComptoirForm();
+            VenteComptoirForm venteComptoirForm = new VenteComptoirForm(int.Parse(CaisseOuvert.CaisseID), int.Parse(CaisseOuvert.CaissierID), null, null);
             venteComptoirForm.Show();
         }
 
@@ -102,7 +120,13 @@ namespace SoftCaisse
 
         private void ConnecterMenu_Click(object sender, EventArgs e)
         {
-            LoginForm login = new LoginForm();
+            LoginForm login = new LoginForm(
+                fichierToolStripMenuItem,
+                traitementToolStripMenuItem,
+                structureToolStripMenuItem,
+                etatToolStripMenuItem
+            );
+
             login.Show();
         }
 
@@ -112,16 +136,12 @@ namespace SoftCaisse
             statCaisseForm.Show();
         }
 
-        private void parArticlesToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            StatArticleForm statArticleForm = new StatArticleForm();
-            statArticleForm.Show();
-        }
+
 
         private void contrôleDeCaisseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ControlCaisseForm controlCaisseForm = new ControlCaisseForm();
-            controlCaisseForm.Show();   
+            controlCaisseForm.Show();
         }
 
         private void utilsateurToolStripMenuItem_Click(object sender, EventArgs e)
@@ -143,8 +163,25 @@ namespace SoftCaisse
 
         private void clôtureDeCausToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ClotureCaisse cl=new ClotureCaisse();
+            ClotureCaisse cl = new ClotureCaisse();
             cl.Show();
+        }
+
+        private void fermetureDeCaisseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FermetureCaisse fe = new FermetureCaisse(traitementToolStripMenuItem);
+            fe.Show();
+        }
+
+        private void statistiquesDesCaissesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StatCaisseForm stat = new StatCaisseForm();
+            stat.Show();
+        }
+
+        private void artilceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ListeArticles("").Show();
         }
     }
 }

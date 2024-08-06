@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using ComponentFactory.Krypton.Toolkit;
+﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Forms.FondCaisse;
 using SoftCaisse.Forms.VenteComptoir;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
 using SoftCaisse.Utils.Global;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace SoftCaisse.Forms.OuvertureCaisse
 {
@@ -16,26 +17,31 @@ namespace SoftCaisse.Forms.OuvertureCaisse
         private List<dynamic> _caisse = new List<dynamic>();
         private List<dynamic> _collabo = new List<dynamic>();
         private readonly AppDbContext _context;
-        private  FCaisseRepository _fCaisseRepository;
+        private readonly SCDContext _sCDContext;
+        private FCaisseRepository _fCaisseRepository;
         private readonly FCollaborateurRepository _fCollaborateurRepository;
         private int IdCaisse;
         private int IdCaissier;
-        public OuvertureCaisseForm()
+        private ToolStripMenuItem _menu;
+        public OuvertureCaisseForm(ToolStripMenuItem menu)
         {
             InitializeComponent();
             _context = new AppDbContext();
+            _sCDContext = new SCDContext();
             _fCaisseRepository = new FCaisseRepository(_context);
             _fCollaborateurRepository = new FCollaborateurRepository(_context);
-            var listCaisse = _fCaisseRepository.GetAll();
-            var data = _fCollaborateurRepository.GetAll();
-            _caisse.AddRange(listCaisse);
-            _collabo.AddRange(data);
-            OuvertureCaisseCmbx.DisplayMember = "Intitule";
-            OuvertureCaisseCmbx.ValueMember = "Numero";
-            OuvertureCaissierCmbx.DisplayMember = "NomCollabo";
-            OuvertureCaissierCmbx.ValueMember = "CollaboNum";
-            LoadData();
-      
+            var _caisse = _fCaisseRepository.GetAll();
+            var _collabo = _fCollaborateurRepository.GetAll();
+            var listCaisse = _caisse.Select(c => new Controle() { valeur = c.CA_No + "", item = c.CA_Intitule }).ToArray();
+            var listCollabo = _collabo.Where(u => u.CO_Caissier == 1).Select(c => new Controle() { valeur = c.CO_No + "", item = c.CO_Nom.ToString() + " " + c.CO_Prenom }).ToArray();
+            OuvertureCaisseCmbx.DataSource = listCaisse;
+            OuvertureCaissierCmbx.DataSource = listCollabo;
+            OuvertureCaisseCmbx.DisplayMember = "item";
+            OuvertureCaisseCmbx.ValueMember = "valeur";
+            OuvertureCaissierCmbx.DisplayMember = "item";
+            OuvertureCaissierCmbx.ValueMember = "valeur";
+            FondCaisseType.SelectedIndex = 0;
+            _menu = menu;
         }
 
         private void btnOuvrCaisseClose_Click(object sender, EventArgs e)
@@ -46,50 +52,87 @@ namespace SoftCaisse.Forms.OuvertureCaisse
         }
         public void LoadData()
         {
-            var listCaisse = _caisse.Select(c => new { Numero = c.CA_No, Intitule = c.CA_Intitule }).ToArray();
-            var listCollabo = _collabo.Where(c => c.CO_Caissier == 1).Select(c => new { CollaboNum = c.CO_No, NomCollabo = c.CO_Nom.ToString() + " " + c.CO_Prenom }).ToArray();
-            OuvertureCaisseCmbx.Items.Clear();
-            OuvertureCaissierCmbx.Items.Clear();
-            OuvertureCaisseCmbx.Items.AddRange(listCaisse);
-            OuvertureCaissierCmbx.Items.AddRange(listCollabo);
-            var test = listCaisse[0].Intitule.ToString();
-            OuvertureCaisseCmbx.SelectedIndex = 0;
-            OuvertureCaissierCmbx.SelectedIndex = 0;
-            OuvertureCaisseCmbx.SelectionLength = 0;
-            OuvertureCaissierCmbx.SelectionLength = 0;
             txtOuvertureCaissePwd.Select();
         }
-        private void OuvertureCaisseCmbx_Click(object sender, EventArgs e)
-        {
-            CaisseOuvert.CaisseID = OuvertureCaisseCmbx.SelectedValue.ToString();
-            CaisseOuvert.CaisseText = OuvertureCaisseCmbx.SelectedText.ToString();
-        }
+
 
         private void btnOuvertureCaisse_Click(object sender, EventArgs e)
         {
-            if (fondCaisseCbox.Checked)
+            int caisse = 0;
+            int caissier = 0;
+            int.TryParse(OuvertureCaisseCmbx.SelectedValue.ToString(), out caisse);
+            int.TryParse(OuvertureCaissierCmbx.SelectedValue.ToString(), out caissier);
+            F_CAISSE caisses = _context.F_CAISSE.FirstOrDefault(u => u.CA_No == caisse);
+            F_COLLABORATEUR obj = _context.F_COLLABORATEUR.FirstOrDefault(u => u.CO_No == caissier);
+            CaisseOuvert.CaisseID = OuvertureCaisseCmbx.SelectedValue.ToString();
+            CaisseOuvert.CaisseText = caisses.CA_Intitule;
+            CaisseOuvert.CaissierID = OuvertureCaissierCmbx.SelectedValue.ToString();
+            CaisseOuvert.CaissierText = obj.CO_Nom + " " + obj.CO_Prenom;
+            string motDePasseUser = txtOuvertureCaissePwd.Text;
+            Collaborateur collab = (from c in _sCDContext.Collaborateur
+                                    where c.Nom_Collab.Equals(obj.CO_Nom) && c.Prenoms_Collab.Equals(obj.CO_Prenom)
+                                    select c).FirstOrDefault();
+            Users user = (from u in _sCDContext.Users
+                          where u.UserId == collab.UserId && u.UserPassword == motDePasseUser
+                          select u).FirstOrDefault();
+            if (user != null)
             {
-                this.Close();
-                FondCaisseForm fondCaisseForm = new FondCaisseForm(IdCaisse, IdCaissier);
-                fondCaisseForm.Show();
+                if (fondCaisseCbox.Checked)
+                {
+                    this.Close();
+                    if (FondCaisseType.SelectedIndex == 1)
+                    {
+                        FondCaisseBilletageForm fondCaisseForm = new FondCaisseBilletageForm(caisse, caissier);
+                        fondCaisseForm.Show();
+                    }
+                    else
+                    {
+                        FondCaisseDevisForm fondcaissedevisform = new FondCaisseDevisForm(caisse, caissier);
+                        fondcaissedevisform.Show();
+                    }
+                }
+                else
+                {
+                    this.Close();
+                    VenteComptoirForm venteComptoir = new VenteComptoirForm(caisse, caissier, null, null);
+                    venteComptoir.Show();
+                }
+                _menu.DropDownItems["ouvertureDeCaisseToolStripMenuItem"].Enabled = false;
+                _menu.DropDownItems["ventesComptoirToolStripMenuItem"].Enabled = true;
+                _menu.DropDownItems["mouvementsToolStripMenuItem"].Enabled = true;
+                _menu.DropDownItems["dOToolStripMenuItem"].Enabled = true;
+                _menu.DropDownItems["fermetureDeCaisseToolStripMenuItem"].Enabled = true;
             }
             else
             {
-                this.Close();
-                VenteComptoirForm venteComptoir = new VenteComptoirForm();
-                venteComptoir.Show();
+                MessageBox.Show("Erreur Pseudo/Mot de passe !", "Erreur Connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-           
+
+
         }
 
-        private void OuvertureCaisseCmbx_SelectedIndexChanged(object sender, EventArgs e)
+        private void OuvertureCaisseCmbx_SelectedValueChanged(object sender, EventArgs e)
         {
-            IdCaisse = Cmbx.GetValueMember(OuvertureCaisseCmbx, "Numero", "Intitule");
+            Controle val = (Controle)OuvertureCaisseCmbx.SelectedItem;
+            F_CAISSE caisse = _context.F_CAISSE.FirstOrDefault(u => u.CA_No + "" == val.valeur);
+            if (caisse.CO_No != 0)
+            {
+                F_COLLABORATEUR collabo = _context.F_COLLABORATEUR.FirstOrDefault(u => u.CO_No == caisse.CO_NoCaissier);
+                OuvertureCaissierCmbx.SelectedIndex = OuvertureCaissierCmbx.FindString(collabo.CO_Nom + " " + collabo.CO_Prenom);
+            }
         }
 
-        private void OuvertureCaissierCmbx_SelectedIndexChanged(object sender, EventArgs e)
+        private void fondCaisseCbox_CheckedChanged(object sender, EventArgs e)
         {
-            IdCaissier = Cmbx.GetValueMember(OuvertureCaissierCmbx, "CollaboNum", "NomCollabo");
+            if (fondCaisseCbox.Checked)
+            {
+                FondCaisseType.Enabled = true;
+            }
+            else
+            {
+                FondCaisseType.Enabled = false;
+            }
         }
     }
 }

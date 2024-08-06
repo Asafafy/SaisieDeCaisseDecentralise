@@ -32,8 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.fermer_caisse = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.SuspendLayout();
             // 
             // label1
@@ -58,9 +57,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(82, 124);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(407, 16);
+            this.label3.Size = new System.Drawing.Size(410, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Veuillez préciser si vous souhaitez mettre la valeur de caisse à zéro";
+            this.label3.Text = "Veuillez préciser si vous souhaitiez mettre la valeur de caisse à zéro";
             // 
             // checkBox1
             // 
@@ -72,35 +71,27 @@
             this.checkBox1.Text = "Remettre la valeur de caisse à zéro";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // kryptonButton1
+            // fermer_caisse
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(295, 247);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(90, 25);
-            this.kryptonButton1.TabIndex = 4;
-            this.kryptonButton1.Values.Text = "OK";
-            this.kryptonButton1.Click += new System.EventHandler(this.fermeture_caisse);
-            // 
-            // kryptonButton2
-            // 
-            this.kryptonButton2.Location = new System.Drawing.Point(430, 247);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(90, 25);
-            this.kryptonButton2.TabIndex = 5;
-            this.kryptonButton2.Values.Text = "Annuler";
+            this.fermer_caisse.Location = new System.Drawing.Point(358, 257);
+            this.fermer_caisse.Name = "fermer_caisse";
+            this.fermer_caisse.Size = new System.Drawing.Size(131, 38);
+            this.fermer_caisse.TabIndex = 4;
+            this.fermer_caisse.Values.Text = "OK";
+            this.fermer_caisse.Click += new System.EventHandler(this.fermeture_caisse);
             // 
             // FermetureCaisse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 296);
-            this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.kryptonButton1);
+            this.ClientSize = new System.Drawing.Size(552, 318);
+            this.Controls.Add(this.fermer_caisse);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FermetureCaisse";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FermetureCaisse";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -113,7 +104,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton fermer_caisse;
     }
 }

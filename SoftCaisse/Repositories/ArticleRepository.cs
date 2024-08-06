@@ -24,7 +24,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-       public IList<DTO.Article> GetAll()
+        public IList<DTO.Article> GetAll()
         {
             return _context.F_ARTICLE
                 .Select(a => new DTO.Article
@@ -44,7 +44,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update( DTO.Article entity)
+        public void Update(DTO.Article entity)
         {
             throw new NotImplementedException();
         }

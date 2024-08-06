@@ -29,8 +29,6 @@ namespace SoftCaisse.Controls
             InitializeComponent();
             _context = new AppDbContext();
             _fCaisseRepository = new FCaisseRepository(_context);
-            //_fCollaborateurRepository = new FCollaborateurRepository(_context);
-            //_pSoucheVenteRepository =  new PSoucheVenteRepository(_context);
             _fReglementRepository = new FCReglementRepository(_context);    
             var data = _fCaisseRepository.GetAll();
             var reglement = _fReglementRepository.GetAll();
@@ -61,7 +59,7 @@ namespace SoftCaisse.Controls
                 detailCaissier();
                 detailSoucheVente();
             }
-            DetailCaisseForm detailCaisseForm = new DetailCaisseForm(detailCaisser, detailVendeur, detailCaisse, soucheVente);
+            DetailCaisseForm detailCaisseForm = new DetailCaisseForm(detailCaisser, detailVendeur, detailCaisse, soucheVente, CaissierDataGridView);
             detailCaisseForm.Show();
         }
 
@@ -75,7 +73,7 @@ namespace SoftCaisse.Controls
             detailCaissier();
             detailSoucheVente();
             bool test = true;
-            DetailCaisseForm detailCaisseForm = new DetailCaisseForm(detailCaisser, detailVendeur, detailCaisse, soucheVente, test);
+            DetailCaisseForm detailCaisseForm = new DetailCaisseForm(detailCaisser, detailVendeur, detailCaisse, soucheVente, test, CaissierDataGridView);
             detailCaisseForm.Show();
         }
         public void detailVendeurCaisse()
@@ -138,6 +136,8 @@ namespace SoftCaisse.Controls
                     }
                     
                 }
+                var listCaissier = _context.F_CAISSE.Select(caissier => new { Intitule = caissier.CA_Intitule, CaisseNum = caissier.CA_No }).ToList();
+                CaissierDataGridView.DataSource =listCaissier;
             }
         }
     }

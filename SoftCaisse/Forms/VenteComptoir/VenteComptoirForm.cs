@@ -1,51 +1,54 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using Objets100cLib;
+using SoftCaisse.CustomModel;
+using SoftCaisse.Forms.Article;
+using SoftCaisse.Forms.AttenteTicket;
+using SoftCaisse.Forms.FormCaisse;
+using SoftCaisse.Models;
+using SoftCaisse.Repositories;
+using SoftCaisse.Utils.Global;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using ComponentFactory.Krypton.Toolkit;
-using Objets100cLib;
-using SoftCaisse.Forms.Article;
-using SoftCaisse.Models;
-using SoftCaisse.Repositories;
-using static System.Windows.Forms.LinkLabel;
 namespace SoftCaisse.Forms.VenteComptoir
 {
     public partial class VenteComptoirForm : KryptonForm
     {
         private readonly AppDbContext _context;
-
+        private readonly SageContexte _sageObj;
         private readonly DeviseRepository _deviseRepository;
-
         private readonly ModeReglementRepository _reglementRepository;
-
         private static string dernierCours = "Euro";
-
-        private int i = 0;
-
         private int compteurClick = 0;
-
+        private F_CAISSE _caisse;
+        private F_COLLABORATEUR _caissier;
         private decimal TotalPrixHT;
-        
         private decimal TotalPrixTTC;
-
         private decimal variableTemporaire;
-
         private int cpt = 0;
-
         private decimal MontantInitial;
-
-        public VenteComptoirForm()
+        private string refDoc;
+        private int changedIndex = -1;
+        public VenteComptoirForm(int caisse, int caissier, F_DOCENTETE entete, List<F_DOCLIGNE> ligne)
         {
             _context = new AppDbContext();
             _deviseRepository = new DeviseRepository(_context);
             _reglementRepository = new ModeReglementRepository(_context);
-        
+            _caisse = _context.F_CAISSE.FirstOrDefault(u => u.CA_No == caisse);
+            _caissier = _context.F_COLLABORATEUR.FirstOrDefault(u => u.CO_No == caissier);
+
+            _sageObj = new SageContexte();
+
             InitializeComponent();
+
+            LabelNomCaissier.Text = CaisseOuvert.CaissierText;
+            LabelTitleCaissier.Text = CaisseOuvert.CaisseText;
+
 
             foreach (Control control in TableLayoutPanelDesignation.Controls)
             {
@@ -53,9 +56,65 @@ namespace SoftCaisse.Forms.VenteComptoir
                 {
                     control.Enter += TextBox_Enter;
                     control.Leave += TextBox_Leave;
-
                     control.Tag = control.Text;
                 }
+            }
+
+            ComboBoxType.DataSource = _context.F_COMPTET.Where(u => u.CG_NumPrinc == "4110000").Select(u => new Controle() { item = u.CT_Num + "  " + u.CT_Intitule, valeur = u.CT_Num }).ToList();
+            ComboBoxVendeur.DataSource = _context.F_COLLABORATEUR.Where(u => u.CO_Vendeur == 1).Select(u => new { Label = u.CO_Nom + "  " + u.CO_Prenom, Valeur = u.CO_No }).ToList();
+            ComboBoxCentrale.DataSource = _context.F_COMPTET.Where(u => u.CG_NumPrinc == "4110000").Select(u => new Controle() { item = u.CT_Num + "  " + u.CT_Intitule, valeur = u.CT_Num }).ToList();
+            ComboBoxDepot.DataSource = _context.F_DEPOT.Select(u => new { Label = u.DE_Intitule, Valeur = u.DE_Intitule }).ToList();
+            ComboBoxTarif.DataSource = _context.P_CATTARIF.Where(u => !string.IsNullOrEmpty(u.CT_Intitule)).Select(u => new { Label = u.CT_Intitule, Valeur = u.cbMarq }).ToList();
+            ComboboxSouche.DataSource = _context.P_SOUCHEVENTE.Where(u => !string.IsNullOrEmpty(u.S_Intitule)).Select(u => new Controle() { item = u.S_Intitule, valeur = u.S_Intitule }).ToList();
+            ComboBoxAffaire.DataSource = _context.F_COMPTEA.Where(u => u.N_Analytique == 3).Select(u => new { Label = u.CA_Num + "  " + u.CA_Intitule, Valeur = u.CA_Num }).ToList();
+
+            ComboboxSouche.DisplayMember = "item";
+            ComboboxSouche.ValueMember = "valeur";
+            if (_caisse.CA_Souche != 0)
+            {
+                P_SOUCHEVENTE vente = _context.P_SOUCHEVENTE.FirstOrDefault(u => u.cbMarq == _caisse.CA_Souche);
+                ComboboxSouche.SelectedIndex = ComboboxSouche.FindString(vente.S_Intitule);
+            }
+            ComboBoxAffaire.DisplayMember = "Label";
+            ComboBoxAffaire.ValueMember = "Valeur";
+            ComboBoxTarif.DisplayMember = "Label";
+            ComboBoxTarif.ValueMember = "Valeur";
+            ComboBoxDepot.DisplayMember = "Label";
+            ComboBoxDepot.ValueMember = "Valeur";
+            ComboBoxType.DisplayMember = "item";
+            ComboBoxType.ValueMember = "valeur";
+            ComboBoxVendeur.DisplayMember = "Label";
+            ComboBoxVendeur.ValueMember = "Valeur";
+            ComboBoxCentrale.DisplayMember = "item";
+            ComboBoxCentrale.ValueMember = "valeur";
+            if (entete != null)
+            {
+                ComboBoxVendeur.SelectedValue = entete.CO_No;
+                ComboBoxCentrale.SelectedValue = entete.DO_Tiers;
+                ComboBoxType.SelectedValue = entete.DO_Tiers;
+                ComboBoxAffaire.SelectedValue = entete.CA_Num;
+                ComboBoxDepot.SelectedValue = _context.F_DEPOT.FirstOrDefault(u => u.cbMarq == entete.DE_No).DE_Intitule;
+                BouttonEnAttente.Enabled = true;
+                BouttonFinDeSaisie.Enabled = true;
+                BouttonSupprimerDesignation.Enabled = true;
+                BouttonCreerDoc.Enabled = false;
+                BouttonRappelTicket.Enabled = false;
+                BouttonTicket.Enabled = false;
+                refDoc = entete.DO_Piece;
+                NumTicket.Text = "Numero de Ticket Rappel : " + entete.DO_Piece;
+            }
+            if (ligne != null)
+            {
+                decimal TotalPrixHT = 0;
+                decimal TotalPrixTTC = 0;
+                foreach (var cin in ligne)
+                {
+                    DataGridViewArticle.Rows.Add(cin.AR_Ref, cin.DL_Design, cin.DL_PrixUnitaire, cin.DL_PrixUnitaire * 1.2m, cin.DL_Qte, cin.EU_Enumere, "", cin.DL_PrixUnitaire, cin.DL_MontantHT, cin.DL_MontantTTC);
+                    TotalPrixHT += cin.DL_MontantHT.Value;
+                    TotalPrixTTC += cin.DL_MontantTTC.Value;
+                }
+                LabelPrixTotalHT.Text = TotalPrixHT.ToString("N2");
+                LabelPrixTotalTTC.Text = TotalPrixTTC.ToString("N2");
             }
 
             ChargerComboBoxes();
@@ -95,28 +154,33 @@ namespace SoftCaisse.Forms.VenteComptoir
         }
 
         //*******************************************************************************************************************BACK*******************************************************************************************************************//
-        
+
         private void ChargerComboBoxes()
         {
             var deviseASelectionne = _deviseRepository.GetAll();
             var deviseObtenu = deviseASelectionne.Select(d => d.D_Intitule).ToList();
-
             var modeDeReglement = _reglementRepository.GetAll();
             var reglementObtenu = modeDeReglement.Select(r => r.R_Intitule).ToList();
 
-            ComboBoxReglementEnregistrement.Items.Clear();
             ComboBoxDeviseEnregistrement.Items.Clear();
-
+            ComboBoxDeviseReste.Items.Clear();
             foreach (var devise in deviseObtenu)
             {
                 ComboBoxDeviseEnregistrement.Items.Add(devise.ToString());
                 ComboBoxDeviseReste.Items.Add(devise.ToString());
             }
 
+            ComboBoxDeviseEnregistrement.SelectedIndex = 0;
+            ComboBoxDeviseReste.SelectedIndex = 0;
+
+            ComboBoxReglementEnregistrement.Items.Clear();
             foreach (var mode in reglementObtenu)
             {
                 ComboBoxReglementEnregistrement.Items.Add(mode.ToString());
             }
+
+            ComboBoxReglementEnregistrement.SelectedIndex = 0;
+
         }
 
         private void ControlTableLayoutPanel()
@@ -135,7 +199,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         private void VenteComptoirForm_Load(object sender, EventArgs e)
         {
             TextBoxReference.Focus();
-            if(DataGridViewArticle.Rows.Count < 1)
+            if (DataGridViewArticle.Rows.Count < 1)
                 BouttonEnregistrerDesignation.Enabled = false;
             else
                 BouttonEnregistrerDesignation.Enabled = true;
@@ -158,11 +222,33 @@ namespace SoftCaisse.Forms.VenteComptoir
             LabelPrixTotalHT.Text = "0,00";
             LabelPrixTotalTTC.Text = "0,00";
 
-            i = 0;
 
             DataGridViewEnregistrement.Rows.Clear();
             DataGridViewArticle.Rows.Clear();
             TextBoxReference.Focus();
+            if (refDoc != null)
+            {
+                var entete = _context.F_DOCENTETE.FirstOrDefault(u => u.DO_Piece == refDoc);
+                var ligne = _context.F_DOCLIGNE.Where(u => u.DO_Piece == refDoc).ToList();
+                var reglement = _context.F_CREGLEMENT.Where(u => u.RG_Libelle.Contains(refDoc)).ToList();
+                foreach (var items in ligne)
+                {
+                    _context.Database.ExecuteSqlCommand("delete from F_DOCLIGNEEMPL where DL_No=" + items.DL_No);
+                }
+                _context.Database.ExecuteSqlCommand("delete from F_DOCLIGNE where DO_Piece like '" + refDoc + "'");
+                _context.Database.ExecuteSqlCommand("delete from F_REGLECH where DO_Piece like '" + refDoc + "'");
+                foreach (var items in reglement)
+                {
+                    _context.Database.ExecuteSqlCommand("delete from F_DOCREGL where DO_Piece like '" + refDoc + "'");
+                }
+                foreach (var items in reglement)
+                {
+                    _context.Database.ExecuteSqlCommand("delete from F_CREGLEMENT where RG_Libelle like '%" + refDoc + "%'");
+                    _context.Database.ExecuteSqlCommand("delete from F_DOCENTETE where DO_Piece like '" + refDoc + "'");
+                }
+                MessageBox.Show("Suppression Document avec succès !", "Mouvement Document", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
 
         }
 
@@ -209,13 +295,13 @@ namespace SoftCaisse.Forms.VenteComptoir
                     var articles = _context.F_ARTICLE.ToList();
                     var codeFamilleBD = articles
                         .FirstOrDefault(a => a.AR_Ref == codeFamilleOuDesignation || a.FA_CodeFamille == codeFamilleOuDesignation || Regex.IsMatch(a.AR_Design.ToUpper(), pattern));
-                    
+
                     var artclient = _context.F_ARTCLIENT.ToList();
 
                     if (codeFamilleBD != null)
                     {
                         var artclientDb = artclient.FirstOrDefault(a => a.AR_Ref == codeFamilleBD.AR_Ref && a.AC_Categorie == 3);
-                        
+
                         var UniteVente = _context.P_UNITE
                         .Where(unite => unite.cbIndice == codeFamilleBD.AR_UniteVen)
                         .Select(unite => new
@@ -227,22 +313,21 @@ namespace SoftCaisse.Forms.VenteComptoir
                         decimal tauxPriseEnCompte = TauxPriseEnCompte(codeFamilleBD.AR_Ref);
                         decimal puHT = (decimal)codeFamilleBD.AR_PrixVen;
                         decimal puTTC;
-                        if (artclientDb.AC_PrixVen != 0.00m) 
+                        if (artclientDb.AC_PrixVen != 0.00m)
                         {
                             puTTC = (decimal)artclientDb.AC_PrixVen;
                             puHT = puTTC / (1 + tauxPriseEnCompte / 100);
                         }
                         else
                         {
-
                             puTTC = puHT + puHT * tauxPriseEnCompte / 100;
                         }
-                        
+
                         AjouterArticleDesigne(codeFamilleBD.AR_Ref, codeFamilleBD.AR_Design, 1, puHT, puTTC, UniteVente.UniteIntitule);
                     }
                     else
                     {
-                        ArticleARechercher articleARechercher = new ArticleARechercher(codeFamilleOuDesignation);
+                        ListeArticles articleARechercher = new ListeArticles(codeFamilleOuDesignation);
                         articleARechercher.ShowDialog(this);
                     }
                 }
@@ -279,7 +364,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             {
 
                 var articleBaseDeDonnees = _context.F_ARTSTOCK.FirstOrDefault(a => a.AR_Ref == TextBoxReference.Text);
-                if(articleBaseDeDonnees != null )
+                if (articleBaseDeDonnees != null)
                 {
                     decimal quantiteEnStock = (decimal)articleBaseDeDonnees.AS_QteSto - (decimal)articleBaseDeDonnees.AS_QteRes;
 
@@ -290,7 +375,8 @@ namespace SoftCaisse.Forms.VenteComptoir
                         string.IsNullOrWhiteSpace(TextBoxDesignation.Text) ||
                         string.IsNullOrWhiteSpace(TextBoxQuantiteDisponibleEnStock.Text))
                         {
-                            throw new Exception("Veuillez remplir tous les champs.");
+                            MessageBox.Show("Veuillez remplir tous les champs.");
+                            return;
                         }
 
                         string arRef = TextBoxReference.Text;
@@ -311,13 +397,12 @@ namespace SoftCaisse.Forms.VenteComptoir
                                 decimal remiseArticle = Convert.ToInt32(TextBoxRemise.Text);
 
                                 if (remiseArticle != 0)
-                                    {
-                                        decimal tauxPriseEnCompte = TauxPriseEnCompte(TextBoxReference.Text);
-
-                                        puNet *= (1 - remiseArticle / 100);
-                                        montantHT *= (1 - remiseArticle / 100);
-                                        montantTTC *= (1 - remiseArticle / 100);
-                                    }
+                                {
+                                    decimal tauxPriseEnCompte = TauxPriseEnCompte(TextBoxReference.Text);
+                                    puNet *= (1 - remiseArticle / 100);
+                                    montantHT *= (1 - remiseArticle / 100);
+                                    montantTTC *= (1 - remiseArticle / 100);
+                                }
                             }
                             else
                             {
@@ -326,30 +411,33 @@ namespace SoftCaisse.Forms.VenteComptoir
                                 TextBoxRemise.Focus();
                             }
                         }
-
-                        DataGridViewArticle.Rows.Add(arRef, arDesign, puHT, puTTC, quantiteEcriteStock, conditionnement , TextBoxRemise.Text, puNet ,montantHT, montantTTC);
-
-                        if (DataGridViewArticle.Rows.Count == 1)
+                        if (changedIndex == -1)
                         {
-                            TotalPrixHT = Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[8].Value);
-                            TotalPrixTTC = Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[9].Value);
-                        }
-                        else if (DataGridViewArticle.Rows.Count == 2)
-                        {
-                            decimal TotalPrixHTPrecedent = Convert.ToDecimal(DataGridViewArticle.Rows[i - 1].Cells[8].Value);
-                            decimal TotalPrixTTCPrecedent = Convert.ToDecimal(DataGridViewArticle.Rows[i - 1].Cells[9].Value);
-
-                            TotalPrixHT = TotalPrixHTPrecedent + Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[8].Value);
-                            TotalPrixTTC = TotalPrixTTCPrecedent + Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[9].Value);
-
+                            DataGridViewArticle.Rows.Add(arRef, arDesign, puHT, puTTC, quantiteEcriteStock, conditionnement, TextBoxRemise.Text, puNet, montantHT, montantTTC);
                         }
                         else
+                        {
+                            DataGridViewArticle.Rows[changedIndex].Cells[0].Value = arRef;
+                            DataGridViewArticle.Rows[changedIndex].Cells[1].Value = arDesign;
+                            DataGridViewArticle.Rows[changedIndex].Cells[2].Value = puHT;
+                            DataGridViewArticle.Rows[changedIndex].Cells[3].Value = puTTC;
+                            DataGridViewArticle.Rows[changedIndex].Cells[4].Value = quantiteEcriteStock;
+                            DataGridViewArticle.Rows[changedIndex].Cells[5].Value = conditionnement;
+                            DataGridViewArticle.Rows[changedIndex].Cells[6].Value = TextBoxRemise.Text;
+                            DataGridViewArticle.Rows[changedIndex].Cells[7].Value = puNet;
+                            DataGridViewArticle.Rows[changedIndex].Cells[8].Value = montantHT;
+                            DataGridViewArticle.Rows[changedIndex].Cells[9].Value = montantTTC;
+                            changedIndex = -1;
+                        }
+
+
+                        for (int i = 0; i < DataGridViewArticle.Rows.Count; i++)
                         {
                             TotalPrixHT += Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[8].Value);
                             TotalPrixTTC += Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[9].Value);
                         }
 
-                        i++;
+
                         LabelPrixTotalHT.Text = TotalPrixHT.ToString("N2");
                         LabelPrixTotalTTC.Text = TotalPrixTTC.ToString("N2");
 
@@ -368,20 +456,15 @@ namespace SoftCaisse.Forms.VenteComptoir
                         ControlTableLayoutPanel();
                     }
                 }
-                
+
                 else
                 {
                     MessageBox.Show("Veuillez remplir tout les champs");
-                    
+
                     ControlTableLayoutPanel();
 
                     TextBoxReference.Focus();
                 }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Erreur de format dans les champs numériques.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TextBoxRemise.Text = "";
             }
             catch (Exception ex)
             {
@@ -488,36 +571,36 @@ namespace SoftCaisse.Forms.VenteComptoir
 
             TextBoxMontantEnregistrement.Text = LabelPrixTotalTTC.Text;
             variableTemporaire = Convert.ToDecimal(TextBoxMontantEnregistrement.Text);
-
             LabelPrixResteDu.Text = LabelPrixTotalTTC.Text;
-
-            TextBoxLibelleEnregistrement.Text = "Ticket " + compteurClick + " du " + DateTime.Now.ToString("dd/MM/yyyy");
+            Controle valeur = (Controle)ComboboxSouche.SelectedItem;
+            string count = _sageObj.get_current_piece(valeur.item);
+            TextBoxLibelleEnregistrement.Text = "Règlt ticket " + count + " " + DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         private decimal ChoixDevise(decimal PrixTotalAConvertir, string devise)
         {
             var coursCible = GetDeviseInfo(devise);
 
-            if(coursCible.D_Intitule != "Euro") 
+            if (coursCible.D_Intitule != "Euro")
             {
 
-                if(dernierCours == "Euro")
+                if (dernierCours == "Euro")
                 {
-                    PrixTotalAConvertir *= (decimal)Math.Round(coursCible.D_Cours,4);
+                    PrixTotalAConvertir *= (decimal)Math.Round(coursCible.D_Cours, 4);
                 }
                 else
                 {
                     var dernierDeviseCours = GetDeviseInfo(dernierCours);
 
-                    PrixTotalAConvertir = PrixTotalAConvertir / dernierDeviseCours.D_Cours * (decimal)Math.Round(coursCible.D_Cours,4);
+                    PrixTotalAConvertir = PrixTotalAConvertir / dernierDeviseCours.D_Cours * (decimal)Math.Round(coursCible.D_Cours, 4);
                 }
 
                 dernierCours = coursCible.D_Intitule;
-                
+
                 return PrixTotalAConvertir;
             }
-            
-            if(dernierCours == "Euro")
+
+            if (dernierCours == "Euro")
             {
                 return PrixTotalAConvertir;
 
@@ -525,7 +608,7 @@ namespace SoftCaisse.Forms.VenteComptoir
 
             var dernierDeviseNonEuro = GetDeviseInfo(dernierCours);
 
-            PrixTotalAConvertir /= Math.Round(dernierDeviseNonEuro.D_Cours,4);
+            PrixTotalAConvertir /= Math.Round(dernierDeviseNonEuro.D_Cours, 4);
             dernierCours = coursCible.D_Intitule;
 
             return PrixTotalAConvertir;
@@ -539,7 +622,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             {
                 MontantInitial = Convert.ToDecimal(TextBoxMontantEnregistrement.Text);
             }
-         
+
             if (TextBoxMontantEnregistrement.Text == "0,00" || TextBoxMontantEnregistrement.Text == "")
                 BouttonEnregistrerEnregistrement.Enabled = false;
             else
@@ -550,10 +633,10 @@ namespace SoftCaisse.Forms.VenteComptoir
         private void ComboBoxDeviseEnregistrement_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if(TextBoxMontantEnregistrement.Text != "")
+            if (TextBoxMontantEnregistrement.Text != "")
             {
                 string devise = ComboBoxDeviseEnregistrement.SelectedItem.ToString();
-                TextBoxMontantEnregistrement.Text = ChoixDevise(MontantInitial,devise).ToString("N2");
+                TextBoxMontantEnregistrement.Text = ChoixDevise(MontantInitial, devise).ToString("N2");
             }
         }
 
@@ -564,7 +647,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             montant *= coursDeChange;
             ResteDu = montant - montantEnregistrement;
             ResteDu /= coursDeChange;
-            
+
             return ResteDu;
         }
 
@@ -582,7 +665,8 @@ namespace SoftCaisse.Forms.VenteComptoir
 
                 if (string.IsNullOrEmpty(ComboBoxReglementEnregistrement.Text) || string.IsNullOrEmpty(ComboBoxDeviseEnregistrement.Text))
                 {
-                    throw new Exception("Veuillez sélectionner une devise et un mode de règlement");
+                    MessageBox.Show("Veuillez sélectionner une devise et un mode de règlement");
+                    return;
                 }
 
                 string modeReception = ComboBoxReglementEnregistrement.SelectedItem.ToString();
@@ -640,6 +724,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void BouttonSupprimerDesignation_Click(object sender, EventArgs e)
@@ -668,7 +753,6 @@ namespace SoftCaisse.Forms.VenteComptoir
                 DataGridViewArticle.Rows.Remove(selectedRow);
             }
 
-            i--;
 
             TextBoxReference.Focus();
         }
@@ -748,31 +832,62 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void BouttonValider_Click(object sender, EventArgs e)
         {
-            BouttonValider.Enabled = false;
 
+            BouttonValider.Enabled = false;
             if (DataGridViewArticle.Rows.Count > 0)
             {
-                foreach (DataGridViewRow row in DataGridViewArticle.Rows)
+                Controle tier = (Controle)ComboBoxType.SelectedItem;
+                Controle payeur = (Controle)ComboBoxCentrale.SelectedItem;
+                List<Fligne> article = new List<Fligne>();
+                foreach (DataGridViewRow ligne in DataGridViewArticle.Rows)
                 {
-
-                    if (!row.IsNewRow)
+                    string reduct = string.IsNullOrEmpty(ligne.Cells[6].Value.ToString()) ? "0%" : ligne.Cells[6].Value.ToString() + "%";
+                    article.Add(
+                        new Fligne()
+                        {
+                            reference = ligne.Cells[0].Value + "",
+                            quantite = double.Parse(ligne.Cells[4].Value + ""),
+                            remise = reduct
+                        }
+                    );
+                }
+                Controle valeurs = (Controle)ComboboxSouche.SelectedItem;
+                var tiers = _context.F_COMPTEA.FirstOrDefault(u => u.CA_Num == ComboBoxAffaire.SelectedValue.ToString());
+                var nAnalytique = _context.P_ANALYTIQUE.FirstOrDefault(u => u.cbMarq == tiers.N_Analytique);
+                string regl_libelle = TextBoxLibelleEnregistrement.Text;
+                if (refDoc == null)
+                {
+                    IBODocument3 type = _sageObj.createTicket(ComboBoxDeviseReste.SelectedItem.ToString(), valeurs.item, nAnalytique.A_Intitule, tiers.CA_Num, ComboBoxDepot.SelectedValue.ToString(), _caissier.CO_Nom, _caissier.CO_Prenom, tier.valeur, payeur.valeur, article);
+                    if (type != null)
                     {
-                        string afRef = row.Cells[0].Value.ToString();
-                        int quantiteVendue = Convert.ToInt32(row.Cells[4].Value);
+                        _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_NoCaissier=" + _caissier.CO_No + " , cbCO_NoCaissier = " + _caissier.CO_No + ", DO_Valide=1 where DO_Piece like '" + type.DO_Piece + "'");
+                        _context.Database.ExecuteSqlCommand("UPDATE F_DOCLIGNE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_No=" + _caissier.CO_No + " , cbCO_No = " + _caissier.CO_No + " where DO_Piece like '" + type.DO_Piece + "'");
 
-                        var articleMiseAJour = _context.F_ARTSTOCK.FirstOrDefault(article => article.AR_Ref == afRef);
-                        var articlePrixMiseAJour = _context.F_ARTICLE.FirstOrDefault(article => article.AR_Ref == afRef);
-
-                        int nouvelleQuantiteStock = (int)articleMiseAJour.AS_QteSto - (int)DataGridViewArticle.Rows[0].Cells[4].Value;
-                        
-                        articleMiseAJour.AS_MontSto = articlePrixMiseAJour.AR_PrixAch * nouvelleQuantiteStock;
-                        articleMiseAJour.AS_QteSto = (short)nouvelleQuantiteStock;
-
-                        _context.SaveChanges();
+                        foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
+                        {
+                            double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
+                            IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), type.DO_Piece, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
+                            _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
+                        }
+                        MessageBox.Show("Opération validée. Stock mis à jour.");
                     }
                 }
+                else
+                {
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Domaine=0 , DO_Type=6 , DO_DocType=6 , DO_Escompte=0, DO_Valide=0 where DO_Piece like '" + refDoc + "'");
 
-                MessageBox.Show("Opération validée. Stock mis à jour.");
+                    foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
+                    {
+                        double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
+                        IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), refDoc, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
+                        _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
+                    }
+
+                    _context.Database.ExecuteSqlCommand("UPDATE F_REGLECH set DO_Domaine=3 , DO_Type=30 where DO_Piece like '" + refDoc + "'");
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Attente=0 , DO_Domaine=3, DO_Type=30, DO_DocType=30 , DO_Escompte=0  where DO_Piece like '" + refDoc + "'");
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCLIGNE set DO_Domaine=3 , DO_Type=30, DO_DocType=30 , DL_Escompte=0 where DO_Piece like '" + refDoc + "'");
+                }
+
             }
             else
             {
@@ -783,146 +898,304 @@ namespace SoftCaisse.Forms.VenteComptoir
             DataGridViewArticle.Rows.Clear();
             TextBoxReference.Focus();
         }
-        private void validerVente()
-        {
-            //F_DOCENTETE doc = new F_DOCENTETE()
-            //{
-            //    DO_Domaine = 3,
-            //    DO_Type = 30,
-            //    DO_Date =  DateTime.Now,
-            //    DO_Tiers = ComboBoxType.SelectedText,
-            //    DO_Ref="",
-            //    CO_No=0,
-            //    DO_Period=1,
-            //    DO_Devise = Int16.Parse(ComboBoxDeviseReste.SelectedValue.ToString()),
-            //    DO_Cours =,
-            //    DE_No =,
-            //    cbDE_No =,
-            //    LI_No =,
-            //    cbLI_No =,
-            //    CT_NumPayeur =,
-            //    cbCT_NumPayeur =,
-            //    DO_Expedit =,
-            //    DO_NbFacture =,
-            //    DO_BLFact =,
-            //    DO_TxEscompte =,
-            //    DO_Reliquat =,
-            //    DO_Imprim =,
-            //    CA_Num =,
-            //    cbCA_Num =,
-            //    DO_Coord01 =,
-            //    DO_Coord02 =,
-            //    DO_Coord03 =,
-            //    DO_Coord04 =,
-            //    DO_Souche =,
-            //    DO_DateLivr =,
-            //    DO_Condition =,
-            //    DO_Tarif =,
-            //    DO_Colisage =,
-            //    DO_TypeColis =,
-            //    DO_Transaction =,
-            //    DO_Langue =,
-            //    DO_Ecart =,
-            //    DO_Regime =,
-            //    N_CatCompta =,
-            //    DO_Ventile =,
-            //    AB_No =,
-            //    DO_DebutAbo =,
-            //    DO_FinAbo =,
-            //    DO_DebutPeriod =,
-            //    DO_FinPeriod =,
-            //    CG_Num =,
-            //    cbCG_Num =,
-            //    DO_Statut =,
-            //    DO_Heure =,
-            //    CA_No =,
-            //    cbCA_No =,
-            //    CO_NoCaissier =,
-            //    cbCO_NoCaissier =,
-            //    DO_Transfere =,
-            //    DO_Cloture =,
-            //    DO_NoWeb =,
-            //    DO_Attente =,
-            //    DO_Provenance=,
-            //    CA_NumIFRS =,
-            //    MR_No =,
-            //    DO_TypeFrais =,
-            //    DO_ValFrais =,
-            //    DO_TypeLigneFrais =,
-            //    DO_TypeFranco =,
-            //    DO_ValFranco =,
-            //    DO_TypeLigneFranco =,
-            //    DO_Taxe1 =,
-            //    DO_TypeTaux1 =,
-            //    DO_TypeTaxe1 =,
-            //    DO_Taxe2 =,
-            //    DO_TypeTaux2 =,
-            //    DO_TypeTaxe2 =,
-            //    DO_Taxe3 =,
-            //    DO_TypeTaux3 =,
-            //    DO_TypeTaxe3 =,
-            //    DO_MajCpta =,
-            //    DO_Motif =,
-            //    CT_NumCentrale =,
-            //    cbCT_NumCentrale =,
-            //    DO_Contact =,
-            //    DO_FactureElec =,
-            //    DO_TypeTransac =,
-            //    DO_DateLivrRealisee =,
-            //    DO_DateExpedition =,
-            //    DO_FactureFrs =,
-            //    cbDO_FactureFrs =,
-            //    DO_PieceOrig =,
-            //    cbDO_PieceOrig =,
-            //    DO_GUID =,
-            //    DO_EStatut =,
-            //    DO_DemandeRegul =,
-            //    ET_No =,
-            //    cbET_No =,
-            //    DO_Valide =,
-            //    DO_Coffre =,
-            //    DO_CodeTaxe1 =,
-            //    DO_CodeTaxe2 =,
-            //    DO_CodeTaxe3 =,
-            //    DO_TotalHT =,
-            //    DO_StatutBAP =,
-            //    DO_Escompte =,
-            //    DO_DocType =,
-            //    DO_TypeCalcul =,
-            //    DO_FactureFile =,
-            //    DO_TotalHTNet =,
-            //    DO_TotalTTC =,
-            //    DO_NetAPayer =,
-            //    DO_MontantRegle =,
-            //    DO_RefPaiement =,
-            //    DO_AdressePaiement =,
-            //    DO_PaiementLigne =,
-            //    DO_MotifDevis =,
-            //    cbProt =,
-            //    cbCreateur =,
-            //    cbModification =,
-            //    cbReplication =,
-            //    cbFlag =,
-            //    cbCreation =,
-            //    cbCreationUser =,
-            //    cbHash =,
-            //    cbHashVersion =,
-            //    cbHashDate =,
-            //    cbHashOrder =,
-            //    Commentaires =,
-            //    Divers =,
-            //    DO_Conversion =
-            //};
-
-        }
 
         private void ComboBoxDeviseReste_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        private void ComboBoxNumero_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            if (ComboBoxNumero.SelectedValue == "1")
+            {
+                ComboBoxType.DataSource = _context.F_COMPTET.Select(u => new { Label = u.CT_Num + "  " + u.CT_Intitule, Valeur = u.CT_Num }).ToList();
+            }
+            if (ComboBoxNumero.SelectedValue == "2")
+            {
+                ComboBoxType.DataSource = _context.F_COMPTET.Select(u => new { Label = u.CT_Intitule, Valeur = u.CT_Num }).ToList();
+            }
+            if (ComboBoxNumero.SelectedValue == "3")
+            {
+                ComboBoxType.DataSource = _context.F_COMPTET.Select(u => new { Label = u.CT_CodePostal + "  " + u.CT_Intitule, Valeur = u.CT_Num }).ToList();
+            }
+        }
+
+        private void change_tarif(object sender, EventArgs e)
+        {
+            Controle obj = (Controle)ComboBoxCentrale.SelectedItem;
+            F_COMPTET valeur = _context.F_COMPTET.FirstOrDefault(u => u.CT_Num == obj.valeur);
+            P_CATTARIF tarif = _context.P_CATTARIF.FirstOrDefault(u => u.cbMarq == valeur.N_CatTarif);
+            if (valeur != null)
+            {
+                ComboBoxTarif.SelectedIndex = ComboBoxTarif.FindString(tarif.CT_Intitule);
+            }
+
+        }
+
+        private void creation_facture(object sender, EventArgs e)
+        {
+            Controle tier = (Controle)ComboBoxType.SelectedItem;
+            Controle payeur = (Controle)ComboBoxCentrale.SelectedItem;
+            List<Fligne> fligne = new List<Fligne>();
+            List<Freglement> freglement = new List<Freglement>();
+            Fentete fentete = new Fentete()
+            {
+                caisse = LabelTitleCaissier.Text,
+                type = "Facture",
+                date = DateTime.Now.ToShortDateString(),
+                numero = refDoc
+            };
+
+            foreach (DataGridViewRow ligne in DataGridViewArticle.Rows)
+            {
+
+                string reduct = string.IsNullOrEmpty(ligne.Cells[6].Value.ToString()) ? "0%" : ligne.Cells[6].Value.ToString() + "%";
+                fligne.Add(new Fligne()
+                {
+                    reference = ligne.Cells[0].FormattedValue.ToString(),
+                    designation = ligne.Cells[1].FormattedValue.ToString(),
+                    montant_ht = double.Parse(ligne.Cells[2].FormattedValue.ToString()),
+                    prix_unitaire = double.Parse(ligne.Cells[3].FormattedValue.ToString()),
+                    quantite = double.Parse(ligne.Cells[4].FormattedValue.ToString()),
+                    remise = reduct
+                });
+            }
+            var tiers = _context.F_COMPTEA.FirstOrDefault(u => u.CA_Num == ComboBoxAffaire.SelectedValue.ToString());
+            var nAnalytique = _context.P_ANALYTIQUE.FirstOrDefault(u => u.cbMarq == tiers.N_Analytique);
+            string regl_libelle = TextBoxLibelleEnregistrement.Text;
+            regl_libelle = regl_libelle.Replace("ticket", "facture");
+
+            if (refDoc == null)
+            {
+                IBODocument3 type = _sageObj.CreateFACTURE(ComboBoxDeviseReste.SelectedText, ComboBoxDepot.SelectedValue.ToString(), nAnalytique.A_Intitule, tiers.CA_Num, _caissier.CO_Nom, _caissier.CO_Prenom, tier.valeur, payeur.valeur, fligne);
+                if (type != null)
+                {
+                    fentete.numero = type.DO_Piece;
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " ,DO_Valide=1 where DO_Piece like '" + type.DO_Piece + "'");
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCLIGNE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_No=" + _caissier.CO_No + " ,cbCO_No=" + _caissier.CO_No + " where DO_Piece like '" + type.DO_Piece + "'");
+                    foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
+                    {
+                        double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
+                        IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), type.DO_Piece, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
+                        freglement.Add(new Freglement()
+                        {
+                            Date = DateTime.Now.ToShortDateString(),
+                            Montant = Double.Parse(obj.Cells[1].FormattedValue.ToString()),
+                            Type = obj.Cells[0].FormattedValue.ToString()
+                        });
+                        _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
+                    }
+                }
+            }
+            else
+            {
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Domaine=0 , DO_Type=6 , DO_DocType=6 , DO_Escompte=0, DO_Valide=0 where DO_Piece like '" + refDoc + "'");
+                foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
+                {
+                    double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
+                    IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), refDoc, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
+                    freglement.Add(new Freglement()
+                    {
+                        Date = DateTime.Now.ToShortDateString(),
+                        Montant = Double.Parse(obj.Cells[1].FormattedValue.ToString()),
+                        Type = obj.Cells[0].FormattedValue.ToString()
+                    });
+                    _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
+                }
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Attente=0 where DO_Piece like '" + refDoc + "'");
+            }
+            this.Close();
+            string devis = _context.P_DEVISE.FirstOrDefault(u => u.cbMarq + "" == ComboBoxDeviseReste.SelectedItem.ToString()).D_Intitule;
+            Reporting report = new Reporting(fentete, fligne, freglement, devis);
+            report.BringToFront();
+            report.Show();
+            report.Focus();
+        }
+
+        private void BouttonTicket_Click(object sender, EventArgs e)
+        {
+            Controle tier = (Controle)ComboBoxType.SelectedItem;
+            List<Fligne> fligne = new List<Fligne>();
+            List<Freglement> freglement = new List<Freglement>();
+            Controle payeur = (Controle)ComboBoxCentrale.SelectedItem;
+
+            Controle valeurs = (Controle)ComboboxSouche.SelectedItem;
+
+            foreach (DataGridViewRow ligne in DataGridViewArticle.Rows)
+            {
+
+                string reduct = string.IsNullOrEmpty(ligne.Cells[6].Value.ToString()) ? "0%" : ligne.Cells[6].Value.ToString() + "%";
+                fligne.Add(new Fligne()
+                {
+                    reference = ligne.Cells[0].FormattedValue.ToString(),
+                    designation = ligne.Cells[1].FormattedValue.ToString(),
+                    montant_ht = double.Parse(ligne.Cells[2].FormattedValue.ToString()),
+                    prix_unitaire = double.Parse(ligne.Cells[3].FormattedValue.ToString()),
+                    quantite = double.Parse(ligne.Cells[4].FormattedValue.ToString()),
+                    remise = reduct
+                });
+            }
+            Fentete fentete = new Fentete()
+            {
+                caisse = LabelTitleCaissier.Text,
+                date = DateTime.Now.ToShortDateString(),
+                numero = refDoc,
+                type = "Ticket"
+            };
+            string regl_libelle = TextBoxLibelleEnregistrement.Text;
+            if (refDoc == null)
+            {
+                var tiers = _context.F_COMPTEA.FirstOrDefault(u => u.CA_Num == ComboBoxAffaire.SelectedValue.ToString());
+                var nAnalytique = _context.P_ANALYTIQUE.FirstOrDefault(u => u.cbMarq == tiers.N_Analytique);
+                IBODocument3 type = _sageObj.createTicket(ComboBoxDeviseReste.SelectedItem.ToString(), valeurs.item, nAnalytique.A_Intitule, tiers.CA_Num, ComboBoxDepot.SelectedValue.ToString(), _caissier.CO_Nom, _caissier.CO_Prenom, tier.valeur, payeur.valeur, fligne);
+                if (type != null)
+                {
+                    fentete.numero = type.DO_Piece;
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set CA_No = " + _caisse.CA_No + " , cbCA_No = " + _caisse.CA_No + " , CO_NoCaissier = " + _caissier.CO_No + " , cbCO_NoCaissier = " + _caissier.CO_No + ", DO_Valide=1 where DO_Piece like '" + type.DO_Piece + "'");
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCLIGNE set CA_No = " + _caisse.CA_No + " , cbCA_No = " + _caisse.CA_No + " , CO_No = " + _caissier.CO_No + " , cbCO_No = " + _caissier.CO_No + " where DO_Piece like '" + type.DO_Piece + "'");
+                    foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
+                    {
+
+                        double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
+                        IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), type.DO_Piece, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
+                        freglement.Add(new Freglement()
+                        {
+                            Date = DateTime.Now.ToShortDateString(),
+                            Montant = Double.Parse(obj.Cells[1].FormattedValue.ToString()),
+                            Type = obj.Cells[0].FormattedValue.ToString()
+                        });
+                        if (docuement != null)
+                        {
+                            _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
+                        }
+                    }
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Domaine=3 , DO_Type=30, DO_DocType=30 , DO_Escompte=0 where DO_Piece like '" + type.DO_Piece + "'");
+                    _context.Database.ExecuteSqlCommand("UPDATE F_REGLECH set DO_Domaine=3 , DO_Type=30 where DO_Piece like '" + type.DO_Piece + "'");
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCLIGNE set DO_Domaine=3 , DO_Type=30, DO_DocType=30 , DL_Escompte=0 where DO_Piece like '" + type.DO_Piece + "'");
+                }
+            }
+            else
+            {
+
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Domaine=0 , DO_Type=6 , DO_DocType=6 , DO_Escompte=0, DO_Valide=1, DO_Attente=0  where DO_Piece like '" + refDoc + "'");
+                foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
+                {
+                    double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
+                    IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), refDoc, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
+                    freglement.Add(new Freglement()
+                    {
+                        Date = DateTime.Now.ToShortDateString(),
+                        Montant = Double.Parse(obj.Cells[1].FormattedValue.ToString()),
+                        Type = obj.Cells[0].FormattedValue.ToString()
+                    });
+                    _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
+                }
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set  DO_Domaine=3, DO_Type=30, DO_DocType=30 , DO_Escompte=0  where DO_Piece like '" + refDoc + "'");
+                _context.Database.ExecuteSqlCommand("UPDATE F_REGLECH set DO_Domaine=3 , DO_Type=30 where DO_Piece like '" + refDoc + "'");
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCLIGNE set DO_Domaine=3 , DO_Type=30, DO_DocType=30 , DL_Escompte=0 where DO_Piece like '" + refDoc + "'");
+
+            }
+            this.Close();
+            Reporting report = new Reporting(fentete, fligne, freglement, ComboBoxDeviseReste.SelectedItem.ToString());
+            report.BringToFront();
+            report.Show();
+            report.Focus();
+
+        }
+
+        private void BouttonEnAttente_Click(object sender, EventArgs e)
+        {
+            Controle tier = (Controle)ComboBoxType.SelectedItem;
+            Controle payeur = (Controle)ComboBoxCentrale.SelectedItem;
+            List<Fligne> fligne = new List<Fligne>();
+            List<Freglement> freglement = new List<Freglement>();
+            Controle valeurs = (Controle)ComboboxSouche.SelectedItem;
+            foreach (DataGridViewRow ligne in DataGridViewArticle.Rows)
+            {
+
+                string reduct = string.IsNullOrEmpty(ligne.Cells[6].Value.ToString()) ? "0%" : ligne.Cells[6].Value.ToString() + "%";
+                fligne.Add(new Fligne()
+                {
+                    reference = ligne.Cells[0].FormattedValue.ToString(),
+                    designation = ligne.Cells[1].FormattedValue.ToString(),
+                    montant_ht = double.Parse(ligne.Cells[2].FormattedValue.ToString()),
+                    prix_unitaire = double.Parse(ligne.Cells[3].FormattedValue.ToString()),
+                    quantite = double.Parse(ligne.Cells[4].FormattedValue.ToString()),
+                    remise = reduct
+                });
+            }
+            var tiers = _context.F_COMPTEA.FirstOrDefault(u => u.CA_Num == ComboBoxAffaire.SelectedValue.ToString());
+            var nAnalytique = _context.P_ANALYTIQUE.FirstOrDefault(u => u.cbMarq == tiers.N_Analytique);
+            IBODocument3 type = _sageObj.createTicket(ComboBoxDeviseReste.SelectedItem.ToString(), valeurs.item, nAnalytique.A_Intitule, tiers.CA_Num, ComboBoxDepot.SelectedValue.ToString(), _caissier.CO_Nom, _caissier.CO_Prenom, tier.valeur, payeur.valeur, fligne);
+            if (type != null)
+            {
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_NoCaissier=" + _caissier.CO_No + " , cbCO_NoCaissier=" + _caissier.CO_No + ", DO_Attente=1 where DO_Piece like '" + type.DO_Piece + "'");
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCLIGNE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_No=" + _caissier.CO_No + " , cbCO_No=" + _caissier.CO_No + " where DO_Piece like '" + type.DO_Piece + "'");
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Domaine=3 , DO_Type=30, DO_DocType=30 , DO_Escompte=0 where DO_Piece like '" + type.DO_Piece + "'");
+                ButtonAnnuler_Click(sender, e);
+                MessageBox.Show("Ticket Mis en Attente", "TICKET", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void BouttonRappelTicket_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            ListAttenteForm attente = new ListAttenteForm();
+            attente.Show();
+        }
+
+        private void ComboboxSouche_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Controle valeur = (Controle)ComboboxSouche.SelectedItem;
+
+            string count = _sageObj.get_current_piece(valeur.item);
+            TextBoxLibelleEnregistrement.Text = "Règlt ticket " + count + " " + DateTime.Now.ToString("dd/MM/yyyy");
+        }
+
+
+        private void ComboBoxType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Controle selected = (Controle)ComboBoxType.SelectedItem;
+            if (selected != null)
+            {
+                F_COMPTET valeur = _context.F_COMPTET.FirstOrDefault(f => f.CT_Num == selected.valeur);
+                ComboBoxAffaire.SelectedValue = valeur.CA_Num;
+            }
+
+        }
+
+        private void DataGridViewArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                changedIndex = e.RowIndex;
+                string reference = DataGridViewArticle.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
+                var codeFamilleBD = _context.F_ARTICLE
+                .FirstOrDefault(a => a.AR_Ref == reference);
+                var UniteVente = _context.P_UNITE
+                .Where(unite => unite.cbIndice == codeFamilleBD.AR_UniteVen)
+                .Select(unite => new
+                {
+                    UniteIntitule = unite.U_Intitule
+                }).FirstOrDefault();
+
+
+                decimal tauxPriseEnCompte = TauxPriseEnCompte(codeFamilleBD.AR_Ref);
+                decimal puHT = (decimal)codeFamilleBD.AR_PrixVen;
+                decimal puTTC;
+                var artclientDb = _context.F_ARTCLIENT.FirstOrDefault(a => a.AR_Ref == codeFamilleBD.AR_Ref && a.AC_Categorie == 3);
+                if (artclientDb.AC_PrixVen != 0.00m)
+                {
+                    puTTC = (decimal)artclientDb.AC_PrixVen;
+                    puHT = puTTC / (1 + tauxPriseEnCompte / 100);
+                }
+                else
+                {
+                    puTTC = puHT + puHT * tauxPriseEnCompte / 100;
+                }
+                AjouterArticleDesigne(codeFamilleBD.AR_Ref, codeFamilleBD.AR_Design, 1, puHT, puTTC, UniteVente.UniteIntitule);
+            }
 
         }
     }

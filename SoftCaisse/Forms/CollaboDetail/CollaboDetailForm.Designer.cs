@@ -32,48 +32,57 @@
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnCaissierClose = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txtSkype = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtTelecopie = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtPortable = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.txtTelephone = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.DepotCaisseCmbx = new System.Windows.Forms.ComboBox();
+            this.txtPays = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtRegion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtVille = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtPostal = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtComplement = new System.Windows.Forms.TextBox();
+            this.txtAdresse = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtMatricule = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtFonction = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtService = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.txtCollaboPrenom = new System.Windows.Forms.TextBox();
             this.txtCollaboNom = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cUser = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.BNouveau = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.BAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -84,6 +93,12 @@
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -117,63 +132,31 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(600, 596);
+            this.tabControl1.Size = new System.Drawing.Size(594, 627);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btnCaissierClose);
-            this.tabPage1.Controls.Add(this.kryptonButton3);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(592, 567);
+            this.tabPage1.Size = new System.Drawing.Size(586, 598);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Identification";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(592, 567);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Profil";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btnCaissierClose
-            // 
-            this.btnCaissierClose.Location = new System.Drawing.Point(461, 517);
-            this.btnCaissierClose.Name = "btnCaissierClose";
-            this.btnCaissierClose.Palette = this.kryptonPalette1;
-            this.btnCaissierClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnCaissierClose.Size = new System.Drawing.Size(105, 34);
-            this.btnCaissierClose.TabIndex = 29;
-            this.btnCaissierClose.Values.Text = "Annuler";
-            // 
-            // kryptonButton3
-            // 
-            this.kryptonButton3.Location = new System.Drawing.Point(350, 517);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Palette = this.kryptonPalette1;
-            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton3.Size = new System.Drawing.Size(105, 34);
-            this.kryptonButton3.TabIndex = 28;
-            this.kryptonButton3.Values.Text = "OK";
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel5);
             this.groupBox3.Location = new System.Drawing.Point(8, 332);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(574, 157);
+            this.groupBox3.Size = new System.Drawing.Size(574, 100);
             this.groupBox3.TabIndex = 27;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Télécommunications";
@@ -185,14 +168,14 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.71212F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 183F));
-            this.tableLayoutPanel5.Controls.Add(this.textBox13, 3, 1);
+            this.tableLayoutPanel5.Controls.Add(this.txtSkype, 3, 1);
             this.tableLayoutPanel5.Controls.Add(this.label12, 2, 1);
-            this.tableLayoutPanel5.Controls.Add(this.textBox10, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.txtTelecopie, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.label13, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.label14, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.textBox11, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.txtPortable, 3, 0);
             this.tableLayoutPanel5.Controls.Add(this.label15, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.textBox12, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.txtTelephone, 1, 0);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(22, 21);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
@@ -201,12 +184,12 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(540, 56);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
-            // textBox13
+            // txtSkype
             // 
-            this.textBox13.Location = new System.Drawing.Point(360, 30);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(177, 22);
-            this.textBox13.TabIndex = 6;
+            this.txtSkype.Location = new System.Drawing.Point(360, 30);
+            this.txtSkype.Name = "txtSkype";
+            this.txtSkype.Size = new System.Drawing.Size(177, 22);
+            this.txtSkype.TabIndex = 6;
             // 
             // label12
             // 
@@ -219,12 +202,12 @@
             this.label12.TabIndex = 8;
             this.label12.Text = "Skype";
             // 
-            // textBox10
+            // txtTelecopie
             // 
-            this.textBox10.Location = new System.Drawing.Point(112, 30);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(145, 22);
-            this.textBox10.TabIndex = 7;
+            this.txtTelecopie.Location = new System.Drawing.Point(112, 30);
+            this.txtTelecopie.Name = "txtTelecopie";
+            this.txtTelecopie.Size = new System.Drawing.Size(145, 22);
+            this.txtTelecopie.TabIndex = 7;
             // 
             // label13
             // 
@@ -248,12 +231,12 @@
             this.label14.TabIndex = 2;
             this.label14.Text = "Téléphone";
             // 
-            // textBox11
+            // txtPortable
             // 
-            this.textBox11.Location = new System.Drawing.Point(360, 3);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(177, 22);
-            this.textBox11.TabIndex = 5;
+            this.txtPortable.Location = new System.Drawing.Point(360, 3);
+            this.txtPortable.Name = "txtPortable";
+            this.txtPortable.Size = new System.Drawing.Size(177, 22);
+            this.txtPortable.TabIndex = 5;
             // 
             // label15
             // 
@@ -266,12 +249,12 @@
             this.label15.TabIndex = 4;
             this.label15.Text = "Portable";
             // 
-            // textBox12
+            // txtTelephone
             // 
-            this.textBox12.Location = new System.Drawing.Point(112, 3);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(145, 22);
-            this.textBox12.TabIndex = 3;
+            this.txtTelephone.Location = new System.Drawing.Point(112, 3);
+            this.txtTelephone.Name = "txtTelephone";
+            this.txtTelephone.Size = new System.Drawing.Size(145, 22);
+            this.txtTelephone.TabIndex = 3;
             // 
             // groupBox2
             // 
@@ -290,15 +273,15 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.04546F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.95454F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 184F));
-            this.tableLayoutPanel3.Controls.Add(this.DepotCaisseCmbx, 3, 1);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 191F));
+            this.tableLayoutPanel3.Controls.Add(this.txtPays, 3, 1);
             this.tableLayoutPanel3.Controls.Add(this.label11, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.textBox5, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.txtRegion, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.label6, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.textBox6, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtVille, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.label7, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.textBox7, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtPostal, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(21, 91);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
@@ -307,37 +290,37 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(540, 56);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // DepotCaisseCmbx
+            // txtPays
             // 
-            this.DepotCaisseCmbx.FormattingEnabled = true;
-            this.DepotCaisseCmbx.Location = new System.Drawing.Point(358, 30);
-            this.DepotCaisseCmbx.Name = "DepotCaisseCmbx";
-            this.DepotCaisseCmbx.Size = new System.Drawing.Size(177, 24);
-            this.DepotCaisseCmbx.TabIndex = 9;
+            this.txtPays.FormattingEnabled = true;
+            this.txtPays.Location = new System.Drawing.Point(351, 30);
+            this.txtPays.Name = "txtPays";
+            this.txtPays.Size = new System.Drawing.Size(177, 24);
+            this.txtPays.TabIndex = 9;
             // 
             // label11
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(314, 27);
+            this.label11.Location = new System.Drawing.Point(307, 27);
             this.label11.Name = "label11";
             this.label11.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.label11.Size = new System.Drawing.Size(38, 24);
             this.label11.TabIndex = 8;
             this.label11.Text = "Pays";
             // 
-            // textBox5
+            // txtRegion
             // 
-            this.textBox5.Location = new System.Drawing.Point(113, 30);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(145, 22);
-            this.textBox5.TabIndex = 7;
+            this.txtRegion.Location = new System.Drawing.Point(110, 30);
+            this.txtRegion.Name = "txtRegion";
+            this.txtRegion.Size = new System.Drawing.Size(142, 22);
+            this.txtRegion.TabIndex = 7;
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(56, 27);
+            this.label6.Location = new System.Drawing.Point(53, 27);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.label6.Size = new System.Drawing.Size(51, 24);
@@ -348,45 +331,45 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(27, 0);
+            this.label8.Location = new System.Drawing.Point(24, 0);
             this.label8.Name = "label8";
             this.label8.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.label8.Size = new System.Drawing.Size(80, 24);
             this.label8.TabIndex = 2;
             this.label8.Text = "Code postal";
             // 
-            // textBox6
+            // txtVille
             // 
-            this.textBox6.Location = new System.Drawing.Point(358, 3);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(177, 22);
-            this.textBox6.TabIndex = 5;
+            this.txtVille.Location = new System.Drawing.Point(351, 3);
+            this.txtVille.Name = "txtVille";
+            this.txtVille.Size = new System.Drawing.Size(177, 22);
+            this.txtVille.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(319, 0);
+            this.label7.Location = new System.Drawing.Point(312, 0);
             this.label7.Name = "label7";
             this.label7.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.label7.Size = new System.Drawing.Size(33, 24);
             this.label7.TabIndex = 4;
             this.label7.Text = "Ville";
             // 
-            // textBox7
+            // txtPostal
             // 
-            this.textBox7.Location = new System.Drawing.Point(113, 3);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(145, 22);
-            this.textBox7.TabIndex = 3;
+            this.txtPostal.Location = new System.Drawing.Point(110, 3);
+            this.txtPostal.Name = "txtPostal";
+            this.txtPostal.Size = new System.Drawing.Size(142, 22);
+            this.txtPostal.TabIndex = 3;
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84871F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.15129F));
-            this.tableLayoutPanel4.Controls.Add(this.textBox8, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.textBox9, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.txtComplement, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.txtAdresse, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label10, 0, 1);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(20, 28);
@@ -397,19 +380,19 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(542, 58);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // textBox8
+            // txtComplement
             // 
-            this.textBox8.Location = new System.Drawing.Point(116, 30);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(423, 22);
-            this.textBox8.TabIndex = 4;
+            this.txtComplement.Location = new System.Drawing.Point(116, 30);
+            this.txtComplement.Name = "txtComplement";
+            this.txtComplement.Size = new System.Drawing.Size(423, 22);
+            this.txtComplement.TabIndex = 4;
             // 
-            // textBox9
+            // txtAdresse
             // 
-            this.textBox9.Location = new System.Drawing.Point(116, 3);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(423, 22);
-            this.textBox9.TabIndex = 2;
+            this.txtAdresse.Location = new System.Drawing.Point(116, 3);
+            this.txtAdresse.Name = "txtAdresse";
+            this.txtAdresse.Size = new System.Drawing.Size(423, 22);
+            this.txtAdresse.TabIndex = 2;
             // 
             // label9
             // 
@@ -450,12 +433,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.04546F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.95454F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 184F));
-            this.tableLayoutPanel2.Controls.Add(this.textBox4, 1, 1);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 191F));
+            this.tableLayoutPanel2.Controls.Add(this.txtMatricule, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textBox3, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtFonction, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label4, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox2, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtService, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(21, 91);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -465,54 +448,54 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(540, 56);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // textBox4
+            // txtMatricule
             // 
-            this.textBox4.Location = new System.Drawing.Point(113, 30);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(145, 22);
-            this.textBox4.TabIndex = 7;
+            this.txtMatricule.Location = new System.Drawing.Point(110, 30);
+            this.txtMatricule.Name = "txtMatricule";
+            this.txtMatricule.Size = new System.Drawing.Size(142, 22);
+            this.txtMatricule.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 27);
+            this.label5.Location = new System.Drawing.Point(43, 27);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.label5.Size = new System.Drawing.Size(61, 24);
             this.label5.TabIndex = 6;
             this.label5.Text = "Matricule";
             // 
-            // textBox3
+            // txtFonction
             // 
-            this.textBox3.Location = new System.Drawing.Point(358, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(177, 22);
-            this.textBox3.TabIndex = 5;
+            this.txtFonction.Location = new System.Drawing.Point(351, 3);
+            this.txtFonction.Name = "txtFonction";
+            this.txtFonction.Size = new System.Drawing.Size(177, 22);
+            this.txtFonction.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(294, 0);
+            this.label4.Location = new System.Drawing.Point(287, 0);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.label4.Size = new System.Drawing.Size(58, 24);
             this.label4.TabIndex = 4;
             this.label4.Text = "Fonction";
             // 
-            // textBox2
+            // txtService
             // 
-            this.textBox2.Location = new System.Drawing.Point(113, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(146, 22);
-            this.textBox2.TabIndex = 3;
+            this.txtService.Location = new System.Drawing.Point(110, 3);
+            this.txtService.Name = "txtService";
+            this.txtService.Size = new System.Drawing.Size(142, 22);
+            this.txtService.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(54, 0);
+            this.label3.Location = new System.Drawing.Point(51, 0);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.label3.Size = new System.Drawing.Size(53, 24);
@@ -572,26 +555,180 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Prénom";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.tableLayoutPanel6);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(586, 598);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Profil";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Controls.Add(this.groupBox5, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.groupBox4, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(580, 592);
+            this.tableLayoutPanel6.TabIndex = 2;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox5.Location = new System.Drawing.Point(3, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(574, 290);
+            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Profil";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.tableLayoutPanel7);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(3, 299);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(574, 290);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Autorisation dáccès";
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.label16, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.cUser, 1, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 18);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(568, 269);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.Location = new System.Drawing.Point(3, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(278, 30);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Niveau d\'utilisateur :";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cUser
+            // 
+            this.cUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cUser.FormattingEnabled = true;
+            this.cUser.Location = new System.Drawing.Point(287, 3);
+            this.cUser.Name = "cUser";
+            this.cUser.Size = new System.Drawing.Size(278, 24);
+            this.cUser.TabIndex = 1;
+            this.cUser.SelectedValueChanged += new System.EventHandler(this.cUser_SelectedValueChanged);
+            // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(592, 567);
+            this.tabPage3.Size = new System.Drawing.Size(586, 598);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Caisse";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // kryptonButton3
+            // 
+            this.kryptonButton3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonButton3.Location = new System.Drawing.Point(397, 3);
+            this.kryptonButton3.Name = "kryptonButton3";
+            this.kryptonButton3.Palette = this.kryptonPalette1;
+            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton3.Size = new System.Drawing.Size(94, 28);
+            this.kryptonButton3.TabIndex = 28;
+            this.kryptonButton3.Values.Text = "OK";
+            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 1;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Controls.Add(this.tabControl1, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 1);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 2;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(600, 673);
+            this.tableLayoutPanel8.TabIndex = 1;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 4;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel9.Controls.Add(this.BNouveau, 1, 0);
+            this.tableLayoutPanel9.Controls.Add(this.BAnnuler, 3, 0);
+            this.tableLayoutPanel9.Controls.Add(this.kryptonButton3, 2, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 636);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(594, 34);
+            this.tableLayoutPanel9.TabIndex = 1;
+            // 
+            // BNouveau
+            // 
+            this.BNouveau.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BNouveau.Location = new System.Drawing.Point(297, 3);
+            this.BNouveau.Name = "BNouveau";
+            this.BNouveau.Palette = this.kryptonPalette1;
+            this.BNouveau.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BNouveau.Size = new System.Drawing.Size(94, 28);
+            this.BNouveau.TabIndex = 29;
+            this.BNouveau.Values.Text = "Nouveau";
+            // 
+            // BAnnuler
+            // 
+            this.BAnnuler.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BAnnuler.Location = new System.Drawing.Point(497, 3);
+            this.BAnnuler.Name = "BAnnuler";
+            this.BAnnuler.Palette = this.kryptonPalette1;
+            this.BAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.BAnnuler.Size = new System.Drawing.Size(94, 28);
+            this.BAnnuler.TabIndex = 29;
+            this.BAnnuler.Values.Text = "Annuler";
             // 
             // CollaboDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 596);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(600, 673);
+            this.Controls.Add(this.tableLayoutPanel8);
             this.Name = "CollaboDetailForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CollaboDetailForm";
+            this.Load += new System.EventHandler(this.CollaboDetailForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -607,6 +744,13 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -616,40 +760,38 @@
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCaissierClose;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox txtSkype;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtTelecopie;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtPortable;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox txtTelephone;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.ComboBox DepotCaisseCmbx;
+        private System.Windows.Forms.ComboBox txtPays;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtRegion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtVille;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtPostal;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtAdresse;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtMatricule;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtFonction;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtService;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox txtCollaboPrenom;
@@ -658,5 +800,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox txtComplement;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cUser;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton BNouveau;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton BAnnuler;
     }
 }

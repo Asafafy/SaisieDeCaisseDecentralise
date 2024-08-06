@@ -30,9 +30,7 @@ namespace SoftCaisse.Controls
             InitializeComponent();
             _context = new AppDbContext();
             _fCaisseRepository = new FCaisseRepository(_context);
-            //_fCollaborateurRepository = new FCollaborateurRepository(_context);
-            //_pSoucheVenteRepository =  new PSoucheVenteRepository(_context);
-            _fReglementRepository = new FCReglementRepository(_context);    
+            _fReglementRepository = new FCReglementRepository(_context);
             var data = _fCaisseRepository.GetAll();
             var reglement = _fReglementRepository.GetAll();
             var listCaissier  = data.Select(caissier=> new { Intitule = caissier.CA_Intitule , CaisseNum = caissier.CA_No }).ToList();
@@ -51,7 +49,6 @@ namespace SoftCaisse.Controls
 
         private void CaissierDataGridView_DoubleClick(object sender, EventArgs e)
         {
-            
             if (CaissierDataGridView.CurrentRow.Index != -1)
             {
                 string Intitule = (CaissierDataGridView.CurrentRow.Cells["CA_Intitule"].Value).ToString();

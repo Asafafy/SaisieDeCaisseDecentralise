@@ -1,17 +1,19 @@
 ﻿using SoftCaisse.Utils.Connection;
-using System;
 using System.Data.Entity;
-using System.IO;
-using System.Windows.Forms;
 
 namespace SoftCaisse.Models
 {
     public class SCDContext : DbContext
     {
         private static string connectionString = "";
-        public SCDContext() : base("ServeurCfg.txt") { }
+        public SCDContext() : base(Db.GetConnectionString("ServeurCfg.txt")) { }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Collaborateur> Collaborateur { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+        }
     }
 }

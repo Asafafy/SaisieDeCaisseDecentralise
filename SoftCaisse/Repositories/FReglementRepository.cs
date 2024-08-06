@@ -21,81 +21,62 @@ namespace SoftCaisse.Repositories
         }
         public List<CaisseControl> GetAllReglement(DateTime date,string controle,int caisse,int devise)
         {
-            //string[] tab_string= new string[]
-            //{
-            //    "Règlement",
-            //    "Règlement",
-            //    "Fond de caisse" ,
-            //    "Sortie de caisse" ,
-            //    "Sortie de caisse" ,
-            //    "Entrée de caisse" ,
-            //    "Remise à zéro" ,
-            //    "Entrée de caisse" 
-            //};
-
-            var liste = _context.F_CREGLEMENT.Where(u => u.CA_No == caisse && u.RG_Date <= date && u.RG_TypeReg != null).GroupBy(item => item.RG_TypeReg).ToList()
-                .Select(u =>
+            string[] type = new string[] { "Règlement", "Fond de caisse", "Sortie de caisse", "Entrée de caisse", "Remise à zéro" };
+            decimal[] valeur = new decimal[5];
+            _context.F_CREGLEMENT.Where(u => u.CA_No == caisse && u.RG_Date <= date && u.RG_Cloture == 0 && (u.N_Devise == devise || u.N_Devise == 0)).GroupBy(item => item.RG_TypeReg).ToList()
+                .ForEach(u =>
                 {
-                    string intitul = "";
-                    if(u.Key==0 || u.Key == 1)
+                    if (u.Key == 0 || u.Key == 1)
                     {
-                        intitul = "Règlement";
+                        valeur[0] += u.Sum(item => item.RG_Montant.Value);
                     }
-                    else if(u.Key==2)
+                    else if (u.Key == 2)
                     {
-                        intitul = "Fond de caisse";
+                        valeur[1] += u.Sum(item => item.RG_Montant.Value);
                     }
-                    else if(u.Key==3 || u.Key == 4)
+                    else if (u.Key == 3 || u.Key == 4)
                     {
-                        intitul = "Sortie de caisse";
+                        valeur[2] += u.Sum(item => item.RG_Montant.Value);
                     }
-                    else if(u.Key==5 || u.Key == 7)
+                    else if (u.Key == 5 || u.Key == 7)
                     {
-                        intitul = "Entrée de caisse";
+                        valeur[3] += u.Sum(item => item.RG_Montant.Value);
                     }
                     else
                     {
-                        intitul = "Remise à zéro";
+                        valeur[4] += u.Sum(item => item.RG_Montant.Value);
                     }
-
-                    return new CaisseControl()
-                    {
-                        intitule = intitul,
-                        Montant = devise==0 ? u.Where(i=>i.N_Devise == 0 ).Sum(item => item.RG_Montant) : u.Where(i => i.N_Devise == devise).Sum(item => item.RG_MontantDev)
-                    };
-
                 }
-
-            ).ToList();
-            //liste.ForEach(u => u.intitule = tab_string[Convert.ToInt32(u.intitule)]);
-            //var retour=new List<CaisseControl>();
-            //foreach (var item in tab_string)
-            //{
-            //    var obj = liste.FirstOrDefault(u => u.intitule == item);
-            //    retour.Add(new CaisseControl()
-            //    {
-            //        intitule = item,
-            //        Montant = obj==null ? 0 : obj.Montant
-            //    });
-            //}
-
-            return liste;
+            );
+            List<CaisseControl> list = new List<CaisseControl>();
+            for (int i = 0; i < type.Length; i++)
+            {
+                list.Add(new CaisseControl()
+                {
+                    intitule = type[i],
+                    Montant = valeur[i]
+                });
+            }
+            return list;
         }
 
         public List<CaisseControl> GetParModeReglement(DateTime date, string controle, int caisse, int devise)
         {
-            var liste = _context.F_CREGLEMENT.Where(u => u.CA_No == caisse && u.RG_Date <= date && u.RG_TypeReg!=6).GroupBy(item => item.N_Reglement).Select(u =>
-                new CaisseControl()
+            var liste = _context.F_CREGLEMENT.Where(u => u.CA_No == caisse && u.RG_Date <= date && (u.N_Devise == devise || u.N_Devise == 0) && u.RG_TypeReg != 6  && u.RG_Cloture==0).GroupBy(item => item.N_Reglement).ToList().Select(u =>
+            {
+                decimal mont1 = u.Where(i => i.RG_TypeReg != 4 && i.RG_TypeReg != 3).Sum(item => item.RG_Montant.Value);
+                decimal mont2 = u.Where(i => i.RG_TypeReg == 4 || i.RG_TypeReg == 3).Sum(item => item.RG_Montant.Value);
+                return new CaisseControl()
                 {
                     intitule = u.Key + "",
-                    Montant = devise == 0 ? u.Where(i => i.N_Devise == 0).Sum(item => item.RG_Montant) : u.Where(i => i.N_Devise == devise).Sum(item => item.RG_MontantDev),
-                    MontantConstate = devise == 0 ? u.Where(i => i.N_Devise == 0).Sum(item => item.RG_Montant) : u.Where(i => i.N_Devise == devise).Sum(item => item.RG_MontantDev),
+                    Montant = mont1-mont2,
+                    MontantConstate = mont1 - mont2,
                     Ecart = 0
-                }
-        
+                };
+            }        
             ).ToList();
             liste.ForEach(u => u.intitule = _context.P_REGLEMENT.FirstOrDefault(aa=>aa.cbMarq+""==u.intitule).R_Intitule);
-            decimal? somme = devise!=0? _context.F_CREGLEMENT.Where(u => u.CA_No == caisse && u.RG_Date <= date && (u.N_Devise == devise ) && u.RG_TypeReg == 6).Sum(u=>u.RG_MontantDev) : _context.F_CREGLEMENT.Where(u => u.CA_No == caisse && u.RG_Date <= date && (u.N_Devise == 0) && u.RG_TypeReg == 6).Sum(u => u.RG_Montant);
+            decimal? somme = _context.F_CREGLEMENT.Where(u => u.CA_No == caisse && u.RG_Date <= date && (u.N_Devise == devise || u.N_Devise == 0) && u.RG_TypeReg ==6 && u.RG_Cloture == 0).Sum(u=>u.RG_Montant) ;
             liste.Add(
                 new CaisseControl()
                 {
@@ -108,19 +89,32 @@ namespace SoftCaisse.Repositories
 
             return liste;
         }
-        public decimal get_somme_constate(List<CaisseControl> caisses)
+        public decimal get_somme_constate(DateTime date,int caisse)
         {
             decimal valeur = 0;
-            foreach (var item in caisses)
+            var liste = _context.F_CREGLEMENT.Where(u => u.CA_No == caisse && u.RG_Date <= date && u.RG_Cloture == 0).GroupBy(item => item.RG_TypeReg).ToList();
+
+            foreach (var item in liste)
             {
-                decimal montant = item.Montant != null ? item.Montant.Value : 0;
-                if(item.intitule!= "Sortie de caisse" && item.intitule!= "Remise à zéro")
+                if (item.Key == 0 || item.Key == 1)
                 {
-                    valeur +=montant;
+                    valeur += item.Sum(u => u.RG_Montant.Value);
+                }
+                else if (item.Key == 2)
+                {
+                    valeur += item.Sum(u => u.RG_Montant.Value);
+                }
+                else if (item.Key == 3 || item.Key == 4)
+                {
+                    valeur -= item.Sum(u => u.RG_Montant.Value);
+                }
+                else if (item.Key == 5 || item.Key == 7)
+                {
+                    valeur += item.Sum(u => u.RG_Montant.Value);
                 }
                 else
                 {
-                    valeur -= montant;
+                    valeur -= item.Sum(u=>u.RG_Montant.Value);
                 }
             }
             return valeur;

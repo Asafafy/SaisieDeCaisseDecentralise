@@ -10,7 +10,7 @@ namespace SoftCaisse.Repositories
         private readonly AppDbContext _context;
         public FCollaborateurRepository(AppDbContext context)
         {
-            _context = context;  
+            _context = context;
         }
         void IRepository<F_COLLABORATEUR>.Add(F_COLLABORATEUR entity)
         {
@@ -29,7 +29,7 @@ namespace SoftCaisse.Repositories
 
         public F_COLLABORATEUR GetById(int id)
         {
-            return _context.F_COLLABORATEUR.FirstOrDefault(u=>u.CO_No==id);
+            return _context.F_COLLABORATEUR.FirstOrDefault(u => u.CO_No == id);
         }
 
         void IRepository<F_COLLABORATEUR>.Update(F_COLLABORATEUR entity)

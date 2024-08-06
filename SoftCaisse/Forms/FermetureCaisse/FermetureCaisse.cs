@@ -18,20 +18,21 @@ namespace SoftCaisse.Forms.FermetureCaisse
     public partial class FermetureCaisse : Form
     {
         private readonly AppDbContext _context;
-        public FermetureCaisse()
+        private ToolStripMenuItem _menu;
+        public FermetureCaisse(ToolStripMenuItem menu)
         {
             InitializeComponent();
             label2.Text =  CaisseOuvert.CaisseText;
             _context = new AppDbContext();
+            _menu = menu;
         }
 
         private void fermeture_caisse(object sender, EventArgs e)
         {
-            if(checkBox1.Checked)
+            if (checkBox1.Checked)
             {
                 double montant = 0;
-                var liste = _context.F_CREGLEMENT.Where(u => u.CA_No+"" == CaisseOuvert.CaisseID && u.RG_Date <= DateTime.Now && u.RG_TypeReg != null).GroupBy(item => item.RG_TypeReg).ToList()
-                .Select(u =>
+                _context.F_CREGLEMENT.Where(u => u.CA_No + "" == CaisseOuvert.CaisseID && u.RG_Date==DateTime.Now && u.RG_TypeReg != null).GroupBy(item => item.RG_TypeReg).ToList().ForEach(u =>
                 {
                     string intitul = "";
                     decimal valeur = u.Sum(item => item.RG_Montant).Value;
@@ -39,19 +40,23 @@ namespace SoftCaisse.Forms.FermetureCaisse
                     {
                         montant += (double)valeur;
                     }
-                    if (u.Key == 2)
+                    else if (u.Key == 2)
                     {
                         montant += (double)valeur;
                     }
-                    if (u.Key == 3 || u.Key == 4)
+                    else if (u.Key == 3 || u.Key == 4)
                     {
                         montant -= (double)valeur;
                     }
-                    if (u.Key == 5 || u.Key == 7)
+                    else if (u.Key == 5 || u.Key == 7)
                     {
                         montant += (double)valeur;
                     }
-                    return montant;
+                    else
+                    {
+                        montant -= (double)valeur;
+                    }
+
                 });
                 string query = @"
                 Insert INTO [dbo].[F_CREGLEMENT](
@@ -140,6 +145,20 @@ namespace SoftCaisse.Forms.FermetureCaisse
                     DateTime.Now
                 );
             }
+            this.Close();
+            _menu.DropDownItems["ouvertureDeCaisseToolStripMenuItem"].Enabled = true;
+            _menu.DropDownItems["ventesComptoirToolStripMenuItem"].Enabled = false;
+            _menu.DropDownItems["mouvementsToolStripMenuItem"].Enabled = false;
+            _menu.DropDownItems["dOToolStripMenuItem"].Enabled = false;
+            _menu.DropDownItems["fermetureDeCaisseToolStripMenuItem"].Enabled = false;
+            MessageBox.Show(" Fermeture de caisse réussit! ","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+
+
+        private void annuler_caisse(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

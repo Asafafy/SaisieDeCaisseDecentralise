@@ -31,9 +31,9 @@ namespace SoftCaisse.Forms.GestionCaisse
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Ticket = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.Situation = new System.Windows.Forms.Label();
             this.Total = new System.Windows.Forms.Label();
@@ -59,7 +59,6 @@ namespace SoftCaisse.Forms.GestionCaisse
             // panel1
             // 
             this.panel1.AllowDrop = true;
-            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.panel3);
@@ -70,20 +69,6 @@ namespace SoftCaisse.Forms.GestionCaisse
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1075, 551);
             this.panel1.TabIndex = 0;
-            // 
-            // button5
-            // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button5.Location = new System.Drawing.Point(828, 513);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(231, 30);
-            this.button5.TabIndex = 12;
-            this.button5.Text = "Fermer";
-            this.button5.UseVisualStyleBackColor = false;
             // 
             // linkLabel1
             // 
@@ -101,12 +86,28 @@ namespace SoftCaisse.Forms.GestionCaisse
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel2.Controls.Add(this.Ticket);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.tableMouvement);
             this.panel2.Location = new System.Drawing.Point(173, 105);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(902, 385);
             this.panel2.TabIndex = 10;
+            // 
+            // Ticket
+            // 
+            this.Ticket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Ticket.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Ticket.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+            this.Ticket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Ticket.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Ticket.Location = new System.Drawing.Point(43, 317);
+            this.Ticket.Name = "Ticket";
+            this.Ticket.Size = new System.Drawing.Size(181, 39);
+            this.Ticket.TabIndex = 12;
+            this.Ticket.Text = "Generer Ticket";
+            this.Ticket.UseVisualStyleBackColor = false;
+            this.Ticket.Click += new System.EventHandler(this.Ticket_Click);
             // 
             // panel4
             // 
@@ -219,12 +220,11 @@ namespace SoftCaisse.Forms.GestionCaisse
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(3, 134);
+            this.button4.Location = new System.Drawing.Point(3, 164);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(147, 42);
             this.button4.TabIndex = 3;
             this.button4.Text = "Tickets archivés";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.ticket_archive);
             // 
@@ -235,12 +235,11 @@ namespace SoftCaisse.Forms.GestionCaisse
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(3, 96);
+            this.button3.Location = new System.Drawing.Point(3, 109);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(147, 42);
             this.button3.TabIndex = 2;
             this.button3.Text = "Détails";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.details_click);
             // 
@@ -251,12 +250,11 @@ namespace SoftCaisse.Forms.GestionCaisse
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(3, 57);
+            this.button2.Location = new System.Drawing.Point(3, 59);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(147, 42);
             this.button2.TabIndex = 1;
             this.button2.Text = "Documents";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.document_state);
             // 
@@ -272,7 +270,6 @@ namespace SoftCaisse.Forms.GestionCaisse
             this.button1.Size = new System.Drawing.Size(147, 39);
             this.button1.TabIndex = 0;
             this.button1.Text = "Mouvements";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.mouvement_click);
             // 
@@ -322,7 +319,6 @@ namespace SoftCaisse.Forms.GestionCaisse
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView tableMouvement;
@@ -340,5 +336,6 @@ namespace SoftCaisse.Forms.GestionCaisse
         private System.Windows.Forms.Label Situation;
         private System.Windows.Forms.Label Total;
         private System.Windows.Forms.Label Fond;
+        private System.Windows.Forms.Button Ticket;
     }
 }

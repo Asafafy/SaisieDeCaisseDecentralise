@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentVenteForm));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
-            this.btnCloseDocVentes = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -65,20 +64,9 @@
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.ButtonEdgeInset = 10;
             // 
-            // btnCloseDocVentes
-            // 
-            this.btnCloseDocVentes.Location = new System.Drawing.Point(681, 473);
-            this.btnCloseDocVentes.Name = "btnCloseDocVentes";
-            this.btnCloseDocVentes.Palette = this.kryptonPalette1;
-            this.btnCloseDocVentes.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnCloseDocVentes.Size = new System.Drawing.Size(105, 34);
-            this.btnCloseDocVentes.TabIndex = 25;
-            this.btnCloseDocVentes.Values.Text = "Fermer";
-            this.btnCloseDocVentes.Click += new System.EventHandler(this.btnCloseDocVentes_Click);
-            // 
             // kryptonButton3
             // 
-            this.kryptonButton3.Location = new System.Drawing.Point(570, 473);
+            this.kryptonButton3.Location = new System.Drawing.Point(695, 473);
             this.kryptonButton3.Name = "kryptonButton3";
             this.kryptonButton3.Palette = this.kryptonPalette1;
             this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -88,7 +76,7 @@
             // 
             // kryptonButton2
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(459, 473);
+            this.kryptonButton2.Location = new System.Drawing.Point(584, 473);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Palette = this.kryptonPalette1;
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -98,7 +86,7 @@
             // 
             // kryptonButton1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(348, 473);
+            this.kryptonButton1.Location = new System.Drawing.Point(473, 473);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Palette = this.kryptonPalette1;
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -144,7 +132,6 @@
             this.ClientSize = new System.Drawing.Size(815, 519);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.kryptonDataGridView1);
-            this.Controls.Add(this.btnCloseDocVentes);
             this.Controls.Add(this.kryptonButton3);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.kryptonButton1);
@@ -154,7 +141,6 @@
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Documents des ventes";
-            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -163,7 +149,6 @@
         #endregion
 
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnCloseDocVentes;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;

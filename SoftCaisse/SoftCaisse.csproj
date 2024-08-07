@@ -60,6 +60,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Article\DetailsArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Article\DetailsArticle.Designer.cs">
+      <DependentUpon>DetailsArticle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
       <SubType>UserControl</SubType>
@@ -333,6 +339,9 @@
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <Compile Include="Utils\Global\ConnectedUser.cs" />
     <EmbeddedResource Include="ClotureFacture.rdlc" />
+    <EmbeddedResource Include="Forms\Article\DetailsArticle.resx">
+      <DependentUpon>DetailsArticle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FondCaisse\FondCaisseDevisForm.resx">
       <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -505,9 +514,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\FamillesArticles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

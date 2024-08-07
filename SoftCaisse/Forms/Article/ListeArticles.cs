@@ -146,9 +146,9 @@ namespace SoftCaisse.Forms.Article
 
                     puTTC = puHT + (puHT * tauxTaxe / 100);
                     venteComptoirForm?.AjouterArticleDesigne(afRef, afDesign, 1, (decimal)infoSupplementaireArticle.PuHT, puTTC, UniteVente.UniteIntitule);
-
+                    DetailsArticle detailsArticle = new DetailsArticle();
+                    detailsArticle.Show();
                 }
-                Close();
             }
             catch (Exception ex)
             {

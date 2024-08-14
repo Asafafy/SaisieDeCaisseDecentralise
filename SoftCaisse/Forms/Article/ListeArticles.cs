@@ -1,6 +1,5 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.CustomModel;
-using SoftCaisse.Forms.VenteComptoir;
 using SoftCaisse.Models;
 using System;
 using System.Collections.Generic;
@@ -104,49 +103,47 @@ namespace SoftCaisse.Forms.Article
                 if (DataGridViewArticle.SelectedRows.Count > 0)
                 {
                     DataGridViewRow selectedRow = DataGridViewArticle.SelectedRows[0];
-                    string afRef = selectedRow.Cells["reference"].Value.ToString();
-                    string afDesign = selectedRow.Cells["designation"].Value.ToString();
-                    string faCodeFamille = selectedRow.Cells["famille"].Value.ToString();
+                    string referenceArt = selectedRow.Cells["reference"].Value.ToString();
+                    string designArt = selectedRow.Cells["designation"].Value.ToString();
 
-                    var infoSupplementaireArticle = _context.F_ARTICLE
-                        .Where(article => article.AR_Ref == afRef)
-                        .Select(article => new
-                        {
-                            PuHT = article.AR_PrixVen,
-                            PuTTC = article.AR_PrixTTC,
-                            article.AR_UniteVen,
-                        }).FirstOrDefault();
+                    // ============================ DEBUT ILAINA VE ============================
+                    //string faCodeFamille = selectedRow.Cells["famille"].Value.ToString();
+                    //var infoSupplementaireArticle = _context.F_ARTICLE
+                    //    .Where(article => article.AR_Ref == referenceArt)
+                    //    .Select(article => new
+                    //    {
+                    //        PuHT = article.AR_PrixVen,
+                    //        PuTTC = article.AR_PrixTTC,
+                    //        article.AR_UniteVen,
+                    //    }).FirstOrDefault();
+                    //var infoSupplementaireArticleTaxe = _context.F_ARTCOMPTA
+                    //    .Where(article => article.AR_Ref == referenceArt)
+                    //    .Select(article => new
+                    //    {
+                    //        IdentifiantChamp = article.ACP_Champ,
+                    //        CodeTaxeAComptabiliser = article.ACP_ComptaCPT_Taxe1
+                    //    }).FirstOrDefault();
+                    //var infoSupplementaireTaxe = _context.F_TAXE
+                    //    .Where(article => article.TA_Code == infoSupplementaireArticleTaxe.CodeTaxeAComptabiliser)
+                    //    .Select(article => new
+                    //    {
+                    //        TauxPriseEnCompte = article.TA_Taux,
+                    //    }).FirstOrDefault();
+                    //var UniteVente = _context.P_UNITE
+                    //    .Where(unite => unite.cbIndice == infoSupplementaireArticle.AR_UniteVen)
+                    //    .Select(unite => new
+                    //    {
+                    //        UniteIntitule = unite.U_Intitule
+                    //    }).FirstOrDefault();
+                    //decimal puTTC = (decimal)infoSupplementaireArticle.PuTTC;
+                    //decimal puHT = (decimal)infoSupplementaireArticle.PuHT;
+                    //decimal tauxTaxe = infoSupplementaireTaxe?.TauxPriseEnCompte ?? 0;
+                    //VenteComptoirForm venteComptoirForm = Application.OpenForms.OfType<VenteComptoirForm>().FirstOrDefault();
+                    //puTTC = puHT + (puHT * tauxTaxe / 100);
+                    //venteComptoirForm?.AjouterArticleDesigne(referenceArt, designArt, 1, (decimal)infoSupplementaireArticle.PuHT, puTTC, UniteVente.UniteIntitule);
+                    // ============================ FIN ILAINA VE ============================
 
-                    var infoSupplementaireArticleTaxe = _context.F_ARTCOMPTA
-                        .Where(article => article.AR_Ref == afRef)
-                        .Select(article => new
-                        {
-                            IdentifiantChamp = article.ACP_Champ,
-                            CodeTaxeAComptabiliser = article.ACP_ComptaCPT_Taxe1
-                        }).FirstOrDefault();
-
-                    var infoSupplementaireTaxe = _context.F_TAXE
-                        .Where(article => article.TA_Code == infoSupplementaireArticleTaxe.CodeTaxeAComptabiliser)
-                        .Select(article => new
-                        {
-                            TauxPriseEnCompte = article.TA_Taux,
-                        }).FirstOrDefault();
-                    var UniteVente = _context.P_UNITE
-                        .Where(unite => unite.cbIndice == infoSupplementaireArticle.AR_UniteVen)
-                        .Select(unite => new
-                        {
-                            UniteIntitule = unite.U_Intitule
-                        }).FirstOrDefault();
-
-                    decimal puTTC = (decimal)infoSupplementaireArticle.PuTTC;
-                    decimal puHT = (decimal)infoSupplementaireArticle.PuHT;
-                    decimal tauxTaxe = infoSupplementaireTaxe?.TauxPriseEnCompte ?? 0;
-
-                    VenteComptoirForm venteComptoirForm = Application.OpenForms.OfType<VenteComptoirForm>().FirstOrDefault();
-
-                    puTTC = puHT + (puHT * tauxTaxe / 100);
-                    venteComptoirForm?.AjouterArticleDesigne(afRef, afDesign, 1, (decimal)infoSupplementaireArticle.PuHT, puTTC, UniteVente.UniteIntitule);
-                    DetailsArticle detailsArticle = new DetailsArticle();
+                    DetailsArticle detailsArticle = new DetailsArticle(referenceArt, designArt);
                     detailsArticle.Show();
                 }
             }

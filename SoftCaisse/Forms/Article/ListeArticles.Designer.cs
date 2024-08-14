@@ -143,7 +143,7 @@
             this.LabelParametreFiltre.Location = new System.Drawing.Point(5, 25);
             this.LabelParametreFiltre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelParametreFiltre.Name = "LabelParametreFiltre";
-            this.LabelParametreFiltre.Size = new System.Drawing.Size(60, 25);
+            this.LabelParametreFiltre.Size = new System.Drawing.Size(49, 20);
             this.LabelParametreFiltre.TabIndex = 15;
             this.LabelParametreFiltre.Text = "Filtrer";
             this.LabelParametreFiltre.Click += new System.EventHandler(this.labelParametreFiltre_Click);
@@ -216,7 +216,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(29, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 28);
+            this.label2.Size = new System.Drawing.Size(141, 21);
             this.label2.TabIndex = 12;
             this.label2.Text = "Filtre sous-familles";
             // 
@@ -225,7 +225,7 @@
             this.cmbxSousFamille4.DropDownWidth = 195;
             this.cmbxSousFamille4.Location = new System.Drawing.Point(626, 52);
             this.cmbxSousFamille4.Name = "cmbxSousFamille4";
-            this.cmbxSousFamille4.Size = new System.Drawing.Size(195, 25);
+            this.cmbxSousFamille4.Size = new System.Drawing.Size(195, 21);
             this.cmbxSousFamille4.TabIndex = 14;
             this.cmbxSousFamille4.SelectedIndexChanged += new System.EventHandler(this.cmbxSousFamille4_SelectedIndexChanged);
             // 
@@ -234,7 +234,7 @@
             this.cmbxSousFamille3.DropDownWidth = 195;
             this.cmbxSousFamille3.Location = new System.Drawing.Point(330, 52);
             this.cmbxSousFamille3.Name = "cmbxSousFamille3";
-            this.cmbxSousFamille3.Size = new System.Drawing.Size(195, 25);
+            this.cmbxSousFamille3.Size = new System.Drawing.Size(195, 21);
             this.cmbxSousFamille3.TabIndex = 13;
             this.cmbxSousFamille3.SelectedIndexChanged += new System.EventHandler(this.cmbxSousFamille3_SelectedIndexChanged);
             // 
@@ -243,7 +243,7 @@
             this.cmbxSousFamille2.DropDownWidth = 195;
             this.cmbxSousFamille2.Location = new System.Drawing.Point(34, 52);
             this.cmbxSousFamille2.Name = "cmbxSousFamille2";
-            this.cmbxSousFamille2.Size = new System.Drawing.Size(195, 25);
+            this.cmbxSousFamille2.Size = new System.Drawing.Size(195, 21);
             this.cmbxSousFamille2.TabIndex = 12;
             this.cmbxSousFamille2.SelectedIndexChanged += new System.EventHandler(this.cmbxSousFamille2_SelectedIndexChanged);
             // 
@@ -301,7 +301,7 @@
             this.dateTimePicker2.Location = new System.Drawing.Point(663, 46);
             this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(179, 27);
+            this.dateTimePicker2.Size = new System.Drawing.Size(179, 23);
             this.dateTimePicker2.TabIndex = 5;
             // 
             // label10
@@ -311,7 +311,7 @@
             this.label10.Location = new System.Drawing.Point(626, 42);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(21, 29);
+            this.label10.Size = new System.Drawing.Size(19, 25);
             this.label10.TabIndex = 4;
             this.label10.Text = "-";
             // 
@@ -320,7 +320,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(421, 46);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(180, 27);
+            this.dateTimePicker1.Size = new System.Drawing.Size(180, 23);
             this.dateTimePicker1.TabIndex = 3;
             // 
             // comboBoxComprisEntre
@@ -329,7 +329,7 @@
             this.comboBoxComprisEntre.Location = new System.Drawing.Point(208, 45);
             this.comboBoxComprisEntre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBoxComprisEntre.Name = "comboBoxComprisEntre";
-            this.comboBoxComprisEntre.Size = new System.Drawing.Size(206, 28);
+            this.comboBoxComprisEntre.Size = new System.Drawing.Size(206, 23);
             this.comboBoxComprisEntre.TabIndex = 2;
             this.comboBoxComprisEntre.Text = "compris entre";
             // 
@@ -339,7 +339,7 @@
             this.comboBoxCommercialisation.Location = new System.Drawing.Point(12, 45);
             this.comboBoxCommercialisation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBoxCommercialisation.Name = "comboBoxCommercialisation";
-            this.comboBoxCommercialisation.Size = new System.Drawing.Size(188, 28);
+            this.comboBoxCommercialisation.Size = new System.Drawing.Size(188, 23);
             this.comboBoxCommercialisation.TabIndex = 1;
             this.comboBoxCommercialisation.Text = "1ère commercialisation";
             // 
@@ -350,7 +350,7 @@
             this.labelGroupBoxFiltrer.Location = new System.Drawing.Point(7, 18);
             this.labelGroupBoxFiltrer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGroupBoxFiltrer.Name = "labelGroupBoxFiltrer";
-            this.labelGroupBoxFiltrer.Size = new System.Drawing.Size(60, 25);
+            this.labelGroupBoxFiltrer.Size = new System.Drawing.Size(49, 20);
             this.labelGroupBoxFiltrer.TabIndex = 0;
             this.labelGroupBoxFiltrer.Text = "Filtrer";
             // 
@@ -382,7 +382,7 @@
             this.TextBoxBarreDeRecherche.Location = new System.Drawing.Point(394, 25);
             this.TextBoxBarreDeRecherche.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxBarreDeRecherche.Name = "TextBoxBarreDeRecherche";
-            this.TextBoxBarreDeRecherche.Size = new System.Drawing.Size(602, 26);
+            this.TextBoxBarreDeRecherche.Size = new System.Drawing.Size(602, 23);
             this.TextBoxBarreDeRecherche.TabIndex = 2;
             this.TextBoxBarreDeRecherche.TextChanged += new System.EventHandler(this.TextBoxBarreDeRecherche_TextChanged);
             // 
@@ -404,7 +404,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(18, 408);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 28);
+            this.label1.Size = new System.Drawing.Size(98, 21);
             this.label1.TabIndex = 11;
             this.label1.Text = "Filtre Famille";
             // 
@@ -413,7 +413,7 @@
             this.cmbxFamille.DropDownWidth = 195;
             this.cmbxFamille.Location = new System.Drawing.Point(23, 439);
             this.cmbxFamille.Name = "cmbxFamille";
-            this.cmbxFamille.Size = new System.Drawing.Size(195, 25);
+            this.cmbxFamille.Size = new System.Drawing.Size(195, 21);
             this.cmbxFamille.TabIndex = 10;
             this.cmbxFamille.SelectedIndexChanged += new System.EventHandler(this.cmbxFamille_SelectedIndexChanged);
             // 
@@ -424,7 +424,7 @@
             this.labelTous.Location = new System.Drawing.Point(31, 19);
             this.labelTous.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTous.Name = "labelTous";
-            this.labelTous.Size = new System.Drawing.Size(169, 35);
+            this.labelTous.Size = new System.Drawing.Size(136, 28);
             this.labelTous.TabIndex = 9;
             this.labelTous.Text = "Afficher tous";
             this.labelTous.Click += new System.EventHandler(this.labelTous_Click);
@@ -458,7 +458,7 @@
             // 
             // ListeArticles
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1126, 593);
             this.Controls.Add(this.GroupBoxGeneralArticle);

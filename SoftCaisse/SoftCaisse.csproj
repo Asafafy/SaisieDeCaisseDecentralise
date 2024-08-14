@@ -323,6 +323,7 @@
     <Compile Include="Repositories\ArticleRepository.cs" />
     <Compile Include="Repositories\ArtStockRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\FArtilceRepository.cs" />
     <Compile Include="Repositories\FBilletageRepository.cs" />
     <Compile Include="Repositories\FCaisseRepository.cs" />
     <Compile Include="Repositories\FCollaborateurRepository.cs" />

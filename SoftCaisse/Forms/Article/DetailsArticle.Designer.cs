@@ -72,7 +72,7 @@ namespace SoftCaisse.Forms.Article
             this.labelPrixDeVente = new System.Windows.Forms.Label();
             this.labelPrixDAchat = new System.Windows.Forms.Label();
             this.labelCoefficient = new System.Windows.Forms.Label();
-            this.comboBoxPrixDAchat = new System.Windows.Forms.ComboBox();
+            this.cmbBxUnitePrixDeVente = new System.Windows.Forms.ComboBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPageCategoriesTarifaires = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -559,7 +559,7 @@ namespace SoftCaisse.Forms.Article
             this.labelType.Size = new System.Drawing.Size(31, 33);
             this.labelType.TabIndex = 27;
             this.labelType.Text = "Type";
-            this.labelType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelType.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // comboBox7
             // 
@@ -583,7 +583,7 @@ namespace SoftCaisse.Forms.Article
             this.labelConditionnement.Size = new System.Drawing.Size(86, 36);
             this.labelConditionnement.TabIndex = 17;
             this.labelConditionnement.Text = "Conditionnement";
-            this.labelConditionnement.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelConditionnement.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelSuiviDeStock
             // 
@@ -596,7 +596,7 @@ namespace SoftCaisse.Forms.Article
             this.labelSuiviDeStock.Size = new System.Drawing.Size(74, 36);
             this.labelSuiviDeStock.TabIndex = 15;
             this.labelSuiviDeStock.Text = "Suivi de stock";
-            this.labelSuiviDeStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelSuiviDeStock.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelNomenclature
             // 
@@ -609,7 +609,7 @@ namespace SoftCaisse.Forms.Article
             this.labelNomenclature.Size = new System.Drawing.Size(73, 33);
             this.labelNomenclature.TabIndex = 13;
             this.labelNomenclature.Text = "Nomenclature";
-            this.labelNomenclature.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelNomenclature.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelFamille
             // 
@@ -622,7 +622,7 @@ namespace SoftCaisse.Forms.Article
             this.labelFamille.Size = new System.Drawing.Size(39, 33);
             this.labelFamille.TabIndex = 11;
             this.labelFamille.Text = "Famille";
-            this.labelFamille.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelFamille.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelDesignation
             // 
@@ -635,7 +635,7 @@ namespace SoftCaisse.Forms.Article
             this.labelDesignation.Size = new System.Drawing.Size(63, 33);
             this.labelDesignation.TabIndex = 4;
             this.labelDesignation.Text = "Désignation";
-            this.labelDesignation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelDesignation.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelReference
             // 
@@ -648,7 +648,7 @@ namespace SoftCaisse.Forms.Article
             this.labelReference.Size = new System.Drawing.Size(57, 33);
             this.labelReference.TabIndex = 0;
             this.labelReference.Text = "Référence";
-            this.labelReference.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelReference.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // comboBox1
             // 
@@ -769,7 +769,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel3.Controls.Add(this.labelPrixDeVente, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.labelPrixDAchat, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.labelCoefficient, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.comboBoxPrixDAchat, 2, 2);
+            this.tableLayoutPanel3.Controls.Add(this.cmbBxUnitePrixDeVente, 2, 2);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(1, 2);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -854,7 +854,7 @@ namespace SoftCaisse.Forms.Article
             this.labelUniteDeVente.Size = new System.Drawing.Size(77, 32);
             this.labelUniteDeVente.TabIndex = 18;
             this.labelUniteDeVente.Text = "Unité de vente";
-            this.labelUniteDeVente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelUniteDeVente.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelCoutStandard
             // 
@@ -867,7 +867,7 @@ namespace SoftCaisse.Forms.Article
             this.labelCoutStandard.Size = new System.Drawing.Size(73, 30);
             this.labelCoutStandard.TabIndex = 14;
             this.labelCoutStandard.Text = "Coût standard";
-            this.labelCoutStandard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelCoutStandard.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelDernierPrixDAchat
             // 
@@ -880,7 +880,7 @@ namespace SoftCaisse.Forms.Article
             this.labelDernierPrixDAchat.Size = new System.Drawing.Size(98, 31);
             this.labelDernierPrixDAchat.TabIndex = 8;
             this.labelDernierPrixDAchat.Text = "Dernier prix d\'achat";
-            this.labelDernierPrixDAchat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelDernierPrixDAchat.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelPrixDeVente
             // 
@@ -893,7 +893,7 @@ namespace SoftCaisse.Forms.Article
             this.labelPrixDeVente.Size = new System.Drawing.Size(69, 32);
             this.labelPrixDeVente.TabIndex = 4;
             this.labelPrixDeVente.Text = "Prix de vente";
-            this.labelPrixDeVente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelPrixDeVente.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelPrixDAchat
             // 
@@ -906,7 +906,7 @@ namespace SoftCaisse.Forms.Article
             this.labelPrixDAchat.Size = new System.Drawing.Size(62, 31);
             this.labelPrixDAchat.TabIndex = 0;
             this.labelPrixDAchat.Text = "Prix d\'achat";
-            this.labelPrixDAchat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelPrixDAchat.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelCoefficient
             // 
@@ -919,17 +919,17 @@ namespace SoftCaisse.Forms.Article
             this.labelCoefficient.Size = new System.Drawing.Size(57, 30);
             this.labelCoefficient.TabIndex = 5;
             this.labelCoefficient.Text = "Coefficient";
-            this.labelCoefficient.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelCoefficient.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // comboBoxPrixDAchat
+            // cmbBxUnitePrixDeVente
             // 
-            this.comboBoxPrixDAchat.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxPrixDAchat.FormattingEnabled = true;
-            this.comboBoxPrixDAchat.Location = new System.Drawing.Point(302, 63);
-            this.comboBoxPrixDAchat.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBoxPrixDAchat.Name = "comboBoxPrixDAchat";
-            this.comboBoxPrixDAchat.Size = new System.Drawing.Size(71, 21);
-            this.comboBoxPrixDAchat.TabIndex = 37;
+            this.cmbBxUnitePrixDeVente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBxUnitePrixDeVente.FormattingEnabled = true;
+            this.cmbBxUnitePrixDeVente.Location = new System.Drawing.Point(302, 63);
+            this.cmbBxUnitePrixDeVente.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbBxUnitePrixDeVente.Name = "cmbBxUnitePrixDeVente";
+            this.cmbBxUnitePrixDeVente.Size = new System.Drawing.Size(71, 21);
+            this.cmbBxUnitePrixDeVente.TabIndex = 37;
             // 
             // tabControl2
             // 
@@ -3656,7 +3656,7 @@ namespace SoftCaisse.Forms.Article
         private TextBox textBox4;
         private TextBox textBox7;
         private TextBox textBox10;
-        private ComboBox comboBoxPrixDAchat;
+        private ComboBox cmbBxUnitePrixDeVente;
         private FlowLayoutPanel flowLayoutPanel5;
         private GroupBox groupBox1;
         private TableLayoutPanel tableLayoutPanel7;

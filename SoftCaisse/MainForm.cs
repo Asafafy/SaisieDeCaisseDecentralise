@@ -5,6 +5,7 @@ using SoftCaisse.Forms.ClotureCaisse;
 using SoftCaisse.Forms.ConnexBase;
 using SoftCaisse.Forms.ControlCaisse;
 using SoftCaisse.Forms.DocumentVente;
+using SoftCaisse.Forms.Famille;
 using SoftCaisse.Forms.FermetureCaisse;
 using SoftCaisse.Forms.GestionCaisse;
 using SoftCaisse.Forms.Login;
@@ -182,6 +183,12 @@ namespace SoftCaisse
         private void artilceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ListeArticles("").Show();
+        }
+
+        private void familleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListeFamillesDArticles listeFamillesDArticles = new ListeFamillesDArticles();
+            listeFamillesDArticles.Show();
         }
     }
 }

@@ -60,6 +60,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomModel\Ffamille.cs" />
+    <Compile Include="DTO\DetailsArticle\CategoriesTarifaires.cs" />
+    <Compile Include="DTO\DetailsArticle\DepotParametres.cs" />
+    <Compile Include="DTO\DetailsArticle\DocsAttaches.cs" />
+    <Compile Include="DTO\DetailsArticle\GlossaireDetailsArticle.cs" />
+    <Compile Include="DTO\DetailsArticle\ModeleDEnregistrement.cs" />
+    <Compile Include="DTO\DetailsArticle\TarifsClients.cs" />
     <Compile Include="Forms\Article\DetailsArticle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +78,12 @@
     </Compile>
     <Compile Include="Forms\Article\InterrogationStockArticle.Designer.cs">
       <DependentUpon>InterrogationStockArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Famille\ListeFamillesDArticles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Famille\ListeFamillesDArticles.Designer.cs">
+      <DependentUpon>ListeFamillesDArticles.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
@@ -118,7 +131,7 @@
     </Compile>
     <Compile Include="DTO\ArtClient.cs" />
     <Compile Include="DTO\ArtCompta.cs" />
-    <Compile Include="DTO\Article.cs" />
+    <Compile Include="DTO\DetailsArticle\Article.cs" />
     <Compile Include="DTO\ArtStock.cs" />
     <Compile Include="DTO\CaisseInfo.cs" />
     <Compile Include="DTO\DataInfo.cs" />
@@ -282,7 +295,10 @@
     <Compile Include="CustomModel\Freglement.cs" />
     <Compile Include="Models\F_ARTCLIENT.cs" />
     <Compile Include="Models\F_ARTCOMPTA.cs" />
+    <Compile Include="Models\F_ARTGLOSS.cs" />
     <Compile Include="Models\F_ARTICLE.cs" />
+    <Compile Include="Models\F_ARTICLEMEDIA.cs" />
+    <Compile Include="Models\F_ARTMODELE.cs" />
     <Compile Include="Models\F_ARTSTOCK.cs" />
     <Compile Include="Models\F_BILLETPIECE.cs" />
     <Compile Include="Models\F_CAISSE.cs" />
@@ -292,13 +308,17 @@
     <Compile Include="Models\F_COMPTET.cs" />
     <Compile Include="Models\F_CREGLEMENT.cs" />
     <Compile Include="Models\F_DEPOT.cs" />
+    <Compile Include="Models\F_DEPOTEMPL.cs" />
     <Compile Include="Models\F_DOCCURRENTPIECE.cs" />
     <Compile Include="Models\F_DOCENTETE.cs" />
     <Compile Include="Models\F_DOCLIGNE.cs" />
     <Compile Include="Models\F_DOCREGL.cs" />
     <Compile Include="Models\F_FAMILLE.cs" />
+    <Compile Include="Models\F_GLOSSAIRE.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
     <Compile Include="Models\F_LIGNEARCHIVE.cs" />
+    <Compile Include="Models\F_MODELE.cs" />
+    <Compile Include="Models\F_PAYS.cs" />
     <Compile Include="Models\F_REGLEARCHIVE.cs" />
     <Compile Include="Models\F_REGLECH.cs" />
     <Compile Include="Models\F_TAXE.cs" />
@@ -351,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Article\InterrogationStockArticle.resx">
       <DependentUpon>InterrogationStockArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Famille\ListeFamillesDArticles.resx">
+      <DependentUpon>ListeFamillesDArticles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FondCaisse\FondCaisseDevisForm.resx">
       <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
@@ -524,7 +547,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Multimedia\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

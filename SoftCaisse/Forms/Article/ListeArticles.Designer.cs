@@ -404,9 +404,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(18, 408);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 21);
+            this.label1.Size = new System.Drawing.Size(116, 21);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Filtre Famille";
+            this.label1.Text = "Filtre catalogue";
             // 
             // cmbxFamille
             // 

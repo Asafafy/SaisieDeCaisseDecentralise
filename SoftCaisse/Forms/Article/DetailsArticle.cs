@@ -1,4 +1,6 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
+using SoftCaisse.DTO;
+using SoftCaisse.DTO.DetailsArticle;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
 using System.Collections.Generic;
@@ -60,7 +62,9 @@ namespace SoftCaisse.Forms.Article
             textBox9.Text = ConserverChiffresApresVirgule(selectedArt.AR_PrixVen);
             textBox8.Text = ConserverChiffresApresVirgule(selectedArt.AR_CoutStd);
 
-            var listeFamilles = _context.F_FAMILLE.Where(famille => famille.CL_No1 != 0).Select(u => new Controle() { item = u.FA_CodeFamille }).ToList();
+            var listeFamilles = _context.F_FAMILLE.Where(famille => famille.CL_No1 != 0)
+                .Select(u => new Controle() { item = u.FA_CodeFamille })
+                .ToList();
             // Trouver l'élément correspondant à la famille de cette article séléctionné dans la liste des familles
             var selectedFamille = listeFamilles.FirstOrDefault(famille => famille.item == selectedArt.FA_CodeFamille);
             // Obtenir l'index de la famille
@@ -99,79 +103,334 @@ namespace SoftCaisse.Forms.Article
             comboBox2.DisplayMember = "Value";
             comboBox2.SelectedIndex = selectedArt.AR_Condition.Value;
 
+            // DÉBUT SOUS-TAB "CATÉGORIES TARIFAIRES"
             _bindingSource = new DataTable();
             _bindingSource.Columns.Add(new DataColumn("Catégorie"));
             _bindingSource.Columns.Add(new DataColumn("Coefficient"));
             _bindingSource.Columns.Add(new DataColumn("Prix de vente"));
             _bindingSource.Columns.Add(new DataColumn("Remise"));
-            // TODO: Tsy haiko hoe taiza ireo données ireo.
-            //foreach (var article in listeArticlesSousFamille)
-            //{
-            //    _bindingSource.Rows.Add(article.AR_Design, article.AR_Ref, article.FA_CodeFamille);
-            //}
+            var catTarifaires = _context.F_ARTCLIENT.Where(cat => cat.AR_Ref == selectedArt.AR_Ref && cat.AC_Categorie != 0)
+                .Select(cat => new CategoriesTarifaires { AC_Categorie = cat.AC_Categorie, AC_Coef = cat.AC_Coef, AC_PrixVen = cat.AC_PrixVen, AC_Remise = cat.AC_Remise, AC_PrixTTC = cat.AC_PrixTTC })
+                .ToList();
+            if (catTarifaires.Count < 3)
+            {
+                bool contains1 = new[] { 1 }.All(val => catTarifaires.Any(cat => cat.AC_Categorie == val));
+                bool contains2 = new[] { 2 }.All(val => catTarifaires.Any(cat => cat.AC_Categorie == val));
+                bool contains3 = new[] { 3 }.All(val => catTarifaires.Any(cat => cat.AC_Categorie == val));
+                if (!contains1 && !contains2 && !contains3)
+                {
+                    catTarifaires.Insert(0, new CategoriesTarifaires { AC_Categorie = 1, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                    catTarifaires.Insert(1, new CategoriesTarifaires { AC_Categorie = 2, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                    catTarifaires.Insert(2, new CategoriesTarifaires { AC_Categorie = 3, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                }
+                if (contains1 && !contains2 && !contains3)
+                {
+                    catTarifaires.Insert(1, new CategoriesTarifaires { AC_Categorie = 2, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                    catTarifaires.Insert(2, new CategoriesTarifaires { AC_Categorie = 3, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                }
+                else if (contains2 && !contains1 && !contains3)
+                {
+                    catTarifaires.Insert(0, new CategoriesTarifaires { AC_Categorie = 1, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                    catTarifaires.Insert(2, new CategoriesTarifaires { AC_Categorie = 3, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                }
+                else if (contains3 && !contains1 && !contains2)
+                {
+                    catTarifaires.Insert(0, new CategoriesTarifaires { AC_Categorie = 1, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                    catTarifaires.Insert(1, new CategoriesTarifaires { AC_Categorie = 2, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                }
+                else if (contains1 && contains2 && !contains3)
+                {
+                    catTarifaires.Insert(2, new CategoriesTarifaires { AC_Categorie = 3, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                }
+                else if (contains1 && contains3 && !contains2)
+                {
+                    catTarifaires.Insert(1, new CategoriesTarifaires { AC_Categorie = 2, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                }
+                else if (contains2 & contains3 && !contains1)
+                {
+                    catTarifaires.Insert(0, new CategoriesTarifaires { AC_Categorie = 1, AC_Coef = selectedArt.AR_Coef, AC_PrixVen = selectedArt.AR_PrixVen, AC_Remise = 0, AC_PrixTTC = selectedArt.AR_PrixTTC });
+                }
+            }
+            catTarifaires.OrderBy(cat => cat.AC_Categorie);
+            List<string> listeACCategorie = new List<string> { "Grossistes", "Détaillants", "Clients comptoir" };
+            foreach (var catTarif in catTarifaires)
+            {
+                var coef = "";
+                var prixVente = "";
+                if (catTarif.AC_Coef != 0)
+                {
+                    coef = ConserverChiffresApresVirgule(catTarif.AC_Coef);
+                }
+                else
+                {
+                    coef = ConserverChiffresApresVirgule(selectedArt.AR_Coef);
+                }
+                if (catTarif.AC_PrixVen != 0)
+                {
+                    prixVente = ConserverChiffresApresVirgule(catTarif.AC_PrixVen) + (catTarif.AC_PrixTTC == 0 ? " HT" : " TTC");
+                }
+                else
+                {
+                    prixVente = ConserverChiffresApresVirgule(selectedArt.AR_PrixVen) + (selectedArt.AR_PrixTTC == 0 ? " HT" : " TTC");
+                }
+                _bindingSource.Rows.Add(listeACCategorie[(int)catTarif.AC_Categorie - 1], coef, prixVente, ConserverChiffresApresVirgule(catTarif.AC_Remise));
+            }
             dataGridView1.DataSource = _bindingSource;
+            // FIN SOUS-TAB "CATÉGORIES TARIFAIRES"
+
+            // DÉBUT SOUS-TAB "TARIFS CLIENTS"
+            _bindingSource = new DataTable();
+            _bindingSource.Columns.Add(new DataColumn("Client"));
+            _bindingSource.Columns.Add(new DataColumn("Réf. Client"));
+            _bindingSource.Columns.Add(new DataColumn("Coefficient"));
+            _bindingSource.Columns.Add(new DataColumn("Prix de vente"));
+            _bindingSource.Columns.Add(new DataColumn("Remise"));
+            var tarifsClients = _context.F_ARTCLIENT.Where(cat => cat.AR_Ref == selectedArt.AR_Ref && cat.CT_Num != null)
+                .Select(cat => new TarifsClients { CT_Num = cat.CT_Num, AC_RefClient = cat.AC_RefClient, AC_Coef = cat.AC_Coef, AC_PrixVen = cat.AC_PrixVen, AC_Remise = cat.AC_Remise })
+                .OrderBy(cat => cat.CT_Num)
+                .ToList();
+            foreach (var catTarif in tarifsClients)
+            {
+                _bindingSource.Rows.Add(catTarif.CT_Num, catTarif.AC_RefClient, catTarif.AC_Coef, catTarif.AC_PrixVen, catTarif.AC_Remise);
+            }
+            dataGridView2.DataSource = _bindingSource;
+            // FIN SOUS-TAB "TARIFS CLIENTS"
             // =========================================================== FIN TAB PAGES "IDENTIFICATION" =========================================================== */
 
 
             // =========================================================== DÉBUT TAB PAGES "DESCIRPTIF" =========================================================== */
-            //TODO: ETO IZAO: REHEFA MISELECTIONNE AVY EO AMIN'NY TOUS AN'NY CAT1 DIA MISY ERREUR
-            //var listeCataloguesNo1 = _context.F_CATALOGUE.Where(u => u.CL_Niveau == 0).Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" }).ToList();
-            //var selectedCatNo1 = listeCataloguesNo1.FirstOrDefault(catal => catal.valeur == selectedArt?.CL_No1.ToString());
-            //int selectedCatNo1Index = listeCataloguesNo1.IndexOf(selectedCatNo1);
-            //comboBoxCatal1.DataSource = listeCataloguesNo1;
-            //comboBoxCatal1.DisplayMember = "item";
-            //comboBoxCatal1.ValueMember = "valeur";
-            //comboBoxCatal1.SelectedIndex = selectedCatNo1Index;
+            var listeCataloguesNo1 = _context.F_CATALOGUE.Where(u => u.CL_Niveau == 0)
+                .Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" })
+                .ToList();
+            var selectedCatNo1 = listeCataloguesNo1.FirstOrDefault(catal => catal.valeur == selectedArt?.CL_No1.ToString());
+            int selectedCatNo1Index = listeCataloguesNo1.IndexOf(selectedCatNo1);
+            comboBoxCatal1.DataSource = listeCataloguesNo1;
+            comboBoxCatal1.DisplayMember = "item";
+            comboBoxCatal1.ValueMember = "valeur";
+            comboBoxCatal1.SelectedIndex = selectedCatNo1Index;
+            var listeCataloguesNo2 = _context.F_CATALOGUE.Where(catal => catal.CL_Niveau == 1 && catal.CL_NoParent.ToString() == selectedCatNo1.valeur)
+                .Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" })
+                .ToList();
+            var selectedCatNo2 = listeCataloguesNo2.FirstOrDefault(catal => catal.valeur == selectedArt?.CL_No2.ToString());
+            if (selectedCatNo2 == null)
+            {
+                comboBoxCatal2.Visible = false;
+                comboBoxCatal3.Visible = false;
+                comboBoxCatal4.Visible = false;
+            }
+            else
+            {
+                int selectedCatNo2Index = listeCataloguesNo2.IndexOf(selectedCatNo2);
+                comboBoxCatal2.DataSource = listeCataloguesNo2;
+                comboBoxCatal2.DisplayMember = "item";
+                comboBoxCatal2.ValueMember = "valeur";
+                comboBoxCatal2.SelectedIndex = selectedCatNo2Index;
+                var listeCataloguesNo3 = _context.F_CATALOGUE.Where(catal => catal.CL_Niveau == 2 && catal.CL_NoParent.ToString() == selectedCatNo2.valeur)
+                    .Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" })
+                    .ToList();
+                var selectedCatNo3 = listeCataloguesNo3.FirstOrDefault(catal => catal.valeur == selectedArt?.CL_No3.ToString());
+                if (selectedCatNo3 == null)
+                {
+                    comboBoxCatal3.Visible = false;
+                    comboBoxCatal4.Visible = false;
+                }
+                else
+                {
+                    int selectedCatNo3Index = listeCataloguesNo3.IndexOf(selectedCatNo3);
+                    comboBoxCatal3.DataSource = listeCataloguesNo3;
+                    comboBoxCatal3.DisplayMember = "item";
+                    comboBoxCatal3.ValueMember = "valeur";
+                    comboBoxCatal3.SelectedIndex = selectedCatNo3Index;
+                    var listeCataloguesNo4 = _context.F_CATALOGUE.Where(catal => catal.CL_Niveau == 3 && catal.CL_NoParent.ToString() == selectedCatNo3.valeur)
+                        .Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" })
+                        .ToList();
+                    var selectedCatNo4 = listeCataloguesNo4.FirstOrDefault(catal => catal.valeur == selectedArt?.CL_No4.ToString());
+                    if (selectedCatNo4 == null)
+                    {
+                        comboBoxCatal4.Visible = false;
+                    }
+                    else
+                    {
+                        int selectedCatNo4Index = listeCataloguesNo4.IndexOf(selectedCatNo4);
+                        comboBoxCatal4.DataSource = listeCataloguesNo4;
+                        comboBoxCatal4.DisplayMember = "item";
+                        comboBoxCatal4.ValueMember = "valeur";
+                        comboBoxCatal4.SelectedIndex = selectedCatNo4Index;
+                    }
+                }
+            }
 
-            //var listeCataloguesNo2 = _context.F_CATALOGUE.Where(catal => catal.CL_Niveau == 1 && catal.CL_NoParent.ToString() == selectedCatNo1.valeur).Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" }).ToList();
-            //var selectedCatNo2 = listeCataloguesNo2.FirstOrDefault(catal => catal.valeur == selectedArt?.CL_No2.ToString());
-            //if (listeCataloguesNo2.IndexOf(selectedCatNo2) == -1)
-            //{
-            //    comboBoxCatal2.Visible = false;
-            //}
-            //else
-            //{
-            //    int selectedCatNo2Index = listeCataloguesNo2.IndexOf(selectedCatNo2);
-            //    comboBoxCatal2.DataSource = listeCataloguesNo2;
-            //    comboBoxCatal2.DisplayMember = "item";
-            //    comboBoxCatal2.ValueMember = "valeur";
-            //    comboBoxCatal2.SelectedIndex = selectedCatNo2Index;
-            //}
+            textBoxLangue1.Text = selectedArt.AR_Langue1;
+            textBoxLangue2.Text = selectedArt.AR_Langue2;
+            textBoxCodeFiscal.Text = selectedArt.AR_CodeFiscal;
+            textBoxCodeEDI.Text = selectedArt.AR_EdiCode;
+            textBoxRaccourci.Text = selectedArt.AR_Raccourci;
+            var listePays = _context.F_PAYS.Select(u => new Controle() { item = u.PA_Intitule, valeur = u.PA_No + "" }).ToList();
+            var selectedPays = listePays.FirstOrDefault(pays => pays.item == selectedArt?.AR_Pays.ToString());
+            int selectedPaysIndex = listePays.IndexOf(selectedPays);
+            comboBoxPaysOrigine.DataSource = listePays;
+            comboBoxPaysOrigine.DisplayMember = "item";
+            comboBoxPaysOrigine.ValueMember = "valeur";
+            comboBoxPaysOrigine.SelectedIndex = selectedPaysIndex;
 
-            //var listeCataloguesNo3 = _context.F_CATALOGUE.Where(catal => catal.CL_Niveau == 2 && catal.CL_NoParent.ToString() == selectedCatNo2.valeur).Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" }).ToList();
-            //var selectedCatNo3 = listeCataloguesNo3.FirstOrDefault(catal => catal.valeur == selectedArt?.CL_No3.ToString());
-            //if (listeCataloguesNo3.IndexOf(selectedCatNo3) == -1)
-            //{
-            //    comboBoxCatal3.Visible = false;
-            //}
-            //else
-            //{
-            //    int selectedCatNo3Index = listeCataloguesNo3.IndexOf(selectedCatNo3);
-            //    comboBoxCatal3.DataSource = listeCataloguesNo3;
-            //    comboBoxCatal3.DisplayMember = "item";
-            //    comboBoxCatal3.ValueMember = "valeur";
-            //    comboBoxCatal3.SelectedIndex = selectedCatNo3Index;
-            //}
-
-            //var listeCataloguesNo4 = _context.F_CATALOGUE.Where(catal => catal.CL_Niveau == 3 && catal.CL_NoParent.ToString() == selectedCatNo3.valeur).Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" }).ToList();
-            //var selectedCatNo4 = listeCataloguesNo4.FirstOrDefault(catal => catal.valeur == selectedArt?.CL_No4.ToString());
-            //if (listeCataloguesNo4.IndexOf(selectedCatNo4) == -1)
-            //{
-            //    comboBoxCatal4.Visible = false;
-            //}
-            //else
-            //{
-            //    int selectedCatNo4Index = listeCataloguesNo4.IndexOf(selectedCatNo4);
-            //    comboBoxCatal4.DataSource = listeCataloguesNo4;
-            //    comboBoxCatal4.DisplayMember = "item";
-            //    comboBoxCatal4.ValueMember = "valeur";
-            //    comboBoxCatal4.SelectedIndex = selectedCatNo4Index;
-            //}
-
+            _bindingSource = new DataTable();
+            _bindingSource.Columns.Add(new DataColumn("Intitulé"));
+            _bindingSource.Columns.Add(new DataColumn("Date début application"));
+            _bindingSource.Columns.Add(new DataColumn("Date fin application"));
+            var listeGlossaire = _context.F_GLOSSAIRE
+                .Join(_context.F_ARTGLOSS, post => post.GL_No, meta => meta.GL_No, (post, meta) => new { Post = post, Meta = meta })
+                .Where(glossaire => glossaire.Meta.AR_Ref == selectedArt.AR_Ref)
+                .Select(u => new GlossaireDetailsArticle() { GL_Intitule = u.Post.GL_Intitule, GL_PeriodeDeb = u.Post.GL_PeriodeDeb, GL_PeriodeFin = u.Post.GL_PeriodeFin })
+                .OrderBy(u => u.GL_Intitule)
+                .ToList();
+            foreach (var glossaire in listeGlossaire)
+            {
+                _bindingSource.Rows.Add(glossaire.GL_Intitule, glossaire.GL_PeriodeDeb, glossaire.GL_PeriodeFin);
+            }
+            DataGridViewGloss.DataSource = _bindingSource;
 
             // =========================================================== FIN TAB PAGES "DESCIRPTIF" =========================================================== */
 
 
+            // =========================================================== DÉBUT TAB PAGES "CHAMPS LIBRES" =========================================================== */
+            // ================= Sous-Tab "infos libres" =================
+            dateTimePicker2.Value = selectedArt.C1ère_commercialisation.Value;
+            textBox11.Text = selectedArt.Marque_commerciale;
+            textBox12.Text = ConserverChiffresApresVirgule(selectedArt.Objectif___Qtés_vendues);
+            textBox13.Text = ConserverChiffresApresVirgule(selectedArt.Pourcentage_teneur_en_or) + "%";
+
+            // ================= Sous-Tab "champs statistiques" =================
+            List<string> listeCollection = new List<string> { "Automne/Hiver", "Printemps/été" };
+            comboBox5.DataSource = listeCollection;
+            comboBox5.DisplayMember = "Value";
+            comboBox5.SelectedIndex = listeCollection.IndexOf(selectedArt.AR_Stat01);
+            List<string> listeStyle = new List<string> { "Classique", "Fantaisie", "Moderne" };
+            comboBox5.DataSource = listeStyle;
+            comboBox5.DisplayMember = "Value";
+            comboBox5.SelectedIndex = listeStyle.IndexOf(selectedArt.AR_Stat02);
+
+            // ================= Sous-Tab "documents attachés" =================
+            _bindingSource = new DataTable();
+            _bindingSource.Columns.Add(new DataColumn("Fichier"));
+            _bindingSource.Columns.Add(new DataColumn("Intitulé"));
+            var listeDocsAttaches = _context.F_ARTICLEMEDIA.Where(docAtt => docAtt.AR_Ref == selectedArt.AR_Ref)
+                .Select(docAtt => new DocsAttaches { ME_Fichier = docAtt.ME_Fichier, ME_Commentaire = docAtt.ME_Commentaire })
+                .OrderBy(docAtt => docAtt.ME_Fichier)
+                .ToList();
+            foreach (var docAtt in listeDocsAttaches)
+            {
+                _bindingSource.Rows.Add(docAtt.ME_Fichier, docAtt.ME_Commentaire);
+            }
+            dataGridView4.DataSource = _bindingSource;
+
+            // ================= Sous-Tab "photo" =================
+            //TODO: Moba tsy vita
+
+            // =========================================================== FIN TAB PAGES "CHAMPS LIBRES" =========================================================== */
+
+
+            // =========================================================== DEBUT TAB PAGES "PARAMÈTRES" =========================================================== */
+            // ================= Sous-Tab "Options de traitement" =================
+            // Goupbox facturation
+            chkBxFact2.Enabled = false;
+            chkBxFact6.Enabled = false;
+            if (selectedArt.AR_Type != 0)
+            {
+                chkBxFact5.Enabled = false;
+                if (selectedArt.AR_Type != 1)
+                {
+                    chkBxFact4.Enabled = false;
+                }
+            }
+            //TODO: Mbola tsy azo avy any anaty base ilay données
+
+            _bindingSource = new DataTable();
+            _bindingSource.Columns.Add(new DataColumn("Intitulé"));
+            _bindingSource.Columns.Add(new DataColumn("Domaine"));
+            List<string> listeModèle = new List<string> { "Tous les domaines", "Ventes", "Achats", "Stocks", "Ventes comptoir", "Internes" };
+            var listeModeleDEnregistrement = _context.F_ARTMODELE
+                .Join(_context.F_MODELE, post => post.MO_No, meta => meta.MO_No, (post, meta) => new { Post = post, Meta = meta })
+                .Where(modEnrg => modEnrg.Post.AR_Ref == selectedArt.AR_Ref)
+                .Select(u => new ModeleDEnregistrement() { MO_Intitule = u.Meta.MO_Intitule, AM_Domaine = u.Post.AM_Domaine })
+                .OrderBy(u => u.MO_Intitule)
+                .ToList();
+            foreach (var modEnreg in listeModeleDEnregistrement)
+            {
+                _bindingSource.Rows.Add(modEnreg.MO_Intitule, listeModèle[(int)modEnreg.AM_Domaine]);
+            }
+            dataGridView6.DataSource = _bindingSource;
+
+
+            // ================= Sous-Tab "Logistique" =================
+            txtBxPdsNt.Text = ConserverChiffresApresVirgule(selectedArt.AR_PoidsNet);
+            txtBxCdBrr.Text = selectedArt.AR_CodeBarre;
+            txBxPdsBrut.Text = ConserverChiffresApresVirgule(selectedArt.AR_PoidsBrut);
+            textBox14.Text = selectedArt.AR_Delai.ToString();
+            textBox15.Text = selectedArt.AR_DelaiFabrication.ToString();
+            textBox16.Text = selectedArt.AR_DelaiSecurite.ToString();
+            textBox17.Text = selectedArt.AR_Garantie.ToString();
+            textBox18.Text = selectedArt.AR_DelaiPeremption.ToString();
+            checkBox4.Checked = selectedArt.AR_SousTraitance == 0 ? false : true;
+
+            List<string> listeUniteDePoids = new List<string> { "Tonne", "Quintal", "Kilogramme", "Gramme", "Milligramme" };
+            comboBox8.DataSource = listeUniteDePoids;
+            comboBox8.DisplayMember = "Value";
+            comboBox8.SelectedIndex = (int)selectedArt.AR_UnitePoids;
+
+            comboBox9.DataSource = listeSuiviStock;
+            comboBox9.DisplayMember = "Value";
+            comboBox9.SelectedIndex = selectedArt.AR_SuiviStock.Value;
+
+            List<string> listeNiveauCriticite = new List<string> { "Mineur", "Majeur", "Critique" };
+            comboBox10.DataSource = listeNiveauCriticite;
+            comboBox10.DisplayMember = "Value";
+            comboBox10.SelectedIndex = (int)selectedArt.AR_Criticite;
+
+            List<string> listeDesignArticle = _context.F_ARTICLE.Select(e => e.AR_Ref + " (" + e.AR_Design + ")").ToList();
+            comboBox11.DataSource = listeDesignArticle;
+            comboBox11.DisplayMember = "Value";
+            comboBox8.SelectedIndex = listeDesignArticle.IndexOf(selectedArt.AR_Substitut);
+            //TODO: texBox Frais Fixes (Avy aiza ireo données ireo)
+
+            // TODO: ================= Sous-Tab "Dépôt" =================
+            _bindingSource = new DataTable();
+            _bindingSource.Columns.Add(new DataColumn("Dépôt"));
+            _bindingSource.Columns.Add(new DataColumn("Stock mini"));
+            _bindingSource.Columns.Add(new DataColumn("Stock maxi"));
+            _bindingSource.Columns.Add(new DataColumn("Emplacement principal"));
+            _bindingSource.Columns.Add(new DataColumn("Emplacement contrôle"));
+            var listeDepots = _context.F_ARTSTOCK
+                .Join(_context.F_DEPOT, post => post.DE_No, meta => meta.DE_No, (post, meta) => new { Post = post, Meta = meta })
+                .Where(modEnrg => modEnrg.Post.AR_Ref == selectedArt.AR_Ref)
+                .Select(u => new DepotParametres() { DE_Intitule = u.Meta.DE_Intitule, AS_QteMini = u.Post.AS_QteMini, AS_QteMaxi = u.Post.AS_QteMaxi, DP_NoPrincipal = u.Post.DP_NoPrincipal, DP_NoControle = u.Post.DP_NoControle })
+                .OrderBy(u => u.DE_Intitule)
+                .ToList();
+            foreach (var depot in listeDepots)
+            {
+                var emplacementPrincipal = _context.F_DEPOTEMPL.Where(u => u.DP_No == depot.DP_NoPrincipal).Select(u => u.DP_Code).FirstOrDefault();
+                var emplacementControle = _context.F_DEPOTEMPL.Where(u => u.DP_No == depot.DP_NoControle).Select(u => u.DP_Code).FirstOrDefault();
+                _bindingSource.Rows.Add(depot.DE_Intitule, depot.AS_QteMini, depot.AS_QteMaxi, emplacementPrincipal == "0" ? "" : emplacementPrincipal, emplacementControle == "0" ? "" : emplacementControle);
+            }
+            dataGridView7.DataSource = _bindingSource;
+
+            // TODO: ================= Sous-Tab "Comptabilité" =================
+
+            // ================= Sous-Tab "Comptabilité" =================
+            textBox38.Text = selectedArt.AR_NbColis.ToString();
+            List<string> listeNature = new List<string> { "Composant", "Pièce détachée", "Produit fini", "Produit semi-fini", "Non-gérée" };
+            comboBox16.DataSource = listeNature;
+            comboBox16.DisplayMember = "Value";
+            comboBox16.SelectedIndex = (int)selectedArt.AR_Nature;
+            List<string> listeTypeLancementProd = new List<string> { "Standard", "Spécifique" };
+            comboBox13.DataSource = listeTypeLancementProd;
+            comboBox13.DisplayMember = "Value";
+            comboBox13.SelectedIndex = (int)selectedArt.AR_TypeLancement;
+            List<string> listeCycleDeVie = new List<string> { "Standard", "Spécifique" };
+            comboBox13.DataSource = listeCycleDeVie;
+            comboBox13.DisplayMember = "Value";
+            comboBox13.SelectedIndex = (int)selectedArt.AR_Cycle;
+            checkBox5.Checked = selectedArt.AR_Fictif == 0 ? false : true;
+            // =========================================================== FIN TAB PAGES "PARAMÈTRES" =========================================================== */
 
         }
 
@@ -212,6 +471,12 @@ namespace SoftCaisse.Forms.Article
             btnComptabilite.BackColor = SystemColors.Control;
             btnGestProd.BackColor = SystemColors.Control;
             activeButton.BackColor = Color.LightBlue;
+        }
+
+        private void btnInterroger_Click(object sender, System.EventArgs e)
+        {
+            InterrogationStockArticle interrogationStockArticle = new InterrogationStockArticle(_referenceArt, _designArt);
+            interrogationStockArticle.Show();
         }
         /* =========================================================== FIN DESIGN =========================================================== */
 

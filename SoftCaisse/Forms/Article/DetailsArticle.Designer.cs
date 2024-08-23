@@ -31,6 +31,15 @@ namespace SoftCaisse.Forms.Article
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsArticle));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -124,7 +133,6 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
             this.kryptonButtonAffecter = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonSupp = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.ChampLibresPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
@@ -154,11 +162,11 @@ namespace SoftCaisse.Forms.Article
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel9 = new System.Windows.Forms.FlowLayoutPanel();
             this.krpbtnAjouter = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonSppr = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.krptAjouterVisualiser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ParametresPage = new System.Windows.Forms.TabPage();
@@ -265,6 +273,7 @@ namespace SoftCaisse.Forms.Article
             this.kryptonButtonAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonOK = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonNouveau = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.DataGridViewGloss = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -301,7 +310,6 @@ namespace SoftCaisse.Forms.Article
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.flowLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.ChampLibresPage.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.flowLayoutPanel7.SuspendLayout();
@@ -315,8 +323,8 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel12.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
-            this.flowLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.flowLayoutPanel9.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.ParametresPage.SuspendLayout();
@@ -356,6 +364,7 @@ namespace SoftCaisse.Forms.Article
             this.groupBox15.SuspendLayout();
             this.tableLayoutPanel27.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGloss)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -440,6 +449,7 @@ namespace SoftCaisse.Forms.Article
             this.btnInterroger.TabIndex = 2;
             this.btnInterroger.Text = "Interroger";
             this.btnInterroger.UseVisualStyleBackColor = false;
+            this.btnInterroger.Click += new System.EventHandler(this.btnInterroger_Click);
             this.btnInterroger.MouseHover += new System.EventHandler(this.btnInterroger_MouseHover);
             // 
             // btnTracabilite
@@ -976,16 +986,24 @@ namespace SoftCaisse.Forms.Article
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(2, 2);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.GridColor = System.Drawing.Color.White;
+            this.dataGridView1.Location = new System.Drawing.Point(4, 3);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(663, 184);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(659, 182);
+            this.dataGridView1.TabIndex = 2;
             // 
             // flowLayoutPanel2
             // 
@@ -1053,15 +1071,23 @@ namespace SoftCaisse.Forms.Article
             // 
             // dataGridView2
             // 
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(2, 2);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView2.GridColor = System.Drawing.Color.White;
+            this.dataGridView2.Location = new System.Drawing.Point(4, 3);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(663, 184);
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(659, 182);
             this.dataGridView2.TabIndex = 1;
             // 
             // flowLayoutPanel4
@@ -1539,8 +1565,8 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel9.ColumnCount = 2;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel9.Controls.Add(this.DataGridViewGloss, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.flowLayoutPanel6, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.dataGridView3, 0, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(2, 19);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(2);
@@ -1583,19 +1609,6 @@ namespace SoftCaisse.Forms.Article
             this.kryptonButtonSupp.Size = new System.Drawing.Size(69, 31);
             this.kryptonButtonSupp.TabIndex = 25;
             this.kryptonButtonSupp.Values.Text = "Supprimer";
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.HighlightText;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(2, 2);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(671, 226);
-            this.dataGridView3.TabIndex = 1;
             // 
             // ChampLibresPage
             // 
@@ -1674,7 +1687,7 @@ namespace SoftCaisse.Forms.Article
             this.btnChampsAttaches.Name = "btnChampsAttaches";
             this.btnChampsAttaches.Size = new System.Drawing.Size(185, 27);
             this.btnChampsAttaches.TabIndex = 2;
-            this.btnChampsAttaches.Text = "Champs attachés";
+            this.btnChampsAttaches.Text = "Documents attachés";
             this.btnChampsAttaches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChampsAttaches.UseVisualStyleBackColor = true;
             // 
@@ -1878,13 +1891,12 @@ namespace SoftCaisse.Forms.Article
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.tableLayoutPanel12);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(2, 2);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox5.Size = new System.Drawing.Size(553, 488);
+            this.groupBox5.Size = new System.Drawing.Size(536, 488);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Champs statistiques";
@@ -1906,7 +1918,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(549, 58);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(532, 58);
             this.tableLayoutPanel12.TabIndex = 0;
             // 
             // labelCollection
@@ -1914,7 +1926,7 @@ namespace SoftCaisse.Forms.Article
             this.labelCollection.AutoSize = true;
             this.labelCollection.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelCollection.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCollection.Location = new System.Drawing.Point(119, 8);
+            this.labelCollection.Location = new System.Drawing.Point(114, 8);
             this.labelCollection.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCollection.Name = "labelCollection";
             this.labelCollection.Size = new System.Drawing.Size(53, 24);
@@ -1927,7 +1939,7 @@ namespace SoftCaisse.Forms.Article
             this.labelStyle.AutoSize = true;
             this.labelStyle.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStyle.Location = new System.Drawing.Point(142, 32);
+            this.labelStyle.Location = new System.Drawing.Point(137, 32);
             this.labelStyle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStyle.Name = "labelStyle";
             this.labelStyle.Size = new System.Drawing.Size(30, 26);
@@ -1940,10 +1952,10 @@ namespace SoftCaisse.Forms.Article
             this.comboBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(176, 10);
+            this.comboBox5.Location = new System.Drawing.Point(171, 10);
             this.comboBox5.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(371, 21);
+            this.comboBox5.Size = new System.Drawing.Size(359, 21);
             this.comboBox5.TabIndex = 2;
             // 
             // comboBox6
@@ -1951,10 +1963,10 @@ namespace SoftCaisse.Forms.Article
             this.comboBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(176, 34);
+            this.comboBox6.Location = new System.Drawing.Point(171, 34);
             this.comboBox6.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(371, 21);
+            this.comboBox6.Size = new System.Drawing.Size(359, 21);
             this.comboBox6.TabIndex = 3;
             // 
             // tabPage4
@@ -1972,10 +1984,10 @@ namespace SoftCaisse.Forms.Article
             // tableLayoutPanel13
             // 
             this.tableLayoutPanel13.ColumnCount = 2;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel13.Controls.Add(this.flowLayoutPanel9, 1, 0);
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.21519F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.78481F));
             this.tableLayoutPanel13.Controls.Add(this.dataGridView4, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.flowLayoutPanel9, 1, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel13.Location = new System.Drawing.Point(2, 2);
             this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(2);
@@ -1986,16 +1998,37 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel13.Size = new System.Drawing.Size(553, 488);
             this.tableLayoutPanel13.TabIndex = 0;
             // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView4.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView4.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView4.GridColor = System.Drawing.Color.White;
+            this.dataGridView4.Location = new System.Drawing.Point(4, 3);
+            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
+            this.dataGridView4.RowHeadersVisible = false;
+            this.dataGridView4.RowHeadersWidth = 51;
+            this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView4.Size = new System.Drawing.Size(419, 482);
+            this.dataGridView4.TabIndex = 1;
+            // 
             // flowLayoutPanel9
             // 
             this.flowLayoutPanel9.Controls.Add(this.krpbtnAjouter);
             this.flowLayoutPanel9.Controls.Add(this.kryptonButtonSppr);
             this.flowLayoutPanel9.Controls.Add(this.krptAjouterVisualiser);
             this.flowLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel9.Location = new System.Drawing.Point(444, 2);
+            this.flowLayoutPanel9.Location = new System.Drawing.Point(429, 2);
             this.flowLayoutPanel9.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel9.Name = "flowLayoutPanel9";
-            this.flowLayoutPanel9.Size = new System.Drawing.Size(107, 484);
+            this.flowLayoutPanel9.Size = new System.Drawing.Size(122, 484);
             this.flowLayoutPanel9.TabIndex = 0;
             // 
             // krpbtnAjouter
@@ -2030,19 +2063,6 @@ namespace SoftCaisse.Forms.Article
             this.krptAjouterVisualiser.Size = new System.Drawing.Size(102, 31);
             this.krptAjouterVisualiser.TabIndex = 28;
             this.krptAjouterVisualiser.Values.Text = "Visualiser";
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridView4.Location = new System.Drawing.Point(2, 2);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(438, 225);
-            this.dataGridView4.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -2265,16 +2285,48 @@ namespace SoftCaisse.Forms.Article
             // 
             // dataGridView6
             // 
-            this.dataGridView6.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.dataGridView6.AllowUserToAddRows = false;
+            this.dataGridView6.AllowUserToDeleteRows = false;
+            this.dataGridView6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView6.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView6.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.1F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView6.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.1F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView6.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView6.Location = new System.Drawing.Point(2, 2);
-            this.dataGridView6.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView6.GridColor = System.Drawing.Color.White;
+            this.dataGridView6.Location = new System.Drawing.Point(4, 3);
+            this.dataGridView6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.1F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView6.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView6.RowHeadersVisible = false;
             this.dataGridView6.RowHeadersWidth = 51;
-            this.dataGridView6.RowTemplate.Height = 24;
-            this.dataGridView6.Size = new System.Drawing.Size(412, 186);
-            this.dataGridView6.TabIndex = 2;
+            this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView6.Size = new System.Drawing.Size(408, 184);
+            this.dataGridView6.TabIndex = 1;
             // 
             // flowLayoutPanel12
             // 
@@ -2830,12 +2882,12 @@ namespace SoftCaisse.Forms.Article
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Right;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(54, 8);
+            this.label4.Location = new System.Drawing.Point(55, 8);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 24);
+            this.label4.Size = new System.Drawing.Size(74, 24);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Unité de poids";
+            this.label4.Text = "Suivi de stock";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label5
@@ -2843,12 +2895,12 @@ namespace SoftCaisse.Forms.Article
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Right;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(78, 32);
+            this.label5.Location = new System.Drawing.Point(37, 32);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 24);
+            this.label5.Size = new System.Drawing.Size(92, 24);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Poids net";
+            this.label5.Text = "Niveau de criticité";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
@@ -3078,16 +3130,48 @@ namespace SoftCaisse.Forms.Article
             // 
             // dataGridView7
             // 
-            this.dataGridView7.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.dataGridView7.AllowUserToAddRows = false;
+            this.dataGridView7.AllowUserToDeleteRows = false;
+            this.dataGridView7.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView7.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView7.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView7.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView7.Location = new System.Drawing.Point(2, 18);
-            this.dataGridView7.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView7.GridColor = System.Drawing.Color.White;
+            this.dataGridView7.Location = new System.Drawing.Point(4, 19);
+            this.dataGridView7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView7.Name = "dataGridView7";
+            this.dataGridView7.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView7.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView7.RowHeadersVisible = false;
             this.dataGridView7.RowHeadersWidth = 51;
-            this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(419, 449);
-            this.dataGridView7.TabIndex = 4;
+            this.dataGridView7.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView7.Size = new System.Drawing.Size(415, 447);
+            this.dataGridView7.TabIndex = 6;
             // 
             // flowLayoutPanel11
             // 
@@ -3165,7 +3249,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel26.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel26.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel26.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel26.Controls.Add(this.dataGridView12, 1, 2);
+            this.tableLayoutPanel26.Controls.Add(this.dataGridView12, 0, 2);
             this.tableLayoutPanel26.Controls.Add(this.dataGridView11, 0, 2);
             this.tableLayoutPanel26.Controls.Add(this.label12, 0, 1);
             this.tableLayoutPanel26.Controls.Add(this.comboBox12, 1, 1);
@@ -3184,29 +3268,45 @@ namespace SoftCaisse.Forms.Article
             // 
             // dataGridView12
             // 
-            this.dataGridView12.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.dataGridView12.AllowUserToAddRows = false;
+            this.dataGridView12.AllowUserToDeleteRows = false;
+            this.dataGridView12.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView12.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView12.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView12.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView12.Location = new System.Drawing.Point(108, 42);
-            this.dataGridView12.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView12.GridColor = System.Drawing.Color.White;
+            this.dataGridView12.Location = new System.Drawing.Point(4, 43);
+            this.dataGridView12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView12.Name = "dataGridView12";
+            this.dataGridView12.ReadOnly = true;
+            this.dataGridView12.RowHeadersVisible = false;
             this.dataGridView12.RowHeadersWidth = 51;
-            this.dataGridView12.RowTemplate.Height = 24;
-            this.dataGridView12.Size = new System.Drawing.Size(315, 427);
-            this.dataGridView12.TabIndex = 13;
+            this.dataGridView12.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView12.Size = new System.Drawing.Size(98, 425);
+            this.dataGridView12.TabIndex = 15;
             // 
             // dataGridView11
             // 
-            this.dataGridView11.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.dataGridView11.AllowUserToAddRows = false;
+            this.dataGridView11.AllowUserToDeleteRows = false;
+            this.dataGridView11.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView11.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView11.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView11.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView11.Location = new System.Drawing.Point(2, 42);
-            this.dataGridView11.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView11.GridColor = System.Drawing.Color.White;
+            this.dataGridView11.Location = new System.Drawing.Point(110, 43);
+            this.dataGridView11.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView11.Name = "dataGridView11";
+            this.dataGridView11.ReadOnly = true;
+            this.dataGridView11.RowHeadersVisible = false;
             this.dataGridView11.RowHeadersWidth = 51;
-            this.dataGridView11.RowTemplate.Height = 24;
-            this.dataGridView11.Size = new System.Drawing.Size(102, 427);
-            this.dataGridView11.TabIndex = 9;
+            this.dataGridView11.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView11.Size = new System.Drawing.Size(311, 425);
+            this.dataGridView11.TabIndex = 14;
             // 
             // label12
             // 
@@ -3351,12 +3451,12 @@ namespace SoftCaisse.Forms.Article
             this.label24.AutoSize = true;
             this.label24.Dock = System.Windows.Forms.DockStyle.Right;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(358, 32);
+            this.label24.Location = new System.Drawing.Point(347, 32);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(54, 24);
+            this.label24.Size = new System.Drawing.Size(65, 24);
             this.label24.TabIndex = 3;
-            this.label24.Text = "Poids brut";
+            this.label24.Text = "Cycle de vie";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // comboBox16
@@ -3461,6 +3561,51 @@ namespace SoftCaisse.Forms.Article
             this.kryptonButtonNouveau.TabIndex = 23;
             this.kryptonButtonNouveau.Values.Text = "Nouveau";
             // 
+            // DataGridViewGloss
+            // 
+            this.DataGridViewGloss.AllowUserToAddRows = false;
+            this.DataGridViewGloss.AllowUserToDeleteRows = false;
+            this.DataGridViewGloss.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewGloss.BackgroundColor = System.Drawing.Color.White;
+            this.DataGridViewGloss.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DataGridViewGloss.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewGloss.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGridViewGloss.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewGloss.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGridViewGloss.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridViewGloss.GridColor = System.Drawing.Color.White;
+            this.DataGridViewGloss.Location = new System.Drawing.Point(4, 3);
+            this.DataGridViewGloss.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.DataGridViewGloss.Name = "DataGridViewGloss";
+            this.DataGridViewGloss.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewGloss.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.DataGridViewGloss.RowHeadersVisible = false;
+            this.DataGridViewGloss.RowHeadersWidth = 51;
+            this.DataGridViewGloss.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridViewGloss.Size = new System.Drawing.Size(667, 224);
+            this.DataGridViewGloss.TabIndex = 1;
+            // 
             // DetailsArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3514,7 +3659,6 @@ namespace SoftCaisse.Forms.Article
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.flowLayoutPanel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ChampLibresPage.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
             this.flowLayoutPanel7.ResumeLayout(false);
@@ -3530,8 +3674,8 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel12.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tableLayoutPanel13.ResumeLayout(false);
-            this.flowLayoutPanel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.flowLayoutPanel9.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ParametresPage.ResumeLayout(false);
@@ -3579,6 +3723,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel27.ResumeLayout(false);
             this.tableLayoutPanel27.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGloss)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3624,7 +3769,6 @@ namespace SoftCaisse.Forms.Article
         private TabPage tabPageTarifsClients;
         private TabPage tabPageNouveauTarif;
         private TableLayoutPanel tableLayoutPanel4;
-        private DataGridView dataGridView1;
         private FlowLayoutPanel flowLayoutPanel2;
         private Label labelUniteDeVente;
         private Label labelCoutStandard;
@@ -3646,7 +3790,6 @@ namespace SoftCaisse.Forms.Article
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonOuvrirTrClnt;
         private ComponentFactory.Krypton.Toolkit.KryptonButton krptBtnAjouter;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kptBtnSupprimer;
-        private DataGridView dataGridView2;
         private TableLayoutPanel tableLayoutPanel6;
         private Label label2;
         private Label labelDateDApplication;
@@ -3683,7 +3826,6 @@ namespace SoftCaisse.Forms.Article
         private FlowLayoutPanel flowLayoutPanel6;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonAffecter;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonSupp;
-        private DataGridView dataGridView3;
         private TableLayoutPanel tableLayoutPanel10;
         private FlowLayoutPanel flowLayoutPanel7;
         private Button btnInfosLibres;
@@ -3717,7 +3859,6 @@ namespace SoftCaisse.Forms.Article
         private ComponentFactory.Krypton.Toolkit.KryptonButton krpbtnAjouter;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonSppr;
         private ComponentFactory.Krypton.Toolkit.KryptonButton krptAjouterVisualiser;
-        private DataGridView dataGridView4;
         private PictureBox pictureBox1;
         private TableLayoutPanel tableLayoutPanel14;
         private FlowLayoutPanel flowLayoutPanel10;
@@ -3744,7 +3885,6 @@ namespace SoftCaisse.Forms.Article
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSupprOptTrait;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnVisualiserOptTrait;
         private TableLayoutPanel tableLayoutPanel18;
-        private DataGridView dataGridView6;
         private CheckBox chkBxFact1;
         private CheckBox chkBxFact2;
         private CheckBox chkBxFact3;
@@ -3793,15 +3933,12 @@ namespace SoftCaisse.Forms.Article
         private TextBox textBox24;
         private GroupBox groupBox13;
         private TableLayoutPanel tableLayoutPanel25;
-        private DataGridView dataGridView7;
         private FlowLayoutPanel flowLayoutPanel11;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
         private GroupBox groupBox14;
         private TableLayoutPanel tableLayoutPanel26;
-        private DataGridView dataGridView12;
-        private DataGridView dataGridView11;
         private Label label12;
         private ComboBox comboBox12;
         private FlowLayoutPanel flowLayoutPanel13;
@@ -3818,5 +3955,13 @@ namespace SoftCaisse.Forms.Article
         private ComboBox comboBox13;
         private ComboBox comboBox14;
         private CheckBox checkBox5;
+        private DataGridView dataGridView1;
+        private DataGridView dataGridView2;
+        private DataGridView dataGridView6;
+        private DataGridView dataGridView7;
+        private DataGridView dataGridView12;
+        private DataGridView dataGridView11;
+        private DataGridView dataGridView4;
+        private DataGridView DataGridViewGloss;
     }
 }

@@ -31,15 +31,6 @@ namespace SoftCaisse.Forms.Article
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsArticle));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -52,6 +43,9 @@ namespace SoftCaisse.Forms.Article
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.grpBxIdentification = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBox17 = new System.Windows.Forms.ComboBox();
+            this.comboBox15 = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.labelType = new System.Windows.Forms.Label();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.labelConditionnement = new System.Windows.Forms.Label();
@@ -66,6 +60,7 @@ namespace SoftCaisse.Forms.Article
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.grpBxTarif = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -106,6 +101,27 @@ namespace SoftCaisse.Forms.Article
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
+            this.Conditionnement = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.flowLayoutPanel14 = new System.Windows.Forms.FlowLayoutPanel();
+            this.kryptonButton5 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton6 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton7 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.Gamme = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.comboBox18 = new System.Windows.Forms.ComboBox();
+            this.comboBox19 = new System.Windows.Forms.ComboBox();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.flowLayoutPanel15 = new System.Windows.Forms.FlowLayoutPanel();
+            this.kryptonButton8 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton9 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton10 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.DescriptifPage = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -130,6 +146,7 @@ namespace SoftCaisse.Forms.Article
             this.textBoxRaccourci = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.DataGridViewGloss = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
             this.kryptonButtonAffecter = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonSupp = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -273,7 +290,6 @@ namespace SoftCaisse.Forms.Article
             this.kryptonButtonAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonOK = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonNouveau = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.DataGridViewGloss = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -301,6 +317,16 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel4.SuspendLayout();
             this.tabPageNouveauTarif.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.Conditionnement.SuspendLayout();
+            this.tableLayoutPanel17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.flowLayoutPanel14.SuspendLayout();
+            this.Gamme.SuspendLayout();
+            this.tableLayoutPanel23.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            this.tableLayoutPanel24.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            this.flowLayoutPanel15.SuspendLayout();
             this.DescriptifPage.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -309,6 +335,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel8.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGloss)).BeginInit();
             this.flowLayoutPanel6.SuspendLayout();
             this.ChampLibresPage.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -364,7 +391,6 @@ namespace SoftCaisse.Forms.Article
             this.groupBox15.SuspendLayout();
             this.tableLayoutPanel27.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGloss)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -469,6 +495,8 @@ namespace SoftCaisse.Forms.Article
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.IdentificationPage);
+            this.tabControl1.Controls.Add(this.Conditionnement);
+            this.tabControl1.Controls.Add(this.Gamme);
             this.tabControl1.Controls.Add(this.DescriptifPage);
             this.tabControl1.Controls.Add(this.ChampLibresPage);
             this.tabControl1.Controls.Add(this.ParametresPage);
@@ -508,7 +536,7 @@ namespace SoftCaisse.Forms.Article
             // 
             this.splitContainer2.Panel2.Controls.Add(this.grpBxTarif);
             this.splitContainer2.Size = new System.Drawing.Size(758, 504);
-            this.splitContainer2.SplitterDistance = 155;
+            this.splitContainer2.SplitterDistance = 178;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -520,7 +548,7 @@ namespace SoftCaisse.Forms.Article
             this.grpBxIdentification.Margin = new System.Windows.Forms.Padding(2);
             this.grpBxIdentification.Name = "grpBxIdentification";
             this.grpBxIdentification.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBxIdentification.Size = new System.Drawing.Size(759, 156);
+            this.grpBxIdentification.Size = new System.Drawing.Size(759, 168);
             this.grpBxIdentification.TabIndex = 1;
             this.grpBxIdentification.TabStop = false;
             this.grpBxIdentification.Text = "Identification";
@@ -532,6 +560,9 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel2.Controls.Add(this.comboBox17, 3, 4);
+            this.tableLayoutPanel2.Controls.Add(this.comboBox15, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.label14, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.labelType, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.comboBox7, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelConditionnement, 2, 3);
@@ -546,17 +577,54 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel2.Controls.Add(this.comboBox4, 3, 2);
             this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBox2, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label13, 2, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 19);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(755, 135);
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(755, 147);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // comboBox17
+            // 
+            this.comboBox17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox17.FormattingEnabled = true;
+            this.comboBox17.Location = new System.Drawing.Point(530, 125);
+            this.comboBox17.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
+            this.comboBox17.Name = "comboBox17";
+            this.comboBox17.Size = new System.Drawing.Size(223, 21);
+            this.comboBox17.TabIndex = 34;
+            // 
+            // comboBox15
+            // 
+            this.comboBox15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox15.FormattingEnabled = true;
+            this.comboBox15.Location = new System.Drawing.Point(153, 125);
+            this.comboBox15.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
+            this.comboBox15.Name = "comboBox15";
+            this.comboBox15.Size = new System.Drawing.Size(222, 21);
+            this.comboBox15.TabIndex = 33;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.label14.Location = new System.Drawing.Point(97, 120);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 30);
+            this.label14.TabIndex = 31;
+            this.label14.Text = "Gamme 1";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelType
             // 
@@ -566,18 +634,18 @@ namespace SoftCaisse.Forms.Article
             this.labelType.Location = new System.Drawing.Point(495, 0);
             this.labelType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelType.Name = "labelType";
-            this.labelType.Size = new System.Drawing.Size(31, 33);
+            this.labelType.Size = new System.Drawing.Size(31, 30);
             this.labelType.TabIndex = 27;
             this.labelType.Text = "Type";
-            this.labelType.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // comboBox7
             // 
             this.comboBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(530, 2);
-            this.comboBox7.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox7.Location = new System.Drawing.Point(530, 5);
+            this.comboBox7.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(223, 21);
             this.comboBox7.TabIndex = 26;
@@ -587,65 +655,65 @@ namespace SoftCaisse.Forms.Article
             this.labelConditionnement.AutoSize = true;
             this.labelConditionnement.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelConditionnement.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.labelConditionnement.Location = new System.Drawing.Point(440, 99);
+            this.labelConditionnement.Location = new System.Drawing.Point(440, 90);
             this.labelConditionnement.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelConditionnement.Name = "labelConditionnement";
-            this.labelConditionnement.Size = new System.Drawing.Size(86, 36);
+            this.labelConditionnement.Size = new System.Drawing.Size(86, 30);
             this.labelConditionnement.TabIndex = 17;
             this.labelConditionnement.Text = "Conditionnement";
-            this.labelConditionnement.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelConditionnement.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelSuiviDeStock
             // 
             this.labelSuiviDeStock.AutoSize = true;
             this.labelSuiviDeStock.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelSuiviDeStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.labelSuiviDeStock.Location = new System.Drawing.Point(75, 99);
+            this.labelSuiviDeStock.Location = new System.Drawing.Point(75, 90);
             this.labelSuiviDeStock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSuiviDeStock.Name = "labelSuiviDeStock";
-            this.labelSuiviDeStock.Size = new System.Drawing.Size(74, 36);
+            this.labelSuiviDeStock.Size = new System.Drawing.Size(74, 30);
             this.labelSuiviDeStock.TabIndex = 15;
             this.labelSuiviDeStock.Text = "Suivi de stock";
-            this.labelSuiviDeStock.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelSuiviDeStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelNomenclature
             // 
             this.labelNomenclature.AutoSize = true;
             this.labelNomenclature.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelNomenclature.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.labelNomenclature.Location = new System.Drawing.Point(453, 66);
+            this.labelNomenclature.Location = new System.Drawing.Point(453, 60);
             this.labelNomenclature.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNomenclature.Name = "labelNomenclature";
-            this.labelNomenclature.Size = new System.Drawing.Size(73, 33);
+            this.labelNomenclature.Size = new System.Drawing.Size(73, 30);
             this.labelNomenclature.TabIndex = 13;
             this.labelNomenclature.Text = "Nomenclature";
-            this.labelNomenclature.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelNomenclature.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelFamille
             // 
             this.labelFamille.AutoSize = true;
             this.labelFamille.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelFamille.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.labelFamille.Location = new System.Drawing.Point(110, 66);
+            this.labelFamille.Location = new System.Drawing.Point(110, 60);
             this.labelFamille.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFamille.Name = "labelFamille";
-            this.labelFamille.Size = new System.Drawing.Size(39, 33);
+            this.labelFamille.Size = new System.Drawing.Size(39, 30);
             this.labelFamille.TabIndex = 11;
             this.labelFamille.Text = "Famille";
-            this.labelFamille.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelFamille.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelDesignation
             // 
             this.labelDesignation.AutoSize = true;
             this.labelDesignation.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelDesignation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.labelDesignation.Location = new System.Drawing.Point(86, 33);
+            this.labelDesignation.Location = new System.Drawing.Point(86, 30);
             this.labelDesignation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDesignation.Name = "labelDesignation";
-            this.labelDesignation.Size = new System.Drawing.Size(63, 33);
+            this.labelDesignation.Size = new System.Drawing.Size(63, 30);
             this.labelDesignation.TabIndex = 4;
             this.labelDesignation.Text = "Désignation";
-            this.labelDesignation.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelDesignation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelReference
             // 
@@ -655,18 +723,18 @@ namespace SoftCaisse.Forms.Article
             this.labelReference.Location = new System.Drawing.Point(92, 0);
             this.labelReference.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelReference.Name = "labelReference";
-            this.labelReference.Size = new System.Drawing.Size(57, 33);
+            this.labelReference.Size = new System.Drawing.Size(57, 30);
             this.labelReference.TabIndex = 0;
             this.labelReference.Text = "Référence";
-            this.labelReference.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelReference.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // comboBox1
             // 
             this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(153, 101);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Location = new System.Drawing.Point(153, 95);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(222, 21);
             this.comboBox1.TabIndex = 18;
@@ -676,8 +744,8 @@ namespace SoftCaisse.Forms.Article
             this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(530, 101);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox2.Location = new System.Drawing.Point(530, 95);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(223, 21);
             this.comboBox2.TabIndex = 19;
@@ -687,8 +755,8 @@ namespace SoftCaisse.Forms.Article
             this.comboBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(153, 68);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox3.Location = new System.Drawing.Point(153, 65);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(222, 21);
             this.comboBox3.TabIndex = 20;
@@ -698,8 +766,8 @@ namespace SoftCaisse.Forms.Article
             this.comboBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(530, 68);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox4.Location = new System.Drawing.Point(530, 65);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(223, 21);
             this.comboBox4.TabIndex = 21;
@@ -708,8 +776,8 @@ namespace SoftCaisse.Forms.Article
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(153, 2);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Location = new System.Drawing.Point(153, 5);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(222, 19);
             this.textBox1.TabIndex = 23;
@@ -720,10 +788,22 @@ namespace SoftCaisse.Forms.Article
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(153, 35);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(600, 19);
             this.textBox2.TabIndex = 24;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
+            this.label13.Location = new System.Drawing.Point(380, 120);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(145, 30);
+            this.label13.TabIndex = 32;
+            this.label13.Text = "Gamme 2";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // grpBxTarif
             // 
@@ -734,7 +814,7 @@ namespace SoftCaisse.Forms.Article
             this.grpBxTarif.Margin = new System.Windows.Forms.Padding(2);
             this.grpBxTarif.Name = "grpBxTarif";
             this.grpBxTarif.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBxTarif.Size = new System.Drawing.Size(758, 346);
+            this.grpBxTarif.Size = new System.Drawing.Size(758, 323);
             this.grpBxTarif.TabIndex = 1;
             this.grpBxTarif.TabStop = false;
             this.grpBxTarif.Text = "Tarif";
@@ -754,8 +834,8 @@ namespace SoftCaisse.Forms.Article
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl2);
-            this.splitContainer1.Size = new System.Drawing.Size(754, 325);
-            this.splitContainer1.SplitterDistance = 104;
+            this.splitContainer1.Size = new System.Drawing.Size(754, 302);
+            this.splitContainer1.SplitterDistance = 106;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -795,8 +875,8 @@ namespace SoftCaisse.Forms.Article
             this.comboBoxUniteDeVente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBoxUniteDeVente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxUniteDeVente.FormattingEnabled = true;
-            this.comboBoxUniteDeVente.Location = new System.Drawing.Point(527, 63);
-            this.comboBoxUniteDeVente.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxUniteDeVente.Location = new System.Drawing.Point(527, 66);
+            this.comboBoxUniteDeVente.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.comboBoxUniteDeVente.Name = "comboBoxUniteDeVente";
             this.comboBoxUniteDeVente.Size = new System.Drawing.Size(225, 21);
             this.comboBoxUniteDeVente.TabIndex = 36;
@@ -805,8 +885,8 @@ namespace SoftCaisse.Forms.Article
             // 
             this.textBox9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(152, 63);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox9.Location = new System.Drawing.Point(152, 66);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(146, 19);
             this.textBox9.TabIndex = 30;
@@ -815,8 +895,8 @@ namespace SoftCaisse.Forms.Article
             // 
             this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(527, 33);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox8.Location = new System.Drawing.Point(527, 36);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(225, 19);
             this.textBox8.TabIndex = 29;
@@ -826,8 +906,8 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel3.SetColumnSpan(this.textBox6, 2);
             this.textBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(152, 33);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox6.Location = new System.Drawing.Point(152, 36);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(221, 19);
             this.textBox6.TabIndex = 27;
@@ -836,8 +916,8 @@ namespace SoftCaisse.Forms.Article
             // 
             this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(527, 2);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox5.Location = new System.Drawing.Point(527, 5);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(225, 19);
             this.textBox5.TabIndex = 26;
@@ -847,8 +927,8 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel3.SetColumnSpan(this.textBox3, 2);
             this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(152, 2);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox3.Location = new System.Drawing.Point(152, 5);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(221, 19);
             this.textBox3.TabIndex = 24;
@@ -864,7 +944,7 @@ namespace SoftCaisse.Forms.Article
             this.labelUniteDeVente.Size = new System.Drawing.Size(77, 32);
             this.labelUniteDeVente.TabIndex = 18;
             this.labelUniteDeVente.Text = "Unité de vente";
-            this.labelUniteDeVente.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelUniteDeVente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelCoutStandard
             // 
@@ -877,7 +957,7 @@ namespace SoftCaisse.Forms.Article
             this.labelCoutStandard.Size = new System.Drawing.Size(73, 30);
             this.labelCoutStandard.TabIndex = 14;
             this.labelCoutStandard.Text = "Coût standard";
-            this.labelCoutStandard.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelCoutStandard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelDernierPrixDAchat
             // 
@@ -890,7 +970,7 @@ namespace SoftCaisse.Forms.Article
             this.labelDernierPrixDAchat.Size = new System.Drawing.Size(98, 31);
             this.labelDernierPrixDAchat.TabIndex = 8;
             this.labelDernierPrixDAchat.Text = "Dernier prix d\'achat";
-            this.labelDernierPrixDAchat.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelDernierPrixDAchat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelPrixDeVente
             // 
@@ -903,7 +983,7 @@ namespace SoftCaisse.Forms.Article
             this.labelPrixDeVente.Size = new System.Drawing.Size(69, 32);
             this.labelPrixDeVente.TabIndex = 4;
             this.labelPrixDeVente.Text = "Prix de vente";
-            this.labelPrixDeVente.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelPrixDeVente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelPrixDAchat
             // 
@@ -916,7 +996,7 @@ namespace SoftCaisse.Forms.Article
             this.labelPrixDAchat.Size = new System.Drawing.Size(62, 31);
             this.labelPrixDAchat.TabIndex = 0;
             this.labelPrixDAchat.Text = "Prix d\'achat";
-            this.labelPrixDAchat.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelPrixDAchat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelCoefficient
             // 
@@ -929,14 +1009,14 @@ namespace SoftCaisse.Forms.Article
             this.labelCoefficient.Size = new System.Drawing.Size(57, 30);
             this.labelCoefficient.TabIndex = 5;
             this.labelCoefficient.Text = "Coefficient";
-            this.labelCoefficient.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelCoefficient.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cmbBxUnitePrixDeVente
             // 
             this.cmbBxUnitePrixDeVente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBxUnitePrixDeVente.FormattingEnabled = true;
-            this.cmbBxUnitePrixDeVente.Location = new System.Drawing.Point(302, 63);
-            this.cmbBxUnitePrixDeVente.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbBxUnitePrixDeVente.Location = new System.Drawing.Point(302, 66);
+            this.cmbBxUnitePrixDeVente.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.cmbBxUnitePrixDeVente.Name = "cmbBxUnitePrixDeVente";
             this.cmbBxUnitePrixDeVente.Size = new System.Drawing.Size(71, 21);
             this.cmbBxUnitePrixDeVente.TabIndex = 37;
@@ -952,7 +1032,7 @@ namespace SoftCaisse.Forms.Article
             this.tabControl2.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(754, 218);
+            this.tabControl2.Size = new System.Drawing.Size(754, 193);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPageCategoriesTarifaires
@@ -962,7 +1042,7 @@ namespace SoftCaisse.Forms.Article
             this.tabPageCategoriesTarifaires.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageCategoriesTarifaires.Name = "tabPageCategoriesTarifaires";
             this.tabPageCategoriesTarifaires.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageCategoriesTarifaires.Size = new System.Drawing.Size(746, 192);
+            this.tabPageCategoriesTarifaires.Size = new System.Drawing.Size(746, 167);
             this.tabPageCategoriesTarifaires.TabIndex = 0;
             this.tabPageCategoriesTarifaires.Text = "Catégories tarifaires";
             this.tabPageCategoriesTarifaires.UseVisualStyleBackColor = true;
@@ -980,8 +1060,8 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 188F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(742, 188);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 163F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(742, 163);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // dataGridView1
@@ -1002,7 +1082,7 @@ namespace SoftCaisse.Forms.Article
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(659, 182);
+            this.dataGridView1.Size = new System.Drawing.Size(659, 157);
             this.dataGridView1.TabIndex = 2;
             // 
             // flowLayoutPanel2
@@ -1014,7 +1094,7 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel2.Location = new System.Drawing.Point(669, 2);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(71, 184);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(71, 159);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // kryptonButtonOuvrir
@@ -1046,7 +1126,7 @@ namespace SoftCaisse.Forms.Article
             this.tabPageTarifsClients.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageTarifsClients.Name = "tabPageTarifsClients";
             this.tabPageTarifsClients.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageTarifsClients.Size = new System.Drawing.Size(746, 192);
+            this.tabPageTarifsClients.Size = new System.Drawing.Size(746, 167);
             this.tabPageTarifsClients.TabIndex = 1;
             this.tabPageTarifsClients.Text = "Tarirfs clients";
             this.tabPageTarifsClients.UseVisualStyleBackColor = true;
@@ -1065,8 +1145,8 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 188F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(742, 188);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 163F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(742, 163);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // dataGridView2
@@ -1087,7 +1167,7 @@ namespace SoftCaisse.Forms.Article
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(659, 182);
+            this.dataGridView2.Size = new System.Drawing.Size(659, 157);
             this.dataGridView2.TabIndex = 1;
             // 
             // flowLayoutPanel4
@@ -1099,7 +1179,7 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel4.Location = new System.Drawing.Point(669, 2);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(71, 184);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(71, 159);
             this.flowLayoutPanel4.TabIndex = 0;
             // 
             // kryptonButtonOuvrirTrClnt
@@ -1143,7 +1223,7 @@ namespace SoftCaisse.Forms.Article
             this.tabPageNouveauTarif.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageNouveauTarif.Name = "tabPageNouveauTarif";
             this.tabPageNouveauTarif.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageNouveauTarif.Size = new System.Drawing.Size(746, 192);
+            this.tabPageNouveauTarif.Size = new System.Drawing.Size(746, 167);
             this.tabPageNouveauTarif.TabIndex = 2;
             this.tabPageNouveauTarif.Text = "Nouveau tarif";
             // 
@@ -1259,6 +1339,284 @@ namespace SoftCaisse.Forms.Article
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(219, 19);
             this.textBox10.TabIndex = 8;
+            // 
+            // Conditionnement
+            // 
+            this.Conditionnement.BackColor = System.Drawing.Color.AliceBlue;
+            this.Conditionnement.Controls.Add(this.tableLayoutPanel17);
+            this.Conditionnement.Location = new System.Drawing.Point(4, 22);
+            this.Conditionnement.Name = "Conditionnement";
+            this.Conditionnement.Size = new System.Drawing.Size(762, 508);
+            this.Conditionnement.TabIndex = 4;
+            this.Conditionnement.Text = "Conditionnement";
+            // 
+            // tableLayoutPanel17
+            // 
+            this.tableLayoutPanel17.ColumnCount = 2;
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel17.Controls.Add(this.dataGridView3, 0, 0);
+            this.tableLayoutPanel17.Controls.Add(this.flowLayoutPanel14, 1, 0);
+            this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel17.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel17.Margin = new System.Windows.Forms.Padding(10);
+            this.tableLayoutPanel17.Name = "tableLayoutPanel17";
+            this.tableLayoutPanel17.Padding = new System.Windows.Forms.Padding(15);
+            this.tableLayoutPanel17.RowCount = 1;
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(762, 508);
+            this.tableLayoutPanel17.TabIndex = 0;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView3.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView3.GridColor = System.Drawing.Color.White;
+            this.dataGridView3.Location = new System.Drawing.Point(19, 18);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.RowHeadersVisible = false;
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView3.Size = new System.Drawing.Size(624, 472);
+            this.dataGridView3.TabIndex = 1;
+            // 
+            // flowLayoutPanel14
+            // 
+            this.flowLayoutPanel14.Controls.Add(this.kryptonButton5);
+            this.flowLayoutPanel14.Controls.Add(this.kryptonButton6);
+            this.flowLayoutPanel14.Controls.Add(this.kryptonButton7);
+            this.flowLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel14.Location = new System.Drawing.Point(650, 18);
+            this.flowLayoutPanel14.Name = "flowLayoutPanel14";
+            this.flowLayoutPanel14.Size = new System.Drawing.Size(94, 472);
+            this.flowLayoutPanel14.TabIndex = 0;
+            // 
+            // kryptonButton5
+            // 
+            this.kryptonButton5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.kryptonButton5.Location = new System.Drawing.Point(2, 2);
+            this.kryptonButton5.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButton5.Name = "kryptonButton5";
+            this.kryptonButton5.Palette = this.kryptonPalette1;
+            this.kryptonButton5.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton5.Size = new System.Drawing.Size(92, 31);
+            this.kryptonButton5.TabIndex = 24;
+            this.kryptonButton5.Values.Text = "Ouvrir";
+            // 
+            // kryptonButton6
+            // 
+            this.kryptonButton6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.kryptonButton6.Location = new System.Drawing.Point(2, 37);
+            this.kryptonButton6.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButton6.Name = "kryptonButton6";
+            this.kryptonButton6.Palette = this.kryptonPalette1;
+            this.kryptonButton6.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton6.Size = new System.Drawing.Size(92, 31);
+            this.kryptonButton6.TabIndex = 25;
+            this.kryptonButton6.Values.Text = "Ajouter";
+            // 
+            // kryptonButton7
+            // 
+            this.kryptonButton7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.kryptonButton7.Location = new System.Drawing.Point(2, 72);
+            this.kryptonButton7.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButton7.Name = "kryptonButton7";
+            this.kryptonButton7.Palette = this.kryptonPalette1;
+            this.kryptonButton7.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton7.Size = new System.Drawing.Size(92, 31);
+            this.kryptonButton7.TabIndex = 26;
+            this.kryptonButton7.Values.Text = "Supprimer";
+            // 
+            // Gamme
+            // 
+            this.Gamme.BackColor = System.Drawing.Color.AliceBlue;
+            this.Gamme.Controls.Add(this.tableLayoutPanel23);
+            this.Gamme.Location = new System.Drawing.Point(4, 22);
+            this.Gamme.Name = "Gamme";
+            this.Gamme.Size = new System.Drawing.Size(762, 508);
+            this.Gamme.TabIndex = 5;
+            this.Gamme.Text = "Gamme";
+            // 
+            // tableLayoutPanel23
+            // 
+            this.tableLayoutPanel23.ColumnCount = 2;
+            this.tableLayoutPanel23.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel23.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel23.Controls.Add(this.groupBox16, 0, 0);
+            this.tableLayoutPanel23.Controls.Add(this.dataGridView5, 0, 1);
+            this.tableLayoutPanel23.Controls.Add(this.flowLayoutPanel15, 1, 1);
+            this.tableLayoutPanel23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel23.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel23.Name = "tableLayoutPanel23";
+            this.tableLayoutPanel23.Padding = new System.Windows.Forms.Padding(15);
+            this.tableLayoutPanel23.RowCount = 2;
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel23.Size = new System.Drawing.Size(762, 508);
+            this.tableLayoutPanel23.TabIndex = 0;
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.tableLayoutPanel24);
+            this.groupBox16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox16.Location = new System.Drawing.Point(18, 18);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(626, 114);
+            this.groupBox16.TabIndex = 0;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "Gammes";
+            // 
+            // tableLayoutPanel24
+            // 
+            this.tableLayoutPanel24.ColumnCount = 4;
+            this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel24.Controls.Add(this.label15, 0, 1);
+            this.tableLayoutPanel24.Controls.Add(this.label16, 2, 1);
+            this.tableLayoutPanel24.Controls.Add(this.checkBox6, 0, 2);
+            this.tableLayoutPanel24.Controls.Add(this.comboBox18, 1, 1);
+            this.tableLayoutPanel24.Controls.Add(this.comboBox19, 3, 1);
+            this.tableLayoutPanel24.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel24.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel24.Name = "tableLayoutPanel24";
+            this.tableLayoutPanel24.RowCount = 3;
+            this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel24.Size = new System.Drawing.Size(620, 74);
+            this.tableLayoutPanel24.TabIndex = 0;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label15.Location = new System.Drawing.Point(100, 15);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(52, 30);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Gamme 1";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label16.Location = new System.Drawing.Point(410, 15);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(52, 30);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "Gamme 2";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkBox6.Location = new System.Drawing.Point(3, 48);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(139, 24);
+            this.checkBox6.TabIndex = 2;
+            this.checkBox6.Text = "Enum actifs uniquement";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // comboBox18
+            // 
+            this.comboBox18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox18.FormattingEnabled = true;
+            this.comboBox18.Location = new System.Drawing.Point(158, 20);
+            this.comboBox18.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.comboBox18.Name = "comboBox18";
+            this.comboBox18.Size = new System.Drawing.Size(149, 21);
+            this.comboBox18.TabIndex = 3;
+            // 
+            // comboBox19
+            // 
+            this.comboBox19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox19.FormattingEnabled = true;
+            this.comboBox19.Location = new System.Drawing.Point(468, 20);
+            this.comboBox19.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.comboBox19.Name = "comboBox19";
+            this.comboBox19.Size = new System.Drawing.Size(149, 21);
+            this.comboBox19.TabIndex = 4;
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.AllowUserToAddRows = false;
+            this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView5.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView5.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView5.GridColor = System.Drawing.Color.White;
+            this.dataGridView5.Location = new System.Drawing.Point(19, 138);
+            this.dataGridView5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.ReadOnly = true;
+            this.dataGridView5.RowHeadersVisible = false;
+            this.dataGridView5.RowHeadersWidth = 51;
+            this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView5.Size = new System.Drawing.Size(624, 352);
+            this.dataGridView5.TabIndex = 2;
+            // 
+            // flowLayoutPanel15
+            // 
+            this.flowLayoutPanel15.Controls.Add(this.kryptonButton8);
+            this.flowLayoutPanel15.Controls.Add(this.kryptonButton9);
+            this.flowLayoutPanel15.Controls.Add(this.kryptonButton10);
+            this.flowLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel15.Location = new System.Drawing.Point(650, 138);
+            this.flowLayoutPanel15.Name = "flowLayoutPanel15";
+            this.flowLayoutPanel15.Size = new System.Drawing.Size(94, 352);
+            this.flowLayoutPanel15.TabIndex = 3;
+            // 
+            // kryptonButton8
+            // 
+            this.kryptonButton8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.kryptonButton8.Location = new System.Drawing.Point(2, 2);
+            this.kryptonButton8.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButton8.Name = "kryptonButton8";
+            this.kryptonButton8.Palette = this.kryptonPalette1;
+            this.kryptonButton8.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton8.Size = new System.Drawing.Size(92, 31);
+            this.kryptonButton8.TabIndex = 27;
+            this.kryptonButton8.Values.Text = "Ouvrir";
+            // 
+            // kryptonButton9
+            // 
+            this.kryptonButton9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.kryptonButton9.Location = new System.Drawing.Point(2, 37);
+            this.kryptonButton9.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButton9.Name = "kryptonButton9";
+            this.kryptonButton9.Palette = this.kryptonPalette1;
+            this.kryptonButton9.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton9.Size = new System.Drawing.Size(92, 31);
+            this.kryptonButton9.TabIndex = 28;
+            this.kryptonButton9.Values.Text = "Ajouter";
+            // 
+            // kryptonButton10
+            // 
+            this.kryptonButton10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.kryptonButton10.Location = new System.Drawing.Point(2, 72);
+            this.kryptonButton10.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButton10.Name = "kryptonButton10";
+            this.kryptonButton10.Palette = this.kryptonPalette1;
+            this.kryptonButton10.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton10.Size = new System.Drawing.Size(92, 31);
+            this.kryptonButton10.TabIndex = 29;
+            this.kryptonButton10.Values.Text = "Supprimer";
             // 
             // DescriptifPage
             // 
@@ -1576,6 +1934,27 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 230F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(750, 230);
             this.tableLayoutPanel9.TabIndex = 0;
+            // 
+            // DataGridViewGloss
+            // 
+            this.DataGridViewGloss.AllowUserToAddRows = false;
+            this.DataGridViewGloss.AllowUserToDeleteRows = false;
+            this.DataGridViewGloss.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewGloss.BackgroundColor = System.Drawing.Color.White;
+            this.DataGridViewGloss.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DataGridViewGloss.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.DataGridViewGloss.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewGloss.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridViewGloss.GridColor = System.Drawing.Color.White;
+            this.DataGridViewGloss.Location = new System.Drawing.Point(4, 3);
+            this.DataGridViewGloss.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.DataGridViewGloss.Name = "DataGridViewGloss";
+            this.DataGridViewGloss.ReadOnly = true;
+            this.DataGridViewGloss.RowHeadersVisible = false;
+            this.DataGridViewGloss.RowHeadersWidth = 51;
+            this.DataGridViewGloss.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridViewGloss.Size = new System.Drawing.Size(667, 224);
+            this.DataGridViewGloss.TabIndex = 1;
             // 
             // flowLayoutPanel6
             // 
@@ -2007,6 +2386,7 @@ namespace SoftCaisse.Forms.Article
             this.dataGridView4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView4.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.GridColor = System.Drawing.Color.White;
             this.dataGridView4.Location = new System.Drawing.Point(4, 3);
@@ -2018,6 +2398,7 @@ namespace SoftCaisse.Forms.Article
             this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView4.Size = new System.Drawing.Size(419, 482);
             this.dataGridView4.TabIndex = 1;
+            this.dataGridView4.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentDoubleClick);
             // 
             // flowLayoutPanel9
             // 
@@ -2063,6 +2444,7 @@ namespace SoftCaisse.Forms.Article
             this.krptAjouterVisualiser.Size = new System.Drawing.Size(102, 31);
             this.krptAjouterVisualiser.TabIndex = 28;
             this.krptAjouterVisualiser.Values.Text = "Visualiser";
+            this.krptAjouterVisualiser.Click += new System.EventHandler(this.krptAjouterVisualiser_Click);
             // 
             // tabPage1
             // 
@@ -2077,12 +2459,14 @@ namespace SoftCaisse.Forms.Article
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Location = new System.Drawing.Point(2, 2);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 162);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             // 
             // ParametresPage
             // 
@@ -2291,37 +2675,13 @@ namespace SoftCaisse.Forms.Article
             this.dataGridView6.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView6.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.1F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView6.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.1F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView6.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView6.GridColor = System.Drawing.Color.White;
             this.dataGridView6.Location = new System.Drawing.Point(4, 3);
             this.dataGridView6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.1F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView6.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView6.RowHeadersVisible = false;
             this.dataGridView6.RowHeadersWidth = 51;
             this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -3136,37 +3496,13 @@ namespace SoftCaisse.Forms.Article
             this.dataGridView7.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView7.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView7.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView7.GridColor = System.Drawing.Color.White;
             this.dataGridView7.Location = new System.Drawing.Point(4, 19);
             this.dataGridView7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView7.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView7.RowHeadersVisible = false;
             this.dataGridView7.RowHeadersWidth = 51;
             this.dataGridView7.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -3561,51 +3897,6 @@ namespace SoftCaisse.Forms.Article
             this.kryptonButtonNouveau.TabIndex = 23;
             this.kryptonButtonNouveau.Values.Text = "Nouveau";
             // 
-            // DataGridViewGloss
-            // 
-            this.DataGridViewGloss.AllowUserToAddRows = false;
-            this.DataGridViewGloss.AllowUserToDeleteRows = false;
-            this.DataGridViewGloss.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridViewGloss.BackgroundColor = System.Drawing.Color.White;
-            this.DataGridViewGloss.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.DataGridViewGloss.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewGloss.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.DataGridViewGloss.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewGloss.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DataGridViewGloss.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridViewGloss.GridColor = System.Drawing.Color.White;
-            this.DataGridViewGloss.Location = new System.Drawing.Point(4, 3);
-            this.DataGridViewGloss.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.DataGridViewGloss.Name = "DataGridViewGloss";
-            this.DataGridViewGloss.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewGloss.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.DataGridViewGloss.RowHeadersVisible = false;
-            this.DataGridViewGloss.RowHeadersWidth = 51;
-            this.DataGridViewGloss.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewGloss.Size = new System.Drawing.Size(667, 224);
-            this.DataGridViewGloss.TabIndex = 1;
-            // 
             // DetailsArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3649,6 +3940,17 @@ namespace SoftCaisse.Forms.Article
             this.tabPageNouveauTarif.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.Conditionnement.ResumeLayout(false);
+            this.tableLayoutPanel17.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.flowLayoutPanel14.ResumeLayout(false);
+            this.Gamme.ResumeLayout(false);
+            this.tableLayoutPanel23.ResumeLayout(false);
+            this.groupBox16.ResumeLayout(false);
+            this.tableLayoutPanel24.ResumeLayout(false);
+            this.tableLayoutPanel24.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            this.flowLayoutPanel15.ResumeLayout(false);
             this.DescriptifPage.ResumeLayout(false);
             this.flowLayoutPanel5.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -3658,6 +3960,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel8.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGloss)).EndInit();
             this.flowLayoutPanel6.ResumeLayout(false);
             this.ChampLibresPage.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
@@ -3723,7 +4026,6 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel27.ResumeLayout(false);
             this.tableLayoutPanel27.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewGloss)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3963,5 +4265,30 @@ namespace SoftCaisse.Forms.Article
         private DataGridView dataGridView11;
         private DataGridView dataGridView4;
         private DataGridView DataGridViewGloss;
+        private TabPage Conditionnement;
+        private TabPage Gamme;
+        private TableLayoutPanel tableLayoutPanel17;
+        private FlowLayoutPanel flowLayoutPanel14;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton5;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton6;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton7;
+        private DataGridView dataGridView3;
+        private Label label14;
+        private Label label13;
+        private ComboBox comboBox17;
+        private ComboBox comboBox15;
+        private TableLayoutPanel tableLayoutPanel23;
+        private GroupBox groupBox16;
+        private TableLayoutPanel tableLayoutPanel24;
+        private Label label15;
+        private Label label16;
+        private CheckBox checkBox6;
+        private ComboBox comboBox18;
+        private ComboBox comboBox19;
+        private DataGridView dataGridView5;
+        private FlowLayoutPanel flowLayoutPanel15;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton8;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton9;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton10;
     }
 }

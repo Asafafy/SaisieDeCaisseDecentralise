@@ -47,6 +47,12 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_MODELE> F_MODELE { get; set; }
         public virtual DbSet<F_ARTMODELE> F_ARTMODELE { get; set; }
         public virtual DbSet<F_DEPOTEMPL> F_DEPOTEMPL { get; set; }
+        public virtual DbSet<F_CONDITION> F_CONDITION { get; set; }
+        public virtual DbSet<P_GAMME> P_GAMME { get; set; }
+        public virtual DbSet<F_ARTGAMME> F_ARTGAMME { get; set; }
+        public virtual DbSet<F_ARTENUMREF> F_ARTENUMREF { get; set; }
+        public virtual DbSet<F_ENUMGAMME> F_ENUMGAMME { get; set; }
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

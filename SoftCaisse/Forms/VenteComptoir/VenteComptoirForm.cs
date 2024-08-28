@@ -274,7 +274,6 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void TextBoxReference_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             if (char.IsLower(e.KeyChar))
             {
                 e.KeyChar = char.ToUpper(e.KeyChar);

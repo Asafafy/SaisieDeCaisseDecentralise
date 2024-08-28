@@ -1,17 +1,7 @@
-﻿using Objets100cLib;
-using SoftCaisse.DTO;
-using SoftCaisse.Forms.Article;
-using SoftCaisse.Forms.ConnexBase;
-using SoftCaisse.Forms.ControlCaisse;
-using SoftCaisse.Forms.FondCaisse;
-using SoftCaisse.Forms.FormCaisse;
-using SoftCaisse.Models;
+﻿using SoftCaisse.Forms.ConnexBase;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace SoftCaisse
 {

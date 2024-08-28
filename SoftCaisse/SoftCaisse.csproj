@@ -62,8 +62,10 @@
   <ItemGroup>
     <Compile Include="CustomModel\Ffamille.cs" />
     <Compile Include="DTO\DetailsArticle\CategoriesTarifaires.cs" />
+    <Compile Include="DTO\DetailsArticle\Conditionnement.cs" />
     <Compile Include="DTO\DetailsArticle\DepotParametres.cs" />
     <Compile Include="DTO\DetailsArticle\DocsAttaches.cs" />
+    <Compile Include="DTO\DetailsArticle\GammeDataGridView.cs" />
     <Compile Include="DTO\DetailsArticle\GlossaireDetailsArticle.cs" />
     <Compile Include="DTO\DetailsArticle\ModeleDEnregistrement.cs" />
     <Compile Include="DTO\DetailsArticle\TarifsClients.cs" />
@@ -295,6 +297,8 @@
     <Compile Include="CustomModel\Freglement.cs" />
     <Compile Include="Models\F_ARTCLIENT.cs" />
     <Compile Include="Models\F_ARTCOMPTA.cs" />
+    <Compile Include="Models\F_ARTENUMREF.cs" />
+    <Compile Include="Models\F_ARTGAMME.cs" />
     <Compile Include="Models\F_ARTGLOSS.cs" />
     <Compile Include="Models\F_ARTICLE.cs" />
     <Compile Include="Models\F_ARTICLEMEDIA.cs" />
@@ -306,6 +310,7 @@
     <Compile Include="Models\F_COLLABORATEUR.cs" />
     <Compile Include="Models\F_COMPTEA.cs" />
     <Compile Include="Models\F_COMPTET.cs" />
+    <Compile Include="Models\F_CONDITION.cs" />
     <Compile Include="Models\F_CREGLEMENT.cs" />
     <Compile Include="Models\F_DEPOT.cs" />
     <Compile Include="Models\F_DEPOTEMPL.cs" />
@@ -313,6 +318,7 @@
     <Compile Include="Models\F_DOCENTETE.cs" />
     <Compile Include="Models\F_DOCLIGNE.cs" />
     <Compile Include="Models\F_DOCREGL.cs" />
+    <Compile Include="Models\F_ENUMGAMME.cs" />
     <Compile Include="Models\F_FAMILLE.cs" />
     <Compile Include="Models\F_GLOSSAIRE.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
@@ -327,6 +333,7 @@
     <Compile Include="Models\P_ANALYTIQUE.cs" />
     <Compile Include="Models\P_CATTARIF.cs" />
     <Compile Include="Models\P_DEVISE.cs" />
+    <Compile Include="Models\P_GAMME.cs" />
     <Compile Include="Models\P_PARAMETRECIAL.cs" />
     <Compile Include="Models\P_PREFERENCES.cs" />
     <Compile Include="Models\P_REGLEMENT.cs" />
@@ -490,6 +497,11 @@
     <None Include="DataSetEnt.xss">
       <DependentUpon>DataSetEnt.xsd</DependentUpon>
     </None>
+    <None Include="Multimedia\Garantie_CHORFA.doc" />
+    <None Include="Multimedia\Garantie_CHSR10.doc" />
+    <None Include="Multimedia\Garantie_COAR002.doc" />
+    <None Include="Multimedia\Garantie_ENSHF.doc" />
+    <None Include="Multimedia\Garantie_LINGOR18.doc" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -505,9 +517,73 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cash-register_icon-icons.com_72250.ico" />
+    <Content Include="Multimedia\BAAR01.gif" />
+    <Content Include="Multimedia\BAAR01.jpg" />
+    <Content Include="Multimedia\BAOR01.gif" />
+    <Content Include="Multimedia\BAOR01.jpg" />
+    <Content Include="Multimedia\BRAAR10.gif" />
+    <Content Include="Multimedia\BRAAR10.jpg" />
+    <Content Include="Multimedia\CaratSarl_Logo.bmp" />
+    <Content Include="Multimedia\CaratSarl_Pres.txt" />
+    <Content Include="Multimedia\CHAOR42.gif" />
+    <Content Include="Multimedia\CHAOR42.jpg" />
+    <Content Include="Multimedia\CHFE01.gif" />
+    <Content Include="Multimedia\CHFE01.jpg" />
+    <Content Include="Multimedia\COAR001.gif" />
+    <Content Include="Multimedia\COAR001.jpg" />
+    <Content Include="Multimedia\COR1.gif" />
+    <Content Include="Multimedia\COR1.jpg" />
+    <Content Include="Multimedia\EM040.gif" />
+    <Content Include="Multimedia\EM040.jpg" />
+    <Content Include="Multimedia\EM050.gif" />
+    <Content Include="Multimedia\EM050.jpg" />
+    <Content Include="Multimedia\Eng_BAAR01.htm" />
+    <Content Include="Multimedia\Eng_BAOR01.htm" />
+    <Content Include="Multimedia\Eng_BRAAR10.htm" />
+    <Content Include="Multimedia\Eng_CHAOR42.htm" />
+    <Content Include="Multimedia\Eng_CHFE01.htm" />
+    <Content Include="Multimedia\Eng_COAR001.htm" />
+    <Content Include="Multimedia\Eng_COR1.htm" />
+    <Content Include="Multimedia\Eng_EM040.htm" />
+    <Content Include="Multimedia\Eng_EM050.htm" />
+    <Content Include="Multimedia\Eng_GRAVURE.htm" />
+    <Content Include="Multimedia\Eng_MODIV01.htm" />
+    <Content Include="Multimedia\Eng_MOOR001.htm" />
+    <Content Include="Multimedia\Eng_MOOR002.htm" />
+    <Content Include="Multimedia\Eng_PAEM001.htm" />
+    <Content Include="Multimedia\Eng_PIL377REN.htm" />
+    <Content Include="Multimedia\Eng_SETA.htm" />
+    <Content Include="Multimedia\ENSHF.gif" />
+    <Content Include="Multimedia\ENSHF.jpg" />
+    <Content Include="Multimedia\Fra_BAAR01.htm" />
+    <Content Include="Multimedia\Fra_BAOR01.htm" />
+    <Content Include="Multimedia\Fra_BRAAR10.htm" />
+    <Content Include="Multimedia\Fra_CHAOR42.htm" />
+    <Content Include="Multimedia\Fra_CHFE01.htm" />
+    <Content Include="Multimedia\Fra_COAR001.htm" />
+    <Content Include="Multimedia\Fra_COR1.htm" />
+    <Content Include="Multimedia\Fra_EM040.htm" />
+    <Content Include="Multimedia\Fra_EM050.htm" />
+    <Content Include="Multimedia\Fra_GRAVURE.htm" />
+    <Content Include="Multimedia\Fra_MODIV01.htm" />
+    <Content Include="Multimedia\Fra_MOOR001.htm" />
+    <Content Include="Multimedia\Fra_MOOR002.htm" />
+    <Content Include="Multimedia\Fra_PAEM001.htm" />
+    <Content Include="Multimedia\Fra_PIL377REN.htm" />
+    <Content Include="Multimedia\Fra_SETA.htm" />
+    <Content Include="Multimedia\MODIV01.gif" />
+    <Content Include="Multimedia\MODIV01.jpg" />
+    <Content Include="Multimedia\MOOR001.gif" />
+    <Content Include="Multimedia\MOOR001.jpg" />
+    <Content Include="Multimedia\MOOR002.gif" />
+    <Content Include="Multimedia\MOOR002.jpg" />
+    <Content Include="Multimedia\PIL377REN.gif" />
+    <Content Include="Multimedia\PIL377REN.jpg" />
     <Content Include="Images\Société\Cash Register_96px.png" />
     <Content Include="Images\Société\Coins_96px.png" />
     <Content Include="Images\Société\ProfilPic.png" />
+    <Content Include="Multimedia\STYPLOR.gif" />
+    <Content Include="Multimedia\STYPLOR.jpg" />
     <Content Include="LOGO SOFTWELL.ico" />
     <None Include="Resources\icons8-star-50.png" />
     <None Include="Resources\search.png" />
@@ -547,9 +623,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Multimedia\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

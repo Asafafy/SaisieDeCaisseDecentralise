@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -27,13 +28,14 @@ namespace SoftCaisse.Forms.VenteComptoir
         private int compteurClick = 0;
         private F_CAISSE _caisse;
         private F_COLLABORATEUR _caissier;
-        private decimal TotalPrixHT;
-        private decimal TotalPrixTTC;
+        private decimal _totalPrixHT;
+        private decimal _totalPrixTTC;
         private decimal variableTemporaire;
         private int cpt = 0;
         private decimal MontantInitial;
         private string refDoc;
         private int changedIndex = -1;
+        private decimal pourcentageRemise;
         public VenteComptoirForm(int caisse, int caissier, F_DOCENTETE entete, List<F_DOCLIGNE> ligne)
         {
             _context = new AppDbContext();
@@ -45,10 +47,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             _sageObj = new SageContexte();
 
             InitializeComponent();
+            TextBoxRemise.KeyPress += new KeyPressEventHandler(TextBoxRemise_KeyPress);
 
             LabelNomCaissier.Text = CaisseOuvert.CaissierText;
             LabelTitleCaissier.Text = CaisseOuvert.CaisseText;
-
 
             foreach (Control control in TableLayoutPanelDesignation.Controls)
             {
@@ -61,10 +63,10 @@ namespace SoftCaisse.Forms.VenteComptoir
             }
 
             ComboBoxType.DataSource = _context.F_COMPTET.Where(u => u.CG_NumPrinc == "4110000").Select(u => new Controle() { item = u.CT_Num + "  " + u.CT_Intitule, valeur = u.CT_Num }).ToList();
-            ComboBoxVendeur.DataSource = _context.F_COLLABORATEUR.Where(u => u.CO_Vendeur == 1).Select(u => new { Label = u.CO_Nom + "  " + u.CO_Prenom, Valeur = u.CO_No }).ToList();
+            ComboBoxVendeur.DataSource = _context.F_COLLABORATEUR.Where(u => u.CO_Vendeur == 1).Select(u => new Controle() { item = u.CO_Nom + "  " + u.CO_Prenom, valeur = u.CO_No.ToString() }).ToList();
             ComboBoxCentrale.DataSource = _context.F_COMPTET.Where(u => u.CG_NumPrinc == "4110000").Select(u => new Controle() { item = u.CT_Num + "  " + u.CT_Intitule, valeur = u.CT_Num }).ToList();
-            ComboBoxDepot.DataSource = _context.F_DEPOT.Select(u => new { Label = u.DE_Intitule, Valeur = u.DE_Intitule }).ToList();
-            ComboBoxTarif.DataSource = _context.P_CATTARIF.Where(u => !string.IsNullOrEmpty(u.CT_Intitule)).Select(u => new { Label = u.CT_Intitule, Valeur = u.cbMarq }).ToList();
+            ComboBoxDepot.DataSource = _context.F_DEPOT.Select(u => new Controle() { item = u.DE_Intitule, valeur = u.DE_Intitule }).ToList();
+            ComboBoxTarif.DataSource = _context.P_CATTARIF.Where(u => !string.IsNullOrEmpty(u.CT_Intitule)).Select(u => new Controle() { item = u.CT_Intitule, valeur = u.cbMarq.ToString() }).ToList();
             ComboboxSouche.DataSource = _context.P_SOUCHEVENTE.Where(u => !string.IsNullOrEmpty(u.S_Intitule)).Select(u => new Controle() { item = u.S_Intitule, valeur = u.S_Intitule }).ToList();
             ComboBoxAffaire.DataSource = _context.F_COMPTEA.Where(u => u.N_Analytique == 3).Select(u => new { Label = u.CA_Num + "  " + u.CA_Intitule, Valeur = u.CA_Num }).ToList();
 
@@ -75,16 +77,16 @@ namespace SoftCaisse.Forms.VenteComptoir
                 P_SOUCHEVENTE vente = _context.P_SOUCHEVENTE.FirstOrDefault(u => u.cbMarq == _caisse.CA_Souche);
                 ComboboxSouche.SelectedIndex = ComboboxSouche.FindString(vente.S_Intitule);
             }
-            ComboBoxAffaire.DisplayMember = "Label";
-            ComboBoxAffaire.ValueMember = "Valeur";
-            ComboBoxTarif.DisplayMember = "Label";
-            ComboBoxTarif.ValueMember = "Valeur";
-            ComboBoxDepot.DisplayMember = "Label";
-            ComboBoxDepot.ValueMember = "Valeur";
+            ComboBoxAffaire.DisplayMember = "item";
+            ComboBoxAffaire.ValueMember = "valeur";
+            ComboBoxTarif.DisplayMember = "item";
+            ComboBoxTarif.ValueMember = "valeur";
+            ComboBoxDepot.DisplayMember = "item";
+            ComboBoxDepot.ValueMember = "valeur";
             ComboBoxType.DisplayMember = "item";
             ComboBoxType.ValueMember = "valeur";
-            ComboBoxVendeur.DisplayMember = "Label";
-            ComboBoxVendeur.ValueMember = "Valeur";
+            ComboBoxVendeur.DisplayMember = "item";
+            ComboBoxVendeur.ValueMember = "valeur";
             ComboBoxCentrale.DisplayMember = "item";
             ComboBoxCentrale.ValueMember = "valeur";
             if (entete != null)
@@ -105,16 +107,16 @@ namespace SoftCaisse.Forms.VenteComptoir
             }
             if (ligne != null)
             {
-                decimal TotalPrixHT = 0;
-                decimal TotalPrixTTC = 0;
+                decimal _totalPrixHT = 0;
+                decimal _totalPrixTTC = 0;
                 foreach (var cin in ligne)
                 {
                     DataGridViewArticle.Rows.Add(cin.AR_Ref, cin.DL_Design, cin.DL_PrixUnitaire, cin.DL_PrixUnitaire * 1.2m, cin.DL_Qte, cin.EU_Enumere, "", cin.DL_PrixUnitaire, cin.DL_MontantHT, cin.DL_MontantTTC);
-                    TotalPrixHT += cin.DL_MontantHT.Value;
-                    TotalPrixTTC += cin.DL_MontantTTC.Value;
+                    _totalPrixHT += cin.DL_MontantHT.Value;
+                    _totalPrixTTC += cin.DL_MontantTTC.Value;
                 }
-                LabelPrixTotalHT.Text = TotalPrixHT.ToString("N2");
-                LabelPrixTotalTTC.Text = TotalPrixTTC.ToString("N2");
+                LabelPrixTotalHT.Text = _totalPrixHT.ToString("N2");
+                LabelPrixTotalTTC.Text = _totalPrixTTC.ToString("N2");
             }
 
             ChargerComboBoxes();
@@ -128,6 +130,48 @@ namespace SoftCaisse.Forms.VenteComptoir
             BorderRaduis(TableLayouotPanelHeader);
             #endregion
         }
+
+        private void TextBoxRemise_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxRemise_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Regex regex = new Regex(@"^\d+\.$");
+                if (regex.IsMatch(TextBoxRemise.Text))
+                {
+                    // Ne rien faire.
+                }
+                else
+                {
+                    string cultureName = "en-EN"; // Exemple pour la culture française
+                    CultureInfo culture = new CultureInfo(cultureName);
+                    if (decimal.TryParse(TextBoxRemise.Text, NumberStyles.Number, culture, out pourcentageRemise))
+                    {
+                        //decimal pourcentageRemise = Convert.ToDecimal(TextBoxRemise.Text == "" ? "0" : TextBoxRemise.Text);
+                        decimal puHTSansRemise = Convert.ToDecimal(TextBoxPUHT?.Text == "" ? "0" : TextBoxPUHT?.Text);
+                        decimal puTTCSansRemise = Convert.ToDecimal(TextBoxPUTTC?.Text == "" ? "0" : TextBoxPUTTC?.Text);
+                        MettreAJourMontants(1, puHTSansRemise, puTTCSansRemise, pourcentageRemise);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur s'est produite : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         //*******************************************************************************************************************FRONT*******************************************************************************************************************// 
         private void BorderRaduis(Panel panel)
         {
@@ -185,7 +229,6 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void ControlTableLayoutPanel()
         {
-
             foreach (Control control in TableLayoutPanelDesignation.Controls)
             {
 
@@ -221,7 +264,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             LabelPrixResteDu.Text = "0,00";
             LabelPrixTotalHT.Text = "0,00";
             LabelPrixTotalTTC.Text = "0,00";
-
 
             DataGridViewEnregistrement.Rows.Clear();
             DataGridViewArticle.Rows.Clear();
@@ -284,49 +326,80 @@ namespace SoftCaisse.Forms.VenteComptoir
         {
             if (e.KeyCode == Keys.Tab)
             {
+                decimal puHT;
+                decimal puTTC;
+                Controle selectedCategTarifaire = (Controle)ComboBoxTarif.SelectedItem;
                 try
                 {
                     e.IsInputKey = true;
 
-                    string codeFamilleOuDesignation = TextBoxReference.Text;
-                    string pattern = @"\b" + Regex.Escape(codeFamilleOuDesignation) + @"\b";
+                    string codeFamilleOuDesignation = TextBoxReference.Text.ToLower();
 
-                    var articles = _context.F_ARTICLE.ToList();
-                    var codeFamilleBD = articles
-                        .FirstOrDefault(a => a.AR_Ref == codeFamilleOuDesignation || a.FA_CodeFamille == codeFamilleOuDesignation || Regex.IsMatch(a.AR_Design.ToUpper(), pattern));
-
-                    var artclient = _context.F_ARTCLIENT.ToList();
-
-                    if (codeFamilleBD != null)
+                    var articleSaisie = _context.F_ARTICLE.Where(a => a.AR_Ref.ToLower() == codeFamilleOuDesignation || a.FA_CodeFamille.ToLower() == codeFamilleOuDesignation).FirstOrDefault();
+                    if (articleSaisie != null)
                     {
-                        var artclientDb = artclient.FirstOrDefault(a => a.AR_Ref == codeFamilleBD.AR_Ref && a.AC_Categorie == 3);
+                        var artClient = _context.F_ARTCLIENT.Where(artCli => artCli.AR_Ref == articleSaisie.AR_Ref && artCli.AC_Categorie.ToString() == selectedCategTarifaire.valeur).FirstOrDefault();
+                        var artCompta = _context.F_ARTCOMPTA.Where(artCmpt => artCmpt.AR_Ref == articleSaisie.AR_Ref && artCmpt.ACP_TypeFacture == 0 && artCmpt.ACP_Type == 0 && artCmpt.ACP_Champ == 1).FirstOrDefault();
+                        var taxe1 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe1).FirstOrDefault();
+                        var taxe2 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe2).FirstOrDefault();
+                        var taxe3 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe3).FirstOrDefault();
+                        decimal taux1 = taxe1?.TA_Taux ?? 0;
+                        decimal taux2 = taxe2?.TA_Taux ?? 0;
+                        decimal taux3 = taxe3?.TA_Taux ?? 0;
+                        bool estHorsTaxe;
 
-                        var UniteVente = _context.P_UNITE
-                        .Where(unite => unite.cbIndice == codeFamilleBD.AR_UniteVen)
-                        .Select(unite => new
+                        if (artClient != null)
                         {
-                            UniteIntitule = unite.U_Intitule
-                        }).FirstOrDefault();
-
-
-                        decimal tauxPriseEnCompte = TauxPriseEnCompte(codeFamilleBD.AR_Ref);
-                        decimal puHT = (decimal)codeFamilleBD.AR_PrixVen;
-                        decimal puTTC;
-                        if (artclientDb.AC_PrixVen != 0.00m)
-                        {
-                            puTTC = (decimal)artclientDb.AC_PrixVen;
-                            puHT = puTTC / (1 + tauxPriseEnCompte / 100);
+                            estHorsTaxe = artClient.AC_PrixTTC == 0 ? true : false;
+                            bool prixVenteEstZero = artClient.AC_PrixVen == 0 ? true : false;
+                            if (!prixVenteEstZero)
+                            {
+                                if (estHorsTaxe)
+                                {
+                                    puHT = (decimal)artClient.AC_PrixVen;
+                                    puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
+                                }
+                                else
+                                {
+                                    puTTC = (decimal)artClient.AC_PrixVen;
+                                    puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
+                                }
+                            }
+                            else
+                            {
+                                bool prixVenteArtEstHorsTaxe = articleSaisie.AR_PrixTTC == 0 ? true : false;
+                                if (prixVenteArtEstHorsTaxe)
+                                {
+                                    puHT = (decimal)articleSaisie.AR_PrixVen;
+                                    puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
+                                }
+                                else
+                                {
+                                    puTTC = (decimal)articleSaisie.AR_PrixVen;
+                                    puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
+                                }
+                            }
                         }
                         else
                         {
-                            puTTC = puHT + puHT * tauxPriseEnCompte / 100;
+                            estHorsTaxe = articleSaisie.AR_PrixTTC == 0 ? true : false;
+                            if (estHorsTaxe)
+                            {
+                                puHT = (decimal)articleSaisie.AR_PrixVen;
+                                puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
+                            }
+                            else
+                            {
+                                puTTC = (decimal)articleSaisie.AR_PrixVen;
+                                puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
+                            }
                         }
-
-                        AjouterArticleDesigne(codeFamilleBD.AR_Ref, codeFamilleBD.AR_Design, 1, puHT, puTTC, UniteVente.UniteIntitule);
+                        AjouterPrix(articleSaisie.AR_Ref, articleSaisie.AR_Design, 1, puHT, puTTC, estHorsTaxe ? "HT" : "TTC");
+                        MettreAJourMontants(1, puHT, puTTC, pourcentageRemise);
                     }
                     else
                     {
-                        ListeArticles articleARechercher = new ListeArticles(codeFamilleOuDesignation);
+                        ListeArticles articleARechercher = new ListeArticles(codeFamilleOuDesignation, true, selectedCategTarifaire.valeur, pourcentageRemise);
                         articleARechercher.ShowDialog(this);
                     }
                 }
@@ -337,17 +410,23 @@ namespace SoftCaisse.Forms.VenteComptoir
             }
         }
 
-        public void AjouterArticleDesigne(string arRef, string arDesign, int quantiteDisponibleEnStock, decimal puHT, decimal puTTC, string UniteVente)
+        public void AjouterPrix(string arRef, string arDesign, int quantite, decimal puHT, decimal puTTC, string UniteVente)
         {
             TextBoxReference.Text = arRef;
             TextBoxDesignation.Text = arDesign;
             TextBoxConditionnement.Text = UniteVente;
-            TextBoxQuantiteDisponibleEnStock.Text = quantiteDisponibleEnStock.ToString("N0");
+            TextBoxQuantiteDisponibleEnStock.Text = quantite.ToString("N0");
+            TextBoxPUnet.Text = puHT.ToString("N2");
             TextBoxPUHT.Text = puHT.ToString("N2");
             TextBoxPUTTC.Text = puTTC.ToString("N2");
-            TextBoxPUnet.Text = puHT.ToString("N2");
-            TextBoxMontantHT.Text = (puHT * quantiteDisponibleEnStock).ToString("N2");
-            TextBoxMontantTTC.Text = (puTTC * quantiteDisponibleEnStock).ToString("N2");
+        }
+        public void MettreAJourMontants(int quantite, decimal puHT, decimal puTTC, decimal remisePourcent)
+        {
+            var montantPuHT = puHT - (puHT * remisePourcent / 100);
+            var montantPuTTC = puTTC - (puTTC * remisePourcent / 100);
+            TextBoxMontantHT.Text = (montantPuHT * quantite).ToString("N2");
+            TextBoxPUnet.Text = (montantPuHT).ToString("N2");
+            TextBoxMontantTTC.Text = (montantPuTTC * quantite).ToString("N2");
         }
 
         private void BouttonEnregistrerDesignation_Click(object sender, EventArgs e)
@@ -361,7 +440,6 @@ namespace SoftCaisse.Forms.VenteComptoir
 
             try
             {
-
                 var articleBaseDeDonnees = _context.F_ARTSTOCK.FirstOrDefault(a => a.AR_Ref == TextBoxReference.Text);
                 if (articleBaseDeDonnees != null)
                 {
@@ -369,10 +447,7 @@ namespace SoftCaisse.Forms.VenteComptoir
 
                     if (Convert.ToInt16(TextBoxQuantiteDisponibleEnStock.Text) <= quantiteEnStock)
                     {
-
-                        if (string.IsNullOrWhiteSpace(TextBoxReference.Text) ||
-                        string.IsNullOrWhiteSpace(TextBoxDesignation.Text) ||
-                        string.IsNullOrWhiteSpace(TextBoxQuantiteDisponibleEnStock.Text))
+                        if (string.IsNullOrWhiteSpace(TextBoxReference.Text) || string.IsNullOrWhiteSpace(TextBoxDesignation.Text) || string.IsNullOrWhiteSpace(TextBoxQuantiteDisponibleEnStock.Text))
                         {
                             MessageBox.Show("Veuillez remplir tous les champs.");
                             return;
@@ -382,34 +457,33 @@ namespace SoftCaisse.Forms.VenteComptoir
                         string arDesign = TextBoxDesignation.Text;
                         string conditionnement = TextBoxConditionnement.Text;
                         int quantiteEcriteStock = int.Parse(TextBoxQuantiteDisponibleEnStock.Text);
-                        decimal puHT = Convert.ToDecimal(TextBoxPUHT.Text);
-                        decimal puTTC = Convert.ToDecimal(TextBoxPUTTC.Text);
-                        decimal puNet = Convert.ToDecimal(TextBoxPUnet.Text);
-                        decimal montantHT = Convert.ToDecimal(TextBoxMontantHT.Text);
-                        decimal montantTTC = Convert.ToDecimal(TextBoxMontantTTC.Text);
-
-                        if (TextBoxRemise.Text != "")
-                        {
-
-                            if (Convert.ToInt16(TextBoxRemise.Text) != 0)
-                            {
-                                decimal remiseArticle = Convert.ToInt32(TextBoxRemise.Text);
-
-                                if (remiseArticle != 0)
-                                {
-                                    decimal tauxPriseEnCompte = TauxPriseEnCompte(TextBoxReference.Text);
-                                    puNet *= (1 - remiseArticle / 100);
-                                    montantHT *= (1 - remiseArticle / 100);
-                                    montantTTC *= (1 - remiseArticle / 100);
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("La quantité ne doit pas être nulle");
-                                TextBoxRemise.Text = "";
-                                TextBoxRemise.Focus();
-                            }
-                        }
+                        decimal puHT = Convert.ToDecimal(TextBoxPUHT?.Text ?? "0");
+                        decimal puTTC = Convert.ToDecimal(TextBoxPUTTC.Text ?? "0");
+                        decimal puNet = Convert.ToDecimal(TextBoxPUnet.Text ?? "0");
+                        decimal montantHT = Convert.ToDecimal(TextBoxMontantHT.Text ?? "0");
+                        decimal montantTTC = Convert.ToDecimal(TextBoxMontantTTC.Text ?? "0");
+                        // TODO: OHATRY NY TSY ILAINA ITO ZAVATRA ITO ANH...
+                        //if (TextBoxRemise.Text != "")
+                        //{
+                        //    if (Convert.ToInt16(TextBoxRemise.Text) != 0)
+                        //    {
+                        //        decimal remiseArticle = Convert.ToInt32(TextBoxRemise.Text);
+                        //        if (remiseArticle != 0)
+                        //        {
+                        //            decimal tauxPriseEnCompte = TauxPriseEnCompte(TextBoxReference.Text);
+                        //            puNet *= (1 - remiseArticle / 100);
+                        //            montantHT *= (1 - remiseArticle / 100);
+                        //            montantTTC *= (1 - remiseArticle / 100);
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        MessageBox.Show("La quantité ne doit pas être nulle");
+                        //        TextBoxRemise.Text = "";
+                        //        TextBoxRemise.Focus();
+                        //    }
+                        //}
+                        // FIN: OHATRY NY TSY ILAINA ITO ZAVATRA ITO ANH...
                         if (changedIndex == -1)
                         {
                             DataGridViewArticle.Rows.Add(arRef, arDesign, puHT, puTTC, quantiteEcriteStock, conditionnement, TextBoxRemise.Text, puNet, montantHT, montantTTC);
@@ -429,20 +503,14 @@ namespace SoftCaisse.Forms.VenteComptoir
                             changedIndex = -1;
                         }
 
+                        _totalPrixHT += montantHT;
+                        _totalPrixTTC += montantTTC;
 
-                        for (int i = 0; i < DataGridViewArticle.Rows.Count; i++)
-                        {
-                            TotalPrixHT += Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[8].Value);
-                            TotalPrixTTC += Convert.ToDecimal(DataGridViewArticle.Rows[i].Cells[9].Value);
-                        }
-
-
-                        LabelPrixTotalHT.Text = TotalPrixHT.ToString("N2");
-                        LabelPrixTotalTTC.Text = TotalPrixTTC.ToString("N2");
+                        LabelPrixTotalHT.Text = _totalPrixHT.ToString("N2");
+                        LabelPrixTotalTTC.Text = _totalPrixTTC.ToString("N2");
 
                         foreach (Control control in TableLayoutPanelDesignation.Controls)
                         {
-
                             if (control is TextBox textBox)
                             {
                                 textBox.Text = textBox.Tag.ToString();
@@ -756,10 +824,12 @@ namespace SoftCaisse.Forms.VenteComptoir
             TextBoxReference.Focus();
         }
 
+        // DEBUT FAFANA RAHA TSY ILAINA FA METHODE TSY MIASA AKORY
         private decimal RetirerRemise(decimal puNet, decimal remise)
         {
             return puNet * remise / 100;
         }
+        // FIN FAFANA RAHA TSY ILAINA FA METHODE TSY MIASA AKORY
 
 
         private void BouttonSupprimerEnregistrement_Click(object sender, EventArgs e)
@@ -826,7 +896,7 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void BouttonFermer_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void BouttonValider_Click(object sender, EventArgs e)
@@ -905,15 +975,15 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void ComboBoxNumero_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (ComboBoxNumero.SelectedValue == "1")
+            if ((string)ComboBoxNumero.SelectedValue == "1")
             {
                 ComboBoxType.DataSource = _context.F_COMPTET.Select(u => new { Label = u.CT_Num + "  " + u.CT_Intitule, Valeur = u.CT_Num }).ToList();
             }
-            if (ComboBoxNumero.SelectedValue == "2")
+            if ((string)ComboBoxNumero.SelectedValue == "2")
             {
                 ComboBoxType.DataSource = _context.F_COMPTET.Select(u => new { Label = u.CT_Intitule, Valeur = u.CT_Num }).ToList();
             }
-            if (ComboBoxNumero.SelectedValue == "3")
+            if ((string)ComboBoxNumero.SelectedValue == "3")
             {
                 ComboBoxType.DataSource = _context.F_COMPTET.Select(u => new { Label = u.CT_CodePostal + "  " + u.CT_Intitule, Valeur = u.CT_Num }).ToList();
             }
@@ -1099,7 +1169,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             report.BringToFront();
             report.Show();
             report.Focus();
-
         }
 
         private void BouttonEnAttente_Click(object sender, EventArgs e)
@@ -1164,39 +1233,41 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         }
 
-        private void DataGridViewArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                changedIndex = e.RowIndex;
-                string reference = DataGridViewArticle.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
-                var codeFamilleBD = _context.F_ARTICLE
-                .FirstOrDefault(a => a.AR_Ref == reference);
-                var UniteVente = _context.P_UNITE
-                .Where(unite => unite.cbIndice == codeFamilleBD.AR_UniteVen)
-                .Select(unite => new
-                {
-                    UniteIntitule = unite.U_Intitule
-                }).FirstOrDefault();
+
+        // ========================================= ILAINA ARY VE ITO ZAVATRA ITO =========================================
+        //private void DataGridViewArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex >= 0)
+        //    {
+        //        changedIndex = e.RowIndex;
+        //        string reference = DataGridViewArticle.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
+        //        var codeFamilleBD = _context.F_ARTICLE
+        //            .FirstOrDefault(a => a.AR_Ref == reference);
+        //        var UniteVente = _context.P_UNITE
+        //            .Where(unite => unite.cbIndice == codeFamilleBD.AR_UniteVen)
+        //            .Select(unite => new
+        //            {
+        //                UniteIntitule = unite.U_Intitule
+        //            }).FirstOrDefault();
 
 
-                decimal tauxPriseEnCompte = TauxPriseEnCompte(codeFamilleBD.AR_Ref);
-                decimal puHT = (decimal)codeFamilleBD.AR_PrixVen;
-                decimal puTTC;
-                var artclientDb = _context.F_ARTCLIENT.FirstOrDefault(a => a.AR_Ref == codeFamilleBD.AR_Ref && a.AC_Categorie == 3);
-                if (artclientDb.AC_PrixVen != 0.00m)
-                {
-                    puTTC = (decimal)artclientDb.AC_PrixVen;
-                    puHT = puTTC / (1 + tauxPriseEnCompte / 100);
-                }
-                else
-                {
-                    puTTC = puHT + puHT * tauxPriseEnCompte / 100;
-                }
-                AjouterArticleDesigne(codeFamilleBD.AR_Ref, codeFamilleBD.AR_Design, 1, puHT, puTTC, UniteVente.UniteIntitule);
-            }
-
-        }
+        //        decimal tauxPriseEnCompte = TauxPriseEnCompte(codeFamilleBD.AR_Ref);
+        //        decimal puHT = (decimal)codeFamilleBD.AR_PrixVen;
+        //        decimal puTTC;
+        //        var artclientDb = _context.F_ARTCLIENT.FirstOrDefault(a => a.AR_Ref == codeFamilleBD.AR_Ref && a.AC_Categorie == 3);
+        //        if (artclientDb.AC_PrixVen != 0.00m)
+        //        {
+        //            puTTC = (decimal)artclientDb.AC_PrixVen;
+        //            puHT = puTTC / (1 + tauxPriseEnCompte / 100);
+        //        }
+        //        else
+        //        {
+        //            puTTC = puHT + puHT * tauxPriseEnCompte / 100;
+        //        }
+        //        //AjouterArticleDesigne(codeFamilleBD.AR_Ref, codeFamilleBD.AR_Design, 1, puHT, puTTC, UniteVente.UniteIntitule);
+        //    }
+        //}
+        // ========================================= FIN ILAINA ARY VE ITO ZAVATRA ITO =========================================
     }
 }
 

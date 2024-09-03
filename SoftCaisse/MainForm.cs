@@ -182,7 +182,7 @@ namespace SoftCaisse
 
         private void artilceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ListeArticles("").Show();
+            new ListeArticles("", false, null, 0).Show();
         }
 
         private void familleToolStripMenuItem_Click(object sender, EventArgs e)

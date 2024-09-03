@@ -17,11 +17,17 @@ namespace SoftCaisse.Forms.Article
         private readonly AppDbContext _context;
 
         private DataTable _bindingSource;
+        private readonly bool _venantVenteComptoir;
+        private readonly string _selectedCatTarifaire;
+        private readonly decimal _remisePourcent;
 
-        public ListeArticles(string searchTerm)
+        public ListeArticles(string searchTerm, bool venantVenteComptoir, string selectedCatTarifaire, decimal remisePourcent)
         {
             _context = new AppDbContext();
             InitializeComponent();
+            _venantVenteComptoir = venantVenteComptoir;
+            _selectedCatTarifaire = selectedCatTarifaire;
+            _remisePourcent = remisePourcent;
 
             var catalogues = _context.F_CATALOGUE.Where(u => u.CL_Niveau == 0).Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" }).ToList();
             catalogues.Insert(0, new Controle() { item = "Tous", valeur = "0" });
@@ -106,46 +112,81 @@ namespace SoftCaisse.Forms.Article
                     DataGridViewRow selectedRow = DataGridViewArticle.SelectedRows[0];
                     string referenceArt = selectedRow.Cells["Référence"].Value.ToString();
                     string designArt = selectedRow.Cells["Désignation"].Value.ToString();
+                    decimal puHT;
+                    decimal puTTC;
+                    var articleSelectionne = _context.F_ARTICLE.Where(art => art.AR_Ref == referenceArt).FirstOrDefault();
 
-                    // ============================ DEBUT ILAINA VE ============================
-                    string faCodeFamille = selectedRow.Cells["famille"].Value.ToString();
-                    var infoSupplementaireArticle = _context.F_ARTICLE
-                        .Where(article => article.AR_Ref == referenceArt)
-                        .Select(article => new
-                        {
-                            PuHT = article.AR_PrixVen,
-                            PuTTC = article.AR_PrixTTC,
-                            article.AR_UniteVen,
-                        }).FirstOrDefault();
-                    var infoSupplementaireArticleTaxe = _context.F_ARTCOMPTA
-                        .Where(article => article.AR_Ref == referenceArt)
-                        .Select(article => new
-                        {
-                            IdentifiantChamp = article.ACP_Champ,
-                            CodeTaxeAComptabiliser = article.ACP_ComptaCPT_Taxe1
-                        }).FirstOrDefault();
-                    var infoSupplementaireTaxe = _context.F_TAXE
-                        .Where(article => article.TA_Code == infoSupplementaireArticleTaxe.CodeTaxeAComptabiliser)
-                        .Select(article => new
-                        {
-                            TauxPriseEnCompte = article.TA_Taux,
-                        }).FirstOrDefault();
-                    var UniteVente = _context.P_UNITE
-                        .Where(unite => unite.cbIndice == infoSupplementaireArticle.AR_UniteVen)
-                        .Select(unite => new
-                        {
-                            UniteIntitule = unite.U_Intitule
-                        }).FirstOrDefault();
-                    decimal puTTC = (decimal)infoSupplementaireArticle.PuTTC;
-                    decimal puHT = (decimal)infoSupplementaireArticle.PuHT;
-                    decimal tauxTaxe = infoSupplementaireTaxe?.TauxPriseEnCompte ?? 0;
-                    VenteComptoirForm venteComptoirForm = Application.OpenForms.OfType<VenteComptoirForm>().FirstOrDefault();
-                    puTTC = puHT + (puHT * tauxTaxe / 100);
-                    venteComptoirForm?.AjouterArticleDesigne(referenceArt, designArt, 1, (decimal)infoSupplementaireArticle.PuHT, puTTC, UniteVente.UniteIntitule);
-                    // ============================ FIN ILAINA VE ============================
+                    // ============================ DEBUT MBOLA TSY AU POINT ============================
+                    var artClient = _context.F_ARTCLIENT.Where(artCli => artCli.AR_Ref == referenceArt && artCli.AC_Categorie.ToString() == _selectedCatTarifaire).FirstOrDefault();
+                    var artCompta = _context.F_ARTCOMPTA.Where(artCmpt => artCmpt.AR_Ref == referenceArt && artCmpt.ACP_TypeFacture == 0 && artCmpt.ACP_Type == 0 && artCmpt.ACP_Champ == 1).FirstOrDefault();
+                    var pourcentageRemise = artClient?.AC_Remise ?? 0;
+                    var taxe1 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe1).FirstOrDefault();
+                    var taxe2 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe2).FirstOrDefault();
+                    var taxe3 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe3).FirstOrDefault();
+                    decimal taux1 = taxe1?.TA_Taux ?? 0;
+                    decimal taux2 = taxe2?.TA_Taux ?? 0;
+                    decimal taux3 = taxe3?.TA_Taux ?? 0;
+                    bool estHorsTaxe;
 
-                    DetailsArticle detailsArticle = new DetailsArticle(referenceArt, designArt);
-                    detailsArticle.Show();
+                    if (artClient != null)
+                    {
+                        estHorsTaxe = artClient.AC_PrixTTC == 0 ? true : false;
+                        bool prixVenteEstZero = artClient.AC_PrixVen == 0 ? true : false;
+                        if (!prixVenteEstZero)
+                        {
+                            if (estHorsTaxe)
+                            {
+                                puHT = (decimal)artClient.AC_PrixVen;
+                                puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
+                            }
+                            else
+                            {
+                                puTTC = (decimal)artClient.AC_PrixVen;
+                                puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
+                            }
+                        }
+                        else
+                        {
+                            bool prixVenteArtEstHorsTaxe = articleSelectionne.AR_PrixTTC == 0 ? true : false;
+                            if (prixVenteArtEstHorsTaxe)
+                            {
+                                puHT = (decimal)articleSelectionne.AR_PrixVen;
+                                puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
+                            }
+                            else
+                            {
+                                puTTC = (decimal)articleSelectionne.AR_PrixVen;
+                                puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        estHorsTaxe = articleSelectionne.AR_PrixTTC == 0 ? true : false;
+                        if (estHorsTaxe)
+                        {
+                            puHT = (decimal)articleSelectionne.AR_PrixVen;
+                            puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
+                        }
+                        else
+                        {
+                            puTTC = (decimal)articleSelectionne.AR_PrixVen;
+                            puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
+                        }
+                    }
+                    if (_venantVenteComptoir)
+                    {
+                        VenteComptoirForm venteComptoirForm = Application.OpenForms.OfType<VenteComptoirForm>().FirstOrDefault();
+                        venteComptoirForm?.AjouterPrix(referenceArt, designArt, 1, puHT, puTTC, estHorsTaxe ? "HT" : "TTC");
+                        venteComptoirForm?.MettreAJourMontants(1, puHT, puTTC, _remisePourcent);
+                        Close();
+                    }
+                    // ============================ FIN MBOLA TSY AU POINT ============================
+                    else
+                    {
+                        DetailsArticle detailsArticle = new DetailsArticle(referenceArt, designArt);
+                        detailsArticle.Show();
+                    }
                 }
             }
             catch (Exception ex)

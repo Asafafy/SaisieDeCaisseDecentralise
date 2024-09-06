@@ -92,7 +92,7 @@ namespace SoftCaisse.Forms.Article
             {
                 if (e.RowIndex >= 0 && e.RowIndex < DataGridViewArticle.Rows.Count)
                 {
-                    DataGridViewRow selectedRow = DataGridViewArticle.Rows[e.RowIndex];
+                    DataGridViewRow dfedRow = DataGridViewArticle.Rows[e.RowIndex];
                     ButtonOKArticle_Click(sender, e);
                 }
             }

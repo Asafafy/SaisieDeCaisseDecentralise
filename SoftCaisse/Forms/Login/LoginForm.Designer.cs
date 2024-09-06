@@ -43,9 +43,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(30, 29);
+            this.pictureBox1.Location = new System.Drawing.Point(22, 24);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(107, 112);
+            this.pictureBox1.Size = new System.Drawing.Size(80, 91);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -53,18 +54,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(152, 29);
+            this.label1.Location = new System.Drawing.Point(114, 24);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 16);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Pseudo :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(152, 86);
+            this.label2.Location = new System.Drawing.Point(114, 70);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 16);
+            this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Mot de passe :";
             // 
@@ -95,42 +98,47 @@
             // 
             // kryptonButton1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(296, 151);
+            this.kryptonButton1.Location = new System.Drawing.Point(222, 123);
+            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Palette = this.kryptonPalette1;
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton1.Size = new System.Drawing.Size(117, 33);
+            this.kryptonButton1.Size = new System.Drawing.Size(88, 27);
             this.kryptonButton1.TabIndex = 9;
             this.kryptonButton1.Values.Text = "Connecter";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // ChampUser
             // 
-            this.ChampUser.Location = new System.Drawing.Point(155, 48);
+            this.ChampUser.Location = new System.Drawing.Point(116, 39);
+            this.ChampUser.Margin = new System.Windows.Forms.Padding(2);
             this.ChampUser.Name = "ChampUser";
-            this.ChampUser.Size = new System.Drawing.Size(257, 29);
+            this.ChampUser.Size = new System.Drawing.Size(193, 25);
             this.ChampUser.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.ChampUser.StateCommon.Border.Rounding = 3;
             this.ChampUser.TabIndex = 10;
+            this.ChampUser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChampUser_KeyDown);
             // 
             // Champpwd
             // 
-            this.Champpwd.Location = new System.Drawing.Point(155, 112);
+            this.Champpwd.Location = new System.Drawing.Point(116, 91);
+            this.Champpwd.Margin = new System.Windows.Forms.Padding(2);
             this.Champpwd.Name = "Champpwd";
-            this.Champpwd.Size = new System.Drawing.Size(257, 29);
+            this.Champpwd.Size = new System.Drawing.Size(193, 25);
             this.Champpwd.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.Champpwd.StateCommon.Border.Rounding = 3;
             this.Champpwd.TabIndex = 11;
+            this.Champpwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Champpwd_KeyDown);
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 191);
+            this.ClientSize = new System.Drawing.Size(326, 155);
             this.Controls.Add(this.Champpwd);
             this.Controls.Add(this.ChampUser);
             this.Controls.Add(this.kryptonButton1);
@@ -138,6 +146,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Palette = this.kryptonPalette1;

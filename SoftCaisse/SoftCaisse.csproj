@@ -67,6 +67,7 @@
     <Compile Include="DTO\DetailsArticle\DocsAttaches.cs" />
     <Compile Include="DTO\DetailsArticle\GammeDataGridView.cs" />
     <Compile Include="DTO\DetailsArticle\GlossaireDetailsArticle.cs" />
+    <Compile Include="DTO\DetailsArticle\InterrogationStock\EmplacementsInterrStock.cs" />
     <Compile Include="DTO\DetailsArticle\ModeleDEnregistrement.cs" />
     <Compile Include="DTO\DetailsArticle\TarifsClients.cs" />
     <Compile Include="Forms\Article\DetailsArticle.cs">

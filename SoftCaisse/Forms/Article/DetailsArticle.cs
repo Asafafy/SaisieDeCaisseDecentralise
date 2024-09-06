@@ -604,7 +604,7 @@ namespace SoftCaisse.Forms.Article
         /* ===================================================================================================================================== */
         private void btnInterroger_Click(object sender, System.EventArgs e)
         {
-            InterrogationStockArticle interrogationStockArticle = new InterrogationStockArticle(_referenceArt, _designArt);
+            InterrogationStockArticle interrogationStockArticle = new InterrogationStockArticle(_referenceArt, _designArt, this);
             interrogationStockArticle.Show();
         }
 

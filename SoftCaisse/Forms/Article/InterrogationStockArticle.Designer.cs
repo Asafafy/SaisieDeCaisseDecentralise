@@ -34,27 +34,29 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.KryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.KryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.KryptonButtonAfficher = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.labelDepot = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBoxDepot = new System.Windows.Forms.ComboBox();
+            this.comboBoxEmplacement = new System.Windows.Forms.ComboBox();
+            this.comboBoxGamme1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxGamme2 = new System.Windows.Forms.ComboBox();
+            this.labelConditionnement = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -116,13 +118,12 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.523809F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.80952F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.47836F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.34624F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.61905F));
-            this.tableLayoutPanel2.Controls.Add(this.linkLabel1, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox1, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.comboBox2, 2, 1);
-            this.tableLayoutPanel2.Controls.Add(this.KryptonButton2, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.KryptonButtonAfficher, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.linkLabel1, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -132,121 +133,73 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(878, 74);
             this.tableLayoutPanel2.TabIndex = 24;
             // 
+            // comboBox2
+            // 
+            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(178, 45);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(278, 21);
+            this.comboBox2.TabIndex = 2;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // KryptonButtonAfficher
+            // 
+            this.KryptonButtonAfficher.Dock = System.Windows.Forms.DockStyle.Right;
+            this.KryptonButtonAfficher.Location = new System.Drawing.Point(820, 39);
+            this.KryptonButtonAfficher.Margin = new System.Windows.Forms.Padding(2);
+            this.KryptonButtonAfficher.Name = "KryptonButtonAfficher";
+            this.KryptonButtonAfficher.Palette = this.kryptonPalette1;
+            this.KryptonButtonAfficher.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.KryptonButtonAfficher.Size = new System.Drawing.Size(56, 33);
+            this.KryptonButtonAfficher.TabIndex = 24;
+            this.KryptonButtonAfficher.Values.Text = "Afficher";
+            this.KryptonButtonAfficher.Click += new System.EventHandler(this.KryptonButtonAfficher_Click);
+            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.linkLabel1.Location = new System.Drawing.Point(44, 37);
+            this.linkLabel1.Location = new System.Drawing.Point(136, 37);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(36, 37);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Article";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(86, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(161, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(253, 40);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(203, 21);
-            this.comboBox2.TabIndex = 2;
-            // 
-            // KryptonButton2
-            // 
-            this.KryptonButton2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.KryptonButton2.Location = new System.Drawing.Point(820, 39);
-            this.KryptonButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.KryptonButton2.Name = "KryptonButton2";
-            this.KryptonButton2.Palette = this.kryptonPalette1;
-            this.KryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.KryptonButton2.Size = new System.Drawing.Size(56, 33);
-            this.KryptonButton2.TabIndex = 24;
-            this.KryptonButton2.Values.Text = "Afficher";
+            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.linkLabel1.Click += new System.EventHandler(this.linkLabel1_Click);
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.dataGridView1, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.dataGridView1, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 83);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(878, 395);
             this.tableLayoutPanel3.TabIndex = 25;
             // 
-            // tableLayoutPanel4
+            // labelDepot
             // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.label1, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.comboBox3, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.comboBox4, 0, 3);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 279);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 4;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(169, 100);
-            this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(3, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 30);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Dépôt";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(3, 43);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(163, 21);
-            this.comboBox3.TabIndex = 1;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(3, 73);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(163, 21);
-            this.comboBox4.TabIndex = 2;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(178, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(697, 270);
-            this.dataGridView1.TabIndex = 1;
+            this.labelDepot.AutoSize = true;
+            this.labelDepot.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelDepot.Location = new System.Drawing.Point(3, 0);
+            this.labelDepot.Name = "labelDepot";
+            this.labelDepot.Size = new System.Drawing.Size(36, 30);
+            this.labelDepot.TabIndex = 0;
+            this.labelDepot.Text = "Dépôt";
+            this.labelDepot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel5
             // 
@@ -306,6 +259,97 @@
             this.textBox2.Size = new System.Drawing.Size(552, 20);
             this.textBox2.TabIndex = 3;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.GridColor = System.Drawing.Color.White;
+            this.dataGridView1.Location = new System.Drawing.Point(179, 3);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(695, 270);
+            this.dataGridView1.TabIndex = 25;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.comboBoxGamme2, 0, 5);
+            this.tableLayoutPanel6.Controls.Add(this.comboBoxGamme1, 0, 4);
+            this.tableLayoutPanel6.Controls.Add(this.comboBoxEmplacement, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.labelDepot, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.comboBoxDepot, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.labelConditionnement, 0, 3);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 6;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(169, 270);
+            this.tableLayoutPanel6.TabIndex = 26;
+            // 
+            // comboBoxDepot
+            // 
+            this.comboBoxDepot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxDepot.FormattingEnabled = true;
+            this.comboBoxDepot.Location = new System.Drawing.Point(3, 33);
+            this.comboBoxDepot.Name = "comboBoxDepot";
+            this.comboBoxDepot.Size = new System.Drawing.Size(163, 21);
+            this.comboBoxDepot.TabIndex = 1;
+            this.comboBoxDepot.SelectedIndexChanged += new System.EventHandler(this.comboBoxDepot_SelectedIndexChanged);
+            // 
+            // comboBoxEmplacement
+            // 
+            this.comboBoxEmplacement.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxEmplacement.FormattingEnabled = true;
+            this.comboBoxEmplacement.Location = new System.Drawing.Point(3, 63);
+            this.comboBoxEmplacement.Name = "comboBoxEmplacement";
+            this.comboBoxEmplacement.Size = new System.Drawing.Size(163, 21);
+            this.comboBoxEmplacement.TabIndex = 2;
+            // 
+            // comboBoxGamme1
+            // 
+            this.comboBoxGamme1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxGamme1.FormattingEnabled = true;
+            this.comboBoxGamme1.Location = new System.Drawing.Point(3, 123);
+            this.comboBoxGamme1.Name = "comboBoxGamme1";
+            this.comboBoxGamme1.Size = new System.Drawing.Size(163, 21);
+            this.comboBoxGamme1.TabIndex = 4;
+            // 
+            // comboBoxGamme2
+            // 
+            this.comboBoxGamme2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxGamme2.FormattingEnabled = true;
+            this.comboBoxGamme2.Location = new System.Drawing.Point(3, 153);
+            this.comboBoxGamme2.Name = "comboBoxGamme2";
+            this.comboBoxGamme2.Size = new System.Drawing.Size(163, 21);
+            this.comboBoxGamme2.TabIndex = 5;
+            // 
+            // labelConditionnement
+            // 
+            this.labelConditionnement.AutoSize = true;
+            this.labelConditionnement.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelConditionnement.Location = new System.Drawing.Point(3, 90);
+            this.labelConditionnement.Name = "labelConditionnement";
+            this.labelConditionnement.Size = new System.Drawing.Size(86, 30);
+            this.labelConditionnement.TabIndex = 6;
+            this.labelConditionnement.Text = "Conditionnement";
+            this.labelConditionnement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // InterrogationStockArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,11 +365,11 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -337,19 +381,21 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton KryptonButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton KryptonButton2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton KryptonButtonAfficher;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label labelDepot;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.ComboBox comboBoxGamme2;
+        private System.Windows.Forms.ComboBox comboBoxGamme1;
+        private System.Windows.Forms.ComboBox comboBoxEmplacement;
+        private System.Windows.Forms.ComboBox comboBoxDepot;
+        private System.Windows.Forms.Label labelConditionnement;
     }
 }

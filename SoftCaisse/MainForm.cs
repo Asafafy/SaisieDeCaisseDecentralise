@@ -35,6 +35,7 @@ namespace SoftCaisse
         private string initialCatalogSage = null;
         private string userId = null;
         private string password = null;
+        private bool _estConnecte = false;
         public MainForm()
         {
             InitializeComponent();
@@ -78,6 +79,8 @@ namespace SoftCaisse
             traitementToolStripMenuItem.Enabled = false;
             structureToolStripMenuItem.Enabled = false;
             etatToolStripMenuItem.Enabled = false;
+            _estConnecte = false;
+            ConnecterMenu.Enabled = true;
         }
 
         private void collaborateursToolStripMenuItem_Click(object sender, EventArgs e)
@@ -125,10 +128,15 @@ namespace SoftCaisse
                 fichierToolStripMenuItem,
                 traitementToolStripMenuItem,
                 structureToolStripMenuItem,
-                etatToolStripMenuItem
+                etatToolStripMenuItem,
+                this
             );
-
             login.Show();
+        }
+        public void DisableLoginButton()
+        {
+            ConnecterMenu.Enabled = false;
+            _estConnecte = true;
         }
 
         private void parArticlesToolStripMenuItem_Click(object sender, EventArgs e)

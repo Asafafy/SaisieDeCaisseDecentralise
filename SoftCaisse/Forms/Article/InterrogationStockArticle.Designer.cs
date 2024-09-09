@@ -38,7 +38,6 @@
             this.KryptonButtonAfficher = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.labelDepot = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,10 +45,11 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBoxDepot = new System.Windows.Forms.ComboBox();
-            this.comboBoxEmplacement = new System.Windows.Forms.ComboBox();
-            this.comboBoxGamme1 = new System.Windows.Forms.ComboBox();
             this.comboBoxGamme2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxGamme1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxEmplacement = new System.Windows.Forms.ComboBox();
+            this.labelDepot = new System.Windows.Forms.Label();
+            this.comboBoxDepot = new System.Windows.Forms.ComboBox();
             this.labelConditionnement = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -190,17 +190,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(878, 395);
             this.tableLayoutPanel3.TabIndex = 25;
             // 
-            // labelDepot
-            // 
-            this.labelDepot.AutoSize = true;
-            this.labelDepot.Dock = System.Windows.Forms.DockStyle.Left;
-            this.labelDepot.Location = new System.Drawing.Point(3, 0);
-            this.labelDepot.Name = "labelDepot";
-            this.labelDepot.Size = new System.Drawing.Size(36, 30);
-            this.labelDepot.TabIndex = 0;
-            this.labelDepot.Text = "Dépôt";
-            this.labelDepot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
@@ -302,24 +291,14 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(169, 270);
             this.tableLayoutPanel6.TabIndex = 26;
             // 
-            // comboBoxDepot
+            // comboBoxGamme2
             // 
-            this.comboBoxDepot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBoxDepot.FormattingEnabled = true;
-            this.comboBoxDepot.Location = new System.Drawing.Point(3, 33);
-            this.comboBoxDepot.Name = "comboBoxDepot";
-            this.comboBoxDepot.Size = new System.Drawing.Size(163, 21);
-            this.comboBoxDepot.TabIndex = 1;
-            this.comboBoxDepot.SelectedIndexChanged += new System.EventHandler(this.comboBoxDepot_SelectedIndexChanged);
-            // 
-            // comboBoxEmplacement
-            // 
-            this.comboBoxEmplacement.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBoxEmplacement.FormattingEnabled = true;
-            this.comboBoxEmplacement.Location = new System.Drawing.Point(3, 63);
-            this.comboBoxEmplacement.Name = "comboBoxEmplacement";
-            this.comboBoxEmplacement.Size = new System.Drawing.Size(163, 21);
-            this.comboBoxEmplacement.TabIndex = 2;
+            this.comboBoxGamme2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxGamme2.FormattingEnabled = true;
+            this.comboBoxGamme2.Location = new System.Drawing.Point(3, 153);
+            this.comboBoxGamme2.Name = "comboBoxGamme2";
+            this.comboBoxGamme2.Size = new System.Drawing.Size(163, 21);
+            this.comboBoxGamme2.TabIndex = 5;
             // 
             // comboBoxGamme1
             // 
@@ -330,14 +309,36 @@
             this.comboBoxGamme1.Size = new System.Drawing.Size(163, 21);
             this.comboBoxGamme1.TabIndex = 4;
             // 
-            // comboBoxGamme2
+            // comboBoxEmplacement
             // 
-            this.comboBoxGamme2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBoxGamme2.FormattingEnabled = true;
-            this.comboBoxGamme2.Location = new System.Drawing.Point(3, 153);
-            this.comboBoxGamme2.Name = "comboBoxGamme2";
-            this.comboBoxGamme2.Size = new System.Drawing.Size(163, 21);
-            this.comboBoxGamme2.TabIndex = 5;
+            this.comboBoxEmplacement.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxEmplacement.FormattingEnabled = true;
+            this.comboBoxEmplacement.Location = new System.Drawing.Point(3, 63);
+            this.comboBoxEmplacement.Name = "comboBoxEmplacement";
+            this.comboBoxEmplacement.Size = new System.Drawing.Size(163, 21);
+            this.comboBoxEmplacement.TabIndex = 2;
+            this.comboBoxEmplacement.SelectedIndexChanged += new System.EventHandler(this.comboBoxEmplacement_SelectedIndexChanged);
+            // 
+            // labelDepot
+            // 
+            this.labelDepot.AutoSize = true;
+            this.labelDepot.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelDepot.Location = new System.Drawing.Point(3, 0);
+            this.labelDepot.Name = "labelDepot";
+            this.labelDepot.Size = new System.Drawing.Size(36, 30);
+            this.labelDepot.TabIndex = 0;
+            this.labelDepot.Text = "Dépôt";
+            this.labelDepot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // comboBoxDepot
+            // 
+            this.comboBoxDepot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxDepot.FormattingEnabled = true;
+            this.comboBoxDepot.Location = new System.Drawing.Point(3, 33);
+            this.comboBoxDepot.Name = "comboBoxDepot";
+            this.comboBoxDepot.Size = new System.Drawing.Size(163, 21);
+            this.comboBoxDepot.TabIndex = 1;
+            this.comboBoxDepot.SelectedIndexChanged += new System.EventHandler(this.comboBoxDepot_SelectedIndexChanged);
             // 
             // labelConditionnement
             // 

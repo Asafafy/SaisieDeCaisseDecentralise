@@ -1,5 +1,6 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.DTO;
+using SoftCaisse.DTO.DetailsArticle.InterrogationStock;
 using SoftCaisse.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace SoftCaisse.Forms.Article
         private string _designArt;
         private DetailsArticle _detailsArticle;
         private F_ARTICLE _articleSelect;
+        private string _uniteVente;
+        private List<CMUPInterrStock> _valeursCMPU;
         private List<string> _listeDepotZones;
         private bool _haveArtGamme1;
         private bool _haveArtGamme2;
@@ -28,6 +31,7 @@ namespace SoftCaisse.Forms.Article
             _referenceArt = referenceArt;
             _designArt = designArt;
             _context = new AppDbContext();
+            _valeursCMPU = new List<CMUPInterrStock> { };
             InitializeComponent();
 
             _articleSelect = _context.F_ARTICLE.Where(art => art.AR_Ref == referenceArt && art.AR_Design == designArt).FirstOrDefault();
@@ -65,16 +69,8 @@ namespace SoftCaisse.Forms.Article
         private void afficherDepot(string referenceArticle)
         {
             Controle selectedDepot = (Controle)comboBoxDepot.SelectedItem;
-            bool aEmplacement = false;
-            List<F_ARTSTOCK> listeStockArt;
-            if (selectedDepot.valeur == "0")
-            {
-                listeStockArt = _context.F_ARTSTOCK.Where(art => art.AR_Ref == referenceArticle).ToList();
-            }
-            else
-            {
-                listeStockArt = _context.F_ARTSTOCK.Where(art => art.AR_Ref == referenceArticle && art.DE_No.ToString() == selectedDepot.valeur).ToList();
-            }
+            bool aEmplacement;
+
             _bindingSource = new DataTable();
             _bindingSource.Columns.Add(new DataColumn("Intitulé dépôt"));
             _bindingSource.Columns.Add(new DataColumn("Code emplacement"));
@@ -95,60 +91,122 @@ namespace SoftCaisse.Forms.Article
             _bindingSource.Columns.Add(new DataColumn("Qté Maxi"));
             //_bindingSource.Columns.Add(new DataColumn("Dernier P.A."));
             _bindingSource.Columns.Add(new DataColumn("Préparé"));
-            foreach (var stock in listeStockArt)
+            if (comboBoxEmplacement.SelectedIndex > 0)
             {
-                string intituleDepot = _context.F_DEPOT.Where(dpt => dpt.DE_No == stock.DE_No).Select(dpt => dpt.DE_Intitule).FirstOrDefault();
-                EmplacementsInterrStock emplacement;
-                if (comboBoxEmplacement.SelectedIndex == 0)
+                aEmplacement = true;
+                List<F_ARTSTOCKEMPL> listeStockArtEmpl;
+                if (selectedDepot.valeur == "0")
                 {
-                    emplacement = new EmplacementsInterrStock { DP_Code = null, DP_Intitule = null, DP_Zone = null };
-                    aEmplacement = false;
+                    listeStockArtEmpl = _context.F_ARTSTOCKEMPL.Where(art => art.AR_Ref == referenceArticle).OrderBy(art => art.DE_No).ToList();
                 }
                 else
                 {
-                    // Tous les emplacements = emplacements mouvementés
-                    emplacement = _context.F_DEPOTEMPL.Where(dpt => dpt.DP_No == (stock.DP_NoPrincipal == 0 ? 1 : stock.DP_NoPrincipal)).Select(art => new EmplacementsInterrStock { DP_Code = art.DP_Code, DP_Intitule = art.DP_Intitule, DP_Zone = art.DP_Zone }).FirstOrDefault();
-                    aEmplacement = true;
+                    listeStockArtEmpl = _context.F_ARTSTOCKEMPL.Where(artEmpl => artEmpl.AR_Ref == referenceArticle && artEmpl.DE_No.ToString() == selectedDepot.valeur).OrderBy(art => art.DE_No).ToList();
                 }
-                var numUniteVente = _context.F_ARTICLE.Where(art => art.AR_Ref == _referenceArt).Select(art => art.AR_UniteVen).FirstOrDefault();
-                var uniteVente = _context.P_UNITE.Where(unit => unit.cbIndice == numUniteVente).Select(art => art.U_Intitule).FirstOrDefault();
-                var qteSto = stock.AS_QteSto?.ToString("F2");
-                var qteCom = stock.AS_QteCom?.ToString("F2");
-                var qteRes = stock.AS_QteRes?.ToString("F2");
-                var stockATerme = stock.AS_QteSto + stock.AS_QteCom - stock.AS_QteRes;
-                string stockATermeStr = stockATerme?.ToString("F2");
-                var valeur = (stock.AS_MontSto ?? 0) / (stock.AS_QteSto < 1 ? 1 : stock.AS_QteSto);
-                var cmup = valeur?.ToString("F2");
-                var montSto = stock.AS_MontSto?.ToString("F2");
-                var qteMini = stock.AS_QteMini?.ToString("F2");
-                var qteMaxi = stock.AS_QteMaxi?.ToString("F2");
-                var qtePrepa = stock.AS_QtePrepa?.ToString("F2");
-                _bindingSource.Rows.Add(
-                    intituleDepot,
-                    emplacement.DP_Code ?? "",
-                    emplacement.DP_Intitule ?? "",
-                    _listeDepotZones[emplacement.DP_Zone ?? 0],
-                    uniteVente,
-                    qteSto,
-                    stock.AS_Principal,
-                    qteCom,
-                    qteRes,
-                    stockATerme,
-                    cmup,
-                    montSto,
-                    qteMini,
-                    qteMaxi,
-                    qtePrepa
-                );
+                foreach (var stock in listeStockArtEmpl)
+                {
+                    string intituleDepot = _context.F_DEPOT.Where(dpt => dpt.DE_No == stock.DE_No).Select(dpt => dpt.DE_Intitule).FirstOrDefault();
+                    EmplacementsInterrStock emplacement;
+                    emplacement = _context.F_DEPOTEMPL.Where(dpt => dpt.DP_No == (stock.DP_No == 0 ? 1 : stock.DP_No)).Select(art => new EmplacementsInterrStock { DP_Code = art.DP_Code, DP_Intitule = art.DP_Intitule, DP_Zone = art.DP_Zone }).FirstOrDefault();
+                    var qteSto = (stock.AE_QteSto ?? 0).ToString("F2");
+                    var disponible = ((stock.AE_QteSto - stock.AE_QtePrepa) ?? 0).ToString("F2");
+                    var stockATerme = stock.AE_QteSto - stock.AE_QtePrepa;
+                    var cmup = _valeursCMPU[stock.DE_No - 1].CMUP;
+                    var montSto = ((cmup * stock.AE_QteSto) ?? 0).ToString("F2");
+                    var qtePrepa = (stock.AE_QtePrepa ?? 0).ToString("F2");
+                    _bindingSource.Rows.Add(
+                        intituleDepot,
+                        emplacement.DP_Code ?? "",
+                        emplacement.DP_Intitule ?? "",
+                        _listeDepotZones[emplacement.DP_Zone ?? 0],
+                        _uniteVente,
+                        qteSto,
+                        disponible,
+                        "",
+                        "",
+                        (stockATerme ?? 0).ToString("F2"),
+                        (cmup ?? 0).ToString("F2"),
+                        montSto,
+                        "",
+                        "",
+                        qtePrepa
+                    );
+                }
             }
-            if (!aEmplacement)
+            else
+            {
+                aEmplacement = false;
+                List<F_ARTSTOCK> listeStockArt;
+                if (selectedDepot.valeur == "0")
+                {
+                    listeStockArt = _context.F_ARTSTOCK.Where(art => art.AR_Ref == referenceArticle).OrderBy(art => art.DE_No).ToList();
+                }
+                else
+                {
+                    listeStockArt = _context.F_ARTSTOCK.Where(art => art.AR_Ref == referenceArticle && art.DE_No.ToString() == selectedDepot.valeur).OrderBy(art => art.DE_No).ToList();
+                }
+                foreach (var stock in listeStockArt)
+                {
+                    string intituleDepot = _context.F_DEPOT.Where(dpt => dpt.DE_No == stock.DE_No).Select(dpt => dpt.DE_Intitule).FirstOrDefault();
+                    EmplacementsInterrStock emplacement;
+                    emplacement = new EmplacementsInterrStock { DP_Code = null, DP_Intitule = null, DP_Zone = null };
+                    var numUniteVente = _context.F_ARTICLE.Where(art => art.AR_Ref == _referenceArt).Select(art => art.AR_UniteVen).FirstOrDefault();
+                    _uniteVente = _context.P_UNITE.Where(unit => unit.cbIndice == numUniteVente).Select(art => art.U_Intitule).FirstOrDefault();
+                    var qteSto = (stock.AS_QteSto ?? 0).ToString("F2");
+                    var disponible = ((stock.AS_QteSto - stock.AS_QtePrepa) ?? 0).ToString("F2");
+                    var qteCom = (stock.AS_QteCom ?? 0).ToString("F2");
+                    var qteRes = (stock.AS_QteRes ?? 0).ToString("F2");
+                    var stockATerme = stock.AS_QteSto + stock.AS_QteCom - stock.AS_QteRes;
+                    decimal? cMUPactu = (stock.AS_MontSto ?? 0) / (stock.AS_QteSto < 1 ? 1 : stock.AS_QteSto);
+                    if (_valeursCMPU.Count() < 1)
+                    {
+                        _valeursCMPU.Add(new CMUPInterrStock { NumeroDepot = stock.DE_No, CMUP = cMUPactu });
+                    }
+                    else
+                    {
+                        if (!_valeursCMPU.Any(val => val.NumeroDepot == stock.DE_No))
+                        {
+                            _valeursCMPU.Add(new CMUPInterrStock { NumeroDepot = stock.DE_No, CMUP = cMUPactu });
+                        }
+                    }
+                    var montSto = (stock.AS_MontSto ?? 0).ToString("F2");
+                    var qteMini = (stock.AS_QteMini ?? 0).ToString("F2");
+                    var qteMaxi = (stock.AS_QteMaxi ?? 0).ToString("F2");
+                    var qtePrepa = (stock.AS_QtePrepa ?? 0).ToString("F2");
+                    _bindingSource.Rows.Add(
+                        intituleDepot,
+                        emplacement.DP_Code ?? "",
+                        emplacement.DP_Intitule ?? "",
+                        _listeDepotZones[emplacement.DP_Zone ?? 0],
+                        _uniteVente,
+                        qteSto,
+                        disponible,
+                        qteCom,
+                        qteRes,
+                        (stockATerme ?? 0).ToString("F2"),
+                        (cMUPactu ?? 0).ToString("F2"),
+                        montSto,
+                        qteMini,
+                        qteMaxi,
+                        qtePrepa
+                    );
+                }
+            }
+            if (aEmplacement)
+            {
+                dataGridView1.DataSource = _bindingSource;
+                dataGridView1.Columns["Commandé"].Visible = false;
+                dataGridView1.Columns["Réservé"].Visible = false;
+                dataGridView1.Columns["Qté Mini"].Visible = false;
+                dataGridView1.Columns["Qté Maxi"].Visible = false;
+            }
+            else
             {
                 dataGridView1.DataSource = _bindingSource;
                 dataGridView1.Columns["Code emplacement"].Visible = false;
                 dataGridView1.Columns["Intitulé emplacement"].Visible = false;
                 dataGridView1.Columns["Zone emplacement"].Visible = false;
             }
-            dataGridView1.DataSource = _bindingSource;
         }
         // ======================================== DEBUT FONCTIONS ========================================
 
@@ -190,6 +248,8 @@ namespace SoftCaisse.Forms.Article
 
         private void KryptonButtonAfficher_Click(object sender, EventArgs e)
         {
+            _uniteVente = "";
+            _valeursCMPU.Clear();
             comboBoxDepot.SelectedIndex = 0;
             comboBoxEmplacement.SelectedIndex = 0;
             afficherDepot(_articleSelect.AR_Ref);

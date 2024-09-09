@@ -36,7 +36,6 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_TAXE> F_TAXE { get; set; }
         public virtual DbSet<F_ARTCOMPTA> F_ARTCOMPTA { get; set; }
         public virtual DbSet<P_REGLEMENT> P_REGLEMENT { get; set; }
-        public virtual DbSet<F_ARTSTOCK> F_ARTSTOCK { get; set; }
         public virtual DbSet<P_UNITE> P_UNITE { get; set; }
         public virtual DbSet<F_ARTCLIENT> F_ARTCLIENT { get; set; }
         public virtual DbSet<P_CATTARIF> P_CATTARIF { get; set; }
@@ -52,6 +51,10 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_ARTGAMME> F_ARTGAMME { get; set; }
         public virtual DbSet<F_ARTENUMREF> F_ARTENUMREF { get; set; }
         public virtual DbSet<F_ENUMGAMME> F_ENUMGAMME { get; set; }
+        public virtual DbSet<F_ARTSTOCK> F_ARTSTOCK { get; set; }
+        public virtual DbSet<F_ARTSTOCKEMPL> F_ARTSTOCKEMPL { get; set; }
+        public virtual DbSet<F_GAMSTOCK> F_GAMSTOCK { get; set; }
+        public virtual DbSet<F_GAMSTOCKEMPL> F_GAMSTOCKEMPL { get; set; }
 
 
 

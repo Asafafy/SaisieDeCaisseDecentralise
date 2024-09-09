@@ -68,6 +68,7 @@
     <Compile Include="DTO\DetailsArticle\GammeDataGridView.cs" />
     <Compile Include="DTO\DetailsArticle\GlossaireDetailsArticle.cs" />
     <Compile Include="DTO\DetailsArticle\InterrogationStock\EmplacementsInterrStock.cs" />
+    <Compile Include="DTO\DetailsArticle\InterrogationStock\CMUPInterrStock.cs" />
     <Compile Include="DTO\DetailsArticle\ModeleDEnregistrement.cs" />
     <Compile Include="DTO\DetailsArticle\TarifsClients.cs" />
     <Compile Include="Forms\Article\DetailsArticle.cs">
@@ -305,6 +306,7 @@
     <Compile Include="Models\F_ARTICLEMEDIA.cs" />
     <Compile Include="Models\F_ARTMODELE.cs" />
     <Compile Include="Models\F_ARTSTOCK.cs" />
+    <Compile Include="Models\F_ARTSTOCKEMPL.cs" />
     <Compile Include="Models\F_BILLETPIECE.cs" />
     <Compile Include="Models\F_CAISSE.cs" />
     <Compile Include="Models\F_CATALOGUE.cs" />
@@ -321,6 +323,8 @@
     <Compile Include="Models\F_DOCREGL.cs" />
     <Compile Include="Models\F_ENUMGAMME.cs" />
     <Compile Include="Models\F_FAMILLE.cs" />
+    <Compile Include="Models\F_GAMSTOCK.cs" />
+    <Compile Include="Models\F_GAMSTOCKEMPL.cs" />
     <Compile Include="Models\F_GLOSSAIRE.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
     <Compile Include="Models\F_LIGNEARCHIVE.cs" />

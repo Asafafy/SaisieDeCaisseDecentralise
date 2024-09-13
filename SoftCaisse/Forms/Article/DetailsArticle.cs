@@ -330,7 +330,7 @@ namespace SoftCaisse.Forms.Article
 
             // =========================================================== DÉBUT TAB PAGES "DESCIRPTIF" =========================================================== */
             var listeCataloguesNo1 = _context.F_CATALOGUE.Where(u => u.CL_Niveau == 0)
-                .Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" })
+                .Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No.ToString() })
                 .ToList();
             var selectedCatNo1 = listeCataloguesNo1.FirstOrDefault(catal => catal.valeur == _selectedArt?.CL_No1.ToString());
             int selectedCatNo1Index = listeCataloguesNo1.IndexOf(selectedCatNo1);
@@ -339,7 +339,7 @@ namespace SoftCaisse.Forms.Article
             comboBoxCatal1.ValueMember = "valeur";
             comboBoxCatal1.SelectedIndex = selectedCatNo1Index;
             var listeCataloguesNo2 = _context.F_CATALOGUE.Where(catal => catal.CL_Niveau == 1 && catal.CL_NoParent.ToString() == selectedCatNo1.valeur)
-                .Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No + "" })
+                .Select(u => new Controle() { item = u.CL_Intitule, valeur = u.CL_No.ToString() })
                 .ToList();
             var selectedCatNo2 = listeCataloguesNo2.FirstOrDefault(catal => catal.valeur == _selectedArt?.CL_No2.ToString());
             if (selectedCatNo2 == null)
@@ -604,8 +604,7 @@ namespace SoftCaisse.Forms.Article
         /* ===================================================================================================================================== */
         private void btnInterroger_Click(object sender, System.EventArgs e)
         {
-            InterrogationStockArticle interrogationStockArticle = new InterrogationStockArticle(_referenceArt, _designArt, this);
-            interrogationStockArticle.Show();
+            new InterrogationStockArticle(_referenceArt, _designArt, this).Show();
         }
 
         private void krptAjouterVisualiser_Click(object sender, EventArgs e)

@@ -50,7 +50,9 @@
             this.comboBoxEmplacement = new System.Windows.Forms.ComboBox();
             this.labelDepot = new System.Windows.Forms.Label();
             this.comboBoxDepot = new System.Windows.Forms.ComboBox();
+            this.labelGammes = new System.Windows.Forms.Label();
             this.labelConditionnement = new System.Windows.Forms.Label();
+            this.comboBoxConditionnement = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -277,11 +279,15 @@
             this.tableLayoutPanel6.Controls.Add(this.comboBoxEmplacement, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.labelDepot, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.comboBoxDepot, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.labelConditionnement, 0, 3);
+            this.tableLayoutPanel6.Controls.Add(this.labelGammes, 0, 3);
+            this.tableLayoutPanel6.Controls.Add(this.labelConditionnement, 0, 6);
+            this.tableLayoutPanel6.Controls.Add(this.comboBoxConditionnement, 0, 7);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 6;
+            this.tableLayoutPanel6.RowCount = 8;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -299,6 +305,7 @@
             this.comboBoxGamme2.Name = "comboBoxGamme2";
             this.comboBoxGamme2.Size = new System.Drawing.Size(163, 21);
             this.comboBoxGamme2.TabIndex = 5;
+            this.comboBoxGamme2.SelectedIndexChanged += new System.EventHandler(this.comboBoxGamme2_SelectedIndexChanged);
             // 
             // comboBoxGamme1
             // 
@@ -308,6 +315,7 @@
             this.comboBoxGamme1.Name = "comboBoxGamme1";
             this.comboBoxGamme1.Size = new System.Drawing.Size(163, 21);
             this.comboBoxGamme1.TabIndex = 4;
+            this.comboBoxGamme1.SelectedIndexChanged += new System.EventHandler(this.comboBoxGamme1_SelectedIndexChanged);
             // 
             // comboBoxEmplacement
             // 
@@ -340,16 +348,37 @@
             this.comboBoxDepot.TabIndex = 1;
             this.comboBoxDepot.SelectedIndexChanged += new System.EventHandler(this.comboBoxDepot_SelectedIndexChanged);
             // 
+            // labelGammes
+            // 
+            this.labelGammes.AutoSize = true;
+            this.labelGammes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelGammes.Location = new System.Drawing.Point(3, 90);
+            this.labelGammes.Name = "labelGammes";
+            this.labelGammes.Size = new System.Drawing.Size(48, 30);
+            this.labelGammes.TabIndex = 6;
+            this.labelGammes.Text = "Gammes";
+            this.labelGammes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // labelConditionnement
             // 
             this.labelConditionnement.AutoSize = true;
             this.labelConditionnement.Dock = System.Windows.Forms.DockStyle.Left;
-            this.labelConditionnement.Location = new System.Drawing.Point(3, 90);
+            this.labelConditionnement.Location = new System.Drawing.Point(3, 180);
             this.labelConditionnement.Name = "labelConditionnement";
             this.labelConditionnement.Size = new System.Drawing.Size(86, 30);
-            this.labelConditionnement.TabIndex = 6;
+            this.labelConditionnement.TabIndex = 7;
             this.labelConditionnement.Text = "Conditionnement";
             this.labelConditionnement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // comboBoxConditionnement
+            // 
+            this.comboBoxConditionnement.Dock = System.Windows.Forms.DockStyle.Top;
+            this.comboBoxConditionnement.FormattingEnabled = true;
+            this.comboBoxConditionnement.Location = new System.Drawing.Point(3, 213);
+            this.comboBoxConditionnement.Name = "comboBoxConditionnement";
+            this.comboBoxConditionnement.Size = new System.Drawing.Size(163, 21);
+            this.comboBoxConditionnement.TabIndex = 8;
+            this.comboBoxConditionnement.SelectedIndexChanged += new System.EventHandler(this.comboBoxConditionnement_SelectedIndexChanged);
             // 
             // InterrogationStockArticle
             // 
@@ -397,6 +426,8 @@
         private System.Windows.Forms.ComboBox comboBoxGamme1;
         private System.Windows.Forms.ComboBox comboBoxEmplacement;
         private System.Windows.Forms.ComboBox comboBoxDepot;
+        private System.Windows.Forms.Label labelGammes;
         private System.Windows.Forms.Label labelConditionnement;
+        private System.Windows.Forms.ComboBox comboBoxConditionnement;
     }
 }

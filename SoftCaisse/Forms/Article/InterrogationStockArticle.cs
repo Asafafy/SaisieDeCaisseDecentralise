@@ -66,6 +66,8 @@ namespace SoftCaisse.Forms.Article
 
             _articleSelect = _context.F_ARTICLE.Where(art => art.AR_Ref == referenceArt && art.AR_Design == designArt).FirstOrDefault();
 
+            afficherArticleDeSubstitution(referenceArt);
+
             afficherDepot(referenceArt);
         }
         // ======================================== FIN CONSTRUCTEUR ========================================
@@ -87,7 +89,7 @@ namespace SoftCaisse.Forms.Article
                 listeStockArt = _context.F_ARTSTOCK.Where(art => art.AR_Ref == referenceArticle && art.DE_No.ToString() == selectedDepot.valeur).OrderBy(art => art.DE_No).ToList();
             }
             bool haveConditionnement = comboBoxConditionnement.SelectedIndex > 0;
-            F_CONDITION conditionnement = _context.F_CONDITION.Where(cond => cond.AR_Ref == referenceArticle).FirstOrDefault();
+            F_CONDITION conditionnement = _context.F_CONDITION.Where(cond => cond.AR_Ref == referenceArticle && cond.EC_Enumere == comboBoxConditionnement.Text).FirstOrDefault();
             _bindingSource = new DataTable();
             _bindingSource.Columns.Add(new DataColumn("Intitulé dépôt"));
             _bindingSource.Columns.Add(new DataColumn("Code emplacement"));
@@ -189,7 +191,7 @@ namespace SoftCaisse.Forms.Article
                 listeStockArtEmpl = _context.F_ARTSTOCKEMPL.Where(artEmpl => artEmpl.AR_Ref == referenceArticle && artEmpl.DE_No.ToString() == selectedDepot.valeur).OrderBy(art => art.DE_No).ToList();
             }
             bool haveConditionnement = comboBoxConditionnement.SelectedIndex > 0;
-            F_CONDITION conditionnement = _context.F_CONDITION.Where(cond => cond.AR_Ref == referenceArticle).FirstOrDefault();
+            F_CONDITION conditionnement = _context.F_CONDITION.Where(cond => cond.AR_Ref == referenceArticle && cond.EC_Enumere == comboBoxConditionnement.Text).FirstOrDefault();
             _bindingSource = new DataTable();
             _bindingSource.Columns.Add(new DataColumn("Intitulé dépôt"));
             _bindingSource.Columns.Add(new DataColumn("Code emplacement"));
@@ -667,6 +669,7 @@ namespace SoftCaisse.Forms.Article
             gererAffichageComboBoxGamme2(_articleSelect.AR_Ref, _haveArtGamme2, 0);
             gererAffichageComboBoxConditionnement(_articleSelect.AR_Ref, 0);
             afficherDepot(_articleSelect.AR_Ref);
+            afficherArticleDeSubstitution(_articleSelect.AR_Ref);
             KryptonButtonAfficher.Enabled = false;
         }
 
@@ -831,6 +834,15 @@ namespace SoftCaisse.Forms.Article
             else
             {
                 afficherDepot(_referenceArt);
+            }
+        }
+
+        private void afficherArticleDeSubstitution(string referenceArt)
+        {
+            F_ARTICLE articleSubstitut = _context.F_ARTICLE.Where(art => art.AR_Ref == referenceArt).Join(_context.F_ARTICLE, art => art.AR_Substitut, substitut => substitut.AR_Ref, (art, substitut) => substitut).FirstOrDefault();
+            if (articleSubstitut != null)
+            {
+                textBoxArtSubstitution.Text = articleSubstitut + " - " + articleSubstitut.AR_Design;
             }
         }
 

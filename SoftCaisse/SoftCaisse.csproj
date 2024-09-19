@@ -83,6 +83,18 @@
     <Compile Include="Forms\Article\InterrogationStockArticle.Designer.cs">
       <DependentUpon>InterrogationStockArticle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Clients\DetailsClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clients\DetailsClient.Designer.cs">
+      <DependentUpon>DetailsClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clients\ListeClients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Clients\ListeClients.Designer.cs">
+      <DependentUpon>ListeClients.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Famille\ListeFamillesDArticles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,6 +395,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Article\InterrogationStockArticle.resx">
       <DependentUpon>InterrogationStockArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clients\DetailsClient.resx">
+      <DependentUpon>DetailsClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clients\ListeClients.resx">
+      <DependentUpon>ListeClients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Famille\ListeFamillesDArticles.resx">
       <DependentUpon>ListeFamillesDArticles.cs</DependentUpon>

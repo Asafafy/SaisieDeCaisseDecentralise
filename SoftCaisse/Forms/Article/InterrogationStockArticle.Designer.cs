@@ -42,7 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxArtSubstitution = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxGamme2 = new System.Windows.Forms.ComboBox();
@@ -200,7 +200,7 @@
             this.tableLayoutPanel5.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.textBox1, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.textBox2, 1, 2);
+            this.tableLayoutPanel5.Controls.Add(this.textBoxArtSubstitution, 1, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(178, 279);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -242,13 +242,13 @@
             this.textBox1.Size = new System.Drawing.Size(552, 20);
             this.textBox1.TabIndex = 2;
             // 
-            // textBox2
+            // textBoxArtSubstitution
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(142, 43);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(552, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBoxArtSubstitution.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxArtSubstitution.Location = new System.Drawing.Point(142, 43);
+            this.textBoxArtSubstitution.Name = "textBoxArtSubstitution";
+            this.textBoxArtSubstitution.Size = new System.Drawing.Size(552, 20);
+            this.textBoxArtSubstitution.TabIndex = 3;
             // 
             // dataGridView1
             // 
@@ -384,6 +384,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(884, 511);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -419,7 +420,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxArtSubstitution;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.ComboBox comboBoxGamme2;

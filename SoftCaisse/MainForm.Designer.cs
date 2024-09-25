@@ -43,6 +43,7 @@
             this.collaborateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.caissesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.artilceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.familleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.traitementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ouvertureDeCaisseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventesComptoirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,7 +67,6 @@
             this.databaseOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
-            this.familleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,6 +184,13 @@
             this.artilceToolStripMenuItem.Text = "Artilce";
             this.artilceToolStripMenuItem.Click += new System.EventHandler(this.artilceToolStripMenuItem_Click);
             // 
+            // familleToolStripMenuItem
+            // 
+            this.familleToolStripMenuItem.Name = "familleToolStripMenuItem";
+            this.familleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.familleToolStripMenuItem.Text = "Famille";
+            this.familleToolStripMenuItem.Click += new System.EventHandler(this.familleToolStripMenuItem_Click);
+            // 
             // traitementToolStripMenuItem
             // 
             this.traitementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -254,6 +261,7 @@
             this.saisieDesRèglementsToolStripMenuItem.Name = "saisieDesRèglementsToolStripMenuItem";
             this.saisieDesRèglementsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saisieDesRèglementsToolStripMenuItem.Text = "Saisie des règlements";
+            this.saisieDesRèglementsToolStripMenuItem.Click += new System.EventHandler(this.saisieDesRèglementsToolStripMenuItem_Click);
             // 
             // remiseEnBanqueToolStripMenuItem
             // 
@@ -364,13 +372,6 @@
             // 
             this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.ProfessionalSystem;
             // 
-            // familleToolStripMenuItem
-            // 
-            this.familleToolStripMenuItem.Name = "familleToolStripMenuItem";
-            this.familleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.familleToolStripMenuItem.Text = "Famille";
-            this.familleToolStripMenuItem.Click += new System.EventHandler(this.familleToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,7 +380,7 @@
             this.ClientSize = new System.Drawing.Size(796, 547);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;

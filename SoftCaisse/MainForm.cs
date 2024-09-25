@@ -1,5 +1,6 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Controls;
+using SoftCaisse.Forms;
 using SoftCaisse.Forms.Article;
 using SoftCaisse.Forms.ClotureCaisse;
 using SoftCaisse.Forms.ConnexBase;
@@ -197,6 +198,12 @@ namespace SoftCaisse
         {
             ListeFamillesDArticles listeFamillesDArticles = new ListeFamillesDArticles();
             listeFamillesDArticles.Show();
+        }
+
+        private void saisieDesRèglementsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaisieDesReglementsClients saisieDesReglementsClients = new SaisieDesReglementsClients();
+            saisieDesReglementsClients.Show();
         }
     }
 }

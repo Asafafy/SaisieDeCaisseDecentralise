@@ -63,6 +63,16 @@ namespace SoftCaisse.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap comptabilite {
+            get {
+                object obj = ResourceManager.GetObject("comptabilite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_points_de_suspension_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-points-de-suspension-48", resourceCulture);

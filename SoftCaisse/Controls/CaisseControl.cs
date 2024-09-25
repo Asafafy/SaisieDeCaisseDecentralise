@@ -31,8 +31,8 @@ namespace SoftCaisse.Controls
         private void btnParamCaisseClose_Click(object sender, EventArgs e)
         {
             Form ParamCaisseForm = this.FindForm();
-            if(ParamCaisseForm !=null) 
-            { 
+            if (ParamCaisseForm != null)
+            {
                 ParamCaisseForm.Close();
             }
         }
@@ -55,9 +55,9 @@ namespace SoftCaisse.Controls
 
             var caisseModel = _context.P_SOUCHEVENTE.Where(r => r.S_Intitule != "").Select(r => new { Indice = r.cbMarq, Intitule = r.S_Intitule }).ToArray();
             kryptonComboBox4.Items.Clear();
-            kryptonComboBox4.DataSource=caisseModel;
-            kryptonComboBox4.ValueMember="Indice";
-            kryptonComboBox4.DisplayMember="Intitule";
+            kryptonComboBox4.DataSource = caisseModel;
+            kryptonComboBox4.ValueMember = "Indice";
+            kryptonComboBox4.DisplayMember = "Intitule";
             kryptonComboBox4.SelectedIndex = 0;
 
         }

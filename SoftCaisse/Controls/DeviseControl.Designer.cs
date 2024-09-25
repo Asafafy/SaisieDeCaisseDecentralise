@@ -47,19 +47,22 @@
             // 
             this.groupBox1.Controls.Add(this.btnDeviseClose);
             this.groupBox1.Controls.Add(this.kryptonButton4);
-            this.groupBox1.Location = new System.Drawing.Point(3, 458);
+            this.groupBox1.Location = new System.Drawing.Point(2, 372);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(863, 55);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(647, 45);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
             // btnDeviseClose
             // 
-            this.btnDeviseClose.Location = new System.Drawing.Point(752, 15);
+            this.btnDeviseClose.Location = new System.Drawing.Point(564, 12);
+            this.btnDeviseClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDeviseClose.Name = "btnDeviseClose";
             this.btnDeviseClose.Palette = this.kryptonPalette1;
             this.btnDeviseClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnDeviseClose.Size = new System.Drawing.Size(105, 34);
+            this.btnDeviseClose.Size = new System.Drawing.Size(79, 28);
             this.btnDeviseClose.TabIndex = 27;
             this.btnDeviseClose.Values.Text = "Annuler";
             this.btnDeviseClose.Click += new System.EventHandler(this.btnDeviseClose_Click);
@@ -91,11 +94,12 @@
             // 
             // kryptonButton4
             // 
-            this.kryptonButton4.Location = new System.Drawing.Point(643, 15);
+            this.kryptonButton4.Location = new System.Drawing.Point(482, 12);
+            this.kryptonButton4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.Palette = this.kryptonPalette1;
             this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton4.Size = new System.Drawing.Size(105, 34);
+            this.kryptonButton4.Size = new System.Drawing.Size(79, 28);
             this.kryptonButton4.TabIndex = 26;
             this.kryptonButton4.Values.Text = "OK";
             // 
@@ -109,12 +113,13 @@
             this.Code_ISO,
             this.Code_ISO_Num,
             this.Cours});
-            this.kryptonDataGridView1.Location = new System.Drawing.Point(7, 14);
+            this.kryptonDataGridView1.Location = new System.Drawing.Point(5, 11);
+            this.kryptonDataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.kryptonDataGridView1.Name = "kryptonDataGridView1";
             this.kryptonDataGridView1.RowHeadersVisible = false;
             this.kryptonDataGridView1.RowHeadersWidth = 51;
             this.kryptonDataGridView1.RowTemplate.Height = 24;
-            this.kryptonDataGridView1.Size = new System.Drawing.Size(859, 439);
+            this.kryptonDataGridView1.Size = new System.Drawing.Size(644, 357);
             this.kryptonDataGridView1.TabIndex = 26;
             this.kryptonDataGridView1.DoubleClick += new System.EventHandler(this.kryptonDataGridView1_DoubleClick);
             // 
@@ -156,12 +161,14 @@
             // 
             // DeviseControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.Controls.Add(this.kryptonDataGridView1);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DeviseControl";
-            this.Size = new System.Drawing.Size(875, 525);
+            this.Size = new System.Drawing.Size(656, 427);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
             this.ResumeLayout(false);

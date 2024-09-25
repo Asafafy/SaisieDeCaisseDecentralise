@@ -50,20 +50,23 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 14);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 11);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(789, 398);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(592, 323);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.collaboDataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Location = new System.Drawing.Point(2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(783, 392);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(587, 318);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Collaborateurs";
@@ -77,12 +80,13 @@
             this.NumCollabo,
             this.PrenomCollabo,
             this.FonctionCollab});
-            this.collaboDataGridView.Location = new System.Drawing.Point(6, 34);
+            this.collaboDataGridView.Location = new System.Drawing.Point(4, 28);
+            this.collaboDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.collaboDataGridView.Name = "collaboDataGridView";
             this.collaboDataGridView.RowHeadersVisible = false;
             this.collaboDataGridView.RowHeadersWidth = 51;
             this.collaboDataGridView.RowTemplate.Height = 24;
-            this.collaboDataGridView.Size = new System.Drawing.Size(756, 344);
+            this.collaboDataGridView.Size = new System.Drawing.Size(567, 280);
             this.collaboDataGridView.TabIndex = 1;
             this.collaboDataGridView.DoubleClick += new System.EventHandler(this.collaboDataGridView_DoubleClick);
             // 
@@ -142,33 +146,37 @@
             // 
             // kryptonButton3
             // 
-            this.kryptonButton3.Location = new System.Drawing.Point(672, 415);
+            this.kryptonButton3.Location = new System.Drawing.Point(504, 337);
+            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.kryptonButton3.Name = "kryptonButton3";
             this.kryptonButton3.Palette = this.kryptonPalette1;
             this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton3.Size = new System.Drawing.Size(105, 34);
+            this.kryptonButton3.Size = new System.Drawing.Size(79, 28);
             this.kryptonButton3.TabIndex = 24;
             this.kryptonButton3.Values.Text = "Supprimer";
             // 
             // kryptonButton2
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(510, 415);
+            this.kryptonButton2.Location = new System.Drawing.Point(382, 337);
+            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Palette = this.kryptonPalette1;
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(105, 34);
+            this.kryptonButton2.Size = new System.Drawing.Size(79, 28);
             this.kryptonButton2.TabIndex = 23;
             this.kryptonButton2.Values.Text = "Nouveau";
             // 
             // CollaborateurControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.Controls.Add(this.kryptonButton3);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CollaborateurControl";
-            this.Size = new System.Drawing.Size(808, 461);
+            this.Size = new System.Drawing.Size(606, 375);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.collaboDataGridView)).EndInit();

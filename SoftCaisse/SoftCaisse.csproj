@@ -71,35 +71,47 @@
     <Compile Include="DTO\DetailsArticle\InterrogationStock\CMUPInterrStock.cs" />
     <Compile Include="DTO\DetailsArticle\ModeleDEnregistrement.cs" />
     <Compile Include="DTO\DetailsArticle\TarifsClients.cs" />
-    <Compile Include="Forms\Article\DetailsArticle.cs">
+    <Compile Include="Forms\DetailsArticle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Article\DetailsArticle.Designer.cs">
+    <Compile Include="Forms\DetailsArticle.Designer.cs">
       <DependentUpon>DetailsArticle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Article\InterrogationStockArticle.cs">
+    <Compile Include="Forms\InterrogationStockArticle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Article\InterrogationStockArticle.Designer.cs">
+    <Compile Include="Forms\InterrogationStockArticle.Designer.cs">
       <DependentUpon>InterrogationStockArticle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Clients\DetailsClient.cs">
+    <Compile Include="Forms\DetailsClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Clients\DetailsClient.Designer.cs">
+    <Compile Include="Forms\DetailsClient.Designer.cs">
       <DependentUpon>DetailsClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Clients\ListeClients.cs">
+    <Compile Include="Forms\ListeClients.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Clients\ListeClients.Designer.cs">
+    <Compile Include="Forms\ListeClients.Designer.cs">
       <DependentUpon>ListeClients.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Famille\ListeFamillesDArticles.cs">
+    <Compile Include="Forms\ListeFamillesDArticles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Famille\ListeFamillesDArticles.Designer.cs">
+    <Compile Include="Forms\ListeFamillesDArticles.Designer.cs">
       <DependentUpon>ListeFamillesDArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ParamVenteComptoir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ParamVenteComptoir.Designer.cs">
+      <DependentUpon>ParamVenteComptoir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SaisieDesReglementsClients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SaisieDesReglementsClients.Designer.cs">
+      <DependentUpon>SaisieDesReglementsClients.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
@@ -155,148 +167,148 @@
     <Compile Include="DTO\ModeReglement.cs" />
     <Compile Include="DTO\Taxe.cs" />
     <Compile Include="DTO\Unite.cs" />
-    <Compile Include="Forms\Article\ListeArticles.cs">
+    <Compile Include="Forms\ListeArticles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Article\ListeArticles.Designer.cs">
+    <Compile Include="Forms\ListeArticles.Designer.cs">
       <DependentUpon>ListeArticles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FondCaisse\FondCaisseDevisForm.cs">
+    <Compile Include="Forms\FondCaisseDevisForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FondCaisse\FondCaisseDevisForm.Designer.cs">
+    <Compile Include="Forms\FondCaisseDevisForm.Designer.cs">
       <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TicketCaisse\ListAttenteForm.cs">
+    <Compile Include="Forms\ListAttenteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TicketCaisse\ListAttenteForm.Designer.cs">
+    <Compile Include="Forms\ListAttenteForm.Designer.cs">
       <DependentUpon>ListAttenteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Billetage\BilletageForm.cs">
+    <Compile Include="Forms\BilletageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Billetage\BilletageForm.Designer.cs">
+    <Compile Include="Forms\BilletageForm.Designer.cs">
       <DependentUpon>BilletageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Caisse\DetailCaisseForm.cs">
+    <Compile Include="Forms\DetailCaisseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Caisse\DetailCaisseForm.Designer.cs">
+    <Compile Include="Forms\DetailCaisseForm.Designer.cs">
       <DependentUpon>DetailCaisseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Caisse\ClotureCaisse.cs">
+    <Compile Include="Forms\ClotureCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Caisse\ClotureCaisse.Designer.cs">
+    <Compile Include="Forms\ClotureCaisse.Designer.cs">
       <DependentUpon>ClotureCaisse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CollaboDetail\CollaboDetailForm.cs">
+    <Compile Include="Forms\CollaboDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CollaboDetail\CollaboDetailForm.Designer.cs">
+    <Compile Include="Forms\CollaboDetailForm.Designer.cs">
       <DependentUpon>CollaboDetailForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ConnexBase\ConnectDbForm.cs">
+    <Compile Include="Forms\ConnectDbForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ConnexBase\ConnectDbForm.Designer.cs">
+    <Compile Include="Forms\ConnectDbForm.Designer.cs">
       <DependentUpon>ConnectDbForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ControlCaisse\ControlCaisseForm.cs">
+    <Compile Include="Forms\ControlCaisseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ControlCaisse\ControlCaisseForm.Designer.cs">
+    <Compile Include="Forms\ControlCaisseForm.Designer.cs">
       <DependentUpon>ControlCaisseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DocumentVente\DocumentVenteForm.cs">
+    <Compile Include="Forms\DocumentVenteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DocumentVente\DocumentVenteForm.Designer.cs">
+    <Compile Include="Forms\DocumentVenteForm.Designer.cs">
       <DependentUpon>DocumentVenteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FermetureCaisse\FermetureCaisse.cs">
+    <Compile Include="Forms\FermetureCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FermetureCaisse\FermetureCaisse.Designer.cs">
+    <Compile Include="Forms\FermetureCaisse.Designer.cs">
       <DependentUpon>FermetureCaisse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FondCaisse\FondCaisseBilletageForm.cs">
+    <Compile Include="Forms\FondCaisseBilletageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FondCaisse\FondCaisseBilletageForm.Designer.cs">
+    <Compile Include="Forms\FondCaisseBilletageForm.Designer.cs">
       <DependentUpon>FondCaisseBilletageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormCaisse\Reporting.cs">
+    <Compile Include="Forms\Reporting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormCaisse\Reporting.Designer.cs">
+    <Compile Include="Forms\Reporting.Designer.cs">
       <DependentUpon>Reporting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GestionCaisse\GestionCaisse.cs">
+    <Compile Include="Forms\GestionCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\GestionCaisse\GestionCaisse.Designer.cs">
+    <Compile Include="Forms\GestionCaisse.Designer.cs">
       <DependentUpon>GestionCaisse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GestionCaisse\MouvementCaisse.cs">
+    <Compile Include="Forms\MouvementCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\GestionCaisse\MouvementCaisse.Designer.cs">
+    <Compile Include="Forms\MouvementCaisse.Designer.cs">
       <DependentUpon>MouvementCaisse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Login\LoginForm.cs">
+    <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Login\LoginForm.Designer.cs">
+    <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MouvementCaisse\MouvementCaisseForm.cs">
+    <Compile Include="Forms\MouvementCaisseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MouvementCaisse\MouvementCaisseForm.Designer.cs">
+    <Compile Include="Forms\MouvementCaisseForm.Designer.cs">
       <DependentUpon>MouvementCaisseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OuvertureCaisse\OuvertureCaisseForm.cs">
+    <Compile Include="Forms\OuvertureCaisseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\OuvertureCaisse\OuvertureCaisseForm.Designer.cs">
+    <Compile Include="Forms\OuvertureCaisseForm.Designer.cs">
       <DependentUpon>OuvertureCaisseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ParamSociete\ParamCaisseForm.cs">
+    <Compile Include="Forms\ParamCaisseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ParamSociete\ParamCaisseForm.Designer.cs">
+    <Compile Include="Forms\ParamCaisseForm.Designer.cs">
       <DependentUpon>ParamCaisseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ParamSociete\ParamSocForm.cs">
+    <Compile Include="Forms\ParamSocForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ParamSociete\ParamSocForm.Designer.cs">
+    <Compile Include="Forms\ParamSocForm.Designer.cs">
       <DependentUpon>ParamSocForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Statistiques\StatCaisseForm.cs">
+    <Compile Include="Forms\StatCaisseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Statistiques\StatCaisseForm.Designer.cs">
+    <Compile Include="Forms\StatCaisseForm.Designer.cs">
       <DependentUpon>StatCaisseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\StructureCaisse\StructureCaisseForm.cs">
+    <Compile Include="Forms\StructureCaisseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\StructureCaisse\StructureCaisseForm.Designer.cs">
+    <Compile Include="Forms\StructureCaisseForm.Designer.cs">
       <DependentUpon>StructureCaisseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\User\UserManagementForm.cs">
+    <Compile Include="Forms\UserManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\User\UserManagementForm.Designer.cs">
+    <Compile Include="Forms\UserManagementForm.Designer.cs">
       <DependentUpon>UserManagementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\VenteComptoir\VenteComptoirForm.cs">
+    <Compile Include="Forms\VenteComptoirForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\VenteComptoir\VenteComptoirForm.Designer.cs">
+    <Compile Include="Forms\VenteComptoirForm.Designer.cs">
       <DependentUpon>VenteComptoirForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -324,6 +336,7 @@
     <Compile Include="Models\F_CATALOGUE.cs" />
     <Compile Include="Models\F_COLLABORATEUR.cs" />
     <Compile Include="Models\F_COMPTEA.cs" />
+    <Compile Include="Models\F_COMPTEG.cs" />
     <Compile Include="Models\F_COMPTET.cs" />
     <Compile Include="Models\F_CONDITION.cs" />
     <Compile Include="Models\F_CREGLEMENT.cs" />
@@ -387,26 +400,36 @@
     <Compile Include="Utils\ComboBox\Cmbx.cs" />
     <Compile Include="Utils\Connection\Db.cs" />
     <Compile Include="Utils\Controls\AddControl.cs" />
+    <Compile Include="Utils\EnterKeyDownEventHadler.cs" />
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <Compile Include="Utils\Global\ConnectedUser.cs" />
+    <Compile Include="Utils\RoundedBorderRadiusPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="ClotureFacture.rdlc" />
-    <EmbeddedResource Include="Forms\Article\DetailsArticle.resx">
+    <EmbeddedResource Include="Forms\DetailsArticle.resx">
       <DependentUpon>DetailsArticle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Article\InterrogationStockArticle.resx">
+    <EmbeddedResource Include="Forms\InterrogationStockArticle.resx">
       <DependentUpon>InterrogationStockArticle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Clients\DetailsClient.resx">
+    <EmbeddedResource Include="Forms\DetailsClient.resx">
       <DependentUpon>DetailsClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Clients\ListeClients.resx">
+    <EmbeddedResource Include="Forms\ListeClients.resx">
       <DependentUpon>ListeClients.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Famille\ListeFamillesDArticles.resx">
+    <EmbeddedResource Include="Forms\ListeFamillesDArticles.resx">
       <DependentUpon>ListeFamillesDArticles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FondCaisse\FondCaisseDevisForm.resx">
+    <EmbeddedResource Include="Forms\FondCaisseDevisForm.resx">
       <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ParamVenteComptoir.resx">
+      <DependentUpon>ParamVenteComptoir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SaisieDesReglementsClients.resx">
+      <DependentUpon>SaisieDesReglementsClients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StatistiqueCaisseReglement.rdlc" />
     <EmbeddedResource Include="StatistiqueCaisseFamille.rdlc" />
@@ -426,73 +449,73 @@
     <EmbeddedResource Include="Controls\DeviseControl.resx">
       <DependentUpon>DeviseControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Article\ListeArticles.resx">
+    <EmbeddedResource Include="Forms\ListeArticles.resx">
       <DependentUpon>ListeArticles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TicketCaisse\ListAttenteForm.resx">
+    <EmbeddedResource Include="Forms\ListAttenteForm.resx">
       <DependentUpon>ListAttenteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Billetage\BilletageForm.resx">
+    <EmbeddedResource Include="Forms\BilletageForm.resx">
       <DependentUpon>BilletageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Caisse\DetailCaisseForm.resx">
+    <EmbeddedResource Include="Forms\DetailCaisseForm.resx">
       <DependentUpon>DetailCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Caisse\ClotureCaisse.resx">
+    <EmbeddedResource Include="Forms\ClotureCaisse.resx">
       <DependentUpon>ClotureCaisse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CollaboDetail\CollaboDetailForm.resx">
+    <EmbeddedResource Include="Forms\CollaboDetailForm.resx">
       <DependentUpon>CollaboDetailForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ConnexBase\ConnectDbForm.resx">
+    <EmbeddedResource Include="Forms\ConnectDbForm.resx">
       <DependentUpon>ConnectDbForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ControlCaisse\ControlCaisseForm.resx">
+    <EmbeddedResource Include="Forms\ControlCaisseForm.resx">
       <DependentUpon>ControlCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DocumentVente\DocumentVenteForm.resx">
+    <EmbeddedResource Include="Forms\DocumentVenteForm.resx">
       <DependentUpon>DocumentVenteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FermetureCaisse\FermetureCaisse.resx">
+    <EmbeddedResource Include="Forms\FermetureCaisse.resx">
       <DependentUpon>FermetureCaisse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FondCaisse\FondCaisseBilletageForm.resx">
+    <EmbeddedResource Include="Forms\FondCaisseBilletageForm.resx">
       <DependentUpon>FondCaisseBilletageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCaisse\Reporting.resx">
+    <EmbeddedResource Include="Forms\Reporting.resx">
       <DependentUpon>Reporting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GestionCaisse\GestionCaisse.resx">
+    <EmbeddedResource Include="Forms\GestionCaisse.resx">
       <DependentUpon>GestionCaisse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GestionCaisse\MouvementCaisse.resx">
+    <EmbeddedResource Include="Forms\MouvementCaisse.resx">
       <DependentUpon>MouvementCaisse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Login\LoginForm.resx">
+    <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MouvementCaisse\MouvementCaisseForm.resx">
+    <EmbeddedResource Include="Forms\MouvementCaisseForm.resx">
       <DependentUpon>MouvementCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OuvertureCaisse\OuvertureCaisseForm.resx">
+    <EmbeddedResource Include="Forms\OuvertureCaisseForm.resx">
       <DependentUpon>OuvertureCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ParamSociete\ParamCaisseForm.resx">
+    <EmbeddedResource Include="Forms\ParamCaisseForm.resx">
       <DependentUpon>ParamCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ParamSociete\ParamSocForm.resx">
+    <EmbeddedResource Include="Forms\ParamSocForm.resx">
       <DependentUpon>ParamSocForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Statistiques\StatCaisseForm.resx">
+    <EmbeddedResource Include="Forms\StatCaisseForm.resx">
       <DependentUpon>StatCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StructureCaisse\StructureCaisseForm.resx">
+    <EmbeddedResource Include="Forms\StructureCaisseForm.resx">
       <DependentUpon>StructureCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\User\UserManagementForm.resx">
+    <EmbeddedResource Include="Forms\UserManagementForm.resx">
       <DependentUpon>UserManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\VenteComptoir\VenteComptoirForm.resx">
+    <EmbeddedResource Include="Forms\VenteComptoirForm.resx">
       <DependentUpon>VenteComptoirForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -540,6 +563,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cash-register_icon-icons.com_72250.ico" />
+    <Content Include="Images\Société\comptabilite.png" />
     <Content Include="Multimedia\BAAR01.gif" />
     <Content Include="Multimedia\BAAR01.jpg" />
     <Content Include="Multimedia\BAOR01.gif" />

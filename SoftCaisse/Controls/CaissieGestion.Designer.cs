@@ -42,9 +42,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.CaissierDataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(8, 16);
+            this.groupBox1.Location = new System.Drawing.Point(6, 13);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(783, 392);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(587, 318);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Caissiers";
@@ -56,12 +58,13 @@
             this.CaissierDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CA_Intitule,
             this.CANo});
-            this.CaissierDataGridView.Location = new System.Drawing.Point(21, 30);
+            this.CaissierDataGridView.Location = new System.Drawing.Point(16, 24);
+            this.CaissierDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CaissierDataGridView.Name = "CaissierDataGridView";
             this.CaissierDataGridView.RowHeadersVisible = false;
             this.CaissierDataGridView.RowHeadersWidth = 51;
             this.CaissierDataGridView.RowTemplate.Height = 24;
-            this.CaissierDataGridView.Size = new System.Drawing.Size(743, 344);
+            this.CaissierDataGridView.Size = new System.Drawing.Size(557, 280);
             this.CaissierDataGridView.TabIndex = 0;
             this.CaissierDataGridView.DoubleClick += new System.EventHandler(this.CaissierDataGridView_DoubleClick);
             // 
@@ -107,23 +110,26 @@
             // 
             // btnCaissierClose
             // 
-            this.btnCaissierClose.Location = new System.Drawing.Point(656, 413);
+            this.btnCaissierClose.Location = new System.Drawing.Point(492, 336);
+            this.btnCaissierClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCaissierClose.Name = "btnCaissierClose";
             this.btnCaissierClose.Palette = this.kryptonPalette1;
             this.btnCaissierClose.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnCaissierClose.Size = new System.Drawing.Size(105, 34);
+            this.btnCaissierClose.Size = new System.Drawing.Size(79, 28);
             this.btnCaissierClose.TabIndex = 21;
             this.btnCaissierClose.Values.Text = "Fermer";
             this.btnCaissierClose.Click += new System.EventHandler(this.btnCaissierClose_Click);
             // 
             // CaissieGestion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.Controls.Add(this.btnCaissierClose);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CaissieGestion";
-            this.Size = new System.Drawing.Size(798, 460);
+            this.Size = new System.Drawing.Size(598, 374);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CaissierDataGridView)).EndInit();
             this.ResumeLayout(false);

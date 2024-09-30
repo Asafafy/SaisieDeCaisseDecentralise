@@ -57,6 +57,10 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_GAMSTOCKEMPL> F_GAMSTOCKEMPL { get; set; }
         public virtual DbSet<P_PARAMETRECIAL> P_PARAMETRECIAL { get; set; }
         public virtual DbSet<F_COMPTEG> F_COMPTEG { get; set; }
+        public virtual DbSet<P_EXPEDITION> P_EXPEDITION { get; set; }
+        public virtual DbSet<F_LIVRAISON> F_LIVRAISON { get; set; }
+        public virtual DbSet<P_CONDLIVR> P_CONDLIVR { get; set; }
+        public virtual DbSet<P_CATCOMPTA> P_CATCOMPTA { get; set; }
 
 
 

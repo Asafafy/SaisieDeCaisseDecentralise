@@ -77,6 +77,18 @@
     <Compile Include="Forms\DetailsArticle.Designer.cs">
       <DependentUpon>DetailsArticle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EcheancesRattacheesAuxReglements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EcheancesRattacheesAuxReglements.Designer.cs">
+      <DependentUpon>EcheancesRattacheesAuxReglements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HistoriqueReglements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HistoriqueReglements.Designer.cs">
+      <DependentUpon>HistoriqueReglements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InterrogationStockArticle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +113,12 @@
     <Compile Include="Forms\ListeFamillesDArticles.Designer.cs">
       <DependentUpon>ListeFamillesDArticles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NouveauReglement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NouveauReglement.Designer.cs">
+      <DependentUpon>NouveauReglement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ParamVenteComptoir.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +130,12 @@
     </Compile>
     <Compile Include="Forms\SaisieDesReglementsClients.Designer.cs">
       <DependentUpon>SaisieDesReglementsClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectionEcheancesARegler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectionEcheancesARegler.Designer.cs">
+      <DependentUpon>SelectionEcheancesARegler.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
@@ -353,6 +377,7 @@
     <Compile Include="Models\F_GLOSSAIRE.cs" />
     <Compile Include="Models\F_JOURNAUX.cs" />
     <Compile Include="Models\F_LIGNEARCHIVE.cs" />
+    <Compile Include="Models\F_LIVRAISON.cs" />
     <Compile Include="Models\F_MODELE.cs" />
     <Compile Include="Models\F_PAYS.cs" />
     <Compile Include="Models\F_REGLEARCHIVE.cs" />
@@ -360,9 +385,14 @@
     <Compile Include="Models\F_TAXE.cs" />
     <Compile Include="Models\F_TICKETARCHIVE.cs" />
     <Compile Include="CustomModel\Parameter.cs" />
+    <Compile Include="Models\Json\Langue.cs" />
+    <Compile Include="Models\Json\TypeDocument.cs" />
     <Compile Include="Models\P_ANALYTIQUE.cs" />
+    <Compile Include="Models\P_CATCOMPTA.cs" />
     <Compile Include="Models\P_CATTARIF.cs" />
+    <Compile Include="Models\P_CONDLIVR.cs" />
     <Compile Include="Models\P_DEVISE.cs" />
+    <Compile Include="Models\P_EXPEDITION.cs" />
     <Compile Include="Models\P_GAMME.cs" />
     <Compile Include="Models\P_PARAMETRECIAL.cs" />
     <Compile Include="Models\P_PREFERENCES.cs" />
@@ -403,12 +433,15 @@
     <Compile Include="Utils\EnterKeyDownEventHadler.cs" />
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <Compile Include="Utils\Global\ConnectedUser.cs" />
-    <Compile Include="Utils\RoundedBorderRadiusPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <EmbeddedResource Include="ClotureFacture.rdlc" />
     <EmbeddedResource Include="Forms\DetailsArticle.resx">
       <DependentUpon>DetailsArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EcheancesRattacheesAuxReglements.resx">
+      <DependentUpon>EcheancesRattacheesAuxReglements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HistoriqueReglements.resx">
+      <DependentUpon>HistoriqueReglements.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InterrogationStockArticle.resx">
       <DependentUpon>InterrogationStockArticle.cs</DependentUpon>
@@ -425,11 +458,17 @@
     <EmbeddedResource Include="Forms\FondCaisseDevisForm.resx">
       <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NouveauReglement.resx">
+      <DependentUpon>NouveauReglement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ParamVenteComptoir.resx">
       <DependentUpon>ParamVenteComptoir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SaisieDesReglementsClients.resx">
       <DependentUpon>SaisieDesReglementsClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectionEcheancesARegler.resx">
+      <DependentUpon>SelectionEcheancesARegler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StatistiqueCaisseReglement.rdlc" />
     <EmbeddedResource Include="StatistiqueCaisseFamille.rdlc" />
@@ -532,6 +571,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="TicketCaisse.rdlc" />
+    <None Include="DataJSon\Langue.json" />
+    <None Include="DataJSon\TypeDocument.json" />
     <None Include="DataSetEnt.xsc">
       <DependentUpon>DataSetEnt.xsd</DependentUpon>
     </None>
@@ -651,6 +692,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.ReportViewer.WinForms">
       <Version>10.0.40219.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>8.0.4</Version>
     </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>

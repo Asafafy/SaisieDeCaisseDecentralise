@@ -1,5 +1,5 @@
-﻿using System;
-using ComponentFactory.Krypton.Toolkit;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 namespace SoftCaisse.Forms.DocumentVente
 {
     public partial class DocumentVenteForm : KryptonForm

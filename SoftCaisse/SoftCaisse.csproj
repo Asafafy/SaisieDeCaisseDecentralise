@@ -464,6 +464,9 @@
     <EmbeddedResource Include="Forms\FondCaisseDevisForm.resx">
       <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NouveauDocumentDeVente.resx">
+      <DependentUpon>NouveauDocumentDeVente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\NouveauReglement.resx">
       <DependentUpon>NouveauReglement.cs</DependentUpon>
     </EmbeddedResource>

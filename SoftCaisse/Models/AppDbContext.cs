@@ -61,6 +61,7 @@ namespace SoftCaisse.Models
         public virtual DbSet<F_LIVRAISON> F_LIVRAISON { get; set; }
         public virtual DbSet<P_CONDLIVR> P_CONDLIVR { get; set; }
         public virtual DbSet<P_CATCOMPTA> P_CATCOMPTA { get; set; }
+        public virtual DbSet<F_DOCLIGNEEMPL> F_DOCLIGNEEMPL { get; set; }
 
 
 

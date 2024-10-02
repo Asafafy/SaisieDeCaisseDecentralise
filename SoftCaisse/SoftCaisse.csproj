@@ -71,6 +71,7 @@
     <Compile Include="DTO\DetailsArticle\InterrogationStock\CMUPInterrStock.cs" />
     <Compile Include="DTO\DetailsArticle\ModeleDEnregistrement.cs" />
     <Compile Include="DTO\DetailsArticle\TarifsClients.cs" />
+    <Compile Include="DTO\DTOInfosClientsDocVente.cs" />
     <Compile Include="Forms\DetailsArticle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,6 +376,7 @@
     <Compile Include="Models\F_DOCCURRENTPIECE.cs" />
     <Compile Include="Models\F_DOCENTETE.cs" />
     <Compile Include="Models\F_DOCLIGNE.cs" />
+    <Compile Include="Models\F_DOCLIGNEEMPL.cs" />
     <Compile Include="Models\F_DOCREGL.cs" />
     <Compile Include="Models\F_ENUMGAMME.cs" />
     <Compile Include="Models\F_FAMILLE.cs" />

@@ -31,12 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentVenteForm));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButtonSuppr = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kptBtnNouveau = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.BouttonRechercherArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.TextBoxBarreDeRecherche = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel10 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnTous = new System.Windows.Forms.Button();
             this.btnDocsEnCours = new System.Windows.Forms.Button();
             this.btnDevis = new System.Windows.Forms.Button();
             this.btnBonCommande = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.btnBnAvrFinancier = new System.Windows.Forms.Button();
             this.btnFacture = new System.Windows.Forms.Button();
             this.btnFactCompt = new System.Windows.Forms.Button();
-            this.btnTous = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -79,27 +79,29 @@
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             this.kryptonPalette1.HeaderStyles.HeaderForm.StateCommon.ButtonEdgeInset = 10;
             // 
-            // kryptonButton3
+            // kryptonButtonSuppr
             // 
-            this.kryptonButton3.Location = new System.Drawing.Point(1186, 453);
-            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Palette = this.kryptonPalette1;
-            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton3.Size = new System.Drawing.Size(79, 28);
-            this.kryptonButton3.TabIndex = 24;
-            this.kryptonButton3.Values.Text = "Supprimer";
+            this.kryptonButtonSuppr.Location = new System.Drawing.Point(1186, 453);
+            this.kryptonButtonSuppr.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButtonSuppr.Name = "kryptonButtonSuppr";
+            this.kryptonButtonSuppr.Palette = this.kryptonPalette1;
+            this.kryptonButtonSuppr.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButtonSuppr.Size = new System.Drawing.Size(79, 28);
+            this.kryptonButtonSuppr.TabIndex = 24;
+            this.kryptonButtonSuppr.Values.Text = "Supprimer";
+            this.kryptonButtonSuppr.Click += new System.EventHandler(this.kryptonButtonSuppr_Click);
             // 
-            // kryptonButton2
+            // kptBtnNouveau
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(1093, 453);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Palette = this.kryptonPalette1;
-            this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(79, 28);
-            this.kryptonButton2.TabIndex = 23;
-            this.kryptonButton2.Values.Text = "Nouveau";
+            this.kptBtnNouveau.Location = new System.Drawing.Point(1093, 453);
+            this.kptBtnNouveau.Margin = new System.Windows.Forms.Padding(2);
+            this.kptBtnNouveau.Name = "kptBtnNouveau";
+            this.kptBtnNouveau.Palette = this.kryptonPalette1;
+            this.kptBtnNouveau.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kptBtnNouveau.Size = new System.Drawing.Size(79, 28);
+            this.kptBtnNouveau.TabIndex = 23;
+            this.kptBtnNouveau.Values.Text = "Nouveau";
+            this.kptBtnNouveau.Click += new System.EventHandler(this.kptBtnNouveau_Click);
             // 
             // kryptonButton1
             // 
@@ -152,6 +154,20 @@
             this.flowLayoutPanel10.Name = "flowLayoutPanel10";
             this.flowLayoutPanel10.Size = new System.Drawing.Size(185, 339);
             this.flowLayoutPanel10.TabIndex = 31;
+            // 
+            // btnTous
+            // 
+            this.btnTous.FlatAppearance.BorderSize = 0;
+            this.btnTous.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTous.Location = new System.Drawing.Point(0, 0);
+            this.btnTous.Margin = new System.Windows.Forms.Padding(0);
+            this.btnTous.Name = "btnTous";
+            this.btnTous.Size = new System.Drawing.Size(185, 27);
+            this.btnTous.TabIndex = 9;
+            this.btnTous.Text = "Tous les documents";
+            this.btnTous.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTous.UseVisualStyleBackColor = true;
+            this.btnTous.Click += new System.EventHandler(this.btnTous_Click);
             // 
             // btnDocsEnCours
             // 
@@ -279,20 +295,6 @@
             this.btnFactCompt.UseVisualStyleBackColor = true;
             this.btnFactCompt.Click += new System.EventHandler(this.btnFactCompt_Click);
             // 
-            // btnTous
-            // 
-            this.btnTous.FlatAppearance.BorderSize = 0;
-            this.btnTous.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTous.Location = new System.Drawing.Point(0, 0);
-            this.btnTous.Margin = new System.Windows.Forms.Padding(0);
-            this.btnTous.Name = "btnTous";
-            this.btnTous.Size = new System.Drawing.Size(185, 27);
-            this.btnTous.TabIndex = 9;
-            this.btnTous.Text = "Tous les documents";
-            this.btnTous.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTous.UseVisualStyleBackColor = true;
-            this.btnTous.Click += new System.EventHandler(this.btnTous_Click);
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.DarkGray;
@@ -330,6 +332,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1040, 339);
             this.dataGridView1.TabIndex = 34;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // DocumentVenteForm
             // 
@@ -343,8 +346,8 @@
             this.Controls.Add(this.flowLayoutPanel10);
             this.Controls.Add(this.BouttonRechercherArticle);
             this.Controls.Add(this.TextBoxBarreDeRecherche);
-            this.Controls.Add(this.kryptonButton3);
-            this.Controls.Add(this.kryptonButton2);
+            this.Controls.Add(this.kryptonButtonSuppr);
+            this.Controls.Add(this.kptBtnNouveau);
             this.Controls.Add(this.kryptonButton1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -364,8 +367,8 @@
         #endregion
 
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonSuppr;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kptBtnNouveau;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton BouttonRechercherArticle;
         private System.Windows.Forms.TextBox TextBoxBarreDeRecherche;

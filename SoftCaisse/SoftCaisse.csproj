@@ -71,7 +71,12 @@
     <Compile Include="DTO\DetailsArticle\InterrogationStock\CMUPInterrStock.cs" />
     <Compile Include="DTO\DetailsArticle\ModeleDEnregistrement.cs" />
     <Compile Include="DTO\DetailsArticle\TarifsClients.cs" />
-    <Compile Include="DTO\DTOInfosClientsDocVente.cs" />
+    <Compile Include="Forms\ChoixTypeDoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChoixTypeDoc.Designer.cs">
+      <DependentUpon>ChoixTypeDoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DetailsArticle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -390,6 +395,7 @@
     <Compile Include="Models\F_PAYS.cs" />
     <Compile Include="Models\F_REGLEARCHIVE.cs" />
     <Compile Include="Models\F_REGLECH.cs" />
+    <Compile Include="Models\F_REGLEMENTT.cs" />
     <Compile Include="Models\F_TAXE.cs" />
     <Compile Include="Models\F_TICKETARCHIVE.cs" />
     <Compile Include="CustomModel\Parameter.cs" />
@@ -442,6 +448,9 @@
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <Compile Include="Utils\Global\ConnectedUser.cs" />
     <EmbeddedResource Include="ClotureFacture.rdlc" />
+    <EmbeddedResource Include="Forms\ChoixTypeDoc.resx">
+      <DependentUpon>ChoixTypeDoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DetailsArticle.resx">
       <DependentUpon>DetailsArticle.cs</DependentUpon>
     </EmbeddedResource>

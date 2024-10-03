@@ -1,4 +1,6 @@
-﻿namespace SoftCaisse.Forms.DocumentVente
+﻿using System.Windows.Media.Animation;
+
+namespace SoftCaisse.Forms.DocumentVente
 {
     partial class DocumentVenteForm
     {

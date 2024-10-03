@@ -62,7 +62,7 @@ namespace SoftCaisse.Models
         public virtual DbSet<P_CONDLIVR> P_CONDLIVR { get; set; }
         public virtual DbSet<P_CATCOMPTA> P_CATCOMPTA { get; set; }
         public virtual DbSet<F_DOCLIGNEEMPL> F_DOCLIGNEEMPL { get; set; }
-
+        public virtual DbSet<F_REGLEMENTT> F_REGLEMENTT { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

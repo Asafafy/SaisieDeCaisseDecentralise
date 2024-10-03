@@ -41,7 +41,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.labelDateLivr = new System.Windows.Forms.Label();
             this.labelNDocu = new System.Windows.Forms.Label();
@@ -110,6 +110,10 @@
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kptAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -118,6 +122,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -233,8 +239,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.33F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker4, 5, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker2, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelDateLivr, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelNDocu, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.labelDate, 2, 0);
@@ -259,6 +263,8 @@
             this.tableLayoutPanel1.Controls.Add(this.labelEnTete1, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxExpedit, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox4, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 5, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(19, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -282,23 +288,23 @@
             this.label1.Text = "Date livraison réalisée";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // dateTimePicker4
+            // dateTimePicker3
             // 
-            this.dateTimePicker4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker4.Location = new System.Drawing.Point(907, 35);
-            this.dateTimePicker4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(272, 20);
-            this.dateTimePicker4.TabIndex = 41;
+            this.dateTimePicker3.Location = new System.Drawing.Point(3, 5);
+            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(238, 20);
+            this.dateTimePicker3.TabIndex = 41;
+            this.dateTimePicker3.ValueChanged += new System.EventHandler(this.dateTimePicker3_ValueChanged);
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker2.Location = new System.Drawing.Point(514, 35);
+            this.dateTimePicker2.Location = new System.Drawing.Point(3, 5);
             this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(269, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(236, 20);
             this.dateTimePicker2.TabIndex = 35;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // labelDateLivr
             // 
@@ -1069,6 +1075,65 @@
             this.kryptonButton3.TabIndex = 42;
             this.kryptonButton3.Values.Text = "Nouveau";
             // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonButton1.Location = new System.Drawing.Point(244, 2);
+            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.Palette = this.kryptonPalette1;
+            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton1.Size = new System.Drawing.Size(29, 26);
+            this.kryptonButton1.TabIndex = 43;
+            this.kryptonButton1.Values.Text = "X";
+            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel6.Controls.Add(this.kryptonButton1, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.dateTimePicker2, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(511, 30);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(275, 30);
+            this.tableLayoutPanel6.TabIndex = 44;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel7.Controls.Add(this.kryptonButton4, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.dateTimePicker3, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(904, 30);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(278, 30);
+            this.tableLayoutPanel7.TabIndex = 45;
+            // 
+            // kryptonButton4
+            // 
+            this.kryptonButton4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kryptonButton4.Location = new System.Drawing.Point(246, 2);
+            this.kryptonButton4.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButton4.Name = "kryptonButton4";
+            this.kryptonButton4.Palette = this.kryptonPalette1;
+            this.kryptonButton4.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton4.Size = new System.Drawing.Size(30, 26);
+            this.kryptonButton4.TabIndex = 44;
+            this.kryptonButton4.Values.Text = "X";
+            this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
+            // 
             // NouveauDocumentDeVente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1107,6 +1172,8 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1190,6 +1257,10 @@
         private System.Windows.Forms.Label lblTotHT;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
     }
 }

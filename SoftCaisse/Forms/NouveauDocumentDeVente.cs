@@ -1,5 +1,6 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -10,26 +11,46 @@ namespace SoftCaisse.Forms
 {
     public partial class NouveauDocumentDeVente : KryptonForm
     {
+        private readonly List<F_COMPTET> _listeClients;
         private readonly AppDbContext _context;
+        private readonly List<F_DOCENTETE> _listeDocuments;
+        private readonly string _typeDocument;
+        private readonly string _currentDocPieceNo;
+        private readonly List<F_DOCREGL> _listeDocRegl;
 
         // ================================================ DEBUT CONSTRUCTEUR ================================================
         // ====================================================================================================================
-        public NouveauDocumentDeVente()
+        public NouveauDocumentDeVente(string typeDocument)
         {
             InitializeComponent();
 
             _context = new AppDbContext();
+            _typeDocument = typeDocument;
+
+            _listeDocuments = _context.F_DOCENTETE.ToList();
+            _listeClients = _context.F_COMPTET.ToList();
+            _listeDocRegl = _context.F_DOCREGL.ToList();
+
+            _currentDocPieceNo = GetCurrentDocNumber(typeDocument, _listeDocuments);
+
+            dateTimePicker2.CustomFormat = " ";
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker3.CustomFormat = " ";
+            dateTimePicker3.Format = DateTimePickerFormat.Custom;
 
             ApplyRoundedCorners(tableLayoutPanel3, 30);
             ApplyRoundedCorners(tableLayoutPanel4, 30);
             ApplyRoundedCorners(tableLayoutPanel5, 30);
 
-            List<F_COMPTET> listeClients = _context.F_COMPTET.ToList();
+
             List<F_COMPTEA> listePlanAnalitique = _context.F_COMPTEA.ToList();
             List<P_EXPEDITION> listeExpedit = _context.P_EXPEDITION.ToList();
             List<F_COLLABORATEUR> listeCollab = _context.F_COLLABORATEUR.ToList();
 
-            comboBoxClient.DataSource = listeClients.Select(c => c.CT_Num + " - " + c.CT_Intitule).ToList();
+            textBox1.Text = _currentDocPieceNo;
+            textBox1.Enabled = false;
+
+            comboBoxClient.DataSource = _listeClients.Select(c => c.CT_Num + " - " + c.CT_Intitule).ToList();
             comboBoxClient.SelectedIndex = -1;
             comboBoxStatus.Text = "A comptabiliser";
             comboBoxAffaire.DataSource = listePlanAnalitique.Where(p => p.N_Analytique == 3).Select(p => p.CA_Num + " - " + p.CA_Intitule).ToList();
@@ -37,6 +58,8 @@ namespace SoftCaisse.Forms
             comboBoxRepresentant.DataSource = listeCollab.Where(c => c.CO_Vendeur == 1).Select(c => c.CO_Nom + " - " + c.CO_Prenom).ToList();
 
             kptnBtnValider.Enabled = false;
+
+
 
         }
         // ================================================ FIN CONSTRUCTEUR ================================================
@@ -66,6 +89,480 @@ namespace SoftCaisse.Forms
 
             control.Invalidate();
         }
+        private string FormatPieceNo(int maxNo, string prefixe)
+        {
+            string doPieceActu;
+            if (maxNo <= 9)
+            {
+                doPieceActu = prefixe + "0000" + maxNo.ToString();
+                return doPieceActu;
+            }
+            else if (maxNo <= 99 && maxNo > 9)
+            {
+                doPieceActu = prefixe + "000" + maxNo.ToString();
+                return doPieceActu;
+            }
+            else if (maxNo <= 999 && maxNo > 99)
+            {
+                doPieceActu = prefixe + "00" + maxNo.ToString();
+                return doPieceActu;
+            }
+            else if (maxNo <= 9999 && maxNo > 999)
+            {
+                doPieceActu = prefixe + "0" + maxNo.ToString();
+                return doPieceActu;
+            }
+            else if (maxNo <= 99999 && maxNo > 9999)
+            {
+                doPieceActu = prefixe + maxNo.ToString();
+                return doPieceActu;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private int? GetDocTypeNo(string docType)
+        {
+            if (docType == "Devis")
+            {
+                return 0;
+            }
+            else if (docType == "Bon de commande")
+            {
+                return 1;
+            }
+            else if (docType == "Préparation de livraison")
+            {
+                return 2;
+            }
+            else if (docType == "Bon de livraison")
+            {
+                return 3;
+            }
+            else if (docType == "Bon de retour")
+            {
+                return 4;
+            }
+            else if (docType == "Bon d'avoir finanicier")
+            {
+                return 5;
+            }
+            else if (docType == "Facture")
+            {
+                return 6;
+            }
+            else if (docType == "Facture de retour")
+            {
+                return 16;
+            }
+            else if (docType == "Facture d'avoir")
+            {
+                return 19;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private string GetCurrentDocNumber(string docType, List<F_DOCENTETE> listeDocs)
+        {
+            int maxNumber;
+            if (docType == "Devis")
+            {
+                List<string> listeDOPiece = listeDocs.Where(doc => doc.DO_Piece.StartsWith("DE")).Select(doc => doc.DO_Piece).ToList();
+                List<int> listeNumDOPiece = new List<int>();
+                if (listeDOPiece.Count() == 0)
+                {
+                    maxNumber = 1;
+                }
+                else
+                {
+                    foreach (var piece in listeDOPiece)
+                    {
+                        listeNumDOPiece.Add(int.Parse(piece.Substring(2)));
+                    }
+                    maxNumber = listeNumDOPiece.Max() + 1;
+                }
+                return FormatPieceNo(maxNumber, "DE");
+            }
+            else if (docType == "Bon de commande")
+            {
+                List<string> listeDOPiece = listeDocs.Where(doc => doc.DO_Piece.StartsWith("BC")).Select(doc => doc.DO_Piece).ToList();
+                List<int> listeNumDOPiece = new List<int>();
+                if (listeDOPiece.Count() == 0)
+                {
+                    maxNumber = 1;
+                }
+                else
+                {
+                    foreach (var piece in listeDOPiece)
+                    {
+                        listeNumDOPiece.Add(int.Parse(piece.Substring(2)));
+                    }
+                    maxNumber = listeNumDOPiece.Max() + 1;
+                }
+                return FormatPieceNo(maxNumber, "BC");
+            }
+            else if (docType == "Préparation de livraison")
+            {
+                List<string> listeDOPiece = listeDocs.Where(doc => doc.DO_Piece.StartsWith("PL")).Select(doc => doc.DO_Piece).ToList();
+                List<int> listeNumDOPiece = new List<int>();
+                if (listeDOPiece.Count() == 0)
+                {
+                    maxNumber = 1;
+                }
+                else
+                {
+                    foreach (var piece in listeDOPiece)
+                    {
+                        listeNumDOPiece.Add(int.Parse(piece.Substring(2)));
+                    }
+                    maxNumber = listeNumDOPiece.Max() + 1;
+                }
+                return FormatPieceNo(maxNumber, "PL");
+            }
+            else if (docType == "Bon de livraison")
+            {
+                List<string> listeDOPiece = listeDocs.Where(doc => doc.DO_Piece.StartsWith("BL")).Select(doc => doc.DO_Piece).ToList();
+                List<int> listeNumDOPiece = new List<int>();
+                if (listeDOPiece.Count() == 0)
+                {
+                    maxNumber = 1;
+                }
+                else
+                {
+                    foreach (var piece in listeDOPiece)
+                    {
+                        listeNumDOPiece.Add(int.Parse(piece.Substring(2)));
+                    }
+                    maxNumber = listeNumDOPiece.Max() + 1;
+                }
+                return FormatPieceNo(maxNumber, "BL");
+            }
+            else if (docType == "Bon de retour")
+            {
+                List<string> listeDOPiece = listeDocs.Where(doc => doc.DO_Piece.StartsWith("BR")).Select(doc => doc.DO_Piece).ToList();
+                List<int> listeNumDOPiece = new List<int>();
+                if (listeDOPiece.Count() == 0)
+                {
+                    maxNumber = 1;
+                }
+                else
+                {
+                    foreach (var piece in listeDOPiece)
+                    {
+                        listeNumDOPiece.Add(int.Parse(piece.Substring(2)));
+                    }
+                    maxNumber = listeNumDOPiece.Max() + 1;
+                }
+                return FormatPieceNo(maxNumber, "BR");
+            }
+            else if (docType == "Bon d'avoir finanicier")
+            {
+                List<string> listeDOPiece = listeDocs.Where(doc => doc.DO_Piece.StartsWith("BA")).Select(doc => doc.DO_Piece).ToList();
+                List<int> listeNumDOPiece = new List<int>();
+                if (listeDOPiece.Count() == 0)
+                {
+                    maxNumber = 1;
+                }
+                else
+                {
+                    foreach (var piece in listeDOPiece)
+                    {
+                        listeNumDOPiece.Add(int.Parse(piece.Substring(2)));
+                    }
+                    maxNumber = listeNumDOPiece.Max() + 1;
+                }
+                return FormatPieceNo(maxNumber, "BA");
+            }
+            else if (docType == "Facture")
+            {
+                List<string> listeDOPiece = listeDocs.Where(doc => doc.DO_Piece.StartsWith("FA")).Select(doc => doc.DO_Piece).ToList();
+                List<int> listeNumDOPiece = new List<int>();
+                if (listeDOPiece.Count() == 0)
+                {
+                    maxNumber = 1;
+                }
+                else
+                {
+                    foreach (var piece in listeDOPiece)
+                    {
+                        listeNumDOPiece.Add(int.Parse(piece.Substring(2)));
+                    }
+                    maxNumber = listeNumDOPiece.Max() + 1;
+                }
+                return FormatPieceNo(maxNumber, "FA");
+            }
+            else if (docType == "Facture de retour")
+            {
+                List<string> listeDOPiece = listeDocs.Where(doc => doc.DO_Piece.StartsWith("FR")).Select(doc => doc.DO_Piece).ToList();
+                List<int> listeNumDOPiece = new List<int>();
+                if (listeDOPiece.Count() == 0)
+                {
+                    maxNumber = 1;
+                }
+                else
+                {
+                    foreach (var piece in listeDOPiece)
+                    {
+                        listeNumDOPiece.Add(int.Parse(piece.Substring(2)));
+                    }
+                    maxNumber = listeNumDOPiece.Max() + 1;
+                }
+                return FormatPieceNo(maxNumber, "FR");
+            }
+            else if (docType == "Facture d'avoir")
+            {
+                List<string> listeDOPiece = listeDocs.Where(doc => doc.DO_Piece.StartsWith("FV")).Select(doc => doc.DO_Piece).ToList();
+                List<int> listeNumDOPiece = new List<int>();
+                if (listeDOPiece.Count() == 0)
+                {
+                    maxNumber = 1;
+                }
+                else
+                {
+                    foreach (var piece in listeDOPiece)
+                    {
+                        listeNumDOPiece.Add(int.Parse(piece.Substring(2)));
+                    }
+                    maxNumber = listeNumDOPiece.Max() + 1;
+                }
+                return FormatPieceNo(maxNumber, "FV");
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private void MettreAJourF_DOCCURRENTPIECE(string typeDoc, string currentPieceNo)
+        {
+            if (typeDoc == "Devis")
+            {
+                F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 1).FirstOrDefault();
+                fDocCurrent.DC_Piece = currentPieceNo;
+                fDocCurrent.cbModification = DateTime.Now;
+                _context.SaveChanges();
+            }
+            else if (typeDoc == "Bon de commande")
+            {
+                F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 2).FirstOrDefault();
+                fDocCurrent.DC_Piece = currentPieceNo;
+                fDocCurrent.cbModification = DateTime.Now;
+                _context.SaveChanges();
+            }
+            else if (typeDoc == "Préparation de livraison")
+            {
+                F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 3).FirstOrDefault();
+                fDocCurrent.DC_Piece = currentPieceNo;
+                fDocCurrent.cbModification = DateTime.Now;
+                _context.SaveChanges();
+            }
+            else if (typeDoc == "Bon de livraison")
+            {
+                F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 4).FirstOrDefault();
+                fDocCurrent.DC_Piece = currentPieceNo;
+                fDocCurrent.cbModification = DateTime.Now;
+                _context.SaveChanges();
+            }
+            else if (typeDoc == "Bon de retour")
+            {
+                F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 5).FirstOrDefault();
+                fDocCurrent.DC_Piece = currentPieceNo;
+                fDocCurrent.cbModification = DateTime.Now;
+                _context.SaveChanges();
+            }
+            else if (typeDoc == "Bon d'avoir finanicier")
+            {
+                F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 6).FirstOrDefault();
+                fDocCurrent.DC_Piece = currentPieceNo;
+                fDocCurrent.cbModification = DateTime.Now;
+                _context.SaveChanges();
+            }
+            else if (typeDoc == "Facture")
+            {
+                F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 74).FirstOrDefault();
+                fDocCurrent.DC_Piece = currentPieceNo;
+                fDocCurrent.cbModification = DateTime.Now;
+                _context.SaveChanges();
+            }
+            else if (typeDoc == "Facture de retour")
+            {
+                F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 75).FirstOrDefault();
+                fDocCurrent.DC_Piece = currentPieceNo;
+                fDocCurrent.cbModification = DateTime.Now;
+                _context.SaveChanges();
+            }
+            else if (typeDoc == "Facture d'avoir")
+            {
+                F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 76).FirstOrDefault();
+                fDocCurrent.DC_Piece = currentPieceNo;
+                fDocCurrent.cbModification = DateTime.Now;
+                _context.SaveChanges();
+            }
+        }
+        private void InsertNewF_DOCREGL(List<F_DOCREGL> listeDocRegl, string numPieceActu, List<F_COMPTET> listeClients, string typeDocu)
+        {
+            int? newDrNo = listeDocRegl.Max(element => element.DR_No);
+            string CT_NumActu = listeClients[comboBoxClient.SelectedIndex].CT_Num;
+            List<F_REGLEMENTT> listeReglT = _context.F_REGLEMENTT.Where(r => r.CT_Num == CT_NumActu).ToList();
+            foreach (var reglT in listeReglT)
+            {
+                DateTime date = DateTime.Now.AddDays((double)reglT.RT_NbJour);
+                if (reglT.RT_Condition == 0)
+                {
+                    List<short?> joursTb = new List<short?>
+                    {
+                        reglT.RT_JourTb01,
+                        reglT.RT_JourTb02,
+                        reglT.RT_JourTb03,
+                        reglT.RT_JourTb04,
+                        reglT.RT_JourTb05,
+                        reglT.RT_JourTb06
+                    };
+                    joursTb.RemoveAll(x => x == 0);
+                    int? nextDay = joursTb.Where(d => d >= date.Day).OrderBy(d => d).FirstOrDefault();
+                    if (!nextDay.HasValue)
+                        nextDay = joursTb.FirstOrDefault();
+                    date = new DateTime(date.Year, date.Month, (int)nextDay);
+                }
+                else if (reglT.RT_Condition == 1)
+                {
+                    date = new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
+                    // Si le dernier jour du mois est un samedi, revenir au vendredi
+                    if (date.DayOfWeek == DayOfWeek.Saturday)
+                    {
+                        date.AddDays(-1);
+                    }
+                    // Si le dernier jour du mois est un dimanche, revenir au vendredi
+                    else if (date.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        date.AddDays(-2);
+                    }
+                }
+                else
+                {
+                    date = new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
+                }
+
+                F_DOCREGL newDocRegl = new F_DOCREGL
+                {
+                    DR_No = newDrNo + 1,
+                    DO_Domaine = 0,
+                    DO_Type = 6,
+                    DO_Piece = numPieceActu,
+                    DR_TypeRegl = 2,
+                    DR_Date = date,
+                    DR_Libelle = "",
+                    DR_Pourcent = reglT.RT_VRepart,
+                    DR_Montant = 0,
+                    DR_MontantDev = 0,
+                    DR_Equil = 1,
+                    EC_No = 0,
+                    //cbEC_No = 0,
+                    DR_Regle = 0,
+                    N_Reglement = 1,
+                    CA_No = 3,
+                    DO_DocType = (short?)GetDocTypeNo(typeDocu),
+                    DR_RefPaiement = null,
+                    DR_AdressePaiement = "",
+                    cbCreateur = "COLS",
+                };
+            }
+        }
+        private void InsertNewF_DOCENTETE(string typeDoc, string noPiece)
+        {
+            int? typeNo = GetDocTypeNo(typeDoc);
+            F_DOCENTETE newDocEnTete = new F_DOCENTETE
+            {
+                DO_Domaine = 0,
+                DO_Type = (short)typeNo,
+                DO_Piece = noPiece,
+                DO_Date = DateTime.Now,
+                DO_Ref = "",
+                // ============================================================================================================================
+                //                                             TODO: ETO IZAO
+                // ============================================================================================================================
+                DO_Tiers = "CLEENBIJ",
+                CO_No = 9,
+                cbCO_No = 9,
+                DO_Period = 1,
+                DO_Devise = 0,
+                DO_Cours = 0,
+                DE_No = 1,
+                cbDE_No = 1,
+                LI_No = 6,
+                cbLI_No = 6,
+                CT_NumPayeur = "CLEENBIJ",
+                DO_Expedit = 1,
+                DO_NbFacture = 1,
+                DO_BLFact = 0,
+                DO_TxEscompte = 0,
+                DO_Reliquat = 0,
+                DO_Imprim = 0,
+                CA_Num = "953INDE",
+                DO_Coord01 = "",
+                DO_Coord02 = "",
+                DO_Coord03 = "",
+                DO_Coord04 = "",
+                DO_Souche = 0,
+                DO_DateLivr = new DateTime(1753, 01, 01, 00, 00, 00),
+                DO_Condition = 1,
+                DO_Tarif = 1,
+                DO_Colisage = 1,
+                DO_TypeColis = 1,
+                DO_Transaction = 11,
+                DO_Langue = 0,
+                DO_Ecart = 0,
+                DO_Regime = 21,
+                N_CatCompta = 1,
+                DO_Ventile = 0,
+                AB_No = 0,
+                DO_DebutAbo = new DateTime(1753, 01, 01, 00, 00, 00),
+                DO_FinAbo = new DateTime(1753, 01, 01, 00, 00, 00),
+                DO_DebutPeriod = new DateTime(1753, 01, 01, 00, 00, 00),
+                DO_FinPeriod = new DateTime(1753, 01, 01, 00, 00, 00),
+                CG_Num = "4110000",
+                DO_Statut = 2,
+                DO_Heure = "000151419", //TODO: Heure
+                CA_No = 3,
+                cbCA_No = 3,
+                CO_NoCaissier = 4,
+                cbCO_NoCaissier = 4,
+                DO_Transfere = 0,
+                DO_Cloture = 0,
+                DO_NoWeb = "",
+                DO_Attente = 0,
+                DO_Provenance = 0,
+                CA_NumIFRS = "",
+                MR_No = 0,
+                DO_TypeFrais = 0,
+                DO_ValFrais = 15,
+                DO_TypeLigneFrais = 0,
+                DO_TypeFranco = 0,
+                DO_ValFranco = 2500,
+                DO_TypeLigneFranco = 0,
+                DO_Taxe1 = 20,
+                DO_TypeTaux1 = 0,
+                DO_TypeTaxe1 = 0,
+                DO_Taxe2 = 0,
+                DO_TypeTaux2 = 0,
+                DO_TypeTaxe2 = 0,
+                DO_Taxe3 = 0,
+                DO_TypeTaux3 = 0,
+                DO_TypeTaxe3 = 0,
+                //DO_MajCpta = "",
+                DO_Motif = null,
+                CT_NumCentrale = "",
+                DO_Contact = "0",
+                DO_FactureElec = 0,
+                DO_TypeTransac = 0,
+                DO_DateLivrRealisee = new DateTime(1753, 01, 01, 00, 00, 00),
+                DO_DateExpedition = new DateTime(1753, 01, 01, 00, 00, 00),
+                DO_FactureFrs = null,
+                DO_PieceOrig = "0",
+            };
+        }
         // ================================================ FIN FONCTIONS ================================================
         // =================================================================================================================
 
@@ -93,14 +590,46 @@ namespace SoftCaisse.Forms
             else
             {
                 kptnBtnValider.Enabled = true;
-
             }
         }
 
         private void kptnBtnValider_Click(object sender, System.EventArgs e)
         {
-
+            short? estBloque = _listeClients.Where(c => c.CT_Num + " - " + c.CT_Intitule == comboBoxClient.Text).Select(c => c.CT_ControlEnc).FirstOrDefault();
+            if (estBloque == 2)
+            {
+                MessageBox.Show("Aucun document ne peut être émis depuis ce client car il est bloqué", "Client bloqué", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                //MettreAJourF_DOCCURRENTPIECE(_typeDocument, _currentDocPieceNo);
+                InsertNewF_DOCREGL(_listeDocRegl, _currentDocPieceNo, _listeClients, _typeDocument);
+            }
         }
+
+        // ================= DEBUT RESET DATETIME PICKER (DATE PRÉVU ET RÉALISÉE) =================
+        private void dateTimePicker2_ValueChanged(object sender, System.EventArgs e)
+        {
+            dateTimePicker2.Format = DateTimePickerFormat.Long;
+        }
+        private void dateTimePicker3_ValueChanged(object sender, System.EventArgs e)
+        {
+            dateTimePicker3.Format = DateTimePickerFormat.Long;
+        }
+        private void kryptonButton1_Click(object sender, System.EventArgs e)
+        {
+            dateTimePicker2.CustomFormat = " ";
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+        }
+        private void kryptonButton4_Click(object sender, System.EventArgs e)
+        {
+            dateTimePicker3.CustomFormat = " ";
+            dateTimePicker3.Format = DateTimePickerFormat.Custom;
+        }
+        // ================= FIN RESET DATETIME PICKER (DATE PRÉVU ET RÉALISÉE) =================
+
+
+
         // ================================================ FIN EVENEMENTS ===================================================
         // ===================================================================================================================
     }

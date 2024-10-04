@@ -6,11 +6,13 @@ namespace SoftCaisse.Forms
     public partial class ChoixTypeDoc : KryptonForm
     {
         public string selectedOption { get; private set; }
-        public ChoixTypeDoc()
+        MainForm mainForm;
+        public ChoixTypeDoc(MainForm form)
         {
             InitializeComponent();
 
             TopMost = true;
+            mainForm = form;
         }
 
         private void kptBtnOk_Click_1(object sender, System.EventArgs e)
@@ -52,7 +54,7 @@ namespace SoftCaisse.Forms
                 selectedOption = radioButton9.Text;
             }
             DialogResult = DialogResult.OK;
-            NouveauDocumentDeVente nouveDocVente = new NouveauDocumentDeVente(selectedOption);
+            NouveauDocumentDeVente nouveDocVente = new NouveauDocumentDeVente(selectedOption, mainForm);
             nouveDocVente.Show();
             Close();
         }

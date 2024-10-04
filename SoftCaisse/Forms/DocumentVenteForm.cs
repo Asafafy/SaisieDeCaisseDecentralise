@@ -15,6 +15,8 @@ namespace SoftCaisse.Forms.DocumentVente
     /* ==================================================================================================================================== */
     public partial class DocumentVenteForm : KryptonForm
     {
+        MainForm mainForm;
+
         private readonly AppDbContext _context;
         private DataTable _bindingSource;
         private Button _boutonActifMaintenant;
@@ -40,7 +42,7 @@ namespace SoftCaisse.Forms.DocumentVente
         private F_DOCENTETE _selectedDoc;
         private bool _isFromRefresh = false;
 
-        public DocumentVenteForm()
+        public DocumentVenteForm(MainForm form)
         {
             InitializeComponent();
 
@@ -116,6 +118,7 @@ namespace SoftCaisse.Forms.DocumentVente
             dataGridView1.DataSource = _bindingSource;
 
             kryptonButtonSuppr.Enabled = false;
+            mainForm = form;
         }
         /* =========================================================== FIN CONSTRUCTEUR =========================================================== */
         /* ==================================================================================================================================== */
@@ -404,7 +407,7 @@ namespace SoftCaisse.Forms.DocumentVente
 
         private void kptBtnNouveau_Click(object sender, EventArgs e)
         {
-            ChoixTypeDoc choixTypeDoc = new ChoixTypeDoc();
+            ChoixTypeDoc choixTypeDoc = new ChoixTypeDoc(mainForm);
             choixTypeDoc.Show();
         }
 

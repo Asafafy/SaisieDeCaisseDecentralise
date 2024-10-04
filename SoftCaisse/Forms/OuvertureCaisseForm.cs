@@ -15,6 +15,7 @@ namespace SoftCaisse.Forms.OuvertureCaisse
 {
     public partial class OuvertureCaisseForm : KryptonForm
     {
+        private MainForm mainForm;
         private List<dynamic> _caisse = new List<dynamic>();
         private List<dynamic> _collabo = new List<dynamic>();
         private readonly AppDbContext _context;
@@ -24,9 +25,11 @@ namespace SoftCaisse.Forms.OuvertureCaisse
         private int IdCaisse;
         private int IdCaissier;
         private ToolStripMenuItem _menu;
-        public OuvertureCaisseForm(ToolStripMenuItem menu)
+        public OuvertureCaisseForm(ToolStripMenuItem menu, MainForm form)
         {
             InitializeComponent();
+
+            mainForm = form;
 
             OuvertureCaisseCmbx.KeyDown += (sender, e) => EventHandlers.KeyDownEnterHandler(sender, e, btnOuvertureCaisse_Click);
             OuvertureCaissierCmbx.KeyDown += (sender, e) => EventHandlers.KeyDownEnterHandler(sender, e, btnOuvertureCaisse_Click);
@@ -86,7 +89,7 @@ namespace SoftCaisse.Forms.OuvertureCaisse
             {
                 if (fondCaisseCbox.Checked)
                 {
-                    this.Close();
+                    Close();
                     if (FondCaisseType.SelectedIndex == 1)
                     {
                         FondCaisseBilletageForm fondCaisseForm = new FondCaisseBilletageForm(caisse, caissier);
@@ -100,7 +103,7 @@ namespace SoftCaisse.Forms.OuvertureCaisse
                 }
                 else
                 {
-                    this.Close();
+                    Close();
                     VenteComptoirForm venteComptoir = new VenteComptoirForm(caisse, caissier, null, null);
                     venteComptoir.Show();
                 }
@@ -109,6 +112,9 @@ namespace SoftCaisse.Forms.OuvertureCaisse
                 _menu.DropDownItems["mouvementsToolStripMenuItem"].Enabled = true;
                 _menu.DropDownItems["dOToolStripMenuItem"].Enabled = true;
                 _menu.DropDownItems["fermetureDeCaisseToolStripMenuItem"].Enabled = true;
+
+                mainForm.CaisseNo = OuvertureCaisseCmbx.SelectedIndex + 1;
+                mainForm.CaissierCollabNo = OuvertureCaissierCmbx.SelectedIndex + 1;
             }
             else
             {

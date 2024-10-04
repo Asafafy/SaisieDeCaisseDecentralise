@@ -11,25 +11,30 @@ namespace SoftCaisse.Forms
 {
     public partial class NouveauDocumentDeVente : KryptonForm
     {
+        MainForm mainForm;
         private readonly List<F_COMPTET> _listeClients;
         private readonly AppDbContext _context;
         private readonly List<F_DOCENTETE> _listeDocuments;
         private readonly string _typeDocument;
         private readonly string _currentDocPieceNo;
         private readonly List<F_DOCREGL> _listeDocRegl;
+        private readonly List<F_LIVRAISON> _listeLivraisons;
 
         // ================================================ DEBUT CONSTRUCTEUR ================================================
         // ====================================================================================================================
-        public NouveauDocumentDeVente(string typeDocument)
+        public NouveauDocumentDeVente(string typeDocument, MainForm form)
         {
             InitializeComponent();
 
             _context = new AppDbContext();
             _typeDocument = typeDocument;
+            mainForm = form;
 
             _listeDocuments = _context.F_DOCENTETE.ToList();
             _listeClients = _context.F_COMPTET.ToList();
             _listeDocRegl = _context.F_DOCREGL.ToList();
+            _listeLivraisons = _context.F_LIVRAISON.ToList();
+
 
             _currentDocPieceNo = GetCurrentDocNumber(typeDocument, _listeDocuments);
 
@@ -335,6 +340,21 @@ namespace SoftCaisse.Forms
                 return null;
             }
         }
+        private (int transaction, int regime) GetTransacEtRegime(string typeDoc)
+        {
+            if (typeDoc == "Devis" || typeDoc == "Bon de commande" || typeDoc == "Préparation de livraison" || typeDoc == "Bon de livraison" || typeDoc == "Facture")
+            {
+                return (11, 21);
+            }
+            else if (typeDoc == "Bon de retour" || typeDoc == "Bon d'avoir finanicier" || typeDoc == "Facture de retour" || typeDoc == "Facture d'avoir")
+            {
+                return (21, 25);
+            }
+            else
+            {
+                return (0, 0);
+            }
+        }
         private void MettreAJourF_DOCCURRENTPIECE(string typeDoc, string currentPieceNo)
         {
             if (typeDoc == "Devis")
@@ -444,6 +464,31 @@ namespace SoftCaisse.Forms
                 {
                     date = new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
                 }
+                //string query = @"
+                //    Insert INTO [dbo].[F_DOCREGL] (
+                //        [DR_No]
+                //        [DO_Domaine],
+                //        [DO_Type],
+                //        [DO_Piece],
+                //        [DR_TypeRegl],
+                //        [DR_Date],
+                //        [DR_Libelle],
+                //        [DR_Pourcent],
+                //        [DR_Montant],
+                //        [DR_MontantDev],
+                //        [DR_Equil],
+                //        [EC_No],
+                //        [cbEC_No],
+                //        [DR_Regle],
+                //        [N_Reglement],
+                //        [CA_No],
+                //        [DO_DocType],
+                //        [cbCreateur],
+                //        [DR_RefPaiement],
+                //        [DR_AdressePaiement],
+                //    )
+                //    values({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},
+                //        {23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37},{38},{39},{40})";
 
                 F_DOCREGL newDocRegl = new F_DOCREGL
                 {
@@ -451,6 +496,7 @@ namespace SoftCaisse.Forms
                     DO_Domaine = 0,
                     DO_Type = 6,
                     DO_Piece = numPieceActu,
+                    //cbDO_Piece = numPieceActu,
                     DR_TypeRegl = 2,
                     DR_Date = date,
                     DR_Libelle = "",
@@ -459,48 +505,53 @@ namespace SoftCaisse.Forms
                     DR_MontantDev = 0,
                     DR_Equil = 1,
                     EC_No = 0,
-                    //cbEC_No = 0,
+                    cbEC_No = 0,
                     DR_Regle = 0,
                     N_Reglement = 1,
                     CA_No = 3,
                     DO_DocType = (short?)GetDocTypeNo(typeDocu),
+                    cbCreateur = "COLS",
                     DR_RefPaiement = null,
                     DR_AdressePaiement = "",
-                    cbCreateur = "COLS",
                 };
+                _context.F_DOCREGL.Add(newDocRegl);
+                _context.SaveChanges();
             }
         }
-        private void InsertNewF_DOCENTETE(string typeDoc, string noPiece)
+        private void InsertNewF_DOCENTETE(string typeDoc, string noPiece, List<F_COMPTET> listeClients, List<F_LIVRAISON> listeLivr, short? numExpedit, string caNum, int numCaisse, int numCaissier, string expeditInt, DateTime dateLivrRealise, string refer)
         {
+            P_EXPEDITION expedit = _context.P_EXPEDITION.Where(exp => exp.E_Intitule == expeditInt).FirstOrDefault();
+            DateTime now = DateTime.Now;
+            string heureNow = "000" + now.Hour + now.Minute + now.Second;
             int? typeNo = GetDocTypeNo(typeDoc);
+            (int, int) tupleTransactionRegime = GetTransacEtRegime(typeDoc);
+            F_COMPTET client = listeClients[comboBoxClient.SelectedIndex];
+            F_LIVRAISON lieuLivrPrinc = listeLivr.Where(l => l.CT_Num == client.CT_Num && l.LI_Principal == 1).FirstOrDefault();
             F_DOCENTETE newDocEnTete = new F_DOCENTETE
             {
                 DO_Domaine = 0,
                 DO_Type = (short)typeNo,
                 DO_Piece = noPiece,
                 DO_Date = DateTime.Now,
-                DO_Ref = "",
-                // ============================================================================================================================
-                //                                             TODO: ETO IZAO
-                // ============================================================================================================================
-                DO_Tiers = "CLEENBIJ",
-                CO_No = 9,
-                cbCO_No = 9,
+                DO_Ref = refer,
+                DO_Tiers = client.CT_Num,
+                CO_No = client.CO_No,
+                cbCO_No = client.CO_No,
                 DO_Period = 1,
                 DO_Devise = 0,
                 DO_Cours = 0,
                 DE_No = 1,
                 cbDE_No = 1,
-                LI_No = 6,
-                cbLI_No = 6,
-                CT_NumPayeur = "CLEENBIJ",
-                DO_Expedit = 1,
+                LI_No = lieuLivrPrinc.LI_No,
+                cbLI_No = lieuLivrPrinc.LI_No,
+                CT_NumPayeur = client.CT_NumPayeur,
+                DO_Expedit = numExpedit,
                 DO_NbFacture = 1,
                 DO_BLFact = 0,
-                DO_TxEscompte = 0,
+                DO_TxEscompte = client.CT_Taux02,
                 DO_Reliquat = 0,
                 DO_Imprim = 0,
-                CA_Num = "953INDE",
+                CA_Num = caNum,
                 DO_Coord01 = "",
                 DO_Coord02 = "",
                 DO_Coord03 = "",
@@ -511,10 +562,10 @@ namespace SoftCaisse.Forms
                 DO_Tarif = 1,
                 DO_Colisage = 1,
                 DO_TypeColis = 1,
-                DO_Transaction = 11,
+                DO_Transaction = (short?)tupleTransactionRegime.Item1,
                 DO_Langue = 0,
                 DO_Ecart = 0,
-                DO_Regime = 21,
+                DO_Regime = (short?)tupleTransactionRegime.Item2,
                 N_CatCompta = 1,
                 DO_Ventile = 0,
                 AB_No = 0,
@@ -524,23 +575,23 @@ namespace SoftCaisse.Forms
                 DO_FinPeriod = new DateTime(1753, 01, 01, 00, 00, 00),
                 CG_Num = "4110000",
                 DO_Statut = 2,
-                DO_Heure = "000151419", //TODO: Heure
-                CA_No = 3,
-                cbCA_No = 3,
-                CO_NoCaissier = 4,
-                cbCO_NoCaissier = 4,
+                DO_Heure = heureNow,
+                CA_No = numCaisse,
+                cbCA_No = numCaisse,
+                CO_NoCaissier = numCaissier,
+                cbCO_NoCaissier = numCaissier,
                 DO_Transfere = 0,
                 DO_Cloture = 0,
                 DO_NoWeb = "",
                 DO_Attente = 0,
                 DO_Provenance = 0,
-                CA_NumIFRS = "",
                 MR_No = 0,
+                CA_NumIFRS = "",
                 DO_TypeFrais = 0,
-                DO_ValFrais = 15,
+                DO_ValFrais = expedit.E_ValFrais,
                 DO_TypeLigneFrais = 0,
                 DO_TypeFranco = 0,
-                DO_ValFranco = 2500,
+                DO_ValFranco = expedit.E_ValFranco,
                 DO_TypeLigneFranco = 0,
                 DO_Taxe1 = 20,
                 DO_TypeTaux1 = 0,
@@ -551,17 +602,19 @@ namespace SoftCaisse.Forms
                 DO_Taxe3 = 0,
                 DO_TypeTaux3 = 0,
                 DO_TypeTaxe3 = 0,
-                //DO_MajCpta = "",
-                DO_Motif = null,
-                CT_NumCentrale = "",
-                DO_Contact = "0",
+                DO_MajCpta = 0,
+                DO_Motif = "",
+                CT_NumCentrale = null,
+                DO_Contact = "",
                 DO_FactureElec = 0,
                 DO_TypeTransac = 0,
-                DO_DateLivrRealisee = new DateTime(1753, 01, 01, 00, 00, 00),
+                DO_DateLivrRealisee = dateLivrRealise,
                 DO_DateExpedition = new DateTime(1753, 01, 01, 00, 00, 00),
                 DO_FactureFrs = null,
-                DO_PieceOrig = "0",
+                DO_PieceOrig = "",
             };
+            _context.F_DOCENTETE.Add(newDocEnTete);
+            _context.SaveChanges();
         }
         // ================================================ FIN FONCTIONS ================================================
         // =================================================================================================================
@@ -602,8 +655,26 @@ namespace SoftCaisse.Forms
             }
             else
             {
-                //MettreAJourF_DOCCURRENTPIECE(_typeDocument, _currentDocPieceNo);
+                MettreAJourF_DOCCURRENTPIECE(_typeDocument, _currentDocPieceNo);
+
                 InsertNewF_DOCREGL(_listeDocRegl, _currentDocPieceNo, _listeClients, _typeDocument);
+
+                int numExpedition = comboBoxExpedit.SelectedIndex + 1;
+                string caNum = comboBoxAffaire.Text;
+                int caisseNumber = mainForm.CaisseNo;
+                int caissierNumber = mainForm.CaissierCollabNo;
+                string reference = textBox3.Text;
+                string expeditIntitule = comboBoxExpedit.Text;
+                DateTime dateLivrReal;
+                if (dateTimePicker3.Value == null)
+                {
+                    dateLivrReal = new DateTime(1753, 01, 01);
+                }
+                else
+                {
+                    dateLivrReal = dateTimePicker3.Value;
+                }
+                InsertNewF_DOCENTETE(_typeDocument, _currentDocPieceNo, _listeClients, _listeLivraisons, (short?)numExpedition, caNum, caisseNumber, caissierNumber, expeditIntitule, dateLivrReal, reference);
             }
         }
 

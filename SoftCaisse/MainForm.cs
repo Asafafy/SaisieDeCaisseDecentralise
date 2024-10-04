@@ -27,6 +27,21 @@ namespace SoftCaisse
 {
     public partial class MainForm : KryptonForm
     {
+        private int _caisseNo = 0;
+        private int _caissierCollabNo = 0;
+
+        public int CaisseNo
+        {
+            get { return _caisseNo; }
+            set { _caisseNo = value; }
+        }
+
+        public int CaissierCollabNo
+        {
+            get { return _caissierCollabNo; }
+            set { _caissierCollabNo = value; }
+        }
+
         Controls.DeviseControl deviseControl = new Controls.DeviseControl();
         Controls.CollaborateurControl collaborateurControl = new CollaborateurControl();
         Controls.CaissierControl caissierControl = new CaissierControl();
@@ -56,7 +71,7 @@ namespace SoftCaisse
             int mid = 0;
             if (File.Exists(filePath) && File.Exists(filePathSage) && File.Exists(filePathObj))
             {
-                DialogResult result = MessageBox.Show("Votre base est déja configurée, souhaitez vous re-entrer les paramètres?", "Important", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Votre base est déjà configurée, souhaitez vous re-entrer les paramètres?", "Important", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
                     mid = 1;
@@ -92,7 +107,7 @@ namespace SoftCaisse
 
         private void ouvertureDeCaisseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OuvertureCaisseForm ouvertureCaisse = new OuvertureCaisseForm(traitementToolStripMenuItem);
+            OuvertureCaisseForm ouvertureCaisse = new OuvertureCaisseForm(traitementToolStripMenuItem, this);
             ouvertureCaisse.Show();
 
         }
@@ -119,7 +134,7 @@ namespace SoftCaisse
 
         private void dOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DocumentVenteForm documentVenteForm = new DocumentVenteForm();
+            DocumentVenteForm documentVenteForm = new DocumentVenteForm(this);
             documentVenteForm.Show();
         }
 

@@ -15,12 +15,12 @@ namespace SoftCaisse.Forms.Billetage
 
         private readonly AppDbContext context;
         private short _cbMarque { get; set; }
-        public FBilletageRepository _fbilletageRepository { get; set; }
+        public F_BILLETPIECERepository _fbilletageRepository { get; set; }
         public BilletageForm(short cbMarque)
         {
             InitializeComponent();
             context = new AppDbContext();
-            _fbilletageRepository = new FBilletageRepository(context);
+            _fbilletageRepository = new F_BILLETPIECERepository(context);
             List<F_BILLETPIECE> billet_piece = new List<F_BILLETPIECE>();
             var list_piece = _fbilletageRepository.GetAll().Where(u => u.N_Devise == cbMarque).ToList();
             foreach(var row in list_piece)

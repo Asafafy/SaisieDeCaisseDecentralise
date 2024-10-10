@@ -1,5 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Models;
+using SoftCaisse.Repositories;
+using SoftCaisse.Services;
 using SoftCaisse.Utils.Global;
 using System;
 using System.Collections.Generic;
@@ -10,14 +12,19 @@ namespace SoftCaisse.Forms.MouvementCaisse
 {
     public partial class MouvementCaisseForm : KryptonForm
     {
+        private readonly F_CREGLEMENTService f_CREGLEMENTService;
         private readonly AppDbContext _context;
         private readonly P_PARAMETRECIAL _parametrecial;
         private List<F_COMPTEG> _listeCompteG;
-        public MouvementCaisseForm()
+        MainForm mainForm;
+        public MouvementCaisseForm(MainForm form)
         {
             InitializeComponent();
 
             _context = new AppDbContext();
+            IRepository<F_CREGLEMENT> f_CREGLEMENTRepository = new F_CREGLEMENTRepository(_context);
+            f_CREGLEMENTService = new F_CREGLEMENTService(f_CREGLEMENTRepository);
+            mainForm = form;
 
             _parametrecial = _context.P_PARAMETRECIAL.FirstOrDefault();
             if (_parametrecial.P_CptaCaisse == 1)
@@ -74,96 +81,54 @@ namespace SoftCaisse.Forms.MouvementCaisse
                     if (montant != 0)
                     {
                         int text = type_mouvement.SelectedIndex;
-                        int typereg = text == 0 ? 5 : 4;
-                        string query = @"
-                        Insert INTO [dbo].[F_CREGLEMENT](
-                            [RG_Date],
-                            [RG_Montant],
-                            [N_Reglement],
-                            [RG_Impute],
-                            [RG_Libelle],
-                            [RG_MontantDev],
-                            [RG_Reference] ,
-                            [RG_Compta],
-                            [EC_No],
-                            [RG_Type],
-                            [RG_Cours],
-                            [RG_TypeReg],
-                            [N_Devise],
-                            [JO_Num],
-                            [RG_Impaye],
-                            [RG_Heure],
-                            [RG_Piece],
-                            [CA_No],
-                            [cbCA_No],
-                            [CO_NoCaissier],
-                            [cbCO_NoCaissier],
-                            [RG_Transfere],
-                            [RG_Cloture],
-                            [RG_Ticket],
-                            [RG_Souche],
-                            [RG_DateEchCont],
-                            [RG_MontantEcart],
-                            [RG_NoBonAchat],
-                            [RG_Valide],
-                            [RG_Anterieur],
-                            [RG_MontantCommission],
-                            [RG_MontantNet],
-                            [cbProt],
-                            [cbModification],
-                            [cbReplication],
-                            [cbFlag],
-                            [cbCreation],
-                            [cbHashVersion],
-                            [cbHashDate],
-                            [RG_Banque],
-                            [CG_Num]
-                        )
-                        values({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},
-                        {23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37},{38},{39},{40})";
-                        _context.Database.ExecuteSqlCommand(query,
-                            kryptonDateTimePicker1.Value,
-                            montant,
-                            3,
-                            0,
-                            commentaire_mouvement.Text,
-                            0,
-                            "",
-                            0,
-                            0,
-                            2,
-                            0,
-                            typereg,
-                            0,
-                            "CAIS",
-                            new DateTime(1753, 1, 1),
-                            "000" + DateTime.Now.ToString("HH:mm:ss").Replace(":", ""),
-                            "",
-                            CaisseOuvert.CaisseID,
-                            CaisseOuvert.CaisseID,
-                            CaisseOuvert.CaissierID,
-                            CaisseOuvert.CaissierID,
-                            0,
-                            0,
-                            1,
-                            0,
-                            new DateTime(1753, 1, 1),
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                            0,
-                            0,
-                            DateTime.Now,
-                            0,
-                            0,
-                            DateTime.Now,
-                            1,
-                            DateTime.Now,
-                            0,
-                            comboBox2.Text == "" ? null : comboBox2.Text.Split('-')[0].Trim()
-                        );
+                        int typereg = text == 0 ? 4 : 5;
+
+                        F_CREGLEMENT newFCReglement = new F_CREGLEMENT
+                        {
+                            RG_Date = kryptonDateTimePicker1.Value,
+                            RG_Montant = montant,
+                            N_Reglement = 3,
+                            RG_Impute = 0,
+                            RG_Libelle = commentaire_mouvement.Text,
+                            RG_MontantDev = 0,
+                            RG_Reference = "",
+                            RG_Compta = 0,
+                            EC_No = 0,
+                            RG_Type = 2,
+                            RG_Cours = 0,
+                            RG_TypeReg = (short?)typereg,
+                            N_Devise = 0,
+                            JO_Num = "CAIS",
+                            RG_Impaye = new DateTime(1753, 1, 1),
+                            RG_Heure = "000" + DateTime.Now.ToString("HH:mm:ss").Replace(":", ""),
+                            RG_Piece = "",
+                            CA_No = mainForm.CaisseNo,
+                            cbCA_No = mainForm.CaisseNo,
+                            CO_NoCaissier = mainForm.CaissierCollabNo,
+                            cbCO_NoCaissier = mainForm.CaissierCollabNo,
+                            RG_Transfere = 0,
+                            RG_Cloture = 0,
+                            RG_Ticket = 1,
+                            RG_Souche = 0,
+                            RG_DateEchCont = new DateTime(1753, 1, 1),
+                            RG_MontantEcart = 0,
+                            RG_NoBonAchat = 0,
+                            RG_Valide = 1,
+                            RG_Anterieur = 0,
+                            RG_MontantCommission = 0,
+                            RG_MontantNet = 0,
+                            cbProt = 0,
+                            cbModification = DateTime.Now,
+                            cbReplication = 0,
+                            cbFlag = 0,
+                            cbCreation = DateTime.Now,
+                            cbHashVersion = 1,
+                            cbHashDate = DateTime.Now,
+                            RG_Banque = 0,
+                            CG_Num = comboBox2.Text == "" ? null : comboBox2.Text.Split('-')[0].Trim()
+                        };
+                        f_CREGLEMENTService.AjouterF_CREGLEMENT(newFCReglement);
+
                         MessageBox.Show("Mouvement de caisse effectué.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Close();
                     }

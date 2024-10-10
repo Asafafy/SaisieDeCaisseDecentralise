@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlCaisseForm));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -90,11 +91,12 @@
             // 
             // kryptonButton2
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(1058, 508);
+            this.kryptonButton2.Location = new System.Drawing.Point(883, 413);
+            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Palette = this.kryptonPalette1;
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(165, 34);
+            this.kryptonButton2.Size = new System.Drawing.Size(58, 28);
             this.kryptonButton2.TabIndex = 13;
             this.kryptonButton2.Values.Text = "OK";
             this.kryptonButton2.Click += new System.EventHandler(this.generer_ecart);
@@ -104,9 +106,11 @@
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 12);
+            this.groupBox1.Location = new System.Drawing.Point(2, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1254, 490);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(940, 398);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             // 
@@ -122,9 +126,11 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.kryptonButton1);
             this.groupBox2.Controls.Add(this.kryptonDataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(8, 136);
+            this.groupBox2.Location = new System.Drawing.Point(6, 110);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1234, 343);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(926, 279);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Montants théoriques en caisse";
@@ -132,17 +138,19 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(810, 279);
+            this.label11.Location = new System.Drawing.Point(608, 227);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(0, 16);
+            this.label11.Size = new System.Drawing.Size(0, 13);
             this.label11.TabIndex = 35;
             // 
             // generation_ecart
             // 
             this.generation_ecart.AutoSize = true;
-            this.generation_ecart.Location = new System.Drawing.Point(13, 308);
+            this.generation_ecart.Location = new System.Drawing.Point(10, 250);
+            this.generation_ecart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.generation_ecart.Name = "generation_ecart";
-            this.generation_ecart.Size = new System.Drawing.Size(350, 20);
+            this.generation_ecart.Size = new System.Drawing.Size(282, 17);
             this.generation_ecart.TabIndex = 34;
             this.generation_ecart.Text = "Générer un mouvement de régularisation en cas écart ";
             this.generation_ecart.UseVisualStyleBackColor = true;
@@ -151,63 +159,70 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(-29, 308);
+            this.checkBox1.Location = new System.Drawing.Point(-22, 250);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 33;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(687, 278);
+            this.label10.Location = new System.Drawing.Point(515, 226);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(0, 16);
+            this.label10.Size = new System.Drawing.Size(0, 13);
             this.label10.TabIndex = 31;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(487, 279);
+            this.label9.Location = new System.Drawing.Point(365, 227);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(0, 16);
+            this.label9.Size = new System.Drawing.Size(0, 13);
             this.label9.TabIndex = 30;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(810, 246);
+            this.label8.Location = new System.Drawing.Point(608, 206);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 16);
+            this.label8.Size = new System.Drawing.Size(32, 13);
             this.label8.TabIndex = 29;
             this.label8.Text = "Ecart";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(588, 247);
+            this.label7.Location = new System.Drawing.Point(441, 207);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(151, 16);
+            this.label7.Size = new System.Drawing.Size(122, 13);
             this.label7.TabIndex = 28;
             this.label7.Text = "Total théorique constate";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(357, 247);
+            this.label6.Location = new System.Drawing.Point(268, 207);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(174, 16);
+            this.label6.Size = new System.Drawing.Size(141, 13);
             this.label6.TabIndex = 27;
             this.label6.Text = "Montant théorique en caisse";
             // 
             // kryptonButton1
             // 
             this.kryptonButton1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.kryptonButton1.Location = new System.Drawing.Point(1046, 22);
+            this.kryptonButton1.Location = new System.Drawing.Point(784, 18);
+            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Palette = this.kryptonPalette1;
             this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton1.Size = new System.Drawing.Size(166, 33);
+            this.kryptonButton1.Size = new System.Drawing.Size(124, 27);
             this.kryptonButton1.TabIndex = 26;
             this.kryptonButton1.Values.Text = "Détail espèces...";
             // 
@@ -215,12 +230,13 @@
             // 
             this.kryptonDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.kryptonDataGridView1.Location = new System.Drawing.Point(13, 22);
+            this.kryptonDataGridView1.Location = new System.Drawing.Point(10, 18);
+            this.kryptonDataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.kryptonDataGridView1.Name = "kryptonDataGridView1";
             this.kryptonDataGridView1.RowHeadersVisible = false;
             this.kryptonDataGridView1.RowHeadersWidth = 51;
             this.kryptonDataGridView1.RowTemplate.Height = 24;
-            this.kryptonDataGridView1.Size = new System.Drawing.Size(1004, 222);
+            this.kryptonDataGridView1.Size = new System.Drawing.Size(753, 180);
             this.kryptonDataGridView1.TabIndex = 0;
             this.kryptonDataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.kryptonDataGridView1_CellValueChanged);
             // 
@@ -229,28 +245,30 @@
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.22388F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.77612F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 309F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 456F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 342F));
             this.tableLayoutPanel2.Controls.Add(this.label5, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.Devise, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBox1, 3, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(9, 100);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(7, 81);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1234, 31);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(926, 25);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(606, 0);
+            this.label5.Location = new System.Drawing.Point(443, 0);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label5.Size = new System.Drawing.Size(169, 22);
+            this.label5.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label5.Size = new System.Drawing.Size(138, 18);
             this.label5.TabIndex = 25;
             this.label5.Text = "Montant constaté en caisse";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -258,28 +276,31 @@
             // Devise
             // 
             this.Devise.FormattingEnabled = true;
-            this.Devise.Location = new System.Drawing.Point(262, 3);
+            this.Devise.Location = new System.Drawing.Point(196, 2);
+            this.Devise.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Devise.Name = "Devise";
-            this.Devise.Size = new System.Drawing.Size(204, 24);
+            this.Devise.Size = new System.Drawing.Size(153, 21);
             this.Devise.TabIndex = 24;
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(206, 0);
+            this.label4.Location = new System.Drawing.Point(152, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label4.Size = new System.Drawing.Size(50, 22);
+            this.label4.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label4.Size = new System.Drawing.Size(40, 18);
             this.label4.TabIndex = 23;
             this.label4.Text = "Devise";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(781, 3);
+            this.textBox1.Location = new System.Drawing.Point(585, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(235, 22);
+            this.textBox1.Size = new System.Drawing.Size(177, 20);
             this.textBox1.TabIndex = 26;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -288,8 +309,8 @@
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.22442F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.77558F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 431F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 324F));
             this.tableLayoutPanel1.Controls.Add(this.kryptonButton3, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.Controlecmbx, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
@@ -297,22 +318,24 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.Caisse, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 11);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 9);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.25373F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.74627F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1235, 83);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(926, 67);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // kryptonButton3
             // 
             this.kryptonButton3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.kryptonButton3.Location = new System.Drawing.Point(1107, 43);
+            this.kryptonButton3.Location = new System.Drawing.Point(830, 35);
+            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.kryptonButton3.Name = "kryptonButton3";
             this.kryptonButton3.Palette = this.kryptonPalette1;
             this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton3.Size = new System.Drawing.Size(125, 37);
+            this.kryptonButton3.Size = new System.Drawing.Size(94, 30);
             this.kryptonButton3.TabIndex = 25;
             this.kryptonButton3.Values.Text = "Afficher";
             this.kryptonButton3.Click += new System.EventHandler(this.display_caisse);
@@ -320,9 +343,10 @@
             // Controlecmbx
             // 
             this.Controlecmbx.FormattingEnabled = true;
-            this.Controlecmbx.Location = new System.Drawing.Point(259, 43);
+            this.Controlecmbx.Location = new System.Drawing.Point(193, 35);
+            this.Controlecmbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Controlecmbx.Name = "Controlecmbx";
-            this.Controlecmbx.Size = new System.Drawing.Size(316, 24);
+            this.Controlecmbx.Size = new System.Drawing.Size(237, 21);
             this.Controlecmbx.TabIndex = 23;
             this.Controlecmbx.SelectedValueChanged += new System.EventHandler(this.Controlecmbx_SelectedValueChanged);
             // 
@@ -330,10 +354,11 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(751, 0);
+            this.label2.Location = new System.Drawing.Point(561, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label2.Size = new System.Drawing.Size(49, 22);
+            this.label2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label2.Size = new System.Drawing.Size(38, 18);
             this.label2.TabIndex = 20;
             this.label2.Text = "Caisse";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -341,19 +366,21 @@
             // kryptonDateTimePicker1
             // 
             this.kryptonDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.kryptonDateTimePicker1.Location = new System.Drawing.Point(259, 3);
+            this.kryptonDateTimePicker1.Location = new System.Drawing.Point(193, 2);
+            this.kryptonDateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.kryptonDateTimePicker1.Name = "kryptonDateTimePicker1";
-            this.kryptonDateTimePicker1.Size = new System.Drawing.Size(115, 25);
+            this.kryptonDateTimePicker1.Size = new System.Drawing.Size(86, 21);
             this.kryptonDateTimePicker1.TabIndex = 19;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(217, 0);
+            this.label1.Location = new System.Drawing.Point(159, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label1.Size = new System.Drawing.Size(36, 22);
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label1.Size = new System.Drawing.Size(30, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Date";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -361,34 +388,39 @@
             // Caisse
             // 
             this.Caisse.FormattingEnabled = true;
-            this.Caisse.Location = new System.Drawing.Point(806, 3);
+            this.Caisse.Location = new System.Drawing.Point(603, 2);
+            this.Caisse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Caisse.Name = "Caisse";
-            this.Caisse.Size = new System.Drawing.Size(304, 24);
+            this.Caisse.Size = new System.Drawing.Size(229, 21);
             this.Caisse.TabIndex = 21;
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(196, 40);
+            this.label3.Location = new System.Drawing.Point(143, 33);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label3.Size = new System.Drawing.Size(57, 22);
+            this.label3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label3.Size = new System.Drawing.Size(46, 18);
             this.label3.TabIndex = 22;
             this.label3.Text = "Contrôle";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ControlCaisseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1269, 554);
+            this.BackColor = System.Drawing.Color.AliceBlue;
+            this.ClientSize = new System.Drawing.Size(952, 450);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.kryptonButton2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ControlCaisseForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.Text = "ControlCaisseForm";
+            this.Text = "Controle de caisse";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

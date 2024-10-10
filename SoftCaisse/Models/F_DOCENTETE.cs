@@ -10,10 +10,11 @@ namespace SoftCaisse.Models
 
         public short? DO_Type { get; set; }
 
-        [StringLength(9)]
+        [StringLength(13)]
         public string DO_Piece { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [MaxLength(14)]
         public byte[] cbDO_Piece { get; set; }
 
         public DateTime? DO_Date { get; set; }
@@ -135,6 +136,8 @@ namespace SoftCaisse.Models
 
         public int? CA_No { get; set; }
 
+        public int? cbCA_No { get; set; }
+
         public int? CO_NoCaissier { get; set; }
 
         public int? cbCO_NoCaissier { get; set; }
@@ -220,10 +223,11 @@ namespace SoftCaisse.Models
         [MaxLength(36)]
         public byte[] cbDO_FactureFrs { get; set; }
 
-        [StringLength(9)]
+        [StringLength(13)]
         public string DO_PieceOrig { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [MaxLength(14)]
         public byte[] cbDO_PieceOrig { get; set; }
 
         public Guid? DO_GUID { get; set; }
@@ -254,6 +258,35 @@ namespace SoftCaisse.Models
 
         public short? DO_StatutBAP { get; set; }
 
+        public short? DO_Escompte { get; set; }
+
+        public short? DO_DocType { get; set; }
+
+        public short? DO_TypeCalcul { get; set; }
+
+        public Guid? DO_FactureFile { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? DO_TotalHTNet { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? DO_TotalTTC { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? DO_NetAPayer { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? DO_MontantRegle { get; set; }
+
+        public Guid? DO_RefPaiement { get; set; }
+
+        [StringLength(255)]
+        public string DO_AdressePaiement { get; set; }
+
+        public short? DO_PaiementLigne { get; set; }
+
+        public short? DO_MotifDevis { get; set; }
+
         public short? cbProt { get; set; }
 
         [Key]
@@ -262,20 +295,15 @@ namespace SoftCaisse.Models
         [StringLength(4)]
         public string cbCreateur { get; set; }
 
-        [Column(TypeName = "smalldatetime")]
         public DateTime? cbModification { get; set; }
 
         public int? cbReplication { get; set; }
 
         public short? cbFlag { get; set; }
 
-        [StringLength(69)]
-        public string Commentaires { get; set; }
+        public DateTime? cbCreation { get; set; }
 
-        [StringLength(69)]
-        public string Divers { get; set; }
-
-        public short? DO_Escompte { get; set; }
+        public Guid? cbCreationUser { get; set; }
 
         [MaxLength(32)]
         public byte[] cbHash { get; set; }
@@ -286,13 +314,12 @@ namespace SoftCaisse.Models
 
         public int? cbHashOrder { get; set; }
 
-        public int? cbCA_No { get; set; }
-        public decimal DO_TotalHTNet { get; set; }
-        public decimal DO_TotalTTC { get; set; }
-        public decimal DO_NetAPayer { get; set; }
-        public decimal DO_MontantRegle { get; set; }
+        [StringLength(69)]
+        public string Commentaires { get; set; }
 
+        [StringLength(69)]
+        public string Divers { get; set; }
 
-
+        public short? DO_Conversion { get; set; }
     }
 }

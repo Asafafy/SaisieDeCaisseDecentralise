@@ -53,10 +53,10 @@ namespace SoftCaisse.Forms.Article
         {
             _context = new AppDbContext();
             InitializeComponent();
-            FArtilceRepository fArtilceRepository = new FArtilceRepository(_context);
+            F_ARTICLERepository fArtilceRepository = new F_ARTICLERepository(_context);
             _referenceArt = referenceArt;
             _designArt = designArt;
-            _selectedArt = fArtilceRepository.GetByRefDes(_referenceArt, _designArt);
+            _selectedArt = _context.F_ARTICLE.Where(art => art.AR_Ref == _referenceArt && art.AR_Design == _designArt).FirstOrDefault();
 
             // =========================================================== NAVIGATION ENTRE TAB PAGES =========================================================== */
             //TabControl du "Champs libres" Tab

@@ -14,8 +14,8 @@ namespace SoftCaisse.Forms.FondCaisse
     {
         private readonly AppDbContext _context;
         private readonly DeviseRepository _deviseRepository;
-        private readonly FBilletageRepository _fbilletageRepository;
-        private readonly FCReglementRepository _fcreglementRepository;
+        private readonly F_BILLETPIECERepository _fbilletageRepository;
+        private readonly F_CREGLEMENTRepository _fcreglementRepository;
         public List<dynamic> devise = new List<dynamic>();
         public List<dynamic> coursDevise = new List<dynamic>();
         public List<dynamic> billetage = new List<dynamic>();
@@ -28,8 +28,8 @@ namespace SoftCaisse.Forms.FondCaisse
             InitializeComponent();
             _context = new AppDbContext();
             _deviseRepository = new DeviseRepository(_context);
-            _fbilletageRepository = new FBilletageRepository(_context);
-            _fcreglementRepository = new FCReglementRepository(_context);
+            _fbilletageRepository = new F_BILLETPIECERepository(_context);
+            _fcreglementRepository = new F_CREGLEMENTRepository(_context);
             var dataDevise = _deviseRepository.GetAll();
             var deviseCombobox = dataDevise.Where(d=>d.D_Intitule !="").Select(d=>new {NumDevise = d.cbMarq, Intitule = d.D_Intitule});
             var courDevise = dataDevise.Select(d => new { NumDevise = d.cbMarq, Cours = d.D_Cours });

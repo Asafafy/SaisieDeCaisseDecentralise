@@ -1,5 +1,8 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Models;
+using SoftCaisse.Repositories;
+using SoftCaisse.Repositories.BIJOU;
+using SoftCaisse.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,6 +15,8 @@ namespace SoftCaisse.Forms
     public partial class NouveauDocumentDeVente : KryptonForm
     {
         MainForm mainForm;
+        private readonly F_DOCREGLService f_DOCREGLService;
+        private readonly F_DOCENTETEService f_DOCENTETEService;
         private readonly List<F_COMPTET> _listeClients;
         private readonly AppDbContext _context;
         private readonly List<F_DOCENTETE> _listeDocuments;
@@ -27,11 +32,17 @@ namespace SoftCaisse.Forms
             InitializeComponent();
 
             _context = new AppDbContext();
+
+            IRepository<F_DOCREGL> f_DOCREGLRepository = new F_DOCREGLRepository(_context);
+            f_DOCREGLService = new F_DOCREGLService(f_DOCREGLRepository);
+            IRepository<F_DOCENTETE> f_DOCENTETERepository = new F_DOCENTETERepository(_context);
+            f_DOCENTETEService = new F_DOCENTETEService(f_DOCENTETERepository);
+
             _typeDocument = typeDocument;
             mainForm = form;
 
             _listeDocuments = _context.F_DOCENTETE.ToList();
-            _listeClients = _context.F_COMPTET.ToList();
+            _listeClients = _context.F_COMPTET.Where(c => c.CT_Type == 0).ToList();
             _listeDocRegl = _context.F_DOCREGL.ToList();
             _listeLivraisons = _context.F_LIVRAISON.ToList();
 
@@ -355,72 +366,105 @@ namespace SoftCaisse.Forms
                 return (0, 0);
             }
         }
+
         private void MettreAJourF_DOCCURRENTPIECE(string typeDoc, string currentPieceNo)
         {
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBUPD_F_DOCCURRENTPIECE] ON [dbo].[F_DOCCURRENTPIECE]");
+
             if (typeDoc == "Devis")
             {
                 F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 1).FirstOrDefault();
-                fDocCurrent.DC_Piece = currentPieceNo;
-                fDocCurrent.cbModification = DateTime.Now;
-                _context.SaveChanges();
+                if (fDocCurrent.DC_Piece != currentPieceNo)
+                {
+                    fDocCurrent.DC_Piece = currentPieceNo;
+                    fDocCurrent.cbModification = DateTime.Now;
+                    _context.SaveChanges();
+                }
             }
             else if (typeDoc == "Bon de commande")
             {
                 F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 2).FirstOrDefault();
-                fDocCurrent.DC_Piece = currentPieceNo;
-                fDocCurrent.cbModification = DateTime.Now;
-                _context.SaveChanges();
+                if (fDocCurrent.DC_Piece != currentPieceNo)
+                {
+                    fDocCurrent.DC_Piece = currentPieceNo;
+                    fDocCurrent.cbModification = DateTime.Now;
+                    _context.SaveChanges();
+                }
             }
             else if (typeDoc == "Préparation de livraison")
             {
                 F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 3).FirstOrDefault();
-                fDocCurrent.DC_Piece = currentPieceNo;
-                fDocCurrent.cbModification = DateTime.Now;
-                _context.SaveChanges();
+                if (fDocCurrent.DC_Piece != currentPieceNo)
+                {
+                    fDocCurrent.DC_Piece = currentPieceNo;
+                    fDocCurrent.cbModification = DateTime.Now;
+                    _context.SaveChanges();
+                }
             }
             else if (typeDoc == "Bon de livraison")
             {
                 F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 4).FirstOrDefault();
-                fDocCurrent.DC_Piece = currentPieceNo;
-                fDocCurrent.cbModification = DateTime.Now;
-                _context.SaveChanges();
+                if (fDocCurrent.DC_Piece != currentPieceNo)
+                {
+                    fDocCurrent.DC_Piece = currentPieceNo;
+                    fDocCurrent.cbModification = DateTime.Now;
+                    _context.SaveChanges();
+                }
             }
             else if (typeDoc == "Bon de retour")
             {
                 F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 5).FirstOrDefault();
-                fDocCurrent.DC_Piece = currentPieceNo;
-                fDocCurrent.cbModification = DateTime.Now;
-                _context.SaveChanges();
+                if (fDocCurrent.DC_Piece != currentPieceNo)
+                {
+                    fDocCurrent.DC_Piece = currentPieceNo;
+                    fDocCurrent.cbModification = DateTime.Now;
+                    _context.SaveChanges();
+                }
             }
             else if (typeDoc == "Bon d'avoir finanicier")
             {
                 F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 6).FirstOrDefault();
-                fDocCurrent.DC_Piece = currentPieceNo;
-                fDocCurrent.cbModification = DateTime.Now;
-                _context.SaveChanges();
+                if (fDocCurrent.DC_Piece != currentPieceNo)
+                {
+                    fDocCurrent.DC_Piece = currentPieceNo;
+                    fDocCurrent.cbModification = DateTime.Now;
+                    _context.SaveChanges();
+                }
             }
             else if (typeDoc == "Facture")
             {
                 F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 74).FirstOrDefault();
-                fDocCurrent.DC_Piece = currentPieceNo;
-                fDocCurrent.cbModification = DateTime.Now;
-                _context.SaveChanges();
+                if (fDocCurrent.DC_Piece != currentPieceNo)
+                {
+                    fDocCurrent.DC_Piece = currentPieceNo;
+                    fDocCurrent.cbModification = DateTime.Now;
+                    _context.SaveChanges();
+                }
             }
             else if (typeDoc == "Facture de retour")
             {
                 F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 75).FirstOrDefault();
-                fDocCurrent.DC_Piece = currentPieceNo;
-                fDocCurrent.cbModification = DateTime.Now;
-                _context.SaveChanges();
+                if (fDocCurrent.DC_Piece != currentPieceNo)
+                {
+                    fDocCurrent.DC_Piece = currentPieceNo;
+                    fDocCurrent.cbModification = DateTime.Now;
+                    _context.SaveChanges();
+                }
             }
             else if (typeDoc == "Facture d'avoir")
             {
                 F_DOCCURRENTPIECE fDocCurrent = _context.F_DOCCURRENTPIECE.Where(dc => dc.cbMarq == 76).FirstOrDefault();
-                fDocCurrent.DC_Piece = currentPieceNo;
-                fDocCurrent.cbModification = DateTime.Now;
-                _context.SaveChanges();
+                if (fDocCurrent.DC_Piece != currentPieceNo)
+                {
+                    fDocCurrent.DC_Piece = currentPieceNo;
+                    fDocCurrent.cbModification = DateTime.Now;
+                    _context.SaveChanges();
+                }
             }
+
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_CBUPD_F_DOCCURRENTPIECE] ON [dbo].[F_DOCCURRENTPIECE]");
         }
+
         private void InsertNewF_DOCREGL(List<F_DOCREGL> listeDocRegl, string numPieceActu, List<F_COMPTET> listeClients, string typeDocu)
         {
             int? newDrNo = listeDocRegl.Max(element => element.DR_No);
@@ -441,10 +485,13 @@ namespace SoftCaisse.Forms
                         reglT.RT_JourTb06
                     };
                     joursTb.RemoveAll(x => x == 0);
-                    int? nextDay = joursTb.Where(d => d >= date.Day).OrderBy(d => d).FirstOrDefault();
-                    if (!nextDay.HasValue)
-                        nextDay = joursTb.FirstOrDefault();
-                    date = new DateTime(date.Year, date.Month, (int)nextDay);
+                    if (joursTb.Count > 0)
+                    {
+                        int? nextDay = joursTb.Where(d => d >= date.Day).OrderBy(d => d).FirstOrDefault();
+                        if (!nextDay.HasValue)
+                            nextDay = joursTb.FirstOrDefault();
+                        date = new DateTime(date.Year, date.Month, (int)nextDay);
+                    }
                 }
                 else if (reglT.RT_Condition == 1)
                 {
@@ -464,39 +511,13 @@ namespace SoftCaisse.Forms
                 {
                     date = new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
                 }
-                //string query = @"
-                //    Insert INTO [dbo].[F_DOCREGL] (
-                //        [DR_No]
-                //        [DO_Domaine],
-                //        [DO_Type],
-                //        [DO_Piece],
-                //        [DR_TypeRegl],
-                //        [DR_Date],
-                //        [DR_Libelle],
-                //        [DR_Pourcent],
-                //        [DR_Montant],
-                //        [DR_MontantDev],
-                //        [DR_Equil],
-                //        [EC_No],
-                //        [cbEC_No],
-                //        [DR_Regle],
-                //        [N_Reglement],
-                //        [CA_No],
-                //        [DO_DocType],
-                //        [cbCreateur],
-                //        [DR_RefPaiement],
-                //        [DR_AdressePaiement],
-                //    )
-                //    values({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},
-                //        {23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37},{38},{39},{40})";
-
+                newDrNo++;
                 F_DOCREGL newDocRegl = new F_DOCREGL
                 {
-                    DR_No = newDrNo + 1,
+                    DR_No = newDrNo,
                     DO_Domaine = 0,
                     DO_Type = 6,
                     DO_Piece = numPieceActu,
-                    //cbDO_Piece = numPieceActu,
                     DR_TypeRegl = 2,
                     DR_Date = date,
                     DR_Libelle = "",
@@ -514,8 +535,7 @@ namespace SoftCaisse.Forms
                     DR_RefPaiement = null,
                     DR_AdressePaiement = "",
                 };
-                _context.F_DOCREGL.Add(newDocRegl);
-                _context.SaveChanges();
+                f_DOCREGLService.AjouterF_DOCREGL(newDocRegl);
             }
         }
         private void InsertNewF_DOCENTETE(string typeDoc, string noPiece, List<F_COMPTET> listeClients, List<F_LIVRAISON> listeLivr, short? numExpedit, string caNum, int numCaisse, int numCaissier, string expeditInt, DateTime dateLivrRealise, string refer)
@@ -542,8 +562,8 @@ namespace SoftCaisse.Forms
                 DO_Cours = 0,
                 DE_No = 1,
                 cbDE_No = 1,
-                LI_No = lieuLivrPrinc.LI_No,
-                cbLI_No = lieuLivrPrinc.LI_No,
+                LI_No = lieuLivrPrinc == null ? 0 : lieuLivrPrinc.LI_No,
+                cbLI_No = lieuLivrPrinc == null ? 0 : lieuLivrPrinc.LI_No,
                 CT_NumPayeur = client.CT_NumPayeur,
                 DO_Expedit = numExpedit,
                 DO_NbFacture = 1,
@@ -610,11 +630,36 @@ namespace SoftCaisse.Forms
                 DO_TypeTransac = 0,
                 DO_DateLivrRealisee = dateLivrRealise,
                 DO_DateExpedition = new DateTime(1753, 01, 01, 00, 00, 00),
-                DO_FactureFrs = null,
+                DO_FactureFrs = "",
                 DO_PieceOrig = "",
+                DO_GUID = null,
+                DO_EStatut = 0,
+                DO_DemandeRegul = 0,
+                ET_No = 0,
+                cbET_No = null,
+                DO_Valide = 0,
+                DO_Coffre = 0,
+                DO_CodeTaxe1 = "C20",
+                DO_CodeTaxe2 = null,
+                DO_CodeTaxe3 = null,
+                DO_TotalHT = 0,
+                DO_StatutBAP = 0,
+                DO_Escompte = 1,
+                DO_DocType = 6,
+                DO_TypeCalcul = 0,
+                DO_FactureFile = null,
+                DO_TotalHTNet = 0,
+                DO_TotalTTC = 0,
+                DO_NetAPayer = 0,
+                DO_MontantRegle = 0,
+                DO_RefPaiement = null,
+                DO_AdressePaiement = "",
+                DO_PaiementLigne = 0,
+                DO_MotifDevis = 0,
+                DO_Conversion = 0,
+                cbCreateur = "COLS"
             };
-            _context.F_DOCENTETE.Add(newDocEnTete);
-            _context.SaveChanges();
+            f_DOCENTETEService.AjouterF_DOCENTETE(newDocEnTete);
         }
         // ================================================ FIN FONCTIONS ================================================
         // =================================================================================================================
@@ -661,6 +706,8 @@ namespace SoftCaisse.Forms
 
                 int numExpedition = comboBoxExpedit.SelectedIndex + 1;
                 string caNum = comboBoxAffaire.Text;
+                int indexEspace = caNum.IndexOf(' ');
+                caNum = caNum.Substring(0, indexEspace);
                 int caisseNumber = mainForm.CaisseNo;
                 int caissierNumber = mainForm.CaissierCollabNo;
                 string reference = textBox3.Text;

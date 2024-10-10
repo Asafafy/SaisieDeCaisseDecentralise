@@ -177,7 +177,7 @@ namespace SoftCaisse
 
         private void mouvementsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MouvementCaisseForm mouvementCaisseForm = new MouvementCaisseForm();
+            MouvementCaisseForm mouvementCaisseForm = new MouvementCaisseForm(this);
             mouvementCaisseForm.Show();
         }
 

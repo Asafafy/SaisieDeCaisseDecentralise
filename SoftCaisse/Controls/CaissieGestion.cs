@@ -14,11 +14,11 @@ namespace SoftCaisse.Controls
     public partial class CaissieGestion : UserControl
     {
         private readonly AppDbContext _context;
-        private readonly FCaisseRepository _fCaisseRepository;
-        private readonly FDepotRepository _fDepotRepository;
-        private readonly FCollaborateurRepository _fCollaborateurRepository;
-        private readonly PSoucheVenteRepository _pSoucheVenteRepository;
-        private readonly FCReglementRepository _fReglementRepository;
+        private readonly F_CAISSERepository _fCaisseRepository;
+        private readonly F_DEPOTRepository _fDepotRepository;
+        private readonly F_COLLABORATEURRepository _fCollaborateurRepository;
+        private readonly P_SOUCHEVENTERepository _pSoucheVenteRepository;
+        private readonly F_CREGLEMENTRepository _fReglementRepository;
         public List<dynamic> detailCaisser = new List<dynamic>();
         public List<dynamic> detailVendeur = new List<dynamic>();
         public List<dynamic> detailCaisse = new List<dynamic>();
@@ -29,8 +29,8 @@ namespace SoftCaisse.Controls
         {
             InitializeComponent();
             _context = new AppDbContext();
-            _fCaisseRepository = new FCaisseRepository(_context);
-            _fReglementRepository = new FCReglementRepository(_context);
+            _fCaisseRepository = new F_CAISSERepository(_context);
+            _fReglementRepository = new F_CREGLEMENTRepository(_context);
             var data = _fCaisseRepository.GetAll();
             var reglement = _fReglementRepository.GetAll();
             var listCaissier  = data.Select(caissier=> new { Intitule = caissier.CA_Intitule , CaisseNum = caissier.CA_No }).ToList();

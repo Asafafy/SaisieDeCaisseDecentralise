@@ -11,12 +11,12 @@ namespace SoftCaisse.Controls
     public partial class CollaborateurControl : UserControl
     {
         private readonly AppDbContext _context;
-        private readonly FCollaborateurRepository _fCollaborateurRepository;
+        private readonly F_COLLABORATEURRepository _fCollaborateurRepository;
         public CollaborateurControl()
         {
             InitializeComponent();
             _context = new AppDbContext();
-            _fCollaborateurRepository = new FCollaborateurRepository(_context);
+            _fCollaborateurRepository = new F_COLLABORATEURRepository(_context);
             var listCollabo = _fCollaborateurRepository.GetAll();
             var data = listCollabo.Select(collab => new { CO_No = collab.CO_No, NomCollabo = collab.CO_Nom, PrenomCollabo = collab.CO_Prenom, FonctionCollab = collab.CO_Fonction, NumCollabo = collab.CO_Caissier }).Where(collab => collab.NumCollabo == 1).ToList();
             collaboDataGridView.DataSource = data;

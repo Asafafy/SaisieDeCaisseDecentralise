@@ -19,7 +19,7 @@ namespace SoftCaisse.Forms.ControlCaisse
     public partial class ControlCaisseForm : KryptonForm
     {
         private readonly AppDbContext _context;
-        public FCaisseRepository _fcaisserepository { get; set; }
+        public F_CAISSERepository _fcaisserepository { get; set; }
         public DeviseRepository _fdeviserepository { get; set; }
         public FReglementRepository _freglementrepository { get; set; }
 
@@ -27,7 +27,7 @@ namespace SoftCaisse.Forms.ControlCaisse
         {
             InitializeComponent();
             _context = new AppDbContext();
-            _fcaisserepository = new FCaisseRepository(_context);
+            _fcaisserepository = new F_CAISSERepository(_context);
             _fdeviserepository = new DeviseRepository(_context);
             _freglementrepository = new FReglementRepository(_context);
             var caisse = _fcaisserepository.GetAll();

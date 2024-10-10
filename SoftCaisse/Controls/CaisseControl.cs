@@ -12,15 +12,15 @@ namespace SoftCaisse.Controls
         public List<string> _caisse;
         public List<dynamic> mode = new List<dynamic>();
         private readonly AppDbContext _context;
-        private readonly ClientRepository _clientRepository;
-        private readonly ModeReglementRepository _modeReglementRepository;
+        private readonly F_COMPTETRepository _clientRepository;
+        private readonly P_REGLEMENTRepository _modeReglementRepository;
         public CaisseControl()
         {
             InitializeComponent();
             _context = new AppDbContext();
-            _clientRepository = new ClientRepository(_context);
+            _clientRepository = new F_COMPTETRepository(_context);
             _caisse = _clientRepository.GetCTNumF_CompteT();
-            _modeReglementRepository = new ModeReglementRepository(_context);
+            _modeReglementRepository = new P_REGLEMENTRepository(_context);
             LoadClient();
             LoadModeReglement();
             kryptonComboBox3.SelectedIndex = 0;

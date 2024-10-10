@@ -14,14 +14,14 @@ namespace SoftCaisse.Forms.GestionCaisse
     public partial class MouvementCaisse : KryptonForm
     {
         private readonly AppDbContext _context;
-        private readonly FCaisseRepository _fCaisseRepository;
+        private readonly F_CAISSERepository _fCaisseRepository;
         public string menu { get; set; }
 
         public MouvementCaisse(string Intitule)
         {
             InitializeComponent();
             _context = new AppDbContext();
-            _fCaisseRepository = new FCaisseRepository(_context);
+            _fCaisseRepository = new F_CAISSERepository(_context);
             var data = _fCaisseRepository.GetAll();
             listeCaisse.DataSource = data;
             listeCaisse.DisplayMember = "CA_Intitule";
@@ -84,9 +84,9 @@ namespace SoftCaisse.Forms.GestionCaisse
             int value = Int32.Parse(listeCaisse.SelectedValue.ToString());
             if (menu == "document")
             {
-                decimal sommeHT = 0;
-                decimal sommeTaxe = 0;
-                decimal sommeTTC = 0;
+                decimal? sommeHT = 0;
+                decimal? sommeTaxe = 0;
+                decimal? sommeTTC = 0;
                 tableMouvement.DataSource = _context.F_DOCENTETE.Where(u => u.CA_No == value).ToList().Select(u =>
                 {
 
@@ -216,9 +216,9 @@ namespace SoftCaisse.Forms.GestionCaisse
             }
             else
             {
-                decimal sommeHT = 0;
-                decimal sommeTaxe = 0;
-                decimal sommeTTC = 0;
+                decimal? sommeHT = 0;
+                decimal? sommeTaxe = 0;
+                decimal? sommeTTC = 0;
                 var tableau = _context.F_TICKETARCHIVE.Join(_context.F_DOCENTETE, post => post.DO_Piece, meta => meta.DO_Piece, (post, meta) => new { Meta = meta, Post = post }).Where(u => u.Post.CA_No == value).ToList().Select(u =>
                 {
                     var caissier = _context.F_COLLABORATEUR.FirstOrDefault(a => a.CO_No == u.Meta.CO_NoCaissier && a.CO_Vendeur == 1);

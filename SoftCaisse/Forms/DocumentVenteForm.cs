@@ -155,7 +155,7 @@ namespace SoftCaisse.Forms.DocumentVente
                     doc.DO_Piece,
                     doc.DO_Ref,
                     doc.DO_Date?.ToString("dd/MM/yyyy"),
-                    doc.CT_NumPayeur,
+                    doc.DO_Tiers,
                     listeClients.Where(c => c.CT_Num == doc.CT_NumPayeur).Select(c => c.CT_Intitule).FirstOrDefault(),
                     doc.DO_DateLivr?.ToString("dd/MM/yyyy") == "01/01/1753" ? "" : doc.DO_DateLivr?.ToString("dd/MM/yyyy"),
                     doc.DO_DateLivrRealisee?.ToString("dd/MM/yyyy") == "01/01/1753" ? "" : doc.DO_DateLivrRealisee?.ToString("dd/MM/yyyy"),
@@ -175,9 +175,9 @@ namespace SoftCaisse.Forms.DocumentVente
                     doc.CT_NumPayeur ?? "",
                     (doc.DO_Tarif == 0) ? "" : listeCatTarif.Where(c => c.cbMarq == doc.DO_Tarif).Select(c => c.CT_Intitule).FirstOrDefault(),
                     listeCatComptasVente[(int)doc.N_CatCompta],
-                    doc.DO_TotalHTNet.ToString("F2"),
-                    doc.DO_TotalTTC.ToString("F2"),
-                    doc.DO_NetAPayer.ToString("F2"),
+                    doc.DO_TotalHTNet?.ToString("F2"),
+                    doc.DO_TotalTTC?.ToString("F2"),
+                    doc.DO_NetAPayer?.ToString("F2"),
                     doc.Commentaires
                 );
             }

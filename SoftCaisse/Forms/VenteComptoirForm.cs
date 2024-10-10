@@ -23,7 +23,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         private readonly AppDbContext _context;
         private readonly SageContexte _sageObj;
         private readonly DeviseRepository _deviseRepository;
-        private readonly ModeReglementRepository _reglementRepository;
+        private readonly P_REGLEMENTRepository _reglementRepository;
         private static string dernierCours = "Euro";
         private int compteurClick = 0;
         private F_CAISSE _caisse;
@@ -40,7 +40,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         {
             _context = new AppDbContext();
             _deviseRepository = new DeviseRepository(_context);
-            _reglementRepository = new ModeReglementRepository(_context);
+            _reglementRepository = new P_REGLEMENTRepository(_context);
             _caisse = _context.F_CAISSE.FirstOrDefault(u => u.CA_No == caisse);
             _caissier = _context.F_COLLABORATEUR.FirstOrDefault(u => u.CO_No == caissier);
 

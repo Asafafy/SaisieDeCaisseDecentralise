@@ -20,8 +20,8 @@ namespace SoftCaisse.Forms.OuvertureCaisse
         private List<dynamic> _collabo = new List<dynamic>();
         private readonly AppDbContext _context;
         private readonly SCDContext _sCDContext;
-        private FCaisseRepository _fCaisseRepository;
-        private readonly FCollaborateurRepository _fCollaborateurRepository;
+        private F_CAISSERepository _fCaisseRepository;
+        private readonly F_COLLABORATEURRepository _fCollaborateurRepository;
         private int IdCaisse;
         private int IdCaissier;
         private ToolStripMenuItem _menu;
@@ -38,8 +38,8 @@ namespace SoftCaisse.Forms.OuvertureCaisse
 
             _context = new AppDbContext();
             _sCDContext = new SCDContext();
-            _fCaisseRepository = new FCaisseRepository(_context);
-            _fCollaborateurRepository = new FCollaborateurRepository(_context);
+            _fCaisseRepository = new F_CAISSERepository(_context);
+            _fCollaborateurRepository = new F_COLLABORATEURRepository(_context);
             var _caisse = _fCaisseRepository.GetAll();
             var _collabo = _fCollaborateurRepository.GetAll();
             var listCaisse = _caisse.Select(c => new Controle() { valeur = c.CA_No + "", item = c.CA_Intitule }).ToArray();

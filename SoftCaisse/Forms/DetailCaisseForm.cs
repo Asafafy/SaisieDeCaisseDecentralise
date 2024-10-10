@@ -1,5 +1,4 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
-using SoftCaisse.Controls;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
 using SoftCaisse.Utils;
@@ -19,40 +18,40 @@ namespace SoftCaisse.Forms.Caisse
         private List<dynamic> _vente = new List<dynamic>();
         private bool modif;
         private readonly AppDbContext _context;
-        private readonly ClientRepository _clientRepository;
-        private readonly FDepotRepository _depotRepository;
-        private readonly FJournauxRepository _fJournauxRepository;
+        private readonly F_COMPTETRepository _clientRepository;
+        private readonly F_DEPOTRepository _depotRepository;
+        private readonly F_JOURNAUXRepository _fJournauxRepository;
         private readonly F_CAISSE f_caisse;
-        private readonly FCaisseRepository _fCaisseRepository;
+        private readonly F_CAISSERepository _fCaisseRepository;
         private int IdDepot;
         private int IdCaissier;
         private int IdSouche;
         private int IdVendeur;
         private KryptonDataGridView _grid;
-        public DetailCaisseForm(List<dynamic> caissier,KryptonDataGridView grid)
+        public DetailCaisseForm(List<dynamic> caissier, KryptonDataGridView grid)
         {
             InitializeComponent();
             _context = new AppDbContext();
-            _clientRepository = new ClientRepository(_context);
-            _depotRepository =  new FDepotRepository(_context);
-            _fJournauxRepository = new FJournauxRepository(_context);
-            _fCaisseRepository = new FCaisseRepository(_context);   
+            _clientRepository = new F_COMPTETRepository(_context);
+            _depotRepository = new F_DEPOTRepository(_context);
+            _fJournauxRepository = new F_JOURNAUXRepository(_context);
+            _fCaisseRepository = new F_CAISSERepository(_context);
             _caissier.Clear();
             _caissier = caissier;
-            LoadAll(); 
+            LoadAll();
             LoadDetailsCaisse();
             DepotCaisseCmbx.DisplayMember = "Depot";
             DepotCaisseCmbx.ValueMember = "NumDepot";
-            _grid=grid;
+            _grid = grid;
         }
         public DetailCaisseForm(List<dynamic> caissier, List<dynamic> vendeur, List<dynamic> detailCaisse, List<dynamic> soucheVente, KryptonDataGridView grid)
         {
             InitializeComponent();
             _context = new AppDbContext();
-            _clientRepository = new ClientRepository(_context);
-            _depotRepository = new FDepotRepository(_context);
-            _fJournauxRepository = new FJournauxRepository(_context);
-            _fCaisseRepository = new FCaisseRepository(_context);
+            _clientRepository = new F_COMPTETRepository(_context);
+            _depotRepository = new F_DEPOTRepository(_context);
+            _fJournauxRepository = new F_JOURNAUXRepository(_context);
+            _fCaisseRepository = new F_CAISSERepository(_context);
             _caissier.Clear();
             _caissier = caissier;
             _vendeur.Clear();
@@ -80,10 +79,10 @@ namespace SoftCaisse.Forms.Caisse
         {
             InitializeComponent();
             _context = new AppDbContext();
-            _clientRepository = new ClientRepository(_context);
-            _depotRepository = new FDepotRepository(_context);
-            _fJournauxRepository = new FJournauxRepository(_context);
-            _fCaisseRepository = new FCaisseRepository(_context);
+            _clientRepository = new F_COMPTETRepository(_context);
+            _depotRepository = new F_DEPOTRepository(_context);
+            _fJournauxRepository = new F_JOURNAUXRepository(_context);
+            _fCaisseRepository = new F_CAISSERepository(_context);
             _caissier.Clear();
             _caissier = caissier;
             _vendeur.Clear();
@@ -120,7 +119,7 @@ namespace SoftCaisse.Forms.Caisse
             soucheVenteCmbx.Items.Clear();
             soucheVenteCmbx.Items.AddRange(souche.ToArray());
         }
-        public void LoadJournaux() 
+        public void LoadJournaux()
         {
             var listJournaux = _fJournauxRepository.GetAll();
             var numJournaux = listJournaux.Select(jrn => jrn.JO_Num).ToArray();
@@ -130,10 +129,10 @@ namespace SoftCaisse.Forms.Caisse
         public void LoadAll()
         {
             var listdepot = _depotRepository.GetAll();
-            var cmbxDepot = listdepot.Select(depot=>new { NumDepot = depot.DE_No, Depot = depot.DE_Intitule}).ToArray();
+            var cmbxDepot = listdepot.Select(depot => new { NumDepot = depot.DE_No, Depot = depot.DE_Intitule }).ToArray();
             var listClient = _clientRepository.GetCTNumF_CompteT();
             var listJournaux = _fJournauxRepository.GetAll();
-            var numJournaux = listJournaux.Select(jrn=>jrn.JO_Num).ToArray();
+            var numJournaux = listJournaux.Select(jrn => jrn.JO_Num).ToArray();
             DepotCaisseCmbx.Items.Clear();
             ClientCaisseCmbx.Items.Clear();
             CodeJournalCaisseCmbx.Items.Clear();
@@ -165,10 +164,10 @@ namespace SoftCaisse.Forms.Caisse
             var caisse = _caissier.FirstOrDefault();
 
             txtIntituleCaisse.Text = caisse.Intitule;
-            var cmbxDepot = _caissier.Select(depot=>new { NumDepot = depot.NumDepot, Depot = depot.Depot }).ToArray();
-            var souche = _vente.Where(s=>s.cbMarque == caisse.SoucheVente).Select(s=>s.Intitule).FirstOrDefault();
-            var vendeur = _vendeur.Where(v=>v.NumCo == caisse.VendeurNum).Select(v=>v.InfoVendeur).FirstOrDefault(); 
-            var detailcaisse = _caisse.Where(c=>c.NumCo == caisse.NumCaissier).Select(v => v.InfoCaisse).FirstOrDefault();
+            var cmbxDepot = _caissier.Select(depot => new { NumDepot = depot.NumDepot, Depot = depot.Depot }).ToArray();
+            var souche = _vente.Where(s => s.cbMarque == caisse.SoucheVente).Select(s => s.Intitule).FirstOrDefault();
+            var vendeur = _vendeur.Where(v => v.NumCo == caisse.VendeurNum).Select(v => v.InfoVendeur).FirstOrDefault();
+            var detailcaisse = _caisse.Where(c => c.NumCo == caisse.NumCaissier).Select(v => v.InfoCaisse).FirstOrDefault();
             DepotCaisseCmbx.SelectedIndex = DepotCaisseCmbx.FindString(caisse.Depot);
             ClientCaisseCmbx.SelectedIndex = ClientCaisseCmbx.FindString(caisse.Client);
             CodeJournalCaisseCmbx.SelectedIndex = CodeJournalCaisseCmbx.FindString(caisse.CodeJournal);

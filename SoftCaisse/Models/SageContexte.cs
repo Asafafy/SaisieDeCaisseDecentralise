@@ -1,11 +1,7 @@
 ﻿using Objets100cLib;
-using SoftCaisse.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SoftCaisse.Models
@@ -29,10 +25,10 @@ namespace SoftCaisse.Models
             string serveurFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ServeurCfg.txt");
             string sageFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ServeurSage.txt");
             string sageFileObj = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ObjSage.txt");
-            
-            string compta= File.ReadAllText(sageFileObj);
 
-            string[] attr=compta.Split('\n');
+            string compta = File.ReadAllText(sageFileObj);
+
+            string[] attr = compta.Split('\n');
             Parameter paramters = new Parameter()
             {
                 GestionCommercial = attr[0],
@@ -45,7 +41,7 @@ namespace SoftCaisse.Models
         public void openCpt()
         {
             baseCpt = new BSCPTAApplication100c();
-            Parameter prt=RetrieveAttribute();
+            Parameter prt = RetrieveAttribute();
             baseCpt.Name = prt.GestionComptabilite;
             baseCpt.Loggable.UserName = prt.utilisateur;
             baseCpt.Loggable.UserPwd = prt.password;
@@ -124,7 +120,7 @@ namespace SoftCaisse.Models
             }
             return null;
         }
-        public IBODocument3 createTicket(string devise,string souche, string nAnalytique, string tier, string depot, string nom_vendeur, string prenom_vendeur, string clients, string payeurs, List<Fligne> ligne)
+        public IBODocument3 createTicket(string devise, string souche, string nAnalytique, string tier, string depot, string nom_vendeur, string prenom_vendeur, string clients, string payeurs, List<Fligne> ligne)
         {
             openCpt();
             try
@@ -150,7 +146,7 @@ namespace SoftCaisse.Models
                     mDoc.TiersPayeur = payeur;
                     IBOCollaborateur collabs = baseCpt.FactoryCollaborateur.ReadNomPrenom(nom_vendeur, prenom_vendeur);
                     mDoc.Collaborateur = collabs;
-                    IBOCompteA3 comptes = baseCpt.FactoryCompteA.ReadNumero(baseCpt.FactoryAnalytique.ReadIntitule(nAnalytique), tier);                    
+                    IBOCompteA3 comptes = baseCpt.FactoryCompteA.ReadNumero(baseCpt.FactoryAnalytique.ReadIntitule(nAnalytique), tier);
                     mDoc.CompteA = comptes;
 
                     mDoc.WriteDefault();
@@ -172,12 +168,12 @@ namespace SoftCaisse.Models
                     if (CreeFACTURE.CanProcess)
                     {
                         CreeFACTURE.Process();
-                        return CreeFACTURE.DocumentResult;                        
+                        return CreeFACTURE.DocumentResult;
                     }
-                    else 
+                    else
                     {
-                        string str= "";
-                        foreach (IFailInfo ifail in CreeFACTURE.Errors) 
+                        string str = "";
+                        foreach (IFailInfo ifail in CreeFACTURE.Errors)
                         {
                             str += ifail.Text;
                             str += "\n";
@@ -187,7 +183,7 @@ namespace SoftCaisse.Models
                     }
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "IMPORT", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
@@ -236,6 +232,12 @@ namespace SoftCaisse.Models
         //    closeCial();
         //    return null;
         //}
+
+
+
+
+
+
         public IBODocumentReglement ArchiveReglement(F_CREGLEMENT f_CREGLEMENT)
         {
             openCpt();
@@ -263,7 +265,7 @@ namespace SoftCaisse.Models
             //Piece Facture Cible//
             IPMReglerEcheances pRegler = null;
             try
-            {            
+            {
                 if (baseCial.IsOpen)
                 {
                     bool isExist = baseCial.FactoryDocumentVente.ExistPiece(DocumentType.DocumentTypeVenteFacture, piece);
@@ -313,7 +315,7 @@ namespace SoftCaisse.Models
             return null;
         }
 
-        public IBODocument3 CreateFACTURE(string devise,string depot, string nAnalytique, string tier, string nom_vendeur, string prenom_vendeur, string clients, string payeurs, List<Fligne> ligne)
+        public IBODocument3 CreateFACTURE(string devise, string depot, string nAnalytique, string tier, string nom_vendeur, string prenom_vendeur, string clients, string payeurs, List<Fligne> ligne)
         {
             openCpt();
 

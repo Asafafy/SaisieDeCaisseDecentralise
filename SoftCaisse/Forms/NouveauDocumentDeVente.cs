@@ -46,7 +46,6 @@ namespace SoftCaisse.Forms
             _listeDocRegl = _context.F_DOCREGL.ToList();
             _listeLivraisons = _context.F_LIVRAISON.ToList();
 
-
             _currentDocPieceNo = GetCurrentDocNumber(typeDocument, _listeDocuments);
 
             dateTimePicker2.CustomFormat = " ";
@@ -57,7 +56,6 @@ namespace SoftCaisse.Forms
             ApplyRoundedCorners(tableLayoutPanel3, 30);
             ApplyRoundedCorners(tableLayoutPanel4, 30);
             ApplyRoundedCorners(tableLayoutPanel5, 30);
-
 
             List<F_COMPTEA> listePlanAnalitique = _context.F_COMPTEA.ToList();
             List<P_EXPEDITION> listeExpedit = _context.P_EXPEDITION.ToList();

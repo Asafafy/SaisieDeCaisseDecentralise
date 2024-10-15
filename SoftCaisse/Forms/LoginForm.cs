@@ -13,8 +13,8 @@ namespace SoftCaisse.Forms.Login
         private ToolStripMenuItem _menuFichier;
         private ToolStripMenuItem _menuStructure;
         private ToolStripMenuItem _menuEtat;
-        private MainForm _mainForm;
-        public LoginForm(ToolStripMenuItem menuFichier, ToolStripMenuItem menuTraitement, ToolStripMenuItem menuStructure, ToolStripMenuItem menuEtat, MainForm mainForm)
+        private MainForm mainForm;
+        public LoginForm(ToolStripMenuItem menuFichier, ToolStripMenuItem menuTraitement, ToolStripMenuItem menuStructure, ToolStripMenuItem menuEtat, MainForm form)
         {
             InitializeComponent();
 
@@ -26,7 +26,7 @@ namespace SoftCaisse.Forms.Login
             _menuFichier = menuFichier;
             _menuStructure = menuStructure;
             _menuEtat = menuEtat;
-            _mainForm = mainForm;
+            mainForm = form;
         }
 
         private void kryptonButton1_Click(object sender, System.EventArgs e)
@@ -36,16 +36,18 @@ namespace SoftCaisse.Forms.Login
             {
                 ConnectedUser.UserName = user.Login;
                 ConnectedUser.UserId = user.UserId;
-                ConnectedUser.roles = user.RoleId;
+                ConnectedUser.roles = (RoleUser)user.RoleId;
                 _menuTraitement.Enabled = true;
                 _menuStructure.Enabled = true;
                 _menuEtat.Enabled = true;
                 _menuFichier.DropDownItems["ParamSoc"].Enabled = true;
                 _menuFichier.DropDownItems["autorisationAccèsToolStripMenuItem"].Enabled = true;
                 _menuFichier.DropDownItems["miseEnPageToolStripMenuItem"].Enabled = true;
-                _mainForm.DisableLoginButton();
-                this.Close();
+                mainForm.DisableLoginButton();
+                mainForm.UtilisateurConnecteId = user.UserId;
+                Close();
                 MessageBox.Show("Connection avec succès !", "Connexion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             else
             {

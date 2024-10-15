@@ -33,14 +33,11 @@
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnAddUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnDeleteUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnUpdateUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnModifUser = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.userDatagridView = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSuppr = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,12 +45,20 @@
             this.RoleCmbx = new System.Windows.Forms.ComboBox();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.txtUserPassword = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.checkBoxEstActif = new System.Windows.Forms.CheckBox();
+            this.groupBoxInformations = new System.Windows.Forms.GroupBox();
             this.btnClean = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userDatagridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBoxInformations.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -83,249 +88,297 @@
             // 
             // kryptonButton2
             // 
-            this.kryptonButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonButton2.Location = new System.Drawing.Point(629, 626);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.kryptonButton2.Location = new System.Drawing.Point(462, 5);
+            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Palette = this.kryptonPalette1;
             this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(89, 33);
+            this.kryptonButton2.Size = new System.Drawing.Size(67, 27);
             this.kryptonButton2.TabIndex = 11;
-            this.kryptonButton2.Values.Text = "Annuler";
+            this.kryptonButton2.Values.Text = "Fermer";
+            this.kryptonButton2.Click += new System.EventHandler(this.btnFermer_Click);
             // 
             // btnAddUser
             // 
             this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddUser.Location = new System.Drawing.Point(629, 226);
-            this.btnAddUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddUser.Location = new System.Drawing.Point(442, 29);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Palette = this.kryptonPalette1;
             this.btnAddUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnAddUser.Size = new System.Drawing.Size(95, 33);
+            this.btnAddUser.Size = new System.Drawing.Size(71, 27);
             this.btnAddUser.TabIndex = 10;
-            this.btnAddUser.Values.Text = "Ajouter";
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            this.btnAddUser.Values.Text = "Nouveau";
+            this.btnAddUser.Click += new System.EventHandler(this.btnNouveau_Click);
             // 
-            // btnDeleteUser
+            // btnModifUser
             // 
-            this.btnDeleteUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteUser.Location = new System.Drawing.Point(629, 305);
-            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDeleteUser.Name = "btnDeleteUser";
-            this.btnDeleteUser.Palette = this.kryptonPalette1;
-            this.btnDeleteUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnDeleteUser.Size = new System.Drawing.Size(95, 33);
-            this.btnDeleteUser.TabIndex = 12;
-            this.btnDeleteUser.Values.Text = "Supprimer";
-            this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
+            this.btnModifUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnModifUser.Location = new System.Drawing.Point(442, 62);
+            this.btnModifUser.Margin = new System.Windows.Forms.Padding(2);
+            this.btnModifUser.Name = "btnModifUser";
+            this.btnModifUser.Palette = this.kryptonPalette1;
+            this.btnModifUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnModifUser.Size = new System.Drawing.Size(71, 27);
+            this.btnModifUser.TabIndex = 12;
+            this.btnModifUser.Values.Text = "Modifier";
+            this.btnModifUser.Click += new System.EventHandler(this.btnModifier_Click);
             // 
-            // btnUpdateUser
+            // btnAnnuler
             // 
-            this.btnUpdateUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateUser.Location = new System.Drawing.Point(629, 266);
-            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnUpdateUser.Name = "btnUpdateUser";
-            this.btnUpdateUser.Palette = this.kryptonPalette1;
-            this.btnUpdateUser.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnUpdateUser.Size = new System.Drawing.Size(95, 33);
-            this.btnUpdateUser.TabIndex = 13;
-            this.btnUpdateUser.Values.Text = "Modifier";
-            this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
+            this.btnAnnuler.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAnnuler.Location = new System.Drawing.Point(341, 7);
+            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Palette = this.kryptonPalette1;
+            this.btnAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnAnnuler.Size = new System.Drawing.Size(71, 27);
+            this.btnAnnuler.TabIndex = 13;
+            this.btnAnnuler.Values.Text = "Annuler";
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.userDatagridView);
-            this.groupBox1.Location = new System.Drawing.Point(4, 222);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Controls.Add(this.btnSuppr);
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.btnAddUser);
+            this.groupBox1.Controls.Add(this.btnModifUser);
+            this.groupBox1.Location = new System.Drawing.Point(11, 183);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(11, 11, 11, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(605, 405);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(524, 300);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Liste des utilisateurs";
             // 
-            // userDatagridView
+            // btnSuppr
             // 
-            this.userDatagridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.userDatagridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.userDatagridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Login,
-            this.UserPassword,
-            this.Role});
-            this.userDatagridView.Location = new System.Drawing.Point(24, 26);
-            this.userDatagridView.Margin = new System.Windows.Forms.Padding(4);
-            this.userDatagridView.Name = "userDatagridView";
-            this.userDatagridView.RowHeadersVisible = false;
-            this.userDatagridView.RowHeadersWidth = 51;
-            this.userDatagridView.RowTemplate.Height = 24;
-            this.userDatagridView.Size = new System.Drawing.Size(553, 357);
-            this.userDatagridView.TabIndex = 0;
-            this.userDatagridView.Click += new System.EventHandler(this.userDatagridView_Click);
+            this.btnSuppr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSuppr.Location = new System.Drawing.Point(442, 94);
+            this.btnSuppr.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSuppr.Name = "btnSuppr";
+            this.btnSuppr.Palette = this.kryptonPalette1;
+            this.btnSuppr.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnSuppr.Size = new System.Drawing.Size(71, 27);
+            this.btnSuppr.TabIndex = 15;
+            this.btnSuppr.Values.Text = "Supprimer";
+            this.btnSuppr.Click += new System.EventHandler(this.btnSuppr_Click);
             // 
-            // Column1
+            // dataGridView1
             // 
-            this.Column1.DataPropertyName = "UserId";
-            this.Column1.HeaderText = "UserId";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            // 
-            // Login
-            // 
-            this.Login.DataPropertyName = "Login";
-            this.Login.HeaderText = "Login";
-            this.Login.MinimumWidth = 6;
-            this.Login.Name = "Login";
-            // 
-            // UserPassword
-            // 
-            this.UserPassword.DataPropertyName = "Password";
-            this.UserPassword.HeaderText = "Mot de passe";
-            this.UserPassword.MinimumWidth = 6;
-            this.UserPassword.Name = "UserPassword";
-            // 
-            // Role
-            // 
-            this.Role.DataPropertyName = "Role";
-            this.Role.HeaderText = "Rôle";
-            this.Role.MinimumWidth = 6;
-            this.Role.Name = "Role";
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.GridColor = System.Drawing.Color.White;
+            this.dataGridView1.Location = new System.Drawing.Point(14, 25);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(414, 259);
+            this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.37765F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.62234F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.37765F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.62234F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.62235F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.RoleCmbx, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtLogin, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtUserPassword, 1, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 32);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 3);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 15);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.18033F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.81967F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.18033F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.81967F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(707, 92);
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 131);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 53);
+            this.label3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label3.Location = new System.Drawing.Point(28, 60);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label3.Size = new System.Drawing.Size(95, 23);
+            this.label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label3.Size = new System.Drawing.Size(71, 30);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Mot de passe :";
+            this.label3.Text = "Mot de passe";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(92, 26);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label2.Location = new System.Drawing.Point(70, 30);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label2.Size = new System.Drawing.Size(42, 23);
+            this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label2.Size = new System.Drawing.Size(29, 30);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Rôle :";
+            this.label2.Text = "Rôle";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(88, 0);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Location = new System.Drawing.Point(66, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label1.Size = new System.Drawing.Size(46, 23);
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label1.Size = new System.Drawing.Size(33, 30);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Login :";
+            this.label1.Text = "Login";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // RoleCmbx
             // 
+            this.RoleCmbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RoleCmbx.FormattingEnabled = true;
-            this.RoleCmbx.Location = new System.Drawing.Point(140, 28);
-            this.RoleCmbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RoleCmbx.Location = new System.Drawing.Point(103, 35);
+            this.RoleCmbx.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.RoleCmbx.Name = "RoleCmbx";
-            this.RoleCmbx.Size = new System.Drawing.Size(564, 24);
+            this.RoleCmbx.Size = new System.Drawing.Size(417, 21);
             this.RoleCmbx.TabIndex = 3;
-            this.RoleCmbx.SelectedIndexChanged += new System.EventHandler(this.RoleCmbx_SelectedIndexChanged);
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(140, 2);
-            this.txtLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtLogin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLogin.Location = new System.Drawing.Point(103, 5);
+            this.txtLogin.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(564, 22);
+            this.txtLogin.Size = new System.Drawing.Size(417, 20);
             this.txtLogin.TabIndex = 4;
             // 
             // txtUserPassword
             // 
-            this.txtUserPassword.Location = new System.Drawing.Point(140, 55);
-            this.txtUserPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUserPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtUserPassword.Location = new System.Drawing.Point(103, 65);
+            this.txtUserPassword.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.txtUserPassword.Name = "txtUserPassword";
-            this.txtUserPassword.Size = new System.Drawing.Size(564, 22);
+            this.txtUserPassword.Size = new System.Drawing.Size(417, 20);
             this.txtUserPassword.TabIndex = 6;
             // 
-            // groupBox2
+            // panel1
             // 
-            this.groupBox2.Controls.Add(this.btnClean);
-            this.groupBox2.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox2.Location = new System.Drawing.Point(4, 30);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(720, 145);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Informations";
+            this.panel1.Controls.Add(this.kryptonButton3);
+            this.panel1.Controls.Add(this.checkBoxEstActif);
+            this.panel1.Controls.Add(this.btnAnnuler);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(101, 90);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(421, 41);
+            this.panel1.TabIndex = 11;
+            // 
+            // kryptonButton3
+            // 
+            this.kryptonButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonButton3.Location = new System.Drawing.Point(265, 7);
+            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButton3.Name = "kryptonButton3";
+            this.kryptonButton3.Palette = this.kryptonPalette1;
+            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButton3.Size = new System.Drawing.Size(71, 27);
+            this.kryptonButton3.TabIndex = 14;
+            this.kryptonButton3.Values.Text = "OK";
+            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
+            // 
+            // checkBoxEstActif
+            // 
+            this.checkBoxEstActif.AutoSize = true;
+            this.checkBoxEstActif.Location = new System.Drawing.Point(4, 4);
+            this.checkBoxEstActif.Name = "checkBoxEstActif";
+            this.checkBoxEstActif.Size = new System.Drawing.Size(130, 17);
+            this.checkBoxEstActif.TabIndex = 10;
+            this.checkBoxEstActif.Text = "Désactiver ce compte";
+            this.checkBoxEstActif.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxInformations
+            // 
+            this.groupBoxInformations.Controls.Add(this.btnClean);
+            this.groupBoxInformations.Controls.Add(this.tableLayoutPanel1);
+            this.groupBoxInformations.Location = new System.Drawing.Point(11, 11);
+            this.groupBoxInformations.Margin = new System.Windows.Forms.Padding(11);
+            this.groupBoxInformations.Name = "groupBoxInformations";
+            this.groupBoxInformations.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxInformations.Size = new System.Drawing.Size(526, 150);
+            this.groupBoxInformations.TabIndex = 16;
+            this.groupBoxInformations.TabStop = false;
+            this.groupBoxInformations.Text = "Informations";
             // 
             // btnClean
             // 
             this.btnClean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClean.Location = new System.Drawing.Point(823, 171);
-            this.btnClean.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClean.Location = new System.Drawing.Point(603, 171);
             this.btnClean.Name = "btnClean";
             this.btnClean.Palette = this.kryptonPalette1;
             this.btnClean.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnClean.Size = new System.Drawing.Size(127, 41);
+            this.btnClean.Size = new System.Drawing.Size(95, 33);
             this.btnClean.TabIndex = 16;
             this.btnClean.Values.Text = "Effacer";
-            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.groupBoxInformations);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox1);
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(548, 533);
+            this.flowLayoutPanel1.TabIndex = 17;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.kryptonButton2);
+            this.panel2.Location = new System.Drawing.Point(3, 491);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(545, 43);
+            this.panel2.TabIndex = 17;
             // 
             // UserManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 672);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnUpdateUser);
-            this.Controls.Add(this.btnDeleteUser);
-            this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.btnAddUser);
+            this.BackColor = System.Drawing.Color.AliceBlue;
+            this.ClientSize = new System.Drawing.Size(548, 533);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UserManagementForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestion d\'utilisateur";
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.userDatagridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.groupBoxInformations.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -335,25 +388,27 @@
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnAddUser;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnDeleteUser;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnUpdateUser;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnModifUser;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAnnuler;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ComboBox RoleCmbx;
         private System.Windows.Forms.TextBox txtLogin;
         private System.Windows.Forms.TextBox txtUserPassword;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxInformations;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn loginDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userPasswordDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView userDatagridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Login;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserPassword;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Role;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnClean;
+        private System.Windows.Forms.CheckBox checkBoxEstActif;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSuppr;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
     }
 }

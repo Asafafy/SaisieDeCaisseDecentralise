@@ -29,6 +29,7 @@ namespace SoftCaisse
     {
         private int _caisseNo = 0;
         private int _caissierCollabNo = 0;
+        private int _connectedUserId = 0;
 
         public int CaisseNo
         {
@@ -40,6 +41,12 @@ namespace SoftCaisse
         {
             get { return _caissierCollabNo; }
             set { _caissierCollabNo = value; }
+        }
+
+        public int UtilisateurConnecteId
+        {
+            get { return _connectedUserId; }
+            set { _connectedUserId = value; }
         }
 
         Controls.DeviseControl deviseControl = new Controls.DeviseControl();
@@ -171,7 +178,7 @@ namespace SoftCaisse
 
         private void utilsateurToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserManagementForm userManagementForm = new UserManagementForm();
+            UserManagementForm userManagementForm = new UserManagementForm(this);
             userManagementForm.Show();
         }
 

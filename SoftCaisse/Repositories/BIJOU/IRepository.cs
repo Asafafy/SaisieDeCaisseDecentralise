@@ -2,10 +2,10 @@
 
 namespace SoftCaisse.Repositories
 {
-    public  interface  IRepository<T>
+    public interface IRepository<T>
     {
         T GetById(int id);
-        IList<T> GetAll();
+        List<T> GetAll();
         void Add(T entity);
         void Update(T entity);
         void Delete(int id);

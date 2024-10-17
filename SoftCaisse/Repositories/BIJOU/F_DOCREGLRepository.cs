@@ -74,7 +74,7 @@ namespace SoftCaisse.Repositories
             throw new System.NotImplementedException();
         }
 
-        public IList<F_DOCREGL> GetAll()
+        public List<F_DOCREGL> GetAll()
         {
             throw new System.NotImplementedException();
         }

@@ -23,7 +23,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        IList<F_COMPTET> IRepository<F_COMPTET>.GetAll()
+        List<F_COMPTET> IRepository<F_COMPTET>.GetAll()
         {
             return _context.F_COMPTET.ToList();
         }

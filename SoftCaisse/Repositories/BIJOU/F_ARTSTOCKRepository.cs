@@ -24,7 +24,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<DTO.ArtStock> GetAll()
+        public List<DTO.ArtStock> GetAll()
         {
             return _context.F_ARTSTOCK
                 .Select(a => new ArtStock

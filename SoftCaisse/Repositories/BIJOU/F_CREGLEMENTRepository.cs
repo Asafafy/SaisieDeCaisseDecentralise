@@ -133,7 +133,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<F_CREGLEMENT> GetAll()
+        public List<F_CREGLEMENT> GetAll()
         {
             return _context.F_CREGLEMENT.ToList();
         }

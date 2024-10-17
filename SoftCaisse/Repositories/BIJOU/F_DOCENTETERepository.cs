@@ -361,7 +361,7 @@ namespace SoftCaisse.Repositories.BIJOU
             throw new System.NotImplementedException();
         }
 
-        public IList<F_DOCENTETE> GetAll()
+        public List<F_DOCENTETE> GetAll()
         {
             throw new System.NotImplementedException();
         }
@@ -376,7 +376,7 @@ namespace SoftCaisse.Repositories.BIJOU
             throw new System.NotImplementedException();
         }
 
-        IList<F_DOCENTETE> IRepository<F_DOCENTETE>.GetAll()
+        List<F_DOCENTETE> IRepository<F_DOCENTETE>.GetAll()
         {
             throw new System.NotImplementedException();
         }

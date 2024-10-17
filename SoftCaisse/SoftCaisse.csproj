@@ -60,6 +60,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomModel\Controle.cs" />
     <Compile Include="CustomModel\Ffamille.cs" />
     <Compile Include="DTO\DetailsArticle\CategoriesTarifaires.cs" />
     <Compile Include="DTO\DetailsArticle\Conditionnement.cs" />
@@ -88,6 +89,12 @@
     </Compile>
     <Compile Include="Forms\EcheancesRattacheesAuxReglements.Designer.cs">
       <DependentUpon>EcheancesRattacheesAuxReglements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GestionDesRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GestionDesRoles.Designer.cs">
+      <DependentUpon>GestionDesRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\HistoriqueReglements.cs">
       <SubType>Form</SubType>
@@ -354,7 +361,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AppDbContext.cs" />
-    <Compile Include="CustomModel\Controle.cs" />
     <Compile Include="CustomModel\Fligne.cs" />
     <Compile Include="CustomModel\Freglement.cs" />
     <Compile Include="Models\F_ARTCLIENT.cs" />
@@ -414,6 +420,7 @@
     <Compile Include="Models\P_SCDREGLEMENT.cs" />
     <Compile Include="Models\P_SOUCHEVENTE.cs" />
     <Compile Include="Models\P_UNITE.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SageContexte.cs" />
     <Compile Include="Models\SCDContext.cs" />
     <Compile Include="Models\Users.cs" />
@@ -440,6 +447,7 @@
     <Compile Include="Repositories\BIJOU\P_REGLEMENTRepository.cs" />
     <Compile Include="Repositories\DTORepository\TaxeRepository.cs" />
     <Compile Include="Repositories\DTORepository\UniteRepository.cs" />
+    <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
     <Compile Include="Services\F_CREGLEMENTService.cs" />
     <Compile Include="Services\F_DOCENTETEService.cs" />
@@ -459,6 +467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EcheancesRattacheesAuxReglements.resx">
       <DependentUpon>EcheancesRattacheesAuxReglements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GestionDesRoles.resx">
+      <DependentUpon>GestionDesRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HistoriqueReglements.resx">
       <DependentUpon>HistoriqueReglements.cs</DependentUpon>

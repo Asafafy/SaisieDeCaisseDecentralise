@@ -1,5 +1,4 @@
 ﻿using SoftCaisse.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,36 +6,41 @@ namespace SoftCaisse.Repositories
 {
     internal class UserRepository : IRepository<Users>
     {
-        private readonly SCDContext _context;
+        private readonly SCDContext _scdContext;
         public UserRepository(SCDContext context)
         {
-            _context = context;
+            _scdContext = context;
         }
         public void Add(Users entity)
         {
-            _context.Users.Add(entity);
-            _context.SaveChanges();
+            _scdContext.Users.Add(entity);
+            _scdContext.SaveChanges();
         }
 
-        public IList<Users> GetAll()
+        public List<Users> GetAll()
         {
-            return _context.Users.ToList();
+            return _scdContext.Users.ToList();
         }
 
-        void IRepository<Users>.Delete(int id)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Users entity = _scdContext.Set<Users>().Find(id);
+            if (entity != null)
+            {
+                _scdContext.Set<Users>().Remove(entity);
+                _scdContext.SaveChanges();
+            }
         }
 
 
         public Users GetById(int id)
         {
-            return _context.Users.FirstOrDefault(user => user.UserId == id);
+            return _scdContext.Users.FirstOrDefault(user => user.UserId == id);
         }
 
         public void Update(Users user)
         {
-            _context.SaveChanges();
+            _scdContext.SaveChanges();
         }
     }
 }

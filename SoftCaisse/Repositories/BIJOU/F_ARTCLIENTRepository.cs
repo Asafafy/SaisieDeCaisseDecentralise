@@ -25,7 +25,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<ArtClient> GetAll()
+        public List<ArtClient> GetAll()
         {
             return _context.F_ARTCLIENT
                 .Select(a => new ArtClient

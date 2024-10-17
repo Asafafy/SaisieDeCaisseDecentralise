@@ -22,7 +22,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<DTO.ModeReglement> GetAll()
+        public List<DTO.ModeReglement> GetAll()
         {
             return _context.P_REGLEMENT.Where(u => !string.IsNullOrEmpty(u.R_Intitule))
             .Select(a => new DTO.ModeReglement

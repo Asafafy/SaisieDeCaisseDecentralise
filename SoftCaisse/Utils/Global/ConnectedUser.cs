@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SoftCaisse.Utils.Global
+﻿namespace SoftCaisse.Utils.Global
 {
     public class ConnectedUser
     {
@@ -15,6 +9,6 @@ namespace SoftCaisse.Utils.Global
     public enum RoleUser
     {
         Admin,
-        User
+        Caissier
     }
 }

@@ -22,7 +22,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<F_COLLABORATEUR> GetAll()
+        public List<F_COLLABORATEUR> GetAll()
         {
             return _context.F_COLLABORATEUR.ToList();
         }

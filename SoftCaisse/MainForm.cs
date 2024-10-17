@@ -227,5 +227,11 @@ namespace SoftCaisse
             SaisieDesReglementsClients saisieDesReglementsClients = new SaisieDesReglementsClients();
             saisieDesReglementsClients.Show();
         }
+
+        private void gestionDesRôlesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestionDesRoles gestionDesRoles = new GestionDesRoles();
+            gestionDesRoles.Show();
+        }
     }
 }

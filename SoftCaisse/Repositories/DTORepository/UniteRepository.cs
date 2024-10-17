@@ -3,8 +3,6 @@ using SoftCaisse.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoftCaisse.Repositories
 {
@@ -27,7 +25,7 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<Unite> GetAll()
+        public List<Unite> GetAll()
         {
             return _context.P_UNITE
                 .Select(a => new Unite

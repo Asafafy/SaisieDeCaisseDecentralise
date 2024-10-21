@@ -29,6 +29,60 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Paramètre de base");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Paramètres de société");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Utilisateurs");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Gestion des rôles");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Atorisation d\'accès", new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Mise en page");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Fichier", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode5,
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Article");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Caisses");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Clients");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Collaborateurs");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Famille");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Structure", new System.Windows.Forms.TreeNode[] {
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12});
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Ouverture de caisse");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Ventes comptoir");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Documents de ventes");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Mouvements de caisse");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Fermeture de caisse");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Gestion des règlements");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Gestion des comptes");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Contrôle de caisse");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Clôture de caisse");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Traitement", new System.Windows.Forms.TreeNode[] {
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18,
+            treeNode19,
+            treeNode20,
+            treeNode21,
+            treeNode22});
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Statistiques de caisses");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Statistiques des articles");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Statistiques des clients");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Journaux de vente");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Inventaire");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Etat", new System.Windows.Forms.TreeNode[] {
+            treeNode24,
+            treeNode25,
+            treeNode26,
+            treeNode27,
+            treeNode28});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionDesRoles));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -39,19 +93,22 @@
             this.btnSupp = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnOK = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblAuth = new System.Windows.Forms.Label();
+            this.chckBxAuth = new System.Windows.Forms.CheckBox();
+            this.txBxIntRole = new System.Windows.Forms.TextBox();
+            this.lblIntRole = new System.Windows.Forms.Label();
+            this.OK = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -99,7 +156,7 @@
             // 
             // btnFermer
             // 
-            this.btnFermer.Location = new System.Drawing.Point(291, 538);
+            this.btnFermer.Location = new System.Drawing.Point(902, 519);
             this.btnFermer.Margin = new System.Windows.Forms.Padding(2);
             this.btnFermer.Name = "btnFermer";
             this.btnFermer.Palette = this.kryptonPalette1;
@@ -131,6 +188,7 @@
             this.btnModif.Size = new System.Drawing.Size(75, 31);
             this.btnModif.TabIndex = 46;
             this.btnModif.Values.Text = "Modifier";
+            this.btnModif.Click += new System.EventHandler(this.btnModif_Click);
             // 
             // btnSupp
             // 
@@ -161,121 +219,209 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(235, 263);
+            this.dataGridView1.Size = new System.Drawing.Size(235, 393);
             this.dataGridView1.TabIndex = 48;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnAnnuler);
-            this.groupBox1.Controls.Add(this.btnOK);
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Controls.Add(this.lblAuth);
+            this.groupBox1.Controls.Add(this.chckBxAuth);
+            this.groupBox1.Controls.Add(this.txBxIntRole);
+            this.groupBox1.Controls.Add(this.lblIntRole);
+            this.groupBox1.Controls.Add(this.OK);
+            this.groupBox1.Controls.Add(this.treeView1);
+            this.groupBox1.Location = new System.Drawing.Point(371, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 10, 10, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 136);
+            this.groupBox1.Size = new System.Drawing.Size(607, 498);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             // 
-            // btnAnnuler
+            // lblAuth
             // 
-            this.btnAnnuler.Location = new System.Drawing.Point(268, 95);
-            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Palette = this.kryptonPalette1;
-            this.btnAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnAnnuler.Size = new System.Drawing.Size(75, 31);
-            this.btnAnnuler.TabIndex = 48;
-            this.btnAnnuler.Values.Text = "Annuler";
+            this.lblAuth.AutoSize = true;
+            this.lblAuth.Location = new System.Drawing.Point(409, 94);
+            this.lblAuth.Name = "lblAuth";
+            this.lblAuth.Size = new System.Drawing.Size(67, 13);
+            this.lblAuth.TabIndex = 55;
+            this.lblAuth.Text = "Autorisations";
+            this.lblAuth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnOK
+            // chckBxAuth
             // 
-            this.btnOK.Location = new System.Drawing.Point(189, 95);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(2);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Palette = this.kryptonPalette1;
-            this.btnOK.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnOK.Size = new System.Drawing.Size(75, 31);
-            this.btnOK.TabIndex = 47;
-            this.btnOK.Values.Text = "OK";
+            this.chckBxAuth.AutoSize = true;
+            this.chckBxAuth.Location = new System.Drawing.Point(412, 115);
+            this.chckBxAuth.Name = "chckBxAuth";
+            this.chckBxAuth.Size = new System.Drawing.Size(103, 17);
+            this.chckBxAuth.TabIndex = 53;
+            this.chckBxAuth.Text = "Autoriser l\'accès";
+            this.chckBxAuth.UseVisualStyleBackColor = true;
+            this.chckBxAuth.Click += new System.EventHandler(this.chckBxAuth_Click);
             // 
-            // tableLayoutPanel1
+            // txBxIntRole
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(345, 71);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.txBxIntRole.Location = new System.Drawing.Point(409, 39);
+            this.txBxIntRole.Name = "txBxIntRole";
+            this.txBxIntRole.Size = new System.Drawing.Size(177, 20);
+            this.txBxIntRole.TabIndex = 52;
             // 
-            // flowLayoutPanel1
+            // lblIntRole
             // 
-            this.flowLayoutPanel1.Controls.Add(this.groupBox1);
-            this.flowLayoutPanel1.Controls.Add(this.groupBox2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(359, 518);
-            this.flowLayoutPanel1.TabIndex = 50;
+            this.lblIntRole.AutoSize = true;
+            this.lblIntRole.Location = new System.Drawing.Point(409, 19);
+            this.lblIntRole.Name = "lblIntRole";
+            this.lblIntRole.Size = new System.Drawing.Size(73, 13);
+            this.lblIntRole.TabIndex = 0;
+            this.lblIntRole.Text = "Intitule du rôle";
+            this.lblIntRole.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // OK
+            // 
+            this.OK.Location = new System.Drawing.Point(526, 459);
+            this.OK.Margin = new System.Windows.Forms.Padding(2);
+            this.OK.Name = "OK";
+            this.OK.Palette = this.kryptonPalette1;
+            this.OK.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.OK.Size = new System.Drawing.Size(75, 31);
+            this.OK.TabIndex = 48;
+            this.OK.Values.Text = "OK";
+            this.OK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(15, 18);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "1";
+            treeNode1.Text = "Paramètre de base";
+            treeNode2.Name = "2";
+            treeNode2.Text = "Paramètres de société";
+            treeNode3.Name = "4";
+            treeNode3.Text = "Utilisateurs";
+            treeNode4.Name = "5";
+            treeNode4.Text = "Gestion des rôles";
+            treeNode5.Name = "3";
+            treeNode5.Text = "Atorisation d\'accès";
+            treeNode6.Name = "6";
+            treeNode6.Text = "Mise en page";
+            treeNode7.Name = "0";
+            treeNode7.Text = "Fichier";
+            treeNode8.Name = "8";
+            treeNode8.Text = "Article";
+            treeNode9.Name = "9";
+            treeNode9.Text = "Caisses";
+            treeNode10.Name = "10";
+            treeNode10.Text = "Clients";
+            treeNode11.Name = "11";
+            treeNode11.Text = "Collaborateurs";
+            treeNode12.Name = "12";
+            treeNode12.Text = "Famille";
+            treeNode13.Name = "7";
+            treeNode13.Text = "Structure";
+            treeNode14.Name = "14";
+            treeNode14.Text = "Ouverture de caisse";
+            treeNode15.Name = "15";
+            treeNode15.Text = "Ventes comptoir";
+            treeNode16.Name = "16";
+            treeNode16.Text = "Documents de ventes";
+            treeNode17.Name = "17";
+            treeNode17.Text = "Mouvements de caisse";
+            treeNode18.Name = "18";
+            treeNode18.Text = "Fermeture de caisse";
+            treeNode19.Name = "19";
+            treeNode19.Text = "Gestion des règlements";
+            treeNode20.Name = "20";
+            treeNode20.Text = "Gestion des comptes";
+            treeNode21.Name = "21";
+            treeNode21.Text = "Contrôle de caisse";
+            treeNode22.Name = "22";
+            treeNode22.Text = "Clôture de caisse";
+            treeNode23.Name = "13";
+            treeNode23.Text = "Traitement";
+            treeNode24.Name = "24";
+            treeNode24.Text = "Statistiques de caisses";
+            treeNode25.Name = "25";
+            treeNode25.Text = "Statistiques des articles";
+            treeNode26.Name = "26";
+            treeNode26.Text = "Statistiques des clients";
+            treeNode27.Name = "27";
+            treeNode27.Text = "Journaux de vente";
+            treeNode28.Name = "28";
+            treeNode28.Text = "Inventaire";
+            treeNode29.Name = "23";
+            treeNode29.Text = "Etat";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode13,
+            treeNode23,
+            treeNode29});
+            this.treeView1.Size = new System.Drawing.Size(375, 470);
+            this.treeView1.TabIndex = 51;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.panel5);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.btnSupp);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.btnModif);
             this.groupBox2.Controls.Add(this.btnNouveau);
-            this.groupBox2.Location = new System.Drawing.Point(3, 145);
+            this.groupBox2.Location = new System.Drawing.Point(10, 10);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(10, 10, 5, 10);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(351, 371);
+            this.groupBox2.Size = new System.Drawing.Size(351, 498);
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
             // 
-            // label3
+            // panel5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label3.Location = new System.Drawing.Point(131, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 30);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Intitule";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.panel5.BackColor = System.Drawing.Color.DarkGray;
+            this.panel5.Location = new System.Drawing.Point(11, 515);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(960, 1);
+            this.panel5.TabIndex = 52;
             // 
-            // label7
+            // flowLayoutPanel1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label7.Location = new System.Drawing.Point(131, 40);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 31);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Intitule";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.flowLayoutPanel1.Controls.Add(this.groupBox2);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox1);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(988, 517);
+            this.flowLayoutPanel1.TabIndex = 51;
             // 
-            // treeView1
+            // panel1
             // 
-            this.treeView1.Location = new System.Drawing.Point(494, 27);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(323, 380);
-            this.treeView1.TabIndex = 51;
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Controls.Add(this.btnFermer);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(988, 561);
+            this.panel1.TabIndex = 52;
+            // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.Location = new System.Drawing.Point(526, 423);
+            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Palette = this.kryptonPalette1;
+            this.btnAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnAnnuler.Size = new System.Drawing.Size(75, 31);
+            this.btnAnnuler.TabIndex = 56;
+            this.btnAnnuler.Values.Text = "Annuler";
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // GestionDesRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(1010, 578);
-            this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.btnFermer);
+            this.ClientSize = new System.Drawing.Size(988, 561);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GestionDesRoles";
             this.Palette = this.kryptonPalette1;
@@ -283,11 +429,11 @@
             this.Text = "Gestion des rôles";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -303,13 +449,16 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnSupp;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAnnuler;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOK;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton OK;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblIntRole;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.TextBox txBxIntRole;
+        private System.Windows.Forms.CheckBox chckBxAuth;
+        private System.Windows.Forms.Label lblAuth;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAnnuler;
     }
 }

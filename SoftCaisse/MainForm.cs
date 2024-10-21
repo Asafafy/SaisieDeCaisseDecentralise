@@ -233,5 +233,10 @@ namespace SoftCaisse
             GestionDesRoles gestionDesRoles = new GestionDesRoles();
             gestionDesRoles.Show();
         }
+
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

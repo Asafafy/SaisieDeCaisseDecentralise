@@ -37,6 +37,7 @@
             this.ParamSoc = new System.Windows.Forms.ToolStripMenuItem();
             this.autorisationAccèsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilsateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDesRôlesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miseEnPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quiterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.structureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +68,7 @@
             this.databaseOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
-            this.gestionDesRôlesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -135,9 +136,16 @@
             // utilsateurToolStripMenuItem
             // 
             this.utilsateurToolStripMenuItem.Name = "utilsateurToolStripMenuItem";
-            this.utilsateurToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.utilsateurToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.utilsateurToolStripMenuItem.Text = "Utilisateurs";
             this.utilsateurToolStripMenuItem.Click += new System.EventHandler(this.utilsateurToolStripMenuItem_Click);
+            // 
+            // gestionDesRôlesToolStripMenuItem
+            // 
+            this.gestionDesRôlesToolStripMenuItem.Name = "gestionDesRôlesToolStripMenuItem";
+            this.gestionDesRôlesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.gestionDesRôlesToolStripMenuItem.Text = "Gestion des rôles";
+            this.gestionDesRôlesToolStripMenuItem.Click += new System.EventHandler(this.gestionDesRôlesToolStripMenuItem_Click);
             // 
             // miseEnPageToolStripMenuItem
             // 
@@ -159,7 +167,8 @@
             this.collaborateursToolStripMenuItem,
             this.caissesToolStripMenuItem,
             this.artilceToolStripMenuItem,
-            this.familleToolStripMenuItem});
+            this.familleToolStripMenuItem,
+            this.clientsToolStripMenuItem});
             this.structureToolStripMenuItem.Enabled = false;
             this.structureToolStripMenuItem.Name = "structureToolStripMenuItem";
             this.structureToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
@@ -168,28 +177,28 @@
             // collaborateursToolStripMenuItem
             // 
             this.collaborateursToolStripMenuItem.Name = "collaborateursToolStripMenuItem";
-            this.collaborateursToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.collaborateursToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.collaborateursToolStripMenuItem.Text = "Collaborateurs";
             this.collaborateursToolStripMenuItem.Click += new System.EventHandler(this.collaborateursToolStripMenuItem_Click);
             // 
             // caissesToolStripMenuItem
             // 
             this.caissesToolStripMenuItem.Name = "caissesToolStripMenuItem";
-            this.caissesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.caissesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.caissesToolStripMenuItem.Text = "Caisses";
             this.caissesToolStripMenuItem.Click += new System.EventHandler(this.caissesToolStripMenuItem_Click);
             // 
             // artilceToolStripMenuItem
             // 
             this.artilceToolStripMenuItem.Name = "artilceToolStripMenuItem";
-            this.artilceToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.artilceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.artilceToolStripMenuItem.Text = "Artilce";
             this.artilceToolStripMenuItem.Click += new System.EventHandler(this.artilceToolStripMenuItem_Click);
             // 
             // familleToolStripMenuItem
             // 
             this.familleToolStripMenuItem.Name = "familleToolStripMenuItem";
-            this.familleToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.familleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.familleToolStripMenuItem.Text = "Famille";
             this.familleToolStripMenuItem.Click += new System.EventHandler(this.familleToolStripMenuItem_Click);
             // 
@@ -374,12 +383,12 @@
             // 
             this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.ProfessionalSystem;
             // 
-            // gestionDesRôlesToolStripMenuItem
+            // clientsToolStripMenuItem
             // 
-            this.gestionDesRôlesToolStripMenuItem.Name = "gestionDesRôlesToolStripMenuItem";
-            this.gestionDesRôlesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gestionDesRôlesToolStripMenuItem.Text = "Gestion des rôles";
-            this.gestionDesRôlesToolStripMenuItem.Click += new System.EventHandler(this.gestionDesRôlesToolStripMenuItem_Click);
+            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientsToolStripMenuItem.Text = "Clients";
+            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -444,6 +453,7 @@
         private System.Windows.Forms.ToolStripMenuItem artilceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem familleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionDesRôlesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clientsToolStripMenuItem;
     }
 }
 

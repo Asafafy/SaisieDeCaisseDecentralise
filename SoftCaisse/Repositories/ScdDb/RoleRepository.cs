@@ -36,12 +36,18 @@ namespace SoftCaisse.Repositories.ScdDb
 
         public Role GetById(int id)
         {
-            throw new System.NotImplementedException();
+            Role role = _scdContext.Role.Where(r => r.IdRole == id).FirstOrDefault();
+            return role;
         }
 
         public void Update(Role entity)
         {
-            throw new System.NotImplementedException();
+            var existingRole = _scdContext.Role.Find(entity.IdRole);
+            if (existingRole != null)
+            {
+                _scdContext.Entry(existingRole).CurrentValues.SetValues(entity);
+                _scdContext.SaveChanges();
+            }
         }
 
         public List<int> GetUsersNumber()
@@ -56,12 +62,6 @@ namespace SoftCaisse.Repositories.ScdDb
             .ToList();
 
             return nbrUserActifsParRole;
-            //var nbrUserActifsParRole = _scdContext.Users
-            //.Where(u => u.EstActif == 1)
-            //.GroupBy(u => u.RoleId)
-            //.Select(u => u.Count())
-            //.ToList();
-            //return nbrUserActifsParRole;
         }
     }
 }

@@ -5,6 +5,7 @@ using SoftCaisse.Repositories.ScdDb;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,10 +14,22 @@ namespace SoftCaisse.Forms
     public partial class GestionDesRoles : KryptonForm
     {
         private readonly DataTable _bindingSource;
+
         private readonly RoleRepository _roleRepository;
         private readonly UserRepository _userRepository;
+        private readonly AutorisationRepository _autorisationRepository;
+
         private readonly SCDContext _scdContext;
+
         private List<Role> listeRoles;
+        private int selectedRoleId;
+        private bool groupBox1EstOuvert;
+        private Autorisation newAutorisation;
+        private bool estNouveau;
+
+        private Autorisation currentAutorisation;
+
+
 
 
 
@@ -25,49 +38,20 @@ namespace SoftCaisse.Forms
         public GestionDesRoles()
         {
             InitializeComponent();
+
             _scdContext = new SCDContext();
             _roleRepository = new RoleRepository(_scdContext);
             _userRepository = new UserRepository(_scdContext);
+            _autorisationRepository = new AutorisationRepository(_scdContext);
 
             _bindingSource = new DataTable();
 
+            treeView1.Nodes.OfType<TreeNode>().ToList().ForEach(node => node.Expand());
+
+            groupBox1EstOuvert = true;
+            HideGroupBox();
+
             LoadData();
-
-            treeView1.BeginUpdate();
-            treeView1.Nodes.Add("Fichier");
-            treeView1.Nodes[0].Nodes.Add("Paramètre de base");
-            treeView1.Nodes[0].Nodes.Add("Paramètres de société");
-            treeView1.Nodes[0].Nodes.Add("Autorisation d'accès");
-            treeView1.Nodes[0].Nodes[2].Nodes.Add("Utilisateurs");
-            treeView1.Nodes[0].Nodes[2].Nodes.Add("Gestion des rôles");
-            treeView1.Nodes[0].Nodes.Add("Mise en page");
-
-            treeView1.Nodes.Add("Structure");
-            treeView1.Nodes[1].Nodes.Add("Article");
-            treeView1.Nodes[1].Nodes.Add("Caisses");
-            treeView1.Nodes[1].Nodes.Add("Clients");
-            treeView1.Nodes[1].Nodes.Add("Collaborateurs");
-            treeView1.Nodes[1].Nodes.Add("Famille");
-
-            treeView1.Nodes.Add("Traitement");
-            treeView1.Nodes[2].Nodes.Add("Ouverture de caisse");
-            treeView1.Nodes[2].Nodes.Add("Ventes comptoir");
-            treeView1.Nodes[2].Nodes.Add("Documents des ventes");
-            treeView1.Nodes[2].Nodes.Add("Mouvements de caisse");
-            treeView1.Nodes[2].Nodes.Add("Fermeture de caisse");
-            treeView1.Nodes[2].Nodes.Add("Gestion des règlements");
-            treeView1.Nodes[2].Nodes.Add("Gestion des comptes");
-            treeView1.Nodes[2].Nodes.Add("Contrôle de caisse");
-            treeView1.Nodes[2].Nodes.Add("Clôture de caisse");
-
-            treeView1.Nodes.Add("Etat");
-            treeView1.Nodes[3].Nodes.Add("Statistiques de caisses");
-            treeView1.Nodes[3].Nodes.Add("Statistiques articles");
-            treeView1.Nodes[3].Nodes.Add("Statistiques clients");
-            treeView1.Nodes[3].Nodes.Add("Journaux de vente");
-            treeView1.Nodes[3].Nodes.Add("Inventaire");
-            treeView1.EndUpdate();
-
         }
         // ================================================== FIN CONSTRUCTEUR ==========================================================
         // ==============================================================================================================================
@@ -78,12 +62,41 @@ namespace SoftCaisse.Forms
 
         // ==============================================================================================================================
         // ================================================== DEBUT FONCTIONS ===========================================================
+        public void ShowGroupBox()
+        {
+            if (groupBox1EstOuvert == false)
+            {
+                int width = Width;
+                Width = width + groupBox1.Width + 10;
+                btnFermer.Location = new Point(Width - 100, btnFermer.Location.Y);
+                groupBox1.Visible = true;
+                groupBox1EstOuvert = true;
+            }
+        }
+
+        public void HideGroupBox()
+        {
+            if (groupBox1EstOuvert == true)
+            {
+                int width = Width;
+                Width = width - groupBox1.Width - 10;
+                btnFermer.Location = new Point(Width - 100, btnFermer.Location.Y);
+                groupBox1.Visible = false;
+                groupBox1EstOuvert = false;
+                groupBox2.Enabled = true;
+            }
+        }
+
         public void LoadData()
         {
+            _bindingSource.Clear();
             listeRoles = _roleRepository.GetAll();
-            _bindingSource.Columns.Add(new DataColumn("Id"));
-            _bindingSource.Columns.Add(new DataColumn("Intitule"));
-            _bindingSource.Columns.Add(new DataColumn("Nombre d'utilisateurs"));
+            if (_bindingSource.Columns.Count < 1)
+            {
+                _bindingSource.Columns.Add(new DataColumn("Id"));
+                _bindingSource.Columns.Add(new DataColumn("Intitule"));
+                _bindingSource.Columns.Add(new DataColumn("Nombre d'utilisateurs"));
+            }
             List<int> nbUserParRole = _roleRepository.GetUsersNumber();
             int i = 0;
             foreach (var role in listeRoles)
@@ -116,6 +129,11 @@ namespace SoftCaisse.Forms
         {
             try
             {
+                if (dataGridView1.CurrentRow.Index < 0)
+                {
+                    MessageBox.Show("Veuillez sélectionner l'utilisateur à supprimer.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
                 if (dataGridView1.CurrentRow.Index != -1)
                 {
                     string selectedRole = dataGridView1.CurrentRow.Cells["Intitule"].Value.ToString();
@@ -162,11 +180,76 @@ namespace SoftCaisse.Forms
 
         private void btnNouveau_Click(object sender, EventArgs e)
         {
+            ShowGroupBox();
+            groupBox2.Enabled = false;
 
+            estNouveau = true;
+
+            newAutorisation = new Autorisation();
+            int maxId = _autorisationRepository.GetMaxId();
+            newAutorisation.Id = maxId + 1;
+            newAutorisation.Autorisations = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+            _autorisationRepository.Add(newAutorisation);
+            currentAutorisation = newAutorisation;
+        }
+
+        private void btnModif_Click(object sender, EventArgs e)
+        {
+            selectedRoleId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
+            currentAutorisation = _autorisationRepository.GetById(selectedRoleId);
+
+            ShowGroupBox();
+            groupBox2.Enabled = false;
+            txBxIntRole.Text = dataGridView1.CurrentRow.Cells["Intitule"].Value.ToString();
+            dataGridView1.BackgroundColor = Color.WhiteSmoke;
+            dataGridView1.DataSource = null;
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            TreeNode selectedNode = e.Node;
+            int rubriqueAuth = _autorisationRepository.GetRubriqueAuth(currentAutorisation, selectedNode.Name);
+            chckBxAuth.Checked = rubriqueAuth == 1 ? true : false;
+        }
+
+        private void chckBxAuth_Click(object sender, EventArgs e)
+        {
+            TreeNode selectedNode = treeView1.SelectedNode;
+            if (treeView1.SelectedNode == null)
+            {
+                MessageBox.Show("Veuillez sélectionner d'abord une rubrique.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                int indexVal = Convert.ToInt32(selectedNode.Name);
+                currentAutorisation.Autorisations[indexVal] = currentAutorisation.Autorisations[indexVal] == 1 ? 0 : 1;
+                _autorisationRepository.Update(currentAutorisation);
+                currentAutorisation = _autorisationRepository.GetById(selectedRoleId);
+            }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            // Mise à jour Intitule Rôle
+            Role roleToUpdate = _roleRepository.GetById(selectedRoleId);
+            roleToUpdate.RoleIntitule = txBxIntRole.Text;
+            _roleRepository.Update(roleToUpdate);
+
+            HideGroupBox();
+            LoadData();
+        }
+
+        private void btnAnnuler_Click(object sender, EventArgs e)
+        {
+            if (estNouveau)
+            {
+
+            }
+            HideGroupBox();
+            LoadData();
         }
 
         // ================================================== DEBUT EVENEMENTS ===========================================================
         // ==============================================================================================================================
-
     }
 }

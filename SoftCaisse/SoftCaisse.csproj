@@ -156,6 +156,7 @@
     <Compile Include="Forms\SelectionEcheancesARegler.Designer.cs">
       <DependentUpon>SelectionEcheancesARegler.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Json\Autorisation.cs" />
     <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
       <SubType>UserControl</SubType>
@@ -447,6 +448,7 @@
     <Compile Include="Repositories\BIJOU\P_REGLEMENTRepository.cs" />
     <Compile Include="Repositories\DTORepository\TaxeRepository.cs" />
     <Compile Include="Repositories\DTORepository\UniteRepository.cs" />
+    <Compile Include="Repositories\ScdDb\AutorisationRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
     <Compile Include="Services\F_CREGLEMENTService.cs" />
@@ -606,6 +608,7 @@
     </Compile>
     <EmbeddedResource Include="TicketCaisse.rdlc" />
     <None Include="DataJSon\Langue.json" />
+    <None Include="DataJSon\Autorisation.json" />
     <None Include="DataJSon\TypeDocument.json" />
     <None Include="DataSetEnt.xsc">
       <DependentUpon>DataSetEnt.xsd</DependentUpon>

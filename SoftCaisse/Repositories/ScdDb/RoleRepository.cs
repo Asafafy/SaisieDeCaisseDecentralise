@@ -15,7 +15,8 @@ namespace SoftCaisse.Repositories.ScdDb
 
         public void Add(Role entity)
         {
-            throw new System.NotImplementedException();
+            _scdContext.Role.Add(entity);
+            _scdContext.SaveChanges();
         }
 
         public void Delete(int id)

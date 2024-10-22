@@ -35,7 +35,7 @@
             this.ConnecterMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.OuvrirMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ParamSoc = new System.Windows.Forms.ToolStripMenuItem();
-            this.autorisationAccèsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autAccesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilsateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionDesRôlesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miseEnPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +45,7 @@
             this.caissesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.artilceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.familleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.traitementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ouvertureDeCaisseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventesComptoirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +69,6 @@
             this.databaseOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
-            this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +94,7 @@
             this.ConnecterMenu,
             this.OuvrirMenu,
             this.ParamSoc,
-            this.autorisationAccèsToolStripMenuItem,
+            this.autAccesMenuItem,
             this.miseEnPageToolStripMenuItem,
             this.quiterToolStripMenuItem});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
@@ -123,27 +123,27 @@
             this.ParamSoc.Text = "Paramètres de société";
             this.ParamSoc.Click += new System.EventHandler(this.ParamSoc_Click);
             // 
-            // autorisationAccèsToolStripMenuItem
+            // autAccesMenuItem
             // 
-            this.autorisationAccèsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autAccesMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.utilsateurToolStripMenuItem,
             this.gestionDesRôlesToolStripMenuItem});
-            this.autorisationAccèsToolStripMenuItem.Enabled = false;
-            this.autorisationAccèsToolStripMenuItem.Name = "autorisationAccèsToolStripMenuItem";
-            this.autorisationAccèsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.autorisationAccèsToolStripMenuItem.Text = "Autorisation accès";
+            this.autAccesMenuItem.Enabled = false;
+            this.autAccesMenuItem.Name = "autAccesMenuItem";
+            this.autAccesMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.autAccesMenuItem.Text = "Autorisation accès";
             // 
             // utilsateurToolStripMenuItem
             // 
             this.utilsateurToolStripMenuItem.Name = "utilsateurToolStripMenuItem";
-            this.utilsateurToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.utilsateurToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.utilsateurToolStripMenuItem.Text = "Utilisateurs";
             this.utilsateurToolStripMenuItem.Click += new System.EventHandler(this.utilsateurToolStripMenuItem_Click);
             // 
             // gestionDesRôlesToolStripMenuItem
             // 
             this.gestionDesRôlesToolStripMenuItem.Name = "gestionDesRôlesToolStripMenuItem";
-            this.gestionDesRôlesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.gestionDesRôlesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionDesRôlesToolStripMenuItem.Text = "Gestion des rôles";
             this.gestionDesRôlesToolStripMenuItem.Click += new System.EventHandler(this.gestionDesRôlesToolStripMenuItem_Click);
             // 
@@ -201,6 +201,13 @@
             this.familleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.familleToolStripMenuItem.Text = "Famille";
             this.familleToolStripMenuItem.Click += new System.EventHandler(this.familleToolStripMenuItem_Click);
+            // 
+            // clientsToolStripMenuItem
+            // 
+            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientsToolStripMenuItem.Text = "Clients";
+            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // traitementToolStripMenuItem
             // 
@@ -292,14 +299,14 @@
             // gestionDesCaissesToolStripMenuItem
             // 
             this.gestionDesCaissesToolStripMenuItem.Name = "gestionDesCaissesToolStripMenuItem";
-            this.gestionDesCaissesToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.gestionDesCaissesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionDesCaissesToolStripMenuItem.Text = "Gestion des caisses";
             this.gestionDesCaissesToolStripMenuItem.Click += new System.EventHandler(this.gestionDesCaissesToolStripMenuItem_Click);
             // 
             // gestionDesArticlesToolStripMenuItem
             // 
             this.gestionDesArticlesToolStripMenuItem.Name = "gestionDesArticlesToolStripMenuItem";
-            this.gestionDesArticlesToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.gestionDesArticlesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestionDesArticlesToolStripMenuItem.Text = "Gestion des articles";
             // 
             // contrôleDeCaisseToolStripMenuItem
@@ -383,13 +390,6 @@
             // 
             this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.ProfessionalSystem;
             // 
-            // clientsToolStripMenuItem
-            // 
-            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.clientsToolStripMenuItem.Text = "Clients";
-            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -419,7 +419,7 @@
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OuvrirMenu;
         private System.Windows.Forms.ToolStripMenuItem ParamSoc;
-        private System.Windows.Forms.ToolStripMenuItem autorisationAccèsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autAccesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miseEnPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem utilsateurToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem structureToolStripMenuItem;

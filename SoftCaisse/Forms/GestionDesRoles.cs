@@ -28,6 +28,7 @@ namespace SoftCaisse.Forms
         private bool estNouveau;
 
         private Autorisation currentAutorisation;
+        private Role currentRole;
 
 
 
@@ -109,6 +110,55 @@ namespace SoftCaisse.Forms
             dataGridView1.Columns["Nombre d'utilisateurs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
+
+        public void SetAuthAndAllOthersAuth(int indexAuth, Autorisation autorisation)
+        {
+            // Cas "Autorisation d'accès"
+            if (indexAuth == 3)
+            {
+                currentAutorisation.Autorisations[indexAuth] = currentAutorisation.Autorisations[indexAuth] == 1 ? 0 : 1;
+                currentAutorisation.Autorisations[indexAuth + 1] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 2] = currentAutorisation.Autorisations[indexAuth];
+            }
+            // Cas "Structure"
+            else if (indexAuth == 7)
+            {
+                currentAutorisation.Autorisations[indexAuth] = currentAutorisation.Autorisations[indexAuth] == 1 ? 0 : 1;
+                currentAutorisation.Autorisations[indexAuth + 1] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 2] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 3] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 4] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 5] = currentAutorisation.Autorisations[indexAuth];
+            }
+            // Cas "Traitement"
+            else if (indexAuth == 13)
+            {
+                currentAutorisation.Autorisations[indexAuth] = currentAutorisation.Autorisations[indexAuth] == 1 ? 0 : 1;
+                currentAutorisation.Autorisations[indexAuth + 1] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 2] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 3] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 4] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 5] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 6] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 7] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 8] = currentAutorisation.Autorisations[indexAuth];
+                currentAutorisation.Autorisations[indexAuth + 9] = currentAutorisation.Autorisations[indexAuth];
+            }
+            // Cas "Etat"
+            else if (indexAuth == 23)
+            {
+                currentAutorisation.Autorisations[indexAuth] = currentAutorisation.Autorisations[indexAuth] == 1 ? 0 : 1;
+                currentAutorisation.Autorisations[indexAuth + 1] = 1;
+                currentAutorisation.Autorisations[indexAuth + 2] = 1;
+                currentAutorisation.Autorisations[indexAuth + 3] = 1;
+                currentAutorisation.Autorisations[indexAuth + 4] = 1;
+                currentAutorisation.Autorisations[indexAuth + 5] = 1;
+            }
+            else
+            {
+                currentAutorisation.Autorisations[indexAuth] = currentAutorisation.Autorisations[indexAuth] == 1 ? 0 : 1;
+            }
+        }
         // ================================================== DEBUT FONCTIONS ===========================================================
         // ==============================================================================================================================
 
@@ -168,6 +218,7 @@ namespace SoftCaisse.Forms
                         {
                             _roleRepository.Delete(currentId);
                             MessageBox.Show("Opération réussie");
+                            LoadData();
                         }
                     }
                 }
@@ -185,18 +236,27 @@ namespace SoftCaisse.Forms
 
             estNouveau = true;
 
+            // Création nouvelle autorisation
             newAutorisation = new Autorisation();
             int maxId = _autorisationRepository.GetMaxId();
             newAutorisation.Id = maxId + 1;
             newAutorisation.Autorisations = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
             _autorisationRepository.Add(newAutorisation);
             currentAutorisation = newAutorisation;
+
+            // Création nouveau rôle
+            currentRole = new Role();
+            currentRole.RoleIntitule = "Rôle temporaire";
+            currentRole.RoleAutorisationsId = maxId + 1;
+            _roleRepository.Add(currentRole);
+            selectedRoleId = _scdContext.Role.Where(role => role.RoleIntitule == "Rôle temporaire").Select(role => role.IdRole).FirstOrDefault();
         }
 
         private void btnModif_Click(object sender, EventArgs e)
         {
             selectedRoleId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
-            currentAutorisation = _autorisationRepository.GetById(selectedRoleId);
+            int roleAuthId = _scdContext.Role.Where(role => role.IdRole == selectedRoleId).Select(role => role.RoleAutorisationsId).FirstOrDefault();
+            currentAutorisation = _autorisationRepository.GetById(roleAuthId);
 
             ShowGroupBox();
             groupBox2.Enabled = false;
@@ -208,6 +268,10 @@ namespace SoftCaisse.Forms
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             TreeNode selectedNode = e.Node;
+            if (selectedNode.Text == "Fichier")
+                chckBxAuth.Enabled = false;
+            else
+                chckBxAuth.Enabled = true;
             int rubriqueAuth = _autorisationRepository.GetRubriqueAuth(currentAutorisation, selectedNode.Name);
             chckBxAuth.Checked = rubriqueAuth == 1 ? true : false;
         }
@@ -222,9 +286,11 @@ namespace SoftCaisse.Forms
             else
             {
                 int indexVal = Convert.ToInt32(selectedNode.Name);
-                currentAutorisation.Autorisations[indexVal] = currentAutorisation.Autorisations[indexVal] == 1 ? 0 : 1;
+                SetAuthAndAllOthersAuth(indexVal, currentAutorisation);
+
                 _autorisationRepository.Update(currentAutorisation);
-                currentAutorisation = _autorisationRepository.GetById(selectedRoleId);
+                int roleAuthId = _scdContext.Role.Where(role => role.IdRole == selectedRoleId).Select(role => role.RoleAutorisationsId).FirstOrDefault();
+                currentAutorisation = _autorisationRepository.GetById(roleAuthId);
             }
         }
 
@@ -233,17 +299,24 @@ namespace SoftCaisse.Forms
             // Mise à jour Intitule Rôle
             Role roleToUpdate = _roleRepository.GetById(selectedRoleId);
             roleToUpdate.RoleIntitule = txBxIntRole.Text;
-            _roleRepository.Update(roleToUpdate);
+            if (txBxIntRole.Text != "")
+            {
+                _roleRepository.Update(roleToUpdate);
+                HideGroupBox();
+                LoadData();
+            }
+            else
+                MessageBox.Show("Complétez d'abord l'intitule du rôle", "Incomplet", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-            HideGroupBox();
-            LoadData();
+
         }
 
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
             if (estNouveau)
             {
-
+                _roleRepository.Delete(selectedRoleId);
+                _autorisationRepository.Delete(currentAutorisation.Id);
             }
             HideGroupBox();
             LoadData();

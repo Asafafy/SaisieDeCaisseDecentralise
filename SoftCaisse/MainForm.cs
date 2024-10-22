@@ -97,7 +97,7 @@ namespace SoftCaisse
         private void quiterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fichierToolStripMenuItem.DropDownItems["ParamSoc"].Enabled = false;
-            fichierToolStripMenuItem.DropDownItems["autorisationAccèsToolStripMenuItem"].Enabled = false;
+            fichierToolStripMenuItem.DropDownItems["autAccesMenuItem"].Enabled = false;
             fichierToolStripMenuItem.DropDownItems["miseEnPageToolStripMenuItem"].Enabled = false;
             traitementToolStripMenuItem.Enabled = false;
             structureToolStripMenuItem.Enabled = false;
@@ -152,6 +152,7 @@ namespace SoftCaisse
                 traitementToolStripMenuItem,
                 structureToolStripMenuItem,
                 etatToolStripMenuItem,
+                autAccesMenuItem,
                 this
             );
             login.Show();

@@ -102,6 +102,12 @@
     <Compile Include="Forms\HistoriqueReglements.Designer.cs">
       <DependentUpon>HistoriqueReglements.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InformationsDocumentsDesVentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InformationsDocumentsDesVentes.Designer.cs">
+      <DependentUpon>InformationsDocumentsDesVentes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InterrogationStockArticle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -475,6 +481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HistoriqueReglements.resx">
       <DependentUpon>HistoriqueReglements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InformationsDocumentsDesVentes.resx">
+      <DependentUpon>InformationsDocumentsDesVentes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InterrogationStockArticle.resx">
       <DependentUpon>InterrogationStockArticle.cs</DependentUpon>

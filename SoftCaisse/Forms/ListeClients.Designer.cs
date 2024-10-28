@@ -34,20 +34,20 @@
             this.panelListeClients = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BouttonRechercherArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BouttonRechercherArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.labelTypeClients = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.checkBoxActifs = new System.Windows.Forms.CheckBox();
+            this.checkBoxEnSommeil = new System.Windows.Forms.CheckBox();
+            this.DataGridViewArticle = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.kryptonButtonFermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonSuppr = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonNouveau = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButtonOuvrir = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.checkBoxEnSommeil = new System.Windows.Forms.CheckBox();
-            this.checkBoxActifs = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.labelTypeClients = new System.Windows.Forms.Label();
-            this.DataGridViewArticle = new System.Windows.Forms.DataGridView();
-            this.kryptonButtonFermer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panelListeClients.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -55,9 +55,9 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -121,6 +121,13 @@
             this.panel1.Size = new System.Drawing.Size(930, 94);
             this.panel1.TabIndex = 0;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(542, 36);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(278, 20);
+            this.textBox1.TabIndex = 22;
+            // 
             // BouttonRechercherArticle
             // 
             this.BouttonRechercherArticle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -133,13 +140,6 @@
             this.BouttonRechercherArticle.Size = new System.Drawing.Size(84, 31);
             this.BouttonRechercherArticle.TabIndex = 21;
             this.BouttonRechercherArticle.Values.Text = "Rechercher";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(542, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(278, 20);
-            this.textBox1.TabIndex = 22;
             // 
             // splitContainer1
             // 
@@ -158,6 +158,76 @@
             this.splitContainer1.SplitterDistance = 204;
             this.splitContainer1.TabIndex = 1;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.labelTypeClients);
+            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.checkBoxActifs);
+            this.panel2.Controls.Add(this.checkBoxEnSommeil);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(204, 379);
+            this.panel2.TabIndex = 0;
+            // 
+            // labelTypeClients
+            // 
+            this.labelTypeClients.AutoSize = true;
+            this.labelTypeClients.Location = new System.Drawing.Point(18, 35);
+            this.labelTypeClients.Name = "labelTypeClients";
+            this.labelTypeClients.Size = new System.Drawing.Size(88, 13);
+            this.labelTypeClients.TabIndex = 3;
+            this.labelTypeClients.Text = "Type de clientèle";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(21, 58);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(161, 21);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // checkBoxActifs
+            // 
+            this.checkBoxActifs.AutoSize = true;
+            this.checkBoxActifs.Location = new System.Drawing.Point(21, 322);
+            this.checkBoxActifs.Name = "checkBoxActifs";
+            this.checkBoxActifs.Size = new System.Drawing.Size(52, 17);
+            this.checkBoxActifs.TabIndex = 1;
+            this.checkBoxActifs.Text = "Actifs";
+            this.checkBoxActifs.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxEnSommeil
+            // 
+            this.checkBoxEnSommeil.AutoSize = true;
+            this.checkBoxEnSommeil.Location = new System.Drawing.Point(21, 349);
+            this.checkBoxEnSommeil.Name = "checkBoxEnSommeil";
+            this.checkBoxEnSommeil.Size = new System.Drawing.Size(79, 17);
+            this.checkBoxEnSommeil.TabIndex = 0;
+            this.checkBoxEnSommeil.Text = "En sommeil";
+            this.checkBoxEnSommeil.UseVisualStyleBackColor = true;
+            // 
+            // DataGridViewArticle
+            // 
+            this.DataGridViewArticle.AllowUserToAddRows = false;
+            this.DataGridViewArticle.AllowUserToDeleteRows = false;
+            this.DataGridViewArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewArticle.BackgroundColor = System.Drawing.Color.White;
+            this.DataGridViewArticle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DataGridViewArticle.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.DataGridViewArticle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewArticle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridViewArticle.GridColor = System.Drawing.Color.White;
+            this.DataGridViewArticle.Location = new System.Drawing.Point(0, 0);
+            this.DataGridViewArticle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.DataGridViewArticle.Name = "DataGridViewArticle";
+            this.DataGridViewArticle.ReadOnly = true;
+            this.DataGridViewArticle.RowHeadersVisible = false;
+            this.DataGridViewArticle.RowHeadersWidth = 51;
+            this.DataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridViewArticle.Size = new System.Drawing.Size(722, 379);
+            this.DataGridViewArticle.TabIndex = 1;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
@@ -172,6 +242,19 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(930, 52);
             this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // kryptonButtonFermer
+            // 
+            this.kryptonButtonFermer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.kryptonButtonFermer.Location = new System.Drawing.Point(844, 2);
+            this.kryptonButtonFermer.Margin = new System.Windows.Forms.Padding(2);
+            this.kryptonButtonFermer.Name = "kryptonButtonFermer";
+            this.kryptonButtonFermer.Palette = this.kryptonPalette1;
+            this.kryptonButtonFermer.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kryptonButtonFermer.Size = new System.Drawing.Size(84, 31);
+            this.kryptonButtonFermer.TabIndex = 26;
+            this.kryptonButtonFermer.Values.Text = "Fermer";
+            this.kryptonButtonFermer.Click += new System.EventHandler(this.kryptonButtonFermer_Click);
             // 
             // kryptonButtonSuppr
             // 
@@ -209,88 +292,6 @@
             this.kryptonButtonOuvrir.TabIndex = 25;
             this.kryptonButtonOuvrir.Values.Text = "Ouvrir";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.labelTypeClients);
-            this.panel2.Controls.Add(this.comboBox1);
-            this.panel2.Controls.Add(this.checkBoxActifs);
-            this.panel2.Controls.Add(this.checkBoxEnSommeil);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(204, 379);
-            this.panel2.TabIndex = 0;
-            // 
-            // checkBoxEnSommeil
-            // 
-            this.checkBoxEnSommeil.AutoSize = true;
-            this.checkBoxEnSommeil.Location = new System.Drawing.Point(21, 349);
-            this.checkBoxEnSommeil.Name = "checkBoxEnSommeil";
-            this.checkBoxEnSommeil.Size = new System.Drawing.Size(79, 17);
-            this.checkBoxEnSommeil.TabIndex = 0;
-            this.checkBoxEnSommeil.Text = "En sommeil";
-            this.checkBoxEnSommeil.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxActifs
-            // 
-            this.checkBoxActifs.AutoSize = true;
-            this.checkBoxActifs.Location = new System.Drawing.Point(21, 322);
-            this.checkBoxActifs.Name = "checkBoxActifs";
-            this.checkBoxActifs.Size = new System.Drawing.Size(52, 17);
-            this.checkBoxActifs.TabIndex = 1;
-            this.checkBoxActifs.Text = "Actifs";
-            this.checkBoxActifs.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(21, 58);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(161, 21);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // labelTypeClients
-            // 
-            this.labelTypeClients.AutoSize = true;
-            this.labelTypeClients.Location = new System.Drawing.Point(18, 35);
-            this.labelTypeClients.Name = "labelTypeClients";
-            this.labelTypeClients.Size = new System.Drawing.Size(88, 13);
-            this.labelTypeClients.TabIndex = 3;
-            this.labelTypeClients.Text = "Type de clientèle";
-            // 
-            // DataGridViewArticle
-            // 
-            this.DataGridViewArticle.AllowUserToAddRows = false;
-            this.DataGridViewArticle.AllowUserToDeleteRows = false;
-            this.DataGridViewArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridViewArticle.BackgroundColor = System.Drawing.Color.White;
-            this.DataGridViewArticle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.DataGridViewArticle.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.DataGridViewArticle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewArticle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridViewArticle.GridColor = System.Drawing.Color.White;
-            this.DataGridViewArticle.Location = new System.Drawing.Point(0, 0);
-            this.DataGridViewArticle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.DataGridViewArticle.Name = "DataGridViewArticle";
-            this.DataGridViewArticle.ReadOnly = true;
-            this.DataGridViewArticle.RowHeadersVisible = false;
-            this.DataGridViewArticle.RowHeadersWidth = 51;
-            this.DataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewArticle.Size = new System.Drawing.Size(722, 379);
-            this.DataGridViewArticle.TabIndex = 1;
-            // 
-            // kryptonButtonFermer
-            // 
-            this.kryptonButtonFermer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonButtonFermer.Location = new System.Drawing.Point(844, 2);
-            this.kryptonButtonFermer.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButtonFermer.Name = "kryptonButtonFermer";
-            this.kryptonButtonFermer.Palette = this.kryptonPalette1;
-            this.kryptonButtonFermer.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButtonFermer.Size = new System.Drawing.Size(84, 31);
-            this.kryptonButtonFermer.TabIndex = 26;
-            this.kryptonButtonFermer.Values.Text = "Fermer";
-            // 
             // ListeClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,10 +313,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewArticle)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

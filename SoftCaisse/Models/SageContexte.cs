@@ -361,7 +361,6 @@ namespace SoftCaisse.Models
                     {
                         CreeFACTURE.Process();
                         return CreeFACTURE.DocumentResult;
-
                     }
                     else
                     {
@@ -387,6 +386,124 @@ namespace SoftCaisse.Models
 
 
 
+        // EFA METY NY DOCUMENTS DU TYPE VENTES FA NY ACHATS NO MBOLA TSY METY
+        //public IBODocument3 CreerDocument(DocumentType typeDocument, string devise, string depot, string nAnalytique, string tier, string client, string nom_vendeur, string prenom_vendeur, string payeur, string expeditInt, DateTime dateLivr, DateTime dateLivrReal, string reference)
+        //{
+        //    openCpt();
+
+        //    try
+        //    {
+        //        if (baseCial.IsOpen)
+        //        {
+        //            // =============================== Création DOENTETE avec Objet métier ===============================
+        //            IPMDocument doc = baseCial.CreateProcess_Document(typeDocument);
+
+        //            List<DocumentType> docTypeVente = new List<DocumentType> { DocumentType.DocumentTypeVenteDevis, DocumentType.DocumentTypeVenteCommande, DocumentType.DocumentTypeVentePrepaLivraison, DocumentType.DocumentTypeVenteLivraison, DocumentType.DocumentTypeVenteReprise, DocumentType.DocumentTypeVenteAvoir };
+        //            List<DocumentType> docTypeAchat = new List<DocumentType> { DocumentType.DocumentTypeAchatFacture, DocumentType.DocumentTypeAchatAvoir };
+
+        //            // Création objet dans F_DOCENTETE pour document de type vente (Devis, Bon de commande, Prep Livr, etc.)
+
+        //            if (docTypeVente.Contains(typeDocument))
+        //            {
+        //                IBODocumentVente3 mDoc = (IBODocumentVente3)doc.Document;
+
+        //                // Valeurs par défaut Docentete
+        //                mDoc.SetDefault();
+        //                mDoc.SetDefaultDO_Piece();
+
+        //                // Recherches valeurs à mettre à jour
+        //                IBOClient3 iboClient = baseCpt.FactoryClient.ReadNumero(client);
+        //                IBOClient3 iboPayeur = baseCpt.FactoryClient.ReadNumero(payeur);
+        //                IBPExpedition3 exepdition = baseCial.FactoryExpedition.ReadIntitule(expeditInt);
+
+        //                // Propriétés du docentete (Modification valeurs par défaut)
+        //                mDoc.DepotStockage = baseCial.FactoryDepot.ReadIntitule(depot);
+        //                mDoc.DO_Date = DateTime.Now;
+        //                mDoc.CompteG = iboClient.CompteGPrinc;
+        //                mDoc.Tiers = iboClient;
+        //                mDoc.TiersPayeur = iboPayeur;
+        //                mDoc.Expedition = exepdition;
+        //                mDoc.DO_DateLivr = dateLivr == null ? new DateTime(1753, 01, 01, 00, 00, 00) : dateLivr;
+        //                mDoc.DO_DateLivrRealisee = dateLivrReal == null ? new DateTime(1753, 01, 01, 00, 00, 00) : dateLivrReal;
+        //                mDoc.DO_Ref = reference;
+        //            }
+        //            // Création objet dans F_DOCENTETE pour document de type achat (Factures, etc.)
+        //            else
+        //            {
+        //                //ENTETE//
+        //                IPMDocument CreeFACTURE = baseCial.CreateProcess_Document(DocumentType.DocumentTypeVenteFacture);
+
+        //                IBODocumentVente3 mDoc = (IBODocumentVente3)CreeFACTURE.Document;
+        //                mDoc.SetDefault();
+        //                mDoc.SetDefaultDO_Piece();
+        //                mDoc.DO_Date = DateTime.Now;
+        //                mDoc.DO_DateLivr = DateTime.Now;
+        //                mDoc.DepotStockage = baseCial.FactoryDepot.ReadIntitule(depot);
+        //                IBOClient3 iboClient = baseCpt.FactoryClient.ReadNumero(client);
+        //                IBOClient3 iboPayeur = baseCpt.FactoryClient.ReadNumero(payeur);
+        //                mDoc.CategorieTarif = iboClient.CatTarif;
+        //                mDoc.CompteG = iboClient.CompteGPrinc;
+        //                mDoc.Tiers = iboClient;
+        //                mDoc.TiersPayeur = iboPayeur;
+        //                IBOCollaborateur collabs = baseCpt.FactoryCollaborateur.ReadNomPrenom(nom_vendeur, prenom_vendeur);
+        //                mDoc.Collaborateur = collabs;
+        //                IBOCompteA3 comptes = baseCpt.FactoryCompteA.ReadNumero(baseCpt.FactoryAnalytique.ReadIntitule(nAnalytique), tier);
+        //                mDoc.CompteA = comptes;
+        //                mDoc.DO_Ref = reference;
+
+        //                //LIGNE//
+        //                List<Fligne> ligne = new List<Fligne>();
+        //                foreach (var item in ligne)
+        //                {
+        //                    IBOArticle3 art = baseCial.FactoryArticle.ReadReference(item.reference);
+        //                    IBODocumentVenteLigne3 mLig = (IBODocumentVenteLigne3)CreeFACTURE.AddArticle(art, item.quantite);
+        //                    IBODepot3 depots = baseCial.FactoryDepot.ReadIntitule(depot);
+        //                    mLig.CompteA = comptes;
+        //                    mLig.Collaborateur = collabs;
+        //                    mLig.Depot = depots;
+        //                    mLig.SetDefaultRemise();
+        //                    mLig.Remise.FromString(item.remise);
+        //                }
+        //                if (doc.CanProcess)
+        //                {
+        //                    doc.Process();
+        //                    return doc.DocumentResult;
+        //                }
+        //                else
+        //                {
+        //                    string str = "";
+        //                    foreach (IFailInfo ifail in doc.Errors)
+        //                    {
+        //                        str += ifail.Text;
+        //                        str += "\n";
+        //                    }
+        //                    MessageBox.Show(str, "IMPORT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //                    return null;
+        //                }
+        //            }
+
+
+        //            // =============================== Mise à jour des colonnes avec SQL Query ou EntityFramework ===============================
+        //            //IBOCollaborateur collabs = baseCpt.FactoryCollaborateur.ReadNomPrenom(nom_vendeur, prenom_vendeur);
+        //            //if (collabs != null)
+        //            //{
+        //            //    mDoc.Collaborateur = collabs;
+        //            //}
+        //            //F_COMPTEA f_COMPTEA = _context.F_COMPTEA.Where(cmta => cmta.CA_Num == nAnalytique).FirstOrDefault();
+        //            //var anal = baseCpt.FactoryAnalytique.ReadIntitule(f_COMPTEA.CA_Intitule);
+        //            //IBOCompteA3 comptes = baseCpt.FactoryCompteA.ReadNumero(anal, tier);
+        //            //mDoc.CompteA = comptes;
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "IMPORT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return null;
+        //    }
+        //    closeCial();
+        //    return null;
+        //}
 
     }
 }

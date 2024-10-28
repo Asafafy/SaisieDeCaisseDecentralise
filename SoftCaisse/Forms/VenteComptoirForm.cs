@@ -16,6 +16,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+
+
+
+
+
 namespace SoftCaisse.Forms.VenteComptoir
 {
     public partial class VenteComptoirForm : KryptonForm
@@ -36,6 +41,13 @@ namespace SoftCaisse.Forms.VenteComptoir
         private string refDoc;
         private int changedIndex = -1;
         private decimal pourcentageRemise;
+
+
+
+
+
+        // ======================================================================================================
+        // ============================================ CONSTRUCTEUR ============================================
         public VenteComptoirForm(int caisse, int caissier, F_DOCENTETE entete, List<F_DOCLIGNE> ligne)
         {
             _context = new AppDbContext();
@@ -130,7 +142,201 @@ namespace SoftCaisse.Forms.VenteComptoir
             BorderRaduis(TableLayouotPanelHeader);
             #endregion
         }
+        // ============================================ CONSTRUCTEUR ============================================
+        // ======================================================================================================
 
+
+
+
+
+        // ===================================================================================================
+        // ============================================ FONCTIONS ============================================
+        // ******************************************** FRONT ************************************************ 
+        private void BorderRaduis(Panel panel)
+        {
+            int borderRadius = 20;
+            GraphicsPath path = new GraphicsPath();
+            path.AddArc(0, 0, borderRadius, borderRadius, 180, 90);
+            path.AddArc(panel.Width - borderRadius, 0, borderRadius, borderRadius, 270, 90);
+            path.AddArc(panel.Width - borderRadius, panel.Height - borderRadius, borderRadius, borderRadius, 0, 90);
+            path.AddArc(0, panel.Height - borderRadius, borderRadius, borderRadius, 90, 90);
+            path.CloseAllFigures();
+
+            panel.Region = new Region(path);
+        }
+
+        private void VenteComptoirForm_Resize(object sender, EventArgs e)
+        {
+            BorderRaduis(PanelTotal);
+            BorderRaduis(TableLayoutPanelInfoCaissier);
+            BorderRaduis(PanelEnregistrement);
+            BorderRaduis(TableLayoutPanelFooter);
+            BorderRaduis(PanelCommandDroite);
+            BorderRaduis(TableLayouotPanelHeader);
+            BorderRaduis(TableLayoutPanelDesignation);
+        }
+
+        //*********************************************** BACK ***************************************************
+        private void ChargerComboBoxes()
+        {
+            var deviseASelectionne = _deviseRepository.GetAll();
+            var deviseObtenu = deviseASelectionne.Select(d => d.D_Intitule).ToList();
+            var modeDeReglement = _reglementRepository.GetAll();
+            var reglementObtenu = modeDeReglement.Select(r => r.R_Intitule).ToList();
+
+            ComboBoxDeviseEnregistrement.Items.Clear();
+            ComboBoxDeviseReste.Items.Clear();
+            foreach (var devise in deviseObtenu)
+            {
+                ComboBoxDeviseEnregistrement.Items.Add(devise.ToString());
+                ComboBoxDeviseReste.Items.Add(devise.ToString());
+            }
+
+            ComboBoxDeviseEnregistrement.SelectedIndex = 0;
+            ComboBoxDeviseReste.SelectedIndex = 0;
+
+            ComboBoxReglementEnregistrement.Items.Clear();
+            foreach (var mode in reglementObtenu)
+            {
+                ComboBoxReglementEnregistrement.Items.Add(mode.ToString());
+            }
+
+            ComboBoxReglementEnregistrement.SelectedIndex = 0;
+
+        }
+
+        private void ControlTableLayoutPanel()
+        {
+            foreach (Control control in TableLayoutPanelDesignation.Controls)
+            {
+
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = textBox.Tag?.ToString();
+                }
+            }
+        }
+
+        private void creation_facture(object sender, EventArgs e)
+        {
+            Controle tier = (Controle)ComboBoxType.SelectedItem;
+            Controle payeur = (Controle)ComboBoxCentrale.SelectedItem;
+            List<Fligne> fligne = new List<Fligne>();
+            List<Freglement> freglement = new List<Freglement>();
+            Fentete fentete = new Fentete()
+            {
+                caisse = LabelTitleCaissier.Text,
+                type = "Facture",
+                date = DateTime.Now.ToShortDateString(),
+                numero = refDoc
+            };
+
+            foreach (DataGridViewRow ligne in DataGridViewArticle.Rows)
+            {
+
+                string reduct = string.IsNullOrEmpty(ligne.Cells[6].Value.ToString()) ? "0%" : ligne.Cells[6].Value.ToString() + "%";
+                fligne.Add(new Fligne()
+                {
+                    reference = ligne.Cells[0].FormattedValue.ToString(),
+                    designation = ligne.Cells[1].FormattedValue.ToString(),
+                    montant_ht = double.Parse(ligne.Cells[2].FormattedValue.ToString()),
+                    prix_unitaire = double.Parse(ligne.Cells[3].FormattedValue.ToString()),
+                    quantite = double.Parse(ligne.Cells[4].FormattedValue.ToString()),
+                    remise = reduct
+                });
+            }
+            var tiers = _context.F_COMPTEA.FirstOrDefault(u => u.CA_Num == ComboBoxAffaire.SelectedValue.ToString());
+            var nAnalytique = _context.P_ANALYTIQUE.FirstOrDefault(u => u.cbMarq == tiers.N_Analytique);
+            string regl_libelle = TextBoxLibelleEnregistrement.Text;
+            regl_libelle = regl_libelle.Replace("ticket", "facture");
+
+            if (refDoc == null)
+            {
+                IBODocument3 type = _sageObj.CreateFACTURE(ComboBoxDeviseReste.Text, ComboBoxDepot.SelectedValue.ToString(), nAnalytique.A_Intitule, tiers.CA_Num, _caissier.CO_Nom, _caissier.CO_Prenom, tier.valeur, payeur.valeur, fligne);
+                if (type != null)
+                {
+                    fentete.numero = type.DO_Piece;
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " ,DO_Valide=1 where DO_Piece like '" + type.DO_Piece + "'");
+                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCLIGNE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_No=" + _caissier.CO_No + " ,cbCO_No=" + _caissier.CO_No + " where DO_Piece like '" + type.DO_Piece + "'");
+                    foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
+                    {
+                        double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
+                        IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), type.DO_Piece, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
+                        freglement.Add(new Freglement()
+                        {
+                            Date = DateTime.Now.ToShortDateString(),
+                            Montant = Double.Parse(obj.Cells[1].FormattedValue.ToString()),
+                            Type = obj.Cells[0].FormattedValue.ToString()
+                        });
+                        _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
+                    }
+                }
+            }
+            else
+            {
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Domaine=0 , DO_Type=6 , DO_DocType=6 , DO_Escompte=0, DO_Valide=0 where DO_Piece like '" + refDoc + "'");
+                foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
+                {
+                    double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
+                    IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), refDoc, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
+                    freglement.Add(new Freglement()
+                    {
+                        Date = DateTime.Now.ToShortDateString(),
+                        Montant = Double.Parse(obj.Cells[1].FormattedValue.ToString()),
+                        Type = obj.Cells[0].FormattedValue.ToString()
+                    });
+                    _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
+                }
+                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Attente=0 where DO_Piece like '" + refDoc + "'");
+            }
+            Close();
+            P_DEVISE devise = _context.P_DEVISE.FirstOrDefault(u => u.D_Intitule + "" == ComboBoxDeviseReste.SelectedItem.ToString());
+            string deviseInt = devise.D_Intitule;
+            Reporting report = new Reporting(fentete, fligne, freglement, deviseInt);
+            report.BringToFront();
+            report.Show();
+            report.Focus();
+        }
+
+        private void change_tarif(object sender, EventArgs e)
+        {
+            Controle obj = (Controle)ComboBoxCentrale.SelectedItem;
+            F_COMPTET valeur = _context.F_COMPTET.FirstOrDefault(u => u.CT_Num == obj.valeur);
+            P_CATTARIF tarif = _context.P_CATTARIF.FirstOrDefault(u => u.cbMarq == valeur.N_CatTarif);
+            if (valeur != null)
+            {
+                ComboBoxTarif.SelectedIndex = ComboBoxTarif.FindString(tarif.CT_Intitule);
+            }
+        }
+
+        private decimal TauxPriseEnCompte(string arRef)
+        {
+            var infoSupplementaireArticleTaxe = _context.F_ARTCOMPTA
+                            .Where(article => article.AR_Ref == arRef)
+                            .Select(article => new
+                            {
+                                IdentifiantChamp = article.ACP_Champ,
+                                CodeTaxeAComptabiliser = article.ACP_ComptaCPT_Taxe1
+                            }).FirstOrDefault();
+
+            var infoSupplementaireTaxe = _context.F_TAXE
+                .Where(article => article.TA_Code == infoSupplementaireArticleTaxe.CodeTaxeAComptabiliser)
+                .Select(article => new
+                {
+                    TauxPriseEnCompte = article.TA_Taux,
+                }).FirstOrDefault();
+
+            return infoSupplementaireTaxe?.TauxPriseEnCompte ?? 0;
+        }
+        // ============================================ FONCTIONS ============================================
+        // ===================================================================================================
+
+
+
+
+
+        // ====================================================================================================
+        // ============================================ EVENEMENTS ============================================
         private void TextBoxRemise_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
@@ -172,72 +378,7 @@ namespace SoftCaisse.Forms.VenteComptoir
         }
 
 
-        //*******************************************************************************************************************FRONT*******************************************************************************************************************// 
-        private void BorderRaduis(Panel panel)
-        {
-            int borderRadius = 20;
-            GraphicsPath path = new GraphicsPath();
-            path.AddArc(0, 0, borderRadius, borderRadius, 180, 90);
-            path.AddArc(panel.Width - borderRadius, 0, borderRadius, borderRadius, 270, 90);
-            path.AddArc(panel.Width - borderRadius, panel.Height - borderRadius, borderRadius, borderRadius, 0, 90);
-            path.AddArc(0, panel.Height - borderRadius, borderRadius, borderRadius, 90, 90);
-            path.CloseAllFigures();
 
-            panel.Region = new Region(path);
-        }
-
-        private void VenteComptoirForm_Resize(object sender, EventArgs e)
-        {
-            BorderRaduis(PanelTotal);
-            BorderRaduis(TableLayoutPanelInfoCaissier);
-            BorderRaduis(PanelEnregistrement);
-            BorderRaduis(TableLayoutPanelFooter);
-            BorderRaduis(PanelCommandDroite);
-            BorderRaduis(TableLayouotPanelHeader);
-            BorderRaduis(TableLayoutPanelDesignation);
-        }
-
-        //*******************************************************************************************************************BACK*******************************************************************************************************************//
-
-        private void ChargerComboBoxes()
-        {
-            var deviseASelectionne = _deviseRepository.GetAll();
-            var deviseObtenu = deviseASelectionne.Select(d => d.D_Intitule).ToList();
-            var modeDeReglement = _reglementRepository.GetAll();
-            var reglementObtenu = modeDeReglement.Select(r => r.R_Intitule).ToList();
-
-            ComboBoxDeviseEnregistrement.Items.Clear();
-            ComboBoxDeviseReste.Items.Clear();
-            foreach (var devise in deviseObtenu)
-            {
-                ComboBoxDeviseEnregistrement.Items.Add(devise.ToString());
-                ComboBoxDeviseReste.Items.Add(devise.ToString());
-            }
-
-            ComboBoxDeviseEnregistrement.SelectedIndex = 0;
-            ComboBoxDeviseReste.SelectedIndex = 0;
-
-            ComboBoxReglementEnregistrement.Items.Clear();
-            foreach (var mode in reglementObtenu)
-            {
-                ComboBoxReglementEnregistrement.Items.Add(mode.ToString());
-            }
-
-            ComboBoxReglementEnregistrement.SelectedIndex = 0;
-
-        }
-
-        private void ControlTableLayoutPanel()
-        {
-            foreach (Control control in TableLayoutPanelDesignation.Controls)
-            {
-
-                if (control is TextBox textBox)
-                {
-                    textBox.Text = textBox.Tag?.ToString();
-                }
-            }
-        }
 
         private void VenteComptoirForm_Load(object sender, EventArgs e)
         {
@@ -292,26 +433,6 @@ namespace SoftCaisse.Forms.VenteComptoir
 
             }
 
-        }
-
-        private decimal TauxPriseEnCompte(string arRef)
-        {
-            var infoSupplementaireArticleTaxe = _context.F_ARTCOMPTA
-                            .Where(article => article.AR_Ref == arRef)
-                            .Select(article => new
-                            {
-                                IdentifiantChamp = article.ACP_Champ,
-                                CodeTaxeAComptabiliser = article.ACP_ComptaCPT_Taxe1
-                            }).FirstOrDefault();
-
-            var infoSupplementaireTaxe = _context.F_TAXE
-                .Where(article => article.TA_Code == infoSupplementaireArticleTaxe.CodeTaxeAComptabiliser)
-                .Select(article => new
-                {
-                    TauxPriseEnCompte = article.TA_Taux,
-                }).FirstOrDefault();
-
-            return infoSupplementaireTaxe?.TauxPriseEnCompte ?? 0;
         }
 
         private void TextBoxReference_KeyPress(object sender, KeyPressEventArgs e)
@@ -399,7 +520,7 @@ namespace SoftCaisse.Forms.VenteComptoir
                     }
                     else
                     {
-                        ListeArticles articleARechercher = new ListeArticles(codeFamilleOuDesignation, true, selectedCategTarifaire.valeur, pourcentageRemise);
+                        ListeArticles articleARechercher = new ListeArticles(codeFamilleOuDesignation, true, false, selectedCategTarifaire.valeur, pourcentageRemise);
                         articleARechercher.ShowDialog(this);
                     }
                 }
@@ -462,28 +583,6 @@ namespace SoftCaisse.Forms.VenteComptoir
                         decimal puNet = Convert.ToDecimal(TextBoxPUnet.Text ?? "0");
                         decimal montantHT = Convert.ToDecimal(TextBoxMontantHT.Text ?? "0");
                         decimal montantTTC = Convert.ToDecimal(TextBoxMontantTTC.Text ?? "0");
-                        // TODO: OHATRY NY TSY ILAINA ITO ZAVATRA ITO ANH...
-                        //if (TextBoxRemise.Text != "")
-                        //{
-                        //    if (Convert.ToInt16(TextBoxRemise.Text) != 0)
-                        //    {
-                        //        decimal remiseArticle = Convert.ToInt32(TextBoxRemise.Text);
-                        //        if (remiseArticle != 0)
-                        //        {
-                        //            decimal tauxPriseEnCompte = TauxPriseEnCompte(TextBoxReference.Text);
-                        //            puNet *= (1 - remiseArticle / 100);
-                        //            montantHT *= (1 - remiseArticle / 100);
-                        //            montantTTC *= (1 - remiseArticle / 100);
-                        //        }
-                        //    }
-                        //    else
-                        //    {
-                        //        MessageBox.Show("La quantité ne doit pas être nulle");
-                        //        TextBoxRemise.Text = "";
-                        //        TextBoxRemise.Focus();
-                        //    }
-                        //}
-                        // FIN: OHATRY NY TSY ILAINA ITO ZAVATRA ITO ANH...
                         if (changedIndex == -1)
                         {
                             DataGridViewArticle.Rows.Add(arRef, arDesign, puHT, puTTC, quantiteEcriteStock, conditionnement, TextBoxRemise.Text, puNet, montantHT, montantTTC);
@@ -544,7 +643,6 @@ namespace SoftCaisse.Forms.VenteComptoir
 
         private void TextBoxQuantiteDisponibleEnStock_TextChanged(object sender, EventArgs e)
         {
-
             try
             {
                 if (TextBoxQuantiteDisponibleEnStock.Text != "")
@@ -989,97 +1087,7 @@ namespace SoftCaisse.Forms.VenteComptoir
             }
         }
 
-        private void change_tarif(object sender, EventArgs e)
-        {
-            Controle obj = (Controle)ComboBoxCentrale.SelectedItem;
-            F_COMPTET valeur = _context.F_COMPTET.FirstOrDefault(u => u.CT_Num == obj.valeur);
-            P_CATTARIF tarif = _context.P_CATTARIF.FirstOrDefault(u => u.cbMarq == valeur.N_CatTarif);
-            if (valeur != null)
-            {
-                ComboBoxTarif.SelectedIndex = ComboBoxTarif.FindString(tarif.CT_Intitule);
-            }
 
-        }
-
-        private void creation_facture(object sender, EventArgs e)
-        {
-            Controle tier = (Controle)ComboBoxType.SelectedItem;
-            Controle payeur = (Controle)ComboBoxCentrale.SelectedItem;
-            List<Fligne> fligne = new List<Fligne>();
-            List<Freglement> freglement = new List<Freglement>();
-            Fentete fentete = new Fentete()
-            {
-                caisse = LabelTitleCaissier.Text,
-                type = "Facture",
-                date = DateTime.Now.ToShortDateString(),
-                numero = refDoc
-            };
-
-            foreach (DataGridViewRow ligne in DataGridViewArticle.Rows)
-            {
-
-                string reduct = string.IsNullOrEmpty(ligne.Cells[6].Value.ToString()) ? "0%" : ligne.Cells[6].Value.ToString() + "%";
-                fligne.Add(new Fligne()
-                {
-                    reference = ligne.Cells[0].FormattedValue.ToString(),
-                    designation = ligne.Cells[1].FormattedValue.ToString(),
-                    montant_ht = double.Parse(ligne.Cells[2].FormattedValue.ToString()),
-                    prix_unitaire = double.Parse(ligne.Cells[3].FormattedValue.ToString()),
-                    quantite = double.Parse(ligne.Cells[4].FormattedValue.ToString()),
-                    remise = reduct
-                });
-            }
-            var tiers = _context.F_COMPTEA.FirstOrDefault(u => u.CA_Num == ComboBoxAffaire.SelectedValue.ToString());
-            var nAnalytique = _context.P_ANALYTIQUE.FirstOrDefault(u => u.cbMarq == tiers.N_Analytique);
-            string regl_libelle = TextBoxLibelleEnregistrement.Text;
-            regl_libelle = regl_libelle.Replace("ticket", "facture");
-
-            if (refDoc == null)
-            {
-                IBODocument3 type = _sageObj.CreateFACTURE(ComboBoxDeviseReste.SelectedText, ComboBoxDepot.SelectedValue.ToString(), nAnalytique.A_Intitule, tiers.CA_Num, _caissier.CO_Nom, _caissier.CO_Prenom, tier.valeur, payeur.valeur, fligne);
-                if (type != null)
-                {
-                    fentete.numero = type.DO_Piece;
-                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " ,DO_Valide=1 where DO_Piece like '" + type.DO_Piece + "'");
-                    _context.Database.ExecuteSqlCommand("UPDATE F_DOCLIGNE set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + " , CO_No=" + _caissier.CO_No + " ,cbCO_No=" + _caissier.CO_No + " where DO_Piece like '" + type.DO_Piece + "'");
-                    foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
-                    {
-                        double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
-                        IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), type.DO_Piece, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
-                        freglement.Add(new Freglement()
-                        {
-                            Date = DateTime.Now.ToShortDateString(),
-                            Montant = Double.Parse(obj.Cells[1].FormattedValue.ToString()),
-                            Type = obj.Cells[0].FormattedValue.ToString()
-                        });
-                        _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
-                    }
-                }
-            }
-            else
-            {
-                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Domaine=0 , DO_Type=6 , DO_DocType=6 , DO_Escompte=0, DO_Valide=0 where DO_Piece like '" + refDoc + "'");
-                foreach (DataGridViewRow obj in DataGridViewEnregistrement.Rows)
-                {
-                    double valeur = Double.Parse(obj.Cells[1].FormattedValue.ToString());
-                    IBODocumentReglement docuement = _sageObj.createReglement(regl_libelle, DateTime.Now, valeur, obj.Cells[0].FormattedValue.ToString(), refDoc, obj.Cells[3].FormattedValue.ToString(), _caisse.JO_Num);
-                    freglement.Add(new Freglement()
-                    {
-                        Date = DateTime.Now.ToShortDateString(),
-                        Montant = Double.Parse(obj.Cells[1].FormattedValue.ToString()),
-                        Type = obj.Cells[0].FormattedValue.ToString()
-                    });
-                    _context.Database.ExecuteSqlCommand("UPDATE F_CREGLEMENT set CA_No=" + _caisse.CA_No + " , cbCA_No=" + _caisse.CA_No + ", CO_NoCaissier=" + _caissier.CO_No + " ,cbCO_NoCaissier=" + _caissier.CO_No + " where RG_Piece =" + docuement.RG_Piece);
-                }
-                _context.Database.ExecuteSqlCommand("UPDATE F_DOCENTETE set DO_Attente=0 where DO_Piece like '" + refDoc + "'");
-            }
-            this.Close();
-            string devis = _context.P_DEVISE.FirstOrDefault(u => u.cbMarq + "" == ComboBoxDeviseReste.SelectedItem.ToString()).D_Intitule;
-            Reporting report = new Reporting(fentete, fligne, freglement, devis);
-            report.BringToFront();
-            report.Show();
-            report.Focus();
-        }
 
         private void BouttonTicket_Click(object sender, EventArgs e)
         {
@@ -1180,7 +1188,6 @@ namespace SoftCaisse.Forms.VenteComptoir
             Controle valeurs = (Controle)ComboboxSouche.SelectedItem;
             foreach (DataGridViewRow ligne in DataGridViewArticle.Rows)
             {
-
                 string reduct = string.IsNullOrEmpty(ligne.Cells[6].Value.ToString()) ? "0%" : ligne.Cells[6].Value.ToString() + "%";
                 fligne.Add(new Fligne()
                 {
@@ -1268,6 +1275,10 @@ namespace SoftCaisse.Forms.VenteComptoir
         //    }
         //}
         // ========================================= FIN ILAINA ARY VE ITO ZAVATRA ITO =========================================
+
+        // ============================================ EVENEMENTS ============================================
+        // ====================================================================================================
+
     }
 }
 

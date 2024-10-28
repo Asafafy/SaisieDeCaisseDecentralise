@@ -59,7 +59,7 @@
             this.labelRepresentant = new System.Windows.Forms.Label();
             this.comboBoxAffaire = new System.Windows.Forms.ComboBox();
             this.labelAffaire = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtBxRef = new System.Windows.Forms.TextBox();
             this.labelReference = new System.Windows.Forms.Label();
             this.labelExpedit = new System.Windows.Forms.Label();
             this.labelEnTete1 = new System.Windows.Forms.Label();
@@ -109,11 +109,12 @@
             this.valPrixRevientHT = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTotHT = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblPrixTotHT = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnOk = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kptAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnNouveauDocEnTete = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -124,6 +125,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -176,6 +178,7 @@
             this.btnNomenclature.TabIndex = 2;
             this.btnNomenclature.Text = "Informations";
             this.btnNomenclature.UseVisualStyleBackColor = false;
+            this.btnNomenclature.Click += new System.EventHandler(this.btnNomenclature_Click);
             // 
             // button1
             // 
@@ -257,7 +260,7 @@
             this.tableLayoutPanel1.Controls.Add(this.labelRepresentant, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxAffaire, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.labelAffaire, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtBxRef, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.labelReference, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.labelExpedit, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelEnTete1, 2, 3);
@@ -478,14 +481,14 @@
             this.labelAffaire.Text = "Affaire";
             this.labelAffaire.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox3
+            // txtBxRef
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(121, 65);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(269, 20);
-            this.textBox3.TabIndex = 37;
+            this.txtBxRef.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBxRef.Location = new System.Drawing.Point(121, 65);
+            this.txtBxRef.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxRef.Name = "txtBxRef";
+            this.txtBxRef.Size = new System.Drawing.Size(269, 20);
+            this.txtBxRef.TabIndex = 37;
             // 
             // labelReference
             // 
@@ -630,32 +633,34 @@
             this.BouttonEnregistrerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonEnregistrerDesignation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonEnregistrerDesignation.Enabled = false;
-            this.BouttonEnregistrerDesignation.Location = new System.Drawing.Point(1132, 318);
+            this.BouttonEnregistrerDesignation.Location = new System.Drawing.Point(1121, 64);
             this.BouttonEnregistrerDesignation.Name = "BouttonEnregistrerDesignation";
             this.BouttonEnregistrerDesignation.Palette = this.kryptonPalette1;
             this.BouttonEnregistrerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.BouttonEnregistrerDesignation.Size = new System.Drawing.Size(90, 25);
             this.BouttonEnregistrerDesignation.TabIndex = 15;
             this.BouttonEnregistrerDesignation.Values.Text = "Enregistrer";
+            this.BouttonEnregistrerDesignation.Click += new System.EventHandler(this.BouttonEnregistrerDesignation_Click);
             // 
             // BouttonSupprimerDesignation
             // 
             this.BouttonSupprimerDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonSupprimerDesignation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonSupprimerDesignation.Enabled = false;
-            this.BouttonSupprimerDesignation.Location = new System.Drawing.Point(1036, 318);
+            this.BouttonSupprimerDesignation.Location = new System.Drawing.Point(1025, 64);
             this.BouttonSupprimerDesignation.Name = "BouttonSupprimerDesignation";
             this.BouttonSupprimerDesignation.Palette = this.kryptonPalette1;
             this.BouttonSupprimerDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.BouttonSupprimerDesignation.Size = new System.Drawing.Size(90, 25);
             this.BouttonSupprimerDesignation.TabIndex = 14;
             this.BouttonSupprimerDesignation.Values.Text = "Supprimer";
+            this.BouttonSupprimerDesignation.Click += new System.EventHandler(this.BouttonSupprimerDesignation_Click);
             // 
             // BouttonNouveauDesignation
             // 
             this.BouttonNouveauDesignation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BouttonNouveauDesignation.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BouttonNouveauDesignation.Location = new System.Drawing.Point(940, 318);
+            this.BouttonNouveauDesignation.Location = new System.Drawing.Point(929, 64);
             this.BouttonNouveauDesignation.Name = "BouttonNouveauDesignation";
             this.BouttonNouveauDesignation.Palette = this.kryptonPalette1;
             this.BouttonNouveauDesignation.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
@@ -686,11 +691,11 @@
             this.tableLayoutPanel2.Controls.Add(this.TextBoxDesignation, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.TextBoxPUTTC, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.TextBoxRemise, 4, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(16, 273);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(8, 17);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1209, 39);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1203, 39);
             this.tableLayoutPanel2.TabIndex = 16;
             // 
             // TextBoxConditionnement
@@ -707,6 +712,7 @@
             // 
             // TextBoxQuantiteDisponibleEnStock
             // 
+            this.TextBoxQuantiteDisponibleEnStock.BackColor = System.Drawing.Color.AliceBlue;
             this.TextBoxQuantiteDisponibleEnStock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxQuantiteDisponibleEnStock.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxQuantiteDisponibleEnStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -714,6 +720,7 @@
             this.TextBoxQuantiteDisponibleEnStock.Name = "TextBoxQuantiteDisponibleEnStock";
             this.TextBoxQuantiteDisponibleEnStock.Size = new System.Drawing.Size(114, 30);
             this.TextBoxQuantiteDisponibleEnStock.TabIndex = 18;
+            this.TextBoxQuantiteDisponibleEnStock.TextChanged += new System.EventHandler(this.TextBoxQuantiteDisponibleEnStock_TextChanged);
             // 
             // TextBoxMontantHT
             // 
@@ -724,7 +731,7 @@
             this.TextBoxMontantHT.Location = new System.Drawing.Point(1083, 3);
             this.TextBoxMontantHT.Name = "TextBoxMontantHT";
             this.TextBoxMontantHT.ReadOnly = true;
-            this.TextBoxMontantHT.Size = new System.Drawing.Size(123, 30);
+            this.TextBoxMontantHT.Size = new System.Drawing.Size(117, 30);
             this.TextBoxMontantHT.TabIndex = 22;
             // 
             // TextBoxMontantTTC
@@ -754,6 +761,7 @@
             // TextBoxReference
             // 
             this.TextBoxReference.AccessibleName = "";
+            this.TextBoxReference.BackColor = System.Drawing.Color.AliceBlue;
             this.TextBoxReference.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxReference.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxReference.ForeColor = System.Drawing.SystemColors.GrayText;
@@ -762,6 +770,8 @@
             this.TextBoxReference.Size = new System.Drawing.Size(114, 30);
             this.TextBoxReference.TabIndex = 14;
             this.TextBoxReference.Text = "Référence";
+            this.TextBoxReference.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxReference_KeyPress);
+            this.TextBoxReference.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TextBoxReference_PreviewKeyDown);
             // 
             // TextBoxPUnet
             // 
@@ -777,6 +787,7 @@
             // 
             // TextBoxDesignation
             // 
+            this.TextBoxDesignation.BackColor = System.Drawing.Color.AliceBlue;
             this.TextBoxDesignation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxDesignation.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxDesignation.ForeColor = System.Drawing.SystemColors.GrayText;
@@ -800,7 +811,7 @@
             // 
             // TextBoxRemise
             // 
-            this.TextBoxRemise.BackColor = System.Drawing.SystemColors.Window;
+            this.TextBoxRemise.BackColor = System.Drawing.Color.AliceBlue;
             this.TextBoxRemise.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxRemise.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxRemise.ForeColor = System.Drawing.SystemColors.GrayText;
@@ -841,13 +852,13 @@
             this.montantHT,
             this.montantTTC});
             this.DataGridViewArticle.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.DataGridViewArticle.Location = new System.Drawing.Point(16, 359);
+            this.DataGridViewArticle.Location = new System.Drawing.Point(12, 387);
             this.DataGridViewArticle.Name = "DataGridViewArticle";
             this.DataGridViewArticle.ReadOnly = true;
             this.DataGridViewArticle.RowHeadersVisible = false;
             this.DataGridViewArticle.RowHeadersWidth = 51;
             this.DataGridViewArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewArticle.Size = new System.Drawing.Size(1209, 230);
+            this.DataGridViewArticle.Size = new System.Drawing.Size(1218, 259);
             this.DataGridViewArticle.TabIndex = 17;
             // 
             // Column1
@@ -860,7 +871,7 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.Width = 121;
+            this.Column1.Width = 122;
             // 
             // Column2
             // 
@@ -939,7 +950,7 @@
             this.tableLayoutPanel3.Controls.Add(this.valPdsBrut, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.lblPdsNet, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.valPdsNet, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(61, 610);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(61, 662);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1002,7 +1013,7 @@
             this.tableLayoutPanel4.Controls.Add(this.valMargeHT, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.lblPrixDeRevientHT, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.valPrixRevientHT, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(447, 610);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(447, 662);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1061,8 +1072,8 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Controls.Add(this.lblTotHT, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label11, 1, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(833, 610);
+            this.tableLayoutPanel5.Controls.Add(this.lblPrixTotHT, 1, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(833, 662);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1081,39 +1092,39 @@
             this.lblTotHT.Text = "Total HT";
             this.lblTotHT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label11
+            // lblPrixTotHT
             // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(178, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(169, 40);
-            this.label11.TabIndex = 5;
-            this.label11.Text = " - ";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPrixTotHT.AutoSize = true;
+            this.lblPrixTotHT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPrixTotHT.Location = new System.Drawing.Point(178, 0);
+            this.lblPrixTotHT.Name = "lblPrixTotHT";
+            this.lblPrixTotHT.Size = new System.Drawing.Size(169, 40);
+            this.lblPrixTotHT.TabIndex = 5;
+            this.lblPrixTotHT.Text = " - ";
+            this.lblPrixTotHT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.DarkGray;
-            this.panel5.Location = new System.Drawing.Point(28, 721);
+            this.panel5.Location = new System.Drawing.Point(28, 754);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1190, 1);
             this.panel5.TabIndex = 41;
             // 
-            // kryptonButton2
+            // btnOk
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(1061, 735);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Palette = this.kryptonPalette1;
-            this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(75, 31);
-            this.kryptonButton2.TabIndex = 41;
-            this.kryptonButton2.Values.Text = "OK";
+            this.btnOk.Location = new System.Drawing.Point(1061, 767);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Palette = this.kryptonPalette1;
+            this.btnOk.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnOk.Size = new System.Drawing.Size(75, 31);
+            this.btnOk.TabIndex = 41;
+            this.btnOk.Values.Text = "OK";
             // 
             // kptAnnuler
             // 
-            this.kptAnnuler.Location = new System.Drawing.Point(1144, 735);
+            this.kptAnnuler.Location = new System.Drawing.Point(1144, 767);
             this.kptAnnuler.Margin = new System.Windows.Forms.Padding(2);
             this.kptAnnuler.Name = "kptAnnuler";
             this.kptAnnuler.Palette = this.kryptonPalette1;
@@ -1123,35 +1134,44 @@
             this.kptAnnuler.Values.Text = "Annuler";
             this.kptAnnuler.Click += new System.EventHandler(this.kptAnnuler_Click);
             // 
-            // kryptonButton3
+            // btnNouveauDocEnTete
             // 
-            this.kryptonButton3.Location = new System.Drawing.Point(979, 735);
-            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Palette = this.kryptonPalette1;
-            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton3.Size = new System.Drawing.Size(75, 31);
-            this.kryptonButton3.TabIndex = 42;
-            this.kryptonButton3.Values.Text = "Nouveau";
+            this.btnNouveauDocEnTete.Location = new System.Drawing.Point(979, 767);
+            this.btnNouveauDocEnTete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNouveauDocEnTete.Name = "btnNouveauDocEnTete";
+            this.btnNouveauDocEnTete.Palette = this.kryptonPalette1;
+            this.btnNouveauDocEnTete.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnNouveauDocEnTete.Size = new System.Drawing.Size(75, 31);
+            this.btnNouveauDocEnTete.TabIndex = 42;
+            this.btnNouveauDocEnTete.Values.Text = "Nouveau";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel2);
+            this.groupBox1.Controls.Add(this.BouttonSupprimerDesignation);
+            this.groupBox1.Controls.Add(this.BouttonNouveauDesignation);
+            this.groupBox1.Controls.Add(this.BouttonEnregistrerDesignation);
+            this.groupBox1.Location = new System.Drawing.Point(12, 270);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1218, 100);
+            this.groupBox1.TabIndex = 43;
+            this.groupBox1.TabStop = false;
             // 
             // NouveauDocumentDeVente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(1242, 781);
-            this.Controls.Add(this.kryptonButton3);
-            this.Controls.Add(this.kryptonButton2);
+            this.ClientSize = new System.Drawing.Size(1242, 810);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnNouveauDocEnTete);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.kptAnnuler);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.DataGridViewArticle);
-            this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.BouttonEnregistrerDesignation);
-            this.Controls.Add(this.BouttonSupprimerDesignation);
-            this.Controls.Add(this.BouttonNouveauDesignation);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1174,6 +1194,7 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1211,7 +1232,7 @@
         private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtBxRef;
         private System.Windows.Forms.Panel panel1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kptnBtnValider;
         private ComponentFactory.Krypton.Toolkit.KryptonButton BouttonEnregistrerDesignation;
@@ -1251,16 +1272,17 @@
         private System.Windows.Forms.Label lblPrixDeRevientHT;
         private System.Windows.Forms.Label valPrixRevientHT;
         private System.Windows.Forms.Panel panel5;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOk;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kptAnnuler;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnNouveauDocEnTete;
         private System.Windows.Forms.Label lblTotHT;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblPrixTotHT;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

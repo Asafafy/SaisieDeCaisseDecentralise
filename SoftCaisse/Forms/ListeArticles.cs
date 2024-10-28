@@ -18,14 +18,16 @@ namespace SoftCaisse.Forms.Article
 
         private DataTable _bindingSource;
         private readonly bool _venantVenteComptoir;
+        private readonly bool _venantDocumentVente;
         private readonly string _selectedCatTarifaire;
         private readonly decimal _remisePourcent;
 
-        public ListeArticles(string searchTerm, bool venantVenteComptoir, string selectedCatTarifaire, decimal remisePourcent)
+        public ListeArticles(string searchTerm, bool venantVenteComptoir, bool venantDocumentVente, string selectedCatTarifaire, decimal remisePourcent)
         {
             _context = new AppDbContext();
             InitializeComponent();
             _venantVenteComptoir = venantVenteComptoir;
+            _venantDocumentVente = venantDocumentVente;
             _selectedCatTarifaire = selectedCatTarifaire;
             _remisePourcent = remisePourcent;
 
@@ -174,11 +176,18 @@ namespace SoftCaisse.Forms.Article
                             puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
                         }
                     }
-                    if (_venantVenteComptoir)
+                    if (_venantVenteComptoir == true && _venantDocumentVente == false)
                     {
                         VenteComptoirForm venteComptoirForm = Application.OpenForms.OfType<VenteComptoirForm>().FirstOrDefault();
                         venteComptoirForm?.AjouterPrix(referenceArt, designArt, 1, puHT, puTTC, estHorsTaxe ? "HT" : "TTC");
                         venteComptoirForm?.MettreAJourMontants(1, puHT, puTTC, _remisePourcent);
+                        Close();
+                    }
+                    else if (_venantDocumentVente == true && _venantVenteComptoir == false)
+                    {
+                        NouveauDocumentDeVente nouveauDocumentDeVente = Application.OpenForms.OfType<NouveauDocumentDeVente>().FirstOrDefault();
+                        nouveauDocumentDeVente?.AjouterPrix(referenceArt, designArt, 1, puHT, puTTC, estHorsTaxe ? "HT" : "TTC");
+                        nouveauDocumentDeVente?.MettreAJourMontants(1, puHT, puTTC, _remisePourcent);
                         Close();
                     }
                     // ============================ FIN MBOLA TSY AU POINT ============================

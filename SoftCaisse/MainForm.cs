@@ -2,6 +2,7 @@
 using SoftCaisse.Controls;
 using SoftCaisse.Forms;
 using SoftCaisse.Forms.Article;
+using SoftCaisse.Forms.Clients;
 using SoftCaisse.Forms.ClotureCaisse;
 using SoftCaisse.Forms.ConnexBase;
 using SoftCaisse.Forms.ControlCaisse;
@@ -214,7 +215,7 @@ namespace SoftCaisse
 
         private void artilceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ListeArticles("", false, null, 0).Show();
+            new ListeArticles("", false, false, null, 0).Show();
         }
 
         private void familleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -237,7 +238,8 @@ namespace SoftCaisse
 
         private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ListeClients listeClients = new ListeClients();
+            listeClients.Show();
         }
     }
 }

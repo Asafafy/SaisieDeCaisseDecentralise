@@ -23,9 +23,9 @@ namespace SoftCaisse.Repositories
             throw new NotImplementedException();
         }
 
-        List<F_COMPTET> IRepository<F_COMPTET>.GetAll()
+        public List<F_COMPTET> GetAll()
         {
-            return _context.F_COMPTET.ToList();
+            return _context.F_COMPTET.Where(ct => ct.CT_Type == 0).ToList();
         }
 
         public F_COMPTET GetById(int id)

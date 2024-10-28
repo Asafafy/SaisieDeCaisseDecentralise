@@ -307,8 +307,6 @@ namespace SoftCaisse.Forms
             }
             else
                 MessageBox.Show("Complétez d'abord l'intitule du rôle", "Incomplet", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-
         }
 
         private void btnAnnuler_Click(object sender, EventArgs e)

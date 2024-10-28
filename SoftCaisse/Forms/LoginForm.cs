@@ -108,16 +108,16 @@ namespace SoftCaisse.Forms.Login
                         _menuTraitement.DropDownItems["ouvertureDeCaisseToolStripMenuItem"].Enabled = estActif;
                         break;
                     case 15:
-                        _menuTraitement.DropDownItems["ventesComptoirToolStripMenuItem"].Enabled = estActif;
+                        _menuTraitement.DropDownItems["ventesComptoirToolStripMenuItem"].Enabled = false;
                         break;
                     case 16:
-                        _menuTraitement.DropDownItems["dOToolStripMenuItem"].Enabled = estActif;
+                        _menuTraitement.DropDownItems["dOToolStripMenuItem"].Enabled = false;
                         break;
                     case 17:
-                        _menuTraitement.DropDownItems["mouvementsToolStripMenuItem"].Enabled = estActif;
+                        _menuTraitement.DropDownItems["mouvementsToolStripMenuItem"].Enabled = false;
                         break;
                     case 18:
-                        _menuTraitement.DropDownItems["fermetureDeCaisseToolStripMenuItem"].Enabled = estActif;
+                        _menuTraitement.DropDownItems["fermetureDeCaisseToolStripMenuItem"].Enabled = false;
                         break;
                     case 19:
                         _menuTraitement.DropDownItems["gestionDesRèglementsToolStripMenuItem"].Enabled = estActif;
@@ -161,6 +161,10 @@ namespace SoftCaisse.Forms.Login
 
 
 
+
+
+        // ============================================================================================
+        // ======================================== EVENEMENTS ========================================
         private void kryptonButton1_Click(object sender, System.EventArgs e)
         {
             var user = _sCDContext.Users.FirstOrDefault(u => u.Login == ChampUser.Text && u.UserPassword == Champpwd.Text);
@@ -180,12 +184,13 @@ namespace SoftCaisse.Forms.Login
 
                 Close();
                 MessageBox.Show("Connection avec succès !", "Connexion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
             else
             {
                 MessageBox.Show("Erreur Pseudo/Mot de passe !", "Erreur Connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        // ======================================== EVENEMENTS ========================================
+        // ============================================================================================
     }
 }

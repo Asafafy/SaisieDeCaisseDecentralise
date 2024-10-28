@@ -288,7 +288,7 @@ namespace SoftCaisse.Repositories.BIJOU
                 f_DOCENTETE.DO_Statut,
                 f_DOCENTETE.DO_Heure,
                 f_DOCENTETE.CA_No,				//TODO: Tsy mety
-                f_DOCENTETE.cbCA_No,			//TODO: Tsy mety
+                f_DOCENTETE.cbCA_No == 0 ? null : f_DOCENTETE.cbCA_No,			//TODO: Tsy mety
                 f_DOCENTETE.CO_NoCaissier,		//TODO: Tsy mety
                 f_DOCENTETE.cbCO_NoCaissier,	//TODO: Tsy mety
                 f_DOCENTETE.DO_Transfere,

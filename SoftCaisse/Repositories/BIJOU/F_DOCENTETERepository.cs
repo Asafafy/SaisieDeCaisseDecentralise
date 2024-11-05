@@ -1,5 +1,6 @@
 ﻿using SoftCaisse.Models;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace SoftCaisse.Repositories.BIJOU
 {
@@ -239,6 +240,8 @@ namespace SoftCaisse.Repositories.BIJOU
 					{107},
 					{108}
 				)";
+
+
             _context.Database.ExecuteSqlCommand(query,
                 f_DOCENTETE.DO_Domaine,
                 f_DOCENTETE.DO_Type,
@@ -379,6 +382,22 @@ namespace SoftCaisse.Repositories.BIJOU
         List<F_DOCENTETE> IRepository<F_DOCENTETE>.GetAll()
         {
             throw new System.NotImplementedException();
+        }
+
+        public void UpdateTotalHT(decimal doTotalHT, string numDoPiece)
+        {
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBINS_F_DOCENTETE] ON [dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_F_DOCENTETE] ON [dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_CPTAF_DOCENTETE] ON [dbo].[F_DOCENTETE]");
+            string query = "UPDATE F_DOCENTETE SET DO_TotalHT = @doTotalHT WHERE DO_Piece LIKE @numDoPiece";
+            _context.Database.ExecuteSqlCommand(
+                query,
+                new SqlParameter("@doTotalHT", doTotalHT),
+                new SqlParameter("@numDoPiece", "%" + numDoPiece + "%")
+            );
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER[dbo].[TG_CBINS_F_DOCENTETE] ON[dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_F_DOCENTETE] ON [dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_CPTAF_DOCENTETE] ON [dbo].[F_DOCENTETE]");
         }
     }
 }

@@ -162,6 +162,7 @@
     <Compile Include="Forms\SelectionEcheancesARegler.Designer.cs">
       <DependentUpon>SelectionEcheancesARegler.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\F_ARTFOURNISS.cs" />
     <Compile Include="Models\Json\Autorisation.cs" />
     <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
@@ -439,6 +440,7 @@
     <Compile Include="Repositories\BIJOU\F_ARTSTOCKRepository.cs" />
     <Compile Include="Repositories\BIJOU\F_COMPTETRepository.cs" />
     <Compile Include="Repositories\BIJOU\F_DOCENTETERepository.cs" />
+    <Compile Include="Repositories\BIJOU\F_DOCLIGNERepository.cs" />
     <Compile Include="Repositories\BIJOU\F_DOCREGLRepository.cs" />
     <Compile Include="Repositories\BIJOU\F_BILLETPIECERepository.cs" />
     <Compile Include="Repositories\BIJOU\F_CAISSERepository.cs" />
@@ -454,10 +456,13 @@
     <Compile Include="Repositories\BIJOU\P_REGLEMENTRepository.cs" />
     <Compile Include="Repositories\DTORepository\TaxeRepository.cs" />
     <Compile Include="Repositories\DTORepository\UniteRepository.cs" />
+    <Compile Include="Repositories\F_ARTFOURNISSRepository.cs" />
     <Compile Include="Repositories\ScdDb\AutorisationRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
+    <Compile Include="Services\F_ARTFOURNISSService.cs" />
     <Compile Include="Services\F_CREGLEMENTService.cs" />
+    <Compile Include="Services\F_DOCLIGNEService.cs" />
     <Compile Include="Services\F_DOCENTETEService.cs" />
     <Compile Include="Services\F_DOCREGLService.cs" />
     <Compile Include="Utils\ComboBox\Cmbx.cs" />

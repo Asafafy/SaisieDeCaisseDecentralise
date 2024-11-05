@@ -8,6 +8,7 @@ using SoftCaisse.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
@@ -22,6 +23,10 @@ namespace SoftCaisse.Forms
         MainForm mainForm;
         private readonly F_DOCREGLService f_DOCREGLService;
         private readonly F_DOCENTETEService f_DOCENTETEService;
+        private readonly F_DOCLIGNEService f_DOCLIGNEService;
+        private readonly F_ARTFOURNISSService f_ARTFOURNISSService;
+        IRepository<F_DOCLIGNE> _f_DOCLIGNERepository;
+        F_DOCENTETERepository _f_DOCENTETERepository;
 
         private readonly AppDbContext _context;
         private readonly SageContexte _sageContextObjMetier;
@@ -30,9 +35,12 @@ namespace SoftCaisse.Forms
         private readonly List<F_DOCENTETE> _listeDocuments;
         private readonly List<F_DOCREGL> _listeDocRegl;
         private readonly List<F_LIVRAISON> _listeLivraisons;
+        private readonly List<F_ARTICLE> _listeArticle;
+        private readonly List<F_COLLABORATEUR> _listeCollaborateurs;
 
         List<F_COLLABORATEUR> listeCollab;
         List<F_COMPTEA> listePlanAnalitique;
+        List<Fligne> fligne;
 
         private readonly string _typeDocument;
         private readonly string _currentDocPieceNo;
@@ -56,8 +64,13 @@ namespace SoftCaisse.Forms
 
             IRepository<F_DOCREGL> f_DOCREGLRepository = new F_DOCREGLRepository(_context);
             f_DOCREGLService = new F_DOCREGLService(f_DOCREGLRepository);
-            IRepository<F_DOCENTETE> f_DOCENTETERepository = new F_DOCENTETERepository(_context);
-            f_DOCENTETEService = new F_DOCENTETEService(f_DOCENTETERepository);
+            _f_DOCENTETERepository = new F_DOCENTETERepository(_context);
+            f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository);
+            _f_DOCLIGNERepository = new F_DOCLIGNERepository(_context);
+            f_DOCLIGNEService = new F_DOCLIGNEService(_f_DOCLIGNERepository);
+            F_ARTFOURNISSRepository f_ARTFOURNISSRepository = new F_ARTFOURNISSRepository(_context);
+            f_ARTFOURNISSService = new F_ARTFOURNISSService(f_ARTFOURNISSRepository);
+
 
             _typeDocument = typeDocument;
             mainForm = form;
@@ -66,6 +79,8 @@ namespace SoftCaisse.Forms
             _listeClients = _context.F_COMPTET.Where(c => c.CT_Type == 0).ToList();
             _listeDocRegl = _context.F_DOCREGL.ToList();
             _listeLivraisons = _context.F_LIVRAISON.ToList();
+            _listeArticle = _context.F_ARTICLE.ToList();
+            _listeCollaborateurs = _context.F_COLLABORATEUR.ToList();
 
             _currentDocPieceNo = GetCurrentDocNumber(typeDocument, _listeDocuments);
 
@@ -142,6 +157,20 @@ namespace SoftCaisse.Forms
 
             control.Invalidate();
         }
+
+        private short? GetDocLigneDomaine(short docType)
+        {
+            List<int> typeZero = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
+            if (typeZero.Contains(docType))
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
         private string FormatPieceNo(int maxNo, string prefixe)
         {
             string doPieceActu;
@@ -249,6 +278,10 @@ namespace SoftCaisse.Forms
             else if (docType == "Facture")
             {
                 return 6;
+            }
+            else if (docType == "Facture comptabilisée")
+            {
+                return 7;
             }
             else if (docType == "Facture de retour")
             {
@@ -764,7 +797,7 @@ namespace SoftCaisse.Forms
             TextBoxReference.Text = arRef;
             TextBoxDesignation.Text = arDesign;
             TextBoxConditionnement.Text = UniteVente;
-            TextBoxQuantiteDisponibleEnStock.Text = quantite.ToString("N0");
+            txtBxRemise.Text = quantite.ToString("N0");
             TextBoxPUnet.Text = puHT.ToString("N2");
             TextBoxPUHT.Text = puHT.ToString("N2");
             TextBoxPUTTC.Text = puTTC.ToString("N2");
@@ -892,8 +925,8 @@ namespace SoftCaisse.Forms
                 // Coloration des TextBox (Remise des couleurs)
                 TextBoxReference.BackColor = Color.White;
                 TextBoxDesignation.BackColor = Color.White;
-                TextBoxRemise.BackColor = Color.White;
-                TextBoxQuantiteDisponibleEnStock.BackColor = Color.White;
+                txtBxQuantite.BackColor = Color.White;
+                txtBxRemise.BackColor = Color.White;
 
                 // Disable Valider (Validation Docentete & Client)
                 kptnBtnValider.Enabled = false;
@@ -1032,7 +1065,7 @@ namespace SoftCaisse.Forms
             try
             {
                 Regex regex = new Regex(@"^\d+\.$");
-                if (regex.IsMatch(TextBoxRemise.Text))
+                if (regex.IsMatch(txtBxQuantite.Text))
                 {
                     // Ne rien faire.
                 }
@@ -1040,7 +1073,7 @@ namespace SoftCaisse.Forms
                 {
                     string cultureName = "en-EN"; // Exemple pour la culture française
                     CultureInfo culture = new CultureInfo(cultureName);
-                    if (decimal.TryParse(TextBoxRemise.Text, NumberStyles.Number, culture, out pourcentageRemise))
+                    if (decimal.TryParse(txtBxQuantite.Text, NumberStyles.Number, culture, out pourcentageRemise))
                     {
                         //decimal pourcentageRemise = Convert.ToDecimal(TextBoxRemise.Text == "" ? "0" : TextBoxRemise.Text);
                         decimal puHTSansRemise = Convert.ToDecimal(TextBoxPUHT?.Text == "" ? "0" : TextBoxPUHT?.Text);
@@ -1096,84 +1129,369 @@ namespace SoftCaisse.Forms
         {
             BouttonSupprimerDesignation.Enabled = true;
 
-            try
+            //try
+            //{
+            var articleBaseDeDonnees = _context.F_ARTSTOCK.FirstOrDefault(a => a.AR_Ref == TextBoxReference.Text);
+            if (articleBaseDeDonnees != null)
             {
-                var articleBaseDeDonnees = _context.F_ARTSTOCK.FirstOrDefault(a => a.AR_Ref == TextBoxReference.Text);
-                if (articleBaseDeDonnees != null)
+                decimal quantiteEnStock = (decimal)articleBaseDeDonnees.AS_QteSto - (decimal)articleBaseDeDonnees.AS_QteRes;
+
+                if (Convert.ToInt16(txtBxRemise.Text) <= quantiteEnStock)
                 {
-                    decimal quantiteEnStock = (decimal)articleBaseDeDonnees.AS_QteSto - (decimal)articleBaseDeDonnees.AS_QteRes;
-
-                    if (Convert.ToInt16(TextBoxQuantiteDisponibleEnStock.Text) <= quantiteEnStock)
+                    if (string.IsNullOrWhiteSpace(TextBoxReference.Text) || string.IsNullOrWhiteSpace(TextBoxDesignation.Text) || string.IsNullOrWhiteSpace(TextBoxPUnet.Text) || string.IsNullOrWhiteSpace(TextBoxConditionnement.Text) || string.IsNullOrWhiteSpace(txtBxQuantite.Text) || string.IsNullOrWhiteSpace(TextBoxPUTTC.Text) || string.IsNullOrWhiteSpace(txtBxRemise.Text) || string.IsNullOrWhiteSpace(TextBoxMontantTTC.Text) || string.IsNullOrWhiteSpace(TextBoxMontantHT.Text))
                     {
-                        if (string.IsNullOrWhiteSpace(TextBoxReference.Text) || string.IsNullOrWhiteSpace(TextBoxDesignation.Text) || string.IsNullOrWhiteSpace(TextBoxQuantiteDisponibleEnStock.Text))
-                        {
-                            MessageBox.Show("Veuillez remplir tous les champs.");
-                            return;
-                        }
+                        MessageBox.Show("Veuillez remplir tous les champs.");
+                        return;
+                    }
 
-                        string arRef = TextBoxReference.Text;
-                        string arDesign = TextBoxDesignation.Text;
-                        string conditionnement = TextBoxConditionnement.Text;
-                        int quantiteEcriteStock = int.Parse(TextBoxQuantiteDisponibleEnStock.Text);
-                        decimal puHT = Convert.ToDecimal(TextBoxPUHT?.Text ?? "0");
-                        decimal puTTC = Convert.ToDecimal(TextBoxPUTTC.Text ?? "0");
-                        decimal puNet = Convert.ToDecimal(TextBoxPUnet.Text ?? "0");
-                        decimal montantHT = Convert.ToDecimal(TextBoxMontantHT.Text ?? "0");
-                        decimal montantTTC = Convert.ToDecimal(TextBoxMontantTTC.Text ?? "0");
-                        // Ajout nouveau DOCLIGNE
-                        if (changedIndex == -1)
+                    string arRef = TextBoxReference.Text;
+                    string arDesign = TextBoxDesignation.Text;
+                    string conditionnement = TextBoxConditionnement.Text;
+                    int quantiteEcriteStock = int.Parse(txtBxRemise.Text);
+                    decimal puHT = Convert.ToDecimal(TextBoxPUHT?.Text ?? "0");
+                    decimal puTTC = Convert.ToDecimal(TextBoxPUTTC.Text ?? "0");
+                    decimal puNet = Convert.ToDecimal(TextBoxPUnet.Text ?? "0");
+                    decimal montantHT = Convert.ToDecimal(TextBoxMontantHT.Text ?? "0");
+                    decimal montantTTC = Convert.ToDecimal(TextBoxMontantTTC.Text ?? "0");
+                    // Ajout nouveau DOCLIGNE
+                    if (changedIndex == -1)
+                    {
+                        // Mise à jour affichage
+                        DataGridViewArticle.Rows.Add(arRef, arDesign, puHT, puTTC, quantiteEcriteStock, conditionnement, txtBxQuantite.Text, puNet, montantHT, montantTTC);
+                        // Get all properties du docligne
+                        F_DOCLIGNE docligne = new F_DOCLIGNE();
+                        F_DOCENTETE docEnCours = _context.F_DOCENTETE.Where(doc => doc.DO_Piece == _currentDocPieceNo).FirstOrDefault();
+                        short typeDoc = (short)GetDocTypeNo(_typeDocument);
+                        docligne.DO_Type = typeDoc;
+                        docligne.DO_Domaine = GetDocLigneDomaine(docligne.DO_Type);
+                        docligne.CT_Num = _listeClients[comboBoxClient.SelectedIndex].CT_Num;
+                        docligne.DO_Piece = _currentDocPieceNo;
+                        docligne.DO_Date = docEnCours.DO_Date;
+                        docligne.DL_DateBC = docEnCours.DO_Date;
+                        docligne.DL_DateBL = docEnCours.DO_Date;
+                        docligne.DL_Ligne = (DataGridViewArticle.Rows.Count + 1) * 1000;
+                        docligne.DO_Ref = docEnCours.DO_Ref;
+                        docligne.DL_TNomencl = 0;
+                        docligne.DL_TRemPied = 0;
+                        docligne.DL_TRemExep = 0;
+                        docligne.AR_Ref = TextBoxReference.Text;
+                        docligne.DL_Design = TextBoxDesignation.Text;
+                        docligne.DL_Qte = Convert.ToInt32(txtBxQuantite.Text);
+                        docligne.DL_QteBC = Convert.ToInt32(txtBxQuantite.Text);
+                        if ((short)GetDocTypeNo(_typeDocument) == 0 || (short)GetDocTypeNo(_typeDocument) == 1)
                         {
-                            DataGridViewArticle.Rows.Add(arRef, arDesign, puHT, puTTC, quantiteEcriteStock, conditionnement, TextBoxRemise.Text, puNet, montantHT, montantTTC);
+                            docligne.DL_QteBL = 0;
                         }
-                        // Mise à jour DOCLIGNE
                         else
                         {
-                            DataGridViewArticle.Rows[changedIndex].Cells[0].Value = arRef;
-                            DataGridViewArticle.Rows[changedIndex].Cells[1].Value = arDesign;
-                            DataGridViewArticle.Rows[changedIndex].Cells[2].Value = puHT;
-                            DataGridViewArticle.Rows[changedIndex].Cells[3].Value = puTTC;
-                            DataGridViewArticle.Rows[changedIndex].Cells[4].Value = quantiteEcriteStock;
-                            DataGridViewArticle.Rows[changedIndex].Cells[5].Value = conditionnement;
-                            DataGridViewArticle.Rows[changedIndex].Cells[6].Value = TextBoxRemise.Text;
-                            DataGridViewArticle.Rows[changedIndex].Cells[7].Value = puNet;
-                            DataGridViewArticle.Rows[changedIndex].Cells[8].Value = montantHT;
-                            DataGridViewArticle.Rows[changedIndex].Cells[9].Value = montantTTC;
-                            changedIndex = -1;
+                            docligne.DL_QteBL = 1;
                         }
-
-                        _totalPrixHT += montantHT;
-                        _totalPrixTTC += montantTTC;
-
-                        lblPrixTotHT.Text = _totalPrixHT.ToString("N2");
-
-                        foreach (Control control in tableLayoutPanel2.Controls)
+                        F_ARTICLE articleChoisi = _listeArticle.Where(a => a.AR_Ref == TextBoxReference.Text).FirstOrDefault();
+                        docligne.DL_PoidsNet = Convert.ToInt32(txtBxQuantite.Text) * articleChoisi.AR_PoidsNet;
+                        docligne.DL_PoidsBrut = Convert.ToInt32(txtBxQuantite.Text) * articleChoisi.AR_PoidsBrut;
+                        docligne.DL_Remise01REM_Valeur = Convert.ToDecimal(txtBxRemise.Text);
+                        docligne.DL_Remise01REM_Type = 0; // (Remise en pourcent)
+                        docligne.DL_Remise02REM_Valeur = 0;
+                        docligne.DL_Remise02REM_Type = 0;
+                        docligne.DL_Remise03REM_Valeur = 0;
+                        docligne.DL_Remise03REM_Type = 0;
+                        docligne.DL_PrixUnitaire = Convert.ToDecimal(TextBoxPUHT.Text);
+                        docligne.DL_PUBC = 0;
+                        docligne.DL_Taxe1 = 0;
+                        docligne.DL_TypeTaux1 = 0;
+                        docligne.DL_TypeTaxe1 = 0;
+                        docligne.DL_Taxe2 = 0;
+                        docligne.DL_TypeTaux2 = 0;
+                        docligne.DL_TypeTaxe2 = 0;
+                        docligne.DL_Taxe3 = 0;
+                        docligne.DL_TypeTaux3 = 0;
+                        docligne.DL_TypeTaxe3 = 0;
+                        F_COLLABORATEUR collab = _listeCollaborateurs.Where(c => c.CO_Nom + " " + c.CO_Prenom == comboBoxRepresentant.Text).FirstOrDefault();
+                        docligne.CO_No = collab != null ? collab.CO_No : 0;
+                        docligne.AG_No1 = 0; // TODO: Gammes mbola tsy prise en compte
+                        docligne.AG_No2 = 0; // TODO: Gammes mbola tsy prise en compte
+                        docligne.DL_PrixRU = Convert.ToDecimal(TextBoxPUHT.Text);
+                        docligne.DL_CMUP = Convert.ToDecimal(TextBoxPUHT.Text);
+                        if (articleChoisi.AR_SuiviStock == 0)
                         {
-                            if (control is TextBox textBox)
+                            docligne.DL_MvtStock = 0;
+                        }
+                        else
+                        {
+
+                            if (typeDoc == 0 || typeDoc == 1 || typeDoc == 2 || typeDoc == 5)
                             {
-                                textBox.Text = textBox.Tag.ToString();
+                                docligne.DL_MvtStock = 0;
+                            }
+                            else if (typeDoc == 3 || typeDoc == 6 || typeDoc == 7)
+                            {
+                                docligne.DL_MvtStock = 3;
+                            }
+                            else if (typeDoc == 4 || typeDoc == 16 || typeDoc == 17)
+                            {
+                                docligne.DL_MvtStock = 1;
+                            }
+                            else
+                            {
+                                docligne.DL_MvtStock = 0;
                             }
                         }
+                        docligne.DT_No = 0;
+                        F_ARTFOURNISS fournisseur = f_ARTFOURNISSService.GetByARRefAndPrincipal(articleChoisi.AR_Ref);
+                        docligne.AF_RefFourniss = fournisseur.AF_RefFourniss;
+                        if (articleChoisi.AR_Condition != 0)
+                        {
+                            // TODO: Mbola tsy choix avy amin'ny utilisateur ireto lignes ireot fa valeur par défaut.
+                            F_CONDITION condition = _context.F_CONDITION.Where(cond => cond.AR_Ref == articleChoisi.AR_Ref).FirstOrDefault();
+                            docligne.EU_Enumere = condition.EC_Enumere;
+                        }
+                        else
+                        {
+                            docligne.EU_Enumere = _context.P_UNITE.Where(unit => unit.cbMarq == articleChoisi.AR_UniteVen).Select(unit => unit.U_Intitule).FirstOrDefault();
+                        }
+                        docligne.EU_Qte = Convert.ToInt32(txtBxQuantite.Text);
+                        docligne.DL_TTC = 0;
+                        F_ARTSTOCK depotArtStock = _context.F_ARTSTOCK.Where(artStck => artStck.AR_Ref == articleChoisi.AR_Ref && artStck.AS_Principal == 1).FirstOrDefault();
+                        docligne.DE_No = depotArtStock != null ? depotArtStock.DE_No : 0;
+                        docligne.DL_NoRef = (short)(DataGridViewArticle.Rows.Count + 1);
+                        docligne.DL_TypePL = 0;
+                        docligne.DL_PUDevise = 0;
+                        docligne.DL_PUTTC = Convert.ToDecimal(TextBoxPUTTC.Text ?? "0");
+                        docligne.DL_No = _context.F_DOCLIGNE.Max(dl => dl.DL_No) + 1;
+                        docligne.DO_DateLivr = dateTimePicker2.Value;
+                        docligne.CA_Num = comboBoxAffaire.Text;
+                        int indexEspace = comboBoxAffaire.Text.IndexOf(' ');
+                        if (comboBoxAffaire.Text != "")
+                        {
+                            docligne.CA_Num = comboBoxAffaire.Text.Substring(0, indexEspace);
+                        }
+                        docligne.DL_Frais = 0;
+                        docligne.DL_Valorise = 1;
+                        docligne.AR_RefCompose = null;
+                        docligne.DL_NonLivre = 0;
+                        docligne.AC_RefClient = "";
+                        docligne.DL_MontantHT = Convert.ToDecimal(TextBoxMontantHT.Text);
+                        docligne.DL_MontantTTC = Convert.ToDecimal(TextBoxMontantTTC.Text);
+                        docligne.DL_FactPoids = 0;
+                        docligne.DL_Escompte = 0;
+                        docligne.DL_PiecePL = "";
+                        docligne.DL_DatePL = dateTimePicker3.Value;
+                        if (typeDoc == 1 || typeDoc == 2 || typeDoc == 3 || typeDoc == 4 || typeDoc == 5 || typeDoc == 6 || typeDoc == 7)
+                        {
+                            docligne.DL_QtePL = Convert.ToInt32(txtBxQuantite.Text);
+                        }
+                        else
+                        {
+                            docligne.DL_QtePL = 0;
+                        }
+                        docligne.DL_NoColis = "";
+                        docligne.DL_NoLink = 0;
+                        docligne.RP_Code = null;
+                        docligne.DL_QteRessource = 0;
+                        docligne.DL_DateAvancement = new DateTime(1753, 01, 01, 00, 00, 00);
+                        docligne.DL_PieceBL = "";
+                        docligne.DL_CodeTaxe1 = null;
+                        docligne.DL_CodeTaxe2 = null;
+                        docligne.DL_CodeTaxe3 = null;
+                        docligne.DL_PieceOFProd = 0;
+                        docligne.DL_PieceDE = "";
+                        docligne.DL_DateDE = docEnCours.DO_Date;
+                        docligne.DL_QteDE = typeDoc == 0 ? Convert.ToInt32(txtBxQuantite.Text) : 0;
+                        docligne.DL_Operation = "";
+                        docligne.DL_NoSousTotal = 0;
+                        docligne.CA_No = mainForm.CaisseNo;
+                        docligne.Colisage = null;
+                        docligne.Unité_de_colisage = null;
+                        docligne.Commentaires = null;
+
+
+                        // Insertion dans la base
+                        _f_DOCLIGNERepository.Add(docligne);
+
+
+                        // Update DO_TotalHT dans F_DOCENTETE (DOcument en cours)
+                        decimal montantTotalHT = 0;
+                        foreach (DataGridViewRow row in DataGridViewArticle.Rows)
+                        {
+                            if (row.Cells[8].Value != null)
+                            {
+                                montantTotalHT += Convert.ToDecimal(row.Cells[8].Value);
+                            }
+                        }
+                        _f_DOCENTETERepository.UpdateTotalHT(montantTotalHT, _currentDocPieceNo);
+
+                        // Mise à jour F_ARTSTOCK
+                        int qteStockPrincip;
+                        int qteStockSecond;
+                        decimal montantStockPrincip;
+                        decimal puStockPrincip;
+                        decimal puStockSecond;
+                        if (_typeDocument == "Devis")
+                        {
+                            // Type document "devis"
+                            // Ne rien faire
+                        }
+                        else if (_typeDocument == "Bon de commande" || _typeDocument == "Préparation de livraison")
+                        {
+                            // Type document "commandes et prepa livraisons"
+                            F_ARTSTOCK artStockPrincip = _context.F_ARTSTOCK.Where(artStck => artStck.AR_Ref == articleChoisi.AR_Ref && artStck.AS_Principal == 1).FirstOrDefault();
+                            F_ARTSTOCK artStockSecond = _context.F_ARTSTOCK.Where(artStck => artStck.AR_Ref == articleChoisi.AR_Ref && artStck.AS_Principal == 0).FirstOrDefault();
+                            if (Convert.ToInt32(txtBxQuantite.Text) > artStockPrincip.AS_QteSto)
+                            {
+                                // Cas stock principal insuffisant
+                                int resteACompleter = Convert.ToInt32(txtBxQuantite.Text) - (int)artStockPrincip.AS_QteSto;
+                                decimal newQteCommandePrincip = (decimal)(artStockPrincip.AS_QteCom + (int)artStockPrincip.AS_QteSto);
+                                string queryUpdateAvecCommande = "UPDATE F_ARTSTOCK SET AS_QteSto = 0, AS_MontSto = 0, AS_QteCom = @newQteCommandePrincip where AR_Ref like @arRef AND AS_Principal = 1";
+                                _context.Database.ExecuteSqlCommand(
+                                        queryUpdateAvecCommande,
+                                        new SqlParameter("@newQteCommandePrincip", newQteCommandePrincip),
+                                        new SqlParameter("@arRef", "%" + articleChoisi.AR_Ref + "%")
+                                );
+                                if (resteACompleter > 0)
+                                {
+                                    puStockSecond = (decimal)(artStockSecond.AS_MontSto / artStockPrincip.AS_QteSto);
+                                    qteStockSecond = (int)artStockSecond.AS_QteSto - resteACompleter;
+                                    decimal nouvMontantStockSecond = (decimal)(qteStockSecond * artStockSecond.AS_MontSto);
+                                    decimal newQteCommandeSecond = (decimal)(artStockSecond.AS_QteCom + resteACompleter);
+                                    string queryUpdateStockSecondAvecCommande = "UPDATE F_ARTSTOCK SET AS_QteSto = @qteStockSecond, AS_MontSto = @nouvMontantStockSecond, AS_QteCom = @newQteCommandeSecond where AR_Ref like @arRef AND AS_Principal = 0";
+                                    _context.Database.ExecuteSqlCommand(
+                                        queryUpdateStockSecondAvecCommande,
+                                        new SqlParameter("@qteStockSecond", Convert.ToDecimal(qteStockSecond.ToString("F2"))),
+                                        new SqlParameter("@nouvMontantStockSecond", Convert.ToDecimal(nouvMontantStockSecond.ToString("F2"))),
+                                        new SqlParameter("@newQteCommandeSecond", newQteCommandeSecond),
+                                        new SqlParameter("@arRef", "%" + articleChoisi.AR_Ref + "%")
+                                    );
+                                }
+                            }
+                            else
+                            {
+                                // Cas stock principal suffisant
+                                puStockPrincip = (decimal)(artStockPrincip.AS_MontSto / artStockPrincip.AS_QteSto);
+                                qteStockPrincip = Convert.ToInt32(artStockPrincip.AS_QteSto) - Convert.ToInt32(txtBxQuantite.Text);
+                                montantStockPrincip = qteStockPrincip * puStockPrincip;
+                                string queryUptadeStockPrincip = "UPDATE F_ARTSTOCK SET AS_QteSto = @qteStockPrincip, AS_MontSto = @montantStockPrincip, AS_QteCom = @qteCommande where AR_Ref like @arRef AND AS_Principal = 1";
+                                _context.Database.ExecuteSqlCommand(
+                                    queryUptadeStockPrincip,
+                                    new SqlParameter("@qteStockPrincip", Convert.ToDecimal(qteStockPrincip.ToString("F2"))),
+                                    new SqlParameter("@montantStockPrincip", Convert.ToDecimal(montantStockPrincip.ToString("F2"))),
+                                    new SqlParameter("@qteCommande", Convert.ToInt32(txtBxQuantite.Text)),
+                                    new SqlParameter("@arRef", "%" + articleChoisi.AR_Ref + "%")
+                                );
+                            }
+                            _context.Entry(artStockPrincip).Reload();
+                            _context.Entry(artStockSecond).Reload();
+                        }
+                        else
+                        // _typeDocument == "Bon de livraison" || _typeDocument == "Bon de retour" || _typeDocument == "Bon d'avoir finanicier" || _typeDocument == "Facture" || _typeDocument == "Facture comptabilisée" || _typeDocument == "Facture de retour" || _typeDocument == "Facture d'avoir"
+                        {
+                            F_ARTSTOCK artStockPrincip = _context.F_ARTSTOCK.Where(artStck => artStck.AR_Ref == articleChoisi.AR_Ref && artStck.AS_Principal == 1).FirstOrDefault();
+                            F_ARTSTOCK artStockSecond = _context.F_ARTSTOCK.Where(artStck => artStck.AR_Ref == articleChoisi.AR_Ref && artStck.AS_Principal == 0).FirstOrDefault();
+                            if (Convert.ToInt32(txtBxQuantite.Text) > artStockPrincip.AS_QteSto)
+                            {
+                                // Cas stock principal insuffisant
+                                int resteACompleter = Convert.ToInt32(txtBxQuantite.Text) - (int)artStockPrincip.AS_QteSto;
+                                _context.Database.ExecuteSqlCommand("UPDATE F_ARTSTOCK SET AS_QteSto = 0, AS_MontSto = 0 where AR_Ref = '" + articleChoisi.AR_Ref + "' AND AS_Principal = 1");
+                                if (resteACompleter > 0)
+                                {
+                                    puStockSecond = (decimal)(artStockSecond.AS_MontSto / artStockPrincip.AS_QteSto);
+                                    qteStockSecond = (int)artStockSecond.AS_QteSto - resteACompleter;
+                                    decimal nouvMontantStockSecond = (decimal)(qteStockSecond * artStockSecond.AS_MontSto);
+                                    string queryUpdateStockSecond = "UPDATE F_ARTSTOCK SET AS_QteSto = @qteStockSecond, AS_MontSto = @nouvMontantStockSecond where AR_Ref like @arRef AND AS_Principal = 0";
+                                    _context.Database.ExecuteSqlCommand(
+                                        queryUpdateStockSecond,
+                                        new SqlParameter("@qteStockSecond", Convert.ToDecimal(qteStockSecond.ToString("F2"))),
+                                        new SqlParameter("@nouvMontantStockSecond", Convert.ToDecimal(nouvMontantStockSecond.ToString("F2"))),
+                                        new SqlParameter("@arRef", "%" + articleChoisi.AR_Ref + "%")
+                                    );
+                                }
+                            }
+                            else
+                            {
+                                // Cas stock principal suffisant
+                                puStockPrincip = (decimal)(artStockPrincip.AS_MontSto / artStockPrincip.AS_QteSto);
+                                qteStockPrincip = Convert.ToInt32(artStockPrincip.AS_QteSto) - Convert.ToInt32(txtBxQuantite.Text);
+                                montantStockPrincip = qteStockPrincip * puStockPrincip;
+                                string queryUptadeStockPrincip = "UPDATE F_ARTSTOCK SET AS_QteSto = @qteStockPrincip, AS_MontSto = @montantStockPrincip where AR_Ref like @arRef AND AS_Principal = 1";
+                                _context.Database.ExecuteSqlCommand(
+                                    queryUptadeStockPrincip,
+                                    new SqlParameter("@qteStockPrincip", Convert.ToDecimal(qteStockPrincip.ToString("F2"))),
+                                    new SqlParameter("@montantStockPrincip", Convert.ToDecimal(montantStockPrincip.ToString("F2"))),
+                                    new SqlParameter("@arRef", "%" + articleChoisi.AR_Ref + "%")
+                                );
+                            }
+                            _context.Entry(artStockPrincip).Reload();
+                            _context.Entry(artStockSecond).Reload();
+                        }
+
+
+                        // Mise à jour F_ARTSTOCKEMPL (emplacement)
+                        if (_typeDocument == "Préparation de livraison")
+                        {
+                            F_ARTSTOCKEMPL fArtstockEmpl = _context.F_ARTSTOCKEMPL.Where(artStckEmpl => artStckEmpl.AR_Ref == articleChoisi.AR_Ref).FirstOrDefault();
+                            fArtstockEmpl.AE_QtePrepa = fArtstockEmpl.AE_QtePrepa + Convert.ToInt32(txtBxQuantite.Text);
+                            _context.SaveChanges();
+                        }
+                        else
+                        {
+                            F_ARTSTOCKEMPL fArtstockEmpl = _context.F_ARTSTOCKEMPL.Where(artStckEmpl => artStckEmpl.AR_Ref == articleChoisi.AR_Ref).FirstOrDefault();
+                            fArtstockEmpl.AE_QteSto = fArtstockEmpl.AE_QteSto - Convert.ToInt32(txtBxQuantite.Text);
+                            _context.SaveChanges();
+                        }
+
                     }
+                    // Mise à jour DOCLIGNE
                     else
                     {
-                        MessageBox.Show("La valeur entrée ne doit pas être nulle");
-                        ControlTableLayoutPanel();
-                    }
-                }
+                        // Mise à jour affichage
+                        DataGridViewArticle.Rows[changedIndex].Cells[0].Value = arRef;
+                        DataGridViewArticle.Rows[changedIndex].Cells[1].Value = arDesign;
+                        DataGridViewArticle.Rows[changedIndex].Cells[2].Value = puHT;
+                        DataGridViewArticle.Rows[changedIndex].Cells[3].Value = puTTC;
+                        DataGridViewArticle.Rows[changedIndex].Cells[4].Value = quantiteEcriteStock;
+                        DataGridViewArticle.Rows[changedIndex].Cells[5].Value = conditionnement;
+                        DataGridViewArticle.Rows[changedIndex].Cells[6].Value = txtBxQuantite.Text;
+                        DataGridViewArticle.Rows[changedIndex].Cells[7].Value = puNet;
+                        DataGridViewArticle.Rows[changedIndex].Cells[8].Value = montantHT;
+                        DataGridViewArticle.Rows[changedIndex].Cells[9].Value = montantTTC;
+                        changedIndex = -1;
 
+                        // Mise à jour dans la base
+                    }
+
+                    _totalPrixHT += montantHT;
+                    _totalPrixTTC += montantTTC;
+
+                    lblPrixTotHT.Text = _totalPrixHT.ToString("N2");
+
+                    foreach (Control control in tableLayoutPanel2.Controls)
+                    {
+                        if (control is TextBox textBox)
+                        {
+                            textBox.Text = textBox.Tag.ToString();
+                        }
+                    }
+
+                }
                 else
                 {
-                    MessageBox.Show("Veuillez remplir tout les champs");
-
+                    MessageBox.Show("La valeur entrée ne doit pas être nulle");
                     ControlTableLayoutPanel();
-
-                    TextBoxReference.Focus();
                 }
             }
-            catch (Exception ex)
+
+            else
             {
-                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Veuillez remplir tout les champs");
+
+                ControlTableLayoutPanel();
+
+                TextBoxReference.Focus();
             }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
 
             TextBoxReference.Focus();

@@ -77,7 +77,7 @@
             this.BouttonNouveauDesignation = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.TextBoxConditionnement = new System.Windows.Forms.TextBox();
-            this.TextBoxQuantiteDisponibleEnStock = new System.Windows.Forms.TextBox();
+            this.txtBxRemise = new System.Windows.Forms.TextBox();
             this.TextBoxMontantHT = new System.Windows.Forms.TextBox();
             this.TextBoxMontantTTC = new System.Windows.Forms.TextBox();
             this.TextBoxPUHT = new System.Windows.Forms.TextBox();
@@ -85,7 +85,7 @@
             this.TextBoxPUnet = new System.Windows.Forms.TextBox();
             this.TextBoxDesignation = new System.Windows.Forms.TextBox();
             this.TextBoxPUTTC = new System.Windows.Forms.TextBox();
-            this.TextBoxRemise = new System.Windows.Forms.TextBox();
+            this.txtBxQuantite = new System.Windows.Forms.TextBox();
             this.DataGridViewArticle = new System.Windows.Forms.DataGridView();
             this.Column1 = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -682,7 +682,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.Controls.Add(this.TextBoxConditionnement, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.TextBoxQuantiteDisponibleEnStock, 6, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtBxRemise, 6, 0);
             this.tableLayoutPanel2.Controls.Add(this.TextBoxMontantHT, 9, 0);
             this.tableLayoutPanel2.Controls.Add(this.TextBoxMontantTTC, 8, 0);
             this.tableLayoutPanel2.Controls.Add(this.TextBoxPUHT, 7, 0);
@@ -690,7 +690,7 @@
             this.tableLayoutPanel2.Controls.Add(this.TextBoxPUnet, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.TextBoxDesignation, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.TextBoxPUTTC, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.TextBoxRemise, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtBxQuantite, 4, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(8, 17);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -710,17 +710,17 @@
             this.TextBoxConditionnement.Size = new System.Drawing.Size(114, 30);
             this.TextBoxConditionnement.TabIndex = 19;
             // 
-            // TextBoxQuantiteDisponibleEnStock
+            // txtBxRemise
             // 
-            this.TextBoxQuantiteDisponibleEnStock.BackColor = System.Drawing.Color.AliceBlue;
-            this.TextBoxQuantiteDisponibleEnStock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxQuantiteDisponibleEnStock.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxQuantiteDisponibleEnStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.TextBoxQuantiteDisponibleEnStock.Location = new System.Drawing.Point(723, 3);
-            this.TextBoxQuantiteDisponibleEnStock.Name = "TextBoxQuantiteDisponibleEnStock";
-            this.TextBoxQuantiteDisponibleEnStock.Size = new System.Drawing.Size(114, 30);
-            this.TextBoxQuantiteDisponibleEnStock.TabIndex = 18;
-            this.TextBoxQuantiteDisponibleEnStock.TextChanged += new System.EventHandler(this.TextBoxQuantiteDisponibleEnStock_TextChanged);
+            this.txtBxRemise.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtBxRemise.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBxRemise.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBxRemise.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtBxRemise.Location = new System.Drawing.Point(723, 3);
+            this.txtBxRemise.Name = "txtBxRemise";
+            this.txtBxRemise.Size = new System.Drawing.Size(114, 30);
+            this.txtBxRemise.TabIndex = 18;
+            this.txtBxRemise.TextChanged += new System.EventHandler(this.TextBoxQuantiteDisponibleEnStock_TextChanged);
             // 
             // TextBoxMontantHT
             // 
@@ -809,16 +809,16 @@
             this.TextBoxPUTTC.Size = new System.Drawing.Size(114, 30);
             this.TextBoxPUTTC.TabIndex = 17;
             // 
-            // TextBoxRemise
+            // txtBxQuantite
             // 
-            this.TextBoxRemise.BackColor = System.Drawing.Color.AliceBlue;
-            this.TextBoxRemise.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxRemise.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxRemise.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.TextBoxRemise.Location = new System.Drawing.Point(483, 3);
-            this.TextBoxRemise.Name = "TextBoxRemise";
-            this.TextBoxRemise.Size = new System.Drawing.Size(114, 30);
-            this.TextBoxRemise.TabIndex = 20;
+            this.txtBxQuantite.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtBxQuantite.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBxQuantite.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBxQuantite.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtBxQuantite.Location = new System.Drawing.Point(483, 3);
+            this.txtBxQuantite.Name = "txtBxQuantite";
+            this.txtBxQuantite.Size = new System.Drawing.Size(114, 30);
+            this.txtBxQuantite.TabIndex = 20;
             // 
             // DataGridViewArticle
             // 
@@ -1244,9 +1244,9 @@
         private System.Windows.Forms.TextBox TextBoxDesignation;
         private System.Windows.Forms.TextBox TextBoxPUHT;
         private System.Windows.Forms.TextBox TextBoxPUTTC;
-        private System.Windows.Forms.TextBox TextBoxQuantiteDisponibleEnStock;
+        private System.Windows.Forms.TextBox txtBxRemise;
         private System.Windows.Forms.TextBox TextBoxConditionnement;
-        private System.Windows.Forms.TextBox TextBoxRemise;
+        private System.Windows.Forms.TextBox txtBxQuantite;
         private System.Windows.Forms.TextBox TextBoxPUnet;
         private System.Windows.Forms.TextBox TextBoxMontantHT;
         private System.Windows.Forms.TextBox TextBoxMontantTTC;

@@ -12,7 +12,5 @@ namespace SoftCaisse.Models
         [Required]
         [StringLength(50)]
         public string RoleIntitule { get; set; }
-
-        public int RoleAutorisationsId { get; set; }
     }
 }

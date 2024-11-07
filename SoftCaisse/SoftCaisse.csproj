@@ -132,11 +132,11 @@
     <Compile Include="Forms\ListeFamillesDArticles.Designer.cs">
       <DependentUpon>ListeFamillesDArticles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NouveauDocumentDeVente.cs">
+    <Compile Include="Forms\DocumentDeVente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NouveauDocumentDeVente.Designer.cs">
-      <DependentUpon>NouveauDocumentDeVente.cs</DependentUpon>
+    <Compile Include="Forms\DocumentDeVente.Designer.cs">
+      <DependentUpon>DocumentDeVente.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\NouveauReglement.cs">
       <SubType>Form</SubType>
@@ -163,7 +163,6 @@
       <DependentUpon>SelectionEcheancesARegler.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\F_ARTFOURNISS.cs" />
-    <Compile Include="Models\Json\Autorisation.cs" />
     <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
       <SubType>UserControl</SubType>
@@ -272,11 +271,11 @@
     <Compile Include="Forms\ControlCaisseForm.Designer.cs">
       <DependentUpon>ControlCaisseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DocumentVenteForm.cs">
+    <Compile Include="Forms\ListeDocumentVenteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DocumentVenteForm.Designer.cs">
-      <DependentUpon>DocumentVenteForm.cs</DependentUpon>
+    <Compile Include="Forms\ListeDocumentVenteForm.Designer.cs">
+      <DependentUpon>ListeDocumentVenteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FermetureCaisse.cs">
       <SubType>Form</SubType>
@@ -429,6 +428,8 @@
     <Compile Include="Models\P_SOUCHEVENTE.cs" />
     <Compile Include="Models\P_UNITE.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\RoleAutorisation.cs" />
+    <Compile Include="Models\Rubrique.cs" />
     <Compile Include="Models\SageContexte.cs" />
     <Compile Include="Models\SCDContext.cs" />
     <Compile Include="Models\Users.cs" />
@@ -457,7 +458,7 @@
     <Compile Include="Repositories\DTORepository\TaxeRepository.cs" />
     <Compile Include="Repositories\DTORepository\UniteRepository.cs" />
     <Compile Include="Repositories\F_ARTFOURNISSRepository.cs" />
-    <Compile Include="Repositories\ScdDb\AutorisationRepository.cs" />
+    <Compile Include="Repositories\ScdDb\RoleAutorisationRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
     <Compile Include="Services\F_ARTFOURNISSService.cs" />
@@ -505,8 +506,8 @@
     <EmbeddedResource Include="Forms\FondCaisseDevisForm.resx">
       <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NouveauDocumentDeVente.resx">
-      <DependentUpon>NouveauDocumentDeVente.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DocumentDeVente.resx">
+      <DependentUpon>DocumentDeVente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NouveauReglement.resx">
       <DependentUpon>NouveauReglement.cs</DependentUpon>
@@ -562,8 +563,8 @@
     <EmbeddedResource Include="Forms\ControlCaisseForm.resx">
       <DependentUpon>ControlCaisseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DocumentVenteForm.resx">
-      <DependentUpon>DocumentVenteForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ListeDocumentVenteForm.resx">
+      <DependentUpon>ListeDocumentVenteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FermetureCaisse.resx">
       <DependentUpon>FermetureCaisse.cs</DependentUpon>

@@ -142,7 +142,7 @@ namespace SoftCaisse
 
         private void dOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DocumentVenteForm documentVenteForm = new DocumentVenteForm(this);
+            ListeDocumentVenteForm documentVenteForm = new ListeDocumentVenteForm(this);
             documentVenteForm.Show();
         }
 

@@ -54,7 +54,7 @@ namespace SoftCaisse.Forms
                 selectedOption = radioButton9.Text;
             }
             DialogResult = DialogResult.OK;
-            NouveauDocumentDeVente nouveDocVente = new NouveauDocumentDeVente(selectedOption, mainForm);
+            DocumentDeVente nouveDocVente = new DocumentDeVente(selectedOption, mainForm, null);
             nouveDocVente.Show();
             Close();
         }

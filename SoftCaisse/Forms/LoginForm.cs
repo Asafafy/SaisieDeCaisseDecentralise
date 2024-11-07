@@ -17,7 +17,7 @@ namespace SoftCaisse.Forms.Login
         private ToolStripMenuItem _menuEtat;
         private ToolStripMenuItem _menuAuthAcces;
 
-        private readonly AutorisationRepository _autorisationRepository;
+        private readonly RoleAutorisationRepository _autorisationRepository;
         private readonly RoleRepository _roleRepository;
 
         private MainForm mainForm;
@@ -32,7 +32,7 @@ namespace SoftCaisse.Forms.Login
             InitializeComponent();
 
             _sCDContext = new SCDContext();
-            _autorisationRepository = new AutorisationRepository(_sCDContext);
+            _autorisationRepository = new RoleAutorisationRepository(_sCDContext);
             _roleRepository = new RoleRepository(_sCDContext);
 
             ChampUser.KeyDown += (sender, e) => EventHandlers.KeyDownEnterHandler(sender, e, kryptonButton1_Click);
@@ -175,8 +175,7 @@ namespace SoftCaisse.Forms.Login
                 ConnectedUser.roles = (RoleUser)user.RoleId;
 
                 Role role = _roleRepository.GetById(user.RoleId);
-                Autorisation auth = _autorisationRepository.GetById(role.RoleAutorisationsId);
-                List<int> autorisationsDesRubriques = auth.Autorisations;
+                List<int> autorisationsDesRubriques = _sCDContext.RoleAutorisation.Where(ra => ra.IdRole == role.IdRole).Select(ra => ra.EstAutorise).ToList();
                 gererLesActivationsRubriques(autorisationsDesRubriques);
 
                 mainForm.DisableLoginButton();

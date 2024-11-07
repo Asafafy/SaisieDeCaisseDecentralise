@@ -33,7 +33,7 @@
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Paramètres de société");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Utilisateurs");
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Gestion des rôles");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Atorisation d\'accès", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Autorisation d\'accès", new System.Windows.Forms.TreeNode[] {
             treeNode3,
             treeNode4});
             System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Mise en page");
@@ -93,6 +93,7 @@
             this.btnSupp = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.lblAuth = new System.Windows.Forms.Label();
             this.chckBxAuth = new System.Windows.Forms.CheckBox();
             this.txBxIntRole = new System.Windows.Forms.TextBox();
@@ -103,7 +104,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -238,6 +238,18 @@
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.Location = new System.Drawing.Point(526, 423);
+            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Palette = this.kryptonPalette1;
+            this.btnAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnAnnuler.Size = new System.Drawing.Size(75, 31);
+            this.btnAnnuler.TabIndex = 56;
+            this.btnAnnuler.Values.Text = "Annuler";
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
+            // 
             // lblAuth
             // 
             this.lblAuth.AutoSize = true;
@@ -301,7 +313,7 @@
             treeNode4.Name = "5";
             treeNode4.Text = "Gestion des rôles";
             treeNode5.Name = "3";
-            treeNode5.Text = "Atorisation d\'accès";
+            treeNode5.Text = "Autorisation d\'accès";
             treeNode6.Name = "6";
             treeNode6.Text = "Mise en page";
             treeNode7.Name = "0";
@@ -402,18 +414,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(988, 561);
             this.panel1.TabIndex = 52;
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.Location = new System.Drawing.Point(526, 423);
-            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Palette = this.kryptonPalette1;
-            this.btnAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnAnnuler.Size = new System.Drawing.Size(75, 31);
-            this.btnAnnuler.TabIndex = 56;
-            this.btnAnnuler.Values.Text = "Annuler";
-            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // GestionDesRoles
             // 

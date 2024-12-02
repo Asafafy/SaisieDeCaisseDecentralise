@@ -1,6 +1,8 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Models;
 using SoftCaisse.Models.Json;
+using SoftCaisse.Repositories;
+using SoftCaisse.Repositories.BIJOU;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -39,6 +41,9 @@ namespace SoftCaisse.Forms.DocumentVente
         private readonly P_CATCOMPTA catComptas;
         private readonly List<string> listeCatComptasVente;
 
+        private readonly F_DOCREGLRepository fDocreglRepository;
+        private readonly F_REGLECHRepository fReglechRepository;
+
         private F_DOCENTETE _selectedDoc;
         private bool _isFromRefresh = false;
 
@@ -47,7 +52,12 @@ namespace SoftCaisse.Forms.DocumentVente
             InitializeComponent();
 
             _context = new AppDbContext();
+
+            fDocreglRepository = new F_DOCREGLRepository(_context);
+            fReglechRepository = new F_REGLECHRepository(_context);
+
             _boutonActifMaintenant = btnTous;
+
             _bindingSource = new DataTable();
             _bindingSource.Columns.Add(new DataColumn("Type"));
             _bindingSource.Columns.Add(new DataColumn("Etat"));
@@ -476,30 +486,35 @@ namespace SoftCaisse.Forms.DocumentVente
                 DialogResult resultat = MessageBox.Show("Veuillez confirmer la suppression du document  " + _selectedDoc.DO_Piece, "Confirmation de la suppression", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (resultat == DialogResult.Yes)
                 {
-                    try
+                    //try
+                    //{
+                    List<F_DOCLIGNE> listeDocLigne = _context.F_DOCLIGNE.Where(dl => dl.DO_Piece == _selectedDoc.DO_Piece).ToList();
+
+                    // Elaboration liste des F_DOCLIGNEEMPL
+                    List<F_DOCLIGNEEMPL> listeDocLigneEmpl = new List<F_DOCLIGNEEMPL>();
+                    foreach (var docLigne in listeDocLigne)
                     {
-                        List<F_DOCLIGNE> listeDocLigne = _context.F_DOCLIGNE.Where(dl => dl.DO_Piece == _selectedDoc.DO_Piece).ToList();
-
-                        // Elaboration liste des F_DOCLIGNEEMPL
-                        List<F_DOCLIGNEEMPL> listeDocLigneEmpl = new List<F_DOCLIGNEEMPL>();
-                        foreach (var docLigne in listeDocLigne)
+                        F_DOCLIGNEEMPL dlEmpl = _context.F_DOCLIGNEEMPL.Where(dle => dle.DL_No == docLigne.DL_No).FirstOrDefault();
+                        if (dlEmpl != null)
                         {
-                            listeDocLigneEmpl.Add(_context.F_DOCLIGNEEMPL.Where(dle => dle.DL_No == docLigne.DL_No).FirstOrDefault());
+                            listeDocLigneEmpl.Add(dlEmpl);
                         }
+                    }
 
+                    if (listeDocLigne.Count > 0)
+                    {
                         // Mise à jour F_ARTSTOCKEMPL selon les articles présentes dans F_DOCLIGNEEMPL
-                        List<F_ARTSTOCKEMPL> listeArtStockEmpl = new List<F_ARTSTOCKEMPL>();
                         foreach (var docLigneEmpl in listeDocLigneEmpl)
                         {
                             string refArt = _context.F_DOCLIGNE.Where(d => d.DL_No == docLigneEmpl.DL_No).Select(d => d.AR_Ref).FirstOrDefault();
-                            F_ARTSTOCKEMPL stockEmpl = _context.F_ARTSTOCKEMPL.Where(ase => ase.DP_No == docLigneEmpl.DP_No && ase.AR_Ref == refArt).FirstOrDefault();
+                            F_ARTSTOCKEMPL stockEmpl = _context.F_ARTSTOCKEMPL
+                                .Where(ase => ase.DP_No == docLigneEmpl.DP_No && ase.AR_Ref == refArt)
+                                .FirstOrDefault();
                             stockEmpl.AE_QteSto += docLigneEmpl.DL_Qte;
                             _context.F_DOCLIGNEEMPL.Remove(docLigneEmpl);
                             _context.SaveChanges();
                         }
-
                         // Mise à jour F_ARTSTOCK selon les articles présentes dans F_DOCLIGNE
-                        List<F_ARTSTOCK> listeArtStock = new List<F_ARTSTOCK>();
                         foreach (var docLigne in listeDocLigne)
                         {
                             F_ARTSTOCK artStock = _context.F_ARTSTOCK.Where(a => a.AR_Ref == docLigne.AR_Ref && a.DE_No == docLigne.DE_No).FirstOrDefault();
@@ -507,25 +522,37 @@ namespace SoftCaisse.Forms.DocumentVente
                             _context.F_DOCLIGNE.Remove(docLigne);
                             _context.SaveChanges();
                         }
-
-                        F_DOCREGL docRegl = _context.F_DOCREGL.Where(dr => dr.DO_Piece == _selectedDoc.DO_Piece).FirstOrDefault();
-                        _context.F_DOCREGL.Remove(docRegl);
-                        _context.SaveChanges();
-
-                        _context.F_DOCENTETE.Remove(_selectedDoc);
-                        _context.SaveChanges();
-
-                        // Mise à jour de la liste après suppression
-                        _isFromRefresh = true;
-                        RefreshDonnees(_boutonActifMaintenant, sender, e);
-
-                        _selectedDoc = null;
-                        kryptonButtonSuppr.Enabled = false;
                     }
-                    catch (Exception ex)
+
+                    // Suppression dans F_REGLECH
+                    F_REGLECH reglEch = _context.F_REGLECH.Where(dr => dr.DO_Piece == _selectedDoc.DO_Piece).FirstOrDefault();
+                    if (reglEch != null)
                     {
-                        MessageBox.Show("Impossible d'effectuer la suppression. \nEreur" + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        fReglechRepository.DeleteByDoPiece(reglEch.DO_Piece);
                     }
+
+                    // Suppression dans F_DOCREGL
+                    F_DOCREGL docRegl = _context.F_DOCREGL.Where(dr => dr.DO_Piece == _selectedDoc.DO_Piece).FirstOrDefault();
+                    if (reglEch != null)
+                    {
+                        fDocreglRepository.DeleteByDoPiece(docRegl.DO_Piece);
+                    }
+
+                    // Suppression F_DOCENTETE (Document de vente)
+                    _context.F_DOCENTETE.Remove(_selectedDoc);
+                    _context.SaveChanges();
+
+                    // Mise à jour de la liste après suppression
+                    _isFromRefresh = true;
+                    RefreshDonnees(_boutonActifMaintenant, sender, e);
+
+                    _selectedDoc = null;
+                    kryptonButtonSuppr.Enabled = false;
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    MessageBox.Show("Impossible d'effectuer la suppression. \nEreur" + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
                 }
                 else
                 {

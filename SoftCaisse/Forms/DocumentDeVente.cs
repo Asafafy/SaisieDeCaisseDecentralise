@@ -154,7 +154,8 @@ namespace SoftCaisse.Forms
                 int indexPA = listePAAffiches.IndexOf(planAnal);
                 comboBoxAffaire.SelectedIndex = indexPA;
                 F_COLLABORATEUR collab = listeCollab.Where(co => co.CO_No == fDocenteteToModif.CO_No).FirstOrDefault();
-                int indexCollab = listeCollab.IndexOf(collab);
+                List<F_COLLABORATEUR> listeCollaborateursCmbBx = listeCollab.Where(c => c.CO_Vendeur == 1).ToList();
+                int indexCollab = listeCollaborateursCmbBx.IndexOf(collab);
                 comboBoxRepresentant.SelectedIndex = indexCollab;
                 P_EXPEDITION expedit = listeExpedit.Where(exp => exp.cbMarq == fDocenteteToModif.DO_Expedit).FirstOrDefault();
                 int indexExpedit = listeExpedit.IndexOf(expedit);
@@ -858,24 +859,55 @@ namespace SoftCaisse.Forms
             f_DOCENTETEService.AjouterF_DOCENTETE(newDocEnTete);
         }
 
-        public void AjouterPrix(string arRef, string arDesign, int quantite, decimal puHT, decimal puTTC, string UniteVente)
+        public void AjouterPrix(string arRef, string arDesign, decimal puHT, decimal puTTC, string UniteVente)
         {
             TextBoxReference.Text = arRef;
             TextBoxDesignation.Text = arDesign;
-            TextBoxPUTTC.Text = puTTC.ToString("N2"); ;
-            txtBxRemise.Text = quantite.ToString("N0");
             TextBoxPUHT.Text = puHT.ToString("N2");
+            TextBoxPUTTC.Text = puTTC.ToString("N2");
             TextBoxPUNet.Text = puHT.ToString("N2");
             TextBoxConditionnement.Text = UniteVente;
+            TextBoxMontantHT.Text = puHT.ToString("N2");
+            TextBoxMontantTTC.Text = puTTC.ToString("N2");
+            txtBxQuantite.Text = "1";
         }
 
-        public void MettreAJourMontants(int quantite, decimal puHT, decimal puTTC, decimal remisePourcent)
+        public void MettreAJourMontants()
         {
-            var montantPuHT = puHT - (puHT * remisePourcent / 100);
-            var montantPuTTC = puTTC - (puTTC * remisePourcent / 100);
-            TextBoxMontantTTC.Text = (montantPuHT * quantite).ToString("N2");
-            TextBoxPUHT.Text = (montantPuHT).ToString("N2");
-            TextBoxMontantHT.Text = (montantPuTTC * quantite).ToString("N2");
+            if (txtBxQuantite.Text != "")
+            {
+                int quantiteArt = Convert.ToInt32(txtBxQuantite.Text);
+                decimal? puHT = Convert.ToDecimal(TextBoxPUHT.Text);
+                decimal? puTTC = Convert.ToDecimal(TextBoxPUTTC.Text);
+                if (TextBoxMontantHT.Text != "")
+                {
+                    if (!string.IsNullOrEmpty(TextBoxPUHT.Text))
+                    {
+                        if (!string.IsNullOrEmpty(txtBxRemise.Text))
+                        {
+                            decimal? remise = Convert.ToDecimal(txtBxRemise.Text);
+                            decimal? montantHTSansRemise = quantiteArt * puHT;
+                            decimal? valeurRemise = (remise * montantHTSansRemise) / 100;
+                            decimal? montantHTAvecRemise = montantHTSansRemise - valeurRemise;
+                            TextBoxMontantHT.Text = montantHTAvecRemise.ToString();
+                        }
+                    }
+                }
+                if (TextBoxMontantTTC.Text != "")
+                {
+                    if (!string.IsNullOrEmpty(TextBoxPUTTC.Text))
+                    {
+                        if (!string.IsNullOrEmpty(txtBxRemise.Text))
+                        {
+                            decimal? remise = Convert.ToDecimal(txtBxRemise.Text);
+                            decimal? montantTTCSansRemise = quantiteArt * puTTC;
+                            decimal? valeurRemise = (remise * montantTTCSansRemise) / 100;
+                            decimal? montantTTCAvecRemise = montantTTCSansRemise - valeurRemise;
+                            TextBoxMontantTTC.Text = montantTTCAvecRemise.ToString();
+                        }
+                    }
+                }
+            }
         }
 
         public void MettreAJourPoids()
@@ -1063,64 +1095,48 @@ namespace SoftCaisse.Forms
             {
                 decimal puHT;
                 decimal puTTC;
-                try
+                //try
+                //{
+                e.IsInputKey = true;
+
+                string codeFamilleOuDesignation = TextBoxReference.Text.ToLower();
+
+                var articleSaisie = _context.F_ARTICLE.Where(a => a.AR_Ref.ToLower() == codeFamilleOuDesignation || a.FA_CodeFamille.ToLower() == codeFamilleOuDesignation).FirstOrDefault();
+                if (articleSaisie != null)
                 {
-                    e.IsInputKey = true;
+                    F_COMPTET clientSelectionne = _listeClients.Where(cli => cli.CT_Num + " - " + cli.CT_Intitule == comboBoxClient.Text).FirstOrDefault();
+                    var artClient = _context.F_ARTCLIENT.Where(artCli => artCli.CT_Num == clientSelectionne.CT_Num && artCli.AR_Ref == articleSaisie.AR_Ref).FirstOrDefault();
+                    var artCompta = _context.F_ARTCOMPTA.Where(artCmpt => artCmpt.AR_Ref == articleSaisie.AR_Ref && artCmpt.ACP_TypeFacture == 0 && artCmpt.ACP_Type == 0 && artCmpt.ACP_Champ == 1).FirstOrDefault();
+                    var taxe1 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe1).FirstOrDefault();
+                    var taxe2 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe2).FirstOrDefault();
+                    var taxe3 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe3).FirstOrDefault();
+                    decimal taux1 = taxe1?.TA_Taux ?? 0;
+                    decimal taux2 = taxe2?.TA_Taux ?? 0;
+                    decimal taux3 = taxe3?.TA_Taux ?? 0;
+                    bool estHorsTaxe;
 
-                    string codeFamilleOuDesignation = TextBoxReference.Text.ToLower();
-
-                    var articleSaisie = _context.F_ARTICLE.Where(a => a.AR_Ref.ToLower() == codeFamilleOuDesignation || a.FA_CodeFamille.ToLower() == codeFamilleOuDesignation).FirstOrDefault();
-                    if (articleSaisie != null)
+                    // Prix de l'article spécifique à un client existe
+                    if (artClient != null)
                     {
-                        F_COMPTET clientSelectionne = _listeClients.Where(cli => cli.CT_Num + " - " + cli.CT_Intitule == comboBoxClient.Text).FirstOrDefault();
-                        var artClient = _context.F_ARTCLIENT.Where(artCli => artCli.CT_Num == clientSelectionne.CT_Num && artCli.AR_Ref == articleSaisie.AR_Ref).FirstOrDefault();
-                        var artCompta = _context.F_ARTCOMPTA.Where(artCmpt => artCmpt.AR_Ref == articleSaisie.AR_Ref && artCmpt.ACP_TypeFacture == 0 && artCmpt.ACP_Type == 0 && artCmpt.ACP_Champ == 1).FirstOrDefault();
-                        var taxe1 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe1).FirstOrDefault();
-                        var taxe2 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe2).FirstOrDefault();
-                        var taxe3 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe3).FirstOrDefault();
-                        decimal taux1 = taxe1?.TA_Taux ?? 0;
-                        decimal taux2 = taxe2?.TA_Taux ?? 0;
-                        decimal taux3 = taxe3?.TA_Taux ?? 0;
-                        bool estHorsTaxe;
-
-                        // Prix de l'article spécifique à un client existe
-                        if (artClient != null)
+                        estHorsTaxe = artClient.AC_PrixTTC == 0 ? true : false;
+                        bool prixVenteEstZero = artClient.AC_PrixVen == 0 ? true : false;
+                        if (!prixVenteEstZero)
                         {
-                            estHorsTaxe = artClient.AC_PrixTTC == 0 ? true : false;
-                            bool prixVenteEstZero = artClient.AC_PrixVen == 0 ? true : false;
-                            if (!prixVenteEstZero)
+                            if (estHorsTaxe)
                             {
-                                if (estHorsTaxe)
-                                {
-                                    puHT = (decimal)artClient.AC_PrixVen;
-                                    puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
-                                }
-                                else
-                                {
-                                    puTTC = (decimal)artClient.AC_PrixVen;
-                                    puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
-                                }
+                                puHT = (decimal)artClient.AC_PrixVen;
+                                puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
                             }
                             else
                             {
-                                bool prixVenteArtEstHorsTaxe = articleSaisie.AR_PrixTTC == 0 ? true : false;
-                                if (prixVenteArtEstHorsTaxe)
-                                {
-                                    puHT = (decimal)articleSaisie.AR_PrixVen;
-                                    puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
-                                }
-                                else
-                                {
-                                    puTTC = (decimal)articleSaisie.AR_PrixVen;
-                                    puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
-                                }
+                                puTTC = (decimal)artClient.AC_PrixVen;
+                                puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
                             }
                         }
-                        // Prix de l'article spécifique à un client n'existe pas
                         else
                         {
-                            estHorsTaxe = articleSaisie.AR_PrixTTC == 0 ? true : false;
-                            if (estHorsTaxe)
+                            bool prixVenteArtEstHorsTaxe = articleSaisie.AR_PrixTTC == 0 ? true : false;
+                            if (prixVenteArtEstHorsTaxe)
                             {
                                 puHT = (decimal)articleSaisie.AR_PrixVen;
                                 puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
@@ -1131,19 +1147,35 @@ namespace SoftCaisse.Forms
                                 puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
                             }
                         }
-                        AjouterPrix(articleSaisie.AR_Ref, articleSaisie.AR_Design, 1, puHT, puTTC, estHorsTaxe ? "HT" : "TTC");
-                        MettreAJourMontants(1, puHT, puTTC, pourcentageRemise);
                     }
+                    // Prix de l'article spécifique à un client n'existe pas
                     else
                     {
-                        ListeArticles articleARechercher = new ListeArticles(codeFamilleOuDesignation, false, true, null, pourcentageRemise);
-                        articleARechercher.ShowDialog(this);
+                        estHorsTaxe = articleSaisie.AR_PrixTTC == 0 ? true : false;
+                        if (estHorsTaxe)
+                        {
+                            puHT = (decimal)articleSaisie.AR_PrixVen;
+                            puTTC = puHT * (taux1 + taux2 + taux3 + 100) / 100;
+                        }
+                        else
+                        {
+                            puTTC = (decimal)articleSaisie.AR_PrixVen;
+                            puHT = 100 * puTTC / (100 + taux1 + taux2 + taux3);
+                        }
                     }
+                    AjouterPrix(articleSaisie.AR_Ref, articleSaisie.AR_Design, puHT, puTTC, estHorsTaxe ? "HT" : "TTC");
+                    MettreAJourMontants();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Une erreur s'est produite : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ListeArticles articleARechercher = new ListeArticles(codeFamilleOuDesignation, false, true, null, pourcentageRemise);
+                    articleARechercher.ShowDialog(this);
                 }
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Une erreur s'est produite : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
         }
 
@@ -1194,9 +1226,9 @@ namespace SoftCaisse.Forms
             {
                 decimal quantiteEnStock = (decimal)articleBaseDeDonnees.AS_QteSto - (decimal)articleBaseDeDonnees.AS_QteRes;
 
-                if (Convert.ToInt16(txtBxRemise.Text) <= quantiteEnStock)
+                if (Convert.ToInt16(txtBxQuantite.Text) <= quantiteEnStock)
                 {
-                    if (string.IsNullOrWhiteSpace(TextBoxReference.Text) || string.IsNullOrWhiteSpace(TextBoxDesignation.Text) || string.IsNullOrWhiteSpace(TextBoxPUHT.Text) || string.IsNullOrWhiteSpace(TextBoxPUTTC.Text) || string.IsNullOrWhiteSpace(txtBxQuantite.Text) || string.IsNullOrWhiteSpace(TextBoxConditionnement.Text) || string.IsNullOrWhiteSpace(txtBxRemise.Text) || string.IsNullOrWhiteSpace(TextBoxMontantHT.Text) || string.IsNullOrWhiteSpace(TextBoxMontantTTC.Text))
+                    if (string.IsNullOrWhiteSpace(TextBoxReference.Text) || string.IsNullOrWhiteSpace(TextBoxDesignation.Text) || string.IsNullOrWhiteSpace(TextBoxPUHT.Text) || string.IsNullOrWhiteSpace(TextBoxPUTTC.Text) || string.IsNullOrWhiteSpace(txtBxQuantite.Text) || string.IsNullOrWhiteSpace(TextBoxConditionnement.Text) || string.IsNullOrWhiteSpace(TextBoxMontantHT.Text) || string.IsNullOrWhiteSpace(TextBoxMontantTTC.Text))
                     {
                         MessageBox.Show("Veuillez remplir tous les champs.");
                         return;
@@ -1205,9 +1237,9 @@ namespace SoftCaisse.Forms
                     string arRef = TextBoxReference.Text;
                     string arDesign = TextBoxDesignation.Text;
                     string conditionnement = TextBoxPUTTC.Text;
-                    int quantiteEcriteStock = int.Parse(txtBxRemise.Text);
+                    int quantiteEcriteStock = int.Parse(txtBxQuantite.Text);
                     decimal puHT = Convert.ToDecimal(TextBoxPUNet?.Text ?? "0");
-                    decimal puTTC = Convert.ToDecimal(TextBoxConditionnement.Text ?? "0");
+                    decimal puTTC = Convert.ToDecimal(TextBoxPUTTC.Text ?? "0");
                     decimal puNet = Convert.ToDecimal(TextBoxPUHT.Text ?? "0");
                     decimal montantHT = Convert.ToDecimal(TextBoxMontantTTC.Text ?? "0");
                     decimal montantTTC = Convert.ToDecimal(TextBoxMontantHT.Text ?? "0");
@@ -1252,7 +1284,7 @@ namespace SoftCaisse.Forms
                         F_ARTICLE articleChoisi = _listeArticle.Where(a => a.AR_Ref == TextBoxReference.Text).FirstOrDefault();
                         docligne.DL_PoidsNet = Convert.ToInt32(txtBxQuantite.Text) * articleChoisi.AR_PoidsNet;
                         docligne.DL_PoidsBrut = Convert.ToInt32(txtBxQuantite.Text) * articleChoisi.AR_PoidsBrut;
-                        docligne.DL_Remise01REM_Valeur = Convert.ToDecimal(txtBxRemise.Text);
+                        docligne.DL_Remise01REM_Valeur = (txtBxRemise.Text == "") ? 0 : Convert.ToDecimal(txtBxRemise.Text);
                         docligne.DL_Remise01REM_Type = 0; // (Remise en pourcent)
                         docligne.DL_Remise02REM_Valeur = 0;
                         docligne.DL_Remise02REM_Type = 0;
@@ -1319,7 +1351,7 @@ namespace SoftCaisse.Forms
                         docligne.DL_NoRef = (short)(DataGridViewArticle.Rows.Count + 1);
                         docligne.DL_TypePL = 0;
                         docligne.DL_PUDevise = 0;
-                        docligne.DL_PUTTC = Convert.ToDecimal(TextBoxConditionnement.Text ?? "0");
+                        docligne.DL_PUTTC = Convert.ToDecimal(TextBoxPUTTC.Text ?? "0");
                         docligne.DL_No = _context.F_DOCLIGNE.Max(dl => dl.DL_No) + 1;
                         docligne.DO_DateLivr = dateTimePicker2.Value;
                         docligne.CA_Num = comboBoxAffaire.Text;
@@ -1482,8 +1514,8 @@ namespace SoftCaisse.Forms
                                     new SqlParameter("@arRef", "%" + articleChoisi.AR_Ref + "%")
                                 );
                             }
-                            _context.Entry(artStockPrincip).Reload();
-                            _context.Entry(artStockSecond).Reload();
+                            //_context.Entry(artStockPrincip).Reload();
+                            //_context.Entry(artStockSecond).Reload();
                         }
 
 
@@ -1578,40 +1610,7 @@ namespace SoftCaisse.Forms
                 }
                 else
                 {
-                    if (txtBxQuantite.Text != "")
-                    {
-                        int quantiteArt = Convert.ToInt32(txtBxQuantite.Text);
-                        if (TextBoxMontantHT.Text != "")
-                        {
-                            decimal? puHT = Convert.ToDecimal(TextBoxPUHT.Text);
-                            if (!string.IsNullOrEmpty(TextBoxPUHT.Text))
-                            {
-                                TextBoxMontantHT.Text = (quantiteArt * puHT).ToString();
-                                if (!string.IsNullOrEmpty(txtBxRemise.Text))
-                                {
-                                    decimal? remise = Convert.ToDecimal(txtBxRemise.Text);
-                                    decimal? montantHTSansRemise = Convert.ToDecimal(TextBoxMontantHT.Text);
-                                    decimal? montantHTAvecRemise = (remise * montantHTSansRemise) / 100;
-                                    TextBoxMontantHT.Text = montantHTAvecRemise.ToString();
-                                }
-                            }
-                        }
-                        if (TextBoxMontantTTC.Text != "")
-                        {
-                            decimal? puTTC = Convert.ToDecimal(TextBoxPUTTC.Text);
-                            if (!string.IsNullOrEmpty(TextBoxPUTTC.Text))
-                            {
-                                TextBoxMontantTTC.Text = (quantiteArt * puTTC).ToString();
-                                if (!string.IsNullOrEmpty(txtBxRemise.Text))
-                                {
-                                    decimal? remise = Convert.ToDecimal(txtBxRemise.Text);
-                                    decimal? montantTTCSansRemise = Convert.ToDecimal(TextBoxMontantTTC.Text);
-                                    decimal? montantTTCAvecRemise = (remise * montantTTCSansRemise) / 100;
-                                    TextBoxMontantTTC.Text = montantTTCAvecRemise.ToString();
-                                }
-                            }
-                        }
-                    }
+                    MettreAJourMontants();
                 }
             }
         }
@@ -1635,16 +1634,17 @@ namespace SoftCaisse.Forms
         {
             string cultureName = "en-EN"; // Exemple pour la culture française
             CultureInfo culture = new CultureInfo(cultureName);
-            if (decimal.TryParse(txtBxQuantite.Text, NumberStyles.Number, culture, out pourcentageRemise))
+            if (decimal.TryParse(txtBxRemise.Text, NumberStyles.Number, culture, out pourcentageRemise))
             {
                 if (pourcentageRemise <= 0)
                 {
                     MessageBox.Show("Veuillez entrer une valeur numérique non nulle.");
                     textBoxNDoc.Clear();
                 }
-                decimal puHTSansRemise = Convert.ToDecimal(TextBoxPUNet?.Text == "" ? "0" : TextBoxPUNet?.Text);
-                decimal puTTCSansRemise = Convert.ToDecimal(TextBoxMontantTTC?.Text == "" ? "0" : TextBoxConditionnement?.Text);
-                MettreAJourMontants(1, puHTSansRemise, puTTCSansRemise, pourcentageRemise);
+                else
+                {
+                    MettreAJourMontants();
+                }
             }
         }
         // ================= FIN RESET DATETIME PICKER (DATE PRÉVU ET RÉALISÉE) =================

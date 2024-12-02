@@ -47,8 +47,8 @@ namespace SoftCaisse.Forms
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.kryptonButton3 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kptBtnNouveau = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kptBtnSupprRegl = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.valDtSldEch30j = new System.Windows.Forms.Label();
             this.lblDtSldEch30j = new System.Windows.Forms.Label();
@@ -61,8 +61,9 @@ namespace SoftCaisse.Forms
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.kptBtnUpdate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -200,6 +201,7 @@ namespace SoftCaisse.Forms
             this.kptnBtnAfficher.Size = new System.Drawing.Size(75, 31);
             this.kptnBtnAfficher.TabIndex = 25;
             this.kptnBtnAfficher.Values.Text = "Afficher";
+            this.kptnBtnAfficher.Click += new System.EventHandler(this.kptnBtnAfficher_Click);
             // 
             // comboBox3
             // 
@@ -227,6 +229,7 @@ namespace SoftCaisse.Forms
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(150, 21);
             this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // linkLabel1
             // 
@@ -238,28 +241,29 @@ namespace SoftCaisse.Forms
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Plus de critères...";
             // 
-            // kryptonButton3
+            // kptBtnNouveau
             // 
-            this.kryptonButton3.Location = new System.Drawing.Point(1166, 164);
-            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Palette = this.kryptonPalette1;
-            this.kryptonButton3.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton3.Size = new System.Drawing.Size(130, 31);
-            this.kryptonButton3.TabIndex = 27;
-            this.kryptonButton3.Values.Text = "Nouveau";
-            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
+            this.kptBtnNouveau.Location = new System.Drawing.Point(1166, 122);
+            this.kptBtnNouveau.Margin = new System.Windows.Forms.Padding(2);
+            this.kptBtnNouveau.Name = "kptBtnNouveau";
+            this.kptBtnNouveau.Palette = this.kryptonPalette1;
+            this.kptBtnNouveau.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kptBtnNouveau.Size = new System.Drawing.Size(130, 31);
+            this.kptBtnNouveau.TabIndex = 27;
+            this.kptBtnNouveau.Values.Text = "Nouveau";
+            this.kptBtnNouveau.Click += new System.EventHandler(this.kptBtnNouveau_Click);
             // 
-            // kryptonButton2
+            // kptBtnSupprRegl
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(1166, 122);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Palette = this.kryptonPalette1;
-            this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(130, 31);
-            this.kryptonButton2.TabIndex = 26;
-            this.kryptonButton2.Values.Text = "Supprimer règlement";
+            this.kptBtnSupprRegl.Location = new System.Drawing.Point(1166, 200);
+            this.kptBtnSupprRegl.Margin = new System.Windows.Forms.Padding(2);
+            this.kptBtnSupprRegl.Name = "kptBtnSupprRegl";
+            this.kptBtnSupprRegl.Palette = this.kryptonPalette1;
+            this.kptBtnSupprRegl.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kptBtnSupprRegl.Size = new System.Drawing.Size(130, 31);
+            this.kptBtnSupprRegl.TabIndex = 26;
+            this.kptBtnSupprRegl.Values.Text = "Supprimer règlement";
+            this.kptBtnSupprRegl.Click += new System.EventHandler(this.kptBtnSupprRegl_Click);
             // 
             // tableLayoutPanel12
             // 
@@ -415,15 +419,6 @@ namespace SoftCaisse.Forms
             this.label12.Text = "Période :";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(220, 122);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(918, 321);
-            this.dataGridView1.TabIndex = 20;
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.DarkGray;
@@ -432,19 +427,52 @@ namespace SoftCaisse.Forms
             this.panel5.Size = new System.Drawing.Size(1290, 1);
             this.panel5.TabIndex = 31;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.GridColor = System.Drawing.Color.White;
+            this.dataGridView1.Location = new System.Drawing.Point(243, 122);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(888, 330);
+            this.dataGridView1.TabIndex = 32;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // kptBtnUpdate
+            // 
+            this.kptBtnUpdate.Location = new System.Drawing.Point(1166, 161);
+            this.kptBtnUpdate.Margin = new System.Windows.Forms.Padding(2);
+            this.kptBtnUpdate.Name = "kptBtnUpdate";
+            this.kptBtnUpdate.Palette = this.kryptonPalette1;
+            this.kptBtnUpdate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kptBtnUpdate.Size = new System.Drawing.Size(130, 31);
+            this.kptBtnUpdate.TabIndex = 33;
+            this.kptBtnUpdate.Values.Text = "Mettre à jour";
+            this.kptBtnUpdate.Click += new System.EventHandler(this.kptBtnUpdate_Click);
+            // 
             // SaisieDesReglementsClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(1322, 644);
+            this.Controls.Add(this.kptBtnUpdate);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.kryptonButton3);
+            this.Controls.Add(this.kptBtnSupprRegl);
+            this.Controls.Add(this.kptBtnNouveau);
             this.Controls.Add(this.tableLayoutPanel12);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.kptnBtn);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -481,8 +509,8 @@ namespace SoftCaisse.Forms
         private System.Windows.Forms.ComboBox comboBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kptnBtnAfficher;
         private System.Windows.Forms.ComboBox comboBox3;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton3;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kptBtnNouveau;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kptBtnSupprRegl;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.Label valDtSldEch30j;
         private System.Windows.Forms.Label lblDtSldEch30j;
@@ -495,9 +523,10 @@ namespace SoftCaisse.Forms
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kptBtnUpdate;
     }
 }

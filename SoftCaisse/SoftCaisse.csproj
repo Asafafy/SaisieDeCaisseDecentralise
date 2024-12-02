@@ -138,6 +138,12 @@
     <Compile Include="Forms\DocumentDeVente.Designer.cs">
       <DependentUpon>DocumentDeVente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MiseAJourReglement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MiseAJourReglement.Designer.cs">
+      <DependentUpon>MiseAJourReglement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NouveauReglement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,7 @@
     <Compile Include="Forms\SelectionEcheancesARegler.Designer.cs">
       <DependentUpon>SelectionEcheancesARegler.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CurrentRGPiece.cs" />
     <Compile Include="Models\F_ARTFOURNISS.cs" />
     <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
@@ -417,6 +424,7 @@
     <Compile Include="Models\P_ANALYTIQUE.cs" />
     <Compile Include="Models\P_CATCOMPTA.cs" />
     <Compile Include="Models\P_CATTARIF.cs" />
+    <Compile Include="Models\P_COLREGLEMENT.cs" />
     <Compile Include="Models\P_CONDLIVR.cs" />
     <Compile Include="Models\P_DEVISE.cs" />
     <Compile Include="Models\P_EXPEDITION.cs" />
@@ -449,6 +457,7 @@
     <Compile Include="Repositories\BIJOU\F_CREGLEMENTRepository.cs" />
     <Compile Include="Repositories\BIJOU\F_DEPOTRepository.cs" />
     <Compile Include="Repositories\BIJOU\F_JOURNAUXRepository.cs" />
+    <Compile Include="Repositories\BIJOU\F_REGLECHRepository.cs" />
     <Compile Include="Repositories\DTORepository\DeviseRepository.cs" />
     <Compile Include="Repositories\BIJOU\FReglementRepository.cs" />
     <Compile Include="Repositories\BIJOU\F_CATALOGUERepository.cs" />
@@ -508,6 +517,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DocumentDeVente.resx">
       <DependentUpon>DocumentDeVente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MiseAJourReglement.resx">
+      <DependentUpon>MiseAJourReglement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NouveauReglement.resx">
       <DependentUpon>NouveauReglement.cs</DependentUpon>

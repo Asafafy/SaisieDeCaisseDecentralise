@@ -1,5 +1,6 @@
 ﻿using SoftCaisse.Models;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace SoftCaisse.Repositories
 {
@@ -12,6 +13,8 @@ namespace SoftCaisse.Repositories
             _context = context;
         }
 
+
+        // ========================== METHODES DE L'INTERFACE IREPOSITORY ==========================
         public void Add(F_DOCREGL docRegl)
         {
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_F_DOCREGL] ON [dbo].[F_DOCREGL]");
@@ -69,7 +72,7 @@ namespace SoftCaisse.Repositories
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_F_DOCREGL] ON [dbo].[F_DOCREGL]");
         }
 
-        public void Delete(int id)
+        public void Delete(int IdDocregl)
         {
             throw new System.NotImplementedException();
         }
@@ -87,6 +90,23 @@ namespace SoftCaisse.Repositories
         public void Update(F_DOCREGL entity)
         {
             throw new System.NotImplementedException();
+        }
+
+        // ========================== METHODES DE L'INTERFACE IREPOSITORY ==========================
+
+
+
+
+        public void DeleteByDoPiece(string doPiece)
+        {
+            string queryDeleteAvecCommande = @"
+                DELETE FROM [dbo].[F_DOCREGL] WHERE DO_Piece = @DO_Piece;
+            ";
+
+            _context.Database.ExecuteSqlCommand(
+                queryDeleteAvecCommande,
+                new SqlParameter("@DO_Piece", doPiece)
+            );
         }
     }
 }

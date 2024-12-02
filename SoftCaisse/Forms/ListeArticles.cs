@@ -186,8 +186,8 @@ namespace SoftCaisse.Forms.Article
                     else if (_venantDocumentVente == true && _venantVenteComptoir == false)
                     {
                         DocumentDeVente nouveauDocumentDeVente = Application.OpenForms.OfType<DocumentDeVente>().FirstOrDefault();
-                        nouveauDocumentDeVente?.AjouterPrix(referenceArt, designArt, 1, puHT, puTTC, estHorsTaxe ? "HT" : "TTC");
-                        nouveauDocumentDeVente?.MettreAJourMontants(1, puHT, puTTC, _remisePourcent);
+                        nouveauDocumentDeVente?.AjouterPrix(referenceArt, designArt, puHT, puTTC, estHorsTaxe ? "HT" : "TTC");
+                        nouveauDocumentDeVente?.MettreAJourMontants();
                         Close();
                     }
                     // ============================ FIN MBOLA TSY AU POINT ============================

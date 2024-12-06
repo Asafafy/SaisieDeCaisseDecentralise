@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectionEcheancesARegler));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbBxOptEcheaches = new System.Windows.Forms.ComboBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.labelTous = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -101,7 +101,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.cmbBxOptEcheaches);
             this.panel2.Controls.Add(this.linkLabel1);
             this.panel2.Controls.Add(this.labelTous);
             this.panel2.Location = new System.Drawing.Point(12, 12);
@@ -109,13 +109,13 @@
             this.panel2.Size = new System.Drawing.Size(188, 481);
             this.panel2.TabIndex = 15;
             // 
-            // comboBox1
+            // cmbBxOptEcheaches
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(19, 91);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(150, 21);
-            this.comboBox1.TabIndex = 11;
+            this.cmbBxOptEcheaches.FormattingEnabled = true;
+            this.cmbBxOptEcheaches.Location = new System.Drawing.Point(19, 91);
+            this.cmbBxOptEcheaches.Name = "cmbBxOptEcheaches";
+            this.cmbBxOptEcheaches.Size = new System.Drawing.Size(150, 21);
+            this.cmbBxOptEcheaches.TabIndex = 11;
             // 
             // linkLabel1
             // 
@@ -521,7 +521,7 @@
 
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbBxOptEcheaches;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label labelTous;
         private System.Windows.Forms.DataGridView dataGridView1;

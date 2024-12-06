@@ -123,7 +123,8 @@ namespace SoftCaisse.Forms
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler();
+            F_COMPTET clientSelect = _context.F_COMPTET.Where(c => c.CT_Num + " - " + c.CT_Intitule == comboBox3.Text).FirstOrDefault();
+            SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num);
             selectionEcheancesARegler.Show();
         }
 
@@ -134,6 +135,7 @@ namespace SoftCaisse.Forms
         }
 
 
+        // Sélection des règlements à afficher
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox3.SelectedIndex != -1)

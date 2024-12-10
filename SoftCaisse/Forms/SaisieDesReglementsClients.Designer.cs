@@ -62,8 +62,8 @@ namespace SoftCaisse.Forms
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.kptBtnUpdate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -427,6 +427,18 @@ namespace SoftCaisse.Forms
             this.panel5.Size = new System.Drawing.Size(1290, 1);
             this.panel5.TabIndex = 31;
             // 
+            // kptBtnUpdate
+            // 
+            this.kptBtnUpdate.Location = new System.Drawing.Point(1166, 161);
+            this.kptBtnUpdate.Margin = new System.Windows.Forms.Padding(2);
+            this.kptBtnUpdate.Name = "kptBtnUpdate";
+            this.kptBtnUpdate.Palette = this.kryptonPalette1;
+            this.kptBtnUpdate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kptBtnUpdate.Size = new System.Drawing.Size(130, 31);
+            this.kptBtnUpdate.TabIndex = 33;
+            this.kptBtnUpdate.Values.Text = "Mettre à jour";
+            this.kptBtnUpdate.Click += new System.EventHandler(this.kptBtnUpdate_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -446,18 +458,6 @@ namespace SoftCaisse.Forms
             this.dataGridView1.Size = new System.Drawing.Size(888, 330);
             this.dataGridView1.TabIndex = 32;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // kptBtnUpdate
-            // 
-            this.kptBtnUpdate.Location = new System.Drawing.Point(1166, 161);
-            this.kptBtnUpdate.Margin = new System.Windows.Forms.Padding(2);
-            this.kptBtnUpdate.Name = "kptBtnUpdate";
-            this.kptBtnUpdate.Palette = this.kryptonPalette1;
-            this.kptBtnUpdate.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kptBtnUpdate.Size = new System.Drawing.Size(130, 31);
-            this.kptBtnUpdate.TabIndex = 33;
-            this.kptBtnUpdate.Values.Text = "Mettre à jour";
-            this.kptBtnUpdate.Click += new System.EventHandler(this.kptBtnUpdate_Click);
             // 
             // SaisieDesReglementsClients
             // 
@@ -526,7 +526,7 @@ namespace SoftCaisse.Forms
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kptBtnUpdate;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

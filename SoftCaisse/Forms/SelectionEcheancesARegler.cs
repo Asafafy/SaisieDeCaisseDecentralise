@@ -1,5 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
+using SoftCaisse.DTO;
 using SoftCaisse.Models;
+using SoftCaisse.Repositories.BIJOU;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,12 +18,15 @@ namespace SoftCaisse.Forms
         private DataTable _bindingSource;
         private readonly F_COMPTET _clientSelect;
         private List<P_REGLEMENT> _p_REGLEMENTs;
+        private ListeSelectionEcheancesRepository listeSelectionEcheancesRepository;
 
         public SelectionEcheancesARegler(string ct_Num)
         {
             InitializeComponent();
 
             _context = new AppDbContext();
+
+            listeSelectionEcheancesRepository = new ListeSelectionEcheancesRepository(_context);
 
             ApplyRoundedCorners(tableLayoutPanel3, 30);
             ApplyRoundedCorners(panel2, 30);
@@ -33,6 +38,8 @@ namespace SoftCaisse.Forms
             _p_REGLEMENTs = _context.P_REGLEMENT.ToList();
 
             cmbBxOptEcheaches.DataSource = listeOptionsEcheances;
+
+            afficherListeEcheances();
 
         }
 
@@ -74,45 +81,55 @@ namespace SoftCaisse.Forms
             _bindingSource.Columns.Add(new DataColumn("N° client"));
             _bindingSource.Columns.Add(new DataColumn("Mode règlement"));
             _bindingSource.Columns.Add(new DataColumn("A payer"));
-            _bindingSource.Columns.Add(new DataColumn("Devise"));
-            _bindingSource.Columns.Add(new DataColumn("P"));
+            _bindingSource.Columns.Add(new DataColumn("Est payé"));
             _bindingSource.Columns.Add(new DataColumn("Solde"));
-            _bindingSource.Columns.Add(new DataColumn("Règlement"));
         }
+
 
 
         private void afficherListeEcheances()
         {
-            List<F_DOCENTETE> listeEcheances = _context.F_DOCENTETE.Where(ech => ech.DO_Tiers == _clientSelect.CT_Num && ech.DO_Piece.StartsWith("FA")).ToList();
+            List<ListeSelectionEcheances> listeEcheances = listeSelectionEcheancesRepository.ListerEcheances(_clientSelect.CT_Num);
             if (cmbBxOptEcheaches.SelectedIndex == 0) // Option "Tous"
             {
-                // Ne rien faire.
+                // Ne rien faire
             }
             else if (cmbBxOptEcheaches.SelectedIndex == 1) // Option "Echéances non réglées"
             {
-                listeEcheances.Where(ech => ech.DO_MontantRegle < ech.DO_NetAPayer).ToList();
+                listeEcheances = listeEcheances.Where(ech => ech.DR_Regle == 0).ToList();
             }
             else // Option "Echéances réglées"
             {
-                listeEcheances.Where(ech => ech.DO_MontantRegle == ech.DO_NetAPayer).ToList();
+                listeEcheances = listeEcheances.Where(ech => ech.DR_Regle == 1).ToList();
             }
 
-            InitDatatables();
+            _bindingSource = new DataTable();
 
-            foreach (F_DOCENTETE echeance in listeEcheances)
+            _bindingSource.Columns.Add(new DataColumn("Echéance"));
+            _bindingSource.Columns.Add(new DataColumn("N° pièce"));
+            _bindingSource.Columns.Add(new DataColumn("N° client"));
+            _bindingSource.Columns.Add(new DataColumn("Mode règlement"));
+            _bindingSource.Columns.Add(new DataColumn("Pourcentage"));
+            _bindingSource.Columns.Add(new DataColumn("A payer"));
+            _bindingSource.Columns.Add(new DataColumn("Est payé"));
+            _bindingSource.Columns.Add(new DataColumn("Solde"));
+
+            foreach (ListeSelectionEcheances echeance in listeEcheances)
             {
-                F_DOCREGL f_DOCREGL = _context.F_DOCREGL.Where(dr => dr.DO_Piece == echeance.DO_Piece).FirstOrDefault();
-                F_REGLECH f_REGLECH = _context.F_REGLECH.Where(r => r.DO_Piece == echeance.DO_Piece).FirstOrDefault();
                 _bindingSource.Rows.Add(
-                    f_DOCREGL.DR_Date.ToString(),
+                    echeance.DR_Date.ToString(),
                     echeance.DO_Piece,
                     echeance.CT_NumPayeur,
-                    _p_REGLEMENTs.Where(r => r.cbIndice == f_DOCREGL.N_Reglement).Select(r => r.R_Intitule).FirstOrDefault()
-
-
+                    echeance.R_Intitule,
+                    echeance.DR_Pourcent,
+                    echeance.A_Payer,
+                    echeance.DR_Regle == 0 ? "Non" : "Oui",
+                    echeance.DR_Regle == 0 ? echeance.Solde : 0
                 );
             }
+            dataGridView1.DataSource = _bindingSource;
         }
+
         // ====================================================================== FONCTIONS ============================================================
         // =============================================================================================================================================
 

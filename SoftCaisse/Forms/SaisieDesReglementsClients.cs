@@ -124,8 +124,20 @@ namespace SoftCaisse.Forms
         private void button1_Click(object sender, System.EventArgs e)
         {
             F_COMPTET clientSelect = _context.F_COMPTET.Where(c => c.CT_Num + " - " + c.CT_Intitule == comboBox3.Text).FirstOrDefault();
-            SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num);
-            selectionEcheancesARegler.Show();
+            if (clientSelect == null)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    "Sélectionnez d'abord un client",
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+            else
+            {
+                SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num);
+                selectionEcheancesARegler.Show();
+            }
         }
 
         private void button2_Click(object sender, System.EventArgs e)

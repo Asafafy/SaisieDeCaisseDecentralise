@@ -119,7 +119,13 @@ namespace SoftCaisse.Forms
                 dtTmPckrDateImpaye.Value = (DateTime)_f_CREGLEMENTToUpdateGlobal.RG_Impaye;
             }
             int indexCompteGContre = _listeCompteGeneralContrepartieToDisplay.IndexOf(_f_CREGLEMENTToUpdateGlobal.CG_NumCont);
-            cmbBxContrepartie.SelectedIndex = indexCompteGContre - 1;
+            if (indexCompteGContre == -1)
+            {
+                cmbBxContrepartie.SelectedIndex = -1;
+            } else
+            {
+                cmbBxContrepartie.SelectedIndex = indexCompteGContre - 1;
+            }
             if (_f_CREGLEMENTToUpdateGlobal.RG_DateEchCont != _dateReference)
             {
                 dtTmPckrEcheanceContrepartie.CustomFormat = "dd-MM-yyyy";

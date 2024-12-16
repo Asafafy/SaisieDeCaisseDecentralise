@@ -41,29 +41,29 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.txtBxMontRegl = new System.Windows.Forms.TextBox();
+            this.txtBxMontEcart = new System.Windows.Forms.TextBox();
+            this.cmbBxCompteEcart = new System.Windows.Forms.ComboBox();
+            this.cmbBxCodeJournal = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.kptnBtn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.txtBxMontRegle = new System.Windows.Forms.TextBox();
+            this.kptnBtnImputer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.valResteAImputer = new System.Windows.Forms.Label();
+            this.valTotImpute = new System.Windows.Forms.Label();
+            this.valMontRegle = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnOk = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -116,6 +116,7 @@
             this.cmbBxOptEcheaches.Name = "cmbBxOptEcheaches";
             this.cmbBxOptEcheaches.Size = new System.Drawing.Size(150, 21);
             this.cmbBxOptEcheaches.TabIndex = 11;
+            this.cmbBxOptEcheaches.SelectedIndexChanged += new System.EventHandler(this.cmbBxOptEcheaches_SelectedIndexChanged);
             // 
             // linkLabel1
             // 
@@ -159,10 +160,10 @@
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label3, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label4, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textBox2, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox2, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox3, 3, 2);
+            this.tableLayoutPanel2.Controls.Add(this.txtBxMontRegl, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtBxMontEcart, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.cmbBxCompteEcart, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.cmbBxCodeJournal, 3, 2);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(15, 36);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
@@ -217,43 +218,46 @@
             this.label4.Text = "Code journal";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox1
+            // txtBxMontRegl
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(161, 15);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(152, 20);
-            this.textBox1.TabIndex = 4;
+            this.txtBxMontRegl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBxMontRegl.Location = new System.Drawing.Point(161, 15);
+            this.txtBxMontRegl.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxMontRegl.Name = "txtBxMontRegl";
+            this.txtBxMontRegl.Size = new System.Drawing.Size(152, 20);
+            this.txtBxMontRegl.TabIndex = 4;
+            this.txtBxMontRegl.TextChanged += new System.EventHandler(this.txtBxMontRegl_TextChanged);
+            this.txtBxMontRegl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBxMontRegl_KeyPress);
             // 
-            // textBox2
+            // txtBxMontEcart
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(477, 15);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(155, 20);
-            this.textBox2.TabIndex = 5;
+            this.txtBxMontEcart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBxMontEcart.Location = new System.Drawing.Point(477, 15);
+            this.txtBxMontEcart.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxMontEcart.Name = "txtBxMontEcart";
+            this.txtBxMontEcart.Size = new System.Drawing.Size(155, 20);
+            this.txtBxMontEcart.TabIndex = 5;
+            this.txtBxMontEcart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBxMontEcart_KeyPress);
             // 
-            // comboBox2
+            // cmbBxCompteEcart
             // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(161, 45);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(152, 21);
-            this.comboBox2.TabIndex = 6;
+            this.cmbBxCompteEcart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbBxCompteEcart.FormattingEnabled = true;
+            this.cmbBxCompteEcart.Location = new System.Drawing.Point(161, 45);
+            this.cmbBxCompteEcart.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.cmbBxCompteEcart.Name = "cmbBxCompteEcart";
+            this.cmbBxCompteEcart.Size = new System.Drawing.Size(152, 21);
+            this.cmbBxCompteEcart.TabIndex = 6;
             // 
-            // comboBox3
+            // cmbBxCodeJournal
             // 
-            this.comboBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(477, 45);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(155, 21);
-            this.comboBox3.TabIndex = 7;
+            this.cmbBxCodeJournal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbBxCodeJournal.FormattingEnabled = true;
+            this.cmbBxCodeJournal.Location = new System.Drawing.Point(477, 45);
+            this.cmbBxCodeJournal.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.cmbBxCodeJournal.Name = "cmbBxCodeJournal";
+            this.cmbBxCodeJournal.Size = new System.Drawing.Size(155, 21);
+            this.cmbBxCodeJournal.TabIndex = 7;
             // 
             // checkBox1
             // 
@@ -264,6 +268,7 @@
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Enregistrer un écart de règlement";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -273,7 +278,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtBxMontRegle, 1, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(899, 22);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -315,24 +320,26 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(173, 20);
             this.dateTimePicker1.TabIndex = 2;
             // 
-            // textBox3
+            // txtBxMontRegle
             // 
-            this.textBox3.Location = new System.Drawing.Point(101, 45);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(173, 20);
-            this.textBox3.TabIndex = 3;
+            this.txtBxMontRegle.Location = new System.Drawing.Point(101, 45);
+            this.txtBxMontRegle.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxMontRegle.Name = "txtBxMontRegle";
+            this.txtBxMontRegle.Size = new System.Drawing.Size(173, 20);
+            this.txtBxMontRegle.TabIndex = 3;
+            this.txtBxMontRegle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBxMontRegle_KeyPress);
             // 
-            // kptnBtn
+            // kptnBtnImputer
             // 
-            this.kptnBtn.Location = new System.Drawing.Point(1101, 101);
-            this.kptnBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.kptnBtn.Name = "kptnBtn";
-            this.kptnBtn.Palette = this.kryptonPalette1;
-            this.kptnBtn.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kptnBtn.Size = new System.Drawing.Size(75, 31);
-            this.kptnBtn.TabIndex = 26;
-            this.kptnBtn.Values.Text = "Imputer";
+            this.kptnBtnImputer.Location = new System.Drawing.Point(1101, 101);
+            this.kptnBtnImputer.Margin = new System.Windows.Forms.Padding(2);
+            this.kptnBtnImputer.Name = "kptnBtnImputer";
+            this.kptnBtnImputer.Palette = this.kryptonPalette1;
+            this.kptnBtnImputer.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kptnBtnImputer.Size = new System.Drawing.Size(75, 31);
+            this.kptnBtnImputer.TabIndex = 26;
+            this.kptnBtnImputer.Values.Text = "Imputer";
+            this.kptnBtnImputer.Click += new System.EventHandler(this.kptnBtnImputer_Click);
             // 
             // label7
             // 
@@ -377,12 +384,12 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.09982F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.80035F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.27496F));
-            this.tableLayoutPanel3.Controls.Add(this.label12, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label11, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.valResteAImputer, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.valTotImpute, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label9, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.label8, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label10, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.valMontRegle, 0, 1);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(605, 417);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
@@ -391,38 +398,38 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(571, 76);
             this.tableLayoutPanel3.TabIndex = 27;
             // 
-            // label12
+            // valResteAImputer
             // 
-            this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(383, 41);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(185, 35);
-            this.label12.TabIndex = 5;
-            this.label12.Text = "label12";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.valResteAImputer.AutoSize = true;
+            this.valResteAImputer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.valResteAImputer.Location = new System.Drawing.Point(383, 41);
+            this.valResteAImputer.Name = "valResteAImputer";
+            this.valResteAImputer.Size = new System.Drawing.Size(185, 35);
+            this.valResteAImputer.TabIndex = 5;
+            this.valResteAImputer.Text = "0";
+            this.valResteAImputer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label11
+            // valTotImpute
             // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(191, 41);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(186, 35);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "label11";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.valTotImpute.AutoSize = true;
+            this.valTotImpute.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.valTotImpute.Location = new System.Drawing.Point(191, 41);
+            this.valTotImpute.Name = "valTotImpute";
+            this.valTotImpute.Size = new System.Drawing.Size(186, 35);
+            this.valTotImpute.TabIndex = 4;
+            this.valTotImpute.Text = "0";
+            this.valTotImpute.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // valMontRegle
             // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(3, 41);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(182, 35);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "label10";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.valMontRegle.AutoSize = true;
+            this.valMontRegle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.valMontRegle.Location = new System.Drawing.Point(3, 41);
+            this.valMontRegle.Name = "valMontRegle";
+            this.valMontRegle.Size = new System.Drawing.Size(182, 35);
+            this.valMontRegle.TabIndex = 3;
+            this.valMontRegle.Text = "0";
+            this.valMontRegle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
             // 
@@ -460,16 +467,17 @@
             this.kryptonButton1.Values.Text = "Annuler";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
-            // kryptonButton2
+            // btnOk
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(1015, 524);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Palette = this.kryptonPalette1;
-            this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(75, 31);
-            this.kryptonButton2.TabIndex = 32;
-            this.kryptonButton2.Values.Text = "OK";
+            this.btnOk.Location = new System.Drawing.Point(1015, 524);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Palette = this.kryptonPalette1;
+            this.btnOk.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnOk.Size = new System.Drawing.Size(75, 31);
+            this.btnOk.TabIndex = 32;
+            this.btnOk.Values.Text = "OK";
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // dataGridView1
             // 
@@ -490,6 +498,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(957, 249);
             this.dataGridView1.TabIndex = 33;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // SelectionEcheancesARegler
             // 
@@ -498,14 +507,14 @@
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(1188, 572);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.kryptonButton2);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.tableLayoutPanel3);
-            this.Controls.Add(this.kptnBtn);
+            this.Controls.Add(this.kptnBtnImputer);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -542,28 +551,28 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox txtBxMontRegl;
+        private System.Windows.Forms.TextBox txtBxMontEcart;
+        private System.Windows.Forms.ComboBox cmbBxCompteEcart;
+        private System.Windows.Forms.ComboBox cmbBxCodeJournal;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox3;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kptnBtn;
+        private System.Windows.Forms.TextBox txtBxMontRegle;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kptnBtnImputer;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label valResteAImputer;
+        private System.Windows.Forms.Label valTotImpute;
+        private System.Windows.Forms.Label valMontRegle;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOk;
         private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

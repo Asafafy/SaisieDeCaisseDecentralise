@@ -64,6 +64,7 @@ namespace SoftCaisse.Forms
             this.panel5 = new System.Windows.Forms.Panel();
             this.kptBtnUpdate = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button3 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -130,7 +131,7 @@ namespace SoftCaisse.Forms
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(205, 9);
+            this.button2.Location = new System.Drawing.Point(307, 9);
             this.button2.Margin = new System.Windows.Forms.Padding(1, 9, 1, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 22);
@@ -144,6 +145,7 @@ namespace SoftCaisse.Forms
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.flowLayoutPanel1.Controls.Add(this.btnNomenclature);
             this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.button3);
             this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(-2, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -459,6 +461,20 @@ namespace SoftCaisse.Forms
             this.dataGridView1.TabIndex = 32;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(205, 9);
+            this.button3.Margin = new System.Windows.Forms.Padding(1, 9, 1, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 22);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Règler et imputer";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // SaisieDesReglementsClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -528,5 +544,6 @@ namespace SoftCaisse.Forms
         private System.Windows.Forms.Panel panel5;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kptBtnUpdate;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button3;
     }
 }

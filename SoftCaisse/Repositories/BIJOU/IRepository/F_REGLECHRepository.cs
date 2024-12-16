@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace SoftCaisse.Repositories.BIJOU
 {
-    internal class F_REGLECHRepository : IRepository<F_REGLECH>
+    internal class F_REGLECHRepository
     {
         private readonly AppDbContext _context;
         public F_REGLECHRepository(AppDbContext context)
@@ -48,6 +49,49 @@ namespace SoftCaisse.Repositories.BIJOU
                 queryDeleteAvecCommande,
                 new SqlParameter("@DO_Piece", doPiece)
             );
+        }
+
+        public void AddReglech(int RgNo, string doPieceNo, decimal rcMontant)
+        {
+            int lastRGNo = 0;
+            string lastRGNoStr = _context.P_COLREGLEMENT.Select(pc => pc.CR_Numero01).FirstOrDefault();
+            lastRGNo = Convert.ToInt32(lastRGNoStr);
+            string queryForAdd = @"
+                Insert INTO [dbo].[F_REGLECH] (
+                    RG_No,
+                    DR_No,
+                    DO_Domaine,
+                    DO_Type,
+                    DO_Piece,
+                    RC_Montant,
+                    RG_TypeReg,
+                    cbCreateur
+                )
+				values(
+                    {0},
+					{1},
+					{2},
+					{3},
+					{4},
+					{5},
+					{6},
+					{7}
+                )
+            ";
+
+            _context.Database.ExecuteSqlCommand(queryForAdd,
+                lastRGNo + 1,
+                RgNo,
+                0,
+                6,
+                doPieceNo,
+                rcMontant,
+                0,
+                "COLS"
+            );
+
+            P_COLREGLEMENT pColRToUpdate = _context.P_COLREGLEMENT.FirstOrDefault();
+            pColRToUpdate.CR_Numero01 = (lastRGNo + 1).ToString();
         }
     }
 }

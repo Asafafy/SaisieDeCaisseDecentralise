@@ -121,6 +121,8 @@ namespace SoftCaisse.Forms
             historiqueReglements.Show();
         }
 
+
+        // Séléctionner (Liaison facture - règlement)
         private void button1_Click(object sender, System.EventArgs e)
         {
             F_COMPTET clientSelect = _context.F_COMPTET.Where(c => c.CT_Num + " - " + c.CT_Intitule == comboBox3.Text).FirstOrDefault();
@@ -135,8 +137,35 @@ namespace SoftCaisse.Forms
             }
             else
             {
-                SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num);
-                selectionEcheancesARegler.Show();
+                if (dataGridView1.SelectedRows.Count > 0) // Des lignes (règlements) sont sélectionnés
+                {
+                    DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                    decimal? solde = Convert.ToDecimal(selectedRow.Cells["Solde"].Value.ToString());
+                    decimal? montant = Convert.ToDecimal(selectedRow.Cells["Montant"].Value.ToString());
+                    if (solde > 0 && solde <= montant)
+                    {
+                        SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num, solde);
+                        selectionEcheancesARegler.Show();
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show(
+                            "Les règlements soldés ne sont plus utilisables",
+                            "Attention",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                    }
+                }
+                else // Aucune ligne (règlement) n'est sélectionnée
+                {
+                    System.Windows.Forms.MessageBox.Show(
+                        "Aucune ligne n'est sélectionnée",
+                        "Erreur",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
             }
         }
 
@@ -344,5 +373,25 @@ namespace SoftCaisse.Forms
             }
         }
 
+
+        // REGLER ET IMPUTER EN MEME TEMPS
+        private void button3_Click(object sender, EventArgs e)
+        {
+            F_COMPTET clientSelect = _context.F_COMPTET.Where(c => c.CT_Num + " - " + c.CT_Intitule == comboBox3.Text).FirstOrDefault();
+            if (clientSelect == null)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    "Sélectionnez d'abord un client",
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+            else
+            {
+                SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num, 0);
+                selectionEcheancesARegler.Show();
+            }
+        }
     }
 }

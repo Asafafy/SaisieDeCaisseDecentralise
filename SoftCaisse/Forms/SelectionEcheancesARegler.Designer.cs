@@ -237,7 +237,6 @@
             this.txtBxMontEcart.Name = "txtBxMontEcart";
             this.txtBxMontEcart.Size = new System.Drawing.Size(155, 20);
             this.txtBxMontEcart.TabIndex = 5;
-            this.txtBxMontEcart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBxMontEcart_KeyPress);
             // 
             // cmbBxCompteEcart
             // 

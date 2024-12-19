@@ -51,7 +51,7 @@ namespace SoftCaisse.Repositories.BIJOU
             );
         }
 
-        public void AddReglech(int RgNo, string doPieceNo, decimal rcMontant)
+        public void AddReglech(int drNo, string doPieceNo, decimal rcMontant)
         {
             int lastRGNo = 0;
             string lastRGNoStr = _context.P_COLREGLEMENT.Select(pc => pc.CR_Numero01).FirstOrDefault();
@@ -81,7 +81,7 @@ namespace SoftCaisse.Repositories.BIJOU
 
             _context.Database.ExecuteSqlCommand(queryForAdd,
                 lastRGNo + 1,
-                RgNo,
+                drNo,
                 0,
                 6,
                 doPieceNo,
@@ -90,8 +90,8 @@ namespace SoftCaisse.Repositories.BIJOU
                 "COLS"
             );
 
-            P_COLREGLEMENT pColRToUpdate = _context.P_COLREGLEMENT.FirstOrDefault();
-            pColRToUpdate.CR_Numero01 = (lastRGNo + 1).ToString();
+            //P_COLREGLEMENT pColRToUpdate = _context.P_COLREGLEMENT.FirstOrDefault();
+            //pColRToUpdate.CR_Numero01 = (lastRGNo + 1).ToString();
         }
     }
 }

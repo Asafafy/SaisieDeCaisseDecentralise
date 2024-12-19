@@ -144,7 +144,9 @@ namespace SoftCaisse.Forms
                     decimal? montant = Convert.ToDecimal(selectedRow.Cells["Montant"].Value.ToString());
                     if (solde > 0 && solde <= montant)
                     {
-                        SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num, solde);
+                        string noPiece = selectedRow.Cells["N° pièce"].Value.ToString();
+                        F_CREGLEMENT f_CREGLEMENT = _context.F_CREGLEMENT.Where(fcr => fcr.RG_Piece == noPiece).FirstOrDefault();
+                        SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num, solde, (int)f_CREGLEMENT.RG_No);
                         selectionEcheancesARegler.Show();
                     }
                     else
@@ -389,7 +391,7 @@ namespace SoftCaisse.Forms
             }
             else
             {
-                SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num, 0);
+                SelectionEcheancesARegler selectionEcheancesARegler = new SelectionEcheancesARegler(clientSelect.CT_Num, 0, 0);
                 selectionEcheancesARegler.Show();
             }
         }

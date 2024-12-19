@@ -8,12 +8,16 @@ using SoftCaisse.Utils.Global;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace SoftCaisse.Forms
 {
@@ -23,28 +27,30 @@ namespace SoftCaisse.Forms
         private DataTable _bindingSource;
         private readonly F_COMPTET _clientSelect;
         private readonly decimal? _initSolde;
-        private decimal? _soldeSaisieMontantRegl;
 
         private readonly IRepository<F_CREGLEMENT> _f_CREGLEMENTRepository;
         private readonly F_REGLECHRepository _f_REGLECHRepository;
         private ListeSelectionEcheancesRepository listeSelectionEcheancesRepository;
 
-        private List<P_REGLEMENT> _p_REGLEMENTs;
         List<F_COMPTEG> _listeCompteGeneral;
+        List<ListeSelectionEcheances> listeEcheances;
 
-        List<EcheanceTempEchRegl> _listEchTempEchRegl;
+        //List<EcheanceTempEchRegl> _listEchTempEchRegl;
 
-        public SelectionEcheancesARegler(string ct_Num, decimal? solde)
+        private int rgNoFCRegl;
+
+        public SelectionEcheancesARegler(string ct_Num, decimal? solde, int rgNo)
         {
             InitializeComponent();
 
             _context = new AppDbContext();
+            rgNoFCRegl = rgNo;
 
             listeSelectionEcheancesRepository = new ListeSelectionEcheancesRepository(_context);
             _f_CREGLEMENTRepository = new F_CREGLEMENTRepository(_context);
             _f_REGLECHRepository = new F_REGLECHRepository(_context);
 
-            _listEchTempEchRegl = new List<EcheanceTempEchRegl>();
+            //_listEchTempEchRegl = new List<EcheanceTempEchRegl>();
 
             ApplyRoundedCorners(tableLayoutPanel3, 30);
             ApplyRoundedCorners(panel2, 30);
@@ -52,8 +58,9 @@ namespace SoftCaisse.Forms
 
             _clientSelect = _context.F_COMPTET.Where(c => c.CT_Num == ct_Num).FirstOrDefault();
             _listeCompteGeneral = _context.F_COMPTEG.OrderBy(cmptG => cmptG.CG_Num).ToList();
+            afficherListeEcheances();
+
             _initSolde = solde;
-            _p_REGLEMENTs = _context.P_REGLEMENT.ToList();
 
             List<string> listeOptionsEcheances = new List<string> { "Tous", "Echéances non réglées", "Echéances réglées" };
             List<string> f_JOURNAUXes = _context.F_JOURNAUX.Where(j => j.JO_Type == 3).Select(j => j.JO_Num + " - " + j.JO_Intitule).ToList();
@@ -63,8 +70,6 @@ namespace SoftCaisse.Forms
             cmbBxOptEcheaches.DataSource = listeOptionsEcheances;
             cmbBxCodeJournal.DataSource = f_JOURNAUXes;
             cmbBxCodeJournal.SelectedIndex = -1;
-
-            afficherListeEcheances();
 
             txtBxMontRegl.Enabled = false;
             txtBxMontEcart.Enabled = false;
@@ -77,9 +82,23 @@ namespace SoftCaisse.Forms
 
             if(_initSolde != 0)
             {
-                txtBxMontRegl.Text = _initSolde.ToString();
-                valMontRegle.Text = _initSolde.ToString();
-                valResteAImputer.Text = _initSolde.ToString();
+                decimal? montReglement = _initSolde;
+                decimal? totImpute = 0;
+                
+                foreach(DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells["Règlement"].Value != null && decimal.TryParse(row.Cells["Règlement"].Value.ToString(), out decimal valeur))
+                    {
+                        montReglement += valeur;
+                        totImpute += valeur;
+                    }
+                }
+                decimal? resteAImputer = montReglement - totImpute;
+
+                txtBxMontRegl.Text = montReglement.ToString();
+                valMontRegle.Text = montReglement.ToString();
+                valTotImpute.Text = totImpute.ToString();
+                valResteAImputer.Text = resteAImputer.ToString();
             }
         }
 
@@ -108,28 +127,13 @@ namespace SoftCaisse.Forms
 
             control.Invalidate();
         }
-        // =============================== FONCTIONS POUR LE DESIGN ===============================
 
 
-        // ILAINA VE ITO ??
-        //private void InitDatatables()
-        //{
-        //    _bindingSource = new DataTable();
-
-        //    _bindingSource.Columns.Add(new DataColumn("Echéance"));
-        //    _bindingSource.Columns.Add(new DataColumn("N° pièce"));
-        //    _bindingSource.Columns.Add(new DataColumn("N° client"));
-        //    _bindingSource.Columns.Add(new DataColumn("Mode règlement"));
-        //    _bindingSource.Columns.Add(new DataColumn("A payer"));
-        //    _bindingSource.Columns.Add(new DataColumn("Est payé"));
-        //    _bindingSource.Columns.Add(new DataColumn("Solde"));
-        //}
-
-
-
+        // =============================== AUTRES FONCTIONS ===============================
         private void afficherListeEcheances()
         {
-            List<ListeSelectionEcheances> listeEcheances = listeSelectionEcheancesRepository.ListerEcheances(_clientSelect.CT_Num);
+            listeEcheances = listeSelectionEcheancesRepository.ListerEcheances(_clientSelect.CT_Num, rgNoFCRegl);
+
             if (cmbBxOptEcheaches.SelectedIndex == 0) // Option "Tous"
             {
                 // Ne rien faire
@@ -166,14 +170,18 @@ namespace SoftCaisse.Forms
                     echeance.A_Payer,
                     echeance.DR_Regle == 0 ? "Non" : "Oui",
                     echeance.DR_Regle == 0 ? echeance.Solde : 0,
-                    ""
+                    echeance.RC_Montant
                 );
-                EcheanceTempEchRegl newElement = new EcheanceTempEchRegl();
-                newElement.DR_No = echeance.DR_No;
-                newElement.RC_Montant = echeance.A_Payer;
-                newElement.soldeEchInit = echeance.Solde;
-                newElement.doPieceNo = echeance.DO_Piece;
-                _listEchTempEchRegl.Add(newElement);
+                //if (_listEchTempEchRegl.Count <= listeEcheances.Count)
+                //{
+                //    EcheanceTempEchRegl newElement = new EcheanceTempEchRegl();
+                //    newElement.DR_No = echeance.DR_No;
+                //    newElement.RG_No = echeance.RG_No == null ? 0 : (int)echeance.RG_No;
+                //    newElement.RC_Montant = echeance.A_Payer;
+                //    newElement.soldeEchInit = echeance.Solde;
+                //    newElement.doPieceNo = echeance.DO_Piece;
+                //    _listEchTempEchRegl.Add(newElement);
+                //}
             }
             dataGridView1.DataSource = _bindingSource;
         }
@@ -240,7 +248,6 @@ namespace SoftCaisse.Forms
             if (checkBox1.Checked == false)
             {
                 txtBxMontRegl.Enabled = false;
-                txtBxMontEcart.Enabled = false;
                 cmbBxCompteEcart.Enabled = false;
                 cmbBxCodeJournal.Enabled = false;
                 label1.Enabled = false;
@@ -254,8 +261,8 @@ namespace SoftCaisse.Forms
                 }
                 txtBxMontEcart.Text = "";
 
-                decimal montRegle = valMontRegle.Text == "0" ? 0 : Convert.ToDecimal(valMontRegle.Text);
-                decimal totImpute = valTotImpute.Text == "0" ? 0 : Convert.ToDecimal(valTotImpute.Text);
+                decimal montRegle = valMontRegle.Text == "" ? 0 : Convert.ToDecimal(valMontRegle.Text);
+                decimal totImpute = valTotImpute.Text == "" ? 0 : Convert.ToDecimal(valTotImpute.Text);
                 if (montRegle != 0)
                 {
                     valResteAImputer.Text = (montRegle - totImpute).ToString();
@@ -272,7 +279,6 @@ namespace SoftCaisse.Forms
                     txtBxMontRegl.Enabled = false;
                     label1.Enabled = false;
                 }
-                txtBxMontEcart.Enabled = true;
                 cmbBxCompteEcart.Enabled = true;
                 cmbBxCodeJournal.Enabled = true;
                 label2.Enabled = true;
@@ -280,8 +286,8 @@ namespace SoftCaisse.Forms
                 label4.Enabled = true;
                 valResteAImputer.Text = "";
 
-                decimal montRegle = valMontRegle.Text == "0" ? 0 : Convert.ToDecimal(valMontRegle.Text);
-                decimal totImpute = valTotImpute.Text == "0" ? 0 : Convert.ToDecimal(valTotImpute.Text);
+                decimal montRegle = valMontRegle.Text == "" ? 0 : Convert.ToDecimal(valMontRegle.Text);
+                decimal totImpute = valTotImpute.Text == "" ? 0 : Convert.ToDecimal(valTotImpute.Text);
                 if (montRegle != 0)
                 {
                     txtBxMontEcart.Text = (montRegle - totImpute).ToString();
@@ -296,8 +302,14 @@ namespace SoftCaisse.Forms
         {
             TextBox textBox = sender as TextBox;
 
+            if (e.KeyChar == ',' && textBox.SelectionStart == 0)
+            {
+                e.Handled = true;
+                return;
+            }
+
             // Autorise chiffres, Backspace, un seul point, et un signe moins au début
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.' || textBox.Text.Contains(".")) && (e.KeyChar != '-' || textBox.SelectionStart != 0))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != ',' || textBox.Text.Contains(",")) && (e.KeyChar != '-' || textBox.SelectionStart != 0))
             {
                 e.Handled = true;
             }
@@ -306,18 +318,14 @@ namespace SoftCaisse.Forms
         {
             TextBox textBox = sender as TextBox;
 
-            // Autorise chiffres, Backspace, un seul point, et un signe moins au début
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.' || textBox.Text.Contains(".")) && (e.KeyChar != '-' || textBox.SelectionStart != 0))
+            if (e.KeyChar == ',' && textBox.SelectionStart == 0)
             {
                 e.Handled = true;
+                return;
             }
-        }
-        private void txtBxMontEcart_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
 
             // Autorise chiffres, Backspace, un seul point, et un signe moins au début
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.' || textBox.Text.Contains(".")) && (e.KeyChar != '-' || textBox.SelectionStart != 0))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != ',' || textBox.Text.Contains(",")) && (e.KeyChar != '-' || textBox.SelectionStart != 0))
             {
                 e.Handled = true;
             }
@@ -331,15 +339,29 @@ namespace SoftCaisse.Forms
             if (dataGridView1.SelectedRows.Count > 0) // Des lignes (règlements) sont sélectionnés
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                int indexLigneSelectionnee = dataGridView1.SelectedRows[0].Index;
-                decimal? soldeEcheanceSelect = _listEchTempEchRegl[indexLigneSelectionnee].soldeEchInit;
-                txtBxMontRegle.Text = soldeEcheanceSelect?.ToString("F2");
+                decimal? soldeEcheanceSelect = Convert.ToDecimal(selectedRow.Cells["Solde"].Value.ToString());
+                decimal? montantReglement = Convert.ToDecimal(selectedRow.Cells["Règlement"].Value.ToString());
+                txtBxMontRegle.Text = (soldeEcheanceSelect + montantReglement).ToString();
             }
         }
          
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if(_soldeSaisieMontantRegl != 0)
+            if (checkBox1.Checked == true)
+            {
+                if (cmbBxCompteEcart.Text == "" || cmbBxCompteEcart.SelectedIndex == -1)
+                {
+                    System.Windows.Forms.MessageBox.Show("Aucun compte d'écart n'est spécifié", "erreur", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                    return;
+                }
+                else if (cmbBxCodeJournal.Text == "" || cmbBxCodeJournal.SelectedIndex == -1)
+                {
+                    System.Windows.Forms.MessageBox.Show("Aucun code journal n'est sélectionné", "Attention", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                    return;
+                }
+            }
+            
+            if (_initSolde == 0)
             {
                 // ==================================== CREATION & ENREGISTREMENT REGLEMENT ====================================
                 // Montant pas encore spécifié
@@ -352,6 +374,7 @@ namespace SoftCaisse.Forms
                 // Création objet à enregistrer dans la base
                 F_CREGLEMENT newF_CREGLEMENT = new F_CREGLEMENT();
                 newF_CREGLEMENT.RG_No = _context.F_CREGLEMENT.Max(rg => rg.RG_No) + 1; // Numéro RG_Piece (Première colonne)
+                rgNoFCRegl = (int)_context.F_CREGLEMENT.Max(rg => rg.RG_No) + 1;
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
                 string clientCTNum = selectedRow.Cells["N° client"].Value.ToString();
                 string clientIntitule = _context.F_COMPTET.Where(c => c.CT_Num ==  clientCTNum).Select(c => c.CT_Intitule).FirstOrDefault();
@@ -359,7 +382,7 @@ namespace SoftCaisse.Forms
                 newF_CREGLEMENT.RG_Date = DateTime.Now; // Date de la création
                 newF_CREGLEMENT.RG_Reference = ""; // Référence
                 newF_CREGLEMENT.RG_Libelle = "Règlement " + clientIntitule; // Libellé
-                newF_CREGLEMENT.RG_Montant = Convert.ToDecimal(txtBxMontRegl.Text); // Montant du règlement
+                newF_CREGLEMENT.RG_Montant = txtBxMontRegl.Text == "" ? 0 : Convert.ToDecimal(txtBxMontRegl.Text); // Montant du règlement
                 newF_CREGLEMENT.RG_MontantDev = 0; // Montant du règlement avec devise
                 newF_CREGLEMENT.N_Reglement = 1; // Mode de règlement
                 newF_CREGLEMENT.RG_Impute = 0; // 1 si imputé sinon 0
@@ -388,7 +411,7 @@ namespace SoftCaisse.Forms
                 newF_CREGLEMENT.RG_DateEchCont = new DateTime(1753, 1, 1, 0, 0, 0, 0); // Date de l'échéance contrepartie
                 newF_CREGLEMENT.CG_NumEcart = null; // Numéro de compte général d'écart
                 newF_CREGLEMENT.JO_NumEcart = null; // Code journal d'écart
-                newF_CREGLEMENT.RG_MontantEcart = 0; // Montant d'écart
+                newF_CREGLEMENT.RG_MontantEcart = txtBxMontEcart.Text == "" ? 0 : Convert.ToDecimal(txtBxMontEcart.Text); // Montant d'écart
                 newF_CREGLEMENT.RG_NoBonAchat = 0; // Numéro interne du règlement
                 newF_CREGLEMENT.RG_Valide = 0; // Règlement validé ou non
                 newF_CREGLEMENT.RG_Anterieur = 0; // Règlement antérieur
@@ -407,18 +430,73 @@ namespace SoftCaisse.Forms
 
                 // Enregistrement du règlement dans la base
                 _f_CREGLEMENTRepository.Add(newF_CREGLEMENT);
+            }
 
-                foreach (EcheanceTempEchRegl echTemp in _listEchTempEchRegl)
+            foreach (ListeSelectionEcheances ech in listeEcheances)
+            {
+                int indexOfEch = listeEcheances.IndexOf(ech);
+                string reglString = dataGridView1.Rows[indexOfEch].Cells["Règlement"].Value.ToString();
+                decimal? reglement = reglString == "" ? 0 : Convert.ToDecimal(reglString);
+                if (reglement > 0)
                 {
-                    if (echTemp.RC_Montant != 0)
+                    F_REGLECH reglech = _context.F_REGLECH.Where(rg => rg.RG_No == ech.RG_No && rg.DR_No == ech.DR_No).FirstOrDefault();
+                    if (reglech != null && ech.RG_No == rgNoFCRegl)
                     {
-                        _f_REGLECHRepository.AddReglech(echTemp.DR_No, echTemp.doPieceNo, (decimal)echTemp.soldeEchInit);
+                        _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_REGLECH ON F_REGLECH");
+                        string query = @"
+                                UPDATE F_REGLECH
+                                SET RC_Montant = @reglement
+                                WHERE RG_No = @RG_No AND DR_No = @DR_No
+                            ";
+                        _context.Database.ExecuteSqlCommand(
+                            query,
+                            new SqlParameter("@reglement", reglement),
+                            new SqlParameter("@RG_No", reglech.RG_No),
+                            new SqlParameter("@DR_No", reglech.DR_No)
+                        );
+                        _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBUPD_F_REGLECH ON F_REGLECH");
+                    } else
+                    {
+                        _f_REGLECHRepository.AddReglech(ech.DR_No, ech.DO_Piece, (decimal)reglement);
                     }
                 }
+            }
 
-            } else
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                decimal? montantImpute = Convert.ToDecimal(selectedRow.Cells["Règlement"].Value.ToString());
+                if (montantImpute > 0)
+                {
+                    string doPiece = selectedRow.Cells["N° pièce"].Value.ToString();
+                    decimal? soldeEcheanceSelect = Convert.ToDecimal(selectedRow.Cells["Solde"].Value.ToString());
+                    _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
+                    _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
+                    _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
+                    string query = @"
+                        UPDATE F_DOCENTETE
+                        SET DO_MontantRegle = @DO_MontantRegle
+                        WHERE DO_Piece = @DO_Piece
+                    ";
+                    _context.Database.ExecuteSqlCommand(
+                        query,
+                        new SqlParameter("@DO_MontantRegle", montantImpute),
+                        new SqlParameter("@DO_Piece", doPiece)
+                    );
+                    _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
+                    _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
+                    _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
 
+                    F_CREGLEMENT f_CREGLEMENT = _context.F_CREGLEMENT.Where(fcr => fcr.RG_No == rgNoFCRegl).FirstOrDefault();
+                    if (checkBox1.Checked == true)
+                    {
+                        string cgNum = cmbBxCompteEcart.Text.Substring(0, cmbBxCompteEcart.Text.IndexOf(" - "));
+                        f_CREGLEMENT.CG_NumEcart = cgNum;
+                        string joNum = cmbBxCodeJournal.Text.Substring(0, cmbBxCodeJournal.Text.IndexOf(" - "));
+                        f_CREGLEMENT.JO_NumEcart = joNum;
+                        f_CREGLEMENT.RG_MontantEcart = txtBxMontEcart.Text == "" ? 0 : Convert.ToDecimal(txtBxMontEcart.Text);
+                    }
+                }
             }
         }
 
@@ -431,67 +509,57 @@ namespace SoftCaisse.Forms
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
                 int indexLigneSelectionnee = dataGridView1.SelectedRows[0].Index;
                 decimal? soldeEcheanceSelect = Convert.ToDecimal(selectedRow.Cells["Solde"].Value.ToString());
-                decimal? montantAImputer = Convert.ToDecimal(txtBxMontRegle.Text);
                 decimal? imputationAnterieur = selectedRow.Cells["Règlement"].Value.ToString() == "" ? 0 : Convert.ToDecimal(selectedRow.Cells["Règlement"].Value.ToString());
-                if(_initSolde < montantAImputer)
-                {
-                    if(_initSolde == 0)
-                    {
-                        if (montantAImputer < 0)
-                        {
-                            System.Windows.Forms.MessageBox.Show(
-                                "Le montant à imputer est négatif",
-                                "Attention",
-                                (MessageBoxButtons)MessageBoxButton.OK,
-                                (MessageBoxIcon)MessageBoxImage.Warning
-                            );
-                        }
-                        else if (montantAImputer > soldeEcheanceSelect)
-                        {
-                            System.Windows.Forms.MessageBox.Show(
-                                "Le montant à imputer est supérieur au solde de l'échéance",
-                                "Attention",
-                                (MessageBoxButtons)MessageBoxButton.OK,
-                                (MessageBoxIcon)MessageBoxImage.Warning
-                            );
-                        }
-                        else
-                        {
+                decimal? resteAPayer = soldeEcheanceSelect + imputationAnterieur;
+                decimal? montantAImputer = Convert.ToDecimal(txtBxMontRegle.Text);
+                decimal montantRegl = valMontRegle.Text == "" ? 0 : Convert.ToDecimal(valMontRegle.Text);
 
-                            selectedRow.Cells["Solde"].Value = soldeEcheanceSelect + imputationAnterieur - montantAImputer;
-                            selectedRow.Cells["Règlement"].Value = montantAImputer;
-                            if (Convert.ToDecimal(selectedRow.Cells["Solde"].Value) == 0)
-                            {
-                                selectedRow.Cells["Est payé"].Value = "Oui";
-                            }
-                            else
-                            {
-                                selectedRow.Cells["Est payé"].Value = "Non";
-                            }
-                            decimal totalImpute = calculerTotalImpute();
-                            valTotImpute.Text = totalImpute.ToString();
-                            decimal montantRegl = Convert.ToDecimal(valMontRegle.Text);
-                            decimal resteAImputer = montantRegl - totalImpute;
-                            if (checkBox1.Checked == true)
-                            {
-                                txtBxMontEcart.Text = resteAImputer.ToString();
-                                valResteAImputer.Text = "";
-                            }
-                            else
-                            {
-                                valResteAImputer.Text = resteAImputer.ToString();
-                                txtBxMontEcart.Text = "";
-                            }
-                        }
-                    }
-                    else
+                if (_initSolde == 0)
+                {
+                    if (montantAImputer > resteAPayer)
                     {
                         System.Windows.Forms.MessageBox.Show(
-                            "Le montant à imputer est supérieur au règlement",
+                            "Le montant à imputer est supérieur au solde de l'échéance!",
                             "Attention",
                             (MessageBoxButtons)MessageBoxButton.OK,
                             (MessageBoxIcon)MessageBoxImage.Warning
                         );
+                    }
+                    else if (montantAImputer < 0)
+                    {
+                        System.Windows.Forms.MessageBox.Show(
+                            "Le montant à imputer est négatif!",
+                            "Attention",
+                            (MessageBoxButtons)MessageBoxButton.OK,
+                            (MessageBoxIcon)MessageBoxImage.Warning
+                        );
+                    } else
+                    {
+                        selectedRow.Cells["Solde"].Value = resteAPayer - montantAImputer;
+                        selectedRow.Cells["Règlement"].Value = montantAImputer;
+                        if (Convert.ToDecimal(selectedRow.Cells["Solde"].Value) == 0)
+                        {
+                            selectedRow.Cells["Est payé"].Value = "Oui";
+                        }
+                        else
+                        {
+                            selectedRow.Cells["Est payé"].Value = "Non";
+                        }
+                        decimal totalImpute = calculerTotalImpute();
+                        valTotImpute.Text = totalImpute.ToString();
+                        decimal resteAImputer = montantRegl - totalImpute;
+                        if (checkBox1.Checked == true)
+                        {
+                            txtBxMontEcart.Text = resteAImputer.ToString();
+                            valResteAImputer.Text = "";
+                        }
+                        else
+                        {
+                            valResteAImputer.Text = "";
+                            valMontRegle.Text = totalImpute.ToString();
+                            txtBxMontRegl.Text = totalImpute.ToString();
+                            txtBxMontEcart.Text = "";
+                        }
                     }
                 }
                 else
@@ -505,10 +573,19 @@ namespace SoftCaisse.Forms
                             (MessageBoxIcon)MessageBoxImage.Warning
                         );
                     }
-                    else if (montantAImputer > soldeEcheanceSelect)
+                    else if (montantAImputer > resteAPayer)
                     {
                         System.Windows.Forms.MessageBox.Show(
-                            "Le montant à imputer est supérieur au solde de l'échéance",
+                            "Le montant à imputer est supérieur au solde de l'échéance!",
+                            "Attention",
+                            (MessageBoxButtons)MessageBoxButton.OK,
+                            (MessageBoxIcon)MessageBoxImage.Warning
+                        );
+                    }
+                    else if (montantAImputer > montantRegl)
+                    {
+                        System.Windows.Forms.MessageBox.Show(
+                            "Le montant du règlement est insuffisant!",
                             "Attention",
                             (MessageBoxButtons)MessageBoxButton.OK,
                             (MessageBoxIcon)MessageBoxImage.Warning
@@ -516,24 +593,25 @@ namespace SoftCaisse.Forms
                     }
                     else
                     {
-                        selectedRow.Cells["Solde"].Value = soldeEcheanceSelect + imputationAnterieur - montantAImputer;
+                        selectedRow.Cells["Solde"].Value = resteAPayer - montantAImputer;
                         selectedRow.Cells["Règlement"].Value = montantAImputer;
-                        if(Convert.ToDecimal(selectedRow.Cells["Solde"].Value) == 0)
+                        if (Convert.ToDecimal(selectedRow.Cells["Solde"].Value) == 0)
                         {
                             selectedRow.Cells["Est payé"].Value = "Oui";
-                        } else
+                        }
+                        else
                         {
                             selectedRow.Cells["Est payé"].Value = "Non";
                         }
                         decimal totalImpute = calculerTotalImpute();
                         valTotImpute.Text = totalImpute.ToString();
-                        decimal montantRegl = Convert.ToDecimal(valMontRegle.Text);
                         decimal resteAImputer = montantRegl - totalImpute;
                         if (checkBox1.Checked == true)
                         {
                             txtBxMontEcart.Text = resteAImputer.ToString();
                             valResteAImputer.Text = "";
-                        } else
+                        }
+                        else
                         {
                             valResteAImputer.Text = resteAImputer.ToString();
                             txtBxMontEcart.Text = "";
@@ -555,19 +633,20 @@ namespace SoftCaisse.Forms
         private void txtBxMontRegl_TextChanged(object sender, EventArgs e)
         {
             valMontRegle.Text = txtBxMontRegl.Text;
-            decimal montRegle = valMontRegle.Text == "0" ? 0 : Convert.ToDecimal(valMontRegle.Text);
-            decimal totImpute = valTotImpute.Text == "0" ? 0 :Convert.ToDecimal(valTotImpute.Text);
-            if (montRegle != 0 && checkBox1.Checked == true)
+            decimal totalImpute = calculerTotalImpute();
+            decimal montantRegl = valMontRegle.Text == "" ? 0 : Convert.ToDecimal(valMontRegle.Text);
+            decimal resteAImputer = montantRegl - totalImpute;
+            if (checkBox1.Checked == true)
             {
-                txtBxMontEcart.Text = (montRegle - totImpute).ToString();
+                txtBxMontEcart.Text = resteAImputer.ToString();
+                valResteAImputer.Text = "";
             }
-            
+            else
+            {
+                valResteAImputer.Text = resteAImputer.ToString();
+                txtBxMontEcart.Text = "";
+            }
         }
-
-
-
-
-
         // ==============================================================================================================================================
         // ====================================================================== EVENEMENTS ============================================================
     }

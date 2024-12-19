@@ -11,6 +11,8 @@ namespace SoftCaisse.DTO
     internal class ListeSelectionEcheances
     {
         public int DR_No { get; set; }
+        public int? RG_No { get; set; }
+        public decimal? RC_Montant { get; set; }
         public DateTime? DR_Date { get; set; }
         [StringLength(13)]
         public string DO_Piece { get; set; }

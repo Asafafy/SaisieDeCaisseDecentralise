@@ -16,7 +16,7 @@ namespace SoftCaisse.Forms
         private readonly AppDbContext _context;
         private readonly SCDContext _sCDContext;
 
-        private readonly IRepository<F_CREGLEMENT> _f_CREGLEMENTRepository;
+        private readonly F_CREGLEMENTRepository _f_CREGLEMENTRepository;
 
         List<F_CAISSE> _listeCaisses;
         List<F_COLLABORATEUR> _listeCaissier;

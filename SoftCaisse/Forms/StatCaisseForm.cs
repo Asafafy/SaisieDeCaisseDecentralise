@@ -64,8 +64,8 @@ namespace SoftCaisse.Forms.StatCaisse
                         CANet = (double)u.Sum(i => i.post.Post.Post.Post.meta.DL_Qte.Value * i.post.Post.Post.Post.meta.DL_PrixRU.Value * 0.8m)
                     };
                 });
-                this.Close();
-                Reporting forms = new Reporting(kryptonDateTimePicker1.Value.Date, kryptonDateTimePicker2.Value.Date, listes, StatType.ParFamille);
+                Close();
+                Reporting forms = new Reporting(kryptonDateTimePicker1.Value.Date, kryptonDateTimePicker2.Value.Date, listes, StatType.ParArticle);
                 forms.Show();
             }
             else if (kryptonComboBox2.SelectedIndex == 1)
@@ -84,8 +84,8 @@ namespace SoftCaisse.Forms.StatCaisse
                         CANet = (double)u.Sum(i => i.post.Post.Post.Post.meta.DL_Qte.Value * i.post.Post.Post.Post.meta.DL_PrixRU.Value * 0.8m)
                     };
                 });
-                this.Close();
-                Reporting forms = new Reporting(kryptonDateTimePicker1.Value.Date, kryptonDateTimePicker2.Value.Date, listes, StatType.ParArticle);
+                Close();
+                Reporting forms = new Reporting(kryptonDateTimePicker1.Value.Date, kryptonDateTimePicker2.Value.Date, listes, StatType.ParFamille);
                 forms.Show();
 
             }

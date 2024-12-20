@@ -12,18 +12,25 @@ namespace SoftCaisse.Forms.MouvementCaisse
 {
     public partial class MouvementCaisseForm : KryptonForm
     {
-        private readonly F_CREGLEMENTService f_CREGLEMENTService;
         private readonly AppDbContext _context;
+
+        private readonly F_CREGLEMENTRepository f_CREGLEMENTRepository;
+
         private readonly P_PARAMETRECIAL _parametrecial;
+
         private List<F_COMPTEG> _listeCompteG;
+
         MainForm mainForm;
+
+
+
+
         public MouvementCaisseForm(MainForm form)
         {
             InitializeComponent();
 
             _context = new AppDbContext();
-            IRepository<F_CREGLEMENT> f_CREGLEMENTRepository = new F_CREGLEMENTRepository(_context);
-            f_CREGLEMENTService = new F_CREGLEMENTService(f_CREGLEMENTRepository);
+            f_CREGLEMENTRepository = new F_CREGLEMENTRepository(_context);
             mainForm = form;
 
             _parametrecial = _context.P_PARAMETRECIAL.FirstOrDefault();
@@ -127,7 +134,7 @@ namespace SoftCaisse.Forms.MouvementCaisse
                             RG_Banque = 0,
                             CG_Num = comboBox2.Text == "" ? null : comboBox2.Text.Split('-')[0].Trim()
                         };
-                        f_CREGLEMENTService.AjouterF_CREGLEMENT(newFCReglement);
+                        f_CREGLEMENTRepository.Add(newFCReglement);
 
                         MessageBox.Show("Mouvement de caisse effectué.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Close();

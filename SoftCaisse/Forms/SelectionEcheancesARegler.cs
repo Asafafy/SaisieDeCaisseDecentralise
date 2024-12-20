@@ -28,14 +28,12 @@ namespace SoftCaisse.Forms
         private readonly F_COMPTET _clientSelect;
         private readonly decimal? _initSolde;
 
-        private readonly IRepository<F_CREGLEMENT> _f_CREGLEMENTRepository;
+        private readonly F_CREGLEMENTRepository _f_CREGLEMENTRepository;
         private readonly F_REGLECHRepository _f_REGLECHRepository;
         private ListeSelectionEcheancesRepository listeSelectionEcheancesRepository;
 
         List<F_COMPTEG> _listeCompteGeneral;
         List<ListeSelectionEcheances> listeEcheances;
-
-        //List<EcheanceTempEchRegl> _listEchTempEchRegl;
 
         private int rgNoFCRegl;
 
@@ -50,15 +48,14 @@ namespace SoftCaisse.Forms
             _f_CREGLEMENTRepository = new F_CREGLEMENTRepository(_context);
             _f_REGLECHRepository = new F_REGLECHRepository(_context);
 
-            //_listEchTempEchRegl = new List<EcheanceTempEchRegl>();
-
             ApplyRoundedCorners(tableLayoutPanel3, 30);
             ApplyRoundedCorners(panel2, 30);
             ApplyRoundedCorners(panel1, 30);
 
             _clientSelect = _context.F_COMPTET.Where(c => c.CT_Num == ct_Num).FirstOrDefault();
             _listeCompteGeneral = _context.F_COMPTEG.OrderBy(cmptG => cmptG.CG_Num).ToList();
-            afficherListeEcheances();
+            listeEcheances = listeSelectionEcheancesRepository.ListerEcheances(_clientSelect.CT_Num, rgNoFCRegl);
+            afficherListeEcheances(listeEcheances);
 
             _initSolde = solde;
 
@@ -130,21 +127,19 @@ namespace SoftCaisse.Forms
 
 
         // =============================== AUTRES FONCTIONS ===============================
-        private void afficherListeEcheances()
+        private void afficherListeEcheances(List<ListeSelectionEcheances> listeEch)
         {
-            listeEcheances = listeSelectionEcheancesRepository.ListerEcheances(_clientSelect.CT_Num, rgNoFCRegl);
-
             if (cmbBxOptEcheaches.SelectedIndex == 0) // Option "Tous"
             {
                 // Ne rien faire
             }
             else if (cmbBxOptEcheaches.SelectedIndex == 1) // Option "Echéances non réglées"
             {
-                listeEcheances = listeEcheances.Where(ech => ech.DR_Regle == 0).ToList();
+                listeEch = listeEch.Where(ech => ech.DR_Regle == 0).ToList();
             }
             else // Option "Echéances réglées"
             {
-                listeEcheances = listeEcheances.Where(ech => ech.DR_Regle == 1).ToList();
+                listeEch = listeEch.Where(ech => ech.DR_Regle == 1).ToList();
             }
 
             _bindingSource = new DataTable();
@@ -159,7 +154,7 @@ namespace SoftCaisse.Forms
             _bindingSource.Columns.Add(new DataColumn("Solde"));
             _bindingSource.Columns.Add(new DataColumn("Règlement"));
 
-            foreach (ListeSelectionEcheances echeance in listeEcheances)
+            foreach (ListeSelectionEcheances echeance in listeEch)
             {
                 _bindingSource.Rows.Add(
                     echeance.DR_Date.ToString(),
@@ -172,16 +167,6 @@ namespace SoftCaisse.Forms
                     echeance.DR_Regle == 0 ? echeance.Solde : 0,
                     echeance.RC_Montant
                 );
-                //if (_listEchTempEchRegl.Count <= listeEcheances.Count)
-                //{
-                //    EcheanceTempEchRegl newElement = new EcheanceTempEchRegl();
-                //    newElement.DR_No = echeance.DR_No;
-                //    newElement.RG_No = echeance.RG_No == null ? 0 : (int)echeance.RG_No;
-                //    newElement.RC_Montant = echeance.A_Payer;
-                //    newElement.soldeEchInit = echeance.Solde;
-                //    newElement.doPieceNo = echeance.DO_Piece;
-                //    _listEchTempEchRegl.Add(newElement);
-                //}
             }
             dataGridView1.DataSource = _bindingSource;
         }
@@ -238,7 +223,7 @@ namespace SoftCaisse.Forms
         // Changement des échéances à afficher
         private void cmbBxOptEcheaches_SelectedIndexChanged(object sender, EventArgs e)
         {
-            afficherListeEcheances();
+            afficherListeEcheances(listeEcheances);
         }
 
 
@@ -437,6 +422,7 @@ namespace SoftCaisse.Forms
                 int indexOfEch = listeEcheances.IndexOf(ech);
                 string reglString = dataGridView1.Rows[indexOfEch].Cells["Règlement"].Value.ToString();
                 decimal? reglement = reglString == "" ? 0 : Convert.ToDecimal(reglString);
+                decimal? soldeEcheanceSelect = Convert.ToDecimal(dataGridView1.Rows[indexOfEch].Cells["Solde"].Value);
                 if (reglement > 0)
                 {
                     F_REGLECH reglech = _context.F_REGLECH.Where(rg => rg.RG_No == ech.RG_No && rg.DR_No == ech.DR_No).FirstOrDefault();
@@ -455,33 +441,46 @@ namespace SoftCaisse.Forms
                             new SqlParameter("@DR_No", reglech.DR_No)
                         );
                         _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBUPD_F_REGLECH ON F_REGLECH");
+                        if (soldeEcheanceSelect == 0)
+                        {
+                            string queryFReglech = @"
+                                UPDATE F_DOCREGL
+                                SET DR_Regle = @estRegle
+                                WHERE DR_No = @DR_No
+                            ";
+                            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCREGL ON F_DOCREGL");
+                            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCREGL ON F_DOCREGL");
+                            _context.Database.ExecuteSqlCommand(
+                                queryFReglech,
+                                new SqlParameter("@estRegle", soldeEcheanceSelect == 0 ? 1 : 0),
+                                new SqlParameter("@DR_No", reglech.DR_No)
+                            );
+                            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCREGL ON F_DOCREGL");
+                            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCREGL ON F_DOCREGL");
+                        }
                     } else
                     {
-                        _f_REGLECHRepository.AddReglech(ech.DR_No, ech.DO_Piece, (decimal)reglement);
+                        _f_REGLECHRepository.AddReglech(ech.DR_No, ech.DO_Piece, (decimal)reglement, soldeEcheanceSelect == 0 ? 1 : 0);
                     }
                 }
             }
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (ListeSelectionEcheances ech in listeEcheances)
             {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                decimal? montantImpute = Convert.ToDecimal(selectedRow.Cells["Règlement"].Value.ToString());
-                if (montantImpute > 0)
+                if (ech.RC_Montant > 0)
                 {
-                    string doPiece = selectedRow.Cells["N° pièce"].Value.ToString();
-                    decimal? soldeEcheanceSelect = Convert.ToDecimal(selectedRow.Cells["Solde"].Value.ToString());
                     _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
                     _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
                     _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
-                    string query = @"
+                    string queryFDocEntete = @"
                         UPDATE F_DOCENTETE
                         SET DO_MontantRegle = @DO_MontantRegle
                         WHERE DO_Piece = @DO_Piece
                     ";
                     _context.Database.ExecuteSqlCommand(
-                        query,
-                        new SqlParameter("@DO_MontantRegle", montantImpute),
-                        new SqlParameter("@DO_Piece", doPiece)
+                        queryFDocEntete,
+                        new SqlParameter("@DO_MontantRegle", ech.RC_Montant),
+                        new SqlParameter("@DO_Piece", ech.DO_Piece)
                     );
                     _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
                     _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
@@ -495,9 +494,48 @@ namespace SoftCaisse.Forms
                         string joNum = cmbBxCodeJournal.Text.Substring(0, cmbBxCodeJournal.Text.IndexOf(" - "));
                         f_CREGLEMENT.JO_NumEcart = joNum;
                         f_CREGLEMENT.RG_MontantEcart = txtBxMontEcart.Text == "" ? 0 : Convert.ToDecimal(txtBxMontEcart.Text);
+                        _context.SaveChanges();
                     }
                 }
             }
+
+            // AFAKA FAFANA RAHA METY ILAY AMBONY IO
+            //foreach (DataGridViewRow row in dataGridView1.Rows)
+            //{
+            //    DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+            //    decimal? montantImpute = Convert.ToDecimal(selectedRow.Cells["Règlement"].Value.ToString());
+            //    if (montantImpute > 0)
+            //    {
+            //        string doPiece = selectedRow.Cells["N° pièce"].Value.ToString();
+            //        _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
+            //        _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
+            //        _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
+            //        string queryFDocEntete = @"
+            //            UPDATE F_DOCENTETE
+            //            SET DO_MontantRegle = @DO_MontantRegle
+            //            WHERE DO_Piece = @DO_Piece
+            //        ";
+            //        _context.Database.ExecuteSqlCommand(
+            //            queryFDocEntete,
+            //            new SqlParameter("@DO_MontantRegle", montantImpute),
+            //            new SqlParameter("@DO_Piece", doPiece)
+            //        );
+            //        _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
+            //        _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
+            //        _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
+
+            //        F_CREGLEMENT f_CREGLEMENT = _context.F_CREGLEMENT.Where(fcr => fcr.RG_No == rgNoFCRegl).FirstOrDefault();
+            //        if (checkBox1.Checked == true)
+            //        {
+            //            string cgNum = cmbBxCompteEcart.Text.Substring(0, cmbBxCompteEcart.Text.IndexOf(" - "));
+            //            f_CREGLEMENT.CG_NumEcart = cgNum;
+            //            string joNum = cmbBxCodeJournal.Text.Substring(0, cmbBxCodeJournal.Text.IndexOf(" - "));
+            //            f_CREGLEMENT.JO_NumEcart = joNum;
+            //            f_CREGLEMENT.RG_MontantEcart = txtBxMontEcart.Text == "" ? 0 : Convert.ToDecimal(txtBxMontEcart.Text);
+            //            _context.SaveChanges();
+            //        }
+            //    }
+            //}
         }
 
 
@@ -507,7 +545,7 @@ namespace SoftCaisse.Forms
             if (dataGridView1.SelectedRows.Count > 0) // Des lignes (règlements) sont sélectionnés
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                int indexLigneSelectionnee = dataGridView1.SelectedRows[0].Index;
+                ListeSelectionEcheances ech = listeEcheances.Where(echeance => echeance.DO_Piece == selectedRow.Cells["N° pièce"].Value.ToString()).FirstOrDefault();
                 decimal? soldeEcheanceSelect = Convert.ToDecimal(selectedRow.Cells["Solde"].Value.ToString());
                 decimal? imputationAnterieur = selectedRow.Cells["Règlement"].Value.ToString() == "" ? 0 : Convert.ToDecimal(selectedRow.Cells["Règlement"].Value.ToString());
                 decimal? resteAPayer = soldeEcheanceSelect + imputationAnterieur;
@@ -536,14 +574,18 @@ namespace SoftCaisse.Forms
                     } else
                     {
                         selectedRow.Cells["Solde"].Value = resteAPayer - montantAImputer;
+                        ech.Solde = resteAPayer - montantAImputer;
                         selectedRow.Cells["Règlement"].Value = montantAImputer;
+                        ech.RC_Montant = montantAImputer;
                         if (Convert.ToDecimal(selectedRow.Cells["Solde"].Value) == 0)
                         {
                             selectedRow.Cells["Est payé"].Value = "Oui";
+                            ech.DR_Regle = 1;
                         }
                         else
                         {
                             selectedRow.Cells["Est payé"].Value = "Non";
+                            ech.DR_Regle = 0;
                         }
                         decimal totalImpute = calculerTotalImpute();
                         valTotImpute.Text = totalImpute.ToString();
@@ -594,14 +636,18 @@ namespace SoftCaisse.Forms
                     else
                     {
                         selectedRow.Cells["Solde"].Value = resteAPayer - montantAImputer;
+                        ech.Solde = resteAPayer - montantAImputer;
                         selectedRow.Cells["Règlement"].Value = montantAImputer;
+                        ech.RC_Montant = montantAImputer;
                         if (Convert.ToDecimal(selectedRow.Cells["Solde"].Value) == 0)
                         {
                             selectedRow.Cells["Est payé"].Value = "Oui";
+                            ech.DR_Regle = 1;
                         }
                         else
                         {
                             selectedRow.Cells["Est payé"].Value = "Non";
+                            ech.DR_Regle = 0;
                         }
                         decimal totalImpute = calculerTotalImpute();
                         valTotImpute.Text = totalImpute.ToString();

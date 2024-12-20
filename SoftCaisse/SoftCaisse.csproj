@@ -483,7 +483,6 @@
     <Compile Include="Utils\EnterKeyDownEventHadler.cs" />
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <Compile Include="Utils\Global\ConnectedUser.cs" />
-    <Compile Include="Utils\Global\EcheanceTempEchRegl.cs" />
     <EmbeddedResource Include="ClotureFacture.rdlc" />
     <EmbeddedResource Include="Forms\ChoixTypeDoc.resx">
       <DependentUpon>ChoixTypeDoc.cs</DependentUpon>

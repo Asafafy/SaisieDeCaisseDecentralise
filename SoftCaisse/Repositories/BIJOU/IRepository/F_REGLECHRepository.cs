@@ -14,48 +14,21 @@ namespace SoftCaisse.Repositories.BIJOU
             _context = context;
         }
 
-        public void Add(F_REGLECH entity)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public List<F_REGLECH> GetAll()
-        {
-            throw new NotImplementedException();
-        }
 
-        public F_REGLECH GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Update(F_REGLECH entity)
+        // ===========================================================================================================
+        // ==================================== DEBUT AJOUT D'UN NOUVEAU REGLEMENT ===================================
+        // ===========================================================================================================
+        public void AddReglech(int drNo, string doPieceNo, decimal rcMontant, int estRegle)
         {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteByDoPiece(string doPiece)
-        {
-            string queryDeleteAvecCommande = @"
-                DELETE FROM [dbo].[F_REGLECH] WHERE DO_Piece = @DO_Piece;
-            ";
-
-            _context.Database.ExecuteSqlCommand(
-                queryDeleteAvecCommande,
-                new SqlParameter("@DO_Piece", doPiece)
-            );
-        }
-
-        public void AddReglech(int drNo, string doPieceNo, decimal rcMontant)
-        {
-            int lastRGNo = 0;
             string lastRGNoStr = _context.P_COLREGLEMENT.Select(pc => pc.CR_Numero01).FirstOrDefault();
-            lastRGNo = Convert.ToInt32(lastRGNoStr);
+            int currentRGNumber = Convert.ToInt32(lastRGNoStr) + 1;
+
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBINS_F_REGLECH] ON [dbo].[F_REGLECH]");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_F_REGLECH] ON [dbo].[F_REGLECH]");
+
             string queryForAdd = @"
                 Insert INTO [dbo].[F_REGLECH] (
                     RG_No,
@@ -80,7 +53,7 @@ namespace SoftCaisse.Repositories.BIJOU
             ";
 
             _context.Database.ExecuteSqlCommand(queryForAdd,
-                lastRGNo + 1,
+                currentRGNumber,
                 drNo,
                 0,
                 6,
@@ -90,8 +63,81 @@ namespace SoftCaisse.Repositories.BIJOU
                 "COLS"
             );
 
-            //P_COLREGLEMENT pColRToUpdate = _context.P_COLREGLEMENT.FirstOrDefault();
-            //pColRToUpdate.CR_Numero01 = (lastRGNo + 1).ToString();
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_CBINS_F_REGLECH] ON [dbo].[F_REGLECH]");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_F_REGLECH] ON [dbo].[F_REGLECH]");
+
+
+            string queryFDocRegl = @"
+                                UPDATE F_DOCREGL
+                                SET DR_Regle = @estRegle
+                                WHERE DR_No = @DR_No
+                            ";
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCREGL ON F_DOCREGL");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCREGL ON F_DOCREGL");
+            _context.Database.ExecuteSqlCommand(
+                queryFDocRegl,
+                new SqlParameter("@estRegle", estRegle),
+                new SqlParameter("@DR_No", drNo)
+            );
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCREGL ON F_DOCREGL");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCREGL ON F_DOCREGL");
+
+            P_COLREGLEMENT pColRToUpdate = _context.P_COLREGLEMENT.FirstOrDefault();
+            pColRToUpdate.CR_Numero01 = currentRGNumber.ToString();
+            _context.SaveChanges();
         }
+        // =========================================================================================================
+        // ==================================== FIN AJOUT D'UN NOUVEAU REGLEMENT ===================================
+        // =========================================================================================================
+
+
+
+
+
+        // ===========================================================================================================================================
+        // ==================================== DEBUT SUPPRESSION D'UN REGLEMENT PAR NUMERO DE PIECE D'UN DOCUMENT ===================================
+        // ===========================================================================================================================================
+        public void DeleteByDoPiece(string DO_Piece)
+        {
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBDEL_F_REGLECH ON F_REGLECH");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_DEL_F_REGLECH ON F_REGLECH");
+            string queryDeleteAvecCommande = @"
+                DELETE FROM [dbo].[F_REGLECH] WHERE DO_Piece = @DO_Piece;
+            ";
+            _context.Database.ExecuteSqlCommand(
+                queryDeleteAvecCommande,
+                new SqlParameter("@DO_Piece", DO_Piece)
+            );
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBDEL_F_REGLECH ON F_REGLECH");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_DEL_F_REGLECH ON F_REGLECH");
+        }
+        // =========================================================================================================================================
+        // ==================================== FIN SUPPRESSION D'UN REGLEMENT PAR NUMERO DE PIECE D'UN DOCUMENT ===================================
+        // =========================================================================================================================================
+
+
+
+
+
+        // =================================================================================================================================================
+        // ==================================== DEBUT SUPPRESSION D'UN REGLEMENT PAR NUMERO DE REGLEMENT DE COMPTE TIERS ===================================
+        // =================================================================================================================================================
+        public void DeleteByRG_No(int RG_No)
+        {
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBDEL_F_REGLECH ON F_REGLECH");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_DEL_F_REGLECH ON F_REGLECH");
+            string queryDeleteAvecCommande = @"
+                DELETE FROM [dbo].[F_REGLECH] WHERE RG_No = @RG_No;
+            ";
+            _context.Database.ExecuteSqlCommand(
+                queryDeleteAvecCommande,
+                new SqlParameter("@RG_No", RG_No)
+            );
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBDEL_F_REGLECH ON F_REGLECH");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_DEL_F_REGLECH ON F_REGLECH");
+        }
+        // ===============================================================================================================================================
+        // ==================================== FIN SUPPRESSION D'UN REGLEMENT PAR NUMERO DE REGLEMENT DE COMPTE TIERS ===================================
+        // ===============================================================================================================================================
     }
 }

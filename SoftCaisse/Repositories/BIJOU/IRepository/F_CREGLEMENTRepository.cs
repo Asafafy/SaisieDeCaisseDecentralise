@@ -1,17 +1,32 @@
 ﻿using SoftCaisse.Models;
+using SoftCaisse.Repositories.BIJOU;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    public class F_CREGLEMENTRepository : IRepository<F_CREGLEMENT>
+    public class F_CREGLEMENTRepository
     {
         private readonly AppDbContext _context;
+        private readonly F_REGLECHRepository f_REGLECHRepository;
+
+
+
+
+
+        // ================================================================================================
+        // ====================================== DEBUT CONSTRUCTEUR ======================================
+        // ================================================================================================
         public F_CREGLEMENTRepository(AppDbContext context)
         {
             _context = context;
+            f_REGLECHRepository = new F_REGLECHRepository(context);
         }
+        // ================================================================================================
+        // ====================================== FIN CONSTRUCTEUR ========================================
+        // ================================================================================================
 
 
 
@@ -20,7 +35,7 @@ namespace SoftCaisse.Repositories
         // ================================================================================================
         // ============================= DÉBUT AJOUT D'UN NOUVEAU REGLEMENT ===============================
         // ================================================================================================
-        void IRepository<F_CREGLEMENT>.Add(F_CREGLEMENT reglement)
+        public void Add(F_CREGLEMENT reglement)
         {
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBINS_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_INS_CPTAF_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
@@ -137,25 +152,57 @@ namespace SoftCaisse.Repositories
 
 
 
-        void IRepository<F_CREGLEMENT>.Delete(int id)
+        // ==============================================================================================
+        // ============================= DÉBUT SUPPRESSION D'UN REGLEMENT ===============================
+        // ==============================================================================================
+        public void Delete(int RG_No)
         {
-            throw new NotImplementedException();
-        }
+            // =================== Supprimer d'abord les payements des échéances avec ce reglement ================
+            f_REGLECHRepository.DeleteByRG_No(RG_No);
 
+            // =================== Suppression dans F_CREGLEMENT ================
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBDEL_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
+            string queryDeleteFCReglement = @"
+                DELETE FROM [dbo].[F_CREGLEMENT] WHERE RG_No = @RG_No;
+            ";
+            _context.Database.ExecuteSqlCommand(
+                queryDeleteFCReglement,
+                new SqlParameter("@RG_No", RG_No)
+            );
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBDEL_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
+        }
+        // ============================================================================================
+        // ============================= FIN SUPPRESSION D'UN REGLEMENT ===============================
+        // ============================================================================================
+
+
+
+
+
+        // ==============================================================================================
+        // =================================== DÉBUT METHODE GET ALL ====================================
+        // ==============================================================================================
         public List<F_CREGLEMENT> GetAll()
         {
             return _context.F_CREGLEMENT.ToList();
         }
+        // ==============================================================================================
+        // ==================================== FIN METHODE GET ALL =====================================
+        // ==============================================================================================
 
+
+
+
+
+        // ==============================================================================================
+        // =================================== DEBUT METHODE GET BY ID ==================================
+        // ==============================================================================================
         public F_CREGLEMENT GetById(int id)
         {
             return _context.F_CREGLEMENT.FirstOrDefault(u => u.CA_No == id);
         }
-
-        void IRepository<F_CREGLEMENT>.Update(F_CREGLEMENT entity)
-        {
-            throw new NotImplementedException();
-        }
-
+        // ==============================================================================================
+        // ==================================== FIN METHODE GET BY ID ===================================
+        // ==============================================================================================
     }
 }

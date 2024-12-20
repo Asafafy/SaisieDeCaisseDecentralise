@@ -106,8 +106,8 @@ namespace SoftCaisse.Forms.DocumentVente
             _bindingSource.Columns.Add(new DataColumn("Commentaires"));
 
 
-            docs = JsonSerializer.Deserialize<List<TypeDocument>>(File.ReadAllText("E:\\Softwell\\SCDJNM\\SoftCaisse\\DataJSon\\TypeDocument.json"));
-            listeLangues = JsonSerializer.Deserialize<List<string>>(File.ReadAllText("E:\\Softwell\\SCDJNM\\SoftCaisse\\DataJSon\\Langue.json"));
+            docs = JsonSerializer.Deserialize<List<TypeDocument>>(File.ReadAllText("C:\\asf\\ReposProjetsDev\\SCDJNM\\SoftCaisse\\DataJSon\\TypeDocument.json"));
+            listeLangues = JsonSerializer.Deserialize<List<string>>(File.ReadAllText("C:\\asf\\ReposProjetsDev\\SCDJNM\\SoftCaisse\\DataJSon\\Langue.json"));
 
             listeDocuments = _context.F_DOCENTETE.ToList();
             listeClients = _context.F_COMPTET.ToList();

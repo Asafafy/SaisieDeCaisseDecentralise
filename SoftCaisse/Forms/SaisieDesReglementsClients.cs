@@ -1,5 +1,6 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Models;
+using SoftCaisse.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,20 +18,25 @@ namespace SoftCaisse.Forms
         private readonly AppDbContext _context;
         private DataTable _bindingSource;
 
+        private readonly F_CREGLEMENTRepository f_CREGLEMENTRepository;
+
         private List<F_CAISSE> _f_CAISSEs;
         private List<F_COLLABORATEUR> _f_COLLABORATEURs;
         private List<P_REGLEMENT> _p_REGLEMENTs;
         private List<P_DEVISE> _p_DEVISEs;
         private List<F_REGLECH> f_REGLECHes;
+        private DateTime _dateReference;
+
         List<F_COMPTET> _listeClients;
 
-        private DateTime _dateReference;
 
         // =============================== CONSTRUCTEUR ===============================
         public SaisieDesReglementsClients()
         {
             InitializeComponent();
             _context = new AppDbContext();
+
+            f_CREGLEMENTRepository = new F_CREGLEMENTRepository(_context);
 
             InitDatatables();
 
@@ -283,8 +289,7 @@ namespace SoftCaisse.Forms
                 }
                 else
                 {
-                    _context.F_CREGLEMENT.Remove(cREGLEMENTToDelete);
-                    _context.SaveChanges();
+                    f_CREGLEMENTRepository.Delete((int)cREGLEMENTToDelete.RG_No);
                     kptnBtnAfficher_Click(sender, e);
                 }
             }

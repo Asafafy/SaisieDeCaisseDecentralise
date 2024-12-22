@@ -199,71 +199,83 @@ namespace SoftCaisse.Forms
             string ctNumSelect = comboBox3.Text;
             F_COMPTET clientSelect = _listeClients.Where(ct => ct.CT_Num + " - " + ct.CT_Intitule == ctNumSelect).FirstOrDefault();
 
-            List<F_CREGLEMENT> f_CREGLEMENTs = _context.F_CREGLEMENT.Where(fcr => fcr.CT_NumPayeur == clientSelect.CT_Num).ToList();
-            if (comboBox1.SelectedIndex == 0) // Tous
+            if (clientSelect == null)
             {
-                // Ne rien faire
+                System.Windows.Forms.MessageBox.Show(
+                        "Aucun client n'est trouvé, vérifiez votre sélection!",
+                        "Erreur",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
             }
-            else if (comboBox1.SelectedIndex == 1) // Règlements non imputés
+            else
             {
-                f_CREGLEMENTs = f_CREGLEMENTs.Where(fcr => fcr.RG_Impute == 0).ToList();
-            }
-            else // Règlements soldés
-            {
-                f_CREGLEMENTs = f_CREGLEMENTs.Where(fcr => fcr.RG_Impute == 1).ToList();
-            }
-
-
-            InitDatatables();
-            foreach (F_CREGLEMENT fcr in f_CREGLEMENTs)
-            {
-                string nomCaisse = _f_CAISSEs.Where(c => c.CA_No == fcr.CA_No).Select(c => c.CA_Intitule).FirstOrDefault();
-                string nomCaissier = _f_COLLABORATEURs.Where(col => col.CO_No == fcr.CO_NoCaissier).Select(col => col.CO_Nom + col.CO_Prenom).FirstOrDefault();
-                string regType = "";
-                if (fcr.RG_Type == 0)
-                    regType = "Client";
-                else if (fcr.RG_Type == 1)
-                    regType = "Fournisseur";
-                else
-                    regType = "Autres";
-                string nomReglement = _p_REGLEMENTs.Where(pr => pr.cbMarq == fcr.N_Reglement).Select(pr => pr.R_Intitule).FirstOrDefault();
-                string nomDevise = _p_DEVISEs.Where(d => d.cbMarq == fcr.N_Devise).Select(d => d.D_Intitule).FirstOrDefault();
-                string impaye = fcr.RG_Impaye != _dateReference ? fcr.RG_Impaye.ToString() : "";
-                List<F_REGLECH> listeReglech = f_REGLECHes.Where(r => r.RG_No == fcr.RG_No).ToList();
-                decimal? montantSolde = fcr.RG_Montant;
-                string dateEchContrepartie = fcr.RG_DateEchCont != _dateReference ? fcr.RG_DateEchCont.ToString() : "";
-                foreach (F_REGLECH reglech in listeReglech)
+                List<F_CREGLEMENT> f_CREGLEMENTs = _context.F_CREGLEMENT.Where(fcr => fcr.CT_NumPayeur == clientSelect.CT_Num).ToList();
+                if (comboBox1.SelectedIndex == 0) // Tous
                 {
-                    montantSolde = montantSolde - reglech.RC_Montant;
+                    // Ne rien faire
                 }
-                _bindingSource.Rows.Add(
-                    fcr.RG_Date,
-                    nomCaisse,
-                    nomCaissier,
-                    fcr.RG_Piece,
-                    regType,
-                    fcr.RG_Libelle,
-                    fcr.RG_Reference,
-                    nomReglement,
-                    fcr.CT_NumPayeurOrig,
-                    fcr.CG_Num,
-                    fcr.RG_Montant,
-                    nomDevise,
-                    fcr.RG_Cours,
-                    fcr.RG_MontantDev,
-                    fcr.JO_Num,
-                    impaye,
-                    fcr.CG_NumCont,
-                    montantSolde,
-                    fcr.RG_Cloture == 1 ? "Cloturé" : "",
-                    dateEchContrepartie,
-                    fcr.RG_Valide == 0 ? "" : "Validé",
-                    fcr.RG_Anterieur,
-                    fcr.RG_MontantCommission,
-                    fcr.RG_MontantNet
-                );
+                else if (comboBox1.SelectedIndex == 1) // Règlements non imputés
+                {
+                    f_CREGLEMENTs = f_CREGLEMENTs.Where(fcr => fcr.RG_Impute == 0).ToList();
+                }
+                else // Règlements soldés
+                {
+                    f_CREGLEMENTs = f_CREGLEMENTs.Where(fcr => fcr.RG_Impute == 1).ToList();
+                }
+
+
+                InitDatatables();
+                foreach (F_CREGLEMENT fcr in f_CREGLEMENTs)
+                {
+                    string nomCaisse = _f_CAISSEs.Where(c => c.CA_No == fcr.CA_No).Select(c => c.CA_Intitule).FirstOrDefault();
+                    string nomCaissier = _f_COLLABORATEURs.Where(col => col.CO_No == fcr.CO_NoCaissier).Select(col => col.CO_Nom + col.CO_Prenom).FirstOrDefault();
+                    string regType = "";
+                    if (fcr.RG_Type == 0)
+                        regType = "Client";
+                    else if (fcr.RG_Type == 1)
+                        regType = "Fournisseur";
+                    else
+                        regType = "Autres";
+                    string nomReglement = _p_REGLEMENTs.Where(pr => pr.cbMarq == fcr.N_Reglement).Select(pr => pr.R_Intitule).FirstOrDefault();
+                    string nomDevise = _p_DEVISEs.Where(d => d.cbMarq == fcr.N_Devise).Select(d => d.D_Intitule).FirstOrDefault();
+                    string impaye = fcr.RG_Impaye != _dateReference ? fcr.RG_Impaye.ToString() : "";
+                    List<F_REGLECH> listeReglech = f_REGLECHes.Where(r => r.RG_No == fcr.RG_No).ToList();
+                    decimal? montantSolde = fcr.RG_Montant;
+                    string dateEchContrepartie = fcr.RG_DateEchCont != _dateReference ? fcr.RG_DateEchCont.ToString() : "";
+                    foreach (F_REGLECH reglech in listeReglech)
+                    {
+                        montantSolde = montantSolde - reglech.RC_Montant;
+                    }
+                    _bindingSource.Rows.Add(
+                        fcr.RG_Date,
+                        nomCaisse,
+                        nomCaissier,
+                        fcr.RG_Piece,
+                        regType,
+                        fcr.RG_Libelle,
+                        fcr.RG_Reference,
+                        nomReglement,
+                        fcr.CT_NumPayeurOrig,
+                        fcr.CG_Num,
+                        fcr.RG_Montant,
+                        nomDevise,
+                        fcr.RG_Cours,
+                        fcr.RG_MontantDev,
+                        fcr.JO_Num,
+                        impaye,
+                        fcr.CG_NumCont,
+                        fcr.RG_Impute == 1 ? 0 : montantSolde,
+                        fcr.RG_Cloture == 1 ? "Cloturé" : "",
+                        dateEchContrepartie,
+                        fcr.RG_Valide == 0 ? "" : "Validé",
+                        fcr.RG_Anterieur,
+                        fcr.RG_MontantCommission,
+                        fcr.RG_MontantNet
+                    );
+                }
+                dataGridView1.DataSource = _bindingSource;
             }
-            dataGridView1.DataSource = _bindingSource;
         }
 
 

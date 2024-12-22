@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace SoftCaisse.Repositories
 {
-    internal class F_DOCREGLRepository : IRepository<F_DOCREGL>
+    internal class F_DOCREGLRepository
     {
         private readonly AppDbContext _context;
 
@@ -14,7 +14,9 @@ namespace SoftCaisse.Repositories
         }
 
 
-        // ========================== METHODES DE L'INTERFACE IREPOSITORY ==========================
+        // ==========================================================================================================================================
+        // ============================================================== DEBUT CREATE ==============================================================
+        // ==========================================================================================================================================
         public void Add(F_DOCREGL docRegl)
         {
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_F_DOCREGL] ON [dbo].[F_DOCREGL]");
@@ -71,32 +73,53 @@ namespace SoftCaisse.Repositories
 
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_F_DOCREGL] ON [dbo].[F_DOCREGL]");
         }
+        // ========================================================================================================================================
+        // ============================================================== FIN CREATE ==============================================================
+        // ========================================================================================================================================
 
-        public void Delete(int IdDocregl)
+
+
+
+
+
+
+
+
+        // ==========================================================================================================================================
+        // ============================================================== DEBUT UPDATE ==============================================================
+        // ==========================================================================================================================================
+        public void UpdateEtatReglement(decimal soldeEcheanceSelect, int DR_No)
         {
-            throw new System.NotImplementedException();
+            string queryFReglech = @"
+                                UPDATE F_DOCREGL
+                                SET DR_Regle = @estRegle
+                                WHERE DR_No = @DR_No
+                            ";
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCREGL ON F_DOCREGL");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCREGL ON F_DOCREGL");
+            _context.Database.ExecuteSqlCommand(
+                queryFReglech,
+                new SqlParameter("@estRegle", soldeEcheanceSelect == 0 ? 1 : 0),
+                new SqlParameter("@DR_No", DR_No)
+            );
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCREGL ON F_DOCREGL");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCREGL ON F_DOCREGL");
         }
-
-        public List<F_DOCREGL> GetAll()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public F_DOCREGL GetById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Update(F_DOCREGL entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        // ========================== METHODES DE L'INTERFACE IREPOSITORY ==========================
+        // ==========================================================================================================================================
+        // ============================================================== DEBUT UPDATE ==============================================================
+        // ==========================================================================================================================================
 
 
 
 
+
+
+
+
+
+        // ==========================================================================================================================================
+        // ============================================================== DEBUT DELETE ==============================================================
+        // ==========================================================================================================================================
         public void DeleteByDoPiece(string doPiece)
         {
             string queryDeleteAvecCommande = @"
@@ -108,5 +131,8 @@ namespace SoftCaisse.Repositories
                 new SqlParameter("@DO_Piece", doPiece)
             );
         }
+        // ========================================================================================================================================
+        // ============================================================== FIN DELETE ==============================================================
+        // ========================================================================================================================================
     }
 }

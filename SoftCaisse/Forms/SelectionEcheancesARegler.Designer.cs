@@ -45,7 +45,7 @@
             this.txtBxMontEcart = new System.Windows.Forms.TextBox();
             this.cmbBxCompteEcart = new System.Windows.Forms.ComboBox();
             this.cmbBxCodeJournal = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxEnregistrerEcart = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.kptBtnAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnOk = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
@@ -143,7 +143,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel1.Controls.Add(this.tableLayoutPanel2);
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.checkBoxEnregistrerEcart);
             this.panel1.Location = new System.Drawing.Point(216, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(665, 120);
@@ -258,16 +258,16 @@
             this.cmbBxCodeJournal.Size = new System.Drawing.Size(155, 21);
             this.cmbBxCodeJournal.TabIndex = 7;
             // 
-            // checkBox1
+            // checkBoxEnregistrerEcart
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 13);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(182, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Enregistrer un écart de règlement";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxEnregistrerEcart.AutoSize = true;
+            this.checkBoxEnregistrerEcart.Location = new System.Drawing.Point(15, 13);
+            this.checkBoxEnregistrerEcart.Name = "checkBoxEnregistrerEcart";
+            this.checkBoxEnregistrerEcart.Size = new System.Drawing.Size(182, 17);
+            this.checkBoxEnregistrerEcart.TabIndex = 0;
+            this.checkBoxEnregistrerEcart.Text = "Enregistrer un écart de règlement";
+            this.checkBoxEnregistrerEcart.UseVisualStyleBackColor = true;
+            this.checkBoxEnregistrerEcart.CheckedChanged += new System.EventHandler(this.checkBoxEnregistrerEcart_CheckedChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -454,17 +454,17 @@
             this.panel5.Size = new System.Drawing.Size(1160, 1);
             this.panel5.TabIndex = 30;
             // 
-            // kryptonButton1
+            // kptBtnAnnuler
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(1100, 524);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Palette = this.kryptonPalette1;
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton1.Size = new System.Drawing.Size(75, 31);
-            this.kryptonButton1.TabIndex = 31;
-            this.kryptonButton1.Values.Text = "Annuler";
-            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
+            this.kptBtnAnnuler.Location = new System.Drawing.Point(1100, 524);
+            this.kptBtnAnnuler.Margin = new System.Windows.Forms.Padding(2);
+            this.kptBtnAnnuler.Name = "kptBtnAnnuler";
+            this.kptBtnAnnuler.Palette = this.kryptonPalette1;
+            this.kptBtnAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.kptBtnAnnuler.Size = new System.Drawing.Size(75, 31);
+            this.kptBtnAnnuler.TabIndex = 31;
+            this.kptBtnAnnuler.Values.Text = "Annuler";
+            this.kptBtnAnnuler.Click += new System.EventHandler(this.kptBtnAnnuler_Click);
             // 
             // btnOk
             // 
@@ -507,7 +507,7 @@
             this.ClientSize = new System.Drawing.Size(1188, 572);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.kryptonButton1);
+            this.Controls.Add(this.kptBtnAnnuler);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -544,7 +544,7 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label labelTous;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxEnregistrerEcart;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -570,7 +570,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kptBtnAnnuler;
         private ComponentFactory.Krypton.Toolkit.KryptonButton btnOk;
         private System.Windows.Forms.DataGridView dataGridView1;
     }

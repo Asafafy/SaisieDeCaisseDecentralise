@@ -42,7 +42,7 @@ namespace SoftCaisse.Repositories
 
             string query = @"INSERT INTO [dbo].[F_CREGLEMENT]
                 (
-                        [RG_NO],
+                        [RG_No],
                         [RG_Date],
                         [RG_Montant],
                         [N_Reglement],
@@ -143,6 +143,12 @@ namespace SoftCaisse.Repositories
 
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBINS_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_INS_CPTAF_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
+
+            // Mise à jour du dernier numéro de règlement dans P_COLREGLEMENT
+            P_COLREGLEMENT pColRToUpdate = _context.P_COLREGLEMENT.FirstOrDefault();
+            int currentRGNumber = (int)reglement.RG_No + 1;
+            pColRToUpdate.CR_Numero01 = currentRGNumber.ToString();
+            _context.SaveChanges();
         }
         // ================================================================================================
         // ============================= DÉBUT AJOUT D'UN NOUVEAU REGLEMENT ===============================

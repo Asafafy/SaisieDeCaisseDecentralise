@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace SoftCaisse.Repositories.BIJOU
 {
@@ -18,14 +19,14 @@ namespace SoftCaisse.Repositories.BIJOU
 
 
 
+        // ==========================================================================================================================================
+        // ============================================================== DEBUT CREATE ==============================================================
+        // ==========================================================================================================================================
+
         // ===========================================================================================================
         // ==================================== DEBUT AJOUT D'UN NOUVEAU REGLEMENT ===================================
-        // ===========================================================================================================
-        public void AddReglech(int drNo, string doPieceNo, decimal rcMontant, int estRegle)
+        public void AddReglech(int RG_No, int drNo, string doPieceNo, decimal rcMontant, int estRegle)
         {
-            string lastRGNoStr = _context.P_COLREGLEMENT.Select(pc => pc.CR_Numero01).FirstOrDefault();
-            int currentRGNumber = Convert.ToInt32(lastRGNoStr) + 1;
-
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBINS_F_REGLECH] ON [dbo].[F_REGLECH]");
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_F_REGLECH] ON [dbo].[F_REGLECH]");
 
@@ -53,7 +54,7 @@ namespace SoftCaisse.Repositories.BIJOU
             ";
 
             _context.Database.ExecuteSqlCommand(queryForAdd,
-                currentRGNumber,
+                RG_No,
                 drNo,
                 0,
                 6,
@@ -81,22 +82,60 @@ namespace SoftCaisse.Repositories.BIJOU
             );
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCREGL ON F_DOCREGL");
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCREGL ON F_DOCREGL");
-
-            P_COLREGLEMENT pColRToUpdate = _context.P_COLREGLEMENT.FirstOrDefault();
-            pColRToUpdate.CR_Numero01 = currentRGNumber.ToString();
-            _context.SaveChanges();
         }
-        // =========================================================================================================
         // ==================================== FIN AJOUT D'UN NOUVEAU REGLEMENT ===================================
         // =========================================================================================================
 
+        // ========================================================================================================================================
+        // ============================================================== FIN CREATE ==============================================================
+        // ========================================================================================================================================
 
 
 
+
+
+
+
+
+
+        // ==========================================================================================================================================
+        // ============================================================== DEBUT UPDATE ==============================================================
+        // ==========================================================================================================================================
+        public void UpdateRC_Montant(decimal RC_Montant, int RG_No, int DR_No)
+        {
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_REGLECH ON F_REGLECH");
+            string query = @"
+                                UPDATE F_REGLECH
+                                SET RC_Montant = @RC_Montant
+                                WHERE RG_No = @RG_No AND DR_No = @DR_No
+                            ";
+            _context.Database.ExecuteSqlCommand(
+            query,
+                new SqlParameter("@RC_Montant", RC_Montant),
+                new SqlParameter("@RG_No", RG_No),
+                new SqlParameter("@DR_No", DR_No)
+            );
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBUPD_F_REGLECH ON F_REGLECH");
+        }
+
+
+        // ========================================================================================================================================
+        // ============================================================== FIN UPDATE ==============================================================
+        // ========================================================================================================================================
+
+
+
+
+
+
+
+
+        // ==========================================================================================================================================
+        // ============================================================== DEBUT DELETE ==============================================================
+        // ==========================================================================================================================================
 
         // ===========================================================================================================================================
         // ==================================== DEBUT SUPPRESSION D'UN REGLEMENT PAR NUMERO DE PIECE D'UN DOCUMENT ===================================
-        // ===========================================================================================================================================
         public void DeleteByDoPiece(string DO_Piece)
         {
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBDEL_F_REGLECH ON F_REGLECH");
@@ -111,7 +150,6 @@ namespace SoftCaisse.Repositories.BIJOU
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBDEL_F_REGLECH ON F_REGLECH");
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_DEL_F_REGLECH ON F_REGLECH");
         }
-        // =========================================================================================================================================
         // ==================================== FIN SUPPRESSION D'UN REGLEMENT PAR NUMERO DE PIECE D'UN DOCUMENT ===================================
         // =========================================================================================================================================
 
@@ -121,7 +159,6 @@ namespace SoftCaisse.Repositories.BIJOU
 
         // =================================================================================================================================================
         // ==================================== DEBUT SUPPRESSION D'UN REGLEMENT PAR NUMERO DE REGLEMENT DE COMPTE TIERS ===================================
-        // =================================================================================================================================================
         public void DeleteByRG_No(int RG_No)
         {
             _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBDEL_F_REGLECH ON F_REGLECH");
@@ -136,8 +173,11 @@ namespace SoftCaisse.Repositories.BIJOU
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBDEL_F_REGLECH ON F_REGLECH");
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_DEL_F_REGLECH ON F_REGLECH");
         }
-        // ===============================================================================================================================================
         // ==================================== FIN SUPPRESSION D'UN REGLEMENT PAR NUMERO DE REGLEMENT DE COMPTE TIERS ===================================
         // ===============================================================================================================================================
+
+        // ========================================================================================================================================
+        // ============================================================== FIN DELETE ==============================================================
+        // ========================================================================================================================================
     }
 }

@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace SoftCaisse.Repositories.BIJOU
 {
-    internal class F_DOCENTETERepository : IRepository<F_DOCENTETE>
+    internal class F_DOCENTETERepository
     {
         private readonly AppDbContext _context;
         public F_DOCENTETERepository(AppDbContext context)
@@ -359,45 +359,60 @@ namespace SoftCaisse.Repositories.BIJOU
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_CPTAF_DOCENTETE] ON [dbo].[F_DOCENTETE]");
         }
 
-        public void Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public List<F_DOCENTETE> GetAll()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public F_DOCENTETE GetById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public void Update(F_DOCENTETE entity)
-        {
-            throw new System.NotImplementedException();
-        }
 
-        List<F_DOCENTETE> IRepository<F_DOCENTETE>.GetAll()
-        {
-            throw new System.NotImplementedException();
-        }
-
+        // ===============================================================================================================================
+        // ==================================== DEBUT MISE A JOUR DU MONTANT TOTAL HT DANS F_DOCENTETE ===================================
+        // ===============================================================================================================================
         public void UpdateTotalHT(decimal doTotalHT, string numDoPiece)
         {
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBINS_F_DOCENTETE] ON [dbo].[F_DOCENTETE]");
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_F_DOCENTETE] ON [dbo].[F_DOCENTETE]");
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_CPTAF_DOCENTETE] ON [dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBUPD_F_DOCENTETE] ON [dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_UPD_F_DOCENTETE] ON [dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_UPD_CPTAF_DOCENTETE] ON [dbo].[F_DOCENTETE]");
             string query = "UPDATE F_DOCENTETE SET DO_TotalHT = @doTotalHT WHERE DO_Piece LIKE @numDoPiece";
             _context.Database.ExecuteSqlCommand(
                 query,
                 new SqlParameter("@doTotalHT", doTotalHT),
                 new SqlParameter("@numDoPiece", "%" + numDoPiece + "%")
             );
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER[dbo].[TG_CBINS_F_DOCENTETE] ON[dbo].[F_DOCENTETE]");
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_F_DOCENTETE] ON [dbo].[F_DOCENTETE]");
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_CPTAF_DOCENTETE] ON [dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER[dbo].[TG_CBUPD_F_DOCENTETE] ON[dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_UPD_F_DOCENTETE] ON [dbo].[F_DOCENTETE]");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_UPD_CPTAF_DOCENTETE] ON [dbo].[F_DOCENTETE]");
         }
+        // ===============================================================================================================================
+        // ===================================== FIN MISE A JOUR DU MONTANT TOTAL HT DANS F_DOCENTETE ====================================
+        // ===============================================================================================================================
+
+
+
+
+
+        // ==============================================================================================================================
+        // ==================================== DEBUT MISE A JOUR DU MONTANT REGLE AVEC DES ECHEANCES ===================================
+        // ==============================================================================================================================
+        public void UpdateDO_MontantRegle(decimal RC_Montant, string DO_Piece)
+		{
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
+            string queryFDocEntete = @"
+                        UPDATE F_DOCENTETE
+                        SET DO_MontantRegle = @DO_MontantRegle
+                        WHERE DO_Piece = @DO_Piece
+                    ";
+            _context.Database.ExecuteSqlCommand(
+                queryFDocEntete,
+                new SqlParameter("@DO_MontantRegle", RC_Montant),
+                new SqlParameter("@DO_Piece", DO_Piece)
+            );
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
+        }
+        // ============================================================================================================================
+        // ==================================== FIN MISE A JOUR DU MONTANT REGLE AVEC DES ECHEANCES ===================================
+        // ============================================================================================================================
     }
 }

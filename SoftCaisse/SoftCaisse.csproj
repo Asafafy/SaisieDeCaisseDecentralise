@@ -475,8 +475,6 @@
     <Compile Include="Services\F_ARTFOURNISSService.cs" />
     <Compile Include="Services\F_CREGLEMENTService.cs" />
     <Compile Include="Services\F_DOCLIGNEService.cs" />
-    <Compile Include="Services\F_DOCENTETEService.cs" />
-    <Compile Include="Services\F_DOCREGLService.cs" />
     <Compile Include="Utils\ComboBox\Cmbx.cs" />
     <Compile Include="Utils\Connection\Db.cs" />
     <Compile Include="Utils\Controls\AddControl.cs" />

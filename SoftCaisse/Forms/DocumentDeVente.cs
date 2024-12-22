@@ -20,12 +20,13 @@ namespace SoftCaisse.Forms
     public partial class DocumentDeVente : KryptonForm
     {
         MainForm mainForm;
-        private readonly F_DOCREGLService f_DOCREGLService;
-        private readonly F_DOCENTETEService f_DOCENTETEService;
+
         private readonly F_DOCLIGNEService f_DOCLIGNEService;
         private readonly F_ARTFOURNISSService f_ARTFOURNISSService;
-        IRepository<F_DOCLIGNE> _f_DOCLIGNERepository;
-        F_DOCENTETERepository _f_DOCENTETERepository;
+
+        private readonly F_DOCREGLRepository _f_DOCREGLRepository;
+        private readonly F_DOCLIGNERepository _f_DOCLIGNERepository;
+        private readonly F_DOCENTETERepository _f_DOCENTETERepository;
 
         private readonly AppDbContext _context;
         private readonly SageContexte _sageContextObjMetier;
@@ -61,10 +62,8 @@ namespace SoftCaisse.Forms
             _context = new AppDbContext();
             _sageContextObjMetier = new SageContexte();
 
-            IRepository<F_DOCREGL> f_DOCREGLRepository = new F_DOCREGLRepository(_context);
-            f_DOCREGLService = new F_DOCREGLService(f_DOCREGLRepository);
+            _f_DOCREGLRepository = new F_DOCREGLRepository(_context);
             _f_DOCENTETERepository = new F_DOCENTETERepository(_context);
-            f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository);
             _f_DOCLIGNERepository = new F_DOCLIGNERepository(_context);
             f_DOCLIGNEService = new F_DOCLIGNEService(_f_DOCLIGNERepository);
             F_ARTFOURNISSRepository f_ARTFOURNISSRepository = new F_ARTFOURNISSRepository(_context);
@@ -721,7 +720,7 @@ namespace SoftCaisse.Forms
                     DR_RefPaiement = null,
                     DR_AdressePaiement = "",
                 };
-                f_DOCREGLService.AjouterF_DOCREGL(newDocRegl);
+                _f_DOCREGLRepository.Add(newDocRegl);
             }
         }
 
@@ -856,7 +855,7 @@ namespace SoftCaisse.Forms
             };
 
             // Ajout objet dans F_DOCENTETE
-            f_DOCENTETEService.AjouterF_DOCENTETE(newDocEnTete);
+            _f_DOCENTETERepository.Add(newDocEnTete);
         }
 
         public void AjouterPrix(string arRef, string arDesign, decimal puHT, decimal puTTC, string UniteVente)

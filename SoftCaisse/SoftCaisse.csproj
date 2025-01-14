@@ -133,11 +133,17 @@
     <Compile Include="Forms\ListeFamillesDArticles.Designer.cs">
       <DependentUpon>ListeFamillesDArticles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DocumentDeVente.cs">
+    <Compile Include="Forms\MiseAJourDocumentDeVente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DocumentDeVente.Designer.cs">
-      <DependentUpon>DocumentDeVente.cs</DependentUpon>
+    <Compile Include="Forms\MiseAJourDocumentDeVente.Designer.cs">
+      <DependentUpon>MiseAJourDocumentDeVente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NouveauEtMiseAJourDocumentDeVente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NouveauEtMiseAJourDocumentDeVente.Designer.cs">
+      <DependentUpon>NouveauEtMiseAJourDocumentDeVente.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MiseAJourReglement.cs">
       <SubType>Form</SubType>
@@ -444,37 +450,44 @@
     <Compile Include="Models\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_ARTCLIENTRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_ARTCOMPTARepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_ARTICLERepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_ARTSTOCKRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_COMPTETRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_DOCENTETERepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_DOCLIGNERepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_DOCREGLRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_BILLETPIECERepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_CAISSERepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_COLLABORATEURRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_CREGLEMENTRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_DEPOTRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_JOURNAUXRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_REGLECHRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTSTOCKEMPLRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_DOCCURRENTPIECERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTCLIENTRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTCOMPTARepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTICLERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTSTOCKRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_COMPTETRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_DOCENTETERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_DOCLIGNEEMPLRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_DOCLIGNERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_DOCREGLRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_BILLETPIECERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_CAISSERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_COLLABORATEURRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_CREGLEMENTRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_DEPOTRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_JOURNAUXRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_REGLECHRepository.cs" />
     <Compile Include="Repositories\BIJOU\ListeSelectionEcheancesRepository.cs" />
     <Compile Include="Repositories\DTORepository\DeviseRepository.cs" />
     <Compile Include="Repositories\BIJOU\FReglementRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\F_CATALOGUERepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\IRepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\P_SOUCHEVENTERepository.cs" />
-    <Compile Include="Repositories\BIJOU\IRepository\P_REGLEMENTRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_CATALOGUERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\IRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\P_SOUCHEVENTERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\P_REGLEMENTRepository.cs" />
     <Compile Include="Repositories\DTORepository\TaxeRepository.cs" />
     <Compile Include="Repositories\DTORepository\UniteRepository.cs" />
-    <Compile Include="Repositories\F_ARTFOURNISSRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTFOURNISSRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleAutorisationRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
+    <Compile Include="Services\F_ARTSTOCKEMPLService.cs" />
+    <Compile Include="Services\F_ARTSTOCKService.cs" />
     <Compile Include="Services\F_ARTFOURNISSService.cs" />
     <Compile Include="Services\F_CREGLEMENTService.cs" />
+    <Compile Include="Services\F_DOCENTETEService.cs" />
     <Compile Include="Services\F_DOCLIGNEService.cs" />
+    <Compile Include="Services\F_DOCREGLService.cs" />
     <Compile Include="Utils\ComboBox\Cmbx.cs" />
     <Compile Include="Utils\Connection\Db.cs" />
     <Compile Include="Utils\Controls\AddControl.cs" />
@@ -515,8 +528,11 @@
     <EmbeddedResource Include="Forms\FondCaisseDevisForm.resx">
       <DependentUpon>FondCaisseDevisForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DocumentDeVente.resx">
-      <DependentUpon>DocumentDeVente.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MiseAJourDocumentDeVente.resx">
+      <DependentUpon>MiseAJourDocumentDeVente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NouveauEtMiseAJourDocumentDeVente.resx">
+      <DependentUpon>NouveauEtMiseAJourDocumentDeVente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MiseAJourReglement.resx">
       <DependentUpon>MiseAJourReglement.cs</DependentUpon>

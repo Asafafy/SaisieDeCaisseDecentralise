@@ -239,7 +239,7 @@ namespace SoftCaisse.Forms.DocumentVente
             }
         }
 
-        private string GetDocTypeName(int docType)
+        private string GetDocTypeName(int docType, string DO_Piece)
         {
             if (docType == 0)
             {
@@ -267,19 +267,16 @@ namespace SoftCaisse.Forms.DocumentVente
             }
             else if (docType == 6)
             {
-                return "Facture";
+                if (DO_Piece.StartsWith("FA"))
+                    return "Facture";
+                else if (DO_Piece.StartsWith("FR"))
+                    return "Facture de retour";
+                else 
+                    return "Facture d'avoir";
             }
             else if (docType == 7)
             {
                 return "Facture comptabilisée";
-            }
-            else if (docType == 16)
-            {
-                return "Facture de retour";
-            }
-            else if (docType == 19)
-            {
-                return "Facture d'avoir";
             }
             else
             {
@@ -572,10 +569,10 @@ namespace SoftCaisse.Forms.DocumentVente
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
                 string doPiece = selectedRow.Cells["N° pièce"].Value.ToString();
                 F_DOCENTETE docEnteteSelectionne = _context.F_DOCENTETE.Where(doc => doc.DO_Piece == doPiece).FirstOrDefault();
-                string typeDocument = GetDocTypeName((int)docEnteteSelectionne.DO_Type);
+                string typeDocument = GetDocTypeName((int)docEnteteSelectionne.DO_Type, docEnteteSelectionne.DO_Piece);
                 if (docEnteteSelectionne != null)
                 {
-                    DocumentDeVente documentDeVente = new DocumentDeVente(typeDocument, mainForm, docEnteteSelectionne);
+                    NouveauEtMiseAJourDocumentDeVente documentDeVente = new NouveauEtMiseAJourDocumentDeVente(typeDocument, mainForm, docEnteteSelectionne);
                     documentDeVente.Show();
                 }
                 else

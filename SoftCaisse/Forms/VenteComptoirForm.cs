@@ -1237,7 +1237,6 @@ namespace SoftCaisse.Forms.VenteComptoir
                 F_COMPTET valeur = _context.F_COMPTET.FirstOrDefault(f => f.CT_Num == selected.valeur);
                 ComboBoxAffaire.SelectedValue = valeur.CA_Num;
             }
-
         }
 
 

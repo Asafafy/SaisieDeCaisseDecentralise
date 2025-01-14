@@ -185,8 +185,8 @@ namespace SoftCaisse.Forms.Article
                     }
                     else if (_venantDocumentVente == true && _venantVenteComptoir == false)
                     {
-                        DocumentDeVente nouveauDocumentDeVente = Application.OpenForms.OfType<DocumentDeVente>().FirstOrDefault();
-                        nouveauDocumentDeVente?.AjouterPrix(referenceArt, designArt, puHT, puTTC, estHorsTaxe ? "HT" : "TTC");
+                        NouveauEtMiseAJourDocumentDeVente nouveauDocumentDeVente = Application.OpenForms.OfType<NouveauEtMiseAJourDocumentDeVente>().FirstOrDefault();
+                        nouveauDocumentDeVente?.AjouterPrix(referenceArt, designArt, puHT, puTTC, articleSelectionne.AR_Condition == 0 ? "Pièce" : "Unité");
                         nouveauDocumentDeVente?.MettreAJourMontants();
                         Close();
                     }

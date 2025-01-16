@@ -183,12 +183,12 @@ namespace SoftCaisse.Forms
                 comboBoxStatus.Enabled = false;
             }
 
-
             // Désactiver les boutons (Valider, OK, Nouveau) et les champs de saisie des articles (F_DOCLIGNES)
             tableLayoutPanel2.Enabled = false;
             BouttonNouveauDesignation.Enabled = false;
             BouttonSupprimerDesignation.Enabled = false;
             BouttonEnregistrerDesignation.Enabled = false;
+            kptnBtnValider.Enabled = false;            
 
             // Gestion des couleurs des textes dans le Table Layout Panel
             foreach (Control control in tableLayoutPanel2.Controls)
@@ -201,7 +201,6 @@ namespace SoftCaisse.Forms
                 }
             }
 
-            kptnBtnValider.Enabled = false;            
 
             if (_fDocenteteToModif != null)
             {
@@ -251,12 +250,28 @@ namespace SoftCaisse.Forms
                     string conditionnementLigne = article.AR_Condition == 0 ? "Pièce" : "Unité";
                     DataGridViewArticle.Rows.Add(fDocligne.DL_Ligne, fDocligne.AR_Ref, fDocligne.DL_Design, fDocligne.DL_PrixUnitaire, fDocligne.DL_PUTTC, quantite, conditionnementLigne, fDocligne.DL_Remise01REM_Valeur, fDocligne.DL_PrixUnitaire, fDocligne.DL_MontantHT, fDocligne.DL_MontantTTC);
                 }
+
                 if(DataGridViewArticle.Rows.Count < 1)
                 {
                     tableLayoutPanel2.Enabled = true;
                     BouttonNouveauDesignation.Enabled = true;
                     BouttonEnregistrerDesignation.Enabled = true;
+                    comboBoxDepot.Enabled = false;
                 }
+
+
+                // Désactivation de certains éléments lorsque le document est déjà validé
+                if (_fDocenteteToModif.DO_Valide == 1)
+                {
+                    TextBoxReference.Enabled = false;
+                    comboBoxRepresentant.Enabled = false;
+                    comboBoxExpedit.Enabled = false;
+
+                    BouttonEnregistrerDesignation.Enabled = false;
+                    BouttonSupprimerDesignation.Enabled = false;
+                    BouttonNouveauDesignation.Enabled = false;
+                }
+
 
                 // Initialisation des valeurs à vérifier lors de la fermeture de la fenêtre
                 initValuesDateLivrPrev = dateTimePicker2.Value.ToString();
@@ -611,8 +626,8 @@ namespace SoftCaisse.Forms
                     labelStatut.Enabled = false;
                     comboBoxStatus.Enabled = false;
 
-                    kptnBtnValider.Text = "Mettre à jour";
-                    kptnBtnValider.Enabled = false;
+                    _fDocenteteToModif = _context.F_DOCENTETE.Where(d => d.DO_Piece == _currentDocPieceNo).FirstOrDefault();
+
                     MessageBox.Show("La création du document de vente est effectuée avec succès", "Création effectuée", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Mise à jour des valeurs initiaux
@@ -855,6 +870,11 @@ namespace SoftCaisse.Forms
                         textBox.Text = textBox.Tag.ToString();
                     }
                 }
+
+                if (DataGridViewArticle.Rows.Count < 1)
+                    comboBoxDepot.Enabled = true;
+                else
+                    comboBoxDepot.Enabled = false;
             }
         }
 
@@ -1030,6 +1050,12 @@ namespace SoftCaisse.Forms
                             textBox.Text = textBox.Tag.ToString();
                         }
                     }
+                    
+                    // Gestion du comportement du combobox Dépôt
+                    if (DataGridViewArticle.Rows.Count < 1)
+                        comboBoxDepot.Enabled = true;
+                    else
+                        comboBoxDepot.Enabled = false;
                 }
                 else
                 {

@@ -126,10 +126,14 @@ namespace SoftCaisse.Repositories
                 DELETE FROM [dbo].[F_DOCREGL] WHERE DO_Piece = @DO_Piece;
             ";
 
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBDEL_F_DOCREGL ON F_DOCREGL");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_DEL_F_DOCREGL ON F_DOCREGL");
             _context.Database.ExecuteSqlCommand(
                 queryDeleteAvecCommande,
                 new SqlParameter("@DO_Piece", doPiece)
             );
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBDEL_F_DOCREGL ON F_DOCREGL");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_DEL_F_DOCREGL ON F_DOCREGL");
         }
         // ========================================================================================================================================
         // ============================================================== FIN DELETE ==============================================================

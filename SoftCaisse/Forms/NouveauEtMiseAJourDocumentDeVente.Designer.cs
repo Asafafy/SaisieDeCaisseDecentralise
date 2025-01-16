@@ -40,6 +40,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBoxDepot = new System.Windows.Forms.ComboBox();
+            this.lblDepot = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelDateLivr = new System.Windows.Forms.Label();
             this.labelNDocu = new System.Windows.Forms.Label();
@@ -234,6 +236,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.33F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.33F));
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxDepot, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lblDepot, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.label1, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelDateLivr, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelNDocu, 4, 0);
@@ -272,6 +276,27 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1182, 155);
             this.tableLayoutPanel1.TabIndex = 7;
+            // 
+            // comboBoxDepot
+            // 
+            this.comboBoxDepot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxDepot.FormattingEnabled = true;
+            this.comboBoxDepot.Location = new System.Drawing.Point(514, 125);
+            this.comboBoxDepot.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.comboBoxDepot.Name = "comboBoxDepot";
+            this.comboBoxDepot.Size = new System.Drawing.Size(269, 21);
+            this.comboBoxDepot.TabIndex = 47;
+            // 
+            // lblDepot
+            // 
+            this.lblDepot.AutoSize = true;
+            this.lblDepot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDepot.Location = new System.Drawing.Point(396, 120);
+            this.lblDepot.Name = "lblDepot";
+            this.lblDepot.Size = new System.Drawing.Size(112, 35);
+            this.lblDepot.TabIndex = 46;
+            this.lblDepot.Text = "Dépôt";
+            this.lblDepot.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -1196,5 +1221,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn punet;
         private System.Windows.Forms.DataGridViewTextBoxColumn montantHT;
         private System.Windows.Forms.DataGridViewTextBoxColumn montantTTC;
+        private System.Windows.Forms.Label lblDepot;
+        private System.Windows.Forms.ComboBox comboBoxDepot;
     }
 }

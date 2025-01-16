@@ -3,6 +3,9 @@ using SoftCaisse.Models;
 using SoftCaisse.Models.Json;
 using SoftCaisse.Repositories;
 using SoftCaisse.Repositories.BIJOU;
+using SoftCaisse.Repositories.BIJOU.IRepository;
+using SoftCaisse.Repositories.BIJOU.ModelsRepository;
+using SoftCaisse.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -41,8 +44,20 @@ namespace SoftCaisse.Forms.DocumentVente
         private readonly P_CATCOMPTA catComptas;
         private readonly List<string> listeCatComptasVente;
 
-        private readonly F_DOCREGLRepository fDocreglRepository;
-        private readonly F_REGLECHRepository fReglechRepository;
+        private readonly F_DOCREGLRepository _f_DOCREGLRepository;
+        private readonly F_REGLECHRepository _f_REGLECHRepository;
+        private readonly F_DOCENTETERepository _f_DOCENTETERepository;
+        private readonly F_ARTSTOCKEMPLRepository _f_ARTSTOCKEMPLRepository;
+        private readonly F_ARTSTOCKRepository _f_ARTSTOCKRepository;
+        private readonly F_DOCLIGNEEMPLRepository _f_DOCLIGNEEMPLRepository;
+        private readonly F_DOCLIGNERepository _f_DOCLIGNERepository;
+
+        private readonly F_REGLECHService _f_REGLECHService;
+        private readonly F_DOCENTETEService _f_DOCENTETEService;
+        private readonly F_DOCREGLService _f_DOCREGLService;
+        private readonly F_ARTSTOCKEMPLService _f_ARTSTOCKEMPLService;
+        private readonly F_ARTSTOCKService _f_ARTSTOCKService;
+        private readonly F_DOCLIGNEService _f_DOCLIGNEService;
 
         private F_DOCENTETE _selectedDoc;
         private bool _isFromRefresh = false;
@@ -53,8 +68,20 @@ namespace SoftCaisse.Forms.DocumentVente
 
             _context = new AppDbContext();
 
-            fDocreglRepository = new F_DOCREGLRepository(_context);
-            fReglechRepository = new F_REGLECHRepository(_context);
+            _f_REGLECHRepository = new F_REGLECHRepository(_context);
+            _f_DOCENTETERepository = new F_DOCENTETERepository(_context);
+            _f_DOCREGLRepository = new F_DOCREGLRepository(_context);
+            _f_ARTSTOCKEMPLRepository = new F_ARTSTOCKEMPLRepository(_context);
+            _f_ARTSTOCKRepository = new F_ARTSTOCKRepository(_context);
+            _f_DOCLIGNEEMPLRepository = new F_DOCLIGNEEMPLRepository(_context);
+            _f_DOCLIGNERepository = new F_DOCLIGNERepository(_context);
+
+            _f_REGLECHService = new F_REGLECHService(_f_REGLECHRepository);
+            _f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository, _context);
+            _f_DOCREGLService = new F_DOCREGLService(_f_DOCREGLRepository, _f_DOCENTETEService);
+            _f_ARTSTOCKEMPLService = new F_ARTSTOCKEMPLService(_context, _f_ARTSTOCKEMPLRepository);
+            _f_ARTSTOCKService = new F_ARTSTOCKService(_context, _f_ARTSTOCKRepository);
+            _f_DOCLIGNEService = new F_DOCLIGNEService(_context, _f_DOCLIGNERepository);
 
             _boutonActifMaintenant = btnTous;
 
@@ -238,51 +265,6 @@ namespace SoftCaisse.Forms.DocumentVente
                 btnFactCompt_Click(sender, e);
             }
         }
-
-        private string GetDocTypeName(int docType, string DO_Piece)
-        {
-            if (docType == 0)
-            {
-                return "Devis";
-            }
-            else if (docType == 1)
-            {
-                return "Bon de commande";
-            }
-            else if (docType == 2)
-            {
-                return "Préparation de livraison";
-            }
-            else if (docType == 3)
-            {
-                return "Bon de livraison";
-            }
-            else if (docType == 4)
-            {
-                return "Bon de retour";
-            }
-            else if (docType == 5)
-            {
-                return "Bon d'avoir finanicier";
-            }
-            else if (docType == 6)
-            {
-                if (DO_Piece.StartsWith("FA"))
-                    return "Facture";
-                else if (DO_Piece.StartsWith("FR"))
-                    return "Facture de retour";
-                else 
-                    return "Facture d'avoir";
-            }
-            else if (docType == 7)
-            {
-                return "Facture comptabilisée";
-            }
-            else
-            {
-                return null;
-            }
-        }
         /* =========================================================== FIN FONCTIONS =========================================================== */
         /* ==================================================================================================================================== */
 
@@ -298,7 +280,9 @@ namespace SoftCaisse.Forms.DocumentVente
         }
 
 
-        // ===================== DEBUT BOUTONS SIDEBAR À GAUCHE =====================
+
+        // ==============================================================================================================================================
+        // ======================================================= DEBUT BOUTONS SIDEBAR À GAUCHE =======================================================
         private void btnTous_Click(object sender, EventArgs e)
         {
             // Modification couleur btn on Click
@@ -457,15 +441,23 @@ namespace SoftCaisse.Forms.DocumentVente
                 _boutonActifMaintenant = btnFactCompt;
             }
         }
-        // ===================== FIN BOUTONS SIDEBAR À GAUCHE =====================
+        // ==============================================================================================================================================
+        // ======================================================= DEBUT BOUTONS SIDEBAR À GAUCHE =======================================================
 
 
+
+
+        // ========================================================= NOUVEAU DOCUMENT DE VENTE ==========================================================
         private void kptBtnNouveau_Click(object sender, EventArgs e)
         {
             ChoixTypeDoc choixTypeDoc = new ChoixTypeDoc(mainForm);
             choixTypeDoc.Show();
         }
 
+
+
+
+        // ======================================================== ACTIVATION BTN SUPPRIMER LORS SELECTION DOCUMENT DE VENTE ========================================================
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             kryptonButtonSuppr.Enabled = e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count;
@@ -476,68 +468,68 @@ namespace SoftCaisse.Forms.DocumentVente
             }
         }
 
+
+
+
+
+        // =================================================================== SUPPRESSION DOCUMENT DE VENTE ===================================================================
         private void kryptonButtonSuppr_Click(object sender, EventArgs e)
         {
             if (_selectedDoc != null)
             {
+                // Vérification si le document est validé ==> Impossible de supprimer un document validé
+                if (_selectedDoc.DO_Valide == 1)
+                {
+                    MessageBox.Show("Impossible de supprimer un document validé.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
                 DialogResult resultat = MessageBox.Show("Veuillez confirmer la suppression du document  " + _selectedDoc.DO_Piece, "Confirmation de la suppression", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (resultat == DialogResult.Yes)
                 {
-                    //try
-                    //{
                     List<F_DOCLIGNE> listeDocLigne = _context.F_DOCLIGNE.Where(dl => dl.DO_Piece == _selectedDoc.DO_Piece).ToList();
+                    string typeDocument = _f_DOCENTETEService.GetDocTypeName((int)_selectedDoc.DO_Type, _selectedDoc.DO_Piece);
 
-                    // Elaboration liste des F_DOCLIGNEEMPL
-                    List<F_DOCLIGNEEMPL> listeDocLigneEmpl = new List<F_DOCLIGNEEMPL>();
-                    foreach (var docLigne in listeDocLigne)
+
+                    // Suppression dans F_REGLECH
+                    List<F_REGLECH> listeReglEchToDelete = _context.F_REGLECH.Where(dr => dr.DO_Piece == _selectedDoc.DO_Piece).ToList();
+                    if (listeReglEchToDelete.Count > 0)
                     {
-                        F_DOCLIGNEEMPL dlEmpl = _context.F_DOCLIGNEEMPL.Where(dle => dle.DL_No == docLigne.DL_No).FirstOrDefault();
-                        if (dlEmpl != null)
-                        {
-                            listeDocLigneEmpl.Add(dlEmpl);
-                        }
+                        _f_REGLECHService.SupprimerReglementsDesEcheances(listeReglEchToDelete);
+                    }
+
+                    // Suppression dans F_DOCREGL
+                    List<F_DOCREGL> listeDocReglToDelete = _context.F_DOCREGL.Where(dr => dr.DO_Piece == _selectedDoc.DO_Piece).ToList();
+                    if (listeDocReglToDelete.Count > 0)
+                    {
+                        _f_DOCREGLService.SupprimerDocumentsDesReglements(listeDocReglToDelete);
                     }
 
                     if (listeDocLigne.Count > 0)
                     {
                         // Mise à jour F_ARTSTOCKEMPL selon les articles présentes dans F_DOCLIGNEEMPL
-                        foreach (var docLigneEmpl in listeDocLigneEmpl)
-                        {
-                            string refArt = _context.F_DOCLIGNE.Where(d => d.DL_No == docLigneEmpl.DL_No).Select(d => d.AR_Ref).FirstOrDefault();
-                            F_ARTSTOCKEMPL stockEmpl = _context.F_ARTSTOCKEMPL
-                                .Where(ase => ase.DP_No == docLigneEmpl.DP_No && ase.AR_Ref == refArt)
-                                .FirstOrDefault();
-                            stockEmpl.AE_QteSto += docLigneEmpl.DL_Qte;
-                            _context.F_DOCLIGNEEMPL.Remove(docLigneEmpl);
-                            _context.SaveChanges();
-                        }
-                        // Mise à jour F_ARTSTOCK selon les articles présentes dans F_DOCLIGNE
                         foreach (var docLigne in listeDocLigne)
                         {
-                            F_ARTSTOCK artStock = _context.F_ARTSTOCK.Where(a => a.AR_Ref == docLigne.AR_Ref && a.DE_No == docLigne.DE_No).FirstOrDefault();
-                            artStock.AS_QteSto += docLigne.DL_Qte;
-                            _context.F_DOCLIGNE.Remove(docLigne);
-                            _context.SaveChanges();
+                            _f_ARTSTOCKEMPLService.UpdateArtstockEmpl(typeDocument, _selectedDoc.DO_Piece, docLigne.DL_Ligne, docLigne.AR_Ref, (int?)docLigne.DL_Qte, 0, docLigne.DE_No);
+                            _f_ARTSTOCKService.UpdateMontantEtQuantiteStock(typeDocument, docLigne.AR_Ref, 0, (int)docLigne.DL_Qte, docLigne.DE_No);
                         }
-                    }
 
-                    // Suppression dans F_REGLECH
-                    F_REGLECH reglEch = _context.F_REGLECH.Where(dr => dr.DO_Piece == _selectedDoc.DO_Piece).FirstOrDefault();
-                    if (reglEch != null)
-                    {
-                        fReglechRepository.DeleteByDoPiece(reglEch.DO_Piece);
-                    }
+                        // Suppression des F_DOCLIGNEEMPL
+                        foreach (var docLigne in listeDocLigne)
+                        {
+                            _f_DOCLIGNEEMPLRepository.DeleteF_DOCLIGNEEMPL(_selectedDoc.DO_Piece, docLigne.DL_Ligne);
+                        }
 
-                    // Suppression dans F_DOCREGL
-                    F_DOCREGL docRegl = _context.F_DOCREGL.Where(dr => dr.DO_Piece == _selectedDoc.DO_Piece).FirstOrDefault();
-                    if (reglEch != null)
-                    {
-                        fDocreglRepository.DeleteByDoPiece(docRegl.DO_Piece);
+                        // Suppression des F_DOCLIGNE
+                        foreach (var docLigne in listeDocLigne)
+                        {
+                            _f_DOCLIGNEService.DeleteF_DOCLIGNE(_selectedDoc.DO_Piece, docLigne.DL_Ligne);
+                        }
                     }
 
                     // Suppression F_DOCENTETE (Document de vente)
-                    _context.F_DOCENTETE.Remove(_selectedDoc);
-                    _context.SaveChanges();
+                    _f_DOCENTETERepository.Delete(_selectedDoc.DO_Piece);
 
                     // Mise à jour de la liste après suppression
                     _isFromRefresh = true;
@@ -545,11 +537,6 @@ namespace SoftCaisse.Forms.DocumentVente
 
                     _selectedDoc = null;
                     kryptonButtonSuppr.Enabled = false;
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    MessageBox.Show("Impossible d'effectuer la suppression. \nEreur" + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}
                 }
                 else
                 {
@@ -562,6 +549,10 @@ namespace SoftCaisse.Forms.DocumentVente
             }
         }
 
+
+
+        // ===============================================================================================================================================================
+        // ================================================================= OUVERTURE DOCUMENT DE VENTE =================================================================
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -569,7 +560,8 @@ namespace SoftCaisse.Forms.DocumentVente
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
                 string doPiece = selectedRow.Cells["N° pièce"].Value.ToString();
                 F_DOCENTETE docEnteteSelectionne = _context.F_DOCENTETE.Where(doc => doc.DO_Piece == doPiece).FirstOrDefault();
-                string typeDocument = GetDocTypeName((int)docEnteteSelectionne.DO_Type, docEnteteSelectionne.DO_Piece);
+                string typeDocument = _f_DOCENTETEService.GetDocTypeName((int)docEnteteSelectionne.DO_Type, docEnteteSelectionne.DO_Piece);
+
                 if (docEnteteSelectionne != null)
                 {
                     NouveauEtMiseAJourDocumentDeVente documentDeVente = new NouveauEtMiseAJourDocumentDeVente(typeDocument, mainForm, docEnteteSelectionne);
@@ -582,10 +574,20 @@ namespace SoftCaisse.Forms.DocumentVente
             }
         }
 
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            kryptonButton1_Click(sender, e);
+        }
+        // ================================================================= OUVERTURE DOCUMENT DE VENTE =================================================================
+        // ===============================================================================================================================================================
 
 
+
+
+
+        /* ====================================================================================================================================== */
         /* =========================================================== FIN EVENEMENTS =========================================================== */
-        /* ==================================================================================================================================== */
+        /* ====================================================================================================================================== */
 
     }
 }

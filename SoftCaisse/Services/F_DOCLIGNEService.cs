@@ -19,6 +19,7 @@ namespace SoftCaisse.Services
         private readonly AppDbContext _context;
 
         private readonly F_DOCLIGNERepository _f_DOCLIGNERepository;
+        private readonly F_AGENDARepository _f_AGENDARepository;
         // ===============================================================================================================================================================================
         // ===================================================================== FIN DECLARATION DES VARIABLES ===========================================================================
         // ===============================================================================================================================================================================
@@ -38,6 +39,7 @@ namespace SoftCaisse.Services
         {
             _context = context;
             _f_DOCLIGNERepository = fDOCLIGNERepository;
+            _f_AGENDARepository = new F_AGENDARepository(_context);
         }
         // ===============================================================================================================================================================================
         // =========================================================================== FIN CONSTRUCTEUR ==================================================================================
@@ -58,7 +60,7 @@ namespace SoftCaisse.Services
 
         // ===============================================================================================================================================================================
         // ================================================================================ DEBUT INSERT =================================================================================
-        public void AjouterF_DOCLIGNE(MainForm mainForm, F_DOCENTETEService _f_DOCENTETEService, F_ARTFOURNISSService _f_ARTFOURNISSService, short typeDoc, string CT_NumClient, string _currentDocPieceNo, DateTime DO_Date, int? numeroLigneDL_Ligne, F_DOCENTETE docEnCours, string AR_Ref, string DL_Design, int DL_Qte, string typeDocument, F_ARTICLE articleChoisi, string txtBxQuantiteText, string txtBxRemiseText, string TextBoxPUNetText, F_COLLABORATEUR collab, short DL_NoRef, decimal DL_PUTTC, DateTime DO_DateLivr, string CA_NumText, string TextBoxMontantTTCText, string TextBoxMontantHTText, DateTime dateTimePicker3Value)
+        public void AjouterF_DOCLIGNE(MainForm mainForm, F_DOCENTETEService _f_DOCENTETEService, F_ARTFOURNISSService _f_ARTFOURNISSService, short typeDoc, string CT_NumClient, string _currentDocPieceNo, DateTime DO_Date, int? numeroLigneDL_Ligne, F_DOCENTETE docEnCours, string AR_Ref, string DL_Design, int DL_Qte, string typeDocument, F_ARTICLE articleChoisi, string txtBxQuantiteText, string txtBxRemiseText, string TextBoxPUNetText, F_COLLABORATEUR collab, short DL_NoRef, decimal DL_PUTTC, DateTime DO_DateLivr, string CA_NumText, string TextBoxMontantTTCText, string TextBoxMontantHTText, DateTime dateTimePicker3Value, int? DE_No)
         {
             F_ARTFOURNISS fournisseur = _f_ARTFOURNISSService.GetByARRefAndPrincipal(articleChoisi.AR_Ref);
             F_ARTSTOCK depotArtStock = _context.F_ARTSTOCK.Where(artStck => artStck.AR_Ref == articleChoisi.AR_Ref && artStck.AS_Principal == 1).FirstOrDefault();
@@ -93,7 +95,7 @@ namespace SoftCaisse.Services
             docligne.DL_Ligne = numeroLigneDL_Ligne;
             
             docligne.CO_No = collab != null ? collab.CO_No : 0;
-            docligne.DE_No = 1;
+            docligne.DE_No = DE_No;
             docligne.DL_No = _context.F_DOCLIGNE.Max(dl => dl.DL_No) + 1;
 
             docligne.EU_Qte = Convert.ToInt32(txtBxQuantiteText);
@@ -296,6 +298,13 @@ namespace SoftCaisse.Services
         public void DeleteF_DOCLIGNE(string DO_Piece, int? DL_Ligne)
         {
             F_DOCLIGNE f_DOCLIGNEToDelete = _context.F_DOCLIGNE.Where(dl => dl.DO_Piece == DO_Piece && dl.DL_Ligne == DL_Ligne).FirstOrDefault();
+            F_AGENDA f_AGENDA = _context.F_AGENDA.Where(a => a.DL_No == f_DOCLIGNEToDelete.DL_No).FirstOrDefault();
+
+            if (f_AGENDA != null)
+            {
+                _f_AGENDARepository.DeleteF_AGENDA(f_AGENDA);
+            }
+
             _f_DOCLIGNERepository.Delete(f_DOCLIGNEToDelete);
         }
 

@@ -186,6 +186,56 @@ namespace SoftCaisse.Services
 
 
 
+        // ======================================================================= NOM DU TYPE DE DOCUMENT =======================================================================
+        public string GetDocTypeName(int docType, string DO_Piece)
+        {
+            if (docType == 0)
+            {
+                return "Devis";
+            }
+            else if (docType == 1)
+            {
+                return "Bon de commande";
+            }
+            else if (docType == 2)
+            {
+                return "Préparation de livraison";
+            }
+            else if (docType == 3)
+            {
+                return "Bon de livraison";
+            }
+            else if (docType == 4)
+            {
+                return "Bon de retour";
+            }
+            else if (docType == 5)
+            {
+                return "Bon d'avoir finanicier";
+            }
+            else if (docType == 6)
+            {
+                if (DO_Piece.StartsWith("FA"))
+                    return "Facture";
+                else if (DO_Piece.StartsWith("FR"))
+                    return "Facture de retour";
+                else
+                    return "Facture d'avoir";
+            }
+            else if (docType == 7)
+            {
+                return "Facture comptabilisée";
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+
+
+
         // ====================================================================== NUMERO DU DOCUMENT A CREER ========================================================================
         public string GetCurrentDocNumber(string docType, List<F_DOCENTETE> listeDocs)
         {
@@ -394,7 +444,7 @@ namespace SoftCaisse.Services
         // ==========================================================================================================================================================================
         // ============================================================== DEBUT FONCTIONS NECESSITANT LE REPOSITORY =================================================================
         // ==========================================================================================================================================================================
-        public void InsertNewF_DOCENTETE(string typeDoc, string noPiece, F_COMPTET client, List<F_LIVRAISON> listeLivr, short? numExpedit, string caNum, int numCaisse, int numCaissier, string expeditInt, DateTime dateLivrPrev, DateTime dateLivrRealise, string refer, string DO_Coord01, string divers, string commentaires, string representant)
+        public void InsertNewF_DOCENTETE(string typeDoc, string noPiece, F_COMPTET client, List<F_LIVRAISON> listeLivr, short? numExpedit, string caNum, int numCaisse, int numCaissier, string expeditInt, DateTime dateLivrPrev, DateTime dateLivrRealise, string refer, string DO_Coord01, string divers, string commentaires, string representant, int DE_No)
         {
             // Get properties (Recherche des propriétés manquantes)
             DocumentType typeDocument = GetDocumentType(typeDoc);
@@ -420,8 +470,8 @@ namespace SoftCaisse.Services
                 DO_Period = 1,
                 DO_Devise = 0,
                 DO_Cours = 0,
-                DE_No = 1,
-                cbDE_No = 1,
+                DE_No = DE_No,
+                cbDE_No = DE_No,
                 LI_No = lieuLivrPrinc == null ? 0 : lieuLivrPrinc.LI_No,
                 cbLI_No = lieuLivrPrinc == null ? 0 : lieuLivrPrinc.LI_No,
                 CT_NumPayeur = client.CT_NumPayeur,
@@ -529,7 +579,7 @@ namespace SoftCaisse.Services
 
 
 
-        public void UpdateProprietesF_DOCENTETE(string currentDocPieceNo, DateTime dateLivrPrevu, DateTime dateLivrReal, string reference, string caNum, string representant, short? numExpedit, string expeditInt, string entete, string commentaires, string divers)
+        public void UpdateProprietesF_DOCENTETE(string currentDocPieceNo, DateTime dateLivrPrevu, DateTime dateLivrReal, string reference, string caNum, string representant, short? numExpedit, string expeditInt, string entete, string commentaires, string divers, int DE_No)
         {
             F_DOCENTETE f_DOCENTETE = _context.F_DOCENTETE.Where(d => d.DO_Piece == currentDocPieceNo).FirstOrDefault();
 
@@ -548,6 +598,7 @@ namespace SoftCaisse.Services
             f_DOCENTETE.DO_Coord01 = entete;
             f_DOCENTETE.Commentaires = commentaires;
             f_DOCENTETE.Divers = divers;
+            f_DOCENTETE.DE_No = DE_No;
 
             _f_DOCENTETERepository.UpdateProprietesF_DOCENTETE(f_DOCENTETE);
         }

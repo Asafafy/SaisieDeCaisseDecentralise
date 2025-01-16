@@ -35,7 +35,7 @@ namespace SoftCaisse.Forms.DocumentVente
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.kryptonButtonSuppr = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kptBtnNouveau = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnOuvrir = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.BouttonRechercherArticle = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.TextBoxBarreDeRecherche = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel10 = new System.Windows.Forms.FlowLayoutPanel();
@@ -105,17 +105,17 @@ namespace SoftCaisse.Forms.DocumentVente
             this.kptBtnNouveau.Values.Text = "Nouveau";
             this.kptBtnNouveau.Click += new System.EventHandler(this.kptBtnNouveau_Click);
             // 
-            // kryptonButton1
+            // btnOuvrir
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(1001, 453);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Palette = this.kryptonPalette1;
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton1.Size = new System.Drawing.Size(79, 28);
-            this.kryptonButton1.TabIndex = 22;
-            this.kryptonButton1.Values.Text = "Ouvrir";
-            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
+            this.btnOuvrir.Location = new System.Drawing.Point(1001, 453);
+            this.btnOuvrir.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOuvrir.Name = "btnOuvrir";
+            this.btnOuvrir.Palette = this.kryptonPalette1;
+            this.btnOuvrir.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnOuvrir.Size = new System.Drawing.Size(79, 28);
+            this.btnOuvrir.TabIndex = 22;
+            this.btnOuvrir.Values.Text = "Ouvrir";
+            this.btnOuvrir.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // BouttonRechercherArticle
             // 
@@ -336,6 +336,7 @@ namespace SoftCaisse.Forms.DocumentVente
             this.dataGridView1.Size = new System.Drawing.Size(1040, 339);
             this.dataGridView1.TabIndex = 34;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // ListeDocumentVenteForm
             // 
@@ -351,7 +352,7 @@ namespace SoftCaisse.Forms.DocumentVente
             this.Controls.Add(this.TextBoxBarreDeRecherche);
             this.Controls.Add(this.kryptonButtonSuppr);
             this.Controls.Add(this.kptBtnNouveau);
-            this.Controls.Add(this.kryptonButton1);
+            this.Controls.Add(this.btnOuvrir);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -372,7 +373,7 @@ namespace SoftCaisse.Forms.DocumentVente
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButtonSuppr;
         private ComponentFactory.Krypton.Toolkit.KryptonButton kptBtnNouveau;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOuvrir;
         private ComponentFactory.Krypton.Toolkit.KryptonButton BouttonRechercherArticle;
         private System.Windows.Forms.TextBox TextBoxBarreDeRecherche;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel10;

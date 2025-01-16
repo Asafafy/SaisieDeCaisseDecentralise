@@ -452,7 +452,8 @@ namespace SoftCaisse.Repositories.BIJOU
 					DO_ValFrais = @DO_ValFrais,
 					DO_Coord01 = @DO_Coord01,
 					Commentaires = @Commentaires,
-					Divers = @Divers
+					Divers = @Divers,
+					DE_No = @DE_No
 
 				WHERE DO_Piece = @DO_Piece
 			";
@@ -474,11 +475,28 @@ namespace SoftCaisse.Repositories.BIJOU
 				new SqlParameter("@DO_Coord01", f_DOCENTETEToUpdate.DO_Coord01),
 				new SqlParameter("@Commentaires", f_DOCENTETEToUpdate.Commentaires),
 				new SqlParameter("@Divers", f_DOCENTETEToUpdate.Divers),
+				new SqlParameter("@DE_No", f_DOCENTETEToUpdate.DE_No),
 				new SqlParameter("@DO_Piece", f_DOCENTETEToUpdate.DO_Piece)
             );
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
             _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
+        }
+
+
+
+
+		public void Delete(string DO_Piece)
+		{
+            string query = "DELETE FROM F_DOCENTETE WHERE DO_Piece = @DO_Piece";
+
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBDEL_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_DEL_F_DOCENTETE ON F_DOCENTETE");
+
+            _context.Database.ExecuteSqlCommand(query, new SqlParameter("@DO_Piece", DO_Piece));
+
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBDEL_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_DEL_F_DOCENTETE ON F_DOCENTETE");
         }
     }
 }

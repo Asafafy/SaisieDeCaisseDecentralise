@@ -59,6 +59,8 @@ namespace SoftCaisse.Forms
         private readonly List<F_LIVRAISON> _listeLivraisons;
         private readonly List<F_ARTICLE> _listeArticle;
         private readonly List<F_COLLABORATEUR> _listeCollaborateurs;
+        private readonly List<F_DEPOT> _listeDepots;
+        
         private readonly List<P_EXPEDITION> _listeExpedit;
 
         private readonly List<F_COLLABORATEUR> _listeCollab;
@@ -68,15 +70,16 @@ namespace SoftCaisse.Forms
         private readonly string _typeDocument;
         private readonly string _currentDocPieceNo;
 
-        private readonly string _initValuesDateLivrPrev;
-        private readonly string _initValuesDateLivrReal;
-        private readonly string _initValuesReference;
-        private readonly string _initValuesAffaires;
-        private readonly string _initValuesRepresentant;
-        private readonly string _initValuesExpedition;
-        private readonly string _initValuesEntete;
-        private readonly string _initValuesCommentaires;
-        private readonly string _initValuesDivers;
+        private string initValuesDateLivrPrev;
+        private string initValuesDateLivrReal;
+        private string initValuesReference;
+        private string initValuesAffaires;
+        private string initValuesRepresentant;
+        private string initValuesExpedition;
+        private string initValuesEntete;
+        private string initValuesCommentaires;
+        private string initValuesDivers;
+        private string initValuesDepot;
 
         private int nombreFermetureFenetre;
         private bool resultatDialogResultFermeture;
@@ -136,6 +139,7 @@ namespace SoftCaisse.Forms
             _listeExpedit = _context.P_EXPEDITION.Where(expedit => expedit.E_Intitule != "").ToList();
             _listePlanAnalitique = _context.F_COMPTEA.ToList();
             _listeCollab = _context.F_COLLABORATEUR.ToList();
+            _listeDepots = _context.F_DEPOT.OrderBy(d => d.DE_No).ToList();
 
             _currentDocPieceNo = _f_DOCENTETEService.GetCurrentDocNumber(typeDocument, _listeDocuments);
 
@@ -160,7 +164,9 @@ namespace SoftCaisse.Forms
             comboBoxExpedit.SelectedIndex = -1;
             comboBoxRepresentant.DataSource = _listeCollab.Where(c => c.CO_Vendeur == 1).Select(c => c.CO_Nom + " " + c.CO_Prenom).ToList();
             comboBoxRepresentant.SelectedIndex = -1;
+            comboBoxDepot.DataSource = _listeDepots.Select(d => d.DE_Intitule).ToList();
             textBoxNDoc.Text = _currentDocPieceNo;
+
 
             // Activation ou non des propriétés du document de vente
             if (_fDocenteteToModif == null)
@@ -201,6 +207,21 @@ namespace SoftCaisse.Forms
             {
                 // ========================= Affichage des informations concernant le F_DOCENTETE (Document de vente à mettre à jour) =========================
                 F_COMPTET clientTiers = _listeClients.Where(cl => cl.CT_Num == _fDocenteteToModif.DO_Tiers).FirstOrDefault();
+                F_COMPTEA planAnal = _listePlanAnalitique.Where(pa => pa.CA_Num == _fDocenteteToModif.CA_Num).FirstOrDefault();
+                F_COLLABORATEUR collab = _listeCollab.Where(co => co.CO_No == _fDocenteteToModif.CO_No).FirstOrDefault();
+                P_EXPEDITION expedit = _listeExpedit.Where(exp => exp.cbMarq == _fDocenteteToModif.DO_Expedit).FirstOrDefault();
+                
+                List<F_COMPTEA> listePAAffiches = _listePlanAnalitique.Where(p => p.N_Analytique == 3).ToList();
+                List<F_COLLABORATEUR> listeCollaborateursCmbBx = _listeCollab.Where(c => c.CO_Vendeur == 1).ToList();
+                List<F_DOCLIGNE> listeDoclignesDocToUpdate = _context.F_DOCLIGNE
+                    .Where(dl => dl.DO_Piece == _fDocenteteToModif.DO_Piece)
+                    .OrderBy(dl => dl.DL_Ligne)
+                    .ToList();
+
+                int indexPA = listePAAffiches.IndexOf(planAnal);
+                int indexCollab = listeCollaborateursCmbBx.IndexOf(collab);
+                int indexExpedit = _listeExpedit.IndexOf(expedit);
+                
                 comboBoxClient.SelectedIndex = _listeClients.IndexOf(clientTiers);
                 dateTimePicker1.Value = (DateTime)_fDocenteteToModif.DO_Date;
                 if (_fDocenteteToModif.DO_DateLivr != new DateTime(1753, 01, 01, 00, 00, 00))
@@ -211,29 +232,18 @@ namespace SoftCaisse.Forms
                 {
                     dateTimePicker3.Value = (DateTime)_fDocenteteToModif.DO_DateLivrRealisee;
                 }
+                _currentDocPieceNo = _fDocenteteToModif.DO_Piece;
                 textBoxNDoc.Text = _fDocenteteToModif.DO_Piece;
-                _currentDocPieceNo = textBoxNDoc.Text;
                 txtBxRef.Text = _fDocenteteToModif.DO_Ref;
-                F_COMPTEA planAnal = _listePlanAnalitique.Where(pa => pa.CA_Num == _fDocenteteToModif.CA_Num).FirstOrDefault();
-                List<F_COMPTEA> listePAAffiches = _listePlanAnalitique.Where(p => p.N_Analytique == 3).ToList();
-                int indexPA = listePAAffiches.IndexOf(planAnal);
-                comboBoxAffaire.SelectedIndex = indexPA;
-                F_COLLABORATEUR collab = _listeCollab.Where(co => co.CO_No == _fDocenteteToModif.CO_No).FirstOrDefault();
-                List<F_COLLABORATEUR> listeCollaborateursCmbBx = _listeCollab.Where(c => c.CO_Vendeur == 1).ToList();
-                int indexCollab = listeCollaborateursCmbBx.IndexOf(collab);
-                comboBoxRepresentant.SelectedIndex = indexCollab;
-                P_EXPEDITION expedit = _listeExpedit.Where(exp => exp.cbMarq == _fDocenteteToModif.DO_Expedit).FirstOrDefault();
-                int indexExpedit = _listeExpedit.IndexOf(expedit);
-                comboBoxExpedit.SelectedIndex = indexExpedit;
                 textBoxEnTete.Text = _fDocenteteToModif.DO_Coord01;
                 textBoxCommentaires.Text = _fDocenteteToModif.Commentaires;
                 textBoxDivers.Text = _fDocenteteToModif.Divers;
+                comboBoxAffaire.SelectedIndex = indexPA;
+                comboBoxRepresentant.SelectedIndex = indexCollab;
+                comboBoxExpedit.SelectedIndex = indexExpedit;
+                comboBoxDepot.SelectedIndex = (int)_fDocenteteToModif.DE_No - 1;
 
                 // ========================= Affichage des F_DOCLIGNES =========================
-                List<F_DOCLIGNE> listeDoclignesDocToUpdate = _context.F_DOCLIGNE
-                    .Where(dl => dl.DO_Piece == _fDocenteteToModif.DO_Piece)
-                    .OrderBy(dl => dl.DL_Ligne)
-                    .ToList();
                 foreach (F_DOCLIGNE fDocligne in listeDoclignesDocToUpdate)
                 {
                     decimal? quantite = fDocligne.DL_Qte;
@@ -249,26 +259,29 @@ namespace SoftCaisse.Forms
                 }
 
                 // Initialisation des valeurs à vérifier lors de la fermeture de la fenêtre
-                _initValuesDateLivrPrev = dateTimePicker2.Value.ToString();
-                _initValuesDateLivrReal = dateTimePicker3.Value.ToString();
-                _initValuesReference = txtBxRef.Text;
-                _initValuesAffaires = comboBoxAffaire.Text;
-                _initValuesRepresentant = comboBoxRepresentant.Text;
-                _initValuesExpedition = comboBoxExpedit.Text;
-                _initValuesEntete = textBoxEnTete.Text;
-                _initValuesCommentaires = textBoxCommentaires.Text;
-                _initValuesDivers = textBoxDivers.Text;
-            } else
+                initValuesDateLivrPrev = dateTimePicker2.Value.ToString();
+                initValuesDateLivrReal = dateTimePicker3.Value.ToString();
+                initValuesReference = txtBxRef.Text;
+                initValuesAffaires = comboBoxAffaire.Text;
+                initValuesRepresentant = comboBoxRepresentant.Text;
+                initValuesExpedition = comboBoxExpedit.Text;
+                initValuesEntete = textBoxEnTete.Text;
+                initValuesCommentaires = textBoxCommentaires.Text;
+                initValuesDivers = textBoxDivers.Text;
+                initValuesDepot = comboBoxDepot.Text;
+            }
+            else
             {
-                _initValuesDateLivrPrev = DateTime.Now.ToString();
-                _initValuesDateLivrReal = DateTime.Now.ToString();
-                _initValuesReference = "";
-                _initValuesAffaires = "";
-                _initValuesRepresentant = "";
-                _initValuesExpedition = "";
-                _initValuesEntete = "";
-                _initValuesCommentaires = "";
-                _initValuesDivers = "";
+                initValuesDateLivrPrev = DateTime.Now.ToString();
+                initValuesDateLivrReal = DateTime.Now.ToString();
+                initValuesReference = "";
+                initValuesAffaires = "";
+                initValuesRepresentant = "";
+                initValuesExpedition = "";
+                initValuesEntete = "";
+                initValuesCommentaires = "";
+                initValuesDivers = "";
+                initValuesDepot = "";
             }
         }
         // =======================================================================================================================================================================================
@@ -446,15 +459,16 @@ namespace SoftCaisse.Forms
 
         private void kptAnnuler_Click(object sender, System.EventArgs e)
         {
-            bool nEstPasModifie = _initValuesDateLivrPrev == dateTimePicker2.Value.ToString()
-            && _initValuesDateLivrReal == dateTimePicker3.Value.ToString()
-            && _initValuesReference == txtBxRef.Text
-            && _initValuesAffaires == comboBoxAffaire.Text
-            && _initValuesRepresentant == comboBoxRepresentant.Text
-            && _initValuesExpedition == comboBoxExpedit.Text
-            && _initValuesEntete == textBoxEnTete.Text
-            && _initValuesCommentaires == textBoxCommentaires.Text
-            && _initValuesDivers == textBoxDivers.Text;
+            bool nEstPasModifie =   initValuesDateLivrPrev == dateTimePicker2.Value.ToString()
+                                    && initValuesDateLivrReal == dateTimePicker3.Value.ToString()
+                                    && initValuesReference == txtBxRef.Text
+                                    && initValuesAffaires == comboBoxAffaire.Text
+                                    && initValuesRepresentant == comboBoxRepresentant.Text
+                                    && initValuesExpedition == comboBoxExpedit.Text
+                                    && initValuesEntete == textBoxEnTete.Text
+                                    && initValuesCommentaires == textBoxCommentaires.Text
+                                    && initValuesDivers == textBoxDivers.Text
+                                    && initValuesDepot == comboBoxDepot.Text;
 
             // Fermer si aucune modification n'est effectuée
             if (nEstPasModifie == true)
@@ -557,6 +571,7 @@ namespace SoftCaisse.Forms
                 string commentaires = textBoxCommentaires.Text;
                 string divers = textBoxDivers.Text;
                 string representant = comboBoxRepresentant.Text;
+                int numeroDepot = comboBoxDepot.SelectedIndex + 1;
 
                 // CREATION D'UN NOUVEAU DOCUMENT DE VENTE ===================================================================
                 if (_fDocenteteToModif == null)
@@ -575,7 +590,7 @@ namespace SoftCaisse.Forms
 
                     // Insertion d'un nouvel objet dans F_DOCENTETE
                     F_COMPTET client = _listeClients[comboBoxClient.SelectedIndex];
-                    _f_DOCENTETEService.InsertNewF_DOCENTETE(_typeDocument, _currentDocPieceNo, client, _listeLivraisons, (short?)numExpedition, caNum, caisseNumber, caissierNumber, expeditIntitule, dateLivrPrevu, dateLivrReal, reference, dO_Coord01, divers, commentaires, representant);
+                    _f_DOCENTETEService.InsertNewF_DOCENTETE(_typeDocument, _currentDocPieceNo, client, _listeLivraisons, (short?)numExpedition, caNum, caisseNumber, caissierNumber, expeditIntitule, dateLivrPrevu, dateLivrReal, reference, dO_Coord01, divers, commentaires, representant, numeroDepot);
 
                     // MISE A JOUR DES AFFICHAGES =================================
                     // Activer Table Layout Panel (Champ de saisie des articles)
@@ -599,12 +614,36 @@ namespace SoftCaisse.Forms
                     kptnBtnValider.Text = "Mettre à jour";
                     kptnBtnValider.Enabled = false;
                     MessageBox.Show("La création du document de vente est effectuée avec succès", "Création effectuée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Mise à jour des valeurs initiaux
+                    initValuesDateLivrPrev = dateTimePicker2.Value.ToString();
+                    initValuesDateLivrReal = dateTimePicker3.Value.ToString();
+                    initValuesReference = txtBxRef.Text;
+                    initValuesAffaires = comboBoxAffaire.Text;
+                    initValuesRepresentant = comboBoxRepresentant.Text;
+                    initValuesExpedition = comboBoxExpedit.Text;
+                    initValuesEntete = textBoxEnTete.Text;
+                    initValuesCommentaires = textBoxCommentaires.Text;
+                    initValuesDivers = textBoxDivers.Text;
+                    initValuesDepot = comboBoxDepot.Text;
                 }
                 // MISE A JOUR D'UN DOCUMENT DE VENTE EXISTANT ===================================================================
                 else
                 {
-                    _f_DOCENTETEService.UpdateProprietesF_DOCENTETE(_currentDocPieceNo, dateLivrPrevu, dateLivrReal, reference, caNum, representant, (short?)numExpedition, expeditIntitule, dO_Coord01, commentaires, divers);
+                    _f_DOCENTETEService.UpdateProprietesF_DOCENTETE(_currentDocPieceNo, dateLivrPrevu, dateLivrReal, reference, caNum, representant, (short?)numExpedition, expeditIntitule, dO_Coord01, commentaires, divers, numeroDepot);
                     MessageBox.Show("Mise à jour effectué avec succès", "Mise à jour effectuée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Mise à jour des valeurs initiaux
+                    initValuesDateLivrPrev = dateTimePicker2.Value.ToString();
+                    initValuesDateLivrReal = dateTimePicker3.Value.ToString();
+                    initValuesReference = txtBxRef.Text;
+                    initValuesAffaires = comboBoxAffaire.Text;
+                    initValuesRepresentant = comboBoxRepresentant.Text;
+                    initValuesExpedition = comboBoxExpedit.Text;
+                    initValuesEntete = textBoxEnTete.Text;
+                    initValuesCommentaires = textBoxCommentaires.Text;
+                    initValuesDivers = textBoxDivers.Text;
+                    initValuesDepot = comboBoxDepot.Text;
                 }
             }
         }
@@ -774,9 +813,8 @@ namespace SoftCaisse.Forms
         {
             int? DL_Ligne = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[0].Value);
             string arRef = TextBoxReference.Text;
-            string CT_NumActu = _listeClients[comboBoxClient.SelectedIndex].CT_Num;
             int? dl_Ligne = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[0].Value);
-            int? DE_No = _context.F_DOCLIGNE.Where(dl => dl.CT_Num == CT_NumActu && dl.AR_Ref == arRef && dl.DL_Ligne == dl_Ligne).Select(dl => dl.DE_No).FirstOrDefault();
+            int? DE_No = _context.F_DOCLIGNE.Where(dl => dl.DO_Piece == _currentDocPieceNo && dl.AR_Ref == arRef && dl.DL_Ligne == dl_Ligne).Select(dl => dl.DE_No).FirstOrDefault();
             int? DP_No = _f_DEPOTRepository.GetDP_NoPrincipal(arRef, DE_No);
             decimal? DL_MontantHT = Convert.ToDecimal(DataGridViewArticle.Rows[changedIndex].Cells[9].Value);
             int qteArt = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[5].Value);
@@ -801,13 +839,22 @@ namespace SoftCaisse.Forms
                 // TODO: SUPPRESSION DOCLIGNE DANS LA BASE
                 _f_DOCLIGNEEMPLRepository.DeleteF_DOCLIGNEEMPL(_currentDocPieceNo, dl_Ligne);
 
-                _f_ARTSTOCKEMPLService.UpdateArtstockEmpl(_typeDocument ,CT_NumActu, dl_Ligne, arRef, qteArt, 0);
+                _f_ARTSTOCKEMPLService.UpdateArtstockEmpl(_typeDocument , _currentDocPieceNo, dl_Ligne, arRef, qteArt, 0, DE_No);
 
                 _f_DOCLIGNEService.DeleteF_DOCLIGNE(_currentDocPieceNo, DL_Ligne);
 
                 _f_DOCENTETEService.UpdateDO_TotalHTAfterDelete(_currentDocPieceNo, DL_MontantHT);
 
-                _f_ARTSTOCKService.UpdateMontantEtQuantiteStock(_typeDocument, arRef, 0, qteArt);
+                _f_ARTSTOCKService.UpdateMontantEtQuantiteStock(_typeDocument, arRef, 0, qteArt, DE_No);
+
+                // Réinitialisation des champs de saisie (TextBox choix et paramétrage des articles)
+                foreach (Control control in tableLayoutPanel2.Controls)
+                {
+                    if (control is TextBox textBox)
+                    {
+                        textBox.Text = textBox.Tag.ToString();
+                    }
+                }
             }
         }
 
@@ -820,7 +867,7 @@ namespace SoftCaisse.Forms
             string arRef = TextBoxReference.Text;
             string CT_NumClient = _listeClients[comboBoxClient.SelectedIndex].CT_Num;
             F_ARTSTOCK articleBaseDeDonnees = null;
-            int? DE_No;
+            int? DE_No = 1;
             int? dl_Ligne = 0;
             int previousQuantite = 0;
             int? DP_NoSelectedRowDOCLIGNEPrincipal;
@@ -833,7 +880,8 @@ namespace SoftCaisse.Forms
                 articleBaseDeDonnees = _context.F_ARTSTOCK.FirstOrDefault(a => a.AR_Ref == TextBoxReference.Text && a.DP_NoPrincipal == DP_NoSelectedRowDOCLIGNEPrincipal);
             } else
             {
-                DP_NoSelectedRowDOCLIGNEPrincipal = _f_DEPOTRepository.GetDP_NoPrincipal(arRef, 1);
+                DE_No = comboBoxDepot.SelectedIndex + 1;
+                DP_NoSelectedRowDOCLIGNEPrincipal = _f_DEPOTRepository.GetDP_NoPrincipal(arRef, DE_No);
                 articleBaseDeDonnees = _context.F_ARTSTOCK.Where(a => a.AR_Ref == TextBoxReference.Text && a.DP_NoPrincipal == DP_NoSelectedRowDOCLIGNEPrincipal).FirstOrDefault();
             }
 
@@ -873,8 +921,6 @@ namespace SoftCaisse.Forms
                     DateTime DO_DateLivr = dateTimePicker2.Value;
                     DateTime dateTimePicker3Value = dateTimePicker3.Value;
 
-                    MettreAJourPoids();
-
                     // CAS : CREATION D'UN NOUVEAU DOCLIGNE (AJOUT) =======================================================================================================
                     if (changedIndex == -1)
                     {
@@ -901,7 +947,7 @@ namespace SoftCaisse.Forms
                         string TextBoxMontantTTCText = TextBoxMontantTTC.Text;
                         string TextBoxMontantHTText = TextBoxMontantHT.Text;
 
-                        _f_DOCLIGNEService.AjouterF_DOCLIGNE(mainForm, _f_DOCENTETEService, _f_ARTFOURNISSService, typeDoc, CT_NumClient, _currentDocPieceNo, DO_Date, numeroLigneDL_Ligne, docEnCours, arRef, DL_DesignF_DOCLIGNE, Convert.ToInt32(txtBxQuantiteText), _typeDocument, articleChoisi, txtBxQuantiteText, txtBxRemiseText, TextBoxPUNetText, collab, DL_NoRef, DL_PUTTC, DO_DateLivr, CA_NumText, TextBoxMontantTTCText, TextBoxMontantHTText, dateTimePicker3Value);
+                        _f_DOCLIGNEService.AjouterF_DOCLIGNE(mainForm, _f_DOCENTETEService, _f_ARTFOURNISSService, typeDoc, CT_NumClient, _currentDocPieceNo, DO_Date, numeroLigneDL_Ligne, docEnCours, arRef, DL_DesignF_DOCLIGNE, Convert.ToInt32(txtBxQuantiteText), _typeDocument, articleChoisi, txtBxQuantiteText, txtBxRemiseText, TextBoxPUNetText, collab, DL_NoRef, DL_PUTTC, DO_DateLivr, CA_NumText, TextBoxMontantTTCText, TextBoxMontantHTText, dateTimePicker3Value, DE_No);
 
 
                         // Update DO_TotalHT dans F_DOCENTETE (Document en cours)
@@ -917,10 +963,10 @@ namespace SoftCaisse.Forms
 
 
                         // Mise à jour F_ARTSTOCK
-                        _f_ARTSTOCKService.UpdateMontantEtQuantiteStock(_typeDocument, arRef, quantiteEcriteStock, previousQuantite);
+                        _f_ARTSTOCKService.UpdateMontantEtQuantiteStock(_typeDocument, arRef, quantiteEcriteStock, previousQuantite, DE_No);
 
                         // Mise à jour F_ARTSTOCKEMPL
-                        _f_ARTSTOCKEMPLService.UpdateArtstockEmpl(_typeDocument, CT_NumClient, numeroLigneDL_Ligne, arRef, previousQuantite, quantiteEcriteStock);
+                        _f_ARTSTOCKEMPLService.UpdateArtstockEmpl(_typeDocument, CT_NumClient, numeroLigneDL_Ligne, arRef, previousQuantite, quantiteEcriteStock, DE_No);
 
                         // Insertion F_DOCLIGNEEMPL
                         _f_DOCLIGNEEMPLRepository.InsertDOCLIGNEEMPL((int)DP_NoSelectedRowDOCLIGNEPrincipal, Convert.ToInt32(txtBxQuantiteText));
@@ -956,22 +1002,25 @@ namespace SoftCaisse.Forms
                             _f_DOCENTETEService.UpdateDO_TotalHT(_currentDocPieceNo, puNet, quantiteEcriteStock, previousMontantHT);
 
                             // Mise à jour du stock des articles (F_ARTSTOCK) (Montant du stock et quantité en stock)
-                            _f_ARTSTOCKService.UpdateMontantEtQuantiteStock(_typeDocument, arRef, quantiteEcriteStock, previousQuantiteEcriteStock);
+                            _f_ARTSTOCKService.UpdateMontantEtQuantiteStock(_typeDocument, arRef, quantiteEcriteStock, previousQuantiteEcriteStock, DE_No);
 
                             // Mise à jour du ligne de document (F_DOCLIGNE) (Mise à jour des quantités, des poids et des prix (PrixRU et CMUP))
                             _f_DOCLIGNEService.UpdateF_DOCLIGNE(_currentDocPieceNo, arRef, dl_Ligne, quantiteEcriteStock, _typeDocument);
 
                             // Mise à jour du stock de l'article dans un emplacement concerné
-                            _f_ARTSTOCKEMPLService.UpdateArtstockEmpl(_typeDocument, ct_Num, dl_Ligne, arRef, previousQuantiteEcriteStock, quantiteEcriteStock);
+                            _f_ARTSTOCKEMPLService.UpdateArtstockEmpl(_typeDocument, ct_Num, dl_Ligne, arRef, previousQuantiteEcriteStock, quantiteEcriteStock, DE_No);
 
                             // Mise à jour de la quantité prise dans l'emplacement concerné (DL_Qte)
                             _f_DOCLIGNEEMPLRepository.UpdateDL_Qte(_typeDocument, _currentDocPieceNo, dl_Ligne, quantiteEcriteStock);
                         }
                     }
 
+                    // Mise à jour des poids totaux (poids brut et net totaux)
+                    MettreAJourPoids();
+
+                    // Mise à jour des montants totaux (montant HT et TTC totaux)
                     _totalPrixHT += montantHT;
                     _totalPrixTTC += montantTTC;
-
                     lblPrixTotHT.Text = _totalPrixHT.ToString("N2");
 
                     foreach (Control control in tableLayoutPanel2.Controls)

@@ -176,6 +176,7 @@
       <DependentUpon>SelectionEcheancesARegler.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CurrentRGPiece.cs" />
+    <Compile Include="Models\F_AGENDA.cs" />
     <Compile Include="Models\F_ARTFOURNISS.cs" />
     <Compile Include="Models\Collaborateur.cs" />
     <Compile Include="Controls\CaisseControl.cs">
@@ -450,6 +451,7 @@
     <Compile Include="Models\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_AGENDARepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTSTOCKEMPLRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_DOCCURRENTPIECERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTCLIENTRepository.cs" />
@@ -481,6 +483,7 @@
     <Compile Include="Repositories\ScdDb\RoleAutorisationRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
+    <Compile Include="Services\F_REGLECHService.cs" />
     <Compile Include="Services\F_ARTSTOCKEMPLService.cs" />
     <Compile Include="Services\F_ARTSTOCKService.cs" />
     <Compile Include="Services\F_ARTFOURNISSService.cs" />

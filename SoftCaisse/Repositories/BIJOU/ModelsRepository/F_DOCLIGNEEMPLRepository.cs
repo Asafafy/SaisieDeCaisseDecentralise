@@ -109,17 +109,24 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
                 DELETE FROM [dbo].[F_DOCLIGNEEMPL] WHERE DL_No = @DL_No
             ";
 
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];");
-            _context.Database.ExecuteSqlCommand(
-               queryDeleteF_DOCLIGNEEMPL,
-               new SqlParameter("@DL_No", f_DOCLIGNE.DL_No)
-           );
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];");
+            if (f_DOCLIGNE != null)
+            {
+                _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
+                _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
+                _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];");
+                _context.Database.ExecuteSqlCommand(
+                   queryDeleteF_DOCLIGNEEMPL,
+                   new SqlParameter("@DL_No", f_DOCLIGNE.DL_No)
+               );
+                _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
+                _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
+                _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];");
+            }
         }
+
+
+
+
 
 
     }

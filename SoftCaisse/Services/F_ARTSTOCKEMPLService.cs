@@ -25,36 +25,35 @@ namespace SoftCaisse.Services
 
 
 
-        public void UpdateArtstockEmpl(string typeDocument, string CT_Num, int? DL_Ligne, string AR_Ref, int? prevQte, int? nouvQte)
+        public void UpdateArtstockEmpl(string typeDocument, string DO_Piece, int? DL_Ligne, string AR_Ref, int? prevQte, int? nouvQte, int? DE_No)
         {
-            int? DE_No = _context.F_DOCLIGNE.Where(dl => dl.CT_Num == CT_Num && dl.AR_Ref == AR_Ref && dl.DL_Ligne == DL_Ligne).Select(dl => dl.DE_No).FirstOrDefault();
-
-            F_DEPOTRepository f_DEPOTRepository = new F_DEPOTRepository(_context);
+            F_DEPOTRepository f_DEPOTRepository = new F_DEPOTRepository(_context);      
             int? DP_No = f_DEPOTRepository.GetDP_NoF_ARTSTOCKEMPL(AR_Ref, DE_No);
 
-            F_ARTSTOCKEMPL f_ARTSTOCKEMPLToUpdate = _context.F_ARTSTOCKEMPL.Where(artStckEmpl => artStckEmpl.AR_Ref == AR_Ref && artStckEmpl.DP_No == DP_No).FirstOrDefault();
-            
-            if (typeDocument == "Devis" || typeDocument == "Bon d'avoir finanicier" || typeDocument == "Facture d'avoir" || typeDocument == "Bon de commande")
+            if (DP_No != null)
             {
-                // Aucun interaction avec l'emplacement des stock pour ces types de documents
-            }
-            else if (typeDocument == "Préparation de livraison")
-            {
-                decimal? AE_QtePrepa = f_ARTSTOCKEMPLToUpdate.AE_QtePrepa - prevQte + nouvQte;
-                _f_ARTSTOCKEMPLRepository.UpdateAE_QtePrepa(AE_QtePrepa, f_ARTSTOCKEMPLToUpdate.cbMarq);
-            }
-            else if (typeDocument == "Bon de livraison" || typeDocument == "Facture")
-            {
-                decimal? AE_QteSto = f_ARTSTOCKEMPLToUpdate.AE_QteSto + prevQte - nouvQte;
-                _f_ARTSTOCKEMPLRepository.UpdateAE_QteSto(AE_QteSto, f_ARTSTOCKEMPLToUpdate.cbMarq);
-            }
-            else // else if (typeDocument == "Facture de retour" || typeDocument == "Bon de retour")
-            {
-                decimal? AE_QteSto = f_ARTSTOCKEMPLToUpdate.AE_QteSto - prevQte + nouvQte;
-                _f_ARTSTOCKEMPLRepository.UpdateAE_QteSto(AE_QteSto, f_ARTSTOCKEMPLToUpdate.cbMarq);
-            }
+                F_ARTSTOCKEMPL f_ARTSTOCKEMPLToUpdate = _context.F_ARTSTOCKEMPL.Where(artStckEmpl => artStckEmpl.AR_Ref == AR_Ref && artStckEmpl.DP_No == DP_No).FirstOrDefault();
 
-            _context.Entry(f_ARTSTOCKEMPLToUpdate).Reload();
+                if (typeDocument == "Devis" || typeDocument == "Bon d'avoir finanicier" || typeDocument == "Facture d'avoir" || typeDocument == "Bon de commande")
+                {
+                    // Aucun interaction avec l'emplacement des stock pour ces types de documents
+                }
+                else if (typeDocument == "Préparation de livraison")
+                {
+                    decimal? AE_QtePrepa = f_ARTSTOCKEMPLToUpdate.AE_QtePrepa - prevQte + nouvQte;
+                    _f_ARTSTOCKEMPLRepository.UpdateAE_QtePrepa(AE_QtePrepa, f_ARTSTOCKEMPLToUpdate.cbMarq);
+                }
+                else if (typeDocument == "Bon de livraison" || typeDocument == "Facture")
+                {
+                    decimal? AE_QteSto = f_ARTSTOCKEMPLToUpdate.AE_QteSto + prevQte - nouvQte;
+                    _f_ARTSTOCKEMPLRepository.UpdateAE_QteSto(AE_QteSto, f_ARTSTOCKEMPLToUpdate.cbMarq);
+                }
+                else // else if (typeDocument == "Facture de retour" || typeDocument == "Bon de retour")
+                {
+                    decimal? AE_QteSto = f_ARTSTOCKEMPLToUpdate.AE_QteSto - prevQte + nouvQte;
+                    _f_ARTSTOCKEMPLRepository.UpdateAE_QteSto(AE_QteSto, f_ARTSTOCKEMPLToUpdate.cbMarq);
+                }
+            }
         }
 
 

@@ -124,5 +124,26 @@ namespace SoftCaisse.Services
                 _f_DOCREGLRepository.Add(newDocRegl);
             }
         }
+
+
+
+
+
+        public void SupprimerDocumentsDesReglements(List<F_DOCREGL> f_DOCREGLs)
+        {
+            foreach (F_DOCREGL f_DOCREGL in f_DOCREGLs)
+            {
+                _f_DOCREGLRepository.DeleteByDoPiece(f_DOCREGL.DO_Piece);
+            }
+        }
+
+
+
+
+
+
+
+
+
     }
 }

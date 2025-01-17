@@ -486,6 +486,34 @@ namespace SoftCaisse.Repositories.BIJOU
 
 
 
+
+		public void ValiderDocument(string DO_Piece, short? DO_Valide)
+		{
+            string queryValiderDocument = @"
+				UPDATE F_DOCENTETE
+
+				SET
+					DO_Valide = @DO_Valide
+
+				WHERE DO_Piece = @DO_Piece
+			";
+
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand(
+                queryValiderDocument,
+                new SqlParameter("@DO_Valide", DO_Valide),
+                new SqlParameter("@DO_Piece", DO_Piece)
+            );
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE");
+            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE");
+        }
+
+
+
+
 		public void Delete(string DO_Piece)
 		{
             string query = "DELETE FROM F_DOCENTETE WHERE DO_Piece = @DO_Piece";

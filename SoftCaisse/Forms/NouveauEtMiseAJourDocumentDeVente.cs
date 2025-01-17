@@ -242,6 +242,17 @@ namespace SoftCaisse.Forms
                 comboBoxExpedit.SelectedIndex = indexExpedit;
                 comboBoxDepot.SelectedIndex = (int)_fDocenteteToModif.DE_No - 1;
 
+                // Activation ou non du bouton Valider
+                if (_fDocenteteToModif.DO_Type == 6)
+                {
+                    if (_fDocenteteToModif.DO_Valide == 1)
+                        btnValider.Enabled = false;
+                    else
+                        btnValider.Enabled = true;
+                }
+                else
+                    btnValider.Enabled = false;
+
                 // ========================= Affichage des F_DOCLIGNES =========================
                 foreach (F_DOCLIGNE fDocligne in listeDoclignesDocToUpdate)
                 {
@@ -1239,6 +1250,30 @@ namespace SoftCaisse.Forms
                 BouttonNouveauDesignation.Enabled = true;
                 BouttonSupprimerDesignation.Enabled = true;
                 BouttonEnregistrerDesignation.Enabled = true;
+            }
+        }
+
+
+
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            DialogResult resultat = MessageBox.Show("Confirmez-vous la validation de document ? Les documents validés ne seront plus modifiables!", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultat == DialogResult.Yes)
+            {
+                _f_DOCENTETERepository.ValiderDocument(_fDocenteteToModif.DO_Piece, 1);
+                MessageBox.Show("Validation du document effectuée!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Désactivation de certains éléments lorsque le document est déjà validé
+                btnValider.Enabled = false;
+                TextBoxReference.Enabled = false;
+                comboBoxRepresentant.Enabled = false;
+                comboBoxExpedit.Enabled = false;
+                
+                BouttonEnregistrerDesignation.Enabled = false;
+                BouttonSupprimerDesignation.Enabled = false;
+                BouttonNouveauDesignation.Enabled = false;
             }
         }
 

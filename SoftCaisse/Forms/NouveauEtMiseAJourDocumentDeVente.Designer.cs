@@ -37,7 +37,7 @@
             this.btnNomenclature = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnValider = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxDepot = new System.Windows.Forms.ComboBox();
@@ -154,7 +154,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnNomenclature);
             this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Controls.Add(this.btnValider);
             this.flowLayoutPanel1.Controls.Add(this.button4);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(-4, 1);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -201,18 +201,19 @@
             this.button2.Text = "Comptabiliser";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnValider
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(307, 9);
-            this.button3.Margin = new System.Windows.Forms.Padding(1, 9, 1, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 22);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Valider";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnValider.BackColor = System.Drawing.Color.Transparent;
+            this.btnValider.FlatAppearance.BorderSize = 0;
+            this.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnValider.Location = new System.Drawing.Point(307, 9);
+            this.btnValider.Margin = new System.Windows.Forms.Padding(1, 9, 1, 4);
+            this.btnValider.Name = "btnValider";
+            this.btnValider.Size = new System.Drawing.Size(100, 22);
+            this.btnValider.TabIndex = 5;
+            this.btnValider.Text = "Valider";
+            this.btnValider.UseVisualStyleBackColor = false;
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
             // button4
             // 
@@ -1149,7 +1150,7 @@
         private System.Windows.Forms.Button btnNomenclature;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnValider;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label labelDivers;

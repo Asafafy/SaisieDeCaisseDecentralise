@@ -44,32 +44,6 @@
         <DataSourceName>DataSetEnt</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
-      <Fields>
-        <Field Name="reference">
-          <DataField>reference</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="designation">
-          <DataField>designation</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="quantite">
-          <DataField>quantite</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="prix_unitaire">
-          <DataField>prix_unitaire</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="remise">
-          <DataField>remise</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="montant_ht">
-          <DataField>montant_ht</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetEnt</rd:DataSetName>
         <rd:SchemaPath>C:\Users\SOFTWELL\Documents\Mendrika\Projet\SCDJNM\SoftCaisse\DataSetEnt.xsd</rd:SchemaPath>
@@ -816,7 +790,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Numero : </Value>
+                    <Value>Numéro : </Value>
                     <Style />
                   </TextRun>
                   <TextRun>
@@ -1121,11 +1095,11 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Devis d'échange :</Value>
+                    <Value>Devise d'échange :</Value>
                     <Style />
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!Devis.Value</Value>
+                    <Value>=Parameters!Devise.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1133,7 +1107,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>1.96117cm</Top>
+            <Top>1.72199cm</Top>
             <Left>6.51583cm</Left>
             <Height>0.6cm</Height>
             <Width>5.90987cm</Width>

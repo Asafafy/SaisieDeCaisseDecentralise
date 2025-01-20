@@ -1,8 +1,10 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using Objets100cLib;
+using SoftCaisse.CustomModel;
 using SoftCaisse.DTO;
 using SoftCaisse.DTO.DetailsArticle;
 using SoftCaisse.Forms.Article;
+using SoftCaisse.Forms.FormCaisse;
 using SoftCaisse.Models;
 using SoftCaisse.Models.Json;
 using SoftCaisse.Repositories;
@@ -43,6 +45,7 @@ namespace SoftCaisse.Forms
         private readonly F_ARTSTOCKEMPLRepository _f_ARTSTOCKEMPLRepository;
         private readonly F_DOCLIGNEEMPLRepository _f_DOCLIGNEEMPLRepository;
         private readonly F_DEPOTRepository _f_DEPOTRepository;
+        private readonly ListeEcheancesPourImpressionDocumentsDeVenteRepository _listeEcheancesPourImpressionDocumentsDeVenteRepository;
 
         private readonly F_DOCLIGNEService _f_DOCLIGNEService;
         private readonly F_ARTFOURNISSService _f_ARTFOURNISSService;
@@ -116,6 +119,7 @@ namespace SoftCaisse.Forms
             _f_ARTSTOCKEMPLRepository = new F_ARTSTOCKEMPLRepository(_context);
             _f_DOCLIGNEEMPLRepository = new F_DOCLIGNEEMPLRepository(_context);
             _f_DEPOTRepository = new F_DEPOTRepository(_context);
+            _listeEcheancesPourImpressionDocumentsDeVenteRepository = new ListeEcheancesPourImpressionDocumentsDeVenteRepository(_context);
 
             _f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository, _context);
             _f_DOCLIGNEService = new F_DOCLIGNEService(_context, _f_DOCLIGNERepository);
@@ -381,34 +385,17 @@ namespace SoftCaisse.Forms
                 int quantiteArt = Convert.ToInt32(txtBxQuantite.Text);
                 decimal? puHT = Convert.ToDecimal(TextBoxPUHT.Text);
                 decimal? puTTC = Convert.ToDecimal(TextBoxPUTTC.Text);
-                if (TextBoxMontantHT.Text != "")
-                {
-                    if (!string.IsNullOrEmpty(TextBoxPUHT.Text))
-                    {
-                        if (!string.IsNullOrEmpty(txtBxRemise.Text))
-                        {
-                            decimal? remise = Convert.ToDecimal(txtBxRemise.Text);
-                            decimal? montantHTSansRemise = quantiteArt * puHT;
-                            decimal? valeurRemise = (remise * montantHTSansRemise) / 100;
-                            decimal? montantHTAvecRemise = montantHTSansRemise - valeurRemise;
-                            TextBoxMontantHT.Text = montantHTAvecRemise.ToString();
-                        }
-                    }
-                }
-                if (TextBoxMontantTTC.Text != "")
-                {
-                    if (!string.IsNullOrEmpty(TextBoxPUTTC.Text))
-                    {
-                        if (!string.IsNullOrEmpty(txtBxRemise.Text))
-                        {
-                            decimal? remise = Convert.ToDecimal(txtBxRemise.Text);
-                            decimal? montantTTCSansRemise = quantiteArt * puTTC;
-                            decimal? valeurRemise = (remise * montantTTCSansRemise) / 100;
-                            decimal? montantTTCAvecRemise = montantTTCSansRemise - valeurRemise;
-                            TextBoxMontantTTC.Text = montantTTCAvecRemise.ToString();
-                        }
-                    }
-                }
+                decimal? remise = txtBxRemise.Text == "" ? 0 : Convert.ToDecimal(txtBxRemise.Text);
+                                       
+                decimal? montantHTSansRemise = quantiteArt * puHT;
+                decimal? valeurRemiseHT = (remise * montantHTSansRemise) / 100;
+                decimal? montantHTAvecRemise = montantHTSansRemise - valeurRemiseHT;
+                TextBoxMontantHT.Text = montantHTAvecRemise.ToString();
+                
+                decimal? montantTTCSansRemise = quantiteArt * puTTC;
+                decimal? valeurRemiseTTC = (remise * montantTTCSansRemise) / 100;
+                decimal? montantTTCAvecRemise = montantTTCSansRemise - valeurRemiseTTC;
+                TextBoxMontantTTC.Text = montantTTCAvecRemise.ToString();
             }
         }
 
@@ -939,8 +926,8 @@ namespace SoftCaisse.Forms
                     decimal puHT = Convert.ToDecimal(TextBoxPUNet?.Text ?? "0");
                     decimal puTTC = Convert.ToDecimal(TextBoxPUTTC.Text ?? "0");
                     decimal puNet = Convert.ToDecimal(TextBoxPUHT.Text ?? "0");
-                    decimal montantHT = Convert.ToDecimal(TextBoxMontantTTC.Text ?? "0");
-                    decimal montantTTC = Convert.ToDecimal(TextBoxMontantHT.Text ?? "0");
+                    decimal montantHT = Convert.ToDecimal(TextBoxMontantHT.Text ?? "0");
+                    decimal montantTTC = Convert.ToDecimal(TextBoxMontantTTC.Text ?? "0");
 
                     // Get all properties du docligne
                     F_DOCENTETE docEnCours = _context.F_DOCENTETE.Where(doc => doc.DO_Piece == _currentDocPieceNo).FirstOrDefault();
@@ -1275,6 +1262,35 @@ namespace SoftCaisse.Forms
                 BouttonSupprimerDesignation.Enabled = false;
                 BouttonNouveauDesignation.Enabled = false;
             }
+        }
+
+        private void btnImprimer_Click(object sender, EventArgs e)
+        {
+            string f_CAISSEIntitule = _context.F_CAISSE.Where(c => c.CA_No == mainForm.CaisseNo).Select(c => c.CA_Intitule).FirstOrDefault();
+            string p_DEVISEIntitule = _context.P_DEVISE.Where(d => d.cbMarq == _fDocenteteToModif.DO_Devise).Select(d => d.D_Intitule).FirstOrDefault();
+
+            List<Fligne> fligne = new List<Fligne>();
+
+            foreach (DataGridViewRow ligne in DataGridViewArticle.Rows)
+            {
+                fligne.Add(new Fligne()
+                {
+                    reference = ligne.Cells[1].FormattedValue.ToString(),
+                    designation = ligne.Cells[2].FormattedValue.ToString(),
+                    montant_ht = double.Parse(ligne.Cells[9].FormattedValue.ToString()),
+                    prix_unitaire = double.Parse(ligne.Cells[8].FormattedValue.ToString()),
+                    quantite = double.Parse(ligne.Cells[5].FormattedValue.ToString()),
+                    remise = string.IsNullOrEmpty(ligne.Cells[7].Value.ToString()) ? "0%" : ligne.Cells[6].Value.ToString() + "%"
+                });
+            }
+
+            List<ListeEcheancesPourImpressionDocumentsDeVente> listeEcheancesPourImpressionDocumentsDeVentes = _listeEcheancesPourImpressionDocumentsDeVenteRepository.ListerEcheancesImpressionDocVente(_fDocenteteToModif.CT_NumPayeur, _fDocenteteToModif.DO_Piece);
+
+            Reporting report = new Reporting(_typeDocument, f_CAISSEIntitule, (DateTime)_fDocenteteToModif.DO_Date, _fDocenteteToModif.DO_Piece, _fDocenteteToModif.DO_Devise == 0 ? " - " : p_DEVISEIntitule, (decimal)_fDocenteteToModif.DO_TotalHT, (decimal)_fDocenteteToModif.DO_TotalTTC, fligne, listeEcheancesPourImpressionDocumentsDeVentes);
+            report.BringToFront();
+            report.Show();
+            report.Focus();
+
         }
 
         // =======================================================================================================================================================================================

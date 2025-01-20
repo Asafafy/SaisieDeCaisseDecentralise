@@ -39,6 +39,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnValider = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.btnImprimer = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxDepot = new System.Windows.Forms.ComboBox();
             this.lblDepot = new System.Windows.Forms.Label();
@@ -156,6 +157,7 @@
             this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Controls.Add(this.btnValider);
             this.flowLayoutPanel1.Controls.Add(this.button4);
+            this.flowLayoutPanel1.Controls.Add(this.btnImprimer);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(-4, 1);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1245, 41);
@@ -227,6 +229,20 @@
             this.button4.TabIndex = 6;
             this.button4.Text = "Expédition";
             this.button4.UseVisualStyleBackColor = false;
+            // 
+            // btnImprimer
+            // 
+            this.btnImprimer.BackColor = System.Drawing.Color.Transparent;
+            this.btnImprimer.FlatAppearance.BorderSize = 0;
+            this.btnImprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimer.Location = new System.Drawing.Point(511, 9);
+            this.btnImprimer.Margin = new System.Windows.Forms.Padding(1, 9, 1, 4);
+            this.btnImprimer.Name = "btnImprimer";
+            this.btnImprimer.Size = new System.Drawing.Size(100, 22);
+            this.btnImprimer.TabIndex = 7;
+            this.btnImprimer.Text = "Comptabiliser";
+            this.btnImprimer.UseVisualStyleBackColor = false;
+            this.btnImprimer.Click += new System.EventHandler(this.btnImprimer_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -1224,5 +1240,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn montantTTC;
         private System.Windows.Forms.Label lblDepot;
         private System.Windows.Forms.ComboBox comboBoxDepot;
+        private System.Windows.Forms.Button btnImprimer;
     }
 }

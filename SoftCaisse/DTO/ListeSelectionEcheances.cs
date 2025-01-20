@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SoftCaisse.DTO
 {
-    internal class ListeSelectionEcheances
+    public class ListeSelectionEcheances
     {
         public int DR_No { get; set; }
         public int? RG_No { get; set; }

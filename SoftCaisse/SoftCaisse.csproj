@@ -72,6 +72,7 @@
     <Compile Include="DTO\DetailsArticle\InterrogationStock\CMUPInterrStock.cs" />
     <Compile Include="DTO\DetailsArticle\ModeleDEnregistrement.cs" />
     <Compile Include="DTO\DetailsArticle\TarifsClients.cs" />
+    <Compile Include="DTO\ListeEcheancesPourImpressionDocumentsDeVente.cs" />
     <Compile Include="DTO\ListeSelectionEcheances.cs" />
     <Compile Include="Forms\ChoixTypeDoc.cs">
       <SubType>Form</SubType>
@@ -451,6 +452,7 @@
     <Compile Include="Models\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BIJOU\ListeEcheancesPourImpressionDocumentsDeVenteRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_AGENDARepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTSTOCKEMPLRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_DOCCURRENTPIECERepository.cs" />
@@ -497,7 +499,8 @@
     <Compile Include="Utils\EnterKeyDownEventHadler.cs" />
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <Compile Include="Utils\Global\ConnectedUser.cs" />
-    <EmbeddedResource Include="ClotureFacture.rdlc" />
+    <EmbeddedResource Include="ModelesDocuments\DocumentDeVente.rdlc" />
+    <EmbeddedResource Include="ModelesDocuments\ClotureFacture.rdlc" />
     <EmbeddedResource Include="Forms\ChoixTypeDoc.resx">
       <DependentUpon>ChoixTypeDoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -552,9 +555,9 @@
     <EmbeddedResource Include="Forms\SelectionEcheancesARegler.resx">
       <DependentUpon>SelectionEcheancesARegler.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StatistiqueCaisseReglement.rdlc" />
-    <EmbeddedResource Include="StatistiqueCaisseFamille.rdlc" />
-    <EmbeddedResource Include="StatistiqueCaisseArticle.rdlc" />
+    <EmbeddedResource Include="ModelesDocuments\StatistiqueCaisseReglement.rdlc" />
+    <EmbeddedResource Include="ModelesDocuments\StatistiqueCaisseFamille.rdlc" />
+    <EmbeddedResource Include="ModelesDocuments\StatistiqueCaisseArticle.rdlc" />
     <EmbeddedResource Include="Controls\CaisseControl.resx">
       <DependentUpon>CaisseControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -652,7 +655,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TicketCaisse.rdlc" />
+    <EmbeddedResource Include="ModelesDocuments\TicketCaisse.rdlc" />
     <None Include="DataJSon\Langue.json" />
     <None Include="DataJSon\Autorisation.json" />
     <None Include="DataJSon\TypeDocument.json" />
@@ -672,6 +675,7 @@
     <None Include="Multimedia\Garantie_COAR002.doc" />
     <None Include="Multimedia\Garantie_ENSHF.doc" />
     <None Include="Multimedia\Garantie_LINGOR18.doc" />
+    <None Include="Properties\DataSources\SoftCaisse.DTO.ListeEcheancesPourImpressionDocumentsDeVente.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

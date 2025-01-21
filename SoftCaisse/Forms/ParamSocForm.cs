@@ -43,5 +43,11 @@ namespace SoftCaisse.Forms.ParamSociete
             ParamVenteComptoir paramVenteCompt = new ParamVenteComptoir();
             paramVenteCompt.Show();
         }
+
+        private void gammePictureBox_Click(object sender, EventArgs e)
+        {
+            GammeForm gammeForm = new GammeForm();
+            gammeForm.Show();
+        }
     }
 }

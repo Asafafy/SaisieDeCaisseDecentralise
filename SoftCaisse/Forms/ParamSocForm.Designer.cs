@@ -34,9 +34,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.gammePictureBox = new System.Windows.Forms.PictureBox();
             this.pctBxComptabilisationParam = new System.Windows.Forms.PictureBox();
             this.DevisesParam = new System.Windows.Forms.PictureBox();
             this.CaissesParam = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.gammePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBxComptabilisationParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DevisesParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaissesParam)).BeginInit();
@@ -93,18 +96,41 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(118, 267);
+            this.label3.Location = new System.Drawing.Point(48, 269);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(111, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Comptabilisation";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(220, 269);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 17);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Gammes";
+            // 
+            // gammePictureBox
+            // 
+            this.gammePictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.gammePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("gammePictureBox.Image")));
+            this.gammePictureBox.Location = new System.Drawing.Point(200, 170);
+            this.gammePictureBox.Margin = new System.Windows.Forms.Padding(2);
+            this.gammePictureBox.Name = "gammePictureBox";
+            this.gammePictureBox.Size = new System.Drawing.Size(89, 93);
+            this.gammePictureBox.TabIndex = 8;
+            this.gammePictureBox.TabStop = false;
+            this.gammePictureBox.Click += new System.EventHandler(this.gammePictureBox_Click);
+            // 
             // pctBxComptabilisationParam
             // 
             this.pctBxComptabilisationParam.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pctBxComptabilisationParam.Image = global::SoftCaisse.Properties.Resources.comptabilite;
-            this.pctBxComptabilisationParam.Location = new System.Drawing.Point(129, 168);
+            this.pctBxComptabilisationParam.Location = new System.Drawing.Point(59, 170);
             this.pctBxComptabilisationParam.Margin = new System.Windows.Forms.Padding(2);
             this.pctBxComptabilisationParam.Name = "pctBxComptabilisationParam";
             this.pctBxComptabilisationParam.Size = new System.Drawing.Size(89, 93);
@@ -144,7 +170,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(350, 304);
+            this.ClientSize = new System.Drawing.Size(351, 354);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.gammePictureBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pctBxComptabilisationParam);
             this.Controls.Add(this.label2);
@@ -160,6 +188,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Paramètres société";
             this.TopMost = true;
+            ((System.ComponentModel.ISupportInitialize)(this.gammePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBxComptabilisationParam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DevisesParam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CaissesParam)).EndInit();
@@ -177,5 +206,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonPalette kryptonPalette1;
         private System.Windows.Forms.PictureBox pctBxComptabilisationParam;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox gammePictureBox;
     }
 }

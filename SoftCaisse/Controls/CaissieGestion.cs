@@ -28,12 +28,14 @@ namespace SoftCaisse.Controls
         public CaissieGestion()
         {
             InitializeComponent();
+
             _context = new AppDbContext();
             _fCaisseRepository = new F_CAISSERepository(_context);
             _fReglementRepository = new F_CREGLEMENTRepository(_context);
+
             var data = _fCaisseRepository.GetAll();
             var reglement = _fReglementRepository.GetAll();
-            var listCaissier  = data.Select(caissier=> new { Intitule = caissier.CA_Intitule , CaisseNum = caissier.CA_No }).ToList();
+            var listCaissier  = data.Select(caissier => new { Intitule = caissier.CA_Intitule , CaisseNum = caissier.CA_No }).ToList();
             listRegelement.AddRange(reglement);
             CaissierDataGridView.DataSource = listCaissier;
         }

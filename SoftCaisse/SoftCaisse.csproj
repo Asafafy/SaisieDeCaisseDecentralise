@@ -92,6 +92,12 @@
     <Compile Include="Forms\EcheancesRattacheesAuxReglements.Designer.cs">
       <DependentUpon>EcheancesRattacheesAuxReglements.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GammeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GammeForm.Designer.cs">
+      <DependentUpon>GammeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GestionDesRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -499,6 +505,9 @@
     <Compile Include="Utils\EnterKeyDownEventHadler.cs" />
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <Compile Include="Utils\Global\ConnectedUser.cs" />
+    <EmbeddedResource Include="Forms\GammeForm.resx">
+      <DependentUpon>GammeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModelesDocuments\DocumentDeVente.rdlc" />
     <EmbeddedResource Include="ModelesDocuments\ClotureFacture.rdlc" />
     <EmbeddedResource Include="Forms\ChoixTypeDoc.resx">
@@ -691,6 +700,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cash-register_icon-icons.com_72250.ico" />
+    <Content Include="Images\Société\ArticleIcon.png" />
     <Content Include="Images\Société\comptabilite.png" />
     <Content Include="Multimedia\BAAR01.gif" />
     <Content Include="Multimedia\BAAR01.jpg" />

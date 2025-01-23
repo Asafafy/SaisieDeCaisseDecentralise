@@ -479,6 +479,8 @@
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_JOURNAUXRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_REGLECHRepository.cs" />
     <Compile Include="Repositories\BIJOU\ListeSelectionEcheancesRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\P_GAMMERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_ENUMGAMMERepository.cs" />
     <Compile Include="Repositories\DTORepository\DeviseRepository.cs" />
     <Compile Include="Repositories\BIJOU\FReglementRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_CATALOGUERepository.cs" />
@@ -491,6 +493,7 @@
     <Compile Include="Repositories\ScdDb\RoleAutorisationRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
+    <Compile Include="Services\P_GAMMEService.cs" />
     <Compile Include="Services\F_REGLECHService.cs" />
     <Compile Include="Services\F_ARTSTOCKEMPLService.cs" />
     <Compile Include="Services\F_ARTSTOCKService.cs" />

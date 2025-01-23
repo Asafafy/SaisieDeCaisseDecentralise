@@ -34,10 +34,14 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.btnEnregistrer = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnNouvelleGamme = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnNouvelleEnum = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnSuppr = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonPalette1
@@ -68,72 +72,118 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(10, 41);
+            this.listBox1.Location = new System.Drawing.Point(15, 23);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(246, 251);
+            this.listBox1.Size = new System.Drawing.Size(300, 251);
             this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(260, 41);
+            this.listBox2.Location = new System.Drawing.Point(330, 23);
             this.listBox2.Margin = new System.Windows.Forms.Padding(2);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(250, 251);
+            this.listBox2.Size = new System.Drawing.Size(303, 251);
             this.listBox2.TabIndex = 1;
+            this.listBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox2_MouseClick);
+            // 
+            // btnEnregistrer
+            // 
+            this.btnEnregistrer.Location = new System.Drawing.Point(349, 2);
+            this.btnEnregistrer.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEnregistrer.Name = "btnEnregistrer";
+            this.btnEnregistrer.Palette = this.kryptonPalette1;
+            this.btnEnregistrer.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnEnregistrer.Size = new System.Drawing.Size(88, 26);
+            this.btnEnregistrer.TabIndex = 9;
+            this.btnEnregistrer.Values.Text = "Enregistrer";
+            this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(99, 315);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Location = new System.Drawing.Point(65, 5);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(234, 20);
+            this.textBox1.Size = new System.Drawing.Size(276, 20);
             this.textBox1.TabIndex = 2;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 318);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Location = new System.Drawing.Point(23, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(38, 30);
             this.label1.TabIndex = 3;
             this.label1.Text = "Intitulé";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // kryptonButton1
+            // tableLayoutPanel1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(346, 306);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Palette = this.kryptonPalette1;
-            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton1.Size = new System.Drawing.Size(88, 27);
-            this.kryptonButton1.TabIndex = 9;
-            this.kryptonButton1.Values.Text = "Enregistrer";
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnEnregistrer, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnSuppr, 3, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(49, 342);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(537, 30);
+            this.tableLayoutPanel1.TabIndex = 11;
             // 
-            // kryptonButton2
+            // btnNouvelleGamme
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(346, 344);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Palette = this.kryptonPalette1;
-            this.kryptonButton2.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton2.Size = new System.Drawing.Size(88, 27);
-            this.kryptonButton2.TabIndex = 10;
-            this.kryptonButton2.Values.Text = "Supprimer";
+            this.btnNouvelleGamme.Location = new System.Drawing.Point(15, 281);
+            this.btnNouvelleGamme.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNouvelleGamme.Name = "btnNouvelleGamme";
+            this.btnNouvelleGamme.Palette = this.kryptonPalette1;
+            this.btnNouvelleGamme.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnNouvelleGamme.Size = new System.Drawing.Size(130, 26);
+            this.btnNouvelleGamme.TabIndex = 12;
+            this.btnNouvelleGamme.Values.Text = "Nouvelle gamme";
+            this.btnNouvelleGamme.Click += new System.EventHandler(this.btnNouvelleGamme_Click);
+            // 
+            // btnNouvelleEnum
+            // 
+            this.btnNouvelleEnum.Location = new System.Drawing.Point(330, 281);
+            this.btnNouvelleEnum.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNouvelleEnum.Name = "btnNouvelleEnum";
+            this.btnNouvelleEnum.Palette = this.kryptonPalette1;
+            this.btnNouvelleEnum.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnNouvelleEnum.Size = new System.Drawing.Size(130, 26);
+            this.btnNouvelleEnum.TabIndex = 13;
+            this.btnNouvelleEnum.Values.Text = "Nouvelle énumération";
+            this.btnNouvelleEnum.Click += new System.EventHandler(this.btnNouvelleEnum_Click);
+            // 
+            // btnSuppr
+            // 
+            this.btnSuppr.Location = new System.Drawing.Point(443, 2);
+            this.btnSuppr.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSuppr.Name = "btnSuppr";
+            this.btnSuppr.Palette = this.kryptonPalette1;
+            this.btnSuppr.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnSuppr.Size = new System.Drawing.Size(88, 26);
+            this.btnSuppr.TabIndex = 10;
+            this.btnSuppr.Values.Text = "Supprimer";
             // 
             // GammeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(518, 392);
-            this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.kryptonButton1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(648, 386);
+            this.Controls.Add(this.btnNouvelleEnum);
+            this.Controls.Add(this.btnNouvelleGamme);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -142,8 +192,9 @@
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.Text = "Gestion des gammes";
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -153,9 +204,12 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnEnregistrer;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnNouvelleGamme;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnNouvelleEnum;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSuppr;
     }
 }

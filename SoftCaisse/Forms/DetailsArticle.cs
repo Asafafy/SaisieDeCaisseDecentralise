@@ -21,6 +21,10 @@ namespace SoftCaisse.Forms.Article
         private string _designArt;
         public F_ARTICLE _selectedArt;
 
+
+
+
+
         // =========================================================== FONCTIONS POUR CONSTRUCTEUR =========================================================== */
         static string ConserverChiffresApresVirgule(decimal? valeur)
         {

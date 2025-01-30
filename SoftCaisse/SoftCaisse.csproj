@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="CustomModel\Controle.cs" />
     <Compile Include="CustomModel\Ffamille.cs" />
+    <Compile Include="DTO\CategoriesTarifairesGammes.cs" />
     <Compile Include="DTO\DetailsArticle\CategoriesTarifaires.cs" />
     <Compile Include="DTO\DetailsArticle\Conditionnement.cs" />
     <Compile Include="DTO\DetailsArticle\DepotParametres.cs" />
@@ -74,11 +75,23 @@
     <Compile Include="DTO\DetailsArticle\TarifsClients.cs" />
     <Compile Include="DTO\ListeEcheancesPourImpressionDocumentsDeVente.cs" />
     <Compile Include="DTO\ListeSelectionEcheances.cs" />
+    <Compile Include="Forms\ChoixCreationENUMGAMME.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChoixCreationENUMGAMME.Designer.cs">
+      <DependentUpon>ChoixCreationENUMGAMME.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ChoixTypeDoc.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ChoixTypeDoc.Designer.cs">
       <DependentUpon>ChoixTypeDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreationManuelleEnumgamme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreationManuelleEnumgamme.Designer.cs">
+      <DependentUpon>CreationManuelleEnumgamme.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DetailsArticle.cs">
       <SubType>Form</SubType>
@@ -431,6 +444,7 @@
     <Compile Include="Models\F_REGLEARCHIVE.cs" />
     <Compile Include="Models\F_REGLECH.cs" />
     <Compile Include="Models\F_REGLEMENTT.cs" />
+    <Compile Include="Models\F_TARIFGAM.cs" />
     <Compile Include="Models\F_TAXE.cs" />
     <Compile Include="Models\F_TICKETARCHIVE.cs" />
     <Compile Include="CustomModel\Parameter.cs" />
@@ -476,11 +490,14 @@
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_COLLABORATEURRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_CREGLEMENTRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_DEPOTRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTENUMREFRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTGAMMERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_JOURNAUXRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_REGLECHRepository.cs" />
     <Compile Include="Repositories\BIJOU\ListeSelectionEcheancesRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\P_GAMMERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ENUMGAMMERepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_TARIFGAMRepository.cs" />
     <Compile Include="Repositories\DTORepository\DeviseRepository.cs" />
     <Compile Include="Repositories\BIJOU\FReglementRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_CATALOGUERepository.cs" />
@@ -493,6 +510,10 @@
     <Compile Include="Repositories\ScdDb\RoleAutorisationRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
+    <Compile Include="Services\F_ARTENUMREFService.cs" />
+    <Compile Include="Services\F_TARIFGAMService.cs" />
+    <Compile Include="Services\F_ARTGAMMEService.cs" />
+    <Compile Include="Services\F_ENUMGAMMEService.cs" />
     <Compile Include="Services\P_GAMMEService.cs" />
     <Compile Include="Services\F_REGLECHService.cs" />
     <Compile Include="Services\F_ARTSTOCKEMPLService.cs" />
@@ -508,6 +529,12 @@
     <Compile Include="Utils\EnterKeyDownEventHadler.cs" />
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <Compile Include="Utils\Global\ConnectedUser.cs" />
+    <EmbeddedResource Include="Forms\ChoixCreationENUMGAMME.resx">
+      <DependentUpon>ChoixCreationENUMGAMME.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreationManuelleEnumgamme.resx">
+      <DependentUpon>CreationManuelleEnumgamme.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GammeForm.resx">
       <DependentUpon>GammeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -669,7 +696,6 @@
     </Compile>
     <EmbeddedResource Include="ModelesDocuments\TicketCaisse.rdlc" />
     <None Include="DataJSon\Langue.json" />
-    <None Include="DataJSon\Autorisation.json" />
     <None Include="DataJSon\TypeDocument.json" />
     <None Include="DataSetEnt.xsc">
       <DependentUpon>DataSetEnt.xsd</DependentUpon>

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
+using Microsoft.ReportingServices.RdlExpressions.ExpressionHostObjectModel;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories.BIJOU.ModelsRepository;
 using SoftCaisse.Services;
@@ -30,8 +31,14 @@ namespace SoftCaisse.Forms
         private int estGamme = 0;
 
         private readonly P_GAMMERepository _p_GAMMERepository;
+        private readonly F_ENUMGAMMERepository _f_ENUMGAMMERepository;
+        private readonly F_ARTENUMREFRepository _f_ARTENUMREFRepository;
+        private readonly F_ARTGAMMERepository _f_ARTGAMMERepository;
 
         private readonly P_GAMMEService _p_GAMMEService;
+        private readonly F_ENUMGAMMEService _f_ENUMGAMMEService;
+        private readonly F_ARTENUMREFService _f_ARTENUMREFService;
+        private readonly F_ARTGAMMEService _f_ARTGAMMEService;
         // =============================================================================================================================================================================================
         // =============================================================================== FIN DECLARATION DES VARIABLES ===============================================================================
         // =============================================================================================================================================================================================
@@ -50,8 +57,14 @@ namespace SoftCaisse.Forms
             _context = new AppDbContext();
 
             _p_GAMMERepository = new P_GAMMERepository(_context);
+            _f_ENUMGAMMERepository = new F_ENUMGAMMERepository(_context);
+            _f_ARTENUMREFRepository = new F_ARTENUMREFRepository(_context);
+            _f_ARTGAMMERepository = new F_ARTGAMMERepository(_context);
 
             _p_GAMMEService = new P_GAMMEService(_context, _p_GAMMERepository);
+            _f_ENUMGAMMEService = new F_ENUMGAMMEService(_context, _f_ENUMGAMMERepository);
+            _f_ARTENUMREFService = new F_ARTENUMREFService(_context, _f_ARTENUMREFRepository);
+            _f_ARTGAMMEService = new F_ARTGAMMEService(_context, _f_ARTGAMMERepository);
 
             elementSelectionne = "";
 
@@ -103,6 +116,9 @@ namespace SoftCaisse.Forms
         }
 
 
+
+
+
         private void listBox2_MouseClick(object sender, MouseEventArgs e)
         {
             if (listBox2.SelectedItem != null)
@@ -122,6 +138,9 @@ namespace SoftCaisse.Forms
         }
 
 
+
+
+
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((textBox1.Text + e.KeyChar) != elementSelectionne)
@@ -135,15 +154,18 @@ namespace SoftCaisse.Forms
         }
 
 
+
+
+
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
             string nouveauNom = textBox1.Text;
             btnEnregistrer.Enabled = false;
 
-            // CAS CREATION NOUVEAU ==============================
+            // =========================================================== CAS CREATION NOUVEAU ===========================================================
             if (estNouveau == 1)
             {
-                // CAS GAMME
+                // CAS GAMME ==============================================================================================================================
                 if (estGamme == 1)
                 {
                     if (Regex.IsMatch(nouveauNom, @"[a-zA-Z].*[a-zA-Z].*[a-zA-Z]"))
@@ -172,16 +194,94 @@ namespace SoftCaisse.Forms
                         MessageBox.Show("Entrez au moins trois lettres de l'alphabet.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                // CAS ENUMGAMME
+                // CAS ENUMGAMME ==============================================================================================================================
                 else
                 {
-                    
+                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z].*[a-zA-Z].*[a-zA-Z]"))
+                    {
+                        string G_Intitule = listBox1.SelectedItem.ToString();
+                        P_GAMME p_GAMME = _context.P_GAMME.Where(elt => elt.G_Intitule == G_Intitule).FirstOrDefault();
+                        List<F_ARTICLE> listeArticles = _context.F_ARTICLE.Where(a => a.AR_Gamme1 == p_GAMME.cbIndice || a.AR_Gamme2 == p_GAMME.cbIndice).ToList();
+
+                        int estGamme1 = 0;
+
+                        if (listeArticles.Count > 0) // Des articles sont liés au gamme manipulé
+                        {
+                            ChoixCreationENUMGAMME choixCreationENUMGAMME = new ChoixCreationENUMGAMME(G_Intitule);
+                            choixCreationENUMGAMME.ShowDialog();
+
+                            if (choixCreationENUMGAMME.Resultat != null)
+                            {
+                                if (choixCreationENUMGAMME.Resultat == "Non")
+                                {
+                                    _f_ENUMGAMMEService.NouveauGamme(p_GAMME.cbIndice, nouveauNom);
+                                }
+                                else if (choixCreationENUMGAMME.Resultat == "Créer automatiquement")
+                                {
+
+                                    _f_ENUMGAMMEService.NouveauGamme(p_GAMME.cbIndice, nouveauNom);
+
+                                    foreach (F_ARTICLE f_ARTICLE in listeArticles)
+                                    {
+                                        if (f_ARTICLE.AR_Gamme1 == p_GAMME.cbIndice)
+                                            estGamme1 = 1;
+                                        _f_ARTGAMMEService.NouveauGamme(f_ARTICLE.AR_Ref, nouveauNom, estGamme1);
+                                        _context = new AppDbContext();
+                                        F_ARTGAMME f_ARTGAMME = _context.F_ARTGAMME.Where(artG => artG.EG_Enumere == nouveauNom).FirstOrDefault();
+                                        _f_ARTENUMREFService.NouveauGamme(f_ARTICLE.AR_Ref, estGamme1, (short)f_ARTGAMME.AG_No, "", "");
+                                    }
+                                }
+                                else
+                                {
+                                    _f_ENUMGAMMEService.NouveauGamme(p_GAMME.cbIndice, nouveauNom);
+
+                                    foreach (F_ARTICLE f_ARTICLE in listeArticles)
+                                    {
+                                        if (f_ARTICLE.AR_Gamme1 == p_GAMME.cbIndice)
+                                            estGamme1 = 1;
+                                        _f_ARTGAMMEService.NouveauGamme(f_ARTICLE.AR_Ref, nouveauNom, estGamme1);
+
+                                        _context = new AppDbContext();
+                                        F_ARTGAMME f_ARTGAMME = _context.F_ARTGAMME.Where(artG => artG.EG_Enumere == nouveauNom).FirstOrDefault();
+                                        List<(int?, int?)> listeAG_No = _f_ARTENUMREFService.GetCombinaisonsAG_No(f_ARTICLE, estGamme1, (short?)f_ARTGAMME.AG_No);
+                                        foreach (var (AG_No1, AG_No2) in listeAG_No)
+                                        {
+                                            CreationManuelleEnumgamme creationManuelleEnumgamme = new CreationManuelleEnumgamme(AG_No1, AG_No2, f_ARTICLE.AR_Ref);
+                                            creationManuelleEnumgamme.ShowDialog();
+                                            if (choixCreationENUMGAMME.Resultat != null)
+                                            {
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else // Aucun article n'est lié au gamme manipulé
+                        {
+                            _f_ENUMGAMMEService.NouveauGamme(p_GAMME.cbIndice, nouveauNom);
+
+                        }
+
+                        // Rafaichir la liste des enumgammes après tout traitement
+                        _context = new AppDbContext();
+                        listBox2.DataSource = null;
+                        listBox2.DataSource = _context.F_ENUMGAMME.Where(eg => eg.EG_Enumere == nouveauNom).Select(eg => eg.EG_Enumere).ToList();
+                        int index = listBox2.FindStringExact(nouveauNom);
+                        listBox2.SelectedIndex = index;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Entrez au moins trois lettres de l'alphabet.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
-            // CAS MISE A JOUR ==================================
+
+
+            // =========================================================== CAS MISE A JOUR ===========================================================
             else
             {
-                // CAS GAMME
+                // CAS GAMME ==============================================================================================================================
                 if (estGamme == 1)
                 {
                     if (Regex.IsMatch(nouveauNom, @"[a-zA-Z].*[a-zA-Z].*[a-zA-Z]"))
@@ -211,13 +311,23 @@ namespace SoftCaisse.Forms
                         MessageBox.Show("Entrez au moins trois lettres de l'alphabet.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                // CAS ENUMGAMME
+                // CAS ENUMGAMME ==============================================================================================================================
                 else
                 {
+                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z].*[a-zA-Z].*[a-zA-Z]"))
+                    {
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Entrez au moins trois lettres de l'alphabet.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
         }
+
+
+
 
 
         private void btnNouvelleGamme_Click(object sender, EventArgs e)
@@ -228,6 +338,9 @@ namespace SoftCaisse.Forms
             textBox1.Focus();
             textBox1.Text = "";
         }
+
+
+
 
 
         private void btnNouvelleEnum_Click(object sender, EventArgs e)

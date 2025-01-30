@@ -37,11 +37,11 @@ namespace SoftCaisse.Repositories
         // ================================================================================================
         public void Add(F_CREGLEMENT reglement)
         {
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBINS_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_INS_CPTAF_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
+            string query = @"
+                DISABLE TRIGGER [TG_CBINS_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];
+                DISABLE TRIGGER [TG_INS_CPTAF_CREGLEMENT] ON [dbo].[F_CREGLEMENT];
 
-            string query = @"INSERT INTO [dbo].[F_CREGLEMENT]
-                (
+                INSERT INTO [dbo].[F_CREGLEMENT] (
                         [RG_No],
                         [RG_Date],
                         [RG_Montant],
@@ -87,62 +87,68 @@ namespace SoftCaisse.Repositories
                         [CT_NumPayeur],
                         [CT_NumPayeurOrig]
                 ) VALUES (
-                {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, 
-                {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17}, {18}, {19}, 
-                {20}, {21}, {22}, {23}, {24}, {25}, {26}, {27}, {28}, {29}, 
-                {30}, {31}, {32}, {33}, {34}, {35}, {36}, {37}, {38}, {39},
-                {40}, {41}, {42}, {43}
-            )";
+                    {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, 
+                    {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17}, {18}, {19}, 
+                    {20}, {21}, {22}, {23}, {24}, {25}, {26}, {27}, {28}, {29}, 
+                    {30}, {31}, {32}, {33}, {34}, {35}, {36}, {37}, {38}, {39},
+                    {40}, {41}, {42}, {43}
+                );
 
-            _context.Database.ExecuteSqlCommand(query,
-                reglement.RG_No,
-                reglement.RG_Date,
-                reglement.RG_Montant,
-                reglement.N_Reglement,
-                reglement.RG_Impute,
-                reglement.RG_Libelle,
-                reglement.RG_MontantDev,
-                reglement.RG_Reference,
-                reglement.RG_Compta,
-                reglement.EC_No,
-                reglement.RG_Type,
-                reglement.RG_Cours,
-                reglement.RG_TypeReg,
-                reglement.N_Devise,
-                reglement.JO_Num,
-                reglement.RG_Impaye,
-                reglement.RG_Heure,
-                reglement.RG_Piece,
-                reglement.CA_No,
-                reglement.cbCA_No,
-                reglement.CO_NoCaissier,
-                reglement.cbCO_NoCaissier,
-                reglement.RG_Transfere,
-                reglement.RG_Cloture,
-                reglement.RG_Ticket,
-                reglement.RG_Souche,
-                reglement.RG_DateEchCont,
-                reglement.RG_MontantEcart,
-                reglement.RG_NoBonAchat,
-                reglement.RG_Valide,
-                reglement.RG_Anterieur,
-                reglement.RG_MontantCommission,
-                reglement.RG_MontantNet,
-                reglement.cbProt,
-                reglement.cbModification,
-                reglement.cbReplication,
-                reglement.cbFlag,
-                reglement.cbCreation,
-                reglement.cbHashVersion,
-                reglement.cbHashDate,
-                reglement.RG_Banque,
-                reglement.CG_Num,
-                reglement.CT_NumPayeur,
-                reglement.CT_NumPayeurOrig
-            );
+                ENABLE TRIGGER [TG_CBINS_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];
+                ENABLE TRIGGER [TG_INS_CPTAF_CREGLEMENT] ON [dbo].[F_CREGLEMENT];
+            ";
 
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBINS_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_INS_CPTAF_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(query,
+                    reglement.RG_No,
+                    reglement.RG_Date,
+                    reglement.RG_Montant,
+                    reglement.N_Reglement,
+                    reglement.RG_Impute,
+                    reglement.RG_Libelle,
+                    reglement.RG_MontantDev,
+                    reglement.RG_Reference,
+                    reglement.RG_Compta,
+                    reglement.EC_No,
+                    reglement.RG_Type,
+                    reglement.RG_Cours,
+                    reglement.RG_TypeReg,
+                    reglement.N_Devise,
+                    reglement.JO_Num,
+                    reglement.RG_Impaye,
+                    reglement.RG_Heure,
+                    reglement.RG_Piece,
+                    reglement.CA_No,
+                    reglement.cbCA_No,
+                    reglement.CO_NoCaissier,
+                    reglement.cbCO_NoCaissier,
+                    reglement.RG_Transfere,
+                    reglement.RG_Cloture,
+                    reglement.RG_Ticket,
+                    reglement.RG_Souche,
+                    reglement.RG_DateEchCont,
+                    reglement.RG_MontantEcart,
+                    reglement.RG_NoBonAchat,
+                    reglement.RG_Valide,
+                    reglement.RG_Anterieur,
+                    reglement.RG_MontantCommission,
+                    reglement.RG_MontantNet,
+                    reglement.cbProt,
+                    reglement.cbModification,
+                    reglement.cbReplication,
+                    reglement.cbFlag,
+                    reglement.cbCreation,
+                    reglement.cbHashVersion,
+                    reglement.cbHashDate,
+                    reglement.RG_Banque,
+                    reglement.CG_Num,
+                    reglement.CT_NumPayeur,
+                    reglement.CT_NumPayeurOrig
+                );
+            }
+                
 
             // Mise à jour du dernier numéro de règlement dans P_COLREGLEMENT
             P_COLREGLEMENT pColRToUpdate = _context.P_COLREGLEMENT.FirstOrDefault();
@@ -166,16 +172,24 @@ namespace SoftCaisse.Repositories
             // =================== Supprimer d'abord les payements des échéances avec ce reglement ================
             f_REGLECHRepository.DeleteByRG_No(RG_No);
 
+
             // =================== Suppression dans F_CREGLEMENT ================
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBDEL_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
             string queryDeleteFCReglement = @"
+                DISABLE TRIGGER [TG_CBDEL_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];
+
                 DELETE FROM [dbo].[F_CREGLEMENT] WHERE RG_No = @RG_No;
+
+                ENABLE TRIGGER [TG_CBDEL_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];
             ";
-            _context.Database.ExecuteSqlCommand(
-                queryDeleteFCReglement,
-                new SqlParameter("@RG_No", RG_No)
-            );
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBDEL_F_CREGLEMENT] ON [dbo].[F_CREGLEMENT];");
+
+
+            using (var context = new AppDbContext())
+            {
+                _context.Database.ExecuteSqlCommand(
+                    queryDeleteFCReglement,
+                    new SqlParameter("@RG_No", RG_No)
+                );
+            }
         }
         // ============================================================================================
         // ============================= FIN SUPPRESSION D'UN REGLEMENT ===============================

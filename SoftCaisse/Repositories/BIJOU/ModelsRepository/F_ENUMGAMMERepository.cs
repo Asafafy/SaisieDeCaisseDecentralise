@@ -56,23 +56,27 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
                     @cbReplication,
                     @cbFlag,
                     @cbCreation
-                )";
+                )
+            ";
 
             //_context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBINS_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
             //_context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
-            _context.Database.ExecuteSqlCommand(
-            queryCreateF_ENUMGAMME,
-                new SqlParameter("@EG_Champ", f_ENUMGAMME.EG_Champ),
-                new SqlParameter("@EG_Ligne", f_ENUMGAMME.EG_Ligne),
-                new SqlParameter("@EG_Enumere", f_ENUMGAMME.EG_Enumere),
-                new SqlParameter("@EG_BorneSup", f_ENUMGAMME.EG_BorneSup),
-                new SqlParameter("@cbProt", f_ENUMGAMME.cbProt),
-                new SqlParameter("@cbCreateur", f_ENUMGAMME.cbCreateur),
-                new SqlParameter("@cbModification", f_ENUMGAMME.cbModification),
-                new SqlParameter("@cbReplication", f_ENUMGAMME.cbReplication),
-                new SqlParameter("@cbFlag", f_ENUMGAMME.cbFlag),
-                new SqlParameter("@cbCreation", f_ENUMGAMME.cbCreation)
-            );
+            using(var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryCreateF_ENUMGAMME,
+                    new SqlParameter("@EG_Champ", f_ENUMGAMME.EG_Champ),
+                    new SqlParameter("@EG_Ligne", f_ENUMGAMME.EG_Ligne),
+                    new SqlParameter("@EG_Enumere", f_ENUMGAMME.EG_Enumere),
+                    new SqlParameter("@EG_BorneSup", f_ENUMGAMME.EG_BorneSup),
+                    new SqlParameter("@cbProt", f_ENUMGAMME.cbProt),
+                    new SqlParameter("@cbCreateur", f_ENUMGAMME.cbCreateur),
+                    new SqlParameter("@cbModification", f_ENUMGAMME.cbModification),
+                    new SqlParameter("@cbReplication", f_ENUMGAMME.cbReplication),
+                    new SqlParameter("@cbFlag", f_ENUMGAMME.cbFlag),
+                    new SqlParameter("@cbCreation", f_ENUMGAMME.cbCreation)
+                );
+            }
             //_context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_CBINS_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
             //_context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
         }

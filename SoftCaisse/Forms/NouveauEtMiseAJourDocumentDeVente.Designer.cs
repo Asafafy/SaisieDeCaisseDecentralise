@@ -240,7 +240,7 @@
             this.btnImprimer.Name = "btnImprimer";
             this.btnImprimer.Size = new System.Drawing.Size(100, 22);
             this.btnImprimer.TabIndex = 7;
-            this.btnImprimer.Text = "Comptabiliser";
+            this.btnImprimer.Text = "Imprimer";
             this.btnImprimer.UseVisualStyleBackColor = false;
             this.btnImprimer.Click += new System.EventHandler(this.btnImprimer_Click);
             // 

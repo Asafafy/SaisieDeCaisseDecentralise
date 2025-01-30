@@ -21,11 +21,14 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
 
-        public void InsertDOCLIGNEEMPL(int DP_No, decimal? DL_Qte)
+        public void InsertDOCLIGNEEMPL(int DP_No, decimal? DL_Qte, string AR_Ref)
         {
             int? DL_No = _context.F_DOCLIGNE.Select(dl => dl.DL_No).Max();
 
             string queryInsertF_DOCLIGNEEMPL = @"
+                DISABLE TRIGGER [TG_INS_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                DISABLE TRIGGER [TG_CBINS_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+
                 INSERT INTO [dbo].[F_DOCLIGNEEMPL] (
                 	[DL_No]
                     ,[DP_No]
@@ -41,19 +44,25 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
                 VALUES (
                 	{0}, {1}, {2}, 0, 0, 'COLS', SYSUTCDATETIME(), 0, 0, SYSUTCDATETIME()
                 );
+
+                ENABLE TRIGGER [TG_INS_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                ENABLE TRIGGER [TG_CBINS_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
             ";
 
+            if (DP_No == 0)
+            {
+                DP_No = _context.F_ARTSTOCKEMPL.Where(fdle => fdle.AR_Ref == AR_Ref).Select(fdle => fdle.DP_No).FirstOrDefault();
+            }
 
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_INS_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBINS_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-            _context.Database.ExecuteSqlCommand(
-                queryInsertF_DOCLIGNEEMPL,
-                DL_No,
-                DP_No,
-                DL_Qte
-            );
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_INS_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBINS_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryInsertF_DOCLIGNEEMPL,
+                    DL_No,
+                    DP_No,
+                    DL_Qte
+                );
+            }
         }
 
 
@@ -79,23 +88,28 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
                 }
 
                 string queryUpdateF_DOCLIGNEEMPL = @"
+                    DISABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                    DISABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                    DISABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];
+
                     UPDATE F_DOCLIGNEEMPL
                     SET
                     	DL_Qte = @DL_Qte
-                    WHERE DL_No = @DL_No
+                    WHERE DL_No = @DL_No;
+
+                    ENABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                    ENABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                    ENABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];
                 ";
 
-                _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-                _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-                _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];");
-                _context.Database.ExecuteSqlCommand(
-                   queryUpdateF_DOCLIGNEEMPL,
-                   new SqlParameter("@DL_Qte", DL_Qte),
-                   new SqlParameter("@DL_No", f_DOCLIGNE.DL_No)
-               );
-                _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-                _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-                _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];");
+                using (var context = new AppDbContext())
+                {
+                    context.Database.ExecuteSqlCommand(
+                        queryUpdateF_DOCLIGNEEMPL,
+                        new SqlParameter("@DL_Qte", DL_Qte),
+                        new SqlParameter("@DL_No", f_DOCLIGNE.DL_No)
+                    );
+                } 
             }
         }
 
@@ -106,21 +120,26 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
             F_DOCLIGNE f_DOCLIGNE = _context.F_DOCLIGNE.Where(dl => dl.DO_Piece == DO_Piece && dl.DL_Ligne == DL_Ligne).FirstOrDefault();
 
             string queryDeleteF_DOCLIGNEEMPL = @"
-                DELETE FROM [dbo].[F_DOCLIGNEEMPL] WHERE DL_No = @DL_No
+                DISABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                DISABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                DISABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];
+
+                DELETE FROM [dbo].[F_DOCLIGNEEMPL] WHERE DL_No = @DL_No;
+
+                ENABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                ENABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];
+                ENABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];
             ";
 
             if (f_DOCLIGNE != null)
             {
-                _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-                _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-                _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];");
-                _context.Database.ExecuteSqlCommand(
-                   queryDeleteF_DOCLIGNEEMPL,
-                   new SqlParameter("@DL_No", f_DOCLIGNE.DL_No)
-               );
-                _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_UPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-                _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBUPD_F_DOCLIGNEEMPL] ON [dbo].[F_DOCLIGNEEMPL];");
-                _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [TG_CBUPD_F_ARTSTOCKEMPL] ON [dbo].[F_ARTSTOCKEMPL];");
+                using (var context = new AppDbContext())
+                {
+                    context.Database.ExecuteSqlCommand(
+                        queryDeleteF_DOCLIGNEEMPL,
+                        new SqlParameter("@DL_No", f_DOCLIGNE.DL_No)
+                    );
+                }   
             }
         }
 

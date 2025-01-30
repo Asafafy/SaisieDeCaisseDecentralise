@@ -23,15 +23,12 @@ namespace SoftCaisse.Forms.FormCaisse
 
         // ============================================================================================================================================================================
         // ======================================================================== DEBUT TICKET DE CAISSE ============================================================================
-        public Reporting(Fentete fentete,List<Fligne> Fligne, List<Freglement> Freglement,string devise)
+        public Reporting(Fentete fentete, List<Fligne> Fligne, List<Freglement> Freglement, string devi)
         {
             InitializeComponent();
-            
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SoftCaisse.ModelesDocuments.TicketCaisse.rdlc";
             double montant = Fligne.Sum(u => u.montant_ht);
             double rendu = Freglement.Sum(u => u.Montant) - montant;
-            
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SoftCaisse.ModelesDocuments.TicketCaisse.rdlc";
-
             ReportParameterCollection reportParameters = new ReportParameterCollection();
             reportParameters.Add(new ReportParameter("Caisse", fentete.caisse));
             reportParameters.Add(new ReportParameter("Type", fentete.type));
@@ -39,13 +36,12 @@ namespace SoftCaisse.Forms.FormCaisse
             reportParameters.Add(new ReportParameter("Numero", fentete.numero));
             reportParameters.Add(new ReportParameter("TotalHT", montant.ToString("0.##")));
             reportParameters.Add(new ReportParameter("Taux", "20%"));
-            reportParameters.Add(new ReportParameter("Taxe", (montant*0.2).ToString("0.##")));
-            reportParameters.Add(new ReportParameter("Accompte", " "));
-            reportParameters.Add(new ReportParameter("TotalTTC", (montant*1.2).ToString("0.##")));
+            reportParameters.Add(new ReportParameter("Taxe", (montant * 0.2).ToString("0.##")));
+            reportParameters.Add(new ReportParameter("Acompte", " "));
+            reportParameters.Add(new ReportParameter("TotalTTC", (montant * 1.2).ToString("0.##")));
             reportParameters.Add(new ReportParameter("Rendu", (rendu).ToString("0.##")));
-            reportParameters.Add(new ReportParameter("Devise", devise));
+            reportParameters.Add(new ReportParameter("Devis", devi));
             this.reportViewer1.LocalReport.SetParameters(reportParameters);
-
             ReportDataSource reports2 = new ReportDataSource("DataSet1", Fligne);
             ReportDataSource reports3 = new ReportDataSource("DataSet3", Freglement);
             this.reportViewer1.LocalReport.DataSources.Add(reports2);

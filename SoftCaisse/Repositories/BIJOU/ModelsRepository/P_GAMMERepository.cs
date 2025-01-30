@@ -25,19 +25,24 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         public void Update(int cbMarq, string G_Intitule)
         {
             string queryUpdateP_GAMME = @"
+                DISABLE TRIGGER [dbo].[TG_CBUPD_P_GAMME] ON [dbo].[P_GAMME];
+
                 UPDATE P_GAMME
                 SET
                     G_Intitule = @G_Intitule
-                WHERE cbMarq = @cbMarq
+                WHERE cbMarq = @cbMarq;
+
+                ENABLE TRIGGER [dbo].[TG_CBUPD_P_GAMME] ON [dbo].[P_GAMME];
             ";
 
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBUPD_P_GAMME] ON [dbo].[P_GAMME]");
-            _context.Database.ExecuteSqlCommand(
-            queryUpdateP_GAMME,
-                new SqlParameter("@G_Intitule", G_Intitule),
-                new SqlParameter("@cbMarq", cbMarq)
-            );
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_CBUPD_P_GAMME] ON [dbo].[P_GAMME]");
+            using(var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryUpdateP_GAMME,
+                    new SqlParameter("@G_Intitule", G_Intitule),
+                    new SqlParameter("@cbMarq", cbMarq)
+                );
+            }
         }
 
 

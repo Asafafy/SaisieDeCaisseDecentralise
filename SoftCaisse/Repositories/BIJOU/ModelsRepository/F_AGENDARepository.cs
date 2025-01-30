@@ -9,26 +9,33 @@ namespace SoftCaisse.Repositories
 {
     public class F_AGENDARepository
     {
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
 
         public F_AGENDARepository(AppDbContext context)
         {
-            _context = context;
+            //_context = context;
         }
 
         public void DeleteF_AGENDA(F_AGENDA f_AGENDAToDelete)
         {
             string queryDeleteF_AGENDA = @"
-                DELETE FROM F_AGENDA
-                WHERE DL_No = @DL_No;
+                DISABLE TRIGGER [dbo].[TG_CBDEL_F_AGENDA] ON [dbo].[F_AGENDA];
+
+                DELETE FROM F_AGENDA WHERE DL_No = @DL_No;
+
+                ENABLE TRIGGER [dbo].[TG_CBDEL_F_AGENDA] ON [dbo].[F_AGENDA];
             ";
 
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBDEL_F_AGENDA] ON [dbo].[F_AGENDA]");
-            _context.Database.ExecuteSqlCommand(
-                queryDeleteF_AGENDA,
-                new SqlParameter("@DL_No", f_AGENDAToDelete.DL_No)
-            );
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_CBDEL_F_AGENDA] ON [dbo].[F_AGENDA]");
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryDeleteF_AGENDA,
+                    new SqlParameter("@DL_No", f_AGENDAToDelete.DL_No)
+                );
+            }
+
+            
         }
     }
 }

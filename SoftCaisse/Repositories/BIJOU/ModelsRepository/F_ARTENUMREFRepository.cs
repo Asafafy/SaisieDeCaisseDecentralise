@@ -14,7 +14,7 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         // =======================================================================================================================================
         // =================================================== DEBUT DECLARATION DES VARIABLES ===================================================
         // =======================================================================================================================================
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
         // =====================================================================================================================================
         // =================================================== FIN DECLARATION DES VARIABLES ===================================================
         // =====================================================================================================================================
@@ -28,7 +28,7 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         // ====================================================================================================================================
         public F_ARTENUMREFRepository(AppDbContext context)
         {
-            _context = context;
+            //_context = context;
         }
         // =====================================================================================================================================
         // =================================================== FIN DECLARATION DES VARIABLES ===================================================
@@ -45,6 +45,7 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         {
             string queryCreateF_ARTENUMREF = @"
                 DISABLE TRIGGER [dbo].[TG_INS_F_ARTENUMREF] ON [dbo].[F_ARTENUMREF];
+                DISABLE TRIGGER [dbo].[TG_CBINS_F_ARTENUMREF] ON [dbo].[F_ARTENUMREF];
 
                 INSERT INTO [dbo].[F_ARTENUMREF]
                 (
@@ -84,17 +85,25 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
                 );
                 
                 ENABLE TRIGGER [dbo].[TG_INS_F_ARTENUMREF] ON [dbo].[F_ARTENUMREF];
+                ENABLE TRIGGER [dbo].[TG_CBINS_F_ARTENUMREF] ON [dbo].[F_ARTENUMREF];
             ";
 
-            _context.Database.ExecuteSqlCommand(
-                queryCreateF_ARTENUMREF,
-                new SqlParameter("@AR_Ref", nouveauf_ARTENUMREF.AR_Ref),
-                new SqlParameter("@AG_No1", nouveauf_ARTENUMREF.AG_No1),
-                new SqlParameter("@AG_No2", nouveauf_ARTENUMREF.AG_No2),
-                new SqlParameter("@AE_Ref", nouveauf_ARTENUMREF.AE_Ref),
-                new SqlParameter("@AE_PrixAch", nouveauf_ARTENUMREF.AE_PrixAch),
-                new SqlParameter("@AE_CodeBarre", nouveauf_ARTENUMREF.AE_CodeBarre)
-            );
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryCreateF_ARTENUMREF,
+                    new SqlParameter("@AR_Ref", nouveauf_ARTENUMREF.AR_Ref),
+                    new SqlParameter("@AG_No1", nouveauf_ARTENUMREF.AG_No1),
+                    new SqlParameter("@AG_No2", nouveauf_ARTENUMREF.AG_No2),
+                    new SqlParameter("@AE_Ref", nouveauf_ARTENUMREF.AE_Ref),
+                    new SqlParameter("@AE_PrixAch", nouveauf_ARTENUMREF.AE_PrixAch),
+                    new SqlParameter("@AE_CodeBarre", nouveauf_ARTENUMREF.AE_CodeBarre)
+                );
+            }
+
+
+            
         }
 
 

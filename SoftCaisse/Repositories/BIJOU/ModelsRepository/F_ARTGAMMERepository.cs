@@ -14,7 +14,7 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         // =======================================================================================================================================
         // =================================================== DEBUT DECLARATION DES VARIABLES ===================================================
         // =======================================================================================================================================
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
         // =====================================================================================================================================
         // =================================================== FIN DECLARATION DES VARIABLES ===================================================
         // =====================================================================================================================================
@@ -29,7 +29,7 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         // ====================================================================================================================================
         public F_ARTGAMMERepository(AppDbContext context)
         {
-            _context = context;
+            //_context = context;
         }
         // =====================================================================================================================================
         // =================================================== FIN DECLARATION DES VARIABLES ===================================================
@@ -45,6 +45,8 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         public void Create(F_ARTGAMME f_ARTGAMME)
         {
             string queryCreateF_ENUMGAMME = @"
+                DISABLE TRIGGER [dbo].[TG_INS_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+
                 INSERT INTO [dbo].[F_ARTGAMME]
                 (
                     AR_Ref,
@@ -70,25 +72,28 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
                     @cbReplication,
                     @cbFlag,
                     @cbCreation
-                )";
+                );
 
-            //_context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBINS_F_ARTGAMME] ON [dbo].[F_ARTGAMME]");
-            _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_INS_F_ARTGAMME] ON [dbo].[F_ARTGAMME]");
-            _context.Database.ExecuteSqlCommand(
-                queryCreateF_ENUMGAMME,
-                new SqlParameter("@AR_Ref", f_ARTGAMME.AR_Ref),
-                new SqlParameter("@AG_No", f_ARTGAMME.AG_No),
-                new SqlParameter("@EG_Enumere", f_ARTGAMME.EG_Enumere),
-                new SqlParameter("@AG_Type", f_ARTGAMME.AG_Type),
-                new SqlParameter("@cbProt", f_ARTGAMME.cbProt),
-                new SqlParameter("@cbCreateur", f_ARTGAMME.cbCreateur),
-                new SqlParameter("@cbModification", f_ARTGAMME.cbModification),
-                new SqlParameter("@cbReplication", f_ARTGAMME.cbReplication),
-                new SqlParameter("@cbFlag", f_ARTGAMME.cbFlag),
-                new SqlParameter("@cbCreation", f_ARTGAMME.cbCreation)
-            );
-            //_context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_CBINS_F_ARTGAMME] ON [dbo].[F_ARTGAMME]");
-            _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_INS_F_ARTGAMME] ON [dbo].[F_ARTGAMME]");
+                ENABLE TRIGGER [dbo].[TG_INS_F_ARTGAMME] ON [dbo].[F_ARTGAMME]
+            ";
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryCreateF_ENUMGAMME,
+                    new SqlParameter("@AR_Ref", f_ARTGAMME.AR_Ref),
+                    new SqlParameter("@AG_No", f_ARTGAMME.AG_No),
+                    new SqlParameter("@EG_Enumere", f_ARTGAMME.EG_Enumere),
+                    new SqlParameter("@AG_Type", f_ARTGAMME.AG_Type),
+                    new SqlParameter("@cbProt", f_ARTGAMME.cbProt),
+                    new SqlParameter("@cbCreateur", f_ARTGAMME.cbCreateur),
+                    new SqlParameter("@cbModification", f_ARTGAMME.cbModification),
+                    new SqlParameter("@cbReplication", f_ARTGAMME.cbReplication),
+                    new SqlParameter("@cbFlag", f_ARTGAMME.cbFlag),
+                    new SqlParameter("@cbCreation", f_ARTGAMME.cbCreation)
+                );
+            }
+
         }
 
 

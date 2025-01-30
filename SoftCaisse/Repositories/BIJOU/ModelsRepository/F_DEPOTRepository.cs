@@ -55,14 +55,23 @@ namespace SoftCaisse.Repositories
                     WHERE fDepot.DE_No = @DE_No
                 ";
 
-                int? DP_No = _context.Database.SqlQuery<int?>(
+                int? DP_No = 0;
+
+                using (var context = new AppDbContext())
+                {
+                    DP_No = context.Database.SqlQuery<int?>(
                         queryGetDP_No,
                         new SqlParameter("@AR_Ref", AR_Ref),
                         new SqlParameter("@DE_No", DE_No)
                     ).FirstOrDefault();
+                }
+
                 return DP_No;
             }
         }
+
+
+
 
 
         public int? GetDP_NoF_ARTSTOCKEMPL(string AR_Ref, int? DE_No)
@@ -98,11 +107,17 @@ namespace SoftCaisse.Repositories
                     WHERE fDepot.DE_No = @DE_No
                 ";
 
-                int? DP_No = _context.Database.SqlQuery<int?>(
+                int? DP_No = 0;
+
+                using (var context = new AppDbContext())
+                {
+                    DP_No = _context.Database.SqlQuery<int?>(
                         queryGetDP_No,
                         new SqlParameter("@AR_Ref", AR_Ref),
                         new SqlParameter("@DE_No", DE_No)
                     ).FirstOrDefault();
+                }
+
                 return DP_No;
             }
         }

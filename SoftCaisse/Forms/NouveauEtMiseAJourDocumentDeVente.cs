@@ -987,7 +987,7 @@ namespace SoftCaisse.Forms
                         _f_ARTSTOCKEMPLService.UpdateArtstockEmpl(_typeDocument, CT_NumClient, numeroLigneDL_Ligne, arRef, previousQuantite, quantiteEcriteStock, DE_No);
 
                         // Insertion F_DOCLIGNEEMPL
-                        _f_DOCLIGNEEMPLRepository.InsertDOCLIGNEEMPL((int)DP_NoSelectedRowDOCLIGNEPrincipal, Convert.ToInt32(txtBxQuantiteText));
+                        _f_DOCLIGNEEMPLRepository.InsertDOCLIGNEEMPL((int)DP_NoSelectedRowDOCLIGNEPrincipal, Convert.ToInt32(txtBxQuantiteText), arRef);
                     }
 
 

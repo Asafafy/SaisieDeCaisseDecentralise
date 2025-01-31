@@ -72,7 +72,7 @@ namespace SoftCaisse.Forms.StatCaisse
             {
 
 
-                var listes=statistiques.GroupBy(u => new { Caisse = u.post.meta.CA_Intitule, Designation = u.post.Post.meta.FA_Intitule, Reference = u.post.Post.meta.FA_CodeFamille }).ToList().Select(u =>
+                var listes = statistiques.GroupBy(u => new { Caisse = u.post.meta.CA_Intitule, Designation = u.post.Post.meta.FA_Intitule, Reference = u.post.Post.meta.FA_CodeFamille }).ToList().Select(u =>
                 {
                     return new Fstatistique()
                     {

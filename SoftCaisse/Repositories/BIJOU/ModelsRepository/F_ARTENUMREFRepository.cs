@@ -96,9 +96,9 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
                     new SqlParameter("@AR_Ref", nouveauf_ARTENUMREF.AR_Ref),
                     new SqlParameter("@AG_No1", nouveauf_ARTENUMREF.AG_No1),
                     new SqlParameter("@AG_No2", nouveauf_ARTENUMREF.AG_No2),
-                    new SqlParameter("@AE_Ref", nouveauf_ARTENUMREF.AE_Ref),
+                    new SqlParameter("@AE_Ref", nouveauf_ARTENUMREF.AE_Ref ?? (object)DBNull.Value),
                     new SqlParameter("@AE_PrixAch", nouveauf_ARTENUMREF.AE_PrixAch),
-                    new SqlParameter("@AE_CodeBarre", nouveauf_ARTENUMREF.AE_CodeBarre)
+                    new SqlParameter("@AE_CodeBarre", nouveauf_ARTENUMREF.AE_CodeBarre ?? (object)DBNull.Value)
                 );
             }
 

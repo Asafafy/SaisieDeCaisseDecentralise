@@ -256,7 +256,8 @@ namespace SoftCaisse.Forms
             // Enregistrement des entrées dans la table F_ARTENUMREF
             string AE_Ref = txtBxReference.Text;
             string AE_CodeBarre = txtBxCodeBarres.Text;
-            _f_ARTENUMREFService.NouveauGammePasAPas(_AR_Ref, _AG_No1, _AG_No2, AE_Ref, AE_CodeBarre);
+            decimal? AR_PrixAch = Convert.ToDecimal(txtBxPrixAch.Text);
+            _f_ARTENUMREFService.NouveauGammePasAPas(_AR_Ref, _AG_No1, _AG_No2, AE_Ref, AE_CodeBarre, AR_PrixAch);
 
             // Enregistrement des entrées dans la table F_TARIFGAM
             int numeroLigne = 0;

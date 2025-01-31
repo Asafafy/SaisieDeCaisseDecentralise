@@ -213,6 +213,7 @@ namespace SoftCaisse
             stat.Show();
         }
 
+
         private void artilceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ListeArticles("", false, false, null, 0).Show();

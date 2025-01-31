@@ -203,7 +203,7 @@ namespace SoftCaisse.Forms
                         P_GAMME p_GAMME = _context.P_GAMME.Where(elt => elt.G_Intitule == G_Intitule).FirstOrDefault();
                         List<F_ARTICLE> listeArticles = _context.F_ARTICLE.Where(a => a.AR_Gamme1 == p_GAMME.cbIndice || a.AR_Gamme2 == p_GAMME.cbIndice).ToList();
 
-                        int estGamme1 = 0;
+                        int estAG_No2 = 0;
 
                         if (listeArticles.Count > 0) // Des articles sont liés au gamme manipulé
                         {
@@ -223,12 +223,12 @@ namespace SoftCaisse.Forms
 
                                     foreach (F_ARTICLE f_ARTICLE in listeArticles)
                                     {
-                                        if (f_ARTICLE.AR_Gamme1 == p_GAMME.cbIndice)
-                                            estGamme1 = 1;
-                                        _f_ARTGAMMEService.NouveauGamme(f_ARTICLE.AR_Ref, nouveauNom, estGamme1);
+                                        if (f_ARTICLE.AR_Gamme2 == p_GAMME.cbIndice)
+                                            estAG_No2 = 1;
+                                        _f_ARTGAMMEService.NouveauGamme(f_ARTICLE.AR_Ref, nouveauNom, estAG_No2);
                                         _context = new AppDbContext();
                                         F_ARTGAMME f_ARTGAMME = _context.F_ARTGAMME.Where(artG => artG.EG_Enumere == nouveauNom).FirstOrDefault();
-                                        _f_ARTENUMREFService.NouveauGamme(f_ARTICLE.AR_Ref, estGamme1, (short)f_ARTGAMME.AG_No, "", "");
+                                        _f_ARTENUMREFService.NouveauGamme(f_ARTICLE.AR_Ref, estAG_No2, (short)f_ARTGAMME.AG_No, "", "");
                                     }
                                 }
                                 else
@@ -237,13 +237,13 @@ namespace SoftCaisse.Forms
 
                                     foreach (F_ARTICLE f_ARTICLE in listeArticles)
                                     {
-                                        if (f_ARTICLE.AR_Gamme1 == p_GAMME.cbIndice)
-                                            estGamme1 = 1;
-                                        _f_ARTGAMMEService.NouveauGamme(f_ARTICLE.AR_Ref, nouveauNom, estGamme1);
+                                        if (f_ARTICLE.AR_Gamme2 == p_GAMME.cbIndice)
+                                            estAG_No2 = 1;
+                                        _f_ARTGAMMEService.NouveauGamme(f_ARTICLE.AR_Ref, nouveauNom, estAG_No2);
 
                                         _context = new AppDbContext();
                                         F_ARTGAMME f_ARTGAMME = _context.F_ARTGAMME.Where(artG => artG.EG_Enumere == nouveauNom).FirstOrDefault();
-                                        List<(int?, int?)> listeAG_No = _f_ARTENUMREFService.GetCombinaisonsAG_No(f_ARTICLE, estGamme1, (short?)f_ARTGAMME.AG_No);
+                                        List<(int?, int?)> listeAG_No = _f_ARTENUMREFService.GetCombinaisonsAG_No(f_ARTICLE, estAG_No2, (short?)f_ARTGAMME.AG_No);
                                         foreach (var (AG_No1, AG_No2) in listeAG_No)
                                         {
                                             CreationManuelleEnumgamme creationManuelleEnumgamme = new CreationManuelleEnumgamme(AG_No1, AG_No2, f_ARTICLE.AR_Ref);

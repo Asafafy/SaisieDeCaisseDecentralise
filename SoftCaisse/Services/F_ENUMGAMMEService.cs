@@ -53,6 +53,16 @@ namespace SoftCaisse.Services
 
 
 
+        public List<F_ENUMGAMME> GetAllEnumOfAGamme(short? cbIndiceP_GAMME)
+        {
+            using (var context = new AppDbContext())
+            {
+                return _context.F_ENUMGAMME.Where(eg => eg.EG_Champ == cbIndiceP_GAMME).ToList();
+            }
+        }
+
+
+
 
         public void UpdateGamme(string G_Intitule_Avant, string Nouveau_G_Intitule)
         {

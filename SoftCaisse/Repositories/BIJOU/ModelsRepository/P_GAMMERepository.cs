@@ -12,14 +12,53 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
     public class P_GAMMERepository
     {
         // DECLARATION DES VARIABLES
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
 
 
 
         public P_GAMMERepository(AppDbContext context)
         {
-            _context = context;
+            //_context = context;
         }
+
+
+
+
+
+        public List<P_GAMME> GetAll()
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.P_GAMME.Where(g => g.G_Intitule != "" && g.G_Type == 0).ToList();
+            }
+        }
+
+
+
+
+
+        public List<P_GAMME> GetAllNotEmptyString()
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.P_GAMME.Where(g => g.G_Intitule != "" && g.G_Type == 0).ToList();
+            }
+        }
+
+
+
+
+
+        public P_GAMME Get_P_GAMMEBy_G_Intitule(string G_Intitule)
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.P_GAMME.Where(pg => pg.G_Intitule == G_Intitule).FirstOrDefault();
+            }
+        }
+
+
+
 
 
         public void Update(int cbMarq, string G_Intitule)
@@ -44,6 +83,8 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
                 );
             }
         }
+
+
 
 
 

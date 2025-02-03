@@ -38,9 +38,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSuppr = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnNouvelleGamme = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnNouvelleEnum = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.btnSuppr = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,6 +140,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(537, 30);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
+            // btnSuppr
+            // 
+            this.btnSuppr.Location = new System.Drawing.Point(443, 2);
+            this.btnSuppr.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSuppr.Name = "btnSuppr";
+            this.btnSuppr.Palette = this.kryptonPalette1;
+            this.btnSuppr.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnSuppr.Size = new System.Drawing.Size(88, 26);
+            this.btnSuppr.TabIndex = 10;
+            this.btnSuppr.Values.Text = "Supprimer";
+            this.btnSuppr.Click += new System.EventHandler(this.btnSuppr_Click);
+            // 
             // btnNouvelleGamme
             // 
             this.btnNouvelleGamme.Location = new System.Drawing.Point(15, 281);
@@ -163,17 +175,6 @@
             this.btnNouvelleEnum.TabIndex = 13;
             this.btnNouvelleEnum.Values.Text = "Nouvelle énumération";
             this.btnNouvelleEnum.Click += new System.EventHandler(this.btnNouvelleEnum_Click);
-            // 
-            // btnSuppr
-            // 
-            this.btnSuppr.Location = new System.Drawing.Point(443, 2);
-            this.btnSuppr.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSuppr.Name = "btnSuppr";
-            this.btnSuppr.Palette = this.kryptonPalette1;
-            this.btnSuppr.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnSuppr.Size = new System.Drawing.Size(88, 26);
-            this.btnSuppr.TabIndex = 10;
-            this.btnSuppr.Values.Text = "Supprimer";
             // 
             // GammeForm
             // 

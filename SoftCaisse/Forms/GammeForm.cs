@@ -355,6 +355,47 @@ namespace SoftCaisse.Forms
 
 
 
+
+        private void btnSuppr_Click(object sender, EventArgs e)
+        {
+            // CAS SUPPRESSION D'UNE GAMME ====================================================================================================================
+            if (estGamme == 1)
+            {
+                elementSelectionne = listBox1.SelectedItem.ToString();
+
+                P_GAMME gammeToDelete = _p_GAMMERepository.Get_P_GAMMEBy_G_Intitule(elementSelectionne);
+                List<F_ENUMGAMME> enumeresDeLaGamme = _f_ENUMGAMMEService.GetAllEnumOfAGamme(gammeToDelete.cbIndice);
+                if (enumeresDeLaGamme.Count() > 1)
+                {
+                    MessageBox.Show("Vous ne pouvez pas supprimer une gamme qui contient des énumérés.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                _p_GAMMEService.SupprimerGamme(elementSelectionne);
+
+
+                // Refresh listes à afficher
+                List<P_GAMME> listeGammesRefresh = _p_GAMMERepository.GetAll();
+                P_GAMME gammeSelectionne = listeGammesRefresh[0];
+                List<F_ENUMGAMME> f_ENUMGAMMEs = _f_ENUMGAMMEService.GetAllEnumOfAGamme(gammeSelectionne.cbIndice);
+
+                listBox1.DataSource = null;
+                listBox1.DataSource = listeGammesRefresh.Select(g => g.G_Intitule).ToList();
+                listBox1.SelectedIndex = 0;
+                listBox2.DataSource = null;
+                listBox2.DataSource = f_ENUMGAMMEs.Select(eg => eg.EG_Enumere).ToList();
+            }
+
+
+            // CAS SUPPRESSION D'UN ENUMERE DE GAMME =========================================================================================================
+            else
+            {
+
+            }
+        }
+
+
+
+
         // =========================================================================================================================================================================================
         // ===================================================================================== FIN EVENEMENTS ====================================================================================
         // =========================================================================================================================================================================================

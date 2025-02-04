@@ -30,15 +30,15 @@ namespace SoftCaisse.Services
 
         public string NouveauGamme(string G_Intitule)
         {
-            List<P_GAMME> listeGammes = _p_GAMMERepository.GetAll();
-            P_GAMME p_GAMME = listeGammes.Where(g => g.G_Intitule == "" && g.G_Type == 0).FirstOrDefault();
-            if (p_GAMME == null)
+            List<P_GAMME> listeGammesModifiables = _p_GAMMERepository.GetAllEmptyStringAndTypeZero();
+            P_GAMME p_GAMMEToUpdate = listeGammesModifiables.FirstOrDefault();
+            if (p_GAMMEToUpdate == null)
             {
                 return null;
             }
             else
             {
-                _p_GAMMERepository.Update(p_GAMME.cbMarq, G_Intitule);
+                _p_GAMMERepository.Update(p_GAMMEToUpdate.cbMarq, G_Intitule);
                 return "success";
             }
         }

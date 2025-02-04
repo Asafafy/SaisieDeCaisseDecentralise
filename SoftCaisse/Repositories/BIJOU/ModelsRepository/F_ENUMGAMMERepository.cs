@@ -26,6 +26,27 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
 
+        public List<F_ENUMGAMME> GetAllEnumGammeOfAGamme(short? EG_Champ_F_ENUMGAMMEs)
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.F_ENUMGAMME.Where(variante => variante.EG_Champ == EG_Champ_F_ENUMGAMMEs).ToList();
+            }
+        }
+
+
+
+
+        public F_ENUMGAMME GetByEG_Enumere(string EG_Enumere)
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.F_ENUMGAMME.Where(eg => eg.EG_Enumere == EG_Enumere).FirstOrDefault();
+            }
+        }
+
+
+
 
 
         public void Create(F_ENUMGAMME f_ENUMGAMME)
@@ -85,26 +106,52 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
 
-        //TODO: Mbola misy tsy milamina eto anh..... Mbola mila étudiena kely aloha vao mety.....
-        //public void Update(int cbMarq, string EG_Enumere)
-        //{
-        //    string queryUpdateF_ENUMGAMME = @"
-        //        UPDATE F_ENUMGAMME
-        //        SET
-        //            EG_Enumere = @EG_Enumere
-        //        WHERE cbMarq = @cbMarq
-        //    ";
 
-        //    _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_UPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
-        //    _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBUPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
-        //    _context.Database.ExecuteSqlCommand(
-        //    queryUpdateF_ENUMGAMME,
-        //        new SqlParameter("@EG_Enumere", EG_Enumere),
-        //        new SqlParameter("@cbMarq", cbMarq)
-        //    );
-        //    _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_UPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
-        //    _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_CBUPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
-        //}
+        public void DeleteEnumGamme(int cbMarq)
+        {
+            string queryDeleteF_ENUMGAMME = @"
+                DISABLE TRIGGER [dbo].[TG_CBDEL_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME];
+                DELETE FROM F_ENUMGAMME WHERE cbMarq = @cbMarq;
+                DISABLE TRIGGER [dbo].[TG_CBDEL_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME];
+            ";
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryDeleteF_ENUMGAMME,
+                    new SqlParameter("@cbMarq", cbMarq)
+                );
+            }
+        }
+
+
+        
+        public void Update(int cbMarq, string EG_Enumere)
+        {
+            string queryUpdateF_ENUMGAMME = @"
+                DISABLE TRIGGER [dbo].[TG_UPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME];
+                DISABLE TRIGGER [dbo].[TG_CBUPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME];
+                
+                UPDATE F_ENUMGAMME
+                SET
+                    EG_Enumere = @EG_Enumere
+                WHERE cbMarq = @cbMarq;
+                
+                ENABLE TRIGGER [dbo].[TG_UPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME];
+                ENABLE TRIGGER [dbo].[TG_CBUPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME];
+            ";
+
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryUpdateF_ENUMGAMME,
+                    new SqlParameter("@EG_Enumere", EG_Enumere),
+                    new SqlParameter("@cbMarq", cbMarq)
+                );
+            }
+
+        }
 
 
 

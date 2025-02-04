@@ -53,23 +53,22 @@ namespace SoftCaisse.Services
 
 
 
-        public List<F_ENUMGAMME> GetAllEnumOfAGamme(short? cbIndiceP_GAMME)
+
+
+
+        public void UpdateEnumGamme(string G_Intitule_Avant, string Nouveau_G_Intitule)
         {
-            using (var context = new AppDbContext())
-            {
-                return _context.F_ENUMGAMME.Where(eg => eg.EG_Champ == cbIndiceP_GAMME).ToList();
-            }
+            F_ENUMGAMME f_ENUMGAMMEToUpdate = _f_ENUMGAMMERepository.GetByEG_Enumere(G_Intitule_Avant);
+            _f_ENUMGAMMERepository.Update(f_ENUMGAMMEToUpdate.cbMarq, Nouveau_G_Intitule);
         }
 
 
 
-
-        public void UpdateGamme(string G_Intitule_Avant, string Nouveau_G_Intitule)
+        public void DeleteEnumGamme(string EG_Enumere)
         {
-            //P_GAMME p_GAMME = _context.P_GAMME.Where(g => g.G_Intitule == G_Intitule_Avant).FirstOrDefault();
-            //_p_GAMMERepository.Update(p_GAMME.cbMarq, Nouveau_G_Intitule);
+            F_ENUMGAMME f_ENUMGAMMEToDelete = _f_ENUMGAMMERepository.GetByEG_Enumere(EG_Enumere);
+            _f_ENUMGAMMERepository.DeleteEnumGamme(f_ENUMGAMMEToDelete.cbMarq);
         }
-
 
 
 

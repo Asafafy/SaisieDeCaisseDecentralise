@@ -25,7 +25,19 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
 
-        public List<P_GAMME> GetAll()
+        public List<P_GAMME> GetAllTypeZero()
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.P_GAMME.Where(g => g.G_Type == 0).ToList();
+            }
+        }
+
+
+
+
+
+        public List<P_GAMME> GetAllNotEmptyStringAndTypeZero()
         {
             using (var context = new AppDbContext())
             {
@@ -37,11 +49,11 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
 
-        public List<P_GAMME> GetAllNotEmptyString()
+        public List<P_GAMME> GetAllEmptyStringAndTypeZero()
         {
             using (var context = new AppDbContext())
             {
-                return context.P_GAMME.Where(g => g.G_Intitule != "" && g.G_Type == 0).ToList();
+                return context.P_GAMME.Where(g => g.G_Intitule == "" && g.G_Type == 0).ToList();
             }
         }
 

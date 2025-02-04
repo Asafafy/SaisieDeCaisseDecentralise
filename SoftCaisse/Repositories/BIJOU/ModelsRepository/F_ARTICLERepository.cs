@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    public class F_ARTICLERepository : IRepository<DTO.Article>
+    public class F_ARTICLERepository
     {
         private readonly AppDbContext _context;
 
@@ -14,15 +14,7 @@ namespace SoftCaisse.Repositories
             _context = context;
         }
 
-        public void Add(DTO.Article entity)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<DTO.Article> GetAll()
         {
@@ -39,14 +31,13 @@ namespace SoftCaisse.Repositories
                 }).ToList();
         }
 
-        public DTO.Article GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Update(DTO.Article entity)
+        public List<F_ARTICLE> GetAllF_ARTICLE()
         {
-            throw new NotImplementedException();
+            using (var context = new AppDbContext())
+            {
+                return context.F_ARTICLE.ToList();
+            }
         }
     }
 }

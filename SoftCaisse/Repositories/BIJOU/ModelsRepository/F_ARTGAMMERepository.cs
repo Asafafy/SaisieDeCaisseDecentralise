@@ -42,6 +42,18 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         // ======================================================================================================================================
         // =================================================== DEBUT DECLARATION DES METHODES ===================================================
         // ======================================================================================================================================
+        public F_ARTGAMME GetByEG_Enumere(string EG_Enumere)
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.F_ARTGAMME.Where(eg => eg.EG_Enumere == EG_Enumere).FirstOrDefault();
+            }
+        }
+
+
+
+
+
         public void Create(F_ARTGAMME f_ARTGAMME)
         {
             string queryCreateF_ENUMGAMME = @"

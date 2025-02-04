@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
 using Microsoft.ReportingServices.RdlExpressions.ExpressionHostObjectModel;
 using SoftCaisse.Models;
+using SoftCaisse.Repositories;
 using SoftCaisse.Repositories.BIJOU.ModelsRepository;
 using SoftCaisse.Services;
 
@@ -34,6 +35,7 @@ namespace SoftCaisse.Forms
         private readonly F_ENUMGAMMERepository _f_ENUMGAMMERepository;
         private readonly F_ARTENUMREFRepository _f_ARTENUMREFRepository;
         private readonly F_ARTGAMMERepository _f_ARTGAMMERepository;
+        private readonly F_ARTICLERepository _f_ARTICLERepository;
 
         private readonly P_GAMMEService _p_GAMMEService;
         private readonly F_ENUMGAMMEService _f_ENUMGAMMEService;
@@ -60,6 +62,7 @@ namespace SoftCaisse.Forms
             _f_ENUMGAMMERepository = new F_ENUMGAMMERepository(_context);
             _f_ARTENUMREFRepository = new F_ARTENUMREFRepository(_context);
             _f_ARTGAMMERepository = new F_ARTGAMMERepository(_context);
+            _f_ARTICLERepository = new F_ARTICLERepository(_context);
 
             _p_GAMMEService = new P_GAMMEService(_context, _p_GAMMERepository);
             _f_ENUMGAMMEService = new F_ENUMGAMMEService(_context, _f_ENUMGAMMERepository);
@@ -70,9 +73,9 @@ namespace SoftCaisse.Forms
 
             btnEnregistrer.Enabled = false;
 
-            List<P_GAMME> P_GAMMEs = _context.P_GAMME.Where(g => g.G_Intitule != "" && g.G_Type == 0).ToList();
+            List<P_GAMME> P_GAMMEs = _p_GAMMERepository.GetAllNotEmptyStringAndTypeZero();
             short? EG_Champ_F_ENUMGAMMEs = P_GAMMEs[0].cbIndice;
-            List<F_ENUMGAMME> f_ENUMGAMMEs = _context.F_ENUMGAMME.Where(variante => variante.EG_Champ == EG_Champ_F_ENUMGAMMEs).ToList();
+            List<F_ENUMGAMME> f_ENUMGAMMEs = _f_ENUMGAMMERepository.GetAllEnumGammeOfAGamme(EG_Champ_F_ENUMGAMMEs);
 
             textBox1.Text = P_GAMMEs[0].G_Intitule;
             
@@ -81,6 +84,35 @@ namespace SoftCaisse.Forms
         }
         // =========================================================================================================================================================================================
         // ==================================================================================== FIN CONSTRUCTEUR ===================================================================================
+        // =========================================================================================================================================================================================
+
+
+
+
+
+        // =========================================================================================================================================================================================
+        // =============================================================================== DEBUT FONCTIONS INTERNES ================================================================================
+        // =========================================================================================================================================================================================
+        public void RefreshListBox1(string nomSelectedGamme)
+        {
+            listBox1.DataSource = null;
+            List<P_GAMME> listeGammesRefresh = _p_GAMMERepository.GetAllNotEmptyStringAndTypeZero();
+            listBox1.DataSource = listeGammesRefresh.Select(g => g.G_Intitule).ToList();
+            int index = listBox1.FindStringExact(nomSelectedGamme);
+            listBox1.SelectedIndex = index;
+        }
+
+
+
+        public void RefreshListBox2()
+        {
+            listBox2.DataSource = null;
+            short? EG_Champ_F_ENUMGAMMEs = _p_GAMMERepository.Get_P_GAMMEBy_G_Intitule(listBox1.SelectedItem.ToString()).cbIndice;
+            List<F_ENUMGAMME> f_ENUMGAMMEs = _f_ENUMGAMMERepository.GetAllEnumGammeOfAGamme(EG_Champ_F_ENUMGAMMEs);
+            listBox2.DataSource = f_ENUMGAMMEs.Select(eg => eg.EG_Enumere).ToList();
+        }
+        // =========================================================================================================================================================================================
+        // ================================================================================ FIN FONCTIONS INTERNES =================================================================================
         // =========================================================================================================================================================================================
 
 
@@ -97,13 +129,12 @@ namespace SoftCaisse.Forms
                 estNouveau = 0;
                 estGamme = 1;
 
-                P_GAMME p_GAMME = _context.P_GAMME.Where(elt => elt.G_Intitule == listBox1.SelectedItem.ToString()).FirstOrDefault();
-                List<F_ENUMGAMME> f_ENUMGAMMEs = _context.F_ENUMGAMME.Where(variante => variante.EG_Champ == p_GAMME.cbIndice).ToList();
+                P_GAMME p_GAMME = _p_GAMMERepository.Get_P_GAMMEBy_G_Intitule(listBox1.SelectedItem.ToString());
                 
                 elementSelectionne = p_GAMME.G_Intitule;
-                listBox2.DataSource = null;
-                listBox2.DataSource = f_ENUMGAMMEs.Select(eg => eg.EG_Enumere).ToList();
                 textBox1.Text = p_GAMME.G_Intitule;
+
+                RefreshListBox2();
 
                 btnSuppr.Enabled = true;
                 btnNouvelleEnum.Enabled = true;
@@ -126,9 +157,10 @@ namespace SoftCaisse.Forms
                 estNouveau = 0;
                 estGamme = 0;
 
-                F_ENUMGAMME f_ENUMGAMME = _context.F_ENUMGAMME.Where(variante => variante.EG_Enumere == listBox2.SelectedItem.ToString()).FirstOrDefault();
+                F_ENUMGAMME f_ENUMGAMME = _f_ENUMGAMMERepository.GetByEG_Enumere(listBox2.SelectedItem.ToString());
                 elementSelectionne = f_ENUMGAMME.EG_Enumere;
                 textBox1.Text = f_ENUMGAMME.EG_Enumere;
+
                 btnSuppr.Enabled = true;
             }
             else
@@ -168,20 +200,14 @@ namespace SoftCaisse.Forms
                 // CAS GAMME ==============================================================================================================================
                 if (estGamme == 1)
                 {
-                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z].*[a-zA-Z].*[a-zA-Z]"))
+                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z0-9]{3,}"))
                     {
                         string resultat = _p_GAMMEService.NouveauGamme(nouveauNom);
                         if (resultat == "success")
                         {
                             MessageBox.Show("Nouvelle gamme enregistrée avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            _context = new AppDbContext();
-                            List<P_GAMME> p_GAMMEs = _context.P_GAMME.Where(g => g.G_Intitule != "" && g.G_Type == 0).AsNoTracking().ToList();
-
-                            listBox1.DataSource = null;
-                            listBox1.DataSource = p_GAMMEs.Select(g => g.G_Intitule).ToList();
-                            int index = listBox1.FindStringExact(nouveauNom);
-                            listBox1.SelectedIndex = index;
+                            RefreshListBox1(nouveauNom);
                             listBox2.DataSource = null;
                         }
                         else
@@ -191,17 +217,18 @@ namespace SoftCaisse.Forms
                     }
                     else
                     {
-                        MessageBox.Show("Entrez au moins trois lettres de l'alphabet.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Entrez au moins trois caractères.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 // CAS ENUMGAMME ==============================================================================================================================
                 else
                 {
-                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z].*[a-zA-Z].*[a-zA-Z]"))
+                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z0-9]{3,}"))
                     {
                         string G_Intitule = listBox1.SelectedItem.ToString();
-                        P_GAMME p_GAMME = _context.P_GAMME.Where(elt => elt.G_Intitule == G_Intitule).FirstOrDefault();
-                        List<F_ARTICLE> listeArticles = _context.F_ARTICLE.Where(a => a.AR_Gamme1 == p_GAMME.cbIndice || a.AR_Gamme2 == p_GAMME.cbIndice).ToList();
+                        P_GAMME p_GAMME = _p_GAMMERepository.Get_P_GAMMEBy_G_Intitule(G_Intitule);
+                        List<F_ARTICLE> listeArticles = _f_ARTICLERepository.GetAllF_ARTICLE();
+                        List<F_ARTICLE> listeArticlesHavingGamme1Ou2 = listeArticles.Where(a => a.AR_Gamme1 == p_GAMME.cbIndice || a.AR_Gamme2 == p_GAMME.cbIndice).ToList();
 
                         int estAG_No2 = 0;
 
@@ -226,8 +253,8 @@ namespace SoftCaisse.Forms
                                         if (f_ARTICLE.AR_Gamme2 == p_GAMME.cbIndice)
                                             estAG_No2 = 1;
                                         _f_ARTGAMMEService.NouveauGamme(f_ARTICLE.AR_Ref, nouveauNom, estAG_No2);
-                                        _context = new AppDbContext();
-                                        F_ARTGAMME f_ARTGAMME = _context.F_ARTGAMME.Where(artG => artG.EG_Enumere == nouveauNom).FirstOrDefault();
+
+                                        F_ARTGAMME f_ARTGAMME = _f_ARTGAMMERepository.GetByEG_Enumere(nouveauNom);
                                         _f_ARTENUMREFService.NouveauGamme(f_ARTICLE.AR_Ref, estAG_No2, (short)f_ARTGAMME.AG_No, "", "");
                                     }
                                 }
@@ -241,8 +268,7 @@ namespace SoftCaisse.Forms
                                             estAG_No2 = 1;
                                         _f_ARTGAMMEService.NouveauGamme(f_ARTICLE.AR_Ref, nouveauNom, estAG_No2);
 
-                                        _context = new AppDbContext();
-                                        F_ARTGAMME f_ARTGAMME = _context.F_ARTGAMME.Where(artG => artG.EG_Enumere == nouveauNom).FirstOrDefault();
+                                        F_ARTGAMME f_ARTGAMME = _f_ARTGAMMERepository.GetByEG_Enumere(nouveauNom);
                                         List<(int?, int?)> listeAG_No = _f_ARTENUMREFService.GetCombinaisonsAG_No(f_ARTICLE, estAG_No2, (short?)f_ARTGAMME.AG_No);
                                         foreach (var (AG_No1, AG_No2) in listeAG_No)
                                         {
@@ -250,7 +276,7 @@ namespace SoftCaisse.Forms
                                             creationManuelleEnumgamme.ShowDialog();
                                             if (choixCreationENUMGAMME.Resultat != null)
                                             {
-
+                                                // TODO eto : Otran misy tokony hatao eto...
                                             }
                                         }
                                     }
@@ -260,19 +286,14 @@ namespace SoftCaisse.Forms
                         else // Aucun article n'est lié au gamme manipulé
                         {
                             _f_ENUMGAMMEService.NouveauGamme(p_GAMME.cbIndice, nouveauNom);
-
                         }
 
                         // Rafaichir la liste des enumgammes après tout traitement
-                        _context = new AppDbContext();
-                        listBox2.DataSource = null;
-                        listBox2.DataSource = _context.F_ENUMGAMME.Where(eg => eg.EG_Enumere == nouveauNom).Select(eg => eg.EG_Enumere).ToList();
-                        int index = listBox2.FindStringExact(nouveauNom);
-                        listBox2.SelectedIndex = index;
+                        RefreshListBox2();
                     }
                     else
                     {
-                        MessageBox.Show("Entrez au moins trois lettres de l'alphabet.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Entrez au moins trois caractères.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -284,43 +305,36 @@ namespace SoftCaisse.Forms
                 // CAS GAMME ==============================================================================================================================
                 if (estGamme == 1)
                 {
-                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z].*[a-zA-Z].*[a-zA-Z]"))
+                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z0-9]{3,}"))
                     {
                         _p_GAMMEService.UpdateGamme(elementSelectionne, nouveauNom);
 
-                        _context = new AppDbContext();
-                        P_GAMME p_GAMME = _context.P_GAMME.Where(elt => elt.G_Intitule == nouveauNom).FirstOrDefault();
-                        List<F_ENUMGAMME> f_ENUMGAMMEs = _context.F_ENUMGAMME.Where(variante => variante.EG_Champ == p_GAMME.cbIndice).ToList();
-                        List<P_GAMME> p_GAMMEs = _context.P_GAMME.Where(g => g.G_Intitule != "" && g.G_Type == 0).AsNoTracking().ToList();
+                        RefreshListBox1(nouveauNom);
+                        RefreshListBox2();
 
-                        listBox1.DataSource = null;
-                        listBox1.DataSource = p_GAMMEs.Select(g => g.G_Intitule).ToList();
-                        int index = listBox1.FindStringExact(nouveauNom);
-                        listBox1.SelectedIndex = index;
-                        listBox2.DataSource = null;
-                        listBox2.DataSource = f_ENUMGAMMEs.Select(eg => eg.EG_Enumere).ToList();
-
-                        elementSelectionne = p_GAMME.G_Intitule;
-                        textBox1.Text = p_GAMME.G_Intitule;
+                        elementSelectionne = nouveauNom;
+                        textBox1.Text = nouveauNom;
 
                         btnSuppr.Enabled = true;
                         btnNouvelleEnum.Enabled = true;
                     }
                     else
                     {
-                        MessageBox.Show("Entrez au moins trois lettres de l'alphabet.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Entrez au moins trois caractères.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 // CAS ENUMGAMME ==============================================================================================================================
                 else
                 {
-                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z].*[a-zA-Z].*[a-zA-Z]"))
+                    if (Regex.IsMatch(nouveauNom, @"[a-zA-Z0-9]{3,}"))
                     {
-
+                        
+                        elementSelectionne = nouveauNom;
+                        textBox1.Text = nouveauNom;
                     }
                     else
                     {
-                        MessageBox.Show("Entrez au moins trois lettres de l'alphabet.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Entrez au moins trois caractères.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -364,7 +378,7 @@ namespace SoftCaisse.Forms
                 elementSelectionne = listBox1.SelectedItem.ToString();
 
                 P_GAMME gammeToDelete = _p_GAMMERepository.Get_P_GAMMEBy_G_Intitule(elementSelectionne);
-                List<F_ENUMGAMME> enumeresDeLaGamme = _f_ENUMGAMMEService.GetAllEnumOfAGamme(gammeToDelete.cbIndice);
+                List<F_ENUMGAMME> enumeresDeLaGamme = _f_ENUMGAMMERepository.GetAllEnumGammeOfAGamme(gammeToDelete.cbIndice);
                 if (enumeresDeLaGamme.Count() > 1)
                 {
                     MessageBox.Show("Vous ne pouvez pas supprimer une gamme qui contient des énumérés.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -374,22 +388,22 @@ namespace SoftCaisse.Forms
 
 
                 // Refresh listes à afficher
-                List<P_GAMME> listeGammesRefresh = _p_GAMMERepository.GetAll();
+                List<P_GAMME> listeGammesRefresh = _p_GAMMERepository.GetAllTypeZero();
                 P_GAMME gammeSelectionne = listeGammesRefresh[0];
-                List<F_ENUMGAMME> f_ENUMGAMMEs = _f_ENUMGAMMEService.GetAllEnumOfAGamme(gammeSelectionne.cbIndice);
-
-                listBox1.DataSource = null;
-                listBox1.DataSource = listeGammesRefresh.Select(g => g.G_Intitule).ToList();
-                listBox1.SelectedIndex = 0;
-                listBox2.DataSource = null;
-                listBox2.DataSource = f_ENUMGAMMEs.Select(eg => eg.EG_Enumere).ToList();
+                RefreshListBox1(gammeSelectionne.G_Intitule);
+                RefreshListBox2();
             }
 
 
             // CAS SUPPRESSION D'UN ENUMERE DE GAMME =========================================================================================================
             else
             {
+                elementSelectionne = listBox2.SelectedItem.ToString();
+                int indexeGammeSelect = listBox1.SelectedIndex;
 
+                _f_ENUMGAMMEService.DeleteEnumGamme(elementSelectionne);
+
+                RefreshListBox2();
             }
         }
 

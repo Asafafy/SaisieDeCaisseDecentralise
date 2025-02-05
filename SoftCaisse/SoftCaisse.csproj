@@ -93,6 +93,18 @@
     <Compile Include="Forms\CreationManuelleEnumgamme.Designer.cs">
       <DependentUpon>CreationManuelleEnumgamme.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CreerEnumereArticlesAyantDeuxGammes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreerEnumereArticlesAyantDeuxGammes.Designer.cs">
+      <DependentUpon>CreerEnumereArticlesAyantDeuxGammes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreerEnumereArticlesAyantUnSeulGamme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreerEnumereArticlesAyantUnSeulGamme.Designer.cs">
+      <DependentUpon>CreerEnumereArticlesAyantUnSeulGamme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DetailsArticle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -535,6 +547,12 @@
     <EmbeddedResource Include="Forms\CreationManuelleEnumgamme.resx">
       <DependentUpon>CreationManuelleEnumgamme.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreerEnumereArticlesAyantDeuxGammes.resx">
+      <DependentUpon>CreerEnumereArticlesAyantDeuxGammes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreerEnumereArticlesAyantUnSeulGamme.resx">
+      <DependentUpon>CreerEnumereArticlesAyantUnSeulGamme.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GammeForm.resx">
       <DependentUpon>GammeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -708,11 +726,6 @@
     <None Include="DataSetEnt.xss">
       <DependentUpon>DataSetEnt.xsd</DependentUpon>
     </None>
-    <None Include="Multimedia\Garantie_CHORFA.doc" />
-    <None Include="Multimedia\Garantie_CHSR10.doc" />
-    <None Include="Multimedia\Garantie_COAR002.doc" />
-    <None Include="Multimedia\Garantie_ENSHF.doc" />
-    <None Include="Multimedia\Garantie_LINGOR18.doc" />
     <None Include="Properties\DataSources\SoftCaisse.DTO.ListeEcheancesPourImpressionDocumentsDeVente.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -731,73 +744,9 @@
     <Content Include="cash-register_icon-icons.com_72250.ico" />
     <Content Include="Images\Société\ArticleIcon.png" />
     <Content Include="Images\Société\comptabilite.png" />
-    <Content Include="Multimedia\BAAR01.gif" />
-    <Content Include="Multimedia\BAAR01.jpg" />
-    <Content Include="Multimedia\BAOR01.gif" />
-    <Content Include="Multimedia\BAOR01.jpg" />
-    <Content Include="Multimedia\BRAAR10.gif" />
-    <Content Include="Multimedia\BRAAR10.jpg" />
-    <Content Include="Multimedia\CaratSarl_Logo.bmp" />
-    <Content Include="Multimedia\CaratSarl_Pres.txt" />
-    <Content Include="Multimedia\CHAOR42.gif" />
-    <Content Include="Multimedia\CHAOR42.jpg" />
-    <Content Include="Multimedia\CHFE01.gif" />
-    <Content Include="Multimedia\CHFE01.jpg" />
-    <Content Include="Multimedia\COAR001.gif" />
-    <Content Include="Multimedia\COAR001.jpg" />
-    <Content Include="Multimedia\COR1.gif" />
-    <Content Include="Multimedia\COR1.jpg" />
-    <Content Include="Multimedia\EM040.gif" />
-    <Content Include="Multimedia\EM040.jpg" />
-    <Content Include="Multimedia\EM050.gif" />
-    <Content Include="Multimedia\EM050.jpg" />
-    <Content Include="Multimedia\Eng_BAAR01.htm" />
-    <Content Include="Multimedia\Eng_BAOR01.htm" />
-    <Content Include="Multimedia\Eng_BRAAR10.htm" />
-    <Content Include="Multimedia\Eng_CHAOR42.htm" />
-    <Content Include="Multimedia\Eng_CHFE01.htm" />
-    <Content Include="Multimedia\Eng_COAR001.htm" />
-    <Content Include="Multimedia\Eng_COR1.htm" />
-    <Content Include="Multimedia\Eng_EM040.htm" />
-    <Content Include="Multimedia\Eng_EM050.htm" />
-    <Content Include="Multimedia\Eng_GRAVURE.htm" />
-    <Content Include="Multimedia\Eng_MODIV01.htm" />
-    <Content Include="Multimedia\Eng_MOOR001.htm" />
-    <Content Include="Multimedia\Eng_MOOR002.htm" />
-    <Content Include="Multimedia\Eng_PAEM001.htm" />
-    <Content Include="Multimedia\Eng_PIL377REN.htm" />
-    <Content Include="Multimedia\Eng_SETA.htm" />
-    <Content Include="Multimedia\ENSHF.gif" />
-    <Content Include="Multimedia\ENSHF.jpg" />
-    <Content Include="Multimedia\Fra_BAAR01.htm" />
-    <Content Include="Multimedia\Fra_BAOR01.htm" />
-    <Content Include="Multimedia\Fra_BRAAR10.htm" />
-    <Content Include="Multimedia\Fra_CHAOR42.htm" />
-    <Content Include="Multimedia\Fra_CHFE01.htm" />
-    <Content Include="Multimedia\Fra_COAR001.htm" />
-    <Content Include="Multimedia\Fra_COR1.htm" />
-    <Content Include="Multimedia\Fra_EM040.htm" />
-    <Content Include="Multimedia\Fra_EM050.htm" />
-    <Content Include="Multimedia\Fra_GRAVURE.htm" />
-    <Content Include="Multimedia\Fra_MODIV01.htm" />
-    <Content Include="Multimedia\Fra_MOOR001.htm" />
-    <Content Include="Multimedia\Fra_MOOR002.htm" />
-    <Content Include="Multimedia\Fra_PAEM001.htm" />
-    <Content Include="Multimedia\Fra_PIL377REN.htm" />
-    <Content Include="Multimedia\Fra_SETA.htm" />
-    <Content Include="Multimedia\MODIV01.gif" />
-    <Content Include="Multimedia\MODIV01.jpg" />
-    <Content Include="Multimedia\MOOR001.gif" />
-    <Content Include="Multimedia\MOOR001.jpg" />
-    <Content Include="Multimedia\MOOR002.gif" />
-    <Content Include="Multimedia\MOOR002.jpg" />
-    <Content Include="Multimedia\PIL377REN.gif" />
-    <Content Include="Multimedia\PIL377REN.jpg" />
     <Content Include="Images\Société\Cash Register_96px.png" />
     <Content Include="Images\Société\Coins_96px.png" />
     <Content Include="Images\Société\ProfilPic.png" />
-    <Content Include="Multimedia\STYPLOR.gif" />
-    <Content Include="Multimedia\STYPLOR.jpg" />
     <Content Include="LOGO SOFTWELL.ico" />
     <None Include="Resources\icons8-star-50.png" />
     <None Include="Resources\search.png" />

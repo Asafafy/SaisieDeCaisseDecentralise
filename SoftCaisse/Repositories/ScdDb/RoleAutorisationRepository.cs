@@ -6,13 +6,13 @@ namespace SoftCaisse.Repositories.ScdDb
 {
     internal class RoleAutorisationRepository : IRepository<RoleAutorisation>
     {
-        private readonly string _cheminVersAuthJson;
+        // private readonly string _cheminVersAuthJson;
         private readonly SCDContext _scdContext;
 
         public RoleAutorisationRepository(SCDContext scdContext)
         {
             _scdContext = scdContext;
-            _cheminVersAuthJson = "E:\\Softwell\\SCDJNM\\SoftCaisse\\DataJSon\\Autorisation.json";
+            // _cheminVersAuthJson = "E:\\Softwell\\SCDJNM\\SoftCaisse\\DataJSon\\Autorisation.json";
         }
 
 

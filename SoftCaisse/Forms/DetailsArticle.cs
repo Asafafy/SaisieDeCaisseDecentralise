@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -19,6 +20,7 @@ namespace SoftCaisse.Forms.Article
         private DataTable _bindingSource;
         private string _referenceArt;
         private string _designArt;
+        private string _repertoireParent = AppDomain.CurrentDomain.BaseDirectory;
         public F_ARTICLE _selectedArt;
 
 
@@ -31,11 +33,15 @@ namespace SoftCaisse.Forms.Article
             string valeurString = valeur?.ToString("G29");   // "G29" permet de conserver jusqu'à 29 chiffres significatifs
             return valeurString.TrimEnd('0').TrimEnd('.');  // Supprimer les zéros inutiles après la virgule
         }
+
+
         private void ChargerImage(string nomFichier)
         {
             try
             {
-                Image image = Image.FromFile("E:\\Softwell\\SCDJNM\\SoftCaisse" + nomFichier);
+                string cheminImage = Path.Combine(_repertoireParent, nomFichier);
+
+                Image image = Image.FromFile(cheminImage);
                 pictureBox1.Image = image;
             }
             catch (Exception ex)
@@ -454,7 +460,7 @@ namespace SoftCaisse.Forms.Article
             }
             dataGridView4.DataSource = _bindingSource;
             // ================= Sous-Tab "photo" =================
-            ChargerImage(_selectedArt.AR_Photo);
+            ChargerImage(_selectedArt.AR_Photo.Substring(2));
 
 
             // =========================================================== FIN TAB PAGES "CHAMPS LIBRES" =========================================================== */
@@ -619,7 +625,9 @@ namespace SoftCaisse.Forms.Article
                 {
                     DataGridViewRow selectedRow = dataGridView4.SelectedRows[0];
                     string cheminFichier = selectedRow.Cells["Fichier"].Value.ToString();
-                    System.Diagnostics.Process.Start("E:\\Softwell\\SCDJNM\\SoftCaisse" + cheminFichier);
+
+                    string cheminComplet = Path.Combine(_repertoireParent, cheminFichier.Substring(2));
+                    System.Diagnostics.Process.Start(cheminComplet);
                 }
             }
             catch (Exception ex)
@@ -646,7 +654,7 @@ namespace SoftCaisse.Forms.Article
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("E:\\Softwell\\SCDJNM\\SoftCaisse" + _selectedArt.AR_Photo);
+            System.Diagnostics.Process.Start(_repertoireParent + _selectedArt.AR_Photo.Substring(2));
         }
         /* =================================================================================================================================== */
         /* =========================================================== FIN BACKEND =========================================================== */

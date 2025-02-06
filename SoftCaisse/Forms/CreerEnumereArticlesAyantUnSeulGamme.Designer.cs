@@ -34,23 +34,23 @@
             this.btnAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.btnOK = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtBxCodesBarres = new System.Windows.Forms.TextBox();
+            this.txtBxReference = new System.Windows.Forms.TextBox();
+            this.txtBxCodeEDI = new System.Windows.Forms.TextBox();
+            this.lblCodesBarres = new System.Windows.Forms.Label();
+            this.lblReference = new System.Windows.Forms.Label();
+            this.lblEnumere = new System.Windows.Forms.Label();
+            this.lblCodeEDI = new System.Windows.Forms.Label();
+            this.txtBxEnumere = new System.Windows.Forms.TextBox();
             this.groupBoxIdentification = new System.Windows.Forms.GroupBox();
             this.groupBoxTarifications = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblCodeEDI = new System.Windows.Forms.Label();
-            this.lblEnumere = new System.Windows.Forms.Label();
-            this.lblReference = new System.Windows.Forms.Label();
-            this.lblCodesBarres = new System.Windows.Forms.Label();
-            this.txtBxEnumere = new System.Windows.Forms.TextBox();
-            this.txtBxCodeEDI = new System.Windows.Forms.TextBox();
-            this.txtBxReference = new System.Windows.Forms.TextBox();
-            this.txtBxCodesBarres = new System.Windows.Forms.TextBox();
-            this.lblPrixDAchat = new System.Windows.Forms.Label();
-            this.lblCoutStandard = new System.Windows.Forms.Label();
-            this.lblDernierPrixDAchat = new System.Windows.Forms.Label();
-            this.txtBxPrixDAchat = new System.Windows.Forms.TextBox();
-            this.txtBxDernierPrixDAchat = new System.Windows.Forms.TextBox();
             this.txtBxCoutStandard = new System.Windows.Forms.TextBox();
+            this.txtBxDernierPrixDAchat = new System.Windows.Forms.TextBox();
+            this.txtBxPrixDAchat = new System.Windows.Forms.TextBox();
+            this.lblDernierPrixDAchat = new System.Windows.Forms.Label();
+            this.lblCoutStandard = new System.Windows.Forms.Label();
+            this.lblPrixDAchat = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBoxIdentification.SuspendLayout();
             this.groupBoxTarifications.SuspendLayout();
@@ -93,6 +93,7 @@
             this.btnAnnuler.Size = new System.Drawing.Size(83, 31);
             this.btnAnnuler.TabIndex = 15;
             this.btnAnnuler.Values.Text = "Annuler";
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // btnOK
             // 
@@ -105,6 +106,7 @@
             this.btnOK.Size = new System.Drawing.Size(83, 31);
             this.btnOK.TabIndex = 14;
             this.btnOK.Values.Text = "OK";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -131,6 +133,87 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(596, 90);
             this.tableLayoutPanel1.TabIndex = 16;
+            // 
+            // txtBxCodesBarres
+            // 
+            this.txtBxCodesBarres.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxCodesBarres.Location = new System.Drawing.Point(419, 50);
+            this.txtBxCodesBarres.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxCodesBarres.Name = "txtBxCodesBarres";
+            this.txtBxCodesBarres.Size = new System.Drawing.Size(174, 20);
+            this.txtBxCodesBarres.TabIndex = 14;
+            this.txtBxCodesBarres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBxCodesBarres_KeyPress);
+            // 
+            // txtBxReference
+            // 
+            this.txtBxReference.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxReference.Location = new System.Drawing.Point(122, 50);
+            this.txtBxReference.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxReference.Name = "txtBxReference";
+            this.txtBxReference.Size = new System.Drawing.Size(172, 20);
+            this.txtBxReference.TabIndex = 13;
+            // 
+            // txtBxCodeEDI
+            // 
+            this.txtBxCodeEDI.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxCodeEDI.Location = new System.Drawing.Point(419, 20);
+            this.txtBxCodeEDI.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxCodeEDI.Name = "txtBxCodeEDI";
+            this.txtBxCodeEDI.Size = new System.Drawing.Size(174, 20);
+            this.txtBxCodeEDI.TabIndex = 12;
+            // 
+            // lblCodesBarres
+            // 
+            this.lblCodesBarres.AutoSize = true;
+            this.lblCodesBarres.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblCodesBarres.Location = new System.Drawing.Point(349, 45);
+            this.lblCodesBarres.Name = "lblCodesBarres";
+            this.lblCodesBarres.Size = new System.Drawing.Size(64, 30);
+            this.lblCodesBarres.TabIndex = 10;
+            this.lblCodesBarres.Text = "Code barres";
+            this.lblCodesBarres.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblReference
+            // 
+            this.lblReference.AutoSize = true;
+            this.lblReference.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblReference.Location = new System.Drawing.Point(59, 45);
+            this.lblReference.Name = "lblReference";
+            this.lblReference.Size = new System.Drawing.Size(57, 30);
+            this.lblReference.TabIndex = 8;
+            this.lblReference.Text = "Référence";
+            this.lblReference.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblEnumere
+            // 
+            this.lblEnumere.AutoSize = true;
+            this.lblEnumere.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblEnumere.Location = new System.Drawing.Point(67, 15);
+            this.lblEnumere.Name = "lblEnumere";
+            this.lblEnumere.Size = new System.Drawing.Size(49, 30);
+            this.lblEnumere.TabIndex = 5;
+            this.lblEnumere.Text = "Enuméré";
+            this.lblEnumere.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCodeEDI
+            // 
+            this.lblCodeEDI.AutoSize = true;
+            this.lblCodeEDI.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblCodeEDI.Location = new System.Drawing.Point(361, 15);
+            this.lblCodeEDI.Name = "lblCodeEDI";
+            this.lblCodeEDI.Size = new System.Drawing.Size(52, 30);
+            this.lblCodeEDI.TabIndex = 0;
+            this.lblCodeEDI.Text = "code EDI";
+            this.lblCodeEDI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtBxEnumere
+            // 
+            this.txtBxEnumere.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxEnumere.Location = new System.Drawing.Point(122, 20);
+            this.txtBxEnumere.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxEnumere.Name = "txtBxEnumere";
+            this.txtBxEnumere.Size = new System.Drawing.Size(172, 20);
+            this.txtBxEnumere.TabIndex = 11;
             // 
             // groupBoxIdentification
             // 
@@ -176,107 +259,32 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(596, 90);
             this.tableLayoutPanel2.TabIndex = 16;
             // 
-            // lblCodeEDI
+            // txtBxCoutStandard
             // 
-            this.lblCodeEDI.AutoSize = true;
-            this.lblCodeEDI.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblCodeEDI.Location = new System.Drawing.Point(361, 15);
-            this.lblCodeEDI.Name = "lblCodeEDI";
-            this.lblCodeEDI.Size = new System.Drawing.Size(52, 30);
-            this.lblCodeEDI.TabIndex = 0;
-            this.lblCodeEDI.Text = "code EDI";
-            this.lblCodeEDI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txtBxCoutStandard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxCoutStandard.Location = new System.Drawing.Point(419, 20);
+            this.txtBxCoutStandard.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxCoutStandard.Name = "txtBxCoutStandard";
+            this.txtBxCoutStandard.Size = new System.Drawing.Size(174, 20);
+            this.txtBxCoutStandard.TabIndex = 27;
             // 
-            // lblEnumere
+            // txtBxDernierPrixDAchat
             // 
-            this.lblEnumere.AutoSize = true;
-            this.lblEnumere.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblEnumere.Location = new System.Drawing.Point(67, 15);
-            this.lblEnumere.Name = "lblEnumere";
-            this.lblEnumere.Size = new System.Drawing.Size(49, 30);
-            this.lblEnumere.TabIndex = 5;
-            this.lblEnumere.Text = "Enuméré";
-            this.lblEnumere.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txtBxDernierPrixDAchat.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxDernierPrixDAchat.Location = new System.Drawing.Point(122, 50);
+            this.txtBxDernierPrixDAchat.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxDernierPrixDAchat.Name = "txtBxDernierPrixDAchat";
+            this.txtBxDernierPrixDAchat.Size = new System.Drawing.Size(172, 20);
+            this.txtBxDernierPrixDAchat.TabIndex = 22;
             // 
-            // lblReference
+            // txtBxPrixDAchat
             // 
-            this.lblReference.AutoSize = true;
-            this.lblReference.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblReference.Location = new System.Drawing.Point(59, 45);
-            this.lblReference.Name = "lblReference";
-            this.lblReference.Size = new System.Drawing.Size(57, 30);
-            this.lblReference.TabIndex = 8;
-            this.lblReference.Text = "Référence";
-            this.lblReference.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblCodesBarres
-            // 
-            this.lblCodesBarres.AutoSize = true;
-            this.lblCodesBarres.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblCodesBarres.Location = new System.Drawing.Point(349, 45);
-            this.lblCodesBarres.Name = "lblCodesBarres";
-            this.lblCodesBarres.Size = new System.Drawing.Size(64, 30);
-            this.lblCodesBarres.TabIndex = 10;
-            this.lblCodesBarres.Text = "Code barres";
-            this.lblCodesBarres.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtBxEnumere
-            // 
-            this.txtBxEnumere.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtBxEnumere.Location = new System.Drawing.Point(122, 20);
-            this.txtBxEnumere.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.txtBxEnumere.Name = "txtBxEnumere";
-            this.txtBxEnumere.Size = new System.Drawing.Size(172, 20);
-            this.txtBxEnumere.TabIndex = 11;
-            // 
-            // txtBxCodeEDI
-            // 
-            this.txtBxCodeEDI.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtBxCodeEDI.Location = new System.Drawing.Point(419, 20);
-            this.txtBxCodeEDI.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.txtBxCodeEDI.Name = "txtBxCodeEDI";
-            this.txtBxCodeEDI.Size = new System.Drawing.Size(174, 20);
-            this.txtBxCodeEDI.TabIndex = 12;
-            // 
-            // txtBxReference
-            // 
-            this.txtBxReference.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtBxReference.Location = new System.Drawing.Point(122, 50);
-            this.txtBxReference.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.txtBxReference.Name = "txtBxReference";
-            this.txtBxReference.Size = new System.Drawing.Size(172, 20);
-            this.txtBxReference.TabIndex = 13;
-            // 
-            // txtBxCodesBarres
-            // 
-            this.txtBxCodesBarres.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtBxCodesBarres.Location = new System.Drawing.Point(419, 50);
-            this.txtBxCodesBarres.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.txtBxCodesBarres.Name = "txtBxCodesBarres";
-            this.txtBxCodesBarres.Size = new System.Drawing.Size(174, 20);
-            this.txtBxCodesBarres.TabIndex = 14;
-            // 
-            // lblPrixDAchat
-            // 
-            this.lblPrixDAchat.AutoSize = true;
-            this.lblPrixDAchat.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblPrixDAchat.Location = new System.Drawing.Point(54, 15);
-            this.lblPrixDAchat.Name = "lblPrixDAchat";
-            this.lblPrixDAchat.Size = new System.Drawing.Size(62, 30);
-            this.lblPrixDAchat.TabIndex = 13;
-            this.lblPrixDAchat.Text = "Prix d\'achat";
-            this.lblPrixDAchat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblCoutStandard
-            // 
-            this.lblCoutStandard.AutoSize = true;
-            this.lblCoutStandard.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblCoutStandard.Location = new System.Drawing.Point(340, 15);
-            this.lblCoutStandard.Name = "lblCoutStandard";
-            this.lblCoutStandard.Size = new System.Drawing.Size(73, 30);
-            this.lblCoutStandard.TabIndex = 15;
-            this.lblCoutStandard.Text = "Coût standard";
-            this.lblCoutStandard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txtBxPrixDAchat.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxPrixDAchat.Location = new System.Drawing.Point(122, 20);
+            this.txtBxPrixDAchat.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxPrixDAchat.Name = "txtBxPrixDAchat";
+            this.txtBxPrixDAchat.Size = new System.Drawing.Size(172, 20);
+            this.txtBxPrixDAchat.TabIndex = 20;
             // 
             // lblDernierPrixDAchat
             // 
@@ -289,32 +297,27 @@
             this.lblDernierPrixDAchat.Text = "Dernier prix d\'achat";
             this.lblDernierPrixDAchat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtBxPrixDAchat
+            // lblCoutStandard
             // 
-            this.txtBxPrixDAchat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtBxPrixDAchat.Location = new System.Drawing.Point(122, 20);
-            this.txtBxPrixDAchat.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.txtBxPrixDAchat.Name = "txtBxPrixDAchat";
-            this.txtBxPrixDAchat.Size = new System.Drawing.Size(172, 20);
-            this.txtBxPrixDAchat.TabIndex = 20;
+            this.lblCoutStandard.AutoSize = true;
+            this.lblCoutStandard.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblCoutStandard.Location = new System.Drawing.Point(340, 15);
+            this.lblCoutStandard.Name = "lblCoutStandard";
+            this.lblCoutStandard.Size = new System.Drawing.Size(73, 30);
+            this.lblCoutStandard.TabIndex = 15;
+            this.lblCoutStandard.Text = "Coût standard";
+            this.lblCoutStandard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtBxDernierPrixDAchat
+            // lblPrixDAchat
             // 
-            this.txtBxDernierPrixDAchat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtBxDernierPrixDAchat.Location = new System.Drawing.Point(122, 50);
-            this.txtBxDernierPrixDAchat.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.txtBxDernierPrixDAchat.Name = "txtBxDernierPrixDAchat";
-            this.txtBxDernierPrixDAchat.Size = new System.Drawing.Size(172, 20);
-            this.txtBxDernierPrixDAchat.TabIndex = 22;
-            // 
-            // txtBxCoutStandard
-            // 
-            this.txtBxCoutStandard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtBxCoutStandard.Location = new System.Drawing.Point(419, 20);
-            this.txtBxCoutStandard.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.txtBxCoutStandard.Name = "txtBxCoutStandard";
-            this.txtBxCoutStandard.Size = new System.Drawing.Size(174, 20);
-            this.txtBxCoutStandard.TabIndex = 27;
+            this.lblPrixDAchat.AutoSize = true;
+            this.lblPrixDAchat.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblPrixDAchat.Location = new System.Drawing.Point(54, 15);
+            this.lblPrixDAchat.Name = "lblPrixDAchat";
+            this.lblPrixDAchat.Size = new System.Drawing.Size(62, 30);
+            this.lblPrixDAchat.TabIndex = 13;
+            this.lblPrixDAchat.Text = "Prix d\'achat";
+            this.lblPrixDAchat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CreerEnumereArticlesAyantUnSeulGamme
             // 

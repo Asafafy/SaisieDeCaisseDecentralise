@@ -260,7 +260,7 @@ namespace SoftCaisse.Forms.Article
             if (listeGamme1.Count < 2)
             {
                 comboBox18.DataSource = new List<string> { "Aucun" };
-                comboBox19.DataSource = new List<string> { "Aucun" };
+                cmbBxGamme2.DataSource = new List<string> { "Aucun" };
             }
             else
             {
@@ -271,8 +271,8 @@ namespace SoftCaisse.Forms.Article
                 comboBox18.DataSource = listeGamme1;
                 if (listeGamme2.Count < 2)
                 {
-                    comboBox19.DataSource = new List<string> { "Aucun" };
-                    comboBox19.SelectedIndex = 0;
+                    cmbBxGamme2.DataSource = new List<string> { "Aucun" };
+                    cmbBxGamme2.SelectedIndex = 0;
                     _bindingSource = new DataTable();
                     _bindingSource.Columns.Add(new DataColumn(labelGamme1.G_Intitule));
                     _bindingSource.Columns.Add(new DataColumn("Référence"));
@@ -304,7 +304,7 @@ namespace SoftCaisse.Forms.Article
                     var gamme2 = _context.F_ENUMGAMME.Where(artEnum => artEnum.EG_Enumere == enmGmm2).FirstOrDefault();
                     var labelGamme2 = _context.P_GAMME.Where(gamme => gamme.cbIndice == gamme2.EG_Champ).FirstOrDefault();
                     label16.Text = labelGamme2.G_Intitule;
-                    comboBox19.DataSource = listeGamme2;
+                    cmbBxGamme2.DataSource = listeGamme2;
                     _bindingSource = new DataTable();
                     _bindingSource.Columns.Add(new DataColumn(labelGamme1.G_Intitule));
                     _bindingSource.Columns.Add(new DataColumn(labelGamme2.G_Intitule));
@@ -460,7 +460,10 @@ namespace SoftCaisse.Forms.Article
             }
             dataGridView4.DataSource = _bindingSource;
             // ================= Sous-Tab "photo" =================
-            ChargerImage(_selectedArt.AR_Photo.Substring(2));
+            if (_selectedArt.AR_Photo != "")
+            {
+                ChargerImage(_selectedArt.AR_Photo.Substring(2));
+            }
 
 
             // =========================================================== FIN TAB PAGES "CHAMPS LIBRES" =========================================================== */
@@ -636,6 +639,9 @@ namespace SoftCaisse.Forms.Article
             }
         }
 
+
+
+
         private void dataGridView4_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -652,10 +658,36 @@ namespace SoftCaisse.Forms.Article
             }
         }
 
+
+
+
+
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(_repertoireParent + _selectedArt.AR_Photo.Substring(2));
         }
+
+
+
+
+
+        private void btnAjouterEnumereGamme_Click(object sender, EventArgs e)
+        {
+            if (cmbBxGamme2.Text == "Aucun")
+            {
+                CreerEnumereArticlesAyantUnSeulGamme creerEnumereArticlesAyantUnSeulGamme = new CreerEnumereArticlesAyantUnSeulGamme(_referenceArt);
+                creerEnumereArticlesAyantUnSeulGamme.ShowDialog();
+            } else
+            {
+                ChoixCreationENUMGAMMEDansDetailsArticle choixCreationENUMGAMMEDansDetailsArticle = new ChoixCreationENUMGAMMEDansDetailsArticle(_referenceArt);
+                choixCreationENUMGAMMEDansDetailsArticle.ShowDialog();
+            }
+        }
+
+
+
+
+
         /* =================================================================================================================================== */
         /* =========================================================== FIN BACKEND =========================================================== */
     }

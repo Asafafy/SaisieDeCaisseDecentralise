@@ -108,7 +108,6 @@ namespace SoftCaisse.Forms.Article
         {
             try
             {
-
                 if (DataGridViewArticle.SelectedRows.Count > 0)
                 {
                     DataGridViewRow selectedRow = DataGridViewArticle.SelectedRows[0];

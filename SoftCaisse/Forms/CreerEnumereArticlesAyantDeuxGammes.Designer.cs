@@ -35,12 +35,12 @@
             this.btnAnnuler = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtBxPrixDAchat = new System.Windows.Forms.TextBox();
+            this.txtBxEnumere2 = new System.Windows.Forms.TextBox();
             this.lblPrixAch = new System.Windows.Forms.Label();
             this.lblEnum2 = new System.Windows.Forms.Label();
             this.lblEnum1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBxEnumere1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +80,7 @@
             this.btnOK.Size = new System.Drawing.Size(83, 31);
             this.btnOK.TabIndex = 12;
             this.btnOK.Values.Text = "OK";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnAnnuler
             // 
@@ -92,6 +93,7 @@
             this.btnAnnuler.Size = new System.Drawing.Size(83, 31);
             this.btnAnnuler.TabIndex = 13;
             this.btnAnnuler.Values.Text = "Annuler";
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // label1
             // 
@@ -109,12 +111,12 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.Controls.Add(this.textBox5, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textBox4, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtBxPrixDAchat, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtBxEnumere2, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblPrixAch, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblEnum2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblEnum1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtBxEnumere1, 1, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 76);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -125,23 +127,24 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(541, 91);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
-            // textBox5
+            // txtBxPrixDAchat
             // 
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox5.Location = new System.Drawing.Point(111, 50);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(156, 20);
-            this.textBox5.TabIndex = 35;
+            this.txtBxPrixDAchat.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxPrixDAchat.Location = new System.Drawing.Point(111, 50);
+            this.txtBxPrixDAchat.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxPrixDAchat.Name = "txtBxPrixDAchat";
+            this.txtBxPrixDAchat.Size = new System.Drawing.Size(156, 20);
+            this.txtBxPrixDAchat.TabIndex = 35;
+            this.txtBxPrixDAchat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBxPrixDAchat_KeyPress);
             // 
-            // textBox4
+            // txtBxEnumere2
             // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox4.Location = new System.Drawing.Point(381, 20);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(157, 20);
-            this.textBox4.TabIndex = 34;
+            this.txtBxEnumere2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxEnumere2.Location = new System.Drawing.Point(381, 20);
+            this.txtBxEnumere2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxEnumere2.Name = "txtBxEnumere2";
+            this.txtBxEnumere2.Size = new System.Drawing.Size(157, 20);
+            this.txtBxEnumere2.TabIndex = 34;
             // 
             // lblPrixAch
             // 
@@ -176,14 +179,14 @@
             this.lblEnum1.Text = "Enuméré 1";
             this.lblEnum1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox1
+            // txtBxEnumere1
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Location = new System.Drawing.Point(111, 20);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(156, 20);
-            this.textBox1.TabIndex = 31;
+            this.txtBxEnumere1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtBxEnumere1.Location = new System.Drawing.Point(111, 20);
+            this.txtBxEnumere1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.txtBxEnumere1.Name = "txtBxEnumere1";
+            this.txtBxEnumere1.Size = new System.Drawing.Size(156, 20);
+            this.txtBxEnumere1.TabIndex = 31;
             // 
             // CreerEnumereArticlesAyantDeuxGammes
             // 
@@ -217,8 +220,8 @@
         private System.Windows.Forms.Label lblPrixAch;
         private System.Windows.Forms.Label lblEnum2;
         private System.Windows.Forms.Label lblEnum1;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBxPrixDAchat;
+        private System.Windows.Forms.TextBox txtBxEnumere2;
+        private System.Windows.Forms.TextBox txtBxEnumere1;
     }
 }

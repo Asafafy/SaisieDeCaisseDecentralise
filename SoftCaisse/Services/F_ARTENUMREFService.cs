@@ -95,7 +95,7 @@ namespace SoftCaisse.Services
         // ======================================================================================================================================
         // =================================================== DEBUT DECLARATION DES METHODES ===================================================
         // ======================================================================================================================================
-        public void NouveauGamme(string AR_Ref, int estAG_No2, short? AG_No, string AE_Ref, string AE_CodeBarre)
+        public void NouveauGamme(string AR_Ref, int estAG_No2, short? AG_No, string AE_Ref, string AE_CodeBarre, decimal? AR_PrixAch)
         {
             F_ARTICLE article = _context.F_ARTICLE.Where(a => a.AR_Ref == AR_Ref).FirstOrDefault();
 
@@ -109,7 +109,7 @@ namespace SoftCaisse.Services
                 f_ARTENUMREFToCreate.AG_No1 = AG_No1;
                 f_ARTENUMREFToCreate.AG_No2 = AG_No2;
                 f_ARTENUMREFToCreate.AE_Ref = AE_Ref == "" ? null : AE_Ref;
-                f_ARTENUMREFToCreate.AE_PrixAch = article.AR_PrixAch;
+                f_ARTENUMREFToCreate.AE_PrixAch = AR_PrixAch == null ? article.AR_PrixAch : AR_PrixAch;
                 f_ARTENUMREFToCreate.AE_CodeBarre = AE_CodeBarre == "" ? null : AE_CodeBarre;
 
                 _f_ARTENUMREFRepository.Create(f_ARTENUMREFToCreate);

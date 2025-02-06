@@ -34,19 +34,19 @@ namespace SoftCaisse.Services
         {
             F_ARTGAMME f_ARTGAMMEToCreate = new F_ARTGAMME();
 
-            int? maxAG_No = _context.F_ARTGAMME.Max(eg => eg.AG_No);
-            int? maxcbMarq = _context.F_ARTGAMME.Max(eg => eg.cbMarq);
+            //int? maxAG_No = _context.F_ARTGAMME.Max(eg => eg.AG_No);
+            //int? maxcbMarq = _context.F_ARTGAMME.Max(eg => eg.cbMarq);
 
             f_ARTGAMMEToCreate.AR_Ref = AR_Ref;
-            f_ARTGAMMEToCreate.AG_No = maxAG_No + 1;
+            //f_ARTGAMMEToCreate.AG_No = maxAG_No + 1;
             f_ARTGAMMEToCreate.EG_Enumere = EG_Enumere;
             f_ARTGAMMEToCreate.AG_Type = estAG_No2 == 1 ? (short?)1 : (short?)0;
-            f_ARTGAMMEToCreate.cbProt = 0;
-            f_ARTGAMMEToCreate.cbCreateur = "COLS";
-            f_ARTGAMMEToCreate.cbModification = DateTime.Now;
-            f_ARTGAMMEToCreate.cbReplication = 0;
-            f_ARTGAMMEToCreate.cbFlag = 0;
-            f_ARTGAMMEToCreate.cbCreation = DateTime.Now;
+            //f_ARTGAMMEToCreate.cbProt = 0;
+            //f_ARTGAMMEToCreate.cbCreateur = "COLS";
+            //f_ARTGAMMEToCreate.cbModification = DateTime.Now;
+            //f_ARTGAMMEToCreate.cbReplication = 0;
+            //f_ARTGAMMEToCreate.cbFlag = 0;
+            //f_ARTGAMMEToCreate.cbCreation = DateTime.Now;
 
             _f_ARTGAMMERepository.Create(f_ARTGAMMEToCreate);
         }

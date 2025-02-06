@@ -54,55 +54,79 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
 
+        public int? GetLastAG_No1()
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.F_ARTGAMME.Where(ag => ag.AG_Type == 0).OrderByDescending(ag => ag.AG_No).Select(ag => ag.AG_No).FirstOrDefault();
+            }
+        }
+
+
+
+
+        public int? GetLastAG_No2()
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.F_ARTGAMME.Where(ag => ag.AG_Type == 1).OrderByDescending(ag => ag.AG_No).Select(ag => ag.AG_No).FirstOrDefault();
+            }
+        }
+
+
+
+
+
         public void Create(F_ARTGAMME f_ARTGAMME)
         {
-            string queryCreateF_ENUMGAMME = @"
-                DISABLE TRIGGER [dbo].[TG_INS_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+            string queryCreateF_ARTGAMME = @"
+                BEGIN TRANSACTION;
 
-                INSERT INTO [dbo].[F_ARTGAMME]
-                (
-                    AR_Ref,
-                    AG_No,
-                    EG_Enumere,
-                    AG_Type,
-                    cbProt,
-                    cbCreateur,
-                    cbModification,
-                    cbReplication,
-                    cbFlag,
-                    cbCreation
-                )
-                VALUES
-                (
-                    @AR_Ref,
-                    @AG_No,
-                    @EG_Enumere,
-                    @AG_Type,
-                    @cbProt,
-                    @cbCreateur,
-                    @cbModification,
-                    @cbReplication,
-                    @cbFlag,
-                    @cbCreation
-                );
-
-                ENABLE TRIGGER [dbo].[TG_INS_F_ARTGAMME] ON [dbo].[F_ARTGAMME]
+                BEGIN TRY
+                    DECLARE @Next_AG_No INT;
+                
+                    -- Désactivation des triggers
+                    DISABLE TRIGGER [TG_CBINS_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+                    DISABLE TRIGGER [TG_INS_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+                
+                    -- Récupération du prochain AG_No
+                    SELECT @Next_AG_No = ISNULL(MAX(AG_No), 0) + 1
+                    FROM [dbo].[F_ARTGAMME]
+                
+                    -- Insertion des données
+                    INSERT INTO [dbo].[F_ARTGAMME] (
+                        AR_Ref, AG_No, EG_Enumere, AG_Type, cbCreateur, cbCreationUser
+                    )
+                    VALUES (
+                        @AR_Ref, @Next_AG_No, @EG_Enumere, @AG_Type, 'COLS', NULL
+                    );
+                
+                    -- Réactivation des triggers
+                    ENABLE TRIGGER [TG_CBINS_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+                    ENABLE TRIGGER [TG_INS_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+                
+                    COMMIT TRANSACTION;
+                END TRY
+                BEGIN CATCH
+                    ROLLBACK TRANSACTION;
+                
+                    -- Réactivation des triggers en cas d'erreur
+                    ENABLE TRIGGER [TG_CBINS_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+                    ENABLE TRIGGER [TG_INS_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+                
+                    -- Affichage de l'erreur pour débogage
+                    DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+                    RAISERROR(@ErrorMessage, 16, 1);
+                END CATCH;
             ";
 
             using (var context = new AppDbContext())
             {
                 context.Database.ExecuteSqlCommand(
-                    queryCreateF_ENUMGAMME,
+                    queryCreateF_ARTGAMME,
                     new SqlParameter("@AR_Ref", f_ARTGAMME.AR_Ref),
-                    new SqlParameter("@AG_No", f_ARTGAMME.AG_No),
                     new SqlParameter("@EG_Enumere", f_ARTGAMME.EG_Enumere),
-                    new SqlParameter("@AG_Type", f_ARTGAMME.AG_Type),
-                    new SqlParameter("@cbProt", f_ARTGAMME.cbProt),
-                    new SqlParameter("@cbCreateur", f_ARTGAMME.cbCreateur),
-                    new SqlParameter("@cbModification", f_ARTGAMME.cbModification),
-                    new SqlParameter("@cbReplication", f_ARTGAMME.cbReplication),
-                    new SqlParameter("@cbFlag", f_ARTGAMME.cbFlag),
-                    new SqlParameter("@cbCreation", f_ARTGAMME.cbCreation)
+                    new SqlParameter("@AG_Type", f_ARTGAMME.AG_Type)
                 );
             }
 

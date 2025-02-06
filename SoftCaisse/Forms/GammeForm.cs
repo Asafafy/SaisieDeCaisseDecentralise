@@ -255,7 +255,7 @@ namespace SoftCaisse.Forms
                                         _f_ARTGAMMEService.NouveauGamme(f_ARTICLE.AR_Ref, nouveauNom, estAG_No2);
 
                                         F_ARTGAMME f_ARTGAMME = _f_ARTGAMMERepository.GetByEG_Enumere(nouveauNom);
-                                        _f_ARTENUMREFService.NouveauGamme(f_ARTICLE.AR_Ref, estAG_No2, (short)f_ARTGAMME.AG_No, "", "");
+                                        _f_ARTENUMREFService.NouveauGamme(f_ARTICLE.AR_Ref, estAG_No2, (short)f_ARTGAMME.AG_No, "", "", null);
                                     }
                                 }
                                 else

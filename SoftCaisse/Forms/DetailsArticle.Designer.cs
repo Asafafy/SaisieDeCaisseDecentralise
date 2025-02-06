@@ -116,12 +116,12 @@ namespace SoftCaisse.Forms.Article
             this.label16 = new System.Windows.Forms.Label();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.comboBox18 = new System.Windows.Forms.ComboBox();
-            this.comboBox19 = new System.Windows.Forms.ComboBox();
+            this.cmbBxGamme2 = new System.Windows.Forms.ComboBox();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel15 = new System.Windows.Forms.FlowLayoutPanel();
-            this.kryptonButton8 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton9 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton10 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnOuvrirEnumereGamme = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnAjouterEnumereGamme = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.btnSupprimerEnumereGamme = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.DescriptifPage = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -1486,7 +1486,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel24.Controls.Add(this.label16, 2, 1);
             this.tableLayoutPanel24.Controls.Add(this.checkBox6, 0, 2);
             this.tableLayoutPanel24.Controls.Add(this.comboBox18, 1, 1);
-            this.tableLayoutPanel24.Controls.Add(this.comboBox19, 3, 1);
+            this.tableLayoutPanel24.Controls.Add(this.cmbBxGamme2, 3, 1);
             this.tableLayoutPanel24.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel24.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel24.Name = "tableLayoutPanel24";
@@ -1540,15 +1540,15 @@ namespace SoftCaisse.Forms.Article
             this.comboBox18.Size = new System.Drawing.Size(149, 21);
             this.comboBox18.TabIndex = 3;
             // 
-            // comboBox19
+            // cmbBxGamme2
             // 
-            this.comboBox19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox19.FormattingEnabled = true;
-            this.comboBox19.Location = new System.Drawing.Point(468, 20);
-            this.comboBox19.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.comboBox19.Name = "comboBox19";
-            this.comboBox19.Size = new System.Drawing.Size(149, 21);
-            this.comboBox19.TabIndex = 4;
+            this.cmbBxGamme2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbBxGamme2.FormattingEnabled = true;
+            this.cmbBxGamme2.Location = new System.Drawing.Point(468, 20);
+            this.cmbBxGamme2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.cmbBxGamme2.Name = "cmbBxGamme2";
+            this.cmbBxGamme2.Size = new System.Drawing.Size(149, 21);
+            this.cmbBxGamme2.TabIndex = 4;
             // 
             // dataGridView5
             // 
@@ -1573,50 +1573,51 @@ namespace SoftCaisse.Forms.Article
             // 
             // flowLayoutPanel15
             // 
-            this.flowLayoutPanel15.Controls.Add(this.kryptonButton8);
-            this.flowLayoutPanel15.Controls.Add(this.kryptonButton9);
-            this.flowLayoutPanel15.Controls.Add(this.kryptonButton10);
+            this.flowLayoutPanel15.Controls.Add(this.btnOuvrirEnumereGamme);
+            this.flowLayoutPanel15.Controls.Add(this.btnAjouterEnumereGamme);
+            this.flowLayoutPanel15.Controls.Add(this.btnSupprimerEnumereGamme);
             this.flowLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel15.Location = new System.Drawing.Point(650, 138);
             this.flowLayoutPanel15.Name = "flowLayoutPanel15";
             this.flowLayoutPanel15.Size = new System.Drawing.Size(94, 352);
             this.flowLayoutPanel15.TabIndex = 3;
             // 
-            // kryptonButton8
+            // btnOuvrirEnumereGamme
             // 
-            this.kryptonButton8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.kryptonButton8.Location = new System.Drawing.Point(2, 2);
-            this.kryptonButton8.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton8.Name = "kryptonButton8";
-            this.kryptonButton8.Palette = this.kryptonPalette1;
-            this.kryptonButton8.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton8.Size = new System.Drawing.Size(92, 31);
-            this.kryptonButton8.TabIndex = 27;
-            this.kryptonButton8.Values.Text = "Ouvrir";
+            this.btnOuvrirEnumereGamme.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOuvrirEnumereGamme.Location = new System.Drawing.Point(2, 2);
+            this.btnOuvrirEnumereGamme.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOuvrirEnumereGamme.Name = "btnOuvrirEnumereGamme";
+            this.btnOuvrirEnumereGamme.Palette = this.kryptonPalette1;
+            this.btnOuvrirEnumereGamme.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnOuvrirEnumereGamme.Size = new System.Drawing.Size(92, 31);
+            this.btnOuvrirEnumereGamme.TabIndex = 27;
+            this.btnOuvrirEnumereGamme.Values.Text = "Ouvrir";
             // 
-            // kryptonButton9
+            // btnAjouterEnumereGamme
             // 
-            this.kryptonButton9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.kryptonButton9.Location = new System.Drawing.Point(2, 37);
-            this.kryptonButton9.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton9.Name = "kryptonButton9";
-            this.kryptonButton9.Palette = this.kryptonPalette1;
-            this.kryptonButton9.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton9.Size = new System.Drawing.Size(92, 31);
-            this.kryptonButton9.TabIndex = 28;
-            this.kryptonButton9.Values.Text = "Ajouter";
+            this.btnAjouterEnumereGamme.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAjouterEnumereGamme.Location = new System.Drawing.Point(2, 37);
+            this.btnAjouterEnumereGamme.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAjouterEnumereGamme.Name = "btnAjouterEnumereGamme";
+            this.btnAjouterEnumereGamme.Palette = this.kryptonPalette1;
+            this.btnAjouterEnumereGamme.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnAjouterEnumereGamme.Size = new System.Drawing.Size(92, 31);
+            this.btnAjouterEnumereGamme.TabIndex = 28;
+            this.btnAjouterEnumereGamme.Values.Text = "Ajouter";
+            this.btnAjouterEnumereGamme.Click += new System.EventHandler(this.btnAjouterEnumereGamme_Click);
             // 
-            // kryptonButton10
+            // btnSupprimerEnumereGamme
             // 
-            this.kryptonButton10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.kryptonButton10.Location = new System.Drawing.Point(2, 72);
-            this.kryptonButton10.Margin = new System.Windows.Forms.Padding(2);
-            this.kryptonButton10.Name = "kryptonButton10";
-            this.kryptonButton10.Palette = this.kryptonPalette1;
-            this.kryptonButton10.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.kryptonButton10.Size = new System.Drawing.Size(92, 31);
-            this.kryptonButton10.TabIndex = 29;
-            this.kryptonButton10.Values.Text = "Supprimer";
+            this.btnSupprimerEnumereGamme.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSupprimerEnumereGamme.Location = new System.Drawing.Point(2, 72);
+            this.btnSupprimerEnumereGamme.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSupprimerEnumereGamme.Name = "btnSupprimerEnumereGamme";
+            this.btnSupprimerEnumereGamme.Palette = this.kryptonPalette1;
+            this.btnSupprimerEnumereGamme.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
+            this.btnSupprimerEnumereGamme.Size = new System.Drawing.Size(92, 31);
+            this.btnSupprimerEnumereGamme.TabIndex = 29;
+            this.btnSupprimerEnumereGamme.Values.Text = "Supprimer";
             // 
             // DescriptifPage
             // 
@@ -4284,11 +4285,11 @@ namespace SoftCaisse.Forms.Article
         private Label label16;
         private CheckBox checkBox6;
         private ComboBox comboBox18;
-        private ComboBox comboBox19;
+        private ComboBox cmbBxGamme2;
         private DataGridView dataGridView5;
         private FlowLayoutPanel flowLayoutPanel15;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton8;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton9;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton10;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnOuvrirEnumereGamme;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnAjouterEnumereGamme;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton btnSupprimerEnumereGamme;
     }
 }

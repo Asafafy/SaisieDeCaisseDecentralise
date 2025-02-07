@@ -22,6 +22,8 @@ namespace SoftCaisse.Forms
         // =============================================================================================================================
         private readonly AppDbContext _context;
 
+        public bool? RefreshListeEnumGammes { get; set; }
+
         private readonly F_ARTICLERepository _f_ARTICLERepository;
         private readonly F_ARTGAMMERepository _f_ARTGAMMERepository;
         private readonly F_GAMSTOCKRepository _f_GAMSTOCKRepository;
@@ -141,6 +143,9 @@ namespace SoftCaisse.Forms
                 AR_PrixAch = null;
             }
             _f_ARTENUMREFService.NouveauGamme(_AR_Ref, _estGamme1 ? 0 : 1, (short?)AG_No, "", "", AR_PrixAch);
+            
+            RefreshListeEnumGammes = true;
+            Close();
         }
 
 

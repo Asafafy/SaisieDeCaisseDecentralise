@@ -27,12 +27,20 @@ namespace SoftCaisse.Forms.Article
 
 
 
-        // =========================================================== FONCTIONS POUR CONSTRUCTEUR =========================================================== */
+
+
+
+
+
+        // ==============================================================================================================
+        // DEBUT FONCTIONS ==============================================================================================
+        // ==============================================================================================================
         static string ConserverChiffresApresVirgule(decimal? valeur)
         {
             string valeurString = valeur?.ToString("G29");   // "G29" permet de conserver jusqu'à 29 chiffres significatifs
             return valeurString.TrimEnd('0').TrimEnd('.');  // Supprimer les zéros inutiles après la virgule
         }
+
 
 
         private void ChargerImage(string nomFichier)
@@ -55,10 +63,110 @@ namespace SoftCaisse.Forms.Article
 
 
 
+        private void AfficherListeTabPagesGammes(AppDbContext context)
+        {
+            var listeGamme1 = context.F_ARTGAMME.Where(artEnum => artEnum.AR_Ref == _selectedArt.AR_Ref && artEnum.AG_Type == 0)
+                .Select(gammes => gammes.EG_Enumere)
+                .ToList();
+            listeGamme1.Insert(0, "Tous les énumérés");
+            var listeGamme2 = context.F_ARTGAMME.Where(artEnum => artEnum.AR_Ref == _selectedArt.AR_Ref && artEnum.AG_Type == 1)
+                .Select(gammes => gammes.EG_Enumere)
+                .ToList();
+            listeGamme2.Insert(0, "Tous les énumérés");
+            if (listeGamme1.Count < 2)
+            {
+                comboBox18.DataSource = new List<string> { "Aucun" };
+                cmbBxGamme2.DataSource = new List<string> { "Aucun" };
+            }
+            else
+            {
+                var enmGmm1 = listeGamme1[1];
+                var gamme1 = context.F_ENUMGAMME.Where(artEnum => artEnum.EG_Enumere == enmGmm1).FirstOrDefault();
+                var labelGamme1 = context.P_GAMME.Where(gamme => gamme.cbIndice == gamme1.EG_Champ).FirstOrDefault();
+                label15.Text = labelGamme1.G_Intitule;
+                comboBox18.DataSource = listeGamme1;
+                if (listeGamme2.Count < 2)
+                {
+                    cmbBxGamme2.DataSource = new List<string> { "Aucun" };
+                    cmbBxGamme2.SelectedIndex = 0;
+                    _bindingSource = new DataTable();
+                    _bindingSource.Columns.Add(new DataColumn(labelGamme1.G_Intitule));
+                    _bindingSource.Columns.Add(new DataColumn("Référence"));
+                    _bindingSource.Columns.Add(new DataColumn("Code Barres"));
+                    _bindingSource.Columns.Add(new DataColumn("Prix d'achat"));
+                    _bindingSource.Columns.Add(new DataColumn("Mise en sommeil"));
+                    var listeArtEnums = context.F_ARTENUMREF
+                        .Join(context.F_ARTGAMME, post1 => post1.AG_No1, meta1 => meta1.AG_No, (post1, meta1) => new { Post1 = post1, Meta1 = meta1 })
+                        .Where(artEnum => artEnum.Post1.AR_Ref == _selectedArt.AR_Ref)
+                        .Select(artEnum => new GammeDataGridView
+                        {
+                            G_Intitule1 = artEnum.Meta1.EG_Enumere,
+                            AR_Ref = artEnum.Post1.AR_Ref,
+                            AE_CodeBarre = artEnum.Post1.AE_CodeBarre,
+                            AE_PrixAch = artEnum.Post1.AE_PrixAch,
+                            AE_Sommeil = artEnum.Post1.AE_Sommeil
+                        })
+                        .OrderBy(artEnum => artEnum.G_Intitule1)
+                        .ToList();
+                    foreach (var artEnum in listeArtEnums)
+                    {
+                        _bindingSource.Rows.Add(artEnum.G_Intitule1, artEnum.AR_Ref, artEnum.AE_CodeBarre, artEnum.AE_PrixAch, artEnum.AE_Sommeil);
+                    }
+                    dataGridView5.DataSource = _bindingSource;
+                }
+                else
+                {
+                    var enmGmm2 = listeGamme2[1];
+                    var gamme2 = context.F_ENUMGAMME.Where(artEnum => artEnum.EG_Enumere == enmGmm2).FirstOrDefault();
+                    var labelGamme2 = context.P_GAMME.Where(gamme => gamme.cbIndice == gamme2.EG_Champ).FirstOrDefault();
+                    label16.Text = labelGamme2.G_Intitule;
+                    cmbBxGamme2.DataSource = listeGamme2;
+                    _bindingSource = new DataTable();
+                    _bindingSource.Columns.Add(new DataColumn(labelGamme1.G_Intitule));
+                    _bindingSource.Columns.Add(new DataColumn(labelGamme2.G_Intitule));
+                    _bindingSource.Columns.Add(new DataColumn("Référence"));
+                    _bindingSource.Columns.Add(new DataColumn("Code Barres"));
+                    _bindingSource.Columns.Add(new DataColumn("Prix d'achat"));
+                    _bindingSource.Columns.Add(new DataColumn("Mise en sommeil"));
+                    var listeArtEnums = context.F_ARTENUMREF
+                        .Join(context.F_ARTGAMME, post1 => post1.AG_No1, meta1 => meta1.AG_No, (post1, meta1) => new { Post1 = post1, Meta1 = meta1 })
+                        .Join(context.F_ARTGAMME, post2 => post2.Post1.AG_No2, meta2 => meta2.AG_No, (post2, meta2) => new { Post2 = post2, Meta2 = meta2 })
+                        .Where(artEnum => artEnum.Post2.Post1.AR_Ref == _selectedArt.AR_Ref)
+                        .Select(artEnum => new GammeDataGridView
+                        {
+                            G_Intitule1 = artEnum.Post2.Meta1.EG_Enumere,
+                            G_Intitule2 = artEnum.Meta2.EG_Enumere,
+                            AR_Ref = artEnum.Post2.Post1.AR_Ref,
+                            AE_CodeBarre = artEnum.Post2.Post1.AE_CodeBarre,
+                            AE_PrixAch = artEnum.Post2.Post1.AE_PrixAch,
+                            AE_Sommeil = artEnum.Post2.Post1.AE_Sommeil
+                        })
+                        .OrderBy(artEnum => artEnum.G_Intitule1)
+                        .ToList();
+                    foreach (var artEnum in listeArtEnums)
+                    {
+                        _bindingSource.Rows.Add(artEnum.G_Intitule1, artEnum.G_Intitule2, artEnum.AR_Ref, artEnum.AE_CodeBarre, artEnum.AE_PrixAch, artEnum.AE_Sommeil);
+                    }
+                    dataGridView5.DataSource = _bindingSource;
+                }
+            }
+        }
+        // ==============================================================================================================
+        // FIN FONCTIONS ================================================================================================
+        // ==============================================================================================================
 
 
-        /* ==================================================================== DÉBUT CONSTRUCTEUR ==================================================================== */
-        /* ============================================================================================================================================================ */
+
+
+
+
+
+
+
+
+        // ==============================================================================================================
+        // DEBUT CONSTRUCTEUR============================================================================================
+        // ==============================================================================================================
         public DetailsArticle(string referenceArt, string designArt)
         {
             _context = new AppDbContext();
@@ -67,6 +175,9 @@ namespace SoftCaisse.Forms.Article
             _referenceArt = referenceArt;
             _designArt = designArt;
             _selectedArt = _context.F_ARTICLE.Where(art => art.AR_Ref == _referenceArt && art.AR_Design == _designArt).FirstOrDefault();
+
+
+
 
             // =========================================================== NAVIGATION ENTRE TAB PAGES =========================================================== */
             //TabControl du "Champs libres" Tab
@@ -83,6 +194,8 @@ namespace SoftCaisse.Forms.Article
             btnComptabilite.Click += (sender, e) => SelectTabParametres(3, btnComptabilite);
             btnGestProd.Click += (sender, e) => SelectTabParametres(4, btnGestProd);
             SelectTabParametres(0, btnOptTraitement);
+
+
 
 
             // =========================================================== DÉBUT TAB PAGES "IDENTIFICATION" =========================================================== */
@@ -230,6 +343,8 @@ namespace SoftCaisse.Forms.Article
             // =========================================================== FIN TAB PAGES "IDENTIFICATION" =========================================================== */
 
 
+
+
             // =========================================================== DÉBUT TAB PAGES "CONDITIONNEMENT" =========================================================== */
             _bindingSource = new DataTable();
             _bindingSource.Columns.Add(new DataColumn("Enuméré"));
@@ -248,94 +363,13 @@ namespace SoftCaisse.Forms.Article
             // =========================================================== FIN TAB PAGES "CONDITIONNEMENT" =========================================================== */
 
 
-            // =========================================================== DÉBUT TAB PAGES "GAMME" =========================================================== */
-            var listeGamme1 = _context.F_ARTGAMME.Where(artEnum => artEnum.AR_Ref == _selectedArt.AR_Ref && artEnum.AG_Type == 0)
-                .Select(gammes => gammes.EG_Enumere)
-                .ToList();
-            listeGamme1.Insert(0, "Tous les énumérés");
-            var listeGamme2 = _context.F_ARTGAMME.Where(artEnum => artEnum.AR_Ref == _selectedArt.AR_Ref && artEnum.AG_Type == 1)
-                .Select(gammes => gammes.EG_Enumere)
-                .ToList();
-            listeGamme2.Insert(0, "Tous les énumérés");
-            if (listeGamme1.Count < 2)
-            {
-                comboBox18.DataSource = new List<string> { "Aucun" };
-                cmbBxGamme2.DataSource = new List<string> { "Aucun" };
-            }
-            else
-            {
-                var enmGmm1 = listeGamme1[1];
-                var gamme1 = _context.F_ENUMGAMME.Where(artEnum => artEnum.EG_Enumere == enmGmm1).FirstOrDefault();
-                var labelGamme1 = _context.P_GAMME.Where(gamme => gamme.cbIndice == gamme1.EG_Champ).FirstOrDefault();
-                label15.Text = labelGamme1.G_Intitule;
-                comboBox18.DataSource = listeGamme1;
-                if (listeGamme2.Count < 2)
-                {
-                    cmbBxGamme2.DataSource = new List<string> { "Aucun" };
-                    cmbBxGamme2.SelectedIndex = 0;
-                    _bindingSource = new DataTable();
-                    _bindingSource.Columns.Add(new DataColumn(labelGamme1.G_Intitule));
-                    _bindingSource.Columns.Add(new DataColumn("Référence"));
-                    _bindingSource.Columns.Add(new DataColumn("Code Barres"));
-                    _bindingSource.Columns.Add(new DataColumn("Prix d'achat"));
-                    _bindingSource.Columns.Add(new DataColumn("Mise en sommeil"));
-                    var listeArtEnums = _context.F_ARTENUMREF
-                        .Join(_context.F_ARTGAMME, post1 => post1.AG_No1, meta1 => meta1.AG_No, (post1, meta1) => new { Post1 = post1, Meta1 = meta1 })
-                        .Where(artEnum => artEnum.Post1.AR_Ref == _selectedArt.AR_Ref)
-                        .Select(artEnum => new GammeDataGridView
-                        {
-                            G_Intitule1 = artEnum.Meta1.EG_Enumere,
-                            AR_Ref = artEnum.Post1.AR_Ref,
-                            AE_CodeBarre = artEnum.Post1.AE_CodeBarre,
-                            AE_PrixAch = artEnum.Post1.AE_PrixAch,
-                            AE_Sommeil = artEnum.Post1.AE_Sommeil
-                        })
-                        .OrderBy(artEnum => artEnum.G_Intitule1)
-                        .ToList();
-                    foreach (var artEnum in listeArtEnums)
-                    {
-                        _bindingSource.Rows.Add(artEnum.G_Intitule1, artEnum.AR_Ref, artEnum.AE_CodeBarre, artEnum.AE_PrixAch, artEnum.AE_Sommeil);
-                    }
-                    dataGridView5.DataSource = _bindingSource;
-                }
-                else
-                {
-                    var enmGmm2 = listeGamme2[1];
-                    var gamme2 = _context.F_ENUMGAMME.Where(artEnum => artEnum.EG_Enumere == enmGmm2).FirstOrDefault();
-                    var labelGamme2 = _context.P_GAMME.Where(gamme => gamme.cbIndice == gamme2.EG_Champ).FirstOrDefault();
-                    label16.Text = labelGamme2.G_Intitule;
-                    cmbBxGamme2.DataSource = listeGamme2;
-                    _bindingSource = new DataTable();
-                    _bindingSource.Columns.Add(new DataColumn(labelGamme1.G_Intitule));
-                    _bindingSource.Columns.Add(new DataColumn(labelGamme2.G_Intitule));
-                    _bindingSource.Columns.Add(new DataColumn("Référence"));
-                    _bindingSource.Columns.Add(new DataColumn("Code Barres"));
-                    _bindingSource.Columns.Add(new DataColumn("Prix d'achat"));
-                    _bindingSource.Columns.Add(new DataColumn("Mise en sommeil"));
-                    var listeArtEnums = _context.F_ARTENUMREF
-                        .Join(_context.F_ARTGAMME, post1 => post1.AG_No1, meta1 => meta1.AG_No, (post1, meta1) => new { Post1 = post1, Meta1 = meta1 })
-                        .Join(_context.F_ARTGAMME, post2 => post2.Post1.AG_No2, meta2 => meta2.AG_No, (post2, meta2) => new { Post2 = post2, Meta2 = meta2 })
-                        .Where(artEnum => artEnum.Post2.Post1.AR_Ref == _selectedArt.AR_Ref)
-                        .Select(artEnum => new GammeDataGridView
-                        {
-                            G_Intitule1 = artEnum.Post2.Meta1.EG_Enumere,
-                            G_Intitule2 = artEnum.Meta2.EG_Enumere,
-                            AR_Ref = artEnum.Post2.Post1.AR_Ref,
-                            AE_CodeBarre = artEnum.Post2.Post1.AE_CodeBarre,
-                            AE_PrixAch = artEnum.Post2.Post1.AE_PrixAch,
-                            AE_Sommeil = artEnum.Post2.Post1.AE_Sommeil
-                        })
-                        .OrderBy(artEnum => artEnum.G_Intitule1)
-                        .ToList();
-                    foreach (var artEnum in listeArtEnums)
-                    {
-                        _bindingSource.Rows.Add(artEnum.G_Intitule1, artEnum.G_Intitule2, artEnum.AR_Ref, artEnum.AE_CodeBarre, artEnum.AE_PrixAch, artEnum.AE_Sommeil);
-                    }
-                    dataGridView5.DataSource = _bindingSource;
-                }
-            }
 
+
+            // =========================================================== DÉBUT TAB PAGES "GAMME" =========================================================== */
+            AfficherListeTabPagesGammes(_context);
             // =========================================================== FIN TAB PAGES "GAMME" =========================================================== */
+
+
 
 
             // =========================================================== DÉBUT TAB PAGES "DESCIRPTIF" =========================================================== */
@@ -431,6 +465,8 @@ namespace SoftCaisse.Forms.Article
             // =========================================================== FIN TAB PAGES "DESCIRPTIF" =========================================================== */
 
 
+
+
             // =========================================================== DÉBUT TAB PAGES "CHAMPS LIBRES" =========================================================== */
             // ================= Sous-Tab "infos libres" =================
             dateTimePicker2.Value = _selectedArt.C1ère_commercialisation.Value;
@@ -467,6 +503,8 @@ namespace SoftCaisse.Forms.Article
 
 
             // =========================================================== FIN TAB PAGES "CHAMPS LIBRES" =========================================================== */
+
+
 
 
             // =========================================================== DEBUT TAB PAGES "PARAMÈTRES" =========================================================== */
@@ -546,6 +584,7 @@ namespace SoftCaisse.Forms.Article
                 _bindingSource.Rows.Add(depot.DE_Intitule, depot.AS_QteMini, depot.AS_QteMaxi, emplacementPrincipal == "0" ? "" : emplacementPrincipal, emplacementControle == "0" ? "" : emplacementControle);
             }
             dataGridView7.DataSource = _bindingSource;
+
             // ================= Sous-Tab "Comptabilité" =================
             textBox38.Text = _selectedArt.AR_NbColis.ToString();
             List<string> listeNature = new List<string> { "Composant", "Pièce détachée", "Produit fini", "Produit semi-fini", "Non-gérée" };
@@ -563,13 +602,23 @@ namespace SoftCaisse.Forms.Article
             checkBox5.Checked = _selectedArt.AR_Fictif == 0 ? false : true;
             // =========================================================== FIN TAB PAGES "PARAMÈTRES" =========================================================== */
         }
-        /* ==================================================================== FIN CONSTRUCTEUR ==================================================================== */
-        /* ========================================================================================================================================================== */
+        // ==============================================================================================================
+        // FIN CONSTRUCTEUR =============================================================================================
+        // ==============================================================================================================
 
 
 
-        /* =========================================================== DÉBUT DESIGN =========================================================== */
-        /* ==================================================================================================================================== */
+
+
+
+
+
+
+
+        // ==============================================================================================================
+        // DEBUT DESIGN =================================================================================================
+        // ==============================================================================================================
+
         // HOVER EFFECT TROIS BOUTONS DE NAVBAR
         private void btnNomenclature_MouseHover(object sender, System.EventArgs e)
         {
@@ -584,6 +633,9 @@ namespace SoftCaisse.Forms.Article
             btnTracabilite.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 234, 247);
         }
 
+
+
+
         // NAVIGATIONS ENTRE TABS VIA BOUTONS (TAB "CHAMPS LIBRES")
         private void SelectTabChampsLibres(int tabIndex, Button activeButton)
         {
@@ -594,6 +646,9 @@ namespace SoftCaisse.Forms.Article
             btnPhoto.BackColor = SystemColors.Control;
             activeButton.BackColor = Color.LightBlue;
         }
+
+
+
 
         // NAVIGATIONS ENTRE TABS VIA BOUTONS (TAB "PARAMETRES")
         private void SelectTabParametres(int tabIndex, Button activeButton)
@@ -606,15 +661,22 @@ namespace SoftCaisse.Forms.Article
             btnGestProd.BackColor = SystemColors.Control;
             activeButton.BackColor = Color.LightBlue;
         }
-        /* ================================================================================================================================== */
-        /* =========================================================== FIN DESIGN =========================================================== */
+        // ==============================================================================================================
+        // FIN DESIGN ===================================================================================================
+        // ==============================================================================================================
 
 
 
 
 
-        /* =========================================================== DÉBUT BACKEND =========================================================== */
-        /* ===================================================================================================================================== */
+
+
+
+
+
+        // ==============================================================================================================
+        // DEBUT EVENEMENTS =============================================================================================
+        // ==============================================================================================================
         private void btnInterroger_Click(object sender, System.EventArgs e)
         {
             new InterrogationStockArticle(_referenceArt, _designArt, this).Show();
@@ -677,10 +739,19 @@ namespace SoftCaisse.Forms.Article
             {
                 CreerEnumereArticlesAyantUnSeulGamme creerEnumereArticlesAyantUnSeulGamme = new CreerEnumereArticlesAyantUnSeulGamme(_referenceArt);
                 creerEnumereArticlesAyantUnSeulGamme.ShowDialog();
+                if (creerEnumereArticlesAyantUnSeulGamme.RefreshListeEnumGammes == true)
+                {
+                    AfficherListeTabPagesGammes(_context);
+                }
+                
             } else
             {
                 ChoixCreationENUMGAMMEDansDetailsArticle choixCreationENUMGAMMEDansDetailsArticle = new ChoixCreationENUMGAMMEDansDetailsArticle(_referenceArt);
                 choixCreationENUMGAMMEDansDetailsArticle.ShowDialog();
+                if (choixCreationENUMGAMMEDansDetailsArticle.RefreshListeEnumGammes == true)
+                {
+                    AfficherListeTabPagesGammes(_context);
+                }
             }
         }
 
@@ -688,7 +759,8 @@ namespace SoftCaisse.Forms.Article
 
 
 
-        /* =================================================================================================================================== */
-        /* =========================================================== FIN BACKEND =========================================================== */
+        // ==============================================================================================================
+        // FIN EVENEMENTS ===============================================================================================
+        // ==============================================================================================================
     }
 }

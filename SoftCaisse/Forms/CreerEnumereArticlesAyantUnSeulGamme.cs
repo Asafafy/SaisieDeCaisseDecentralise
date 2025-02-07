@@ -22,6 +22,8 @@ namespace SoftCaisse.Forms
         // =====================================================================================================================================================
         private readonly AppDbContext _context;
 
+        public bool? RefreshListeEnumGammes { get; set; }
+
         private readonly F_ARTGAMMEService _f_ARTGAMMEService;
         private readonly F_GAMSTOCKService _f_GAMSTOCKService;
         private readonly F_ARTENUMREFService _f_ARTENUMREFService;
@@ -154,6 +156,7 @@ namespace SoftCaisse.Forms
             }
 
             Close();
+            RefreshListeEnumGammes = true;
         }
 
 

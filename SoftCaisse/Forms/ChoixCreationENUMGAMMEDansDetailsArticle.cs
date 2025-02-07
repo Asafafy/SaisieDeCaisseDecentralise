@@ -17,6 +17,8 @@ namespace SoftCaisse.Forms
         // DEBUT DECLARATION DES VARIABLES =============================================================================================
         // =============================================================================================================================
         private readonly string _referenceArt;
+
+        public bool? RefreshListeEnumGammes { get; set; }
         // =============================================================================================================================
         // FIN DECLARATION DES VARIABLES ===============================================================================================
         // =============================================================================================================================
@@ -48,6 +50,11 @@ namespace SoftCaisse.Forms
         {
             CreerEnumereArticlesAyantDeuxGammes creerEnumereArticlesAyantDeuxGammes = new CreerEnumereArticlesAyantDeuxGammes(_referenceArt, true);
             creerEnumereArticlesAyantDeuxGammes.ShowDialog();
+
+            if (creerEnumereArticlesAyantDeuxGammes.RefreshListeEnumGammes == true)
+            {
+                RefreshListeEnumGammes = true;
+            }
             Close();
         }
 
@@ -55,6 +62,11 @@ namespace SoftCaisse.Forms
         {
             CreerEnumereArticlesAyantDeuxGammes creerEnumereArticlesAyantDeuxGammes = new CreerEnumereArticlesAyantDeuxGammes(_referenceArt, false);
             creerEnumereArticlesAyantDeuxGammes.ShowDialog();
+
+            if (creerEnumereArticlesAyantDeuxGammes.RefreshListeEnumGammes == true)
+            {
+                RefreshListeEnumGammes = true;
+            }
             Close();
         }
 

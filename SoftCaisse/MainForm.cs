@@ -21,6 +21,7 @@ using SoftCaisse.Forms.VenteComptoir;
 using SoftCaisse.Utils.Controls;
 using SoftCaisse.Utils.Global;
 using System;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
 

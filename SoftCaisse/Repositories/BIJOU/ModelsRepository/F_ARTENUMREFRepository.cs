@@ -41,6 +41,17 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         // ======================================================================================================================================
         // =================================================== DEBUT DECLARATION DES METHODES ===================================================
         // ======================================================================================================================================
+        public F_ARTENUMREF GetF_ARTENUMREF(string AR_Ref, int? AG_No1, int? AG_No2)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_ARTENUMREF.Where(f => f.AR_Ref == AR_Ref && f.AG_No1 == AG_No1 && f.AG_No2 == AG_No2).FirstOrDefault();
+            }
+        }
+
+
+
+
         public void Create(F_ARTENUMREF nouveauf_ARTENUMREF)
         {
             string queryCreateF_ARTENUMREF = @"
@@ -130,6 +141,90 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
 
+
+        public  void UpdateF_ARTENUMRF(decimal? AE_PrixAch, string AE_Ref, string AE_CodeBarre, string AE_EdiCode, int cbMarq)
+        {
+            string queryUpdateF_ARTENUMREF = @"                
+                BEGIN TRANSACTION;
+                
+                IF EXISTS (SELECT 1 FROM F_ARTENUMREF WHERE cbMarq = @cbMarq)
+                	BEGIN
+                	    UPDATE F_ARTENUMREF
+                	    SET AE_PrixAch   = @AE_PrixAch,
+                	        AE_Ref       = @AE_Ref,
+                	        AE_CodeBarre = @AE_CodeBarre,
+                	        AE_EdiCode   = @AE_EdiCode
+                	    WHERE cbMarq = @cbMarq;
+                	
+                	    COMMIT;
+                	END
+                ELSE
+                	BEGIN
+                	    ROLLBACK;
+                	END;
+            ";
+
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryUpdateF_ARTENUMREF,
+                    new SqlParameter("@AE_PrixAch", AE_PrixAch),
+                    new SqlParameter("@AE_Ref", AE_Ref ?? (object)DBNull.Value),
+                    new SqlParameter("@AE_CodeBarre", AE_CodeBarre ?? (object)DBNull.Value),
+                    new SqlParameter("@AE_EdiCode", AE_EdiCode ?? (object)DBNull.Value),
+                    new SqlParameter("@cbMarq", cbMarq)
+                );
+            }
+        }
+
+
+
+
+        public void DeleteF_ARTENUMREFAyantAG_No1(int? AG_No1, string AR_Ref)
+        {
+            string queryDeleteF_ARTENUMREFAG_No1 = @"
+                DISABLE TRIGGER ALL ON [dbo].[F_ARTENUMREF];
+                
+                DELETE FROM [dbo].[F_ARTENUMREF]  
+                WHERE AG_No1 = @AG_No1 AND AR_Ref = @AR_Ref;
+                
+                ENABLE TRIGGER ALL ON [dbo].[F_ARTENUMREF];
+            ";
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryDeleteF_ARTENUMREFAG_No1,
+                    new SqlParameter("@AG_No1", AG_No1),
+                    new SqlParameter("@AR_Ref", AR_Ref)
+                );
+            }
+        }
+
+
+
+
+        public void DeleteF_ARTENUMREFAyantAG_No2(int? AG_No2, string AR_Ref)
+        {
+            string queryDeleteF_ARTENUMREFAG_No2 = @"
+                DISABLE TRIGGER ALL ON [dbo].[F_ARTENUMREF];
+                
+                DELETE FROM [dbo].[F_ARTENUMREF]  
+                WHERE AG_No2 = @AG_No2 AND AR_Ref = @AR_Ref;
+                
+                ENABLE TRIGGER ALL ON [dbo].[F_ARTENUMREF];
+            ";
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryDeleteF_ARTENUMREFAG_No2,
+                    new SqlParameter("@AG_No2", AG_No2),
+                    new SqlParameter("@AR_Ref", AR_Ref)
+                );
+            }
+        }
         // ====================================================================================================================================
         // =================================================== FIN DECLARATION DES METHODES ===================================================
         // ====================================================================================================================================

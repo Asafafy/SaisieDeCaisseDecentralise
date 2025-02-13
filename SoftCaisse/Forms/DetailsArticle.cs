@@ -3,8 +3,11 @@ using SoftCaisse.DTO;
 using SoftCaisse.DTO.DetailsArticle;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
+using SoftCaisse.Repositories.BIJOU.ModelsRepository;
+using SoftCaisse.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -17,10 +20,24 @@ namespace SoftCaisse.Forms.Article
     public partial class DetailsArticle : KryptonForm
     {
         private readonly AppDbContext _context;
+
+        private readonly F_ARTICLERepository _f_ARTICLERepository;
+        private readonly F_ARTGAMMERepository _f_ARTGAMMERepository;
+        private readonly F_ARTPRIXRepository _f_ARTPRIXRepository;
+        private readonly F_ARTENUMREFRepository _f_ARTENUMREFRepository;
+        private readonly F_GAMSTOCKRepository _f_GAMSTOCKRepository;
+
+        private readonly F_ARTICLEService _f_ARTICLEService;
+        private readonly F_ARTGAMMEService _f_ARTGAMMEService;
+        private readonly F_ARTPRIXService _f_ARTPRIXService;
+        private readonly F_ARTENUMREFService _f_ARTENUMREFService;
+        private readonly F_GAMSTOCKService _f_GAMSTOCKService;
+
         private DataTable _bindingSource;
         private string _referenceArt;
         private string _designArt;
         private string _repertoireParent = AppDomain.CurrentDomain.BaseDirectory;
+
         public F_ARTICLE _selectedArt;
 
 
@@ -112,7 +129,7 @@ namespace SoftCaisse.Forms.Article
                     {
                         _bindingSource.Rows.Add(artEnum.G_Intitule1, artEnum.AR_Ref, artEnum.AE_CodeBarre, artEnum.AE_PrixAch, artEnum.AE_Sommeil);
                     }
-                    dataGridView5.DataSource = _bindingSource;
+                    dataGridViewListeEnumereGammesDArticles.DataSource = _bindingSource;
                 }
                 else
                 {
@@ -147,7 +164,7 @@ namespace SoftCaisse.Forms.Article
                     {
                         _bindingSource.Rows.Add(artEnum.G_Intitule1, artEnum.G_Intitule2, artEnum.AR_Ref, artEnum.AE_CodeBarre, artEnum.AE_PrixAch, artEnum.AE_Sommeil);
                     }
-                    dataGridView5.DataSource = _bindingSource;
+                    dataGridViewListeEnumereGammesDArticles.DataSource = _bindingSource;
                 }
             }
         }
@@ -170,8 +187,21 @@ namespace SoftCaisse.Forms.Article
         public DetailsArticle(string referenceArt, string designArt)
         {
             _context = new AppDbContext();
+
             InitializeComponent();
-            F_ARTICLERepository fArtilceRepository = new F_ARTICLERepository(_context);
+
+            _f_ARTICLERepository = new F_ARTICLERepository(_context);
+            _f_ARTGAMMERepository = new F_ARTGAMMERepository(_context);
+            _f_ARTPRIXRepository = new F_ARTPRIXRepository(_context);
+            _f_ARTENUMREFRepository = new F_ARTENUMREFRepository(_context);
+            _f_GAMSTOCKRepository = new F_GAMSTOCKRepository(_context);
+
+            _f_ARTICLEService = new F_ARTICLEService(_context);
+            _f_ARTGAMMEService = new F_ARTGAMMEService(_context, _f_ARTGAMMERepository);
+            _f_ARTPRIXService = new F_ARTPRIXService(_context, _f_ARTPRIXRepository);
+            _f_ARTENUMREFService = new F_ARTENUMREFService(_context, _f_ARTENUMREFRepository);
+            _f_GAMSTOCKService = new F_GAMSTOCKService(_context, _f_GAMSTOCKRepository);
+
             _referenceArt = referenceArt;
             _designArt = designArt;
             _selectedArt = _context.F_ARTICLE.Where(art => art.AR_Ref == _referenceArt && art.AR_Design == _designArt).FirstOrDefault();
@@ -752,6 +782,101 @@ namespace SoftCaisse.Forms.Article
                 {
                     AfficherListeTabPagesGammes(_context);
                 }
+            }
+        }
+
+
+
+
+
+        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow selectedRow = dataGridViewListeEnumereGammesDArticles.SelectedRows[0];
+            if (selectedRow != null)
+            {
+                btnOuvrirEnumereGamme_Click(sender, e);
+            }
+        }
+
+
+
+
+
+        private void btnOuvrirEnumereGamme_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow selectedRow = dataGridViewListeEnumereGammesDArticles.SelectedRows[0];
+            if (selectedRow != null)
+            {
+                string enumere1 = selectedRow.Cells[0].Value.ToString();
+                string enumere2 = selectedRow.Cells[1].Value.ToString();
+                enumere2 = enumere2 == _referenceArt ? "" : enumere2;
+                MettreAJourEnumereDeGammeDansDetailsArticle mettreAJourEnumereDeGammeDArticle = new MettreAJourEnumereDeGammeDansDetailsArticle(_referenceArt, enumere1, enumere2);
+                mettreAJourEnumereDeGammeDArticle.ShowDialog();
+                if (mettreAJourEnumereDeGammeDArticle.RefreshListeEnumGammes == true)
+                {
+                    AfficherListeTabPagesGammes(_context);
+                }
+            }
+        }
+
+
+
+
+
+        private void btnSupprimerEnumereGamme_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow selectedRow = dataGridViewListeEnumereGammesDArticles.SelectedRows[0];
+            if (selectedRow != null)
+            {
+                string enumere1 = selectedRow.Cells[0].Value.ToString();
+                string enumere2 = selectedRow.Cells[1].Value.ToString();
+                enumere2 = enumere2 == _referenceArt ? "" : enumere2;
+
+                if (cmbBxGamme2.Text == "Aucun")
+                {
+                    DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer l'énuméré \"" + enumere1 + "\" de l'article " + _referenceArt + " ?", "Suppression d'énuméré", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        _f_ARTPRIXService.DeleteF_ARTPRIXAyantEG_Enumere(_referenceArt, enumere1, false);
+                        _f_ARTENUMREFService.DeleteF_ARTENUMREFByEG_Enumere(_referenceArt, enumere1, false);
+                        _f_GAMSTOCKService.DeleteF_GAMSTOCK(_referenceArt, enumere1, false);
+                        _f_ARTGAMMEService.Delete(_referenceArt, enumere1);
+                        _f_ARTICLEService.UpdateDateModifArticle(_referenceArt);
+                    }
+                }
+                else
+                {
+                    ChoixSuppressionENUMGAMMEDansDetailsArticle choixSuppressionENUMGAMMEDansDetailsArticle = new ChoixSuppressionENUMGAMMEDansDetailsArticle();
+                    choixSuppressionENUMGAMMEDansDetailsArticle.ShowDialog();
+
+                    if (choixSuppressionENUMGAMMEDansDetailsArticle.estGamme2 != null && choixSuppressionENUMGAMMEDansDetailsArticle.estGamme2 == true)
+                    {
+                        DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer l'énuméré \"" + enumere2 + "\" de l'article " + _referenceArt + " ?", "Suppression d'énuméré", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes)
+                        {
+                            _f_ARTPRIXService.DeleteF_ARTPRIXAyantEG_Enumere(_referenceArt, enumere2, true);
+                            _f_ARTENUMREFService.DeleteF_ARTENUMREFByEG_Enumere(_referenceArt, enumere2, true);
+                            _f_GAMSTOCKService.DeleteF_GAMSTOCK(_referenceArt, enumere2, true);
+                            _f_ARTGAMMEService.Delete(_referenceArt, enumere2);
+                        }
+                    }
+                    else if (choixSuppressionENUMGAMMEDansDetailsArticle.estGamme2 != null && choixSuppressionENUMGAMMEDansDetailsArticle.estGamme2 == false)
+                    {
+                        DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer l'énuméré \"" + enumere1 + "\" de l'article " + _referenceArt + " ?", "Suppression d'énuméré", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes)
+                        {
+                            _f_ARTPRIXService.DeleteF_ARTPRIXAyantEG_Enumere(_referenceArt, enumere1, false);
+                            _f_ARTENUMREFService.DeleteF_ARTENUMREFByEG_Enumere(_referenceArt, enumere1, false);
+                            _f_GAMSTOCKService.DeleteF_GAMSTOCK(_referenceArt, enumere1, false);
+                            _f_ARTGAMMEService.Delete(_referenceArt, enumere1);
+                        }
+                    }
+                    _f_ARTICLEService.UpdateDateModifArticle(_referenceArt);
+                }
+
+
+                AfficherListeTabPagesGammes(_context);
             }
         }
 

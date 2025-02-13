@@ -52,6 +52,10 @@ namespace SoftCaisse.Forms
 
             InitializeComponent();
 
+            txtBxPrixDAchat.KeyPress += TxtBx_KeyPressHandler;
+            txtBxCoutStandard.KeyPress += TxtBx_KeyPressHandler;
+            txtBxDernierPrixDAchat.KeyPress += TxtBx_KeyPressHandler;
+
             _f_ARTICLERepository = new F_ARTICLERepository(_context);
             _f_ARTGAMMERepository = new F_ARTGAMMERepository(_context);
             _f_GAMSTOCKRepository = new F_GAMSTOCKRepository(_context);

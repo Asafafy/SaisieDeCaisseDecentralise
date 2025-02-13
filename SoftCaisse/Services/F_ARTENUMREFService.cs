@@ -20,6 +20,7 @@ namespace SoftCaisse.Services
         // =======================================================================================================================================
         private readonly AppDbContext _context;
         private readonly F_ARTENUMREFRepository _f_ARTENUMREFRepository;
+        private readonly F_ARTGAMMERepository _f_ARTGAMMERepository;
         // =====================================================================================================================================
         // =================================================== FIN DECLARATION DES VARIABLES ===================================================
         // =====================================================================================================================================
@@ -35,6 +36,7 @@ namespace SoftCaisse.Services
         {
             _context = context;
             _f_ARTENUMREFRepository = f_ARTENUMREFRepository;
+            _f_ARTGAMMERepository = new F_ARTGAMMERepository(_context);
         }
         // =====================================================================================================================================
         // =================================================== FIN DECLARATION DES VARIABLES ===================================================
@@ -136,6 +138,31 @@ namespace SoftCaisse.Services
         }
 
 
+
+
+
+        public void UpdateF_ARTENUMREF(string AR_Ref, int? AG_No1, int? AG_No2, decimal? AE_PrixAch, string AE_Ref, string AE_CodeBarre, string AE_EdiCode)
+        {
+            F_ARTENUMREF f_ARTENUMREFToUpdate = _f_ARTENUMREFRepository.GetF_ARTENUMREF(AR_Ref, AG_No1, AG_No2);
+            _f_ARTENUMREFRepository.UpdateF_ARTENUMRF(AE_PrixAch, AE_Ref, AE_CodeBarre, AE_EdiCode, f_ARTENUMREFToUpdate.cbMarq);
+        }
+
+
+
+
+
+        public void DeleteF_ARTENUMREFByEG_Enumere(string AR_Ref, string EG_Enumere, bool estAG_No2)
+        {
+            F_ARTGAMME f_ARTGAMME = _f_ARTGAMMERepository.GetByEG_Enumere(EG_Enumere);
+            if (estAG_No2)
+            {
+                _f_ARTENUMREFRepository.DeleteF_ARTENUMREFAyantAG_No2(f_ARTGAMME.AG_No, AR_Ref);
+            }
+            else
+            {
+                _f_ARTENUMREFRepository.DeleteF_ARTENUMREFAyantAG_No1(f_ARTGAMME.AG_No, AR_Ref);
+            }
+        }
         // ====================================================================================================================================
         // =================================================== FIN DECLARATION DES METHODES ===================================================
         // ====================================================================================================================================

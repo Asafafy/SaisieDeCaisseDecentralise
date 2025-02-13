@@ -136,27 +136,83 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
 
-        //TODO: Mbola misy tsy milamina eto anh..... Mbola mila étudiena kely aloha vao mety.....
-        //public void Update(int cbMarq, string EG_Enumere)
-        //{
-        //    string queryUpdateF_ENUMGAMME = @"
-        //        UPDATE F_ENUMGAMME
-        //        SET
-        //            EG_Enumere = @EG_Enumere
-        //        WHERE cbMarq = @cbMarq
-        //    ";
+        public void UpdateEG_Enumere(int cbMarq, string EG_Enumere)
+        {
+            string queryUpdateF_ARTGAMME = @"
+                DISABLE TRIGGER [dbo].[TG_UPD_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+                DISABLE TRIGGER [dbo].[TG_CBUPD_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+                
+                UPDATE F_ARTGAMME
+                SET
+                    EG_Enumere = @EG_Enumere
+                WHERE cbMarq = @cbMarq;
+                
+                ENABLE TRIGGER [dbo].[TG_UPD_F_ARTGAMME] ON [dbo].[F_ARTGAMME];
+                ENABLE TRIGGER [dbo].[TG_CBUPD_F_ARTGAMME] ON [dbo].[F_ARTGAMME]
+            ";
 
-        //    _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_UPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
-        //    _context.Database.ExecuteSqlCommand("DISABLE TRIGGER [dbo].[TG_CBUPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
-        //    _context.Database.ExecuteSqlCommand(
-        //    queryUpdateF_ENUMGAMME,
-        //        new SqlParameter("@EG_Enumere", EG_Enumere),
-        //        new SqlParameter("@cbMarq", cbMarq)
-        //    );
-        //    _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_UPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
-        //    _context.Database.ExecuteSqlCommand("ENABLE TRIGGER [dbo].[TG_CBUPD_F_ENUMGAMME] ON [dbo].[F_ENUMGAMME]");
-        //}
+            using (AppDbContext context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                queryUpdateF_ARTGAMME,
+                    new SqlParameter("@EG_Enumere", EG_Enumere),
+                    new SqlParameter("@cbMarq", cbMarq)
+                );
+            }       
+        }
 
+
+
+
+
+        public void Delete(int cbMarq)
+        {
+            string queryDeleteDansF_ARTGAMME = @"
+                IF EXISTS (SELECT 1 FROM [dbo].[F_ARTGAMME] WHERE cbMarq = @cbMarq)
+                BEGIN
+                    BEGIN TRANSACTION; -- Début de la transaction
+                
+                    BEGIN TRY
+                        -- Désactiver les triggers
+                        DISABLE TRIGGER ALL ON [dbo].[F_ARTGAMME];
+                
+                        -- Suppression des enregistrements
+                        DELETE FROM [dbo].[F_ARTGAMME] 
+                        WHERE cbMarq = @cbMarq;
+                
+                        -- Valider la transaction si tout s'est bien passé
+                        COMMIT TRANSACTION;
+                
+                        -- Réactiver les triggers après la validation de la transaction
+                        ENABLE TRIGGER ALL ON [dbo].[F_ARTGAMME];
+                    END TRY
+                    BEGIN CATCH
+                        -- Annuler la transaction en cas d'erreur
+                        IF @@TRANCOUNT > 0
+                            ROLLBACK TRANSACTION;
+                
+                        -- Réactiver les triggers même en cas d'échec
+                        ENABLE TRIGGER ALL ON [dbo].[F_ARTGAMME];
+                
+                        -- Afficher l'erreur
+                        PRINT 'Erreur lors de la suppression de F_ARTGAMME. Transaction annulée.';
+                        PRINT ERROR_MESSAGE();
+                    END CATCH
+                END
+                ELSE
+                BEGIN
+                    PRINT 'Aucun enregistrement trouvé avec cbMarq = ' + CAST(@cbMarq AS VARCHAR);
+                END
+            ";
+
+            using (AppDbContext context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryDeleteDansF_ARTGAMME,
+                    new SqlParameter("@cbMarq", cbMarq)
+                );
+            }
+        }
         // ====================================================================================================================================
         // =================================================== FIN DECLARATION DES METHODES ===================================================
         // ====================================================================================================================================

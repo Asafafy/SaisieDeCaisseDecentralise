@@ -76,6 +76,52 @@ namespace SoftCaisse.Services
         }
 
 
+
+
+        public void DeleteF_ARTPRIXAyantEG_Enumere(string AR_Ref, string EG_Enumere, bool estGamme2)
+        {
+            F_ARTGAMME f_ARTGAMME = _f_ARTGAMMERepository.GetByEG_Enumere(EG_Enumere);
+
+            if (estGamme2)
+            {
+                _f_ARTPRIXRepository.DeleteF_ARTPRIXAG_No2(AR_Ref, f_ARTGAMME.AG_No);
+            }
+            else
+            {
+                _f_ARTPRIXRepository.DeleteF_ARTPRIXAG_No1(AR_Ref, f_ARTGAMME.AG_No);
+            }
+        }
+
+
+        public void DeleteF_ARTPRIXAyantAG_No1EtAG_No2(string AR_Ref, int? AG_No1, int? AG_No2)
+        {
+            _f_ARTPRIXRepository.DeleteF_ARTPRIXAyantAG_No1EtAG_No2(AR_Ref, AG_No1, AG_No2);
+        }
+
+
+
+
+
+        public void UpdateF_ARTPRIX(string AR_Ref, int? AG_No1, int? AG_No2, decimal? AR_PUNet, decimal? AR_CoutStd)
+        {
+            F_ARTPRIX f_ARTPRIXToUpdate = _f_ARTPRIXRepository.GetF_ARTPRIX(AR_Ref, AG_No1, AG_No2);
+            _f_ARTPRIXRepository.UpdateAR_PUNet_Et_AR_CoutStdF_ARTPRIX(f_ARTPRIXToUpdate.cbMarq, AR_PUNet, AR_CoutStd);
+        }
+
+
+        public void InsertF_ARTPRIX(string AR_Ref, int? AG_No1, int? AG_No2, decimal? AR_PUNet, decimal? AR_CoutStd)
+        {
+            F_ARTPRIX _f_ARTPRIXToCreate = new F_ARTPRIX();
+            _f_ARTPRIXToCreate.AR_Ref = AR_Ref;
+            _f_ARTPRIXToCreate.AG_No1 = AG_No1;
+            _f_ARTPRIXToCreate.AG_No2 = AG_No2;
+            _f_ARTPRIXToCreate.AR_PUNet = AR_PUNet;
+            _f_ARTPRIXToCreate.AR_CoutStd = AR_CoutStd;
+
+            _f_ARTPRIXRepository.CreateF_ARTPRIX(_f_ARTPRIXToCreate);
+        }
+
+
         // ====================================================================================================================================
         // =================================================== FIN DECLARATION DES METHODES ===================================================
         // ====================================================================================================================================

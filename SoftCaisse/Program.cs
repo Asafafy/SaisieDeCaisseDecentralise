@@ -24,6 +24,10 @@ namespace SoftCaisse
 
             if (File.Exists(serveurFilePath) && File.Exists(sageFilePath) && File.Exists(sageFileObj))
             {
+                // Higher DPI (Amélioration qualité de l'image)
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+
                 Application.Run(new MainForm());
             }
             else

@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Media3D;
 
 namespace SoftCaisse.Services
 {
@@ -25,6 +26,7 @@ namespace SoftCaisse.Services
             _context = context;
             _f_ARTGAMMERepository = f_ARTGAMMERepository;
         }
+
 
 
 
@@ -52,8 +54,30 @@ namespace SoftCaisse.Services
         }
 
 
+        public void UpdateEG_EnumereGamme(string previousEG_Enumere, string newEG_Enumere)
+        {
+            F_ARTGAMME f_ARTGAMME = _f_ARTGAMMERepository.GetByEG_Enumere(previousEG_Enumere);
+            _f_ARTGAMMERepository.UpdateEG_Enumere(f_ARTGAMME.cbMarq, newEG_Enumere);
+        }
 
 
 
+
+        public void Delete(string AR_Ref, string EG_Enumere)
+        {
+
+
+            F_ARTGAMME f_ARTGAMMEToDelete = new F_ARTGAMME();
+
+            using (AppDbContext context = new AppDbContext())
+            {
+                f_ARTGAMMEToDelete = context.F_ARTGAMME.Where(ag => ag.AR_Ref == AR_Ref && ag.EG_Enumere == EG_Enumere).FirstOrDefault();
+            }
+
+            if (f_ARTGAMMEToDelete != null)
+            {
+                _f_ARTGAMMERepository.Delete(f_ARTGAMMEToDelete.cbMarq);
+            }
+        }
     }
 }

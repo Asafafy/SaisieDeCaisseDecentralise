@@ -131,5 +131,50 @@ namespace SoftCaisse.Repositories
         }
 
 
+
+
+
+        public void DeleteF_GAMSTOCKByAG_No1(int? AG_No1, string AR_Ref)
+        {
+            string queryDeleteF_GAMSTOCKByAG_No1 = @"
+                DISABLE TRIGGER ALL ON [dbo].[F_GAMSTOCK];
+                
+                DELETE FROM [dbo].[F_GAMSTOCK]  
+                WHERE AG_No1 = @AG_No1 AND AR_Ref = @AR_Ref;
+                
+                ENABLE TRIGGER ALL ON [dbo].[F_GAMSTOCK];
+            ";
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryDeleteF_GAMSTOCKByAG_No1,
+                    new SqlParameter("@AG_No1", AG_No1),
+                    new SqlParameter("@AR_Ref", AR_Ref)
+                );
+            }
+        }
+
+
+        public void DeleteF_GAMSTOCKByAG_No2(int? AG_No2, string AR_Ref)
+        {
+            string queryDeleteF_GAMSTOCKByAG_No2 = @"
+                DISABLE TRIGGER ALL ON [dbo].[F_GAMSTOCK];
+                
+                DELETE FROM [dbo].[F_GAMSTOCK]
+                WHERE AG_No2 = @AG_No2 AND AR_Ref = @AR_Ref;
+                
+                ENABLE TRIGGER ALL ON [dbo].[F_GAMSTOCK];
+            ";
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryDeleteF_GAMSTOCKByAG_No2,
+                    new SqlParameter("@AG_No2", AG_No2),
+                    new SqlParameter("@AR_Ref", AR_Ref)
+                );
+            }
+        }
     }
 }

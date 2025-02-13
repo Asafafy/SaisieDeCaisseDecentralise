@@ -112,5 +112,22 @@ namespace SoftCaisse.Services
             }
         }
 
+
+
+
+
+        public void DeleteF_GAMSTOCK(string AR_Ref, string EG_Enumere, bool estAG_No2)
+        {
+            F_ARTGAMME f_ARTGAMME = _f_ARTGAMMERepository.GetByEG_Enumere(EG_Enumere);
+            if (estAG_No2)
+            {
+                _f_GAMSTOCKRepository.DeleteF_GAMSTOCKByAG_No2(f_ARTGAMME.AG_No, AR_Ref);
+            }
+            else
+            {
+                _f_GAMSTOCKRepository.DeleteF_GAMSTOCKByAG_No1(f_ARTGAMME.AG_No, AR_Ref);
+            }
+        }
+
     }
 }

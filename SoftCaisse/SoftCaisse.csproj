@@ -36,6 +36,9 @@
   <PropertyGroup>
     <ApplicationIcon>cash-register_icon-icons.com_72250.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ComponentFactory.Krypton.Toolkit">
       <HintPath>D:\krypton\ComponentFactory.Krypton.Toolkit.dll</HintPath>
@@ -86,6 +89,12 @@
     </Compile>
     <Compile Include="Forms\ChoixCreationENUMGAMMEDansDetailsArticle.Designer.cs">
       <DependentUpon>ChoixCreationENUMGAMMEDansDetailsArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChoixSuppressionENUMGAMMEDansDetailsArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChoixSuppressionENUMGAMMEDansDetailsArticle.Designer.cs">
+      <DependentUpon>ChoixSuppressionENUMGAMMEDansDetailsArticle.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ChoixTypeDoc.cs">
       <SubType>Form</SubType>
@@ -170,6 +179,12 @@
     </Compile>
     <Compile Include="Forms\ListeFamillesDArticles.Designer.cs">
       <DependentUpon>ListeFamillesDArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MettreAJourEnumereDeGammeDansDetailsArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MettreAJourEnumereDeGammeDansDetailsArticle.Designer.cs">
+      <DependentUpon>MettreAJourEnumereDeGammeDansDetailsArticle.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MiseAJourDocumentDeVente.cs">
       <SubType>Form</SubType>
@@ -531,6 +546,7 @@
     <Compile Include="Repositories\ScdDb\RoleAutorisationRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
+    <Compile Include="Services\F_ARTICLEService.cs" />
     <Compile Include="Services\F_ARTPRIXService.cs" />
     <Compile Include="Services\F_ARTENUMREFService.cs" />
     <Compile Include="Services\F_GAMSTOCKService.cs" />
@@ -558,6 +574,9 @@
     <EmbeddedResource Include="Forms\ChoixCreationENUMGAMMEDansDetailsArticle.resx">
       <DependentUpon>ChoixCreationENUMGAMMEDansDetailsArticle.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChoixSuppressionENUMGAMMEDansDetailsArticle.resx">
+      <DependentUpon>ChoixSuppressionENUMGAMMEDansDetailsArticle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreationManuelleEnumgamme.resx">
       <DependentUpon>CreationManuelleEnumgamme.cs</DependentUpon>
     </EmbeddedResource>
@@ -569,6 +588,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GammeForm.resx">
       <DependentUpon>GammeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MettreAJourEnumereDeGammeDansDetailsArticle.resx">
+      <DependentUpon>MettreAJourEnumereDeGammeDansDetailsArticle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelesDocuments\DocumentDeVente.rdlc" />
     <EmbeddedResource Include="ModelesDocuments\ClotureFacture.rdlc" />
@@ -762,6 +784,7 @@
     <Content Include="Images\Société\Coins_96px.png" />
     <Content Include="Images\Société\ProfilPic.png" />
     <Content Include="LOGO SOFTWELL.ico" />
+    <None Include="app.manifest" />
     <None Include="Resources\icons8-star-50.png" />
     <None Include="Resources\search.png" />
     <None Include="Resources\parameter.png" />

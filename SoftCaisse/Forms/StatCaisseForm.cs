@@ -108,10 +108,5 @@ namespace SoftCaisse.Forms.StatCaisse
             }
 
         }
-
-        private void tableLayoutPanel1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
-        {
-
-        }
     }
 }

@@ -1045,7 +1045,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 194F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 208F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(992, 208);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
@@ -1111,7 +1111,7 @@ namespace SoftCaisse.Forms.Article
             this.tabPageTarifsClients.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageTarifsClients.Name = "tabPageTarifsClients";
             this.tabPageTarifsClients.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageTarifsClients.Size = new System.Drawing.Size(997, 206);
+            this.tabPageTarifsClients.Size = new System.Drawing.Size(998, 212);
             this.tabPageTarifsClients.TabIndex = 1;
             this.tabPageTarifsClients.Text = "Tarirfs clients";
             this.tabPageTarifsClients.UseVisualStyleBackColor = true;
@@ -1130,8 +1130,8 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 197F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(991, 202);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 208F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(992, 208);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // dataGridView2
@@ -1152,7 +1152,7 @@ namespace SoftCaisse.Forms.Article
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(881, 194);
+            this.dataGridView2.Size = new System.Drawing.Size(882, 200);
             this.dataGridView2.TabIndex = 1;
             // 
             // flowLayoutPanel4
@@ -1161,10 +1161,10 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel4.Controls.Add(this.krptBtnAjouter);
             this.flowLayoutPanel4.Controls.Add(this.kptBtnSupprimer);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(894, 2);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(895, 2);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(94, 198);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(94, 204);
             this.flowLayoutPanel4.TabIndex = 0;
             // 
             // kryptonButtonOuvrirTrClnt
@@ -1208,7 +1208,7 @@ namespace SoftCaisse.Forms.Article
             this.tabPageNouveauTarif.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageNouveauTarif.Name = "tabPageNouveauTarif";
             this.tabPageNouveauTarif.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageNouveauTarif.Size = new System.Drawing.Size(997, 206);
+            this.tabPageNouveauTarif.Size = new System.Drawing.Size(998, 212);
             this.tabPageNouveauTarif.TabIndex = 2;
             this.tabPageNouveauTarif.Text = "Nouveau tarif";
             // 
@@ -1326,9 +1326,9 @@ namespace SoftCaisse.Forms.Article
             this.Conditionnement.BackColor = System.Drawing.Color.AliceBlue;
             this.Conditionnement.Controls.Add(this.tableLayoutPanel17);
             this.Conditionnement.Location = new System.Drawing.Point(4, 25);
-            this.Conditionnement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Conditionnement.Margin = new System.Windows.Forms.Padding(4);
             this.Conditionnement.Name = "Conditionnement";
-            this.Conditionnement.Size = new System.Drawing.Size(1019, 628);
+            this.Conditionnement.Size = new System.Drawing.Size(1018, 629);
             this.Conditionnement.TabIndex = 4;
             this.Conditionnement.Text = "Conditionnement";
             // 
@@ -1346,7 +1346,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel17.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.tableLayoutPanel17.RowCount = 1;
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel17.Size = new System.Drawing.Size(1019, 628);
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(1018, 629);
             this.tableLayoutPanel17.TabIndex = 0;
             // 
             // dataGridView3
@@ -1367,7 +1367,7 @@ namespace SoftCaisse.Forms.Article
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(836, 584);
+            this.dataGridView3.Size = new System.Drawing.Size(835, 585);
             this.dataGridView3.TabIndex = 1;
             // 
             // flowLayoutPanel14
@@ -1376,10 +1376,10 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel14.Controls.Add(this.kryptonButton6);
             this.flowLayoutPanel14.Controls.Add(this.kryptonButton7);
             this.flowLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel14.Location = new System.Drawing.Point(870, 22);
-            this.flowLayoutPanel14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel14.Location = new System.Drawing.Point(869, 22);
+            this.flowLayoutPanel14.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel14.Name = "flowLayoutPanel14";
-            this.flowLayoutPanel14.Size = new System.Drawing.Size(125, 584);
+            this.flowLayoutPanel14.Size = new System.Drawing.Size(125, 585);
             this.flowLayoutPanel14.TabIndex = 0;
             // 
             // kryptonButton5
@@ -1423,7 +1423,7 @@ namespace SoftCaisse.Forms.Article
             this.Gamme.BackColor = System.Drawing.Color.AliceBlue;
             this.Gamme.Controls.Add(this.tableLayoutPanel23);
             this.Gamme.Location = new System.Drawing.Point(4, 25);
-            this.Gamme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Gamme.Margin = new System.Windows.Forms.Padding(4);
             this.Gamme.Name = "Gamme";
             this.Gamme.Size = new System.Drawing.Size(1018, 629);
             this.Gamme.TabIndex = 5;
@@ -1439,7 +1439,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel23.Controls.Add(this.flowLayoutPanel15, 1, 1);
             this.tableLayoutPanel23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel23.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel23.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel23.Name = "tableLayoutPanel23";
             this.tableLayoutPanel23.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.tableLayoutPanel23.RowCount = 2;
@@ -1454,9 +1454,9 @@ namespace SoftCaisse.Forms.Article
             this.groupBox16.Controls.Add(this.tableLayoutPanel24);
             this.groupBox16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox16.Location = new System.Drawing.Point(24, 22);
-            this.groupBox16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox16.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox16.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox16.Size = new System.Drawing.Size(837, 140);
             this.groupBox16.TabIndex = 0;
             this.groupBox16.TabStop = false;
@@ -1476,7 +1476,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel24.Controls.Add(this.cmbBxGamme2, 3, 1);
             this.tableLayoutPanel24.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel24.Location = new System.Drawing.Point(4, 19);
-            this.tableLayoutPanel24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel24.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel24.Name = "tableLayoutPanel24";
             this.tableLayoutPanel24.RowCount = 3;
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
@@ -1514,7 +1514,7 @@ namespace SoftCaisse.Forms.Article
             this.checkBox6.AutoSize = true;
             this.checkBox6.Dock = System.Windows.Forms.DockStyle.Left;
             this.checkBox6.Location = new System.Drawing.Point(4, 59);
-            this.checkBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox6.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(169, 29);
             this.checkBox6.TabIndex = 2;
@@ -1570,7 +1570,7 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel15.Controls.Add(this.btnSupprimerEnumereGamme);
             this.flowLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel15.Location = new System.Drawing.Point(869, 170);
-            this.flowLayoutPanel15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel15.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel15.Name = "flowLayoutPanel15";
             this.flowLayoutPanel15.Size = new System.Drawing.Size(125, 437);
             this.flowLayoutPanel15.TabIndex = 3;
@@ -1622,7 +1622,7 @@ namespace SoftCaisse.Forms.Article
             this.DescriptifPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DescriptifPage.Name = "DescriptifPage";
             this.DescriptifPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DescriptifPage.Size = new System.Drawing.Size(1019, 628);
+            this.DescriptifPage.Size = new System.Drawing.Size(1018, 629);
             this.DescriptifPage.TabIndex = 1;
             this.DescriptifPage.Text = "Descriptif";
             // 
@@ -1635,7 +1635,7 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 2);
             this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(1013, 624);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(1012, 625);
             this.flowLayoutPanel5.TabIndex = 0;
             // 
             // groupBox1
@@ -1987,7 +1987,7 @@ namespace SoftCaisse.Forms.Article
             this.ChampLibresPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChampLibresPage.Name = "ChampLibresPage";
             this.ChampLibresPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ChampLibresPage.Size = new System.Drawing.Size(1019, 628);
+            this.ChampLibresPage.Size = new System.Drawing.Size(1018, 629);
             this.ChampLibresPage.TabIndex = 2;
             this.ChampLibresPage.Text = "Champs libres";
             // 
@@ -2004,7 +2004,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(1013, 624);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(1012, 625);
             this.tableLayoutPanel10.TabIndex = 0;
             // 
             // flowLayoutPanel7
@@ -2018,7 +2018,7 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel7.Location = new System.Drawing.Point(3, 2);
             this.flowLayoutPanel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(247, 620);
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(247, 621);
             this.flowLayoutPanel7.TabIndex = 0;
             // 
             // btnInfosLibres
@@ -2080,7 +2080,7 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel8.Location = new System.Drawing.Point(256, 2);
             this.flowLayoutPanel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(754, 620);
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(753, 621);
             this.flowLayoutPanel8.TabIndex = 1;
             // 
             // tabControl3
@@ -2357,7 +2357,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 0F));
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 601F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 603F));
             this.tableLayoutPanel13.Size = new System.Drawing.Size(746, 603);
             this.tableLayoutPanel13.TabIndex = 0;
             // 
@@ -2460,7 +2460,7 @@ namespace SoftCaisse.Forms.Article
             this.ParametresPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ParametresPage.Name = "ParametresPage";
             this.ParametresPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ParametresPage.Size = new System.Drawing.Size(1019, 628);
+            this.ParametresPage.Size = new System.Drawing.Size(1018, 629);
             this.ParametresPage.TabIndex = 3;
             this.ParametresPage.Text = "Paramètres";
             // 
@@ -2477,7 +2477,7 @@ namespace SoftCaisse.Forms.Article
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(1013, 624);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(1012, 625);
             this.tableLayoutPanel14.TabIndex = 0;
             // 
             // flowLayoutPanel10
@@ -2492,7 +2492,7 @@ namespace SoftCaisse.Forms.Article
             this.flowLayoutPanel10.Location = new System.Drawing.Point(3, 2);
             this.flowLayoutPanel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel10.Name = "flowLayoutPanel10";
-            this.flowLayoutPanel10.Size = new System.Drawing.Size(247, 620);
+            this.flowLayoutPanel10.Size = new System.Drawing.Size(247, 621);
             this.flowLayoutPanel10.TabIndex = 1;
             // 
             // btnOptTraitement

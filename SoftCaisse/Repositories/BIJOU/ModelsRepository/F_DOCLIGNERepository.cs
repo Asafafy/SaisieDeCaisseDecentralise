@@ -11,11 +11,53 @@ namespace SoftCaisse.Repositories.BIJOU
 {
     internal class F_DOCLIGNERepository
     {
+        // ================================================================================
+        // DEBUT ECLARATION DES VARIABLES =================================================
+        // ================================================================================
         private readonly AppDbContext _context;
+        // ================================================================================
+        // FIN DECLARATION DES VARIABLES ==================================================
+        // ================================================================================
+
+
+
+
+
+        // ================================================================================
+        // DEBUT CONSTRUCTEUR =============================================================
+        // ================================================================================
         public F_DOCLIGNERepository(AppDbContext context)
         {
             _context = context;
         }
+        // ================================================================================
+        // FIN CONSTRUCTEUR ===============================================================
+        // ================================================================================
+
+
+
+
+
+
+
+
+
+
+        // ================================================================================
+        // METHODES DU REPOSITORY =========================================================
+        // ================================================================================
+        public List<F_DOCLIGNE> Get_F_DOCLIGNE_HavingAG_No(int? AG_No)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                List<F_DOCLIGNE> f_DOCLIGNEs = context.F_DOCLIGNE.Where(dl => dl.AG_No1 == AG_No || dl.AG_No2 == AG_No).ToList();
+                return f_DOCLIGNEs;
+            }
+        }
+
+
+
+
 
         public void Add(F_DOCLIGNE f_DOCLIGNE)
         {
@@ -215,7 +257,7 @@ namespace SoftCaisse.Repositories.BIJOU
             ";
 
 
-            using (var context = new AppDbContext())
+            using (AppDbContext context = new AppDbContext())
             {
                 context.Database.ExecuteSqlCommand(
                     query,

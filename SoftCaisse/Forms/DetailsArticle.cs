@@ -3,6 +3,7 @@ using SoftCaisse.DTO;
 using SoftCaisse.DTO.DetailsArticle;
 using SoftCaisse.Models;
 using SoftCaisse.Repositories;
+using SoftCaisse.Repositories.BIJOU;
 using SoftCaisse.Repositories.BIJOU.ModelsRepository;
 using SoftCaisse.Services;
 using System;
@@ -26,12 +27,14 @@ namespace SoftCaisse.Forms.Article
         private readonly F_ARTPRIXRepository _f_ARTPRIXRepository;
         private readonly F_ARTENUMREFRepository _f_ARTENUMREFRepository;
         private readonly F_GAMSTOCKRepository _f_GAMSTOCKRepository;
+        private readonly F_DOCLIGNERepository _f_DOCLIGNERepository;
 
         private readonly F_ARTICLEService _f_ARTICLEService;
         private readonly F_ARTGAMMEService _f_ARTGAMMEService;
         private readonly F_ARTPRIXService _f_ARTPRIXService;
         private readonly F_ARTENUMREFService _f_ARTENUMREFService;
         private readonly F_GAMSTOCKService _f_GAMSTOCKService;
+        private readonly F_DOCLIGNEService _f_DOCLIGNEService;
 
         private DataTable _bindingSource;
         private string _referenceArt;
@@ -195,12 +198,14 @@ namespace SoftCaisse.Forms.Article
             _f_ARTPRIXRepository = new F_ARTPRIXRepository(_context);
             _f_ARTENUMREFRepository = new F_ARTENUMREFRepository(_context);
             _f_GAMSTOCKRepository = new F_GAMSTOCKRepository(_context);
+            _f_DOCLIGNERepository = new F_DOCLIGNERepository(_context);
 
             _f_ARTICLEService = new F_ARTICLEService(_context);
             _f_ARTGAMMEService = new F_ARTGAMMEService(_context, _f_ARTGAMMERepository);
             _f_ARTPRIXService = new F_ARTPRIXService(_context, _f_ARTPRIXRepository);
             _f_ARTENUMREFService = new F_ARTENUMREFService(_context, _f_ARTENUMREFRepository);
             _f_GAMSTOCKService = new F_GAMSTOCKService(_context, _f_GAMSTOCKRepository);
+            _f_DOCLIGNEService = new F_DOCLIGNEService(_context, _f_DOCLIGNERepository);
 
             _referenceArt = referenceArt;
             _designArt = designArt;
@@ -834,16 +839,26 @@ namespace SoftCaisse.Forms.Article
 
                 if (cmbBxGamme2.Text == "Aucun")
                 {
-                    DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer l'énuméré \"" + enumere1 + "\" de l'article " + _referenceArt + " ?", "Suppression d'énuméré", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    string DO_Piece = _f_DOCLIGNEService.GetF_DOCLIGNES_Lies_Au_AG_No_ToDelete(enumere1);
 
-                    if (result == DialogResult.Yes)
+                    if (DO_Piece == null)
                     {
-                        _f_ARTPRIXService.DeleteF_ARTPRIXAyantEG_Enumere(_referenceArt, enumere1, false);
-                        _f_ARTENUMREFService.DeleteF_ARTENUMREFByEG_Enumere(_referenceArt, enumere1, false);
-                        _f_GAMSTOCKService.DeleteF_GAMSTOCK(_referenceArt, enumere1, false);
-                        _f_ARTGAMMEService.Delete(_referenceArt, enumere1);
-                        _f_ARTICLEService.UpdateDateModifArticle(_referenceArt);
+                        DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer l'énuméré \"" + enumere1 + "\" de l'article " + _referenceArt + " ?", "Suppression d'énuméré", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            _f_ARTPRIXService.DeleteF_ARTPRIXAyantEG_Enumere(_referenceArt, enumere1, false);
+                            _f_ARTENUMREFService.DeleteF_ARTENUMREFByEG_Enumere(_referenceArt, enumere1, false);
+                            _f_GAMSTOCKService.DeleteF_GAMSTOCK(_referenceArt, enumere1, false);
+                            _f_ARTGAMMEService.Delete(_referenceArt, enumere1);
+                            _f_ARTICLEService.UpdateDateModifArticle(_referenceArt);
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("\"" + enumere1 + "\" ne peut pas être supprimée car cette énumération d'article est utilisée dans le document " + DO_Piece, "Suppression impossible", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    
                 }
                 else
                 {
@@ -852,24 +867,40 @@ namespace SoftCaisse.Forms.Article
 
                     if (choixSuppressionENUMGAMMEDansDetailsArticle.estGamme2 != null && choixSuppressionENUMGAMMEDansDetailsArticle.estGamme2 == true)
                     {
-                        DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer l'énuméré \"" + enumere2 + "\" de l'article " + _referenceArt + " ?", "Suppression d'énuméré", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (result == DialogResult.Yes)
+                        string DO_Piece = _f_DOCLIGNEService.GetF_DOCLIGNES_Lies_Au_AG_No_ToDelete(enumere2);
+                        if (DO_Piece == null)
                         {
-                            _f_ARTPRIXService.DeleteF_ARTPRIXAyantEG_Enumere(_referenceArt, enumere2, true);
-                            _f_ARTENUMREFService.DeleteF_ARTENUMREFByEG_Enumere(_referenceArt, enumere2, true);
-                            _f_GAMSTOCKService.DeleteF_GAMSTOCK(_referenceArt, enumere2, true);
-                            _f_ARTGAMMEService.Delete(_referenceArt, enumere2);
+                            DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer l'énuméré \"" + enumere2 + "\" de l'article " + _referenceArt + " ?", "Suppression d'énuméré", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result == DialogResult.Yes)
+                            {
+                                _f_ARTPRIXService.DeleteF_ARTPRIXAyantEG_Enumere(_referenceArt, enumere2, true);
+                                _f_ARTENUMREFService.DeleteF_ARTENUMREFByEG_Enumere(_referenceArt, enumere2, true);
+                                _f_GAMSTOCKService.DeleteF_GAMSTOCK(_referenceArt, enumere2, true);
+                                _f_ARTGAMMEService.Delete(_referenceArt, enumere2);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("\"" + enumere2 + "\" ne peut pas être supprimée car cette énumération d'article est utilisée dans le document " + DO_Piece, "Suppression impossible", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else if (choixSuppressionENUMGAMMEDansDetailsArticle.estGamme2 != null && choixSuppressionENUMGAMMEDansDetailsArticle.estGamme2 == false)
                     {
-                        DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer l'énuméré \"" + enumere1 + "\" de l'article " + _referenceArt + " ?", "Suppression d'énuméré", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (result == DialogResult.Yes)
+                        string DO_Piece = _f_DOCLIGNEService.GetF_DOCLIGNES_Lies_Au_AG_No_ToDelete(enumere1);
+                        if (DO_Piece == null)
                         {
-                            _f_ARTPRIXService.DeleteF_ARTPRIXAyantEG_Enumere(_referenceArt, enumere1, false);
-                            _f_ARTENUMREFService.DeleteF_ARTENUMREFByEG_Enumere(_referenceArt, enumere1, false);
-                            _f_GAMSTOCKService.DeleteF_GAMSTOCK(_referenceArt, enumere1, false);
-                            _f_ARTGAMMEService.Delete(_referenceArt, enumere1);
+                            DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer l'énuméré \"" + enumere1 + "\" de l'article " + _referenceArt + " ?", "Suppression d'énuméré", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result == DialogResult.Yes)
+                            {
+                                _f_ARTPRIXService.DeleteF_ARTPRIXAyantEG_Enumere(_referenceArt, enumere1, false);
+                                _f_ARTENUMREFService.DeleteF_ARTENUMREFByEG_Enumere(_referenceArt, enumere1, false);
+                                _f_GAMSTOCKService.DeleteF_GAMSTOCK(_referenceArt, enumere1, false);
+                                _f_ARTGAMMEService.Delete(_referenceArt, enumere1);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("\"" + enumere1 + "\" ne peut pas être supprimée car cette énumération d'article est utilisée dans le document " + DO_Piece, "Suppression impossible", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     _f_ARTICLEService.UpdateDateModifArticle(_referenceArt);

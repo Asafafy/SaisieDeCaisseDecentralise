@@ -531,6 +531,8 @@
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_JOURNAUXRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_REGLECHRepository.cs" />
     <Compile Include="Repositories\BIJOU\ListeSelectionEcheancesRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_LIVRAISONRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\P_EXPEDITIONRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\P_GAMMERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ENUMGAMMERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_TARIFGAMRepository.cs" />

@@ -5,36 +5,58 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    public class F_COLLABORATEURRepository : IRepository<F_COLLABORATEUR>
+    public class F_COLLABORATEURRepository
     {
+        // =============================================================================
+        // DEBUT DECLARATION DES VARIABLES =============================================
+        // =============================================================================
         private readonly AppDbContext _context;
+        // =============================================================================
+        // FIN DECLARATION DES VARIABLES ===============================================
+        // =============================================================================
+
+
+
+
+        // =============================================================================
+        // DEBUT CONSTRUCTEUR ==========================================================
+        // =============================================================================
         public F_COLLABORATEURRepository(AppDbContext context)
         {
             _context = context;
         }
-        void IRepository<F_COLLABORATEUR>.Add(F_COLLABORATEUR entity)
-        {
-            throw new NotImplementedException();
-        }
+        // =============================================================================
+        // FIN CONSTRUCTEUR ============================================================
+        // =============================================================================
 
-        void IRepository<F_COLLABORATEUR>.Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
+
+
+
+
+        // =============================================================================
+        // DEBUT METHODES GET ==========================================================
+        // =============================================================================
         public List<F_COLLABORATEUR> GetAll()
         {
-            return _context.F_COLLABORATEUR.ToList();
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_COLLABORATEUR.ToList();
+            }
         }
 
-        public F_COLLABORATEUR GetById(int id)
-        {
-            return _context.F_COLLABORATEUR.FirstOrDefault(u => u.CO_No == id);
-        }
 
-        void IRepository<F_COLLABORATEUR>.Update(F_COLLABORATEUR entity)
+
+        public F_COLLABORATEUR GetBy_CO_Nom_And_CO_Prenom(string CO_Nom_Prenom)
         {
-            throw new NotImplementedException();
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_COLLABORATEUR.Where(coll => coll.CO_Nom + " " + coll.CO_Prenom == CO_Nom_Prenom).FirstOrDefault();
+            }
         }
+        // =============================================================================
+        // FIN METHODES GET ============================================================
+        // =============================================================================
+
     }
 }

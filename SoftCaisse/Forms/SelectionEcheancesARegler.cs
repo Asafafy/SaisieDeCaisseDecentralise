@@ -555,7 +555,7 @@ namespace SoftCaisse.Forms
                 // Création objet à enregistrer dans la base
                 F_CREGLEMENT newF_CREGLEMENT = new F_CREGLEMENT();
                 P_COLREGLEMENT p_COLREGLEMENT = _context.P_COLREGLEMENT.FirstOrDefault();
-                rgNoFCRegl = Convert.ToInt32(p_COLREGLEMENT.CR_Numero01) + 1; // Numéro RG_Piece (Première colonne)
+                rgNoFCRegl = p_COLREGLEMENT.CR_Numero01 == "" ? 1 : Convert.ToInt32(p_COLREGLEMENT.CR_Numero01) + 1; // Numéro RG_Piece (Première colonne)
                 newF_CREGLEMENT.RG_No = rgNoFCRegl;
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
                 string clientCTNum = selectedRow.Cells["N° client"].Value.ToString();

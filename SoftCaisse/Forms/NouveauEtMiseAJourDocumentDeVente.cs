@@ -45,6 +45,8 @@ namespace SoftCaisse.Forms
         private readonly F_ARTSTOCKEMPLRepository _f_ARTSTOCKEMPLRepository;
         private readonly F_DOCLIGNEEMPLRepository _f_DOCLIGNEEMPLRepository;
         private readonly F_DEPOTRepository _f_DEPOTRepository;
+        private readonly P_EXPEDITIONRepository _p_EXPEDITIONRepository;
+
         private readonly ListeEcheancesPourImpressionDocumentsDeVenteRepository _listeEcheancesPourImpressionDocumentsDeVenteRepository;
 
         private readonly F_DOCLIGNEService _f_DOCLIGNEService;
@@ -59,7 +61,6 @@ namespace SoftCaisse.Forms
         private readonly List<F_COMPTET> _listeClients;
         private readonly List<F_DOCENTETE> _listeDocuments;
         private readonly List<F_DOCREGL> _listeDocRegl;
-        private readonly List<F_LIVRAISON> _listeLivraisons;
         private readonly List<F_ARTICLE> _listeArticle;
         private readonly List<F_COLLABORATEUR> _listeCollaborateurs;
         private readonly List<F_DEPOT> _listeDepots;
@@ -119,6 +120,8 @@ namespace SoftCaisse.Forms
             _f_ARTSTOCKEMPLRepository = new F_ARTSTOCKEMPLRepository(_context);
             _f_DOCLIGNEEMPLRepository = new F_DOCLIGNEEMPLRepository(_context);
             _f_DEPOTRepository = new F_DEPOTRepository(_context);
+            _p_EXPEDITIONRepository = new P_EXPEDITIONRepository(_context);
+
             _listeEcheancesPourImpressionDocumentsDeVenteRepository = new ListeEcheancesPourImpressionDocumentsDeVenteRepository(_context);
 
             _f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository, _context);
@@ -137,7 +140,6 @@ namespace SoftCaisse.Forms
             _listeDocuments = _context.F_DOCENTETE.ToList();
             _listeClients = _context.F_COMPTET.Where(c => c.CT_Type == 0).ToList();
             _listeDocRegl = _context.F_DOCREGL.ToList();
-            _listeLivraisons = _context.F_LIVRAISON.ToList();
             _listeArticle = _context.F_ARTICLE.ToList();
             _listeCollaborateurs = _context.F_COLLABORATEUR.ToList();
             _listeExpedit = _context.P_EXPEDITION.Where(expedit => expedit.E_Intitule != "").ToList();
@@ -208,7 +210,7 @@ namespace SoftCaisse.Forms
 
             if (_fDocenteteToModif != null)
             {
-                // ========================= Affichage des informations concernant le F_DOCENTETE (Document de vente à mettre à jour) =========================
+                // Affichage des informations concernant le F_DOCENTETE (Document de vente à mettre à jour) =========================
                 F_COMPTET clientTiers = _listeClients.Where(cl => cl.CT_Num == _fDocenteteToModif.DO_Tiers).FirstOrDefault();
                 F_COMPTEA planAnal = _listePlanAnalitique.Where(pa => pa.CA_Num == _fDocenteteToModif.CA_Num).FirstOrDefault();
                 F_COLLABORATEUR collab = _listeCollab.Where(co => co.CO_No == _fDocenteteToModif.CO_No).FirstOrDefault();
@@ -543,6 +545,17 @@ namespace SoftCaisse.Forms
                     comboBoxRepresentant.SelectedIndex = indexCmbBxRepresentant;
                 }
 
+                // Sélectionner le lieu d'expédition correspondant au client
+                P_EXPEDITION p_EXPEDITION = _p_EXPEDITIONRepository.Get_P_EXPEDITION_By_cbMarq((int)client.N_Expedition);
+                if (p_EXPEDITION == null)
+                {
+                    comboBoxExpedit.SelectedIndex = -1;
+                } else
+                {
+                    int indexCmbBxExpedition = comboBoxExpedit.FindStringExact(p_EXPEDITION.E_Intitule);
+                    comboBoxExpedit.SelectedIndex = indexCmbBxExpedition;
+                }
+
                 kptnBtnValider.Enabled = true;
             }
         }
@@ -579,7 +592,7 @@ namespace SoftCaisse.Forms
                     caNum = caNum.Substring(0, indexEspace);
                 
                 int numExpedition = comboBoxExpedit.SelectedIndex + 1;
-                string expeditIntitule = comboBoxExpedit.Text;
+                string expeditIntitule = comboBoxExpedit.Text == "" ? _listeExpedit[0].E_Intitule : comboBoxExpedit.Text;
                 string dO_Coord01 = textBoxEnTete.Text;
                 string commentaires = textBoxCommentaires.Text;
                 string divers = textBoxDivers.Text;
@@ -603,7 +616,7 @@ namespace SoftCaisse.Forms
 
                     // Insertion d'un nouvel objet dans F_DOCENTETE
                     F_COMPTET client = _listeClients[comboBoxClient.SelectedIndex];
-                    _f_DOCENTETEService.InsertNewF_DOCENTETE(_typeDocument, _currentDocPieceNo, client, _listeLivraisons, (short?)numExpedition, caNum, caisseNumber, caissierNumber, expeditIntitule, dateLivrPrevu, dateLivrReal, reference, dO_Coord01, divers, commentaires, representant, numeroDepot);
+                    _f_DOCENTETEService.InsertNewF_DOCENTETE(_typeDocument, _currentDocPieceNo, client, (short?)numExpedition, caNum, caisseNumber, caissierNumber, expeditIntitule, dateLivrPrevu, dateLivrReal, reference, dO_Coord01, divers, commentaires, representant, numeroDepot);
 
                     // MISE A JOUR DES AFFICHAGES =================================
                     // Activer Table Layout Panel (Champ de saisie des articles)

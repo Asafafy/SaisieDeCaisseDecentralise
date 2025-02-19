@@ -77,7 +77,7 @@ namespace SoftCaisse.Forms.DocumentVente
             _f_DOCLIGNERepository = new F_DOCLIGNERepository(_context);
 
             _f_REGLECHService = new F_REGLECHService(_f_REGLECHRepository);
-            _f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository, _context);
+            _f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository);
             _f_DOCREGLService = new F_DOCREGLService(_f_DOCREGLRepository, _f_DOCENTETEService);
             _f_ARTSTOCKEMPLService = new F_ARTSTOCKEMPLService(_context, _f_ARTSTOCKEMPLRepository);
             _f_ARTSTOCKService = new F_ARTSTOCKService(_context, _f_ARTSTOCKRepository);

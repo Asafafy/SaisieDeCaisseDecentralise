@@ -124,7 +124,7 @@ namespace SoftCaisse.Forms
 
             _listeEcheancesPourImpressionDocumentsDeVenteRepository = new ListeEcheancesPourImpressionDocumentsDeVenteRepository(_context);
 
-            _f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository, _context);
+            _f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository);
             _f_DOCLIGNEService = new F_DOCLIGNEService(_context, _f_DOCLIGNERepository);
             _f_ARTFOURNISSService = new F_ARTFOURNISSService(_f_ARTFOURNISSRepository);
             _f_DOCREGLService = new F_DOCREGLService(_f_DOCREGLRepository, _f_DOCENTETEService);
@@ -943,7 +943,7 @@ namespace SoftCaisse.Forms
                     decimal montantTTC = Convert.ToDecimal(TextBoxMontantTTC.Text ?? "0");
 
                     // Get all properties du docligne
-                    F_DOCENTETE docEnCours = _context.F_DOCENTETE.Where(doc => doc.DO_Piece == _currentDocPieceNo).FirstOrDefault();
+                    F_DOCENTETE docEnCours = _f_DOCENTETERepository.GetBy_DO_Piece(_currentDocPieceNo);
                     F_ARTICLE articleChoisi = _listeArticle.Where(a => a.AR_Ref == TextBoxReference.Text).FirstOrDefault();
                     F_COLLABORATEUR collab = _listeCollaborateurs.Where(c => c.CO_Nom + " " + c.CO_Prenom == comboBoxRepresentant.Text).FirstOrDefault();
                     F_ARTFOURNISS fournisseur = _f_ARTFOURNISSService.GetByARRefAndPrincipal(articleChoisi.AR_Ref);
@@ -978,7 +978,7 @@ namespace SoftCaisse.Forms
                         string TextBoxMontantTTCText = TextBoxMontantTTC.Text;
                         string TextBoxMontantHTText = TextBoxMontantHT.Text;
 
-                        _f_DOCLIGNEService.AjouterF_DOCLIGNE(mainForm, _f_DOCENTETEService, _f_ARTFOURNISSService, typeDoc, CT_NumClient, _currentDocPieceNo, DO_Date, numeroLigneDL_Ligne, docEnCours, arRef, DL_DesignF_DOCLIGNE, Convert.ToInt32(txtBxQuantiteText), _typeDocument, articleChoisi, txtBxQuantiteText, txtBxRemiseText, TextBoxPUNetText, collab, DL_NoRef, DL_PUTTC, DO_DateLivr, CA_NumText, TextBoxMontantTTCText, TextBoxMontantHTText, dateTimePicker3Value, DE_No);
+                        _f_DOCLIGNEService.AjouterF_DOCLIGNE(mainForm, typeDoc, CT_NumClient, _currentDocPieceNo, DO_Date, numeroLigneDL_Ligne, docEnCours, arRef, DL_DesignF_DOCLIGNE, Convert.ToInt32(txtBxQuantiteText), _typeDocument, articleChoisi, txtBxQuantiteText, txtBxRemiseText, TextBoxPUNetText, collab, DL_NoRef, DL_PUTTC, DO_DateLivr, CA_NumText, TextBoxMontantTTCText, TextBoxMontantHTText, dateTimePicker3Value, DE_No);
 
 
                         // Update DO_TotalHT dans F_DOCENTETE (Document en cours)
@@ -990,7 +990,7 @@ namespace SoftCaisse.Forms
                                 montantTotalHT += Convert.ToDecimal(row.Cells[8].Value);
                             }
                         }
-                        _f_DOCENTETERepository.UpdateTotalHT(_currentDocPieceNo, montantTotalHT);
+                        _f_DOCENTETEService.UpdateDO_Totaux_HT_Net_TTC(_currentDocPieceNo, puNet, quantiteEcriteStock, 0);
 
 
                         // Mise à jour F_ARTSTOCK
@@ -1011,7 +1011,7 @@ namespace SoftCaisse.Forms
                         {
                             // Récupération des valeurs avant modifications
                             int previousQuantiteEcriteStock = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[5].Value);
-                            decimal previousMontantHT = Convert.ToDecimal(DataGridViewArticle.Rows[changedIndex].Cells[10].Value);
+                            decimal previousMontantHT = Convert.ToDecimal(DataGridViewArticle.Rows[changedIndex].Cells[9].Value);
 
                             // Mise à jour affichage
                             DataGridViewArticle.Rows[changedIndex].Cells[1].Value = arRef;
@@ -1030,7 +1030,7 @@ namespace SoftCaisse.Forms
                             // MISE A JOUR DES DONNEES DANS LA BASE
 
                             // Mise à jour de l'en-tête du document F_DOCENTETE
-                            _f_DOCENTETEService.UpdateDO_TotalHT(_currentDocPieceNo, puNet, quantiteEcriteStock, previousMontantHT);
+                            _f_DOCENTETEService.UpdateDO_Totaux_HT_Net_TTC(_currentDocPieceNo, puNet, quantiteEcriteStock, previousMontantHT);
 
                             // Mise à jour du stock des articles (F_ARTSTOCK) (Montant du stock et quantité en stock)
                             _f_ARTSTOCKService.UpdateMontantEtQuantiteStock(_typeDocument, arRef, quantiteEcriteStock, previousQuantiteEcriteStock, DE_No);

@@ -2,26 +2,75 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace SoftCaisse.Repositories.BIJOU
 {
     internal class F_DOCENTETERepository
     {
+		// ==============================================================================
+		// DEBUT DECLARATION DES VARIABLES ==============================================
+		// ==============================================================================
         private readonly AppDbContext _context;
+        // ==============================================================================
+        // FIN DECLARATION DES VARIABLES ================================================
+        // ==============================================================================
 
 
 
 
 
+
+
+
+
+
+        // ==============================================================================
+        // DEBUT CONSTRUCTEUR ===========================================================
+        // ==============================================================================
         public F_DOCENTETERepository(AppDbContext context)
         {
             _context = context;
         }
+        // ==============================================================================
+        // FIN CONSTRUCTEUR =============================================================
+        // ==============================================================================
 
 
 
 
 
+
+
+
+
+
+        // ==============================================================================
+        // DEBUT GET ====================================================================
+        // ==============================================================================
+        public F_DOCENTETE GetBy_DO_Piece(string DO_Piece)
+		{
+			using (AppDbContext context = new AppDbContext())
+			{
+				return context.F_DOCENTETE.Where(doc => doc.DO_Piece == DO_Piece).FirstOrDefault();
+            }
+		}
+        // ==============================================================================
+        // FIN GET ======================================================================
+        // ==============================================================================
+
+
+
+
+
+
+
+
+
+
+        // ==============================================================================
+        // DEBUT INSERT =================================================================
+        // ==============================================================================
         public void Add(F_DOCENTETE f_DOCENTETE)
         {
             string query = @"
@@ -313,23 +362,39 @@ namespace SoftCaisse.Repositories.BIJOU
                 );
             }
         }
+        // ==============================================================================
+        // FIN INSERT ===================================================================
+        // ==============================================================================
 
 
 
 
 
-        // ===============================================================================================================================
-        // ==================================== DEBUT MISE A JOUR DU MONTANT TOTAL HT DANS F_DOCENTETE ===================================
-        // ===============================================================================================================================
-        public void UpdateTotalHT(string numDoPiece, decimal? doTotalHT)
+
+
+
+
+
+        // ==============================================================================
+        // DEBUT UPDATE =================================================================
+        // ==============================================================================
+
+        public void UpdateDO_Totaux_HT_Net_TTC_Repo(string DO_Piece, decimal? DO_TotalHT, decimal? DO_TotalHTNet, decimal? DO_TotalTTC)
         {
-            string query = @"
+            string query = @"		
 				DISABLE TRIGGER [dbo].[TG_CBUPD_F_DOCENTETE] ON [dbo].[F_DOCENTETE];
 				DISABLE TRIGGER [dbo].[TG_UPD_F_DOCENTETE] ON [dbo].[F_DOCENTETE];
 				DISABLE TRIGGER [dbo].[TG_UPD_CPTAF_DOCENTETE] ON [dbo].[F_DOCENTETE];
-
-				UPDATE F_DOCENTETE SET DO_TotalHT = @doTotalHT WHERE DO_Piece LIKE @numDoPiece;
-
+				
+				UPDATE F_DOCENTETE 
+				SET 
+					DO_TotalHT = @DO_TotalHT,
+					DO_TotalHTNet = @DO_TotalHTNet,
+					DO_TotalTTC = @DO_TotalTTC,
+					DO_NetAPayer = @DO_TotalTTC
+				
+				WHERE DO_Piece LIKE @DO_Piece;
+				
 				ENABLE TRIGGER[dbo].[TG_CBUPD_F_DOCENTETE] ON[dbo].[F_DOCENTETE];
 				ENABLE TRIGGER [dbo].[TG_UPD_F_DOCENTETE] ON [dbo].[F_DOCENTETE];
 				ENABLE TRIGGER [dbo].[TG_UPD_CPTAF_DOCENTETE] ON [dbo].[F_DOCENTETE];
@@ -339,22 +404,18 @@ namespace SoftCaisse.Repositories.BIJOU
 			{
                 context.Database.ExecuteSqlCommand(
 				    query,
-				    new SqlParameter("@doTotalHT", doTotalHT),
-				    new SqlParameter("@numDoPiece", "%" + numDoPiece + "%")
+                    new SqlParameter("@DO_TotalHT", DO_TotalHT),
+                    new SqlParameter("@DO_TotalHTNet", DO_TotalHTNet),
+                    new SqlParameter("@DO_TotalTTC", DO_TotalTTC),
+					new SqlParameter("@DO_Piece", DO_Piece)
 				);
             }
         }
-        // ===============================================================================================================================
-        // ===================================== FIN MISE A JOUR DU MONTANT TOTAL HT DANS F_DOCENTETE ====================================
-        // ===============================================================================================================================
 
 
 
 
 
-        // ==============================================================================================================================
-        // ==================================== DEBUT MISE A JOUR DU MONTANT REGLE AVEC DES ECHEANCES ===================================
-        // ==============================================================================================================================
         public void UpdateDO_MontantRegle(decimal RC_Montant, string DO_Piece)
 		{
             string queryFDocEntete = @"
@@ -379,9 +440,6 @@ namespace SoftCaisse.Repositories.BIJOU
             }
                
         }
-        // ============================================================================================================================
-        // ==================================== FIN MISE A JOUR DU MONTANT REGLE AVEC DES ECHEANCES ===================================
-        // ============================================================================================================================
 
 
 
@@ -470,10 +528,23 @@ namespace SoftCaisse.Repositories.BIJOU
             }
         }
 
+        // ==============================================================================
+        // FIN UPDATE ===================================================================
+        // ==============================================================================
 
 
 
-		public void Delete(string DO_Piece)
+
+
+
+
+
+
+
+        // ==============================================================================
+        // DEBUT DELETE =================================================================
+        // ==============================================================================
+        public void Delete(string DO_Piece)
 		{
             string query = @"
 				DISABLE TRIGGER TG_CBDEL_F_DOCENTETE ON F_DOCENTETE;
@@ -490,5 +561,8 @@ namespace SoftCaisse.Repositories.BIJOU
                 context.Database.ExecuteSqlCommand(query, new SqlParameter("@DO_Piece", DO_Piece));
             }
         }
+        // ==============================================================================
+        // FIN DELETE ===================================================================
+        // ==============================================================================
     }
 }

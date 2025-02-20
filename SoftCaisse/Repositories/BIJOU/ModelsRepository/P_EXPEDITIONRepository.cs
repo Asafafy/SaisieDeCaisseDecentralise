@@ -41,7 +41,7 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
         // ============================================================================================
-        // DEBUT METHODES DES CONSTRUCTEURS ===========================================================
+        // DEBUT METHODES GET =========================================================================
         // ============================================================================================
         public P_EXPEDITION Get_P_EXPEDITIONBy_E_Intitule(string E_Intitule)
         {
@@ -61,12 +61,19 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
         }
 
 
+        public List<P_EXPEDITION> GetAll_P_EXPEDITION_Not_Empty_String()
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.P_EXPEDITION.Where(expedit => expedit.E_Intitule != "").ToList();
+            }
+        }
 
 
 
 
         // ============================================================================================
-        // FIN METHODES DES CONSTRUCTEURS =============================================================
+        // FIN METHODES GET ===========================================================================
         // ============================================================================================
 
     }

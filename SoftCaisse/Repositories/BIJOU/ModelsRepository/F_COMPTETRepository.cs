@@ -47,9 +47,12 @@ namespace SoftCaisse.Repositories
         // =====================================================================================
         // DEBUT METHODES GET ==================================================================
         // =====================================================================================
-        public List<F_COMPTET> GetAll()
+        public List<F_COMPTET> GetAll_F_COMPTET_Zero()
         {
-            return _context.F_COMPTET.Where(ct => ct.CT_Type == 0).ToList();
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_COMPTET.Where(ct => ct.CT_Type == 0).ToList();
+            }
         }
 
 

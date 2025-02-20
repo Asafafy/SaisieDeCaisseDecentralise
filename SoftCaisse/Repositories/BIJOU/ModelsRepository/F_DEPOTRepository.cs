@@ -17,14 +17,20 @@ namespace SoftCaisse.Repositories
 
         public List<F_DEPOT> GetAll()
         {
-            return _context.F_DEPOT.ToList();
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_DEPOT.ToList();
+            }
         }
 
 
 
-        public F_DEPOT GetById(int id)
+        public F_DEPOT GetById(int DE_No)
         {
-            return _context.F_DEPOT.FirstOrDefault(x => x.DE_No == id);
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_DEPOT.FirstOrDefault(x => x.DE_No == DE_No);
+            }
         }
 
 

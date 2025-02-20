@@ -45,7 +45,7 @@ namespace SoftCaisse.Forms.Clients
         public void LoadData()
         {
             _bindingSource.Clear();
-            listeClients = _f_COMPTETRepository.GetAll();
+            listeClients = _f_COMPTETRepository.GetAll_F_COMPTET_Zero();
             if (_bindingSource.Columns.Count < 1)
             {
                 _bindingSource.Columns.Add(new DataColumn("Numéro"));

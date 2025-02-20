@@ -46,6 +46,10 @@ namespace SoftCaisse.Forms
         private readonly F_DOCLIGNEEMPLRepository _f_DOCLIGNEEMPLRepository;
         private readonly F_DEPOTRepository _f_DEPOTRepository;
         private readonly P_EXPEDITIONRepository _p_EXPEDITIONRepository;
+        private readonly F_COMPTETRepository _f_COMPTETRepository;
+        private readonly F_ARTICLERepository _f_ARTICLERepository;
+        private readonly F_COLLABORATEURRepository _f_COLLABORATEURRepository;
+        private readonly F_COMPTEARepository _f_COMPTEARepository;
 
         private readonly ListeEcheancesPourImpressionDocumentsDeVenteRepository _listeEcheancesPourImpressionDocumentsDeVenteRepository;
 
@@ -60,14 +64,10 @@ namespace SoftCaisse.Forms
 
         private readonly List<F_COMPTET> _listeClients;
         private readonly List<F_DOCENTETE> _listeDocuments;
-        private readonly List<F_DOCREGL> _listeDocRegl;
         private readonly List<F_ARTICLE> _listeArticle;
         private readonly List<F_COLLABORATEUR> _listeCollaborateurs;
         private readonly List<F_DEPOT> _listeDepots;
-        
         private readonly List<P_EXPEDITION> _listeExpedit;
-
-        private readonly List<F_COLLABORATEUR> _listeCollab;
         private readonly List<F_COMPTEA> _listePlanAnalitique;
 
 
@@ -92,17 +92,17 @@ namespace SoftCaisse.Forms
         private decimal _totalPrixHT;
         private decimal _totalPrixTTC;
         private F_DOCENTETE _fDocenteteToModif;
-        // ===========================================================================================================================================================================================
-        // ============================================================================= FIN DECLARATION DES VARIABLES ===============================================================================
-        // ===========================================================================================================================================================================================
+        // =============================================================================================================
+        // FIN DECLARATION DES VARIABLES ===============================================================================
+        // =============================================================================================================
 
 
 
 
 
-        // =========================================================================================================================================================================================
-        // ================================================================================== DEBUT CONSTRUCTEUR ===================================================================================
-        // =========================================================================================================================================================================================
+        // ============================================================================================================
+        // DEBUT CONSTRUCTEUR =========================================================================================
+        // ============================================================================================================
         public NouveauEtMiseAJourDocumentDeVente(string typeDocument, MainForm form, F_DOCENTETE fDocenteteToModif)
         {
             InitializeComponent();
@@ -121,6 +121,10 @@ namespace SoftCaisse.Forms
             _f_DOCLIGNEEMPLRepository = new F_DOCLIGNEEMPLRepository(_context);
             _f_DEPOTRepository = new F_DEPOTRepository(_context);
             _p_EXPEDITIONRepository = new P_EXPEDITIONRepository(_context);
+            _f_COMPTETRepository = new F_COMPTETRepository(_context);
+            _f_ARTICLERepository = new F_ARTICLERepository(_context);
+            _f_COLLABORATEURRepository = new F_COLLABORATEURRepository(_context);
+            _f_COMPTEARepository = new F_COMPTEARepository(_context);
 
             _listeEcheancesPourImpressionDocumentsDeVenteRepository = new ListeEcheancesPourImpressionDocumentsDeVenteRepository(_context);
 
@@ -137,15 +141,13 @@ namespace SoftCaisse.Forms
             nombreFermetureFenetre = 0;
 
 
-            _listeDocuments = _context.F_DOCENTETE.ToList();
-            _listeClients = _context.F_COMPTET.Where(c => c.CT_Type == 0).ToList();
-            _listeDocRegl = _context.F_DOCREGL.ToList();
-            _listeArticle = _context.F_ARTICLE.ToList();
-            _listeCollaborateurs = _context.F_COLLABORATEUR.ToList();
-            _listeExpedit = _context.P_EXPEDITION.Where(expedit => expedit.E_Intitule != "").ToList();
-            _listePlanAnalitique = _context.F_COMPTEA.ToList();
-            _listeCollab = _context.F_COLLABORATEUR.ToList();
-            _listeDepots = _context.F_DEPOT.OrderBy(d => d.DE_No).ToList();
+            _listeDocuments = _f_DOCENTETERepository.GetAll();
+            _listeClients = _f_COMPTETRepository.GetAll_F_COMPTET_Zero();
+            _listeArticle = _f_ARTICLERepository.GetAllF_ARTICLE();
+            _listeCollaborateurs = _f_COLLABORATEURRepository.GetAll();
+            _listeExpedit = _p_EXPEDITIONRepository.GetAll_P_EXPEDITION_Not_Empty_String();
+            _listePlanAnalitique = _f_COMPTEARepository.GetAll();
+            _listeDepots = _f_DEPOTRepository.GetAll().OrderBy(d => d.DE_No).ToList();
 
             _currentDocPieceNo = _f_DOCENTETEService.GetCurrentDocNumber(typeDocument, _listeDocuments);
 
@@ -168,7 +170,7 @@ namespace SoftCaisse.Forms
             comboBoxAffaire.SelectedIndex = -1;
             comboBoxExpedit.DataSource = _listeExpedit.Select(ex => ex.E_Intitule).ToList();
             comboBoxExpedit.SelectedIndex = -1;
-            comboBoxRepresentant.DataSource = _listeCollab.Where(c => c.CO_Vendeur == 1).Select(c => c.CO_Nom + " " + c.CO_Prenom).ToList();
+            comboBoxRepresentant.DataSource = _listeCollaborateurs.Where(c => c.CO_Vendeur == 1).Select(c => c.CO_Nom + " " + c.CO_Prenom).ToList();
             comboBoxRepresentant.SelectedIndex = -1;
             comboBoxDepot.DataSource = _listeDepots.Select(d => d.DE_Intitule).ToList();
             textBoxNDoc.Text = _currentDocPieceNo;
@@ -213,11 +215,11 @@ namespace SoftCaisse.Forms
                 // Affichage des informations concernant le F_DOCENTETE (Document de vente à mettre à jour) =========================
                 F_COMPTET clientTiers = _listeClients.Where(cl => cl.CT_Num == _fDocenteteToModif.DO_Tiers).FirstOrDefault();
                 F_COMPTEA planAnal = _listePlanAnalitique.Where(pa => pa.CA_Num == _fDocenteteToModif.CA_Num).FirstOrDefault();
-                F_COLLABORATEUR collab = _listeCollab.Where(co => co.CO_No == _fDocenteteToModif.CO_No).FirstOrDefault();
+                F_COLLABORATEUR collab = _listeCollaborateurs.Where(co => co.CO_No == _fDocenteteToModif.CO_No).FirstOrDefault();
                 P_EXPEDITION expedit = _listeExpedit.Where(exp => exp.cbMarq == _fDocenteteToModif.DO_Expedit).FirstOrDefault();
                 
                 List<F_COMPTEA> listePAAffiches = _listePlanAnalitique.Where(p => p.N_Analytique == 3).ToList();
-                List<F_COLLABORATEUR> listeCollaborateursCmbBx = _listeCollab.Where(c => c.CO_Vendeur == 1).ToList();
+                List<F_COLLABORATEUR> listeCollaborateursCmbBx = _listeCollaborateurs.Where(c => c.CO_Vendeur == 1).ToList();
                 List<F_DOCLIGNE> listeDoclignesDocToUpdate = _context.F_DOCLIGNE
                     .Where(dl => dl.DO_Piece == _fDocenteteToModif.DO_Piece)
                     .OrderBy(dl => dl.DL_Ligne)
@@ -534,7 +536,7 @@ namespace SoftCaisse.Forms
                 }
 
                 // Sélectionner le collaborateur correspondant au client s'il existe
-                F_COLLABORATEUR collaborateur = _listeCollab.Where(collab => collab.CO_No == client.CO_No).FirstOrDefault();
+                F_COLLABORATEUR collaborateur = _listeCollaborateurs.Where(collab => collab.CO_No == client.CO_No).FirstOrDefault();
                 if (collaborateur == null)
                 {
                     comboBoxRepresentant.SelectedIndex = -1;
@@ -608,7 +610,7 @@ namespace SoftCaisse.Forms
                     List<F_REGLEMENTT> listeReglT = _context.F_REGLEMENTT.Where(r => r.CT_Num == CT_NumActu).ToList();
 
                     // Insertion dans F_DOCREGL (Règlement)
-                    _f_DOCREGLService.InsertNewF_DOCREGL(_listeDocRegl, listeReglT, _currentDocPieceNo, _listeClients, _typeDocument);
+                    _f_DOCREGLService.InsertNewF_DOCREGL(listeReglT, _currentDocPieceNo, _listeClients, _typeDocument);
 
                     // Get des propriétés à inserer dans le nouveau DOCENTETE
                     int caisseNumber = mainForm.CaisseNo;

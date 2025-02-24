@@ -109,7 +109,6 @@ namespace SoftCaisse.Repositories.BIJOU
         // ==========================================================================================================================================
         public void UpdateRC_Montant(decimal RC_Montant, int RG_No, int DR_No)
         {
-            _context.Database.ExecuteSqlCommand("");
             string query = @"
                 DISABLE TRIGGER TG_CBUPD_F_REGLECH ON F_REGLECH;
 

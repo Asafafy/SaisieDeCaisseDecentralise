@@ -90,6 +90,7 @@ namespace SoftCaisse.Forms.MouvementCaisse
                         int text = type_mouvement.SelectedIndex;
                         int typereg = text == 0 ? 4 : 5;
                         int? maxRG_No = _context.F_CREGLEMENT.Max(fcr => fcr.RG_No);
+                        maxRG_No = maxRG_No == null ? 0 : maxRG_No;
 
                         F_CREGLEMENT newFCReglement = new F_CREGLEMENT
                         {

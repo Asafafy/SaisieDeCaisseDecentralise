@@ -6,24 +6,53 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    public class F_ARTCLIENTRepository : IRepository<DTO.ArtClient>
+    public class F_ARTCLIENTRepository
     {
+        // ==================================================================================
+        // DEBUT DECLARATION DES VARIABLES ==================================================
+        // ==================================================================================
         private readonly AppDbContext _context;
+        // ==================================================================================
+        // FIN DECLARATION DES VARIABLES ====================================================
+        // ==================================================================================
 
+
+
+
+
+        // ==================================================================================
+        // DEBUT CONSTRUCTEUR ===============================================================
+        // ==================================================================================
         public F_ARTCLIENTRepository(AppDbContext context)
         {
             _context = context;
         }
+        // ==================================================================================
+        // DEBUT CONSTRUCTEUR ===============================================================
+        // ==================================================================================
 
-        public void Add(ArtClient entity)
+
+
+
+
+
+
+
+
+        // ==================================================================================
+        // DEBUT GET ========================================================================
+        // ==================================================================================
+        public F_ARTCLIENT GetBy_CT_Num_Et_AR_Ref(string CT_Num, string AR_Ref)
         {
-            throw new NotImplementedException();
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_ARTCLIENT.Where(artCli => artCli.CT_Num == CT_Num && artCli.AR_Ref == AR_Ref).FirstOrDefault();
+            }
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
+
+
+
 
         public List<ArtClient> GetAll()
         {
@@ -35,15 +64,11 @@ namespace SoftCaisse.Repositories
                     AC_Categorie = a.AC_Categorie,
                 }).ToList();
         }
+        // ==================================================================================
+        // FIN GET ==========================================================================
+        // ==================================================================================
 
-        public ArtClient GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Update(ArtClient entity)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

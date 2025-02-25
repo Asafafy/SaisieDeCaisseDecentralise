@@ -200,7 +200,7 @@ namespace SoftCaisse.Forms.Article
             _f_GAMSTOCKRepository = new F_GAMSTOCKRepository(_context);
             _f_DOCLIGNERepository = new F_DOCLIGNERepository(_context);
 
-            _f_ARTICLEService = new F_ARTICLEService(_context);
+            _f_ARTICLEService = new F_ARTICLEService(_f_ARTICLERepository);
             _f_ARTGAMMEService = new F_ARTGAMMEService(_context, _f_ARTGAMMERepository);
             _f_ARTPRIXService = new F_ARTPRIXService(_context, _f_ARTPRIXRepository);
             _f_ARTENUMREFService = new F_ARTENUMREFService(_context, _f_ARTENUMREFRepository);

@@ -16,15 +16,15 @@ using System.Text.Json;
 using System.Windows.Forms;
 namespace SoftCaisse.Forms.DocumentVente
 {
-    /* =========================================================== DÉBUT CONSTRUCTEUR =========================================================== */
-    /* ==================================================================================================================================== */
     public partial class ListeDocumentVenteForm : KryptonForm
     {
+        // ==============================================================================
+        // DÉBUT DECLARATION DES VARIABLES ==============================================
+        // ==============================================================================
         MainForm mainForm;
 
         private readonly AppDbContext _context;
-        private DataTable _bindingSource;
-        private Button _boutonActifMaintenant;
+        private readonly string _repertoireParent;
 
         private readonly List<TypeDocument> docs;
         private readonly List<string> listeLangues;
@@ -59,9 +59,22 @@ namespace SoftCaisse.Forms.DocumentVente
         private readonly F_ARTSTOCKService _f_ARTSTOCKService;
         private readonly F_DOCLIGNEService _f_DOCLIGNEService;
 
+        private DataTable _bindingSource;
+        private Button _boutonActifMaintenant;
         private F_DOCENTETE _selectedDoc;
         private bool _isFromRefresh = false;
+        // ==============================================================================
+        // FIN DECLARATION DES VARIABLES ================================================
+        // ==============================================================================
 
+
+
+
+
+
+        // ==============================================================================
+        // DÉBUT CONSTRUCTEUR ===========================================================
+        // ==============================================================================
         public ListeDocumentVenteForm(MainForm form)
         {
             InitializeComponent();
@@ -87,7 +100,8 @@ namespace SoftCaisse.Forms.DocumentVente
 
             _bindingSource = new DataTable();
             _bindingSource.Columns.Add(new DataColumn("Type"));
-            _bindingSource.Columns.Add(new DataColumn("Etat"));
+            _bindingSource.Columns.Add(new DataColumn("Validé"));
+            _bindingSource.Columns.Add(new DataColumn("Imprimé"));
             //_bindingSource.Columns.Add(new DataColumn("Rectifée"));
             _bindingSource.Columns.Add(new DataColumn("N° pièce"));
             _bindingSource.Columns.Add(new DataColumn("Référence"));
@@ -132,9 +146,12 @@ namespace SoftCaisse.Forms.DocumentVente
             _bindingSource.Columns.Add(new DataColumn("Solde dû"));
             _bindingSource.Columns.Add(new DataColumn("Commentaires"));
 
+            _repertoireParent = AppDomain.CurrentDomain.BaseDirectory;
 
-            docs = JsonSerializer.Deserialize<List<TypeDocument>>(File.ReadAllText("C:\\asf\\ReposProjetsDev\\SCDJNM\\SoftCaisse\\DataJSon\\TypeDocument.json"));
-            listeLangues = JsonSerializer.Deserialize<List<string>>(File.ReadAllText("C:\\asf\\ReposProjetsDev\\SCDJNM\\SoftCaisse\\DataJSon\\Langue.json"));
+            string typeDocumentPath = Path.Combine(_repertoireParent, "DataJSon\\TypeDocument.json");
+            string languePath = Path.Combine(_repertoireParent, "DataJSon\\Langue.json");
+            docs = JsonSerializer.Deserialize<List<TypeDocument>>(File.ReadAllText(typeDocumentPath));
+            listeLangues = JsonSerializer.Deserialize<List<string>>(File.ReadAllText(languePath));
 
             listeDocuments = _context.F_DOCENTETE.ToList();
             listeClients = _context.F_COMPTET.ToList();
@@ -153,19 +170,24 @@ namespace SoftCaisse.Forms.DocumentVente
 
             AjouterLignesDataGrid(listeDocuments);
             dataGridView1.DataSource = _bindingSource;
+            dataGridView1.Columns["Validé"].DefaultCellStyle.Font = new Font("Segoe UI Symbol", 12, FontStyle.Regular);
+            dataGridView1.Columns["Validé"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Imprimé"].DefaultCellStyle.Font = new Font("Segoe UI Symbol", 12, FontStyle.Regular);
+            dataGridView1.Columns["Imprimé"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             kryptonButtonSuppr.Enabled = false;
             mainForm = form;
         }
-        /* =========================================================== FIN CONSTRUCTEUR =========================================================== */
+        // ==============================================================================
+        // FIN CONSTRUCTEUR =============================================================
+        // ==============================================================================
+
+
+
+
+
         /* ==================================================================================================================================== */
-
-
-
-
-
         /* =========================================================== DEBUT FONCTIONS =========================================================== */
-        /* ==================================================================================================================================== */
         private void SelectTabParametres(Button activeButton)
         {
             List<Button> listeBoutons = new List<Button> { btnTous, btnDocsEnCours, btnDevis, btnBonCommande, btnPrepLivr, btnBonLivr, btnBnRetour, btnBnAvrFinancier, btnFacture, btnFactCompt };
@@ -188,7 +210,8 @@ namespace SoftCaisse.Forms.DocumentVente
             {
                 _bindingSource.Rows.Add(
                     docs[(int)doc.DO_Type].IntituleTypeDocument,
-                    doc.DO_Valide == 1 ? "Validé" : "",
+                    doc.DO_Valide == 1 ? "✔" : "",
+                    doc.DO_Imprim == 1 ? "🖨" : "",
                     doc.DO_Piece,
                     doc.DO_Ref,
                     doc.DO_Date?.ToString("dd/MM/yyyy"),
@@ -222,7 +245,7 @@ namespace SoftCaisse.Forms.DocumentVente
 
         private void RefreshDonnees(Button boutonActifMaint, object sender, EventArgs e)
         {
-            listeDocuments = _context.F_DOCENTETE.ToList();
+            listeDocuments = _f_DOCENTETERepository.GetAll();
 
             if (boutonActifMaint == btnTous)
             {
@@ -290,12 +313,9 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnTous || _isFromRefresh == true)
-            {
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listeDocuments);
-                _boutonActifMaintenant = btnTous;
-            }
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listeDocuments);
+            _boutonActifMaintenant = btnTous;
         }
 
         private void btnDocsEnCours_Click(object sender, EventArgs e)
@@ -305,13 +325,10 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnDocsEnCours || _isFromRefresh == true)
-            {
-                List<F_DOCENTETE> listeDocsEnCours = listeDocuments.Where(d => d.DO_BLFact == 0).ToList();
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listeDocsEnCours);
-                _boutonActifMaintenant = btnDocsEnCours;
-            }
+            List<F_DOCENTETE> listeDocsEnCours = listeDocuments.Where(d => d.DO_BLFact == 0).ToList();
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listeDocsEnCours);
+            _boutonActifMaintenant = btnDocsEnCours;
         }
 
         private void btnDevis_Click(object sender, EventArgs e)
@@ -321,13 +338,10 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnDevis || _isFromRefresh == true)
-            {
-                List<F_DOCENTETE> listeDocsDevis = listeDocuments.Where(d => d.DO_Type == 0).ToList();
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listeDocsDevis);
-                _boutonActifMaintenant = btnDevis;
-            }
+            List<F_DOCENTETE> listeDocsDevis = listeDocuments.Where(d => d.DO_Type == 0).ToList();
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listeDocsDevis);
+            _boutonActifMaintenant = btnDevis;
         }
 
         private void btnBonCommande_Click(object sender, EventArgs e)
@@ -337,13 +351,10 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnBonCommande || _isFromRefresh == true)
-            {
-                List<F_DOCENTETE> listeBonCommande = listeDocuments.Where(d => d.DO_Type == 1).ToList();
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listeBonCommande);
-                _boutonActifMaintenant = btnBonCommande;
-            }
+            List<F_DOCENTETE> listeBonCommande = listeDocuments.Where(d => d.DO_Type == 1).ToList();
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listeBonCommande);
+            _boutonActifMaintenant = btnBonCommande;
         }
 
         private void btnPrepLivr_Click(object sender, EventArgs e)
@@ -353,13 +364,10 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnPrepLivr || _isFromRefresh == true)
-            {
-                List<F_DOCENTETE> listePrepLivr = listeDocuments.Where(d => d.DO_Type == 2).ToList();
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listePrepLivr);
-                _boutonActifMaintenant = btnPrepLivr;
-            }
+            List<F_DOCENTETE> listePrepLivr = listeDocuments.Where(d => d.DO_Type == 2).ToList();
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listePrepLivr);
+            _boutonActifMaintenant = btnPrepLivr;
         }
 
         private void btnBonLivr_Click(object sender, EventArgs e)
@@ -369,13 +377,10 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnBonLivr || _isFromRefresh == true)
-            {
-                List<F_DOCENTETE> listeBonLivr = listeDocuments.Where(d => d.DO_Type == 3).ToList();
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listeBonLivr);
-                _boutonActifMaintenant = btnBonLivr;
-            }
+            List<F_DOCENTETE> listeBonLivr = listeDocuments.Where(d => d.DO_Type == 3).ToList();
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listeBonLivr);
+            _boutonActifMaintenant = btnBonLivr;
         }
 
         private void btnBnRetour_Click(object sender, EventArgs e)
@@ -385,13 +390,10 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnBnRetour || _isFromRefresh == true)
-            {
-                List<F_DOCENTETE> listeBonRetour = listeDocuments.Where(d => d.DO_Type == 4).ToList();
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listeBonRetour);
-                _boutonActifMaintenant = btnBnRetour;
-            }
+            List<F_DOCENTETE> listeBonRetour = listeDocuments.Where(d => d.DO_Type == 4).ToList();
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listeBonRetour);
+            _boutonActifMaintenant = btnBnRetour;
         }
 
         private void btnBnAvrFinancier_Click(object sender, EventArgs e)
@@ -401,13 +403,10 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnBnAvrFinancier || _isFromRefresh == true)
-            {
-                List<F_DOCENTETE> listeBonAvrFinance = listeDocuments.Where(d => d.DO_Type == 5).ToList();
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listeBonAvrFinance);
-                _boutonActifMaintenant = btnBnAvrFinancier;
-            }
+            List<F_DOCENTETE> listeBonAvrFinance = listeDocuments.Where(d => d.DO_Type == 5).ToList();
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listeBonAvrFinance);
+            _boutonActifMaintenant = btnBnAvrFinancier;
         }
 
         private void btnFacture_Click(object sender, EventArgs e)
@@ -417,13 +416,10 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnFacture || _isFromRefresh == true)
-            {
-                List<F_DOCENTETE> listeFact = listeDocuments.Where(d => d.DO_Type == 6).ToList();
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listeFact);
-                _boutonActifMaintenant = btnFacture;
-            }
+            List<F_DOCENTETE> listeFact = listeDocuments.Where(d => d.DO_Type == 6).ToList();
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listeFact);
+            _boutonActifMaintenant = btnFacture;
         }
 
         private void btnFactCompt_Click(object sender, EventArgs e)
@@ -433,13 +429,10 @@ namespace SoftCaisse.Forms.DocumentVente
             kryptonButtonSuppr.Enabled = false;
 
             // Modification de la liste des documents à afficher
-            if (_boutonActifMaintenant != btnFactCompt || _isFromRefresh == true)
-            {
-                List<F_DOCENTETE> listeFactCompt = listeDocuments.Where(d => d.DO_Type == 7).ToList();
-                _bindingSource.Rows.Clear();
-                AjouterLignesDataGrid(listeFactCompt);
-                _boutonActifMaintenant = btnFactCompt;
-            }
+            List<F_DOCENTETE> listeFactCompt = listeDocuments.Where(d => d.DO_Type == 7).ToList();
+            _bindingSource.Rows.Clear();
+            AjouterLignesDataGrid(listeFactCompt);
+            _boutonActifMaintenant = btnFactCompt;
         }
         // ==============================================================================================================================================
         // ======================================================= DEBUT BOUTONS SIDEBAR À GAUCHE =======================================================
@@ -464,7 +457,7 @@ namespace SoftCaisse.Forms.DocumentVente
             if (kryptonButtonSuppr.Enabled)
             {
                 string numPiece = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                _selectedDoc = _context.F_DOCENTETE.Where(d => d.DO_Piece == numPiece).FirstOrDefault();
+                _selectedDoc = _f_DOCENTETERepository.GetBy_DO_Piece(numPiece);
             }
         }
 
@@ -488,19 +481,19 @@ namespace SoftCaisse.Forms.DocumentVente
                 DialogResult resultat = MessageBox.Show("Veuillez confirmer la suppression du document  " + _selectedDoc.DO_Piece, "Confirmation de la suppression", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (resultat == DialogResult.Yes)
                 {
-                    List<F_DOCLIGNE> listeDocLigne = _context.F_DOCLIGNE.Where(dl => dl.DO_Piece == _selectedDoc.DO_Piece).ToList();
+                    List<F_DOCLIGNE> listeDocLigne = _f_DOCLIGNERepository.GetAll_F_DOCLIGNE_Of_DOCENTETE(_selectedDoc.DO_Piece);
                     string typeDocument = _f_DOCENTETEService.GetDocTypeName((int)_selectedDoc.DO_Type, _selectedDoc.DO_Piece);
 
 
                     // Suppression dans F_REGLECH
-                    List<F_REGLECH> listeReglEchToDelete = _context.F_REGLECH.Where(dr => dr.DO_Piece == _selectedDoc.DO_Piece).ToList();
+                    List<F_REGLECH> listeReglEchToDelete = _f_REGLECHRepository.GellAll_F_REGLECH_By_DO_Piece(_selectedDoc.DO_Piece);
                     if (listeReglEchToDelete.Count > 0)
                     {
                         _f_REGLECHService.SupprimerReglementsDesEcheances(listeReglEchToDelete);
                     }
 
                     // Suppression dans F_DOCREGL
-                    List<F_DOCREGL> listeDocReglToDelete = _context.F_DOCREGL.Where(dr => dr.DO_Piece == _selectedDoc.DO_Piece).ToList();
+                    List<F_DOCREGL> listeDocReglToDelete = _f_DOCREGLRepository.GetAll_F_DOCREGL_By_DO_Piece(_selectedDoc.DO_Piece);
                     if (listeDocReglToDelete.Count > 0)
                     {
                         _f_DOCREGLService.SupprimerDocumentsDesReglements(listeDocReglToDelete);
@@ -559,13 +552,17 @@ namespace SoftCaisse.Forms.DocumentVente
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
                 string doPiece = selectedRow.Cells["N° pièce"].Value.ToString();
-                F_DOCENTETE docEnteteSelectionne = _context.F_DOCENTETE.Where(doc => doc.DO_Piece == doPiece).FirstOrDefault();
+                F_DOCENTETE docEnteteSelectionne = _f_DOCENTETERepository.GetBy_DO_Piece(doPiece);
                 string typeDocument = _f_DOCENTETEService.GetDocTypeName((int)docEnteteSelectionne.DO_Type, docEnteteSelectionne.DO_Piece);
 
                 if (docEnteteSelectionne != null)
                 {
                     NouveauEtMiseAJourDocumentDeVente documentDeVente = new NouveauEtMiseAJourDocumentDeVente(typeDocument, mainForm, docEnteteSelectionne);
-                    documentDeVente.Show();
+                    documentDeVente.ShowDialog();
+                    if (documentDeVente.RefreshListeDocumentsDeVente)
+                    {
+                        RefreshDonnees(_boutonActifMaintenant, sender, e);
+                    }
                 }
                 else
                 {

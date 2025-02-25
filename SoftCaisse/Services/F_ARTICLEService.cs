@@ -18,7 +18,6 @@ namespace SoftCaisse.Services
         // =======================================================================================================================================
         // =================================================== DEBUT DECLARATION DES VARIABLES ===================================================
         // =======================================================================================================================================
-        private readonly AppDbContext _context;
         private readonly F_ARTICLERepository _f_ARTICLERepository;
         // =====================================================================================================================================
         // =================================================== FIN DECLARATION DES VARIABLES ===================================================
@@ -31,10 +30,9 @@ namespace SoftCaisse.Services
         // ====================================================================================================================================
         // ======================================================== DEBUT CONSTRUCTEUR ========================================================
         // ====================================================================================================================================
-        public F_ARTICLEService(AppDbContext context)
+        public F_ARTICLEService(F_ARTICLERepository f_ARTICLERepository)
         {
-            _context = context;
-            _f_ARTICLERepository = new F_ARTICLERepository(_context);
+            _f_ARTICLERepository = f_ARTICLERepository;
         }
         // =====================================================================================================================================
         // =================================================== FIN DECLARATION DES VARIABLES ===================================================
@@ -49,6 +47,15 @@ namespace SoftCaisse.Services
         // ====================================================================================================================================
         // ================================================== DEBUT DECLARATION DES METHODES ==================================================
         // ====================================================================================================================================
+        public F_ARTICLE GetF_ARTICLE_ByAR_Ref_O_uAR_Design(string AR_RefouAR_Design)
+        {
+            F_ARTICLE articleSaisie = _f_ARTICLERepository.GetF_ARTICLEByAR_Ref(AR_RefouAR_Design);
+            if (articleSaisie == null)
+                articleSaisie = _f_ARTICLERepository.GetF_ARTICLEByAR_Design(AR_RefouAR_Design);
+            return articleSaisie;
+        }
+
+
         public void UpdateDateModifArticle(string AR_Ref)
         {
             F_ARTICLE f_ARTICLE = _f_ARTICLERepository.GetF_ARTICLEByAR_Ref(AR_Ref);

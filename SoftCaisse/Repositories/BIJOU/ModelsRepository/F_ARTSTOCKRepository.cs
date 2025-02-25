@@ -30,6 +30,23 @@ namespace SoftCaisse.Repositories
 
 
 
+
+        public F_ARTSTOCK GetF_ARTSTOCK_By_AR_Ref_DP_NoPrincipal(string AR_Ref, int? DP_NoPrincipal)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_ARTSTOCK.Where(artStck => artStck.AR_Ref == AR_Ref && artStck.DP_NoPrincipal == DP_NoPrincipal).FirstOrDefault();
+            }
+        }
+
+
+
+
+
+
+
+
+
         public void Update(F_ARTSTOCK f_ARTSTOCK)
         {
             string queryUpdateStock = @"

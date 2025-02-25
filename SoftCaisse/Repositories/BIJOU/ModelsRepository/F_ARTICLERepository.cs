@@ -67,6 +67,16 @@ namespace SoftCaisse.Repositories
 
 
 
+        public F_ARTICLE GetF_ARTICLEByAR_Design(string AR_Design)
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.F_ARTICLE.FirstOrDefault(a => a.AR_Design == AR_Design);
+            }
+        }
+
+
+
 
 
         public void UpdateDateModifArticle(int cbMarq)

@@ -529,9 +529,11 @@
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTENUMREFRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTGAMMERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_JOURNAUXRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_REGLEMENTTRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_REGLECHRepository.cs" />
     <Compile Include="Repositories\BIJOU\ListeSelectionEcheancesRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_LIVRAISONRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_TAXERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\P_EXPEDITIONRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_COMPTEARepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\P_DEVISERepository.cs" />
@@ -753,8 +755,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ModelesDocuments\TicketCaisse.rdlc" />
-    <None Include="DataJSon\Langue.json" />
-    <None Include="DataJSon\TypeDocument.json" />
     <None Include="DataSetEnt.xsc">
       <DependentUpon>DataSetEnt.xsd</DependentUpon>
     </None>

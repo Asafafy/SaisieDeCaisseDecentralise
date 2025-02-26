@@ -1,4 +1,5 @@
-﻿using SoftCaisse.Forms.FormCaisse;
+﻿using ComponentFactory.Krypton.Toolkit;
+using SoftCaisse.Forms.FormCaisse;
 using SoftCaisse.Models;
 using System;
 using System.Collections.Generic;
@@ -16,31 +17,66 @@ using System.Windows.Forms;
 
 namespace SoftCaisse.Forms.ClotureCaisse
 {
-    public partial class ClotureCaisse : Form
+    public partial class ClotureCaisse : KryptonForm
     {
+        // ======================================================================================================
+        // DEBUT DECLARATION DES VARIABLES ======================================================================
+        // ======================================================================================================
         private readonly AppDbContext _context;
+        // ======================================================================================================
+        // DEBUT DECLARATION DES VARIABLES ======================================================================
+        // ======================================================================================================
+
+
+
+
+
+
+
+
+
+
+        // ======================================================================================================
+        // DEBUT CONSTRUCTEUR ===================================================================================
+        // ======================================================================================================
         public ClotureCaisse()
         {
             _context = new AppDbContext();
             InitializeComponent();
-            kryptonComboBox1.DataSource =_context.F_CAISSE.Select(u=>new {Value= u.CA_No,Text = u.CA_Intitule }).ToArray();
-            kryptonComboBox2.DataSource =_context.F_CAISSE.Select(u=>new {Value= u.CA_No,Text = u.CA_Intitule }).ToArray();
-            kryptonComboBox3.DataSource =_context.P_SOUCHEVENTE.Where(u=> u.S_Valide==1 ).Select(u=>new {Value= u.cbMarq,Text=u.S_Intitule}).ToArray();
-            kryptonComboBox1.ValueMember = "Value";
-            kryptonComboBox1.DisplayMember = "Text";
-            kryptonComboBox2.ValueMember = "Value";
-            kryptonComboBox2.DisplayMember = "Text";
-            kryptonComboBox3.ValueMember = "Value";
-            kryptonComboBox3.DisplayMember = "Text";
-            kryptonComboBox5.SelectedIndex = 1;
-        }
 
+            CmbBxCaisseDebut.DataSource =_context.F_CAISSE.Select(u=>new {Value= u.CA_No,Text = u.CA_Intitule }).ToArray();
+            CmbBxCaisseFin.DataSource =_context.F_CAISSE.Select(u=>new {Value= u.CA_No,Text = u.CA_Intitule }).ToArray();
+            CmbBxSouche.DataSource =_context.P_SOUCHEVENTE.Where(u=> u.S_Valide==1 ).Select(u=>new {Value= u.cbMarq,Text=u.S_Intitule}).ToArray();
+            CmbBxCaisseDebut.ValueMember = "Value";
+            CmbBxCaisseDebut.DisplayMember = "Text";
+            CmbBxCaisseFin.ValueMember = "Value";
+            CmbBxCaisseFin.DisplayMember = "Text";
+            CmbBxSouche.ValueMember = "Value";
+            CmbBxSouche.DisplayMember = "Text";
+            CmbBxRegroupementsTickets.SelectedIndex = 1;
+        }
+        // ======================================================================================================
+        // FIN CONSTRUCTEUR =====================================================================================
+        // ======================================================================================================
+
+
+
+
+
+
+
+
+
+
+        // ======================================================================================================
+        // DEBUT EVENEMENTS =====================================================================================
+        // ======================================================================================================
         private void cloturer_caisse(object sender, EventArgs e)
         {
             int fcaisse = 0;
             int scaisse = 0;
-            Int32.TryParse(kryptonComboBox1.SelectedValue.ToString(),out fcaisse);
-            Int32.TryParse(kryptonComboBox2.SelectedValue.ToString(),out scaisse);
+            Int32.TryParse(CmbBxCaisseDebut.SelectedValue.ToString(),out fcaisse);
+            Int32.TryParse(CmbBxCaisseFin.SelectedValue.ToString(),out scaisse);
             List<F_DOCENTETE> liste_doc=_context.F_DOCENTETE.Where(u => u.CA_No >= fcaisse && u.CA_No <= scaisse && u.DO_Domaine == 3 && u.DO_Type == 30 && u.DO_Cloture==0).ToList();            
             DateTime currentTime=DateTime.Now;
             int hours = currentTime.Hour;
@@ -56,7 +92,7 @@ namespace SoftCaisse.Forms.ClotureCaisse
                 entete.DO_Cloture = 1;
                 entete.DO_Type = 6;
                 entete.DO_Domaine = 0;
-                List<F_DOCLIGNE> liste_ligne = _context.F_DOCLIGNE.Where(u =>  u.DO_Piece==entete.DO_Piece).ToList();
+                List<F_DOCLIGNE> liste_ligne = _context.F_DOCLIGNE.Where(u => u.DO_Piece==entete.DO_Piece).ToList();
 
                 var reglement = _context.F_CREGLEMENT.Join(_context.F_REGLECH,post=>post.RG_No,meta=>meta.RG_No,(post,meta)=>new {Post=post,Meta=meta}).Where(u=>u.Meta.DO_Piece == entete.DO_Piece).ToList();
                 F_TICKETARCHIVE f_TICKETARCHIVE = new F_TICKETARCHIVE()
@@ -117,7 +153,7 @@ namespace SoftCaisse.Forms.ClotureCaisse
                     _context.SaveChanges();
                 }
             }
-            if (kryptonComboBox5.SelectedIndex == 0)
+            if (CmbBxRegroupementsTickets.SelectedIndex == 0)
             {
                 foreach (var item in list_reglement)
                 {
@@ -132,7 +168,7 @@ namespace SoftCaisse.Forms.ClotureCaisse
                 }
             }
 
-            if (kryptonComboBox5.SelectedIndex == 1)
+            if (CmbBxRegroupementsTickets.SelectedIndex == 1)
             {
                 list_reglement.GroupBy(i => new { Caisse = i.CA_No, Date = i.RG_Date, Client = i.CT_NumPayeur, Types = i.N_Reglement, semaine = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(i.RG_Date.Value, CalendarWeekRule.FirstDay, DayOfWeek.Monday) }).ToList()
                 .ForEach(u =>
@@ -147,7 +183,7 @@ namespace SoftCaisse.Forms.ClotureCaisse
                     });
                 });
             }
-            if (kryptonComboBox5.SelectedIndex == 2)
+            if (CmbBxRegroupementsTickets.SelectedIndex == 2)
             {
                 list_reglement.GroupBy(i => new { Caisse = i.CA_No, Date = i.RG_Date, Client = i.CT_NumPayeur, Types = i.N_Reglement, Month = i.RG_Date.Value.Month, Year = i.RG_Date.Value.Year }).ToList()
                 .ForEach(u =>
@@ -162,15 +198,7 @@ namespace SoftCaisse.Forms.ClotureCaisse
                     });
                 });
             }
-            //try
-            //{
-            
-            //}
-            //catch (Exception ea)
-            //{
-            //    MessageBox.Show(ea.Message);
-            //}
-            this.Close();
+            Close();
             if (replement_report.Count > 0)
             {
                 Reporting caisse=new Reporting(replement_report);
@@ -179,5 +207,13 @@ namespace SoftCaisse.Forms.ClotureCaisse
             MessageBox.Show("Caisse Cloturé avec succès","SUCCESS",MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
+
+
+
+
+        // ======================================================================================================
+        // FIN EVENEMENTS =======================================================================================
+        // ======================================================================================================
+
     }
 }

@@ -13,36 +13,51 @@ namespace SoftCaisse.Forms
 {
     public partial class GestionDesRoles : KryptonForm
     {
+        // ====================================================================================
+        // DEBUT DECLARATION DES VARIABLES ====================================================
+        // ====================================================================================
         private readonly DataTable _bindingSource;
 
         private readonly RoleRepository _roleRepository;
         private readonly UserRepository _userRepository;
         private readonly RoleAutorisationRepository _roleAutorisationRepository;
+        private readonly RubriqueRepository _rubriqueRepository;
 
         private readonly SCDContext _scdContext;
+
+        List<int> valeursEstAutoriseInit = new List<int>();
 
         private List<Role> listeRoles;
         private int selectedRoleId;
         private bool groupBox1EstOuvert;
-        private RoleAutorisation newAutorisation;
         private bool estNouveau;
+        private RoleAutorisation newAutorisation;
+        // ====================================================================================
+        // FIN DECLARATION DES VARIABLES ======================================================
+        // ====================================================================================
 
-        private Role currentRole;
 
 
 
 
 
-        // ================================================================================================================================
-        // ================================================== DEBUT CONSTRUCTEUR ==========================================================
+
+
+
+
+        // ====================================================================================
+        // DEBUT CONSTRUCTEUR =================================================================
+        // ====================================================================================
         public GestionDesRoles()
         {
             InitializeComponent();
 
             _scdContext = new SCDContext();
+
             _roleRepository = new RoleRepository(_scdContext);
             _userRepository = new UserRepository(_scdContext);
-            _roleAutorisationRepository = new RoleAutorisationRepository(_scdContext);
+            _roleAutorisationRepository = new RoleAutorisationRepository();
+            _rubriqueRepository = new RubriqueRepository();
 
             _bindingSource = new DataTable();
 
@@ -53,15 +68,22 @@ namespace SoftCaisse.Forms
 
             LoadData();
         }
-        // ================================================== FIN CONSTRUCTEUR ==========================================================
-        // ==============================================================================================================================
+        // ====================================================================================
+        // FIN CONSTRUCTEUR ===================================================================
+        // ====================================================================================
 
 
 
 
 
-        // ==============================================================================================================================
-        // ================================================== DEBUT FONCTIONS ===========================================================
+
+
+
+
+
+        // ====================================================================================
+        // DEBUT FONCTIONS ====================================================================
+        // ====================================================================================
         public void ShowGroupBox()
         {
             if (groupBox1EstOuvert == false)
@@ -73,6 +95,8 @@ namespace SoftCaisse.Forms
                 groupBox1EstOuvert = true;
             }
         }
+
+
 
         public void HideGroupBox()
         {
@@ -87,70 +111,87 @@ namespace SoftCaisse.Forms
             }
         }
 
-        public void LoadData()
+
+
+        public async void LoadData()
         {
-            _bindingSource.Clear();
-            listeRoles = _roleRepository.GetAll();
+            _bindingSource.Clear()
+                ;
+            listeRoles = await _roleRepository.GetAll();
+
             if (_bindingSource.Columns.Count < 1)
             {
                 _bindingSource.Columns.Add(new DataColumn("Id"));
                 _bindingSource.Columns.Add(new DataColumn("Intitule"));
                 _bindingSource.Columns.Add(new DataColumn("Nombre d'utilisateurs"));
             }
-            List<int> nbUserParRole = _roleRepository.GetUsersNumber();
+
+            List<int> nbUserParRole = await _roleRepository.GetUsersNumber();
+
             int i = 0;
             foreach (var role in listeRoles)
             {
                 _bindingSource.Rows.Add(role.IdRole, role.RoleIntitule, nbUserParRole[i]);
                 i++;
             }
+
             dataGridView1.DataSource = _bindingSource;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["Nombre d'utilisateurs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
-        public void SetAuthAndAllOthersAuth(RoleAutorisation autorisation, int roleId)
+
+
+        public async void SetAuthAndAllOthersAuth(RoleAutorisation autorisation, int roleId)
         {
-            Rubrique rubrique = _scdContext.Rubrique.Where(rub => rub.Id == autorisation.IdRubrique).FirstOrDefault();
-            List<int> listRubrAModif = new List<int>();
+            Rubrique rubrique = await _rubriqueRepository.GetRubrique_by_IdRubrique(autorisation.IdRubrique);
+            List<int> listRubrAModif = new List<int> ();
             listRubrAModif.Add(rubrique.Id);
-            List<int> idRubriquesFils = _scdContext.Rubrique.Where(rub => rub.IdParent == rubrique.Id).Select(rub => rub.Id).ToList();
-            listRubrAModif.AddRange(idRubriquesFils);
+            List<Rubrique> rubriquesFils = await _rubriqueRepository.GetRubriqueFils_by_IdParent(rubrique.Id);
+            List<int> idRubriquesFils = rubriquesFils.Select(rub => rub.Id).ToList();
+            foreach (int rubId in idRubriquesFils)
+                listRubrAModif.Add(rubId);
             foreach (int rubId in idRubriquesFils)
             {
-                List<int> rubriqueFils2 = _scdContext.Rubrique.Where(rubFils2 => rubFils2.IdParent == rubId).Select(rub => rub.Id).ToList();
+                List<Rubrique> rubriquesFils2 = await _rubriqueRepository.GetRubriqueFils_by_IdParent(rubId);
+                List<int> rubriqueFils2 = rubriquesFils2.Select(rub => rub.Id).ToList();
                 if (rubriqueFils2.Count > 0)
                 {
-                    idRubriquesFils.AddRange(rubriqueFils2);
+                    foreach (int rubId2 in rubriqueFils2)
+                        listRubrAModif.Add(rubId2);
                 }
             }
             int valToSet = autorisation.EstAutorise == 1 ? 0 : 1;
+
             // Mise à jour des données dans la base
             if (estNouveau == true)
             {
                 foreach (int rubId in listRubrAModif)
                 {
-                    RoleAutorisation roleToUpdate = _scdContext.RoleAutorisation
-                        .Where(roleAuth => roleAuth.IdRole == null && roleAuth.IdRubrique == rubId)
-                        .FirstOrDefault();
+                    RoleAutorisation roleToUpdate = await _roleAutorisationRepository.Get_RoleAutorisation_By_IdRubrique_And_IdRole(rubId, null);
                     roleToUpdate.EstAutorise = valToSet;
+                    _roleAutorisationRepository.Update(roleToUpdate);
                 }
             }
             else
             {
                 foreach (int rubId in listRubrAModif)
                 {
-                    RoleAutorisation roleToUpdate = _scdContext.RoleAutorisation
-                        .Where(roleAuth => roleAuth.IdRole == roleId && roleAuth.IdRubrique == rubId)
-                        .FirstOrDefault();
+                    RoleAutorisation roleToUpdate = await _roleAutorisationRepository.Get_RoleAutorisation_By_IdRubrique_And_IdRole(rubId, roleId);
                     roleToUpdate.EstAutorise = valToSet;
+                    _roleAutorisationRepository.Update(roleToUpdate);
                 }
             }
-            _scdContext.SaveChanges();
         }
-        // ================================================== DEBUT FONCTIONS ===========================================================
-        // ==============================================================================================================================
+        // ====================================================================================
+        // FIN FONCTIONS ======================================================================
+        // ====================================================================================
+
+
+
+
+
 
 
 
@@ -162,6 +203,8 @@ namespace SoftCaisse.Forms
         {
             Close();
         }
+
+
 
 
 
@@ -221,17 +264,21 @@ namespace SoftCaisse.Forms
 
 
 
-        private void btnNouveau_Click(object sender, EventArgs e)
+
+
+        private async void btnNouveau_Click(object sender, EventArgs e)
         {
             ShowGroupBox();
+
             groupBox2.Enabled = false;
+            txBxIntRole.Text = "";
 
             estNouveau = true;
 
             // Création des nouvelles autorisations
             int i = 1;
-            int rubriqueLastID = _scdContext.Rubrique.Count();
-            while (i <= rubriqueLastID)
+            int nombreRubrique = await _rubriqueRepository.CountRubriques();
+            while (i <= nombreRubrique)
             {
                 newAutorisation = new RoleAutorisation();
                 newAutorisation.EstAutorise = 1;
@@ -241,8 +288,13 @@ namespace SoftCaisse.Forms
             }
         }
 
-        private void btnModif_Click(object sender, EventArgs e)
+
+
+
+
+        private async void btnModif_Click(object sender, EventArgs e)
         {
+            estNouveau = false;
             if (dataGridView1.CurrentRow.Index < 0)
             {
                 MessageBox.Show("Veuillez sélectionner l'utilisateur à modifier.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -266,29 +318,41 @@ namespace SoftCaisse.Forms
                     dataGridView1.DataSource = null;
                 }
             }
+            List<RoleAutorisation> listeRolesAutorisation = await _roleAutorisationRepository.Get_List_RoleAutorisation_By_IdRole(selectedRoleId);
+            valeursEstAutoriseInit = listeRolesAutorisation.Select(ra => ra.EstAutorise).ToList();
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+
+
+
+
+        private async void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             TreeNode selectedNode = e.Node;
             if (selectedNode.Text == "Fichier") // Rubrique "Fichier" toujours actif
                 chckBxAuth.Enabled = false;
             else
                 chckBxAuth.Enabled = true;
-            int rubriqueNo = _scdContext.Rubrique.Where(rub => rub.Nom == selectedNode.Text).Select(rub => rub.Id).FirstOrDefault();
+
+            Rubrique rubriqueSelected = await _rubriqueRepository.GetRubrique_by_Nom(selectedNode.Text);
+            int rubriqueNo = rubriqueSelected.Id;
             RoleAutorisation rubriqueAuth;
             if (estNouveau == true)
             {
-                rubriqueAuth = _scdContext.RoleAutorisation.Where(rlAuth => rlAuth.IdRubrique == rubriqueNo && rlAuth.IdRole == null).FirstOrDefault();
+                rubriqueAuth = await _roleAutorisationRepository.Get_RoleAutorisation_By_IdRubrique_And_IdRole(rubriqueNo, null);
             }
             else
             {
-                rubriqueAuth = _scdContext.RoleAutorisation.Where(rlAuth => rlAuth.IdRubrique == rubriqueNo && rlAuth.IdRole == selectedRoleId).FirstOrDefault();
+                rubriqueAuth = await _roleAutorisationRepository.Get_RoleAutorisation_By_IdRubrique_And_IdRole(rubriqueNo, selectedRoleId);
             }
             chckBxAuth.Checked = rubriqueAuth.EstAutorise == 1 ? true : false;
         }
 
-        private void chckBxAuth_Click(object sender, EventArgs e)
+
+
+
+
+        private async void chckBxAuth_Click(object sender, EventArgs e)
         {
             TreeNode selectedNode = treeView1.SelectedNode;
             if (treeView1.SelectedNode == null)
@@ -297,71 +361,88 @@ namespace SoftCaisse.Forms
             }
             else
             {
-                int rubriqueNo = _scdContext.Rubrique.Where(rub => rub.Nom == selectedNode.Text).Select(rub => rub.Id).FirstOrDefault();
+                Rubrique rubriqueSelected = await _rubriqueRepository.GetRubrique_by_Nom(selectedNode.Text);
+                int rubriqueNo = rubriqueSelected.Id;
                 RoleAutorisation rubriqueAuth;
                 if (estNouveau == true)
                 {
-                    rubriqueAuth = _scdContext.RoleAutorisation.Where(rlAuth => rlAuth.IdRubrique == rubriqueNo && rlAuth.IdRole == null).FirstOrDefault();
+                    rubriqueAuth = await _roleAutorisationRepository.Get_RoleAutorisation_By_IdRubrique_And_IdRole(rubriqueNo, null);
                 }
                 else
                 {
-                    rubriqueAuth = _scdContext.RoleAutorisation.Where(rlAuth => rlAuth.IdRubrique == rubriqueNo && rlAuth.IdRole == selectedRoleId).FirstOrDefault();
+                    rubriqueAuth = await _roleAutorisationRepository.Get_RoleAutorisation_By_IdRubrique_And_IdRole(rubriqueNo, selectedRoleId);
                 }
                 SetAuthAndAllOthersAuth(rubriqueAuth, selectedRoleId);
-                _roleAutorisationRepository.Update(rubriqueAuth);
             }
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+
+
+
+
+        private async void btnOK_Click(object sender, EventArgs e)
         {
             if (txBxIntRole.Text != "")
             {
                 if (estNouveau == true)
                 {
-                    // Création nouveau rôle
-                    Role nouveauRole = new Role
-                    {
-                        RoleIntitule = txBxIntRole.Text
-                    };
-                    _roleRepository.Add(nouveauRole);
+                    string nomRole = txBxIntRole.Text;
+                    _roleRepository.Add(nomRole);
+                    Role roleConcerne = await _roleRepository.GetRoleBy_RoleIntitule(nomRole);
 
-                    // Mise à jour de toutes les autorisations liées au nouveau rôle
-                    List<RoleAutorisation> listeAutToUpdate = _scdContext.RoleAutorisation.Where(roleAuth => roleAuth.IdRole == null).ToList();
-                    Role roleActu = _scdContext.Role.Where(r => r.RoleIntitule == txBxIntRole.Text).FirstOrDefault();
+                    // Mise à jour des autorisations liés au rôle
+                    List<RoleAutorisation> listeAutToUpdate = await _roleAutorisationRepository.Get_List_RoleAutorisation_By_IdRole(null);
                     foreach (RoleAutorisation roleAuth in listeAutToUpdate)
                     {
-                        roleAuth.IdRole = roleActu.IdRole;
+                        roleAuth.IdRole = roleConcerne.IdRole;
+                        _roleAutorisationRepository.Update(roleAuth);
                     }
-                    HideGroupBox();
-                    LoadData();
                 }
                 else
                 {
                     // Mise à jour Intitule Rôle
-                    Role roleToUpdate = _roleRepository.GetById(selectedRoleId);
+                    Role roleToUpdate = await _roleRepository.GetById(selectedRoleId);
 
                     roleToUpdate.RoleIntitule = txBxIntRole.Text;
                     _roleRepository.Update(roleToUpdate);
-                    HideGroupBox();
-                    LoadData();
                 }
+                valeursEstAutoriseInit.Clear();
+                HideGroupBox();
+                LoadData();
             }
             else
                 MessageBox.Show("Complétez d'abord l'intitule du rôle", "Incomplet", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
         }
 
-        private void btnAnnuler_Click(object sender, EventArgs e)
+
+
+
+
+        private async void btnAnnuler_Click(object sender, EventArgs e)
         {
             if (estNouveau)
             {
                 _roleRepository.Delete(selectedRoleId);
-                List<RoleAutorisation> listeAutToDelete = _scdContext.RoleAutorisation.Where(roleAuth => roleAuth.IdRole == null).ToList();
+                List<RoleAutorisation> listeAutToDelete = await _roleAutorisationRepository.Get_List_RoleAutorisation_By_IdRole(null);
                 foreach (RoleAutorisation autorisation in listeAutToDelete)
                 {
                     _roleAutorisationRepository.Delete(autorisation.Id);
                 }
             }
+            else
+            {
+                List<RoleAutorisation> listeRoleAuthToReset = await _roleAutorisationRepository.Get_List_RoleAutorisation_By_IdRole(selectedRoleId);
+                int nombreRoleAuth = listeRoleAuthToReset.Count();
+                int i = 0;
+                while (i < nombreRoleAuth)
+                {
+                    listeRoleAuthToReset[i].EstAutorise = valeursEstAutoriseInit[i];
+                    _roleAutorisationRepository.Update(listeRoleAuthToReset[i]);
+                    i++;
+                }
+            }
+            valeursEstAutoriseInit.Clear();
             HideGroupBox();
             LoadData();
         }

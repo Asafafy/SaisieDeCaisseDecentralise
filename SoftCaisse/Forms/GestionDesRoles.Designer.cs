@@ -139,65 +139,67 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 28);
+            this.label1.Location = new System.Drawing.Point(37, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(305, 13);
+            this.label1.Size = new System.Drawing.Size(386, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Liste des profils utilisateurs existants, associés à différents rôles.";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(64, 47);
+            this.label2.Location = new System.Drawing.Point(85, 58);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(231, 13);
+            this.label2.Size = new System.Drawing.Size(287, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Vous pouvez également en créer de nouveaux.";
             // 
             // btnFermer
             // 
-            this.btnFermer.Location = new System.Drawing.Point(902, 519);
-            this.btnFermer.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFermer.Location = new System.Drawing.Point(1203, 639);
+            this.btnFermer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFermer.Name = "btnFermer";
             this.btnFermer.Palette = this.kryptonPalette1;
             this.btnFermer.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnFermer.Size = new System.Drawing.Size(75, 31);
+            this.btnFermer.Size = new System.Drawing.Size(100, 38);
             this.btnFermer.TabIndex = 43;
             this.btnFermer.Values.Text = "Fermer";
             this.btnFermer.Click += new System.EventHandler(this.btnFermer_Click);
             // 
             // btnNouveau
             // 
-            this.btnNouveau.Location = new System.Drawing.Point(262, 95);
-            this.btnNouveau.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNouveau.Location = new System.Drawing.Point(349, 117);
+            this.btnNouveau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNouveau.Name = "btnNouveau";
             this.btnNouveau.Palette = this.kryptonPalette1;
             this.btnNouveau.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnNouveau.Size = new System.Drawing.Size(75, 31);
+            this.btnNouveau.Size = new System.Drawing.Size(100, 38);
             this.btnNouveau.TabIndex = 45;
             this.btnNouveau.Values.Text = "Nouveau";
             this.btnNouveau.Click += new System.EventHandler(this.btnNouveau_Click);
             // 
             // btnModif
             // 
-            this.btnModif.Location = new System.Drawing.Point(262, 132);
-            this.btnModif.Margin = new System.Windows.Forms.Padding(2);
+            this.btnModif.Location = new System.Drawing.Point(349, 162);
+            this.btnModif.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnModif.Name = "btnModif";
             this.btnModif.Palette = this.kryptonPalette1;
             this.btnModif.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnModif.Size = new System.Drawing.Size(75, 31);
+            this.btnModif.Size = new System.Drawing.Size(100, 38);
             this.btnModif.TabIndex = 46;
             this.btnModif.Values.Text = "Modifier";
             this.btnModif.Click += new System.EventHandler(this.btnModif_Click);
             // 
             // btnSupp
             // 
-            this.btnSupp.Location = new System.Drawing.Point(262, 169);
-            this.btnSupp.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSupp.Location = new System.Drawing.Point(349, 208);
+            this.btnSupp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSupp.Name = "btnSupp";
             this.btnSupp.Palette = this.kryptonPalette1;
             this.btnSupp.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnSupp.Size = new System.Drawing.Size(75, 31);
+            this.btnSupp.Size = new System.Drawing.Size(100, 38);
             this.btnSupp.TabIndex = 47;
             this.btnSupp.Values.Text = "Supprimer";
             this.btnSupp.Click += new System.EventHandler(this.btnSupp_Click);
@@ -207,19 +209,19 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 95);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataGridView1.Location = new System.Drawing.Point(17, 117);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(235, 393);
+            this.dataGridView1.Size = new System.Drawing.Size(313, 484);
             this.dataGridView1.TabIndex = 48;
             // 
             // groupBox1
@@ -231,21 +233,22 @@
             this.groupBox1.Controls.Add(this.lblIntRole);
             this.groupBox1.Controls.Add(this.OK);
             this.groupBox1.Controls.Add(this.treeView1);
-            this.groupBox1.Location = new System.Drawing.Point(371, 10);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 10, 10, 10);
+            this.groupBox1.Location = new System.Drawing.Point(495, 12);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 12, 13, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(607, 498);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(809, 613);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             // 
             // btnAnnuler
             // 
-            this.btnAnnuler.Location = new System.Drawing.Point(526, 423);
-            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAnnuler.Location = new System.Drawing.Point(701, 521);
+            this.btnAnnuler.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Palette = this.kryptonPalette1;
             this.btnAnnuler.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.btnAnnuler.Size = new System.Drawing.Size(75, 31);
+            this.btnAnnuler.Size = new System.Drawing.Size(100, 38);
             this.btnAnnuler.TabIndex = 56;
             this.btnAnnuler.Values.Text = "Annuler";
             this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
@@ -253,9 +256,10 @@
             // lblAuth
             // 
             this.lblAuth.AutoSize = true;
-            this.lblAuth.Location = new System.Drawing.Point(409, 94);
+            this.lblAuth.Location = new System.Drawing.Point(545, 116);
+            this.lblAuth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAuth.Name = "lblAuth";
-            this.lblAuth.Size = new System.Drawing.Size(67, 13);
+            this.lblAuth.Size = new System.Drawing.Size(84, 16);
             this.lblAuth.TabIndex = 55;
             this.lblAuth.Text = "Autorisations";
             this.lblAuth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -263,9 +267,10 @@
             // chckBxAuth
             // 
             this.chckBxAuth.AutoSize = true;
-            this.chckBxAuth.Location = new System.Drawing.Point(412, 115);
+            this.chckBxAuth.Location = new System.Drawing.Point(549, 142);
+            this.chckBxAuth.Margin = new System.Windows.Forms.Padding(4);
             this.chckBxAuth.Name = "chckBxAuth";
-            this.chckBxAuth.Size = new System.Drawing.Size(103, 17);
+            this.chckBxAuth.Size = new System.Drawing.Size(128, 20);
             this.chckBxAuth.TabIndex = 53;
             this.chckBxAuth.Text = "Autoriser l\'accès";
             this.chckBxAuth.UseVisualStyleBackColor = true;
@@ -273,36 +278,39 @@
             // 
             // txBxIntRole
             // 
-            this.txBxIntRole.Location = new System.Drawing.Point(409, 39);
+            this.txBxIntRole.Location = new System.Drawing.Point(545, 48);
+            this.txBxIntRole.Margin = new System.Windows.Forms.Padding(4);
             this.txBxIntRole.Name = "txBxIntRole";
-            this.txBxIntRole.Size = new System.Drawing.Size(177, 20);
+            this.txBxIntRole.Size = new System.Drawing.Size(235, 22);
             this.txBxIntRole.TabIndex = 52;
             // 
             // lblIntRole
             // 
             this.lblIntRole.AutoSize = true;
-            this.lblIntRole.Location = new System.Drawing.Point(409, 19);
+            this.lblIntRole.Location = new System.Drawing.Point(545, 23);
+            this.lblIntRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIntRole.Name = "lblIntRole";
-            this.lblIntRole.Size = new System.Drawing.Size(73, 13);
+            this.lblIntRole.Size = new System.Drawing.Size(88, 16);
             this.lblIntRole.TabIndex = 0;
             this.lblIntRole.Text = "Intitule du rôle";
             this.lblIntRole.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(526, 459);
-            this.OK.Margin = new System.Windows.Forms.Padding(2);
+            this.OK.Location = new System.Drawing.Point(701, 565);
+            this.OK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OK.Name = "OK";
             this.OK.Palette = this.kryptonPalette1;
             this.OK.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
-            this.OK.Size = new System.Drawing.Size(75, 31);
+            this.OK.Size = new System.Drawing.Size(100, 38);
             this.OK.TabIndex = 48;
             this.OK.Values.Text = "OK";
             this.OK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(15, 18);
+            this.treeView1.Location = new System.Drawing.Point(20, 22);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "1";
             treeNode1.Text = "Paramètre de base";
@@ -367,7 +375,7 @@
             treeNode13,
             treeNode23,
             treeNode29});
-            this.treeView1.Size = new System.Drawing.Size(375, 470);
+            this.treeView1.Size = new System.Drawing.Size(499, 578);
             this.treeView1.TabIndex = 51;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -380,19 +388,21 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.btnModif);
             this.groupBox2.Controls.Add(this.btnNouveau);
-            this.groupBox2.Location = new System.Drawing.Point(10, 10);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(10, 10, 5, 10);
+            this.groupBox2.Location = new System.Drawing.Point(13, 12);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(13, 12, 7, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(351, 498);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(468, 613);
             this.groupBox2.TabIndex = 50;
             this.groupBox2.TabStop = false;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.DarkGray;
-            this.panel5.Location = new System.Drawing.Point(11, 515);
+            this.panel5.Location = new System.Drawing.Point(15, 634);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(960, 1);
+            this.panel5.Size = new System.Drawing.Size(1280, 1);
             this.panel5.TabIndex = 52;
             // 
             // flowLayoutPanel1
@@ -401,8 +411,9 @@
             this.flowLayoutPanel1.Controls.Add(this.groupBox1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(988, 517);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1317, 636);
             this.flowLayoutPanel1.TabIndex = 51;
             // 
             // panel1
@@ -411,18 +422,20 @@
             this.panel1.Controls.Add(this.btnFermer);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(988, 561);
+            this.panel1.Size = new System.Drawing.Size(1317, 690);
             this.panel1.TabIndex = 52;
             // 
             // GestionDesRoles
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(988, 561);
+            this.ClientSize = new System.Drawing.Size(1317, 690);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GestionDesRoles";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;

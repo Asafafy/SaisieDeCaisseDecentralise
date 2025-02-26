@@ -1,141 +1,175 @@
-﻿using SoftCaisse.Models;
+﻿using Microsoft.SqlServer.Server;
+using SoftCaisse.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Threading.Tasks;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace SoftCaisse.Repositories.ScdDb
 {
-    internal class RoleAutorisationRepository : IRepository<RoleAutorisation>
+    internal class RoleAutorisationRepository
     {
-        // private readonly string _cheminVersAuthJson;
+        // ======================================================================================
+        // DECLARATION DES VARIABLES ============================================================
+        // ======================================================================================
         private readonly SCDContext _scdContext;
+        // ======================================================================================
+        // FIN DECLARATION DES VARIABLES ========================================================
+        // ======================================================================================
 
-        public RoleAutorisationRepository(SCDContext scdContext)
+
+
+
+
+
+
+
+
+        // ======================================================================================
+        // DEBUT CONSTRUCTEUR ===================================================================
+        // ======================================================================================
+        public RoleAutorisationRepository()
         {
-            _scdContext = scdContext;
-            // _cheminVersAuthJson = "E:\\Softwell\\SCDJNM\\SoftCaisse\\DataJSon\\Autorisation.json";
+            _scdContext = new SCDContext();
         }
+        // ======================================================================================
+        // FIN CONSTRUCTEUR =====================================================================
+        // ======================================================================================
 
 
 
 
 
-        // ==================================================================================================================
-        // ============================================== Méthodes IRepository ==============================================
-        public void Add(RoleAutorisation entity)
+
+
+
+
+
+        // ======================================================================================
+        // DEBUT GET ============================================================================
+        // ======================================================================================
+        public async Task<RoleAutorisation> Get_RoleAutorisation_By_IdRubrique_And_IdRole(int IdRubrique, int? IdRole)
         {
-            _scdContext.RoleAutorisation.Add(entity);
-            _scdContext.SaveChanges();
-        }
-
-        public void Delete(int id)
-        {
-            RoleAutorisation roleAutToDelete = _scdContext.RoleAutorisation.Find(id);
-            if (roleAutToDelete != null)
+            using (SCDContext scdContext = new SCDContext())
             {
-                _scdContext.RoleAutorisation.Remove(roleAutToDelete);
-                _scdContext.SaveChanges();
+                return await scdContext.RoleAutorisation.Where(rlAuth => rlAuth.IdRubrique == IdRubrique && rlAuth.IdRole == IdRole).FirstOrDefaultAsync();
             }
         }
 
-        public List<RoleAutorisation> GetAll()
+
+
+        public async Task<List<RoleAutorisation>> Get_List_RoleAutorisation_By_IdRole(int? IdRole)
         {
-            return _scdContext.RoleAutorisation.ToList();
+            using (SCDContext scdContext = new SCDContext())
+            {
+                return await scdContext.RoleAutorisation.Where(roleAuth => roleAuth.IdRole == IdRole).ToListAsync();
+            }
         }
+        // ======================================================================================
+        // FIN GET ==============================================================================
+        // ======================================================================================
 
-        public RoleAutorisation GetById(int id)
+
+
+
+
+
+
+
+
+
+        // ======================================================================================
+        // DEBUT ADD ============================================================================
+        // ======================================================================================
+        public async void Add(RoleAutorisation entity)
         {
-            return _scdContext.RoleAutorisation.Find(id);
+            using (SCDContext scdContext = new SCDContext())
+            {
+                scdContext.RoleAutorisation.Add(entity);
+                await scdContext.SaveChangesAsync();
+            }
         }
+        // ======================================================================================
+        // FIN ADD ==============================================================================
+        // ======================================================================================
 
-        public void Update(RoleAutorisation entity)
+
+
+
+
+
+
+
+
+
+        // ======================================================================================
+        // DEBUT UPDATE =========================================================================
+        // ======================================================================================
+        public async void Update(RoleAutorisation entity)
         {
-            RoleAutorisation roleAutorisationToUpdate = _scdContext.RoleAutorisation.Find(entity.Id);
-            roleAutorisationToUpdate.EstAutorise = entity.EstAutorise;
-            _scdContext.SaveChanges();
+            string queryUpdate = @"
+                    UPDATE [ScdDb].[dbo].[RoleAutorisation]
+                    SET
+                        IdRole = @IdRole,
+                        EstAutorise = @EstAutorise
+                    WHERE Id = @Id;
+                ";
+
+            using (SCDContext scdContext = new SCDContext())
+            {
+                await scdContext.Database.ExecuteSqlCommandAsync(
+                    queryUpdate,
+                    new SqlParameter("@IdRole", entity.IdRole ?? (object)DBNull.Value),
+                    new SqlParameter("@EstAutorise", entity.EstAutorise),
+                    new SqlParameter("@Id", entity.Id)
+                );
+            }
         }
-        // ============================================== Méthodes IRepository ==============================================
-        // ==================================================================================================================
-
-
-
-        // =================================================================================================================
-        // TODO: =============================================== Mila fafana ===============================================
-        //       ===========================================================================================================
-
-        //// ==================== Autres méthodes ===================
-        //public int GetRubriqueAuth(RoleAutorisation auth, string nodeName)
-        //{
-        //    int index = 0;
-        //    int estautorise = 0;
-        //    while (index < 29)
-        //    {
-        //        if (index.ToString() == nodeName)
-        //        {
-        //            estautorise = auth.Autorisations[index];
-        //        }
-        //        index++;
-        //    }
-        //    return estautorise;
-        //}
-        //// ==================== Autres méthodes ===================
+        // ======================================================================================
+        // FIN UPDATE ===========================================================================
+        // ======================================================================================
 
 
 
 
 
-        //// =================================================================
-        //// ========================= Méthodes CRUD =========================
-        //static void Create(List<RoleAutorisation> elements, RoleAutorisation newElement)
-        //{
-        //    elements.Add(newElement);
-        //}
-        //static RoleAutorisation Read(List<RoleAutorisation> elements, int id)
-        //{
-        //    return elements.Find(e => e.Id == id);
-        //}
-
-        //static void Update(List<RoleAutorisation> elements, int id, List<int> newAutorisations)
-        //{
-        //    var element = elements.Find(e => e.Id == id);
-        //    if (element != null)
-        //    {
-        //        element.Autorisations = newAutorisations;
-        //    }
-        //}
-
-        //static void DeleteAuthFromAuths(List<RoleAutorisation> elements, int id)
-        //{
-        //    var element = elements.Find(e => e.Id == id);
-        //    if (element != null)
-        //    {
-        //        elements.Remove(element);
-        //    }
-        //}
-        //// ========================= Méthodes CRUD =========================
-        //// =================================================================
 
 
 
 
 
-        //// =============================================================================================================
-        //// ========================== Fonctions en intéractions directes avec le fichier JSON ==========================
-        //public List<RoleAutorisation> LoadData()
-        //{
-        //    if (File.Exists(_cheminVersAuthJson))
-        //    {
-        //        string json = File.ReadAllText(_cheminVersAuthJson);
-        //        return JsonSerializer.Deserialize<List<RoleAutorisation>>(json);
-        //    }
-        //    return new List<RoleAutorisation>();
-        //}
+        // ======================================================================================
+        // DEBUT DELETE =========================================================================
+        // ======================================================================================
+        public async void Delete(int id)
+        {
+            string queryDeleteRoleAutorisation = @"
+                DELETE FROM [ScdDb].[dbo].[RoleAutorisation] WHERE Id = @Id;
+            ";
 
-        //public void SaveData(List<RoleAutorisation> autorisations)
-        //{
-        //    string json = JsonSerializer.Serialize(autorisations, new JsonSerializerOptions { WriteIndented = true });
-        //    File.WriteAllText(_cheminVersAuthJson, json);
-        //}
-        //// ========================== Fonctions en intéractions directes avec le fichier JSON ==========================
-        //// =============================================================================================================
+            using (SCDContext scdContext = new SCDContext())
+            {
+                await scdContext.Database.ExecuteSqlCommandAsync(
+                    queryDeleteRoleAutorisation,
+                    new SqlParameter("@Id", id)
+                );
+            }
+        }
+        // ======================================================================================
+        // FIN DELETE ===========================================================================
+        // ======================================================================================
+
+
+
+
+
+
+
+
+
     }
 }

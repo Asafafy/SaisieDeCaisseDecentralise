@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailCaisseForm));
             this.kryptonPalette1 = new ComponentFactory.Krypton.Toolkit.KryptonPalette(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -101,6 +102,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.AliceBlue;
             this.tabPage1.Controls.Add(this.tableLayoutPanel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -109,7 +111,6 @@
             this.tabPage1.Size = new System.Drawing.Size(592, 199);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Identification";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -124,7 +125,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtIntituleCaisse, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.DepotCaisseCmbx, 1, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 18);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 38);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -217,6 +218,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.AliceBlue;
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
@@ -226,7 +228,6 @@
             this.tabPage2.Size = new System.Drawing.Size(592, 199);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Paramètres";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -370,9 +371,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(600, 270);
             this.Controls.Add(this.btnModifCaisse);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "DetailCaisseForm";

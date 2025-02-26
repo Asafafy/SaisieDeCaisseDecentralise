@@ -78,7 +78,6 @@ namespace SoftCaisse.Repositories
 
 
 
-
         public void UpdateDateModifArticle(int cbMarq)
         {
             using (var context = new AppDbContext())

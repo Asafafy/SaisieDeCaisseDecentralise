@@ -12,27 +12,57 @@ namespace SoftCaisse.Forms.Billetage
 {
     public partial class BilletageForm : KryptonForm
     {
-
-        private readonly AppDbContext context;
-        private short _cbMarque { get; set; }
+        // =============================================================================================
+        // DECLARATION DES VARIABLES ===================================================================
+        // =============================================================================================
+        private readonly AppDbContext _context;
+        private short _cbMarq { get; set; }
         public F_BILLETPIECERepository _fbilletageRepository { get; set; }
-        public BilletageForm(short cbMarque)
+        // =============================================================================================
+        // FIN DES VARIABLES ===========================================================================
+        // =============================================================================================
+
+
+
+
+
+
+
+
+
+        // =============================================================================================
+        // DEBUT CONSTRUCTEUR ==========================================================================
+        // =============================================================================================
+        public BilletageForm(short cbMarq)
         {
             InitializeComponent();
-            context = new AppDbContext();
-            _fbilletageRepository = new F_BILLETPIECERepository(context);
+
+            _context = new AppDbContext();
+            _cbMarq = cbMarq;
+            _fbilletageRepository = new F_BILLETPIECERepository(_context);
+            var list_piece = _fbilletageRepository.GetAll().Where(u => u.N_Devise == cbMarq).ToList();
             List<F_BILLETPIECE> billet_piece = new List<F_BILLETPIECE>();
-            var list_piece = _fbilletageRepository.GetAll().Where(u => u.N_Devise == cbMarque).ToList();
+
             foreach(var row in list_piece)
             {
                 billet_piece.Add(row);
             }
-            _cbMarque = cbMarque;
             kryptonDataGridView1.DataSource = new BindingList<F_BILLETPIECE>(billet_piece);
-
-
         }
+        // =============================================================================================
+        // FIN CONSTRUCTEUR ============================================================================
+        // =============================================================================================
 
+
+
+
+
+
+
+
+        // =============================================================================================
+        // DEBUT EVENEMETS =============================================================================
+        // =============================================================================================
         private void newrow_click(object sender, EventArgs e)
         {
             kryptonDataGridView1.Rows.RemoveAt(kryptonDataGridView1.SelectedCells[0].RowIndex);            
@@ -42,11 +72,18 @@ namespace SoftCaisse.Forms.Billetage
         }
 
 
+
+
+
         private void focus_row(object sender, EventArgs e)
         {
             kryptonDataGridView1.CurrentCell = kryptonDataGridView1.Rows[kryptonDataGridView1.RowCount - 1].Cells["Intitulé"];
             kryptonDataGridView1.BeginEdit(true);
         }
+
+
+
+
 
         private void add_newBilletage(object sender, EventArgs e)
         {
@@ -60,13 +97,16 @@ namespace SoftCaisse.Forms.Billetage
                 }
                 else
                 {
-                    _fbilletageRepository.insert(row.cbMarq, row.BI_Valeur, row.BI_Intitule, _cbMarque);
+                    _fbilletageRepository.insert(row.cbMarq, row.BI_Valeur, row.BI_Intitule, _cbMarq);
 
                 }
             }
             kryptonDataGridView1.DataSource = billet;
             MessageBox.Show("Enregistrement avec succès!");
-            this.Close();
+            Close();
         }
+        // =============================================================================================
+        // FIN EVENEMETS =============================================================================
+        // =============================================================================================
     }
 }

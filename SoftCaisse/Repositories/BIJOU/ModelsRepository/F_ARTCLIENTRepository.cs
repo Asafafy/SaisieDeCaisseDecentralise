@@ -52,6 +52,24 @@ namespace SoftCaisse.Repositories
 
 
 
+        public List<F_ARTCLIENT> GetBy_AR_Ref_And_AC_Categorie_Not_Zero(string AR_Ref)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_ARTCLIENT.Where(cat => cat.AR_Ref == AR_Ref && cat.AC_Categorie != 0).ToList();
+            }
+        }
+
+
+
+        public List<F_ARTCLIENT> GetBy_AR_Ref_And_CT_Num_Not_Null(string AR_Ref)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_ARTCLIENT.Where(cat => cat.AR_Ref == AR_Ref && cat.CT_Num != null).ToList();
+            }
+        }
+
 
 
         public List<ArtClient> GetAll()

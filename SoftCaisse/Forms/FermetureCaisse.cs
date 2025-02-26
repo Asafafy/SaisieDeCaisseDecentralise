@@ -1,4 +1,5 @@
-﻿using Objets100cLib;
+﻿using ComponentFactory.Krypton.Toolkit;
+using Objets100cLib;
 using SoftCaisse.DTO;
 using SoftCaisse.Models;
 using SoftCaisse.Utils.Global;
@@ -15,49 +16,86 @@ using System.Windows.Forms;
 
 namespace SoftCaisse.Forms.FermetureCaisse
 {
-    public partial class FermetureCaisse : Form
+    public partial class FermetureCaisse : KryptonForm
     {
-        private readonly AppDbContext _context;
+        // ==============================================================================================
+        // DEBUT DECLARATION DES VARIABLES ==============================================================
+        // ==============================================================================================
+        //private readonly AppDbContext _context;
         private ToolStripMenuItem _menu;
+        // ==============================================================================================
+        // FIN DECLARATION DES VARIABLES ================================================================
+        // ==============================================================================================
+
+
+
+
+
+
+
+
+
+        // ==============================================================================================
+        // DEBUT CONSTRUCTEUR ===========================================================================
+        // ==============================================================================================
         public FermetureCaisse(ToolStripMenuItem menu)
         {
             InitializeComponent();
             label2.Text =  CaisseOuvert.CaisseText;
-            _context = new AppDbContext();
+            //_context = new AppDbContext();
             _menu = menu;
         }
+        // ==============================================================================================
+        // FIN CONSTRUCTEUR =============================================================================
+        // ==============================================================================================
 
+
+
+
+
+
+
+
+
+
+        // ==============================================================================================
+        // DEBUT EVENEMENTS =============================================================================
+        // ==============================================================================================
         private void fermeture_caisse(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
             {
                 double montant = 0;
-                _context.F_CREGLEMENT.Where(u => u.CA_No + "" == CaisseOuvert.CaisseID && u.RG_Date==DateTime.Now && u.RG_TypeReg != null).GroupBy(item => item.RG_TypeReg).ToList().ForEach(u =>
+                using (AppDbContext context = new AppDbContext())
                 {
-                    string intitul = "";
-                    decimal valeur = u.Sum(item => item.RG_Montant).Value;
-                    if (u.Key == 0 || u.Key == 1)
+                    context.F_CREGLEMENT.Where(u => u.CA_No + "" == CaisseOuvert.CaisseID && u.RG_Date == DateTime.Now && u.RG_TypeReg != null).GroupBy(item => item.RG_TypeReg).ToList().ForEach(u =>
                     {
-                        montant += (double)valeur;
-                    }
-                    else if (u.Key == 2)
-                    {
-                        montant += (double)valeur;
-                    }
-                    else if (u.Key == 3 || u.Key == 4)
-                    {
-                        montant -= (double)valeur;
-                    }
-                    else if (u.Key == 5 || u.Key == 7)
-                    {
-                        montant += (double)valeur;
-                    }
-                    else
-                    {
-                        montant -= (double)valeur;
-                    }
+                        string intitul = "";
+                        decimal valeur = u.Sum(item => item.RG_Montant).Value;
+                        if (u.Key == 0 || u.Key == 1)
+                        {
+                            montant += (double)valeur;
+                        }
+                        else if (u.Key == 2)
+                        {
+                            montant += (double)valeur;
+                        }
+                        else if (u.Key == 3 || u.Key == 4)
+                        {
+                            montant -= (double)valeur;
+                        }
+                        else if (u.Key == 5 || u.Key == 7)
+                        {
+                            montant += (double)valeur;
+                        }
+                        else
+                        {
+                            montant -= (double)valeur;
+                        }
 
-                });
+                    });
+                }
+                
                 string query = @"
                 Insert INTO [dbo].[F_CREGLEMENT](
                     [RG_Date],
@@ -103,7 +141,9 @@ namespace SoftCaisse.Forms.FermetureCaisse
                 values({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},
                 {23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37},{38})
                 ";
-                _context.Database.ExecuteSqlCommand(query,
+                using (AppDbContext context = new AppDbContext())
+                {
+                    context.Database.ExecuteSqlCommand(query,
                     DateTime.Now,
                     montant,
                     3,
@@ -144,21 +184,32 @@ namespace SoftCaisse.Forms.FermetureCaisse
                     1,
                     DateTime.Now
                 );
+                }
             }
-            this.Close();
+            Close();
+
             _menu.DropDownItems["ouvertureDeCaisseToolStripMenuItem"].Enabled = true;
             _menu.DropDownItems["ventesComptoirToolStripMenuItem"].Enabled = false;
             _menu.DropDownItems["mouvementsToolStripMenuItem"].Enabled = false;
             _menu.DropDownItems["dOToolStripMenuItem"].Enabled = false;
             _menu.DropDownItems["fermetureDeCaisseToolStripMenuItem"].Enabled = false;
-            MessageBox.Show(" Fermeture de caisse réussit! ","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+
+            MessageBox.Show("La clôture de caisse est réussie.", "Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
 
 
         private void annuler_caisse(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
+
+
+        // ==============================================================================================
+        // FIN EVENEMENTS ===============================================================================
+        // ==============================================================================================
+
+
+
     }
 }

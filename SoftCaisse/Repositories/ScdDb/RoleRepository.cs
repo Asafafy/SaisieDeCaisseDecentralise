@@ -1,68 +1,198 @@
 ﻿using SoftCaisse.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SoftCaisse.Repositories.ScdDb
 {
-    internal class RoleRepository : IRepository<Role>
+    internal class RoleRepository
     {
-        private readonly SCDContext _scdContext;
+        // =============================================================================
+        // DEBUT DECLARATION DES VARIABLES =============================================
+        // =============================================================================
+        //private readonly SCDContext _scdContext;
+        // =============================================================================
+        // FIN DECLARATION DES VARIABLES ===============================================
+        // =============================================================================
 
+
+
+
+
+
+
+
+
+
+        // =============================================================================
+        // DEBUT CONSTRUCTEUR ==========================================================
+        // =============================================================================
         public RoleRepository(SCDContext scdContext)
         {
-            _scdContext = scdContext;
+            //_scdContext = new SCDContext();
         }
+        // =============================================================================
+        // DEBUT CONSTRUCTEUR ==========================================================
+        // =============================================================================
 
-        public void Add(Role entity)
-        {
-            _scdContext.Role.Add(entity);
-            _scdContext.SaveChanges();
-        }
 
-        public void Delete(int id)
+
+
+
+
+
+
+
+
+        // =============================================================================
+        // DEBUT GET ===================================================================
+        // =============================================================================
+        public async Task<List<Role>> GetAll()
         {
-            Role entity = _scdContext.Set<Role>().Find(id);
-            if (entity != null)
+            using (SCDContext scdContext = new SCDContext())
             {
-                _scdContext.Set<Role>().Remove(entity);
-                _scdContext.SaveChanges();
+                return await scdContext.Role.ToListAsync();
             }
         }
 
-        public List<Role> GetAll()
-        {
-            List<Role> listRoles = _scdContext.Role.ToList();
-            return listRoles;
-        }
 
-        public Role GetById(int id)
-        {
-            Role role = _scdContext.Role.Where(r => r.IdRole == id).FirstOrDefault();
-            return role;
-        }
 
-        public void Update(Role entity)
+        public async Task<Role> GetById(int IdRole)
         {
-            var existingRole = _scdContext.Role.Find(entity.IdRole);
-            if (existingRole != null)
+            using (SCDContext scdContext = new SCDContext())
             {
-                _scdContext.Entry(existingRole).CurrentValues.SetValues(entity);
-                _scdContext.SaveChanges();
+                return await scdContext.Role.Where(r => r.IdRole == IdRole).FirstOrDefaultAsync();
             }
         }
 
-        public List<int> GetUsersNumber()
-        {
-            var nbrUserActifsParRole = _scdContext.Role
-            .GroupJoin(
-                _scdContext.Users.Where(u => u.EstActif == 1),
-                r => r.IdRole,
-                u => u.RoleId,
-                (r, users) => users.Count()
-            )
-            .ToList();
 
-            return nbrUserActifsParRole;
+
+        public async Task<Role> GetRoleBy_RoleIntitule(string roleIntitule)
+        {
+            using (SCDContext scdContext = new SCDContext())
+            {
+                Role role = await scdContext.Role.Where(r => r.RoleIntitule == roleIntitule).FirstOrDefaultAsync();
+                return role;
+            }
         }
+
+
+
+        public async Task<List<int>> GetUsersNumber()
+        {
+            using (SCDContext scdContext = new SCDContext())
+            {
+                return await scdContext.Role.GroupJoin(
+                    scdContext.Users.Where(user => user.EstActif == 1),
+                    role => role.IdRole,
+                    user => user.RoleId,
+                    (r, users) => users.Count()
+                ).ToListAsync();
+            }
+        }
+        // =============================================================================
+        // FIN GET =====================================================================
+        // =============================================================================
+
+
+
+
+
+
+
+
+
+
+        // =============================================================================
+        // DEBUT ADD ===================================================================
+        // =============================================================================
+        public async void Add(string RoleIntitule)
+        {
+            using (SCDContext scdContext = new SCDContext())
+            {
+                string query = @"
+                    INSERT INTO [ScdDb].[dbo].[Role] (RoleIntitule)
+                    VALUES (@RoleIntitule);
+                ";
+
+                await scdContext.Database.ExecuteSqlCommandAsync(
+                    query,
+                    new SqlParameter("@RoleIntitule", RoleIntitule)
+                );
+            }
+        }
+        // =============================================================================
+        // FIN ADD =====================================================================
+        // =============================================================================
+
+
+
+
+
+
+
+
+
+
+        // =============================================================================
+        // DEBUT DELETE ================================================================
+        // =============================================================================
+        public async void Delete(int id)
+        {
+            string queryDeleteRole = @"
+                DELETE FROM [ScdDb].[dbo].[Role] WHERE IdRole = @IdRole;
+            ";
+
+            using (SCDContext scdContext = new SCDContext())
+            {
+                await scdContext.Database.ExecuteSqlCommandAsync(
+                    queryDeleteRole,
+                    new SqlParameter("@IdRole", id)
+                );
+            } 
+        }
+        // =============================================================================
+        // FIN DELETE ==================================================================
+        // =============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+        // =============================================================================
+        // DEBUT UPDATE ================================================================
+        // =============================================================================
+        public async void Update(Role entity)
+        {
+            string queryUpdate = @"
+                        UPDATE [ScdDb].[dbo].[Role]
+				        SET
+				        	RoleIntitule = @RoleIntitule
+				        WHERE IdRole = @IdRole;
+                    ";
+            using (SCDContext scdContext = new SCDContext())
+            {
+                await scdContext.Database.ExecuteSqlCommandAsync(
+                    queryUpdate,
+                    new SqlParameter("@RoleIntitule", entity.RoleIntitule),
+                    new SqlParameter("@IdRole", entity.IdRole)
+                );
+            }
+        }
+        // =============================================================================
+        // FIN UPDATE ==================================================================
+        // =============================================================================
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using SoftCaisse.Models;
+using SoftCaisse.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,46 @@ namespace SoftCaisse.Forms.CollaboDetail
 {
     public partial class CollaboDetailForm : KryptonForm
     {
+        // ====================================================================================================
+        // DEBUT DECLARATION DES VARIABLES ====================================================================
+        // ====================================================================================================
         private readonly AppDbContext _context;
         private readonly SCDContext _sCDContext;
+
+        private readonly F_COLLABORATEURRepository _f_COLLABORATEURRepository;
+
         private bool isUpdate = false;
         private int idCollabo;
         private Users user;
+        // ====================================================================================================
+        // FIN DECLARATION DES VARIABLES ======================================================================
+        // ====================================================================================================
+
+
+
+
+
+
+
+
+
+
+        // ====================================================================================================
+        // DEBUT CONSTRUCTEUR =================================================================================
+        // ====================================================================================================
         public CollaboDetailForm(int collaboId)
         {
             InitializeComponent();
             _context = new AppDbContext();
             _sCDContext = new SCDContext();
+
+            _f_COLLABORATEURRepository = new F_COLLABORATEURRepository(_context);
+
             user = new Users();
             if (collaboId != 0)
             {
-                var collabo = _context.F_COLLABORATEUR.FirstOrDefault(u => u.CO_No + "" == collaboId + "");
+                F_COLLABORATEUR collabo = _f_COLLABORATEURRepository.GetBy_CO_No(collaboId);
+
                 txtCollaboNom.Text = collabo.CO_Nom;
                 txtCollaboPrenom.Text = collabo.CO_Prenom;
                 txtAdresse.Text = collabo.CO_Adresse;
@@ -41,7 +68,22 @@ namespace SoftCaisse.Forms.CollaboDetail
                 idCollabo = collaboId;
             }
         }
+        // ====================================================================================================
+        // FIN CONSTRUCTEUR ===================================================================================
+        // ====================================================================================================
 
+
+
+
+
+
+
+
+
+
+        // ====================================================================================================
+        // DEBUT EVENEMENTS ===================================================================================
+        // ====================================================================================================
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
             F_COLLABORATEUR cOLLABORATEUR = null;
@@ -83,8 +125,6 @@ namespace SoftCaisse.Forms.CollaboDetail
                 cOLLABORATEUR.CO_Matricule = txtMatricule.Text;
                 cOLLABORATEUR.CO_TelPortable = txtPortable.Text;
                 cOLLABORATEUR.CO_Service = txtService.Text;
-
-
             }
             _context.SaveChanges();
             Collaborateur existCollab = (from c in _sCDContext.Collaborateur
@@ -108,10 +148,18 @@ namespace SoftCaisse.Forms.CollaboDetail
             MessageBox.Show("Mis à jour avec succes", "MESSAGE", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+
+
+
+
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
         }
+
+
+
+
 
         private void CollaboDetailForm_Load(object sender, EventArgs e)
         {
@@ -129,6 +177,11 @@ namespace SoftCaisse.Forms.CollaboDetail
 
         }
 
+
+
+
+
+
         private void cUser_SelectedValueChanged(object sender, EventArgs e)
         {
             user = getUser();
@@ -137,5 +190,9 @@ namespace SoftCaisse.Forms.CollaboDetail
         {
             return (from u in _sCDContext.Users where u.Login == cUser.Text select u).FirstOrDefault();
         }
+        // ====================================================================================================
+        // DEBUT EVENEMENTS ===================================================================================
+        // ====================================================================================================
+
     }
 }

@@ -221,7 +221,7 @@ namespace SoftCaisse.Forms.Caisse
             {
                 var caisse = _caissier.FirstOrDefault();
                 int caisseNum = caisse.CaisseNum;
-                var f_CAISSE = _context.F_CAISSE.Where(c => c.CA_No == caisseNum).FirstOrDefault();
+                F_CAISSE f_CAISSE = _fCaisseRepository.GetF_CAISSE_By_CA_No(caisseNum);
                 f_CAISSE.CA_Intitule = txtIntituleCaisse.Text;
                 f_CAISSE.DE_No = IdDepot;
                 f_CAISSE.CO_No = IdVendeur;

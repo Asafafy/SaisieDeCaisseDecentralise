@@ -52,6 +52,13 @@ namespace SoftCaisse.Repositories.BIJOU.ModelsRepository
 
 
 
+        public F_ARTGAMME GetByAG_No(int? AG_No)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_ARTGAMME.Where(ag => ag.AG_No == AG_No).FirstOrDefault();
+            }
+        }
 
 
         public int? GetLastAG_No1()

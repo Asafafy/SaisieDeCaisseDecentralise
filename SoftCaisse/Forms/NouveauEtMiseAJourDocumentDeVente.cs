@@ -31,9 +31,9 @@ namespace SoftCaisse.Forms
 {
     public partial class NouveauEtMiseAJourDocumentDeVente : KryptonForm
     {
-        // =============================================================================================================================================================================================
-        // ============================================================================= DEBUT DECLARATION DES VARIABLES ===============================================================================
-        // =============================================================================================================================================================================================
+        // ===============================================================================================================
+        // DEBUT DECLARATION DES VARIABLES ===============================================================================
+        // ===============================================================================================================
         MainForm mainForm;
 
         private readonly F_DOCREGLRepository _f_DOCREGLRepository;
@@ -50,6 +50,8 @@ namespace SoftCaisse.Forms
         private readonly F_ARTICLERepository _f_ARTICLERepository;
         private readonly F_COLLABORATEURRepository _f_COLLABORATEURRepository;
         private readonly F_COMPTEARepository _f_COMPTEARepository;
+        private readonly F_CAISSERepository _f_CAISSERepository;
+        private readonly P_DEVISERepository _p_DEVISERepository;
 
         private readonly ListeEcheancesPourImpressionDocumentsDeVenteRepository _listeEcheancesPourImpressionDocumentsDeVenteRepository;
 
@@ -89,8 +91,6 @@ namespace SoftCaisse.Forms
         private bool resultatDialogResultFermeture;
         private decimal pourcentageRemise;
         private int changedIndex = -1;
-        private decimal _totalPrixHT;
-        private decimal _totalPrixTTC;
         private F_DOCENTETE _fDocenteteToModif;
         // =============================================================================================================
         // FIN DECLARATION DES VARIABLES ===============================================================================
@@ -125,6 +125,8 @@ namespace SoftCaisse.Forms
             _f_ARTICLERepository = new F_ARTICLERepository(_context);
             _f_COLLABORATEURRepository = new F_COLLABORATEURRepository(_context);
             _f_COMPTEARepository = new F_COMPTEARepository(_context);
+            _f_CAISSERepository = new F_CAISSERepository(_context);
+            _p_DEVISERepository = new P_DEVISERepository(_context);
 
             _listeEcheancesPourImpressionDocumentsDeVenteRepository = new ListeEcheancesPourImpressionDocumentsDeVenteRepository(_context);
 
@@ -278,6 +280,7 @@ namespace SoftCaisse.Forms
                     comboBoxDepot.Enabled = false;
                 }
 
+                MettreAJourTotalPoidsEtPrixTotalHT();
 
                 // Désactivation de certains éléments lorsque le document est déjà validé
                 if (_fDocenteteToModif.DO_Valide == 1)
@@ -318,9 +321,9 @@ namespace SoftCaisse.Forms
                 initValuesDepot = "";
             }
         }
-        // =======================================================================================================================================================================================
-        // ================================================================================== FIN CONSTRUCTEUR ===================================================================================
-        // =======================================================================================================================================================================================
+        // ====================================================================================================
+        // FIN CONSTRUCTEUR ===================================================================================
+        // ====================================================================================================
 
 
 
@@ -330,12 +333,12 @@ namespace SoftCaisse.Forms
 
 
 
-        // =======================================================================================================================================================================================
-        // ================================================================================== DEBUT FONCTIONS ====================================================================================
-        // =======================================================================================================================================================================================
+        // ====================================================================================================
+        // DEBUT FONCTIONS ====================================================================================
+        // ====================================================================================================
 
-        // =======================================================================================================================================================================================
-        // =============================================================================== DEBUT FONCTIONS DESIGN ================================================================================
+        // ====================================================================================================
+        // DEBUT FONCTIONS DESIGN =============================================================================
         private void ApplyRoundedCorners(Control control, int borderRadius)
         {
             control.Paint += (sender, e) =>
@@ -354,17 +357,17 @@ namespace SoftCaisse.Forms
 
             control.Invalidate();
         }
-        // ================================================================================ FIN FONCTIONS DESIGN =================================================================================
-        // =======================================================================================================================================================================================
+        // FIN FONCTIONS DESIGN ===============================================================================
+        // ====================================================================================================
 
 
 
 
 
-        // =======================================================================================================================================================================================
-        // ===================================================================== DEBUT FONCTIONS MISE A JOUR DES AFFICHAGES ======================================================================
+        // ====================================================================================================
+        // DEBUT FONCTIONS MISE A JOUR DES AFFICHAGES =========================================================
 
-        // ======================================================================== AJOUT PRIX LORS DU CHOIX DES ARTICLES ========================================================================
+        // AJOUT PRIX LORS DU CHOIX DES ARTICLES ==============================================================
         public void AjouterPrix(string arRef, string arDesign, decimal puHT, decimal puTTC, string UniteVente)
         {
             TextBoxReference.Text = arRef;
@@ -381,7 +384,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // ============================================================ MISE A JOUR DES MONTANTS LORS DE LA MISE A JOUR DE LA QUANTITE ===========================================================
+        // MISE A JOUR DES MONTANTS LORS DE LA MISE A JOUR DE LA QUANTITE ======================================
         public void MettreAJourMontants()
         {
             if (txtBxQuantite.Text != "")
@@ -406,27 +409,31 @@ namespace SoftCaisse.Forms
 
 
 
-        // ======================================================================= MISE A JOUR DU POIDS TOTAL (BRUT ET NET) ======================================================================
-        public void MettreAJourPoids()
+        // MISE A JOUR DU POIDS TOTAL (BRUT ET NET) =============================================================
+        public void MettreAJourTotalPoidsEtPrixTotalHT()
         {
             List<string> listeDesChaines = new List<string>();
             decimal? poidsNetTot = 0;
             decimal? poidsBrutTot = 0;
+            decimal? prixTotHT = 0;
 
             // Parcourir chaque ligne du DataGridView
             foreach (DataGridViewRow row in DataGridViewArticle.Rows)
             {
                 string arRef = row.Cells[1].Value.ToString();
-                F_ARTICLE article = _context.F_ARTICLE.Where(art => art.AR_Ref == arRef).FirstOrDefault();
+                F_ARTICLE article = _f_ARTICLERepository.GetF_ARTICLEByAR_Ref(arRef);
                 poidsNetTot = poidsNetTot + article.AR_PoidsNet;
                 poidsBrutTot = poidsBrutTot + article.AR_PoidsBrut;
+                decimal? montantTotLigne = Convert.ToDecimal(row.Cells[9].Value);
+                prixTotHT = prixTotHT + montantTotLigne;
             }
 
             valPdsNet.Text = poidsNetTot.ToString();
             valPdsBrut.Text = poidsBrutTot.ToString();
+            lblPrixTotHT.Text = prixTotHT.ToString();
         }
-        // ====================================================================== FIN FONCTIONS MISE A JOUR DES AFFICHAGES =======================================================================
-        // =======================================================================================================================================================================================
+        // FIN FONCTIONS MISE A JOUR DES AFFICHAGES ============================================================
+        // =====================================================================================================
 
 
 
@@ -441,9 +448,9 @@ namespace SoftCaisse.Forms
                 }
             }
         }
-        // =======================================================================================================================================================================================
-        // =================================================================================== FIN FONCTIONS =====================================================================================
-        // =======================================================================================================================================================================================
+        // =====================================================================================================
+        // FIN FONCTIONS =======================================================================================
+        // =====================================================================================================
 
 
 
@@ -453,15 +460,15 @@ namespace SoftCaisse.Forms
 
 
 
-        // =======================================================================================================================================================================================
-        // ================================================================================== DEBUT EVENEMENTS ===================================================================================
-        // =======================================================================================================================================================================================
+        // ====================================================================================================
+        // DEBUT EVENEMENTS ===================================================================================
+        // ====================================================================================================
 
-        // ================================================================================ FIN FONCTIONS DESIGN =================================================================================
-        // =======================================================================================================================================================================================
+        // FIN FONCTIONS DESIGN ===============================================================================
+        // ====================================================================================================
 
 
-        // =============================================================================== ANNULATION / FERMETURE ================================================================================
+        // ANNULATION / FERMETURE =============================================================================
 
         private void NouveauEtMiseAJourDocumentDeVenteForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -511,8 +518,8 @@ namespace SoftCaisse.Forms
 
 
 
-        // =======================================================================================================================================================================================
-        // ================================================================================== SELECTION CLIENT ===================================================================================
+        // ==================================================================================================
+        // SELECTION CLIENT =================================================================================
         private void comboBoxClient_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (comboBoxClient.SelectedIndex == -1)
@@ -565,7 +572,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // ================================================================== VALIDATION DE LA CREATION D'UN DOCUMENT DE VENTE ===================================================================
+        // VALIDATION DE LA CREATION D'UN DOCUMENT DE VENTE =========================================================
         private void kptnBtnValider_Click(object sender, System.EventArgs e)
         {
             short? estBloque = _listeClients.Where(c => c.CT_Num + " - " + c.CT_Intitule == comboBoxClient.Text).Select(c => c.CT_ControlEnc).FirstOrDefault();
@@ -679,7 +686,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // ================================================================= DEFINITION DES COMPORTEMENTS DES DATETIME PICKER ===================================================================
+        // DEFINITION DES COMPORTEMENTS DES DATETIME PICKER ===================================================================
         private void dateTimePicker2_ValueChanged(object sender, System.EventArgs e)
         {
             dateTimePicker2.Format = DateTimePickerFormat.Long;
@@ -702,7 +709,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // =========================================================================== OUVERTURE FENETRE NOMENCLATURE ============================================================================
+        // OUVERTURE FENETRE NOMENCLATURE ====================================================================================
         private void btnNomenclature_Click(object sender, EventArgs e)
         {
             InformationsDocumentsDesVentes informationsDocumentsDesVentes = new InformationsDocumentsDesVentes();
@@ -712,7 +719,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // ======================================================================== SELECTION ARTICLE AVEC SA REFERENCE ==========================================================================
+        // SELECTION ARTICLE AVEC SA REFERENCE ==============================================================================
         private void TextBoxReference_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsLower(e.KeyChar))
@@ -724,7 +731,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // ======================================================================== SELECTION ARTICLE AVEC SA REFERENCE ==========================================================================
+        // SELECTION ARTICLE AVEC SA REFERENCE ==============================================================================
         private void TextBoxReference_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Tab)
@@ -810,7 +817,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // ============================================================================= COMPORTEMENTS DE TEXTBOX ================================================================================
+        // COMPORTEMENTS DE TEXTBOX ===================================================================================
         private void TextBox_Leave(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -836,7 +843,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // =============================================================================== SUPPRESSION DOCLIGNE ==================================================================================
+        // SUPPRESSION DOCLIGNE =======================================================================================
         private void BouttonSupprimerDesignation_Click(object sender, EventArgs e)
         {
             int? DL_Ligne = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[0].Value);
@@ -855,11 +862,8 @@ namespace SoftCaisse.Forms
                 if (DataGridViewArticle.SelectedRows.Count > 0)
                 {
                     DataGridViewRow selectedRow = DataGridViewArticle.SelectedRows[0];
-                    decimal? prixTotalHT = lblPrixTotHT.Text == " - " ? 0 : Convert.ToDecimal(lblPrixTotHT.Text);
-
-                    lblPrixTotHT.Text = (prixTotalHT - DL_MontantHT ?? 0).ToString();
                     DataGridViewArticle.Rows.Remove(selectedRow);
-                    MettreAJourPoids();
+                    MettreAJourTotalPoidsEtPrixTotalHT();
                 }
                 TextBoxReference.Focus();
 
@@ -894,7 +898,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // =========================================================================== AJOUT D'UNE LIGNE DE DOCUMENT =============================================================================
+        // AJOUT D'UNE LIGNE DE DOCUMENT ================================================================================
         private void BouttonEnregistrerDesignation_Click(object sender, EventArgs e)
         {
             string arRef = TextBoxReference.Text;
@@ -1049,12 +1053,7 @@ namespace SoftCaisse.Forms
                     }
 
                     // Mise à jour des poids totaux (poids brut et net totaux)
-                    MettreAJourPoids();
-
-                    // Mise à jour des montants totaux (montant HT et TTC totaux)
-                    _totalPrixHT += montantHT;
-                    _totalPrixTTC += montantTTC;
-                    lblPrixTotHT.Text = _totalPrixHT.ToString("N2");
+                    MettreAJourTotalPoidsEtPrixTotalHT();
 
                     foreach (Control control in tableLayoutPanel2.Controls)
                     {
@@ -1089,7 +1088,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // =========================================================================== CHANGEMENT QUANTITE ARTICLE ===============================================================================
+        // CHANGEMENT QUANTITE ARTICLE ===============================================================================
         private void txtBxQuantite_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permet seulement les chiffres
@@ -1108,7 +1107,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // =========================================================================== CHANGEMENT QUANTITE ARTICLE ===============================================================================
+        // CHANGEMENT QUANTITE ARTICLE ===============================================================================
         private void txtBxQuantite_TextChanged(object sender, EventArgs e)
         {
             // Vérifie que la valeur est non nulle
@@ -1129,7 +1128,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // ============================================================================= CHANGEMENT VALEUR REMISE ================================================================================
+        // CHANGEMENT VALEUR REMISE ================================================================================
         private void txtBxRemise_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permet seulement les chiffres
@@ -1148,7 +1147,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // ============================================================================= CHANGEMENT VALEUR REMISE ================================================================================
+        // CHANGEMENT VALEUR REMISE ================================================================================
         private void txtBxRemise_TextChanged(object sender, EventArgs e)
         {
             string cultureName = "en-EN"; // Exemple pour la culture française
@@ -1170,7 +1169,7 @@ namespace SoftCaisse.Forms
 
 
 
-        // =========================================================== Modification de l'élément (ligne) sélectionné dans le DataGridView =========================================================
+        // Modification de l'élément (ligne) sélectionné dans le DataGridView =========================================================
         private void BouttonNouveauDesignation_Click(object sender, EventArgs e)
         {
             changedIndex = -1;
@@ -1197,9 +1196,19 @@ namespace SoftCaisse.Forms
 
 
 
-        // ===================================================================== Changement de la ligne de document sélectionné =====================================================================
+        // Changement de la ligne de document sélectionné =====================================================================
         private void DataGridViewArticle_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Desactivation de toute action si le document est déjà validé
+            if (_fDocenteteToModif.DO_Valide == 1)
+            {
+                btnValider.Enabled = false;
+                BouttonEnregistrerDesignation.Enabled = false;
+                BouttonNouveauDesignation.Enabled = false;
+                BouttonSupprimerDesignation.Enabled = false;
+            }
+
+
             if (DataGridViewArticle.Rows.Count < 1)
             {
                 changedIndex = -1;
@@ -1249,9 +1258,12 @@ namespace SoftCaisse.Forms
                 TextBoxMontantHT.Enabled = false;
                 TextBoxMontantTTC.Enabled = false;
 
-                BouttonNouveauDesignation.Enabled = true;
-                BouttonSupprimerDesignation.Enabled = true;
-                BouttonEnregistrerDesignation.Enabled = true;
+                if (_fDocenteteToModif.DO_Valide != 1)
+                {
+                    BouttonNouveauDesignation.Enabled = true;
+                    BouttonSupprimerDesignation.Enabled = true;
+                    BouttonEnregistrerDesignation.Enabled = true;
+                }
             }
         }
 
@@ -1281,8 +1293,12 @@ namespace SoftCaisse.Forms
 
         private void btnImprimer_Click(object sender, EventArgs e)
         {
-            string f_CAISSEIntitule = _context.F_CAISSE.Where(c => c.CA_No == mainForm.CaisseNo).Select(c => c.CA_Intitule).FirstOrDefault();
-            string p_DEVISEIntitule = _context.P_DEVISE.Where(d => d.cbMarq == _fDocenteteToModif.DO_Devise).Select(d => d.D_Intitule).FirstOrDefault();
+            F_CAISSE f_CAISSE = _f_CAISSERepository.GetF_CAISSE_By_CA_No(mainForm.CaisseNo);
+            string f_CAISSEIntitule = f_CAISSE.CA_Intitule;
+            P_DEVISE p_DEVISE = _p_DEVISERepository.GetP_DEVISE_By_cbMarq((int)_fDocenteteToModif.DO_Devise);
+            string p_DEVISEIntitule = "";
+            if (p_DEVISE != null)
+                p_DEVISEIntitule = p_DEVISE.D_Intitule;
 
             List<Fligne> fligne = new List<Fligne>();
 
@@ -1303,13 +1319,11 @@ namespace SoftCaisse.Forms
 
             Reporting report = new Reporting(_typeDocument, f_CAISSEIntitule, (DateTime)_fDocenteteToModif.DO_Date, _fDocenteteToModif.DO_Piece, _fDocenteteToModif.DO_Devise == 0 ? " - " : p_DEVISEIntitule, (decimal)_fDocenteteToModif.DO_TotalHT, (decimal)_fDocenteteToModif.DO_TotalTTC, fligne, listeEcheancesPourImpressionDocumentsDeVentes);
             report.BringToFront();
-            report.Show();
-            report.Focus();
-
+            report.ShowDialog();
         }
 
-        // =======================================================================================================================================================================================
-        // =================================================================================== FIN EVENEMENTS ====================================================================================
-        // =======================================================================================================================================================================================
+        // ===================================================================================================
+        // FIN EVENEMENTS ====================================================================================
+        // ===================================================================================================
     }
 }

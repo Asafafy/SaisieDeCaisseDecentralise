@@ -4,6 +4,8 @@ using Objets100cLib;
 using SoftCaisse.CustomModel;
 using SoftCaisse.DTO;
 using SoftCaisse.Models;
+using SoftCaisse.Repositories;
+using SoftCaisse.Repositories.BIJOU;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +22,9 @@ namespace SoftCaisse.Forms.FormCaisse
 {
     public partial class Reporting : Form
     {
+        private readonly AppDbContext _context;
+        private readonly F_DOCENTETERepository _f_DOCENTETERepository;
+
 
         // ============================================================================================================================================================================
         // ======================================================================== DEBUT TICKET DE CAISSE ============================================================================
@@ -147,6 +152,9 @@ namespace SoftCaisse.Forms.FormCaisse
         // ========================================================================= DEBUT DOCUMENTS DE VENTE =========================================================================
         public Reporting(string typeDocumentDeVente, string caisse, DateTime date, string numero, string devise, decimal TotalHT, decimal TotalTTC, List<Fligne> Fligne, List<ListeEcheancesPourImpressionDocumentsDeVente> listeEcheances)
         {
+            _context = new AppDbContext();
+            _f_DOCENTETERepository = new F_DOCENTETERepository(_context);
+
             InitializeComponent();
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SoftCaisse.ModelesDocuments.DocumentDeVente.rdlc";
 
@@ -167,6 +175,8 @@ namespace SoftCaisse.Forms.FormCaisse
         }
         // ========================================================================== FIN DOCUMENTS DE VENTE ==========================================================================
         // ============================================================================================================================================================================
+        
+
 
 
         private void Reporting_Load(object sender, EventArgs e)

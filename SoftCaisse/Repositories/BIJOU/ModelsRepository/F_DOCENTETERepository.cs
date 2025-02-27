@@ -538,6 +538,36 @@ namespace SoftCaisse.Repositories.BIJOU
             }
         }
 
+
+
+
+		public void Update_DO_Imprim_F_DOCENTETE(string DO_Piece, short? DO_Imprim)
+		{
+			string queryImprimerDocument = @"
+				DISABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE;
+				DISABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE;
+				DISABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE;
+
+				UPDATE F_DOCENTETE
+				SET
+					DO_Imprim = @DO_Imprim
+				WHERE DO_Piece = @DO_Piece;
+
+				ENABLE TRIGGER TG_CBUPD_F_DOCENTETE ON F_DOCENTETE;
+				ENABLE TRIGGER TG_UPD_F_DOCENTETE ON F_DOCENTETE;
+				ENABLE TRIGGER TG_UPD_CPTAF_DOCENTETE ON F_DOCENTETE;
+			";
+
+            using (var context = new AppDbContext())
+            {
+                context.Database.ExecuteSqlCommand(
+                    queryImprimerDocument,
+                    new SqlParameter("@DO_Imprim", DO_Imprim),
+                    new SqlParameter("@DO_Piece", DO_Piece)
+                );
+            }
+        }
+
         // ==============================================================================
         // FIN UPDATE ===================================================================
         // ==============================================================================

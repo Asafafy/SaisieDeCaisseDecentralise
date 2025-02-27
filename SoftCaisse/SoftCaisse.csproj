@@ -508,6 +508,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BIJOU\ListeEcheancesPourImpressionDocumentsDeVenteRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_AGENDARepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_CONDITIONRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_FAMILLERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_GAMSTOCKRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTPRIXRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTSTOCKEMPLRepository.cs" />
@@ -529,9 +531,11 @@
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTENUMREFRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTGAMMERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_JOURNAUXRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_REGLEMENTTRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_REGLECHRepository.cs" />
     <Compile Include="Repositories\BIJOU\ListeSelectionEcheancesRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_LIVRAISONRepository.cs" />
+    <Compile Include="Repositories\BIJOU\ModelsRepository\F_TAXERepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\P_EXPEDITIONRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_COMPTEARepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\P_DEVISERepository.cs" />
@@ -547,6 +551,7 @@
     <Compile Include="Repositories\DTORepository\TaxeRepository.cs" />
     <Compile Include="Repositories\DTORepository\UniteRepository.cs" />
     <Compile Include="Repositories\BIJOU\ModelsRepository\F_ARTFOURNISSRepository.cs" />
+    <Compile Include="Repositories\ScdDb\RubriqueRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleAutorisationRepository.cs" />
     <Compile Include="Repositories\ScdDb\RoleRepository.cs" />
     <Compile Include="Repositories\ScdDb\UserRepository.cs" />
@@ -753,8 +758,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ModelesDocuments\TicketCaisse.rdlc" />
-    <None Include="DataJSon\Langue.json" />
-    <None Include="DataJSon\TypeDocument.json" />
     <None Include="DataSetEnt.xsc">
       <DependentUpon>DataSetEnt.xsd</DependentUpon>
     </None>

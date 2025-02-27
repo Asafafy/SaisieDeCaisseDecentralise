@@ -15,6 +15,11 @@ namespace SoftCaisse.Forms
     {
         public bool? estGamme2 { get; set; }
 
+
+
+
+
+
         public ChoixSuppressionENUMGAMMEDansDetailsArticle()
         {
             InitializeComponent();

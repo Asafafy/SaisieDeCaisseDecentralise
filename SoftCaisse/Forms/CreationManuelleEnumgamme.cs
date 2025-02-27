@@ -27,6 +27,9 @@ namespace SoftCaisse.Forms
 
         private readonly F_ARTENUMREFRepository _f_ARTENUMREFRepository;
         private readonly F_TARIFGAMRepository _f_TARIFGAMRepository;
+        private readonly F_ARTGAMMERepository _f_ARTGAMMERepository;
+        private readonly F_ARTICLERepository _f_ARTICLERepository;
+        private readonly F_ARTCLIENTRepository _f_ARTCLIENTRepository;
 
         private readonly F_ARTENUMREFService _f_ARTENUMREFService;
         private readonly F_TARIFGAMService _f_TARIFGAMService;
@@ -44,12 +47,25 @@ namespace SoftCaisse.Forms
 
 
 
+
+
+
+
+
+
+
         static string ConserverChiffresApresVirgule(decimal? valeur)
         {
             string valeurString = valeur?.ToString("G29");   // "G29" permet de conserver jusqu'à 29 chiffres significatifs
             //return valeurString.TrimEnd('0').TrimEnd('.');  // Supprimer les zéros inutiles après la virgule
             return valeurString;  // Supprimer les zéros inutiles après la virgule
         }
+
+
+
+
+
+
 
 
 
@@ -69,23 +85,29 @@ namespace SoftCaisse.Forms
 
             _f_ARTENUMREFRepository = new F_ARTENUMREFRepository(_context);
             _f_TARIFGAMRepository = new F_TARIFGAMRepository();
+            _f_ARTGAMMERepository = new F_ARTGAMMERepository(_context);
+            _f_ARTICLERepository = new F_ARTICLERepository(_context);
+            _f_ARTCLIENTRepository = new F_ARTCLIENTRepository(_context);
 
             _f_ARTENUMREFService = new F_ARTENUMREFService(_context, _f_ARTENUMREFRepository);
             _f_TARIFGAMService = new F_TARIFGAMService(_context, _f_TARIFGAMRepository);
 
             valeursCatTarifParDefauts = new List<decimal?>();
 
-            string EG_Enumere1 = _context.F_ARTGAMME.Where(ag => ag.AG_No == AG_No1).Select(ag => ag.EG_Enumere).FirstOrDefault();
-            string EG_Enumere2 = _context.F_ARTGAMME.Where(ag => ag.AG_No == AG_No2).Select(ag => ag.EG_Enumere).FirstOrDefault();
-            F_ARTICLE _selectedArt = _context.F_ARTICLE.Where(art => art.AR_Ref == AR_Ref).FirstOrDefault();
-            decimal? aR_PrixAch = _context.F_ARTICLE.Where(art => art.AR_Ref == AR_Ref).Select(art => art.AR_PrixAch).FirstOrDefault();
+            F_ARTGAMME f_ARTGAMME1 = _f_ARTGAMMERepository.GetByAG_No(AG_No1);
+            F_ARTGAMME f_ARTGAMME2 = _f_ARTGAMMERepository.GetByAG_No(AG_No2);
+            F_ARTICLE _selectedArt = _f_ARTICLERepository.GetF_ARTICLEByAR_Ref(AR_Ref);
+            string EG_Enumere1 = f_ARTGAMME1.EG_Enumere;
+            string EG_Enumere2 = f_ARTGAMME2.EG_Enumere;
 
             labelEnumere.Text = "Enuméré : " + EG_Enumere1 + EG_Enumere2;
-            txtBxPrixAch.Text = aR_PrixAch.ToString();
+            txtBxPrixAch.Text = _selectedArt.AR_PrixAch.ToString();
 
 
 
-            var catTarifaires = _context.F_ARTCLIENT.Where(cat => cat.AR_Ref == _selectedArt.AR_Ref && cat.AC_Categorie != 0)
+
+            List<F_ARTCLIENT> f_ARTCLIENTs = _f_ARTCLIENTRepository.GetBy_AR_Ref_And_AC_Categorie_Not_Zero(_selectedArt.AR_Ref);
+            var catTarifaires = f_ARTCLIENTs
                 .Select(cat => new CategoriesTarifaires { AC_Categorie = cat.AC_Categorie, AC_Coef = cat.AC_Coef, AC_PrixVen = cat.AC_PrixVen, AC_Remise = cat.AC_Remise, AC_PrixTTC = cat.AC_PrixTTC })
                 .ToList();
             if (catTarifaires.Count < 3)
@@ -289,15 +311,10 @@ namespace SoftCaisse.Forms
 
 
 
-
-
-
-
-
-
-
         // ======================================================================================================================================
         // =========================================================== FIN EVENEMENTS ===========================================================
         // ======================================================================================================================================
+
+
     }
 }

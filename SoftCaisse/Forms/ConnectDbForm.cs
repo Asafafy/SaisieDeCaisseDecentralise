@@ -9,17 +9,50 @@ namespace SoftCaisse.Forms.ConnexBase
 {
     public partial class ConnectDbForm : KryptonForm
     {
-        private string connectionStringSage="";
+        // ====================================================================================================
+        // DEBUT DECLARATION DES VARIABLES ====================================================================
+        // ====================================================================================================
+        private string connectionStringSage = "";
+        private int timeoutInSeconds = 10;
+
         private string serverName;
         private string userName;
         private string password;
         private string sagedataBaseName;
-        private int timeoutInSeconds = 10;
+        // ====================================================================================================
+        // FIN DECLARATION DES VARIABLES ======================================================================
+        // ====================================================================================================
+
+
+
+
+
+
+
+
+        // ====================================================================================================
+        // DEBUT CONSTRUCTEUR =================================================================================
+        // ====================================================================================================
         public ConnectDbForm()
         {
             InitializeComponent();
         }
+        // ====================================================================================================
+        // FIN CONSTRUCTEUR ===================================================================================
+        // ====================================================================================================
 
+
+
+
+
+
+
+
+
+
+        // ====================================================================================================
+        // DEBUT EVENEMENTS ===================================================================================
+        // ====================================================================================================
         private async void btnConBD_Click(object sender, EventArgs e)
         {
             serverName = txtServBD.Text;
@@ -49,6 +82,8 @@ namespace SoftCaisse.Forms.ConnexBase
 
         }
 
+
+
         private void UpdateUI(Action action)
         {
             if (InvokeRequired)
@@ -60,6 +95,7 @@ namespace SoftCaisse.Forms.ConnexBase
                 action();
             }
         }
+
 
 
         private void btnSaveConfigBd_Click(object sender, EventArgs e)
@@ -81,6 +117,8 @@ namespace SoftCaisse.Forms.ConnexBase
             MessageBox.Show("Configuration sauvegardée.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
+
+
 
         private void btnOpenSageGestion_Click(object sender, EventArgs e)
         {
@@ -104,6 +142,9 @@ namespace SoftCaisse.Forms.ConnexBase
                 }
             }
         }
+
+
+
         private void btnOpenSageCompta_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -126,6 +167,14 @@ namespace SoftCaisse.Forms.ConnexBase
                 }
             }
         }
-    }
 
+
+
+        // ====================================================================================================
+        // DEBUT EVENEMENTS ===================================================================================
+        // ====================================================================================================
+
+
+
+    }
 }

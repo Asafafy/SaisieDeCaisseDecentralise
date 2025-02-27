@@ -5,23 +5,47 @@ using System.Linq;
 
 namespace SoftCaisse.Repositories
 {
-    public class F_ARTCOMPTARepository : IRepository<DTO.ArtCompta>
+    public class F_ARTCOMPTARepository
     {
+        // =================================================================================================
+        // DEBUT DECLARATION DES VARIABLES =================================================================
+        // =================================================================================================
         private readonly AppDbContext _context;
+        // =================================================================================================
+        // FIN DECLARATION DES VARIABLES ===================================================================
+        // =================================================================================================
+
+
+
+
+
+
+        // =================================================================================================
+        // DEBUT CONSTRUCTEUR ==============================================================================
+        // =================================================================================================
         public F_ARTCOMPTARepository(AppDbContext context)
         {
             _context = context;
         }
+        // =================================================================================================
+        // FIN CONSTRUCTEUR ================================================================================
+        // =================================================================================================
 
-        public void Add(DTO.ArtCompta entity)
+
+
+
+
+        // =================================================================================================
+        // DEBUT GET  ======================================================================================
+        // =================================================================================================
+        public F_ARTCOMPTA Get_F_ARTCOMPTA_By_AR_Ref_And_DefaultValues_ACPs(string AR_Ref)
         {
-            throw new NotImplementedException();
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_ARTCOMPTA.Where(artCmpt => artCmpt.AR_Ref == AR_Ref && artCmpt.ACP_TypeFacture == 0 && artCmpt.ACP_Type == 0 && artCmpt.ACP_Champ == 1).FirstOrDefault();
+            }
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<DTO.ArtCompta> GetAll()
         {
@@ -33,15 +57,12 @@ namespace SoftCaisse.Repositories
                 AR_Ref = a.AR_Ref
             }).ToList();
         }
+        // =================================================================================================
+        // DEBUT GET  ======================================================================================
+        // =================================================================================================
 
-        public DTO.ArtCompta GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Update(DTO.ArtCompta entity)
-        {
-            throw new NotImplementedException();
-        }
+
+
     }
 }

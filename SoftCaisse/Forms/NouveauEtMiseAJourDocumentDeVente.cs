@@ -34,6 +34,8 @@ namespace SoftCaisse.Forms
         // ===============================================================================================================
         // DEBUT DECLARATION DES VARIABLES ===============================================================================
         // ===============================================================================================================
+        public bool RefreshListeDocumentsDeVente { get; set; }
+
         MainForm mainForm;
 
         private readonly F_DOCREGLRepository _f_DOCREGLRepository;
@@ -52,6 +54,11 @@ namespace SoftCaisse.Forms
         private readonly F_COMPTEARepository _f_COMPTEARepository;
         private readonly F_CAISSERepository _f_CAISSERepository;
         private readonly P_DEVISERepository _p_DEVISERepository;
+        private readonly F_REGLEMENTTRepository _f_REGLEMENTTRepository;
+        private readonly F_ARTCLIENTRepository _f_ARTCLIENTRepository;
+        private readonly F_ARTCOMPTARepository _f_ARTCOMPTARepository;
+        private readonly F_TAXERepository _f_TAXERepository;
+
 
         private readonly ListeEcheancesPourImpressionDocumentsDeVenteRepository _listeEcheancesPourImpressionDocumentsDeVenteRepository;
 
@@ -61,6 +68,7 @@ namespace SoftCaisse.Forms
         private readonly F_DOCREGLService _f_DOCREGLService;
         private readonly F_ARTSTOCKService _f_ARTSTOCKService;
         private readonly F_ARTSTOCKEMPLService _f_ARTSTOCKEMPLService;
+        private readonly F_ARTICLEService _f_ARTICLEService;
 
         private readonly AppDbContext _context;
 
@@ -71,7 +79,6 @@ namespace SoftCaisse.Forms
         private readonly List<F_DEPOT> _listeDepots;
         private readonly List<P_EXPEDITION> _listeExpedit;
         private readonly List<F_COMPTEA> _listePlanAnalitique;
-
 
         private readonly string _typeDocument;
         private readonly string _currentDocPieceNo;
@@ -91,7 +98,7 @@ namespace SoftCaisse.Forms
         private bool resultatDialogResultFermeture;
         private decimal pourcentageRemise;
         private int changedIndex = -1;
-        private F_DOCENTETE _fDocenteteToModif;
+        private F_DOCENTETE fDocenteteToModif;
         // =============================================================================================================
         // FIN DECLARATION DES VARIABLES ===============================================================================
         // =============================================================================================================
@@ -103,11 +110,13 @@ namespace SoftCaisse.Forms
         // ============================================================================================================
         // DEBUT CONSTRUCTEUR =========================================================================================
         // ============================================================================================================
-        public NouveauEtMiseAJourDocumentDeVente(string typeDocument, MainForm form, F_DOCENTETE fDocenteteToModif)
+        public NouveauEtMiseAJourDocumentDeVente(string typeDocument, MainForm form, F_DOCENTETE f_DocenteteToModifProp)
         {
             InitializeComponent();
 
             FormClosing += NouveauEtMiseAJourDocumentDeVenteForm_FormClosing;
+
+            RefreshListeDocumentsDeVente = true;
 
             _context = new AppDbContext();
 
@@ -127,6 +136,10 @@ namespace SoftCaisse.Forms
             _f_COMPTEARepository = new F_COMPTEARepository(_context);
             _f_CAISSERepository = new F_CAISSERepository(_context);
             _p_DEVISERepository = new P_DEVISERepository(_context);
+            _f_REGLEMENTTRepository = new F_REGLEMENTTRepository(_context);
+            _f_ARTCLIENTRepository = new F_ARTCLIENTRepository(_context);
+            _f_ARTCOMPTARepository = new F_ARTCOMPTARepository(_context);
+            _f_TAXERepository = new F_TAXERepository();
 
             _listeEcheancesPourImpressionDocumentsDeVenteRepository = new ListeEcheancesPourImpressionDocumentsDeVenteRepository(_context);
 
@@ -136,9 +149,10 @@ namespace SoftCaisse.Forms
             _f_DOCREGLService = new F_DOCREGLService(_f_DOCREGLRepository, _f_DOCENTETEService);
             _f_ARTSTOCKService = new F_ARTSTOCKService(_context, _f_ARTSTOCKRepository);
             _f_ARTSTOCKEMPLService = new F_ARTSTOCKEMPLService(_context, _f_ARTSTOCKEMPLRepository);
+            _f_ARTICLEService = new F_ARTICLEService(_f_ARTICLERepository);
 
             _typeDocument = typeDocument;
-            _fDocenteteToModif = fDocenteteToModif;
+            fDocenteteToModif = f_DocenteteToModifProp;
             mainForm = form;
             nombreFermetureFenetre = 0;
 
@@ -179,7 +193,7 @@ namespace SoftCaisse.Forms
 
 
             // Activation ou non des propriétés du document de vente
-            if (_fDocenteteToModif == null)
+            if (fDocenteteToModif == null)
             {
                 comboBoxClient.Enabled = true;
                 dateTimePicker1.Enabled = true;
@@ -212,50 +226,48 @@ namespace SoftCaisse.Forms
             }
 
 
-            if (_fDocenteteToModif != null)
+            if (fDocenteteToModif != null)
             {
                 // Affichage des informations concernant le F_DOCENTETE (Document de vente à mettre à jour) =========================
-                F_COMPTET clientTiers = _listeClients.Where(cl => cl.CT_Num == _fDocenteteToModif.DO_Tiers).FirstOrDefault();
-                F_COMPTEA planAnal = _listePlanAnalitique.Where(pa => pa.CA_Num == _fDocenteteToModif.CA_Num).FirstOrDefault();
-                F_COLLABORATEUR collab = _listeCollaborateurs.Where(co => co.CO_No == _fDocenteteToModif.CO_No).FirstOrDefault();
-                P_EXPEDITION expedit = _listeExpedit.Where(exp => exp.cbMarq == _fDocenteteToModif.DO_Expedit).FirstOrDefault();
+                F_COMPTET clientTiers = _listeClients.Where(cl => cl.CT_Num == fDocenteteToModif.DO_Tiers).FirstOrDefault();
+                F_COMPTEA planAnal = _listePlanAnalitique.Where(pa => pa.CA_Num == fDocenteteToModif.CA_Num).FirstOrDefault();
+                F_COLLABORATEUR collab = _listeCollaborateurs.Where(co => co.CO_No == fDocenteteToModif.CO_No).FirstOrDefault();
+                P_EXPEDITION expedit = _listeExpedit.Where(exp => exp.cbMarq == fDocenteteToModif.DO_Expedit).FirstOrDefault();
                 
                 List<F_COMPTEA> listePAAffiches = _listePlanAnalitique.Where(p => p.N_Analytique == 3).ToList();
                 List<F_COLLABORATEUR> listeCollaborateursCmbBx = _listeCollaborateurs.Where(c => c.CO_Vendeur == 1).ToList();
-                List<F_DOCLIGNE> listeDoclignesDocToUpdate = _context.F_DOCLIGNE
-                    .Where(dl => dl.DO_Piece == _fDocenteteToModif.DO_Piece)
-                    .OrderBy(dl => dl.DL_Ligne)
-                    .ToList();
+                List<F_DOCLIGNE> listeDoclignesDocToUpdate = _f_DOCLIGNERepository.GetAll_F_DOCLIGNE_Of_DOCENTETE(fDocenteteToModif.DO_Piece);
+                listeDoclignesDocToUpdate = listeDoclignesDocToUpdate.OrderBy(dl => dl.DL_Ligne).ToList();
 
                 int indexPA = listePAAffiches.IndexOf(planAnal);
                 int indexCollab = listeCollaborateursCmbBx.IndexOf(collab);
                 int indexExpedit = _listeExpedit.IndexOf(expedit);
                 
                 comboBoxClient.SelectedIndex = _listeClients.IndexOf(clientTiers);
-                dateTimePicker1.Value = (DateTime)_fDocenteteToModif.DO_Date;
-                if (_fDocenteteToModif.DO_DateLivr != new DateTime(1753, 01, 01, 00, 00, 00))
+                dateTimePicker1.Value = (DateTime)fDocenteteToModif.DO_Date;
+                if (fDocenteteToModif.DO_DateLivr != new DateTime(1753, 01, 01, 00, 00, 00))
                 {
-                    dateTimePicker2.Value = (DateTime)_fDocenteteToModif.DO_DateLivr;
+                    dateTimePicker2.Value = (DateTime)fDocenteteToModif.DO_DateLivr;
                 }
-                if (_fDocenteteToModif.DO_DateLivrRealisee != new DateTime(1753, 01, 01, 00, 00, 00))
+                if (fDocenteteToModif.DO_DateLivrRealisee != new DateTime(1753, 01, 01, 00, 00, 00))
                 {
-                    dateTimePicker3.Value = (DateTime)_fDocenteteToModif.DO_DateLivrRealisee;
+                    dateTimePicker3.Value = (DateTime)fDocenteteToModif.DO_DateLivrRealisee;
                 }
-                _currentDocPieceNo = _fDocenteteToModif.DO_Piece;
-                textBoxNDoc.Text = _fDocenteteToModif.DO_Piece;
-                txtBxRef.Text = _fDocenteteToModif.DO_Ref;
-                textBoxEnTete.Text = _fDocenteteToModif.DO_Coord01;
-                textBoxCommentaires.Text = _fDocenteteToModif.Commentaires;
-                textBoxDivers.Text = _fDocenteteToModif.Divers;
+                _currentDocPieceNo = fDocenteteToModif.DO_Piece;
+                textBoxNDoc.Text = fDocenteteToModif.DO_Piece;
+                txtBxRef.Text = fDocenteteToModif.DO_Ref;
+                textBoxEnTete.Text = fDocenteteToModif.DO_Coord01;
+                textBoxCommentaires.Text = fDocenteteToModif.Commentaires;
+                textBoxDivers.Text = fDocenteteToModif.Divers;
                 comboBoxAffaire.SelectedIndex = indexPA;
                 comboBoxRepresentant.SelectedIndex = indexCollab;
                 comboBoxExpedit.SelectedIndex = indexExpedit;
-                comboBoxDepot.SelectedIndex = (int)_fDocenteteToModif.DE_No - 1;
+                comboBoxDepot.SelectedIndex = (int)fDocenteteToModif.DE_No - 1;
 
                 // Activation ou non du bouton Valider
-                if (_fDocenteteToModif.DO_Type == 6)
+                if (fDocenteteToModif.DO_Type == 6)
                 {
-                    if (_fDocenteteToModif.DO_Valide == 1)
+                    if (fDocenteteToModif.DO_Valide == 1)
                         btnValider.Enabled = false;
                     else
                         btnValider.Enabled = true;
@@ -267,7 +279,7 @@ namespace SoftCaisse.Forms
                 foreach (F_DOCLIGNE fDocligne in listeDoclignesDocToUpdate)
                 {
                     decimal? quantite = fDocligne.DL_Qte;
-                    F_ARTICLE article = _context.F_ARTICLE.Where(art => art.AR_Ref == fDocligne.AR_Ref).FirstOrDefault();
+                    F_ARTICLE article = _f_ARTICLERepository.GetF_ARTICLEByAR_Ref(fDocligne.AR_Ref);
                     string conditionnementLigne = article.AR_Condition == 0 ? "Pièce" : "Unité";
                     DataGridViewArticle.Rows.Add(fDocligne.DL_Ligne, fDocligne.AR_Ref, fDocligne.DL_Design, fDocligne.DL_PrixUnitaire, fDocligne.DL_PUTTC, quantite, conditionnementLigne, fDocligne.DL_Remise01REM_Valeur, fDocligne.DL_PrixUnitaire, fDocligne.DL_MontantHT, fDocligne.DL_MontantTTC);
                 }
@@ -283,7 +295,7 @@ namespace SoftCaisse.Forms
                 MettreAJourTotalPoidsEtPrixTotalHT();
 
                 // Désactivation de certains éléments lorsque le document est déjà validé
-                if (_fDocenteteToModif.DO_Valide == 1)
+                if (fDocenteteToModif.DO_Valide == 1)
                 {
                     TextBoxReference.Enabled = false;
                     comboBoxRepresentant.Enabled = false;
@@ -609,12 +621,12 @@ namespace SoftCaisse.Forms
                 int numeroDepot = comboBoxDepot.SelectedIndex + 1;
 
                 // CREATION D'UN NOUVEAU DOCUMENT DE VENTE ===================================================================
-                if (_fDocenteteToModif == null)
+                if (fDocenteteToModif == null)
                 {
                     // Mise à jour du Doc current pièce (Numéro de pièce actuel)
                     _f_DOCCURRENTPIECERepository.Update(_typeDocument, _currentDocPieceNo);
 
-                    List<F_REGLEMENTT> listeReglT = _context.F_REGLEMENTT.Where(r => r.CT_Num == CT_NumActu).ToList();
+                    List<F_REGLEMENTT> listeReglT = _f_REGLEMENTTRepository.GetAll_F_CREGLEMENTT_Avec_CT_Num_Client(CT_NumActu);
 
                     // Insertion dans F_DOCREGL (Règlement)
                     _f_DOCREGLService.InsertNewF_DOCREGL(listeReglT, _currentDocPieceNo, _listeClients, _typeDocument);
@@ -646,7 +658,7 @@ namespace SoftCaisse.Forms
                     labelStatut.Enabled = false;
                     comboBoxStatus.Enabled = false;
 
-                    _fDocenteteToModif = _context.F_DOCENTETE.Where(d => d.DO_Piece == _currentDocPieceNo).FirstOrDefault();
+                    fDocenteteToModif = _f_DOCENTETERepository.GetBy_DO_Piece(_currentDocPieceNo);
 
                     MessageBox.Show("La création du document de vente est effectuée avec succès", "Création effectuée", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -741,17 +753,16 @@ namespace SoftCaisse.Forms
 
                 e.IsInputKey = true;
 
-                string codeFamilleOuDesignation = TextBoxReference.Text.ToLower();
-
-                var articleSaisie = _context.F_ARTICLE.Where(a => a.AR_Ref.ToLower() == codeFamilleOuDesignation || a.FA_CodeFamille.ToLower() == codeFamilleOuDesignation).FirstOrDefault();
+                string ar_Ref_Ou_Designation = TextBoxReference.Text.ToLower();
+                var articleSaisie = _f_ARTICLEService.GetF_ARTICLE_ByAR_Ref_O_uAR_Design(ar_Ref_Ou_Designation);
                 if (articleSaisie != null)
                 {
                     F_COMPTET clientSelectionne = _listeClients.Where(cli => cli.CT_Num + " - " + cli.CT_Intitule == comboBoxClient.Text).FirstOrDefault();
-                    var artClient = _context.F_ARTCLIENT.Where(artCli => artCli.CT_Num == clientSelectionne.CT_Num && artCli.AR_Ref == articleSaisie.AR_Ref).FirstOrDefault();
-                    var artCompta = _context.F_ARTCOMPTA.Where(artCmpt => artCmpt.AR_Ref == articleSaisie.AR_Ref && artCmpt.ACP_TypeFacture == 0 && artCmpt.ACP_Type == 0 && artCmpt.ACP_Champ == 1).FirstOrDefault();
-                    var taxe1 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe1).FirstOrDefault();
-                    var taxe2 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe2).FirstOrDefault();
-                    var taxe3 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe3).FirstOrDefault();
+                    F_ARTCLIENT artClient = _f_ARTCLIENTRepository.GetBy_CT_Num_Et_AR_Ref(clientSelectionne.CT_Num, articleSaisie.AR_Ref);
+                    F_ARTCOMPTA artCompta = _f_ARTCOMPTARepository.Get_F_ARTCOMPTA_By_AR_Ref_And_DefaultValues_ACPs(articleSaisie.AR_Ref);
+                    F_TAXE taxe1 = _f_TAXERepository.Get_F_TAXE_By_TA_Code(artCompta.ACP_ComptaCPT_Taxe1);
+                    F_TAXE taxe2 = _f_TAXERepository.Get_F_TAXE_By_TA_Code(artCompta.ACP_ComptaCPT_Taxe2);
+                    F_TAXE taxe3 = _f_TAXERepository.Get_F_TAXE_By_TA_Code(artCompta.ACP_ComptaCPT_Taxe3);
                     decimal taux1 = taxe1?.TA_Taux ?? 0;
                     decimal taux2 = taxe2?.TA_Taux ?? 0;
                     decimal taux3 = taxe3?.TA_Taux ?? 0;
@@ -808,7 +819,7 @@ namespace SoftCaisse.Forms
                 }
                 else
                 {
-                    ListeArticles articleARechercher = new ListeArticles(codeFamilleOuDesignation, false, true, null, pourcentageRemise);
+                    ListeArticles articleARechercher = new ListeArticles(ar_Ref_Ou_Designation, false, true, null, pourcentageRemise);
                     articleARechercher.ShowDialog(this);
                 }
             }
@@ -849,8 +860,8 @@ namespace SoftCaisse.Forms
             int? DL_Ligne = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[0].Value);
             string arRef = TextBoxReference.Text;
             int? dl_Ligne = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[0].Value);
-            int? DE_No = _context.F_DOCLIGNE.Where(dl => dl.DO_Piece == _currentDocPieceNo && dl.AR_Ref == arRef && dl.DL_Ligne == dl_Ligne).Select(dl => dl.DE_No).FirstOrDefault();
-            int? DP_No = _f_DEPOTRepository.GetDP_NoPrincipal(arRef, DE_No);
+            F_DOCLIGNE f_DOCLIGNE = _f_DOCLIGNERepository.GetF_DOCLIGNE_By_DO_Piece_AR_Ref_DL_Ligne(_currentDocPieceNo, arRef, dl_Ligne);
+            int? DE_No = f_DOCLIGNE.DE_No;
             decimal? DL_MontantHT = Convert.ToDecimal(DataGridViewArticle.Rows[changedIndex].Cells[9].Value);
             int qteArt = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[5].Value);
 
@@ -912,14 +923,15 @@ namespace SoftCaisse.Forms
             {
                 previousQuantite = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[5].Value);
                 dl_Ligne = Convert.ToInt32(DataGridViewArticle.Rows[changedIndex].Cells[0].Value);
-                DE_No = _context.F_DOCLIGNE.Where(dl => dl.CT_Num == CT_NumClient && dl.AR_Ref == arRef && dl.DL_Ligne == dl_Ligne).Select(dl => dl.DE_No).FirstOrDefault();
+                F_DOCLIGNE f_DOCLIGNE = _f_DOCLIGNERepository.GetF_DOCLIGNE_By_DO_Piece_AR_Ref_DL_Ligne(_currentDocPieceNo, arRef, dl_Ligne);
+                DE_No = f_DOCLIGNE.DE_No;
                 DP_NoSelectedRowDOCLIGNEPrincipal = _f_DEPOTRepository.GetDP_NoPrincipal(arRef, DE_No);
-                articleBaseDeDonnees = _context.F_ARTSTOCK.FirstOrDefault(a => a.AR_Ref == TextBoxReference.Text && a.DP_NoPrincipal == DP_NoSelectedRowDOCLIGNEPrincipal);
+                articleBaseDeDonnees = _f_ARTSTOCKRepository.GetF_ARTSTOCK_By_AR_Ref_DP_NoPrincipal(arRef, DP_NoSelectedRowDOCLIGNEPrincipal);
             } else
             {
                 DE_No = comboBoxDepot.SelectedIndex + 1;
                 DP_NoSelectedRowDOCLIGNEPrincipal = _f_DEPOTRepository.GetDP_NoPrincipal(arRef, DE_No);
-                articleBaseDeDonnees = _context.F_ARTSTOCK.Where(a => a.AR_Ref == TextBoxReference.Text && a.DP_NoPrincipal == DP_NoSelectedRowDOCLIGNEPrincipal).FirstOrDefault();
+                articleBaseDeDonnees = _f_ARTSTOCKRepository.GetF_ARTSTOCK_By_AR_Ref_DP_NoPrincipal(arRef, DP_NoSelectedRowDOCLIGNEPrincipal);
             }
 
             if (articleBaseDeDonnees != null)
@@ -1200,7 +1212,7 @@ namespace SoftCaisse.Forms
         private void DataGridViewArticle_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Desactivation de toute action si le document est déjà validé
-            if (_fDocenteteToModif.DO_Valide == 1)
+            if (fDocenteteToModif.DO_Valide == 1)
             {
                 btnValider.Enabled = false;
                 BouttonEnregistrerDesignation.Enabled = false;
@@ -1258,7 +1270,7 @@ namespace SoftCaisse.Forms
                 TextBoxMontantHT.Enabled = false;
                 TextBoxMontantTTC.Enabled = false;
 
-                if (_fDocenteteToModif.DO_Valide != 1)
+                if (fDocenteteToModif.DO_Valide != 1)
                 {
                     BouttonNouveauDesignation.Enabled = true;
                     BouttonSupprimerDesignation.Enabled = true;
@@ -1276,7 +1288,10 @@ namespace SoftCaisse.Forms
 
             if (resultat == DialogResult.Yes)
             {
-                _f_DOCENTETERepository.ValiderDocument(_fDocenteteToModif.DO_Piece, 1);
+                _f_DOCENTETERepository.ValiderDocument(fDocenteteToModif.DO_Piece, 1);
+
+                fDocenteteToModif = _f_DOCENTETERepository.GetBy_DO_Piece(fDocenteteToModif.DO_Piece);
+
                 MessageBox.Show("Validation du document effectuée!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Désactivation de certains éléments lorsque le document est déjà validé
@@ -1293,9 +1308,24 @@ namespace SoftCaisse.Forms
 
         private void btnImprimer_Click(object sender, EventArgs e)
         {
+            if (fDocenteteToModif.DO_Type == 6 && fDocenteteToModif.DO_Valide != 1)
+            {
+                MessageBox.Show("Le document n'est pas encore validé, validez le document d'abord ?", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (fDocenteteToModif.DO_Imprim == 1)
+            {
+                DialogResult resultat = MessageBox.Show("Ce document a déjà été imprimé. Souhaitez-vous l'imprimer à nouveau ?", "Important", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (resultat == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             F_CAISSE f_CAISSE = _f_CAISSERepository.GetF_CAISSE_By_CA_No(mainForm.CaisseNo);
             string f_CAISSEIntitule = f_CAISSE.CA_Intitule;
-            P_DEVISE p_DEVISE = _p_DEVISERepository.GetP_DEVISE_By_cbMarq((int)_fDocenteteToModif.DO_Devise);
+            P_DEVISE p_DEVISE = _p_DEVISERepository.GetP_DEVISE_By_cbMarq((int)fDocenteteToModif.DO_Devise);
             string p_DEVISEIntitule = "";
             if (p_DEVISE != null)
                 p_DEVISEIntitule = p_DEVISE.D_Intitule;
@@ -1315,11 +1345,16 @@ namespace SoftCaisse.Forms
                 });
             }
 
-            List<ListeEcheancesPourImpressionDocumentsDeVente> listeEcheancesPourImpressionDocumentsDeVentes = _listeEcheancesPourImpressionDocumentsDeVenteRepository.ListerEcheancesImpressionDocVente(_fDocenteteToModif.CT_NumPayeur, _fDocenteteToModif.DO_Piece);
+            List<ListeEcheancesPourImpressionDocumentsDeVente> listeEcheancesPourImpressionDocumentsDeVentes = _listeEcheancesPourImpressionDocumentsDeVenteRepository.ListerEcheancesImpressionDocVente(fDocenteteToModif.CT_NumPayeur, fDocenteteToModif.DO_Piece);
 
-            Reporting report = new Reporting(_typeDocument, f_CAISSEIntitule, (DateTime)_fDocenteteToModif.DO_Date, _fDocenteteToModif.DO_Piece, _fDocenteteToModif.DO_Devise == 0 ? " - " : p_DEVISEIntitule, (decimal)_fDocenteteToModif.DO_TotalHT, (decimal)_fDocenteteToModif.DO_TotalTTC, fligne, listeEcheancesPourImpressionDocumentsDeVentes);
+            Reporting report = new Reporting(_typeDocument, f_CAISSEIntitule, (DateTime)fDocenteteToModif.DO_Date, fDocenteteToModif.DO_Piece, fDocenteteToModif.DO_Devise == 0 ? " - " : p_DEVISEIntitule, (decimal)fDocenteteToModif.DO_TotalHT, (decimal)fDocenteteToModif.DO_TotalTTC, fligne, listeEcheancesPourImpressionDocumentsDeVentes);
             report.BringToFront();
             report.ShowDialog();
+            if (report.UserHasPrinted)
+            {
+                _f_DOCENTETERepository.Update_DO_Imprim_F_DOCENTETE(fDocenteteToModif.DO_Piece, 1);
+                MessageBox.Show("Impression effectuée avec succès !");
+            }
         }
 
         // ===================================================================================================

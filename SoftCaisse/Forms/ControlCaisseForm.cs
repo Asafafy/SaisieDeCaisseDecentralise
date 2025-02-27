@@ -18,18 +18,39 @@ namespace SoftCaisse.Forms.ControlCaisse
 {
     public partial class ControlCaisseForm : KryptonForm
     {
+        // ======================================================================================================
+        // DECLARATION DES VARIABLES ============================================================================
+        // ======================================================================================================
         private readonly AppDbContext _context;
         public F_CAISSERepository _fcaisserepository { get; set; }
         public DeviseRepository _fdeviserepository { get; set; }
         public FReglementRepository _freglementrepository { get; set; }
+        // ======================================================================================================
+        // FIN DECLARATION DES VARIABLES ========================================================================
+        // ======================================================================================================
 
+
+
+
+
+
+
+
+
+
+        // ======================================================================================================
+        // DEBUT CONSTRUCTEUR ===================================================================================
+        // ======================================================================================================
         public ControlCaisseForm()
         {
             InitializeComponent();
+
             _context = new AppDbContext();
+
             _fcaisserepository = new F_CAISSERepository(_context);
             _fdeviserepository = new DeviseRepository(_context);
             _freglementrepository = new FReglementRepository(_context);
+
             var caisse = _fcaisserepository.GetAll();
             Caisse.Items.Clear();
             var DataCaisse = caisse.Select(c => new { Item = c.CA_No,Value = c.CA_Intitule }).ToArray();
@@ -53,7 +74,22 @@ namespace SoftCaisse.Forms.ControlCaisse
             Controlecmbx.ValueMember = "item";
             label8.Text = "Ecart";
         }
+        // ======================================================================================================
+        // FIN CONSTRUCTEUR =====================================================================================
+        // ======================================================================================================
 
+
+
+
+
+
+
+
+
+
+        // ======================================================================================================
+        // DEBUT EVENEMENTS =====================================================================================
+        // ======================================================================================================
         private void display_caisse(object sender, EventArgs e)
         {
             string value = Controlecmbx.SelectedValue.ToString();
@@ -189,53 +225,6 @@ namespace SoftCaisse.Forms.ControlCaisse
                 //iReglt.CompteG = ;
                 //iReglt.WriteDefault();
 
-
-
-
-                //F_CREGLEMENT reglement = new F_CREGLEMENT()
-                //{
-                //    RG_Date= DateTime.Now,
-                //    RG_Montant = Decimal.Parse(label11.Text),
-                //    N_Reglement = 3,
-                //    RG_Impute = 0,
-                //    RG_Libelle = "Ecart contrôle de caisse",
-                //    RG_MontantDev=0,
-                //    RG_Reference="",                   
-                //    RG_Compta = 0,
-                //    EC_No = 0,
-                //    RG_Type = 2,
-                //    RG_Cours = 0,
-                //    RG_TypeReg = 7,
-                //    N_Devise = Int16.Parse(Devise.SelectedValue.ToString()),
-                //    JO_Num = "CAIS",
-                //    RG_Impaye=new DateTime(),
-                //    RG_Heure = "000"+DateTime.Now.ToString("HH:mm:ss").Trim(':'),
-                //    RG_Piece= "",
-                //    CA_No=caisse,
-                //    cbCA_No= caisse,
-                //    CO_NoCaissier=0,
-                //    RG_Banque=0,
-                //    RG_Transfere=0,
-                //    RG_Cloture=0,
-                //    RG_Ticket=1,
-                //    RG_Souche=0,
-                //    RG_DateEchCont = new DateTime(),
-                //    RG_MontantEcart =0,
-                //    RG_NoBonAchat =0,
-                //    RG_Valide =1,
-                //    RG_Anterieur =0,
-                //    RG_MontantCommission =0,
-                //    RG_MontantNet =0,
-                //    cbProt =0,
-                //    cbModification =DateTime.Now,
-                //    cbReplication =0,
-                //    cbFlag =0,
-                //    cbCreation =DateTime.Now,
-                //    cbHashVersion =1,
-                //    cbHashDate = DateTime.Now
-                //};
-                //_context.F_CREGLEMENT.Add(reglement);
-                //_context.SaveChanges();
                 string query = @"
                 Insert INTO [dbo].[F_CREGLEMENT](
                     [RG_Date],
@@ -281,7 +270,9 @@ namespace SoftCaisse.Forms.ControlCaisse
                 values({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},
                 {23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37},{38})
                 ";
-                _context.Database.ExecuteSqlCommand(query,
+                using (AppDbContext context = new AppDbContext())
+                {
+                    context.Database.ExecuteSqlCommand(query,
                     DateTime.Now,
                     Decimal.Parse(label11.Text),
                     3,
@@ -297,7 +288,7 @@ namespace SoftCaisse.Forms.ControlCaisse
                     Int16.Parse(Devise.SelectedValue.ToString()),
                     "CAIS",
                     new DateTime(1753, 1, 1),
-                    "000"+DateTime.Now.ToString("HH:mm:ss").Replace(":",""),
+                    "000" + DateTime.Now.ToString("HH:mm:ss").Replace(":", ""),
                     "",
                     caisse,
                     caisse,
@@ -322,8 +313,20 @@ namespace SoftCaisse.Forms.ControlCaisse
                     1,
                     DateTime.Now
                 );
-                this.Close();
+                }
+                
+                Close();
             }
         }
+
+
+
+        // ======================================================================================================
+        // DEBUT EVENEMENTS =====================================================================================
+        // ======================================================================================================
+
+
+
+
     }
 }

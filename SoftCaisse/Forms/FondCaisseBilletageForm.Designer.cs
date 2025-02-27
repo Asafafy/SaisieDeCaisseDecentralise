@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FondCaisseBilletageForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.deviseCmbx = new System.Windows.Forms.ComboBox();
             this.btnValiderFondCaisse = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -232,14 +233,14 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(329, 64);
+            this.groupBox1.Size = new System.Drawing.Size(329, 42);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Total Montant Déclaré";
             // 
             // montantTotalLbl
             // 
-            this.montantTotalLbl.Location = new System.Drawing.Point(185, 21);
+            this.montantTotalLbl.Location = new System.Drawing.Point(185, 11);
             this.montantTotalLbl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.montantTotalLbl.Name = "montantTotalLbl";
             this.montantTotalLbl.Size = new System.Drawing.Size(20, 24);
@@ -256,18 +257,20 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Devise";
             // 
-            // FondCaisseForm
+            // FondCaisseBilletageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(635, 666);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "FondCaisseForm";
+            this.Name = "FondCaisseBilletageForm";
             this.Palette = this.kryptonPalette1;
             this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Déclaration de fond de caisse";
+            this.Text = "Déclaration de fond de caisse par billetage";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fondCaisseDatagridView)).EndInit();

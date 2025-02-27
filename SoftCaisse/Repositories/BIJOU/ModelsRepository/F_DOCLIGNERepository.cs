@@ -6,6 +6,7 @@ using static System.Data.Entity.Infrastructure.Design.Executor;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System;
 
 namespace SoftCaisse.Repositories.BIJOU
 {
@@ -44,7 +45,7 @@ namespace SoftCaisse.Repositories.BIJOU
 
 
         // ================================================================================
-        // METHODES DU REPOSITORY =========================================================
+        // DEBUT GET ======================================================================
         // ================================================================================
         public List<F_DOCLIGNE> Get_F_DOCLIGNE_HavingAG_No(int? AG_No)
         {
@@ -54,6 +55,25 @@ namespace SoftCaisse.Repositories.BIJOU
                 return f_DOCLIGNEs;
             }
         }
+
+        public F_DOCLIGNE GetF_DOCLIGNE_By_DO_Piece_AR_Ref_DL_Ligne(string DO_Piece, string AR_Ref, int? DL_Ligne)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return context.F_DOCLIGNE.Where(dl => dl.DO_Piece == DO_Piece && dl.AR_Ref == AR_Ref && dl.DL_Ligne == DL_Ligne).FirstOrDefault();
+            }
+        }
+
+        public List<F_DOCLIGNE> GetAll_F_DOCLIGNE_Of_DOCENTETE(string DO_Piece)
+        {
+            using (AppDbContext context = new AppDbContext())
+            {
+                return _context.F_DOCLIGNE.Where(dl => dl.DO_Piece == DO_Piece).ToList();
+            }
+        }
+        // ================================================================================
+        // FIN GET ========================================================================
+        // ================================================================================
 
 
 

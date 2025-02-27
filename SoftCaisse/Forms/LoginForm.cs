@@ -32,7 +32,7 @@ namespace SoftCaisse.Forms.Login
             InitializeComponent();
 
             _sCDContext = new SCDContext();
-            _autorisationRepository = new RoleAutorisationRepository(_sCDContext);
+            _autorisationRepository = new RoleAutorisationRepository();
             _roleRepository = new RoleRepository(_sCDContext);
 
             ChampUser.KeyDown += (sender, e) => EventHandlers.KeyDownEnterHandler(sender, e, kryptonButton1_Click);
@@ -165,7 +165,7 @@ namespace SoftCaisse.Forms.Login
 
         // ============================================================================================
         // ======================================== EVENEMENTS ========================================
-        private void kryptonButton1_Click(object sender, System.EventArgs e)
+        private async void kryptonButton1_Click(object sender, System.EventArgs e)
         {
             var user = _sCDContext.Users.FirstOrDefault(u => u.Login == ChampUser.Text && u.UserPassword == Champpwd.Text);
             if (user != null)
@@ -174,7 +174,7 @@ namespace SoftCaisse.Forms.Login
                 ConnectedUser.UserId = user.UserId;
                 ConnectedUser.roles = (RoleUser)user.RoleId;
 
-                Role role = _roleRepository.GetById(user.RoleId);
+                Role role = await _roleRepository.GetById(user.RoleId);
                 List<int> autorisationsDesRubriques = _sCDContext.RoleAutorisation.Where(ra => ra.IdRole == role.IdRole).Select(ra => ra.EstAutorise).ToList();
                 gererLesActivationsRubriques(autorisationsDesRubriques);
 

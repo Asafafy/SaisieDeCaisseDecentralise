@@ -28,6 +28,9 @@ namespace SoftCaisse.Forms.Article
         private readonly F_ARTENUMREFRepository _f_ARTENUMREFRepository;
         private readonly F_GAMSTOCKRepository _f_GAMSTOCKRepository;
         private readonly F_DOCLIGNERepository _f_DOCLIGNERepository;
+        private readonly F_FAMILLERepository _f_FAMILLERepository;
+        private readonly F_ARTCLIENTRepository _f_ARTCLIENTRepository;
+        private readonly F_CONDITIONRepository _f_CONDITIONRepository;
 
         private readonly F_ARTICLEService _f_ARTICLEService;
         private readonly F_ARTGAMMEService _f_ARTGAMMEService;
@@ -38,7 +41,6 @@ namespace SoftCaisse.Forms.Article
 
         private DataTable _bindingSource;
         private string _referenceArt;
-        private string _designArt;
         private string _repertoireParent = AppDomain.CurrentDomain.BaseDirectory;
 
         public F_ARTICLE _selectedArt;
@@ -199,8 +201,11 @@ namespace SoftCaisse.Forms.Article
             _f_ARTENUMREFRepository = new F_ARTENUMREFRepository(_context);
             _f_GAMSTOCKRepository = new F_GAMSTOCKRepository(_context);
             _f_DOCLIGNERepository = new F_DOCLIGNERepository(_context);
+            _f_FAMILLERepository = new F_FAMILLERepository(_context);
+            _f_ARTCLIENTRepository = new F_ARTCLIENTRepository(_context);
+            _f_CONDITIONRepository = new F_CONDITIONRepository(_context);
 
-            _f_ARTICLEService = new F_ARTICLEService(_context);
+            _f_ARTICLEService = new F_ARTICLEService(_f_ARTICLERepository);
             _f_ARTGAMMEService = new F_ARTGAMMEService(_context, _f_ARTGAMMERepository);
             _f_ARTPRIXService = new F_ARTPRIXService(_context, _f_ARTPRIXRepository);
             _f_ARTENUMREFService = new F_ARTENUMREFService(_context, _f_ARTENUMREFRepository);
@@ -208,8 +213,7 @@ namespace SoftCaisse.Forms.Article
             _f_DOCLIGNEService = new F_DOCLIGNEService(_context, _f_DOCLIGNERepository);
 
             _referenceArt = referenceArt;
-            _designArt = designArt;
-            _selectedArt = _context.F_ARTICLE.Where(art => art.AR_Ref == _referenceArt && art.AR_Design == _designArt).FirstOrDefault();
+            _selectedArt = _f_ARTICLERepository.GetF_ARTICLEByAR_Ref(_referenceArt);
 
 
 
@@ -243,9 +247,8 @@ namespace SoftCaisse.Forms.Article
             textBox9.Text = ConserverChiffresApresVirgule(_selectedArt.AR_PrixVen);
             textBox8.Text = ConserverChiffresApresVirgule(_selectedArt.AR_CoutStd);
 
-            var listeFamilles = _context.F_FAMILLE.Where(famille => famille.CL_No1 != 0)
-                .Select(u => new Controle() { item = u.FA_CodeFamille })
-                .ToList();
+            List<F_FAMILLE> f_FAMILLEs = _f_FAMILLERepository.GetAll_F_FAMILLE_CL_No1_Zero();
+            var listeFamilles = f_FAMILLEs.Select(u => new Controle() { item = u.FA_CodeFamille }).ToList();
             // Trouver l'élément correspondant à la famille de cette article séléctionné dans la liste des familles
             var selectedFamille = listeFamilles.FirstOrDefault(famille => famille.item == _selectedArt.FA_CodeFamille);
             // Obtenir l'index de la famille
@@ -290,9 +293,11 @@ namespace SoftCaisse.Forms.Article
             _bindingSource.Columns.Add(new DataColumn("Coefficient"));
             _bindingSource.Columns.Add(new DataColumn("Prix de vente"));
             _bindingSource.Columns.Add(new DataColumn("Remise"));
-            var catTarifaires = _context.F_ARTCLIENT.Where(cat => cat.AR_Ref == _selectedArt.AR_Ref && cat.AC_Categorie != 0)
-                .Select(cat => new CategoriesTarifaires { AC_Categorie = cat.AC_Categorie, AC_Coef = cat.AC_Coef, AC_PrixVen = cat.AC_PrixVen, AC_Remise = cat.AC_Remise, AC_PrixTTC = cat.AC_PrixTTC })
-                .ToList();
+
+            List<F_ARTCLIENT> f_ARTCLIENTs = _f_ARTCLIENTRepository.GetBy_AR_Ref_And_AC_Categorie_Not_Zero(_selectedArt.AR_Ref);
+            var catTarifaires = f_ARTCLIENTs.Select(cat => new CategoriesTarifaires { 
+                AC_Categorie = cat.AC_Categorie, AC_Coef = cat.AC_Coef, AC_PrixVen = cat.AC_PrixVen, AC_Remise = cat.AC_Remise, AC_PrixTTC = cat.AC_PrixTTC 
+            }).ToList();
             if (catTarifaires.Count < 3)
             {
                 bool contains1 = new[] { 1 }.All(val => catTarifaires.Any(cat => cat.AC_Categorie == val));
@@ -366,7 +371,9 @@ namespace SoftCaisse.Forms.Article
             _bindingSource.Columns.Add(new DataColumn("Coefficient"));
             _bindingSource.Columns.Add(new DataColumn("Prix de vente"));
             _bindingSource.Columns.Add(new DataColumn("Remise"));
-            var tarifsClients = _context.F_ARTCLIENT.Where(cat => cat.AR_Ref == _selectedArt.AR_Ref && cat.CT_Num != null)
+
+            List<F_ARTCLIENT> f_ARTCLIENTs_CT_Num_Not_Null = _f_ARTCLIENTRepository.GetBy_AR_Ref_And_CT_Num_Not_Null(_selectedArt.AR_Ref);
+            var tarifsClients = f_ARTCLIENTs_CT_Num_Not_Null
                 .Select(cat => new TarifsClients { CT_Num = cat.CT_Num, AC_RefClient = cat.AC_RefClient, AC_Coef = cat.AC_Coef, AC_PrixVen = cat.AC_PrixVen, AC_Remise = cat.AC_Remise })
                 .OrderBy(cat => cat.CT_Num)
                 .ToList();
@@ -386,7 +393,9 @@ namespace SoftCaisse.Forms.Article
             _bindingSource.Columns.Add(new DataColumn("Référence"));
             _bindingSource.Columns.Add(new DataColumn("Code barres"));
             _bindingSource.Columns.Add(new DataColumn("Quantité"));
-            var listeConditionnements = _context.F_CONDITION.Where(cond => cond.AR_Ref == _selectedArt.AR_Ref)
+
+            List<F_CONDITION> f_CONDITIONs = _f_CONDITIONRepository.GetAll_F_CONDITION_By_AR_Ref(_selectedArt.AR_Ref);
+            var listeConditionnements = f_CONDITIONs
                 .Select(cond => new Conditionnement { EC_Enumere = cond.EC_Enumere, AR_Ref = cond.AR_Ref, CO_CodeBarre = cond.CO_CodeBarre, EC_Quantite = cond.EC_Quantite })
                 .OrderBy(cond => cond.EC_Enumere)
                 .ToList();
@@ -714,7 +723,7 @@ namespace SoftCaisse.Forms.Article
         // ==============================================================================================================
         private void btnInterroger_Click(object sender, System.EventArgs e)
         {
-            new InterrogationStockArticle(_referenceArt, _designArt, this).Show();
+            new InterrogationStockArticle(_referenceArt, _selectedArt.AR_Design, this).Show();
         }
 
         private void krptAjouterVisualiser_Click(object sender, EventArgs e)
@@ -776,7 +785,8 @@ namespace SoftCaisse.Forms.Article
                 creerEnumereArticlesAyantUnSeulGamme.ShowDialog();
                 if (creerEnumereArticlesAyantUnSeulGamme.RefreshListeEnumGammes == true)
                 {
-                    AfficherListeTabPagesGammes(_context);
+                    AppDbContext context = new AppDbContext();
+                    AfficherListeTabPagesGammes(context);
                 }
                 
             } else
@@ -785,7 +795,8 @@ namespace SoftCaisse.Forms.Article
                 choixCreationENUMGAMMEDansDetailsArticle.ShowDialog();
                 if (choixCreationENUMGAMMEDansDetailsArticle.RefreshListeEnumGammes == true)
                 {
-                    AfficherListeTabPagesGammes(_context);
+                    AppDbContext context = new AppDbContext();
+                    AfficherListeTabPagesGammes(context);
                 }
             }
         }
@@ -819,7 +830,8 @@ namespace SoftCaisse.Forms.Article
                 mettreAJourEnumereDeGammeDArticle.ShowDialog();
                 if (mettreAJourEnumereDeGammeDArticle.RefreshListeEnumGammes == true)
                 {
-                    AfficherListeTabPagesGammes(_context);
+                    AppDbContext context = new AppDbContext();
+                    AfficherListeTabPagesGammes(context);
                 }
             }
         }
@@ -907,7 +919,8 @@ namespace SoftCaisse.Forms.Article
                 }
 
 
-                AfficherListeTabPagesGammes(_context);
+                AppDbContext context = new AppDbContext();
+                AfficherListeTabPagesGammes(context);
             }
         }
 

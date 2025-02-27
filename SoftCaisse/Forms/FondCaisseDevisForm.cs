@@ -32,6 +32,7 @@ namespace SoftCaisse.Forms.FondCaisse
             }
         }
 
+
         private void SauvegardeButton_Click(object sender, EventArgs e)
         {
             int count = _appDbContext.F_CREGLEMENT.Max(u=>u.RG_No).Value;

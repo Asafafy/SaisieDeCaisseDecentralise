@@ -1,6 +1,13 @@
-﻿using SoftCaisse.Models;
+﻿using Microsoft.SqlServer.Server;
+using SoftCaisse.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Threading.Tasks;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace SoftCaisse.Repositories.ScdDb
 {
@@ -43,93 +50,120 @@ namespace SoftCaisse.Repositories.ScdDb
 
 
 
-        // ===============================================================================================
-        // DEBUT GET =====================================================================================
-        // ===============================================================================================
-        public List<RoleAutorisation> GetAll()
+        // ======================================================================================
+        // DEBUT GET ============================================================================
+        // ======================================================================================
+        public async Task<RoleAutorisation> Get_RoleAutorisation_By_IdRubrique_And_IdRole(int IdRubrique, int? IdRole)
         {
             using (SCDContext scdContext = new SCDContext())
             {
-                return scdContext.RoleAutorisation.ToList();
-            }  
-        }
-
-
-
-        public RoleAutorisation GetById(int id)
-        {
-            using (SCDContext scdContext = new SCDContext())
-            {
-                return scdContext.RoleAutorisation.Find(id);
+                return await scdContext.RoleAutorisation.Where(rlAuth => rlAuth.IdRubrique == IdRubrique && rlAuth.IdRole == IdRole).FirstOrDefaultAsync();
             }
         }
-        // ===============================================================================================
-        // FIN GET =======================================================================================
-        // ===============================================================================================
+
+
+
+        public async Task<List<RoleAutorisation>> Get_List_RoleAutorisation_By_IdRole(int? IdRole)
+        {
+            using (SCDContext scdContext = new SCDContext())
+            {
+                return await scdContext.RoleAutorisation.Where(roleAuth => roleAuth.IdRole == IdRole).ToListAsync();
+            }
+        }
+        // ======================================================================================
+        // FIN GET ==============================================================================
+        // ======================================================================================
 
 
 
 
 
-        // ===============================================================================================
-        // DEBUT CREATE ==================================================================================
-        // ===============================================================================================
-        public void Add(RoleAutorisation entity)
+
+
+
+
+
+        // ======================================================================================
+        // DEBUT ADD ============================================================================
+        // ======================================================================================
+        public async void Add(RoleAutorisation entity)
         {
             using (SCDContext scdContext = new SCDContext())
             {
                 scdContext.RoleAutorisation.Add(entity);
-                scdContext.SaveChanges();
+                await scdContext.SaveChangesAsync();
             }
         }
-        // ===============================================================================================
-        // FIN CREATE ====================================================================================
-        // ===============================================================================================
+        // ======================================================================================
+        // FIN ADD ==============================================================================
+        // ======================================================================================
 
 
 
 
 
-        // ===============================================================================================
-        // DEBUT DELETE ==================================================================================
-        // ===============================================================================================
-        public void Delete(int id)
+
+        // ======================================================================================
+        // DEBUT UPDATE =========================================================================
+        // ======================================================================================
+        public async void Update(RoleAutorisation entity)
         {
-            RoleAutorisation roleAutToDelete = GetById(id);
-            if (roleAutToDelete != null)
-            {
-                using (SCDContext scdContext = new SCDContext())
-                {
-                    scdContext.RoleAutorisation.Remove(roleAutToDelete);
-                    scdContext.SaveChanges();
-                }
-            }
-        }
-        // ===============================================================================================
-        // FIN DELETE ====================================================================================
-        // ===============================================================================================
-
-
-
-
-
-
-        // ===============================================================================================
-        // DEBUT UPDATE ==================================================================================
-        // ===============================================================================================
-        public void Update(RoleAutorisation entity)
-        {
-            RoleAutorisation roleAutorisationToUpdate = GetById(entity.Id);
-            roleAutorisationToUpdate.EstAutorise = entity.EstAutorise;
+            string queryUpdate = @"
+                    UPDATE [ScdDb].[dbo].[RoleAutorisation]
+                    SET
+                        IdRole = @IdRole,
+                        EstAutorise = @EstAutorise
+                    WHERE Id = @Id;
+                ";
 
             using (SCDContext scdContext = new SCDContext())
             {
-                scdContext.SaveChanges();
+                await scdContext.Database.ExecuteSqlCommandAsync(
+                    queryUpdate,
+                    new SqlParameter("@IdRole", entity.IdRole ?? (object)DBNull.Value),
+                    new SqlParameter("@EstAutorise", entity.EstAutorise),
+                    new SqlParameter("@Id", entity.Id)
+                );
             }
         }
-        // ===============================================================================================
-        // FIN UPDATE ====================================================================================
-        // ===============================================================================================
+        // ======================================================================================
+        // FIN UPDATE ===========================================================================
+        // ======================================================================================
+
+
+
+
+
+
+
+
+
+
+        // ======================================================================================
+        // DEBUT DELETE =========================================================================
+        // ======================================================================================
+        public async void Delete(int id)
+        {
+            string queryDeleteRoleAutorisation = @"
+                DELETE FROM [ScdDb].[dbo].[RoleAutorisation] WHERE Id = @Id;
+            ";
+
+            using (SCDContext scdContext = new SCDContext())
+            {
+                await scdContext.Database.ExecuteSqlCommandAsync(
+                    queryDeleteRoleAutorisation,
+                    new SqlParameter("@Id", id)
+                );
+            }
+        }
+        // ======================================================================================
+        // FIN DELETE ===========================================================================
+        // ======================================================================================
+
+
+
+
+
 
 
 

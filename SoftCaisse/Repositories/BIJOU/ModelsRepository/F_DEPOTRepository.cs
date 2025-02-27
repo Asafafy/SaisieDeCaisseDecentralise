@@ -42,7 +42,14 @@ namespace SoftCaisse.Repositories
             if (nombreChoix <= 1)
             {
                 F_ARTSTOCK artstock = _context.F_ARTSTOCK.Where(artStck => artStck.AR_Ref == AR_Ref).FirstOrDefault();
-                return artstock.DP_NoPrincipal;
+                if (artstock == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return artstock.DP_NoPrincipal;
+                }
             }
             else
             {

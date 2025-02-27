@@ -120,13 +120,19 @@ namespace SoftCaisse.Forms.Article
                     // ============================ DEBUT MBOLA TSY AU POINT ============================
                     var artClient = _context.F_ARTCLIENT.Where(artCli => artCli.AR_Ref == referenceArt && artCli.AC_Categorie.ToString() == _selectedCatTarifaire).FirstOrDefault();
                     var artCompta = _context.F_ARTCOMPTA.Where(artCmpt => artCmpt.AR_Ref == referenceArt && artCmpt.ACP_TypeFacture == 0 && artCmpt.ACP_Type == 0 && artCmpt.ACP_Champ == 1).FirstOrDefault();
-                    var pourcentageRemise = artClient?.AC_Remise ?? 0;
-                    var taxe1 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe1).FirstOrDefault();
-                    var taxe2 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe2).FirstOrDefault();
-                    var taxe3 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe3).FirstOrDefault();
-                    decimal taux1 = taxe1?.TA_Taux ?? 0;
-                    decimal taux2 = taxe2?.TA_Taux ?? 0;
-                    decimal taux3 = taxe3?.TA_Taux ?? 0;
+                    //var pourcentageRemise = artClient?.AC_Remise ?? 0;
+                    decimal taux1 = 0;
+                    decimal taux2 = 0;
+                    decimal taux3 = 0;
+                    if (artCompta != null)
+                    {
+                        F_TAXE taxe1 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe1).FirstOrDefault();
+                        F_TAXE taxe2 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe2).FirstOrDefault();
+                        F_TAXE taxe3 = _context.F_TAXE.Where(taxe => taxe.TA_Code == artCompta.ACP_ComptaCPT_Taxe3).FirstOrDefault();
+                        taux1 = taxe1?.TA_Taux ?? 0;
+                        taux2 = taxe2?.TA_Taux ?? 0;
+                        taux3 = taxe3?.TA_Taux ?? 0;
+                    }
                     bool estHorsTaxe;
 
                     if (artClient != null)

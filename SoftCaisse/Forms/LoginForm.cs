@@ -32,7 +32,7 @@ namespace SoftCaisse.Forms.Login
             InitializeComponent();
 
             _sCDContext = new SCDContext();
-            _autorisationRepository = new RoleAutorisationRepository();
+            _autorisationRepository = new RoleAutorisationRepository(_sCDContext);
             _roleRepository = new RoleRepository(_sCDContext);
 
             ChampUser.KeyDown += (sender, e) => EventHandlers.KeyDownEnterHandler(sender, e, kryptonButton1_Click);
@@ -170,6 +170,12 @@ namespace SoftCaisse.Forms.Login
             var user = _sCDContext.Users.FirstOrDefault(u => u.Login == ChampUser.Text && u.UserPassword == Champpwd.Text);
             if (user != null)
             {
+                if (user.EstActif == 0)
+                {
+                    MessageBox.Show("Votre compte est désactivé !", "Erreur Connexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 ConnectedUser.UserName = user.Login;
                 ConnectedUser.UserId = user.UserId;
                 ConnectedUser.roles = (RoleUser)user.RoleId;

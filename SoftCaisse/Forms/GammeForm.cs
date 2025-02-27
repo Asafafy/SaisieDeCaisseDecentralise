@@ -212,7 +212,7 @@ namespace SoftCaisse.Forms
                         }
                         else
                         {
-                            MessageBox.Show("Vous avez atteint la limite maximale de 50 gammes. Impossible d'en créer de nouvelles.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Vous avez atteint la limite maximale de 47 gammes. Impossible d'en créer de nouvelles.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
@@ -232,7 +232,7 @@ namespace SoftCaisse.Forms
 
                         int estAG_No2 = 0;
 
-                        if (listeArticles.Count > 0) // Des articles sont liés au gamme manipulé
+                        if (listeArticlesHavingGamme1Ou2.Count > 0) // Des articles sont liés au gamme manipulé
                         {
                             ChoixCreationENUMGAMME choixCreationENUMGAMME = new ChoixCreationENUMGAMME(G_Intitule);
                             choixCreationENUMGAMME.ShowDialog();
@@ -241,14 +241,14 @@ namespace SoftCaisse.Forms
                             {
                                 if (choixCreationENUMGAMME.Resultat == "Non")
                                 {
-                                    _f_ENUMGAMMEService.NouveauGamme(p_GAMME.cbIndice, nouveauNom);
+                                    _f_ENUMGAMMEService.Nouveau_F_ENUMGAMME(p_GAMME.cbIndice, nouveauNom);
                                 }
                                 else if (choixCreationENUMGAMME.Resultat == "Créer automatiquement")
                                 {
 
-                                    _f_ENUMGAMMEService.NouveauGamme(p_GAMME.cbIndice, nouveauNom);
+                                    _f_ENUMGAMMEService.Nouveau_F_ENUMGAMME(p_GAMME.cbIndice, nouveauNom);
 
-                                    foreach (F_ARTICLE f_ARTICLE in listeArticles)
+                                    foreach (F_ARTICLE f_ARTICLE in listeArticlesHavingGamme1Ou2)
                                     {
                                         if (f_ARTICLE.AR_Gamme2 == p_GAMME.cbIndice)
                                             estAG_No2 = 1;
@@ -260,9 +260,9 @@ namespace SoftCaisse.Forms
                                 }
                                 else
                                 {
-                                    _f_ENUMGAMMEService.NouveauGamme(p_GAMME.cbIndice, nouveauNom);
+                                    _f_ENUMGAMMEService.Nouveau_F_ENUMGAMME(p_GAMME.cbIndice, nouveauNom);
 
-                                    foreach (F_ARTICLE f_ARTICLE in listeArticles)
+                                    foreach (F_ARTICLE f_ARTICLE in listeArticlesHavingGamme1Ou2)
                                     {
                                         if (f_ARTICLE.AR_Gamme2 == p_GAMME.cbIndice)
                                             estAG_No2 = 1;
@@ -276,7 +276,7 @@ namespace SoftCaisse.Forms
                                             creationManuelleEnumgamme.ShowDialog();
                                             if (choixCreationENUMGAMME.Resultat != null)
                                             {
-                                                // TODO eto : Otran misy tokony hatao eto...
+                                                // TODO eto : Otran misy tokony hatao eto Résultat an'ilay ajout (Message de retour) ...
                                             }
                                         }
                                     }
@@ -285,7 +285,7 @@ namespace SoftCaisse.Forms
                         }
                         else // Aucun article n'est lié au gamme manipulé
                         {
-                            _f_ENUMGAMMEService.NouveauGamme(p_GAMME.cbIndice, nouveauNom);
+                            _f_ENUMGAMMEService.Nouveau_F_ENUMGAMME(p_GAMME.cbIndice, nouveauNom);
                         }
 
                         // Rafaichir la liste des enumgammes après tout traitement
@@ -328,7 +328,10 @@ namespace SoftCaisse.Forms
                 {
                     if (Regex.IsMatch(nouveauNom, @"[a-zA-Z0-9]{3,}"))
                     {
-                        
+                        _f_ENUMGAMMEService.UpdateEnumGamme(elementSelectionne, nouveauNom);
+
+                        RefreshListBox2();
+
                         elementSelectionne = nouveauNom;
                         textBox1.Text = nouveauNom;
                     }

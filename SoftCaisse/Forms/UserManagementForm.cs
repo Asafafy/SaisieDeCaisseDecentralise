@@ -59,7 +59,7 @@ namespace SoftCaisse.Forms.User
                 RoleCmbx.Enabled = false;
                 label2.Enabled = false;
                 checkBoxEstActif.Visible = false;
-                btnReinitialiserMdp.Enabled = false;
+                //btnReinitialiserMdp.Enabled = false;
             }
         }
 
@@ -164,7 +164,7 @@ namespace SoftCaisse.Forms.User
 
 
         // ===================================== Clique sur une cellulle du DatagridView =====================================
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.CurrentRow.Index != -1)
             {
@@ -309,9 +309,10 @@ namespace SoftCaisse.Forms.User
                     DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
                     UserId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
                     Users userWithId = users.FirstOrDefault(user => user.UserId == UserId);
+                    Role roleSelectionne = roles.FirstOrDefault(r => r.IdRole == userWithId.RoleId);
+                    RoleCmbx.SelectedIndex = RoleCmbx.FindStringExact(roleSelectionne.RoleIntitule);
                     txtLogin.Text = userWithId.Login;
                     txtUserPassword.Text = userWithId.UserPassword;
-                    RoleCmbx.SelectedIndex = userWithId.RoleId - 1;
                     checkBoxEstActif.Checked = userWithId.EstActif == 1 ? false : true;
 
                     if (isExpanded == false)

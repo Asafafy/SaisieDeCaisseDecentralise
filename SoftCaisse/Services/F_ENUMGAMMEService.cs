@@ -30,7 +30,7 @@ namespace SoftCaisse.Services
 
 
 
-        public void NouveauGamme(short? EG_Champ, string EG_Enumere)
+        public void Nouveau_F_ENUMGAMME(short? EG_Champ, string EG_Enumere)
         {
             F_ENUMGAMME f_ENUMGAMMEToCreate = new F_ENUMGAMME();
 

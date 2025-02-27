@@ -56,7 +56,7 @@ namespace SoftCaisse.Forms
 
             _roleRepository = new RoleRepository(_scdContext);
             _userRepository = new UserRepository(_scdContext);
-            _roleAutorisationRepository = new RoleAutorisationRepository();
+            _roleAutorisationRepository = new RoleAutorisationRepository(_scdContext);
             _rubriqueRepository = new RubriqueRepository();
 
             _bindingSource = new DataTable();

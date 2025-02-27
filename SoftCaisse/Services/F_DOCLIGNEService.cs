@@ -22,6 +22,11 @@ namespace SoftCaisse.Services
         private readonly F_DOCLIGNERepository _f_DOCLIGNERepository;
         private readonly F_AGENDARepository _f_AGENDARepository;
         private readonly F_ARTGAMMERepository _f_ARTGAMMERepository;
+        private readonly F_DOCENTETERepository _f_DOCENTETERepository;
+        private readonly F_ARTFOURNISSRepository _f_ARTFOURNISSRepository;
+
+        private readonly F_DOCENTETEService _f_DOCENTETEService;
+        private readonly F_ARTFOURNISSService _f_ARTFOURNISSService;
         // =============================================================================================================
         // FIN DECLARATION DES VARIABLES ===============================================================================
         // =============================================================================================================
@@ -39,10 +44,15 @@ namespace SoftCaisse.Services
         // ==============================================================================================================
         public F_DOCLIGNEService(AppDbContext context, F_DOCLIGNERepository fDOCLIGNERepository)
         {
-            _context = context;
+            _context = new AppDbContext();
             _f_DOCLIGNERepository = fDOCLIGNERepository;
             _f_AGENDARepository = new F_AGENDARepository(_context);
-            _f_ARTGAMMERepository =new F_ARTGAMMERepository(_context);
+            _f_ARTGAMMERepository = new F_ARTGAMMERepository(_context);
+            _f_DOCENTETERepository = new F_DOCENTETERepository(_context);
+            _f_ARTFOURNISSRepository = new F_ARTFOURNISSRepository(_context);
+
+            _f_DOCENTETEService = new F_DOCENTETEService(_f_DOCENTETERepository);
+            _f_ARTFOURNISSService = new F_ARTFOURNISSService(_f_ARTFOURNISSRepository);
         }
         // ===============================================================================================================
         // FIN CONSTRUCTEUR ==============================================================================================
@@ -92,7 +102,7 @@ namespace SoftCaisse.Services
 
         // ================================================================================================================
         // DEBUT INSERT ===================================================================================================
-        public void AjouterF_DOCLIGNE(MainForm mainForm, F_DOCENTETEService _f_DOCENTETEService, F_ARTFOURNISSService _f_ARTFOURNISSService, short typeDoc, string CT_NumClient, string _currentDocPieceNo, DateTime DO_Date, int? numeroLigneDL_Ligne, F_DOCENTETE docEnCours, string AR_Ref, string DL_Design, int DL_Qte, string typeDocument, F_ARTICLE articleChoisi, string txtBxQuantiteText, string txtBxRemiseText, string TextBoxPUNetText, F_COLLABORATEUR collab, short DL_NoRef, decimal DL_PUTTC, DateTime DO_DateLivr, string CA_NumText, string TextBoxMontantTTCText, string TextBoxMontantHTText, DateTime dateTimePicker3Value, int? DE_No)
+        public void AjouterF_DOCLIGNE(MainForm mainForm, short typeDoc, string CT_NumClient, string _currentDocPieceNo, DateTime DO_Date, int? numeroLigneDL_Ligne, F_DOCENTETE docEnCours, string AR_Ref, string DL_Design, int DL_Qte, string typeDocument, F_ARTICLE articleChoisi, string txtBxQuantiteText, string txtBxRemiseText, string TextBoxPUNetText, F_COLLABORATEUR collab, short DL_NoRef, decimal DL_PUTTC, DateTime DO_DateLivr, string CA_NumText, string TextBoxMontantTTCText, string TextBoxMontantHTText, DateTime dateTimePicker3Value, int? DE_No)
         {
             F_ARTFOURNISS fournisseur = _f_ARTFOURNISSService.GetByARRefAndPrincipal(articleChoisi.AR_Ref);
             F_ARTSTOCK depotArtStock = _context.F_ARTSTOCK.Where(artStck => artStck.AR_Ref == articleChoisi.AR_Ref && artStck.AS_Principal == 1).FirstOrDefault();

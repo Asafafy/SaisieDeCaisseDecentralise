@@ -39,9 +39,9 @@ namespace SoftCaisse.Services
         // ===================================================================================================
         // DEBUT CONSTRUCTEUR ================================================================================
         // ===================================================================================================
-        public F_DOCENTETEService(F_DOCENTETERepository f_DOCENTETERepository, AppDbContext context)
+        public F_DOCENTETEService(F_DOCENTETERepository f_DOCENTETERepository)
         {
-            _context = context;
+            _context = new AppDbContext();
 
             _f_DOCENTETERepository = f_DOCENTETERepository;
             _f_COMPTETRepository = new F_COMPTETRepository(_context);
@@ -594,9 +594,8 @@ namespace SoftCaisse.Services
 
         public void UpdateProprietesF_DOCENTETE(string currentDocPieceNo, DateTime dateLivrPrevu, DateTime dateLivrReal, string reference, string caNum, string representant, short? numExpedit, string expeditInt, string entete, string commentaires, string divers, int DE_No)
         {
-            F_DOCENTETE f_DOCENTETE = _context.F_DOCENTETE.Where(d => d.DO_Piece == currentDocPieceNo).FirstOrDefault();
-
-            F_COLLABORATEUR representantDOCENTETE = _context.F_COLLABORATEUR.Where(coll => (coll.CO_Nom + " " + coll.CO_Prenom) == representant).FirstOrDefault();
+            F_DOCENTETE f_DOCENTETE = _f_DOCENTETERepository.GetBy_DO_Piece(currentDocPieceNo);
+            F_COLLABORATEUR representantDOCENTETE = _f_COLLABORATEURRepository.GetBy_CO_Nom_And_CO_Prenom(representant);
             P_EXPEDITION expedit = _p_EXPEDITIONRepository.Get_P_EXPEDITIONBy_E_Intitule(expeditInt);
 
             f_DOCENTETE.DO_DateLivr = dateLivrPrevu;
@@ -619,22 +618,29 @@ namespace SoftCaisse.Services
 
 
 
-        public void UpdateDO_TotalHT(string DO_Piece, decimal? currentPUNet, int currentQuantite, decimal? previousMontArt)
+        public void UpdateDO_Totaux_HT_Net_TTC(string DO_Piece, decimal? currentPUHT, int currentQuantite, decimal? previousDO_TotalHTLigne)
         {
-            F_DOCENTETE document = _context.F_DOCENTETE.Where(d => d.DO_Piece == DO_Piece).FirstOrDefault();
-            decimal? currentMontArt = currentQuantite * currentPUNet;
-            decimal? newDO_TotalHT = document.DO_TotalHT - previousMontArt + currentMontArt;
-            _f_DOCENTETERepository.UpdateTotalHT(DO_Piece, newDO_TotalHT);
+            F_DOCENTETE document = _f_DOCENTETERepository.GetBy_DO_Piece(DO_Piece);
+
+            decimal? currentDO_TotalHTLigne = currentQuantite * currentPUHT;
+            decimal? newDO_TotalHT = document.DO_TotalHT - previousDO_TotalHTLigne + currentDO_TotalHTLigne;
+            decimal? DO_TotalHTNet = newDO_TotalHT + document.DO_ValFrais - (newDO_TotalHT * document.DO_TxEscompte) / 100;
+            decimal? DO_TotalTTC = DO_TotalHTNet + (DO_TotalHTNet * document.DO_Taxe1) / 100;
+
+            _f_DOCENTETERepository.UpdateDO_Totaux_HT_Net_TTC_Repo(DO_Piece, newDO_TotalHT, DO_TotalHTNet, DO_TotalTTC);
         }
 
 
 
 
-        public void UpdateDO_TotalHTAfterDelete(string DO_Piece, decimal? previousMontArt)
+        public void UpdateDO_TotalHTAfterDelete(string DO_Piece, decimal? previousDO_TotalHTLigne)
         {
-            F_DOCENTETE document = _context.F_DOCENTETE.Where(d => d.DO_Piece == DO_Piece).FirstOrDefault();
-            decimal? newDO_TotalHT = document.DO_TotalHT - previousMontArt;
-            _f_DOCENTETERepository.UpdateTotalHT(DO_Piece, newDO_TotalHT);
+            F_DOCENTETE document = _f_DOCENTETERepository.GetBy_DO_Piece(DO_Piece);
+            decimal? newDO_TotalHT = document.DO_TotalHT - previousDO_TotalHTLigne;
+            decimal? DO_TotalHTNet = newDO_TotalHT + document.DO_ValFrais - (newDO_TotalHT * document.DO_TxEscompte) / 100;
+            decimal? DO_TotalTTC = DO_TotalHTNet + (DO_TotalHTNet * document.DO_Taxe1) / 100;
+
+            _f_DOCENTETERepository.UpdateDO_Totaux_HT_Net_TTC_Repo(DO_Piece, newDO_TotalHT, DO_TotalHTNet, DO_TotalTTC);
         }
 
 

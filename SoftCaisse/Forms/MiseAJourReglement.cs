@@ -381,7 +381,6 @@ namespace SoftCaisse.Forms
                 return;
             }
 
-
             // Caissier pas encore spécifié
             if (cmbBxCaissier.SelectedIndex == -1)
             {
@@ -396,32 +395,37 @@ namespace SoftCaisse.Forms
                 return;
             }
 
-            F_CREGLEMENT reglToUpdate = _context.F_CREGLEMENT.Where(regl => regl.RG_No == _f_CREGLEMENTToUpdateGlobal.RG_No).FirstOrDefault();
-            // Changement des anciens valeurs par les nouveaux valeurs entrées par l'utilisateur
-            reglToUpdate.CA_No = cmbBxCaisse.SelectedIndex + 1; // Numéro de la caisse sélectionnée
-            reglToUpdate.cbCA_No = cmbBxCaisse.SelectedIndex + 1; // Numéro de la caisse sélectionnée
+            if (txtBxRefer.Text == "Référence" || txtBxRefer.Text == "référence" || txtBxRefer.Text == "Reference" || txtBxRefer.Text == "reference")
+            {
+                System.Windows.Forms.MessageBox.Show("La référence doit être différent de \"Référence\"", "Attention", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Warning);
+                return;
+            }
+
+            F_CREGLEMENT reglToUpdate = _f_CREGLEMENTRepository.GetBy_RG_No(_f_CREGLEMENTToUpdateGlobal.RG_No);
+            
+            reglToUpdate.CA_No = cmbBxCaisse.SelectedIndex + 1;
+            reglToUpdate.cbCA_No = cmbBxCaisse.SelectedIndex + 1;
             F_COLLABORATEUR caissierSelect = _listeCaissier[cmbBxCaissier.SelectedIndex];
-            reglToUpdate.CO_NoCaissier = caissierSelect.CO_No; // Numéro du caissier sélectionné
-            reglToUpdate.cbCO_NoCaissier = cmbBxCaissier.SelectedIndex + 1; // Numéro du caissier sélectionné
-            reglToUpdate.RG_Libelle = txtBxLibelle.Text; // Libellé
-            reglToUpdate.RG_Reference = txtBxRefer.Text == "Référence" ? "" : txtBxRefer.Text; // Référence
-            reglToUpdate.RG_TypeReg = 0; // (Type du règlement (0 = règlement))
+            reglToUpdate.CO_NoCaissier = caissierSelect.CO_No;
+            reglToUpdate.cbCO_NoCaissier = cmbBxCaissier.SelectedIndex + 1;
+            reglToUpdate.RG_Libelle = txtBxLibelle.Text;
+            reglToUpdate.RG_Reference = txtBxRefer.Text;
+            reglToUpdate.RG_TypeReg = 0;
             F_COMPTEG cg = _listeCompteGeneral[cmbBxCompteGeneral.SelectedIndex];
-            reglToUpdate.CG_Num = cg.CG_Num; // Compte général
-            reglToUpdate.RG_Montant = Convert.ToDecimal(txtBxMontant.Text); // Montant du règlement
-            //txtBxCours
-            reglToUpdate.RG_Cours = txtBxCours.Text == "Cours" ? 0 : Convert.ToDecimal(txtBxCours.Text); // Cours d'échange selon devise
-            reglToUpdate.N_Devise = (short)cmbBxDevise.SelectedIndex; // Devise
-            reglToUpdate.RG_MontantDev = txtBxMontantDevise.Text == "Montant devise" ? 0 : Convert.ToDecimal(txtBxMontantDevise.Text); // Montant du règlement avec devise
-            reglToUpdate.JO_Num = cmbBxCodeJournal.Text; // Code journal (CAIS, etc.)
-            reglToUpdate.RG_Impaye = dtTmPckrDateImpaye.Text == "" ? new DateTime(1753, 1, 1, 0, 0, 0, 0) : dtTmPckrDateImpaye.Value; // Date impayé
+            reglToUpdate.CG_Num = cg.CG_Num;
+            reglToUpdate.RG_Montant = Convert.ToDecimal(txtBxMontant.Text);
+            reglToUpdate.RG_Cours = txtBxCours.Text == "Cours" ? 0 : Convert.ToDecimal(txtBxCours.Text);
+            reglToUpdate.N_Devise = (short)cmbBxDevise.SelectedIndex;
+            reglToUpdate.RG_MontantDev = txtBxMontantDevise.Text == "Montant devise" ? 0 : Convert.ToDecimal(txtBxMontantDevise.Text);
+            reglToUpdate.JO_Num = cmbBxCodeJournal.Text;
+            reglToUpdate.RG_Impaye = dtTmPckrDateImpaye.Text == "" ? new DateTime(1753, 1, 1, 0, 0, 0, 0) : dtTmPckrDateImpaye.Value;
             string cg_NumCont = cmbBxContrepartie.SelectedIndex == -1 ? null : _listeCompteGeneralContrepartieToDisplay[cmbBxContrepartie.SelectedIndex + 1];
-            reglToUpdate.CG_NumCont = cg_NumCont == "Aucun" ? null : cg_NumCont; // CompteGénéral contrepatie
-            reglToUpdate.RG_DateEchCont = dtTmPckrEcheanceContrepartie.Text == "" ? new DateTime(1753, 1, 1, 0, 0, 0, 0) : dtTmPckrEcheanceContrepartie.Value; // Date de l'échéance contrepartie
+            reglToUpdate.CG_NumCont = cg_NumCont == "Aucun" ? null : cg_NumCont;
+            reglToUpdate.RG_DateEchCont = dtTmPckrEcheanceContrepartie.Text == "" ? new DateTime(1753, 1, 1, 0, 0, 0, 0) : dtTmPckrEcheanceContrepartie.Value;
 
-            _context.SaveChanges();
+            _f_CREGLEMENTRepository.Update(reglToUpdate);
+
             System.Windows.Forms.MessageBox.Show("Mise à jour effectuée avec succès!", "Opération réussie", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
-
             Close();
         }
 

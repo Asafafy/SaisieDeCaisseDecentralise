@@ -361,8 +361,8 @@ namespace SoftCaisse.Forms.Article
         private void afficherArticlesSousCatalogue(List<F_ARTICLE> listeArticlesSousFamille)
         {
             _bindingSource = new DataTable();
-            _bindingSource.Columns.Add(new DataColumn("Designation"));
-            _bindingSource.Columns.Add(new DataColumn("Reference"));
+            _bindingSource.Columns.Add(new DataColumn("Désignation"));
+            _bindingSource.Columns.Add(new DataColumn("Référence"));
             _bindingSource.Columns.Add(new DataColumn("Famille"));
             foreach (var article in listeArticlesSousFamille)
             {

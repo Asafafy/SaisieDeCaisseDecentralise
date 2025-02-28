@@ -275,6 +275,12 @@ namespace SoftCaisse.Forms
                     );
                 }
                 dataGridView1.DataSource = _bindingSource;
+
+                // Gestion des affichages (Boutons)
+                if (f_CREGLEMENTs.Count < 1)
+                {
+                    kptBtnNouveau.Enabled = true;
+                }
             }
         }
 

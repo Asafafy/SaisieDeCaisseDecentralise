@@ -49,7 +49,6 @@ namespace SoftCaisse.Forms.Article
             {
                 ((DataTable)DataGridViewArticle.DataSource).DefaultView.RowFilter = DataGridViewArticle.Columns[1].HeaderText.ToString() + " like '%" + searchTermToUpper + "%'";
             }
-
         }
 
         private void TextBoxBarreDeRecherche_TextChanged(object sender, EventArgs e)

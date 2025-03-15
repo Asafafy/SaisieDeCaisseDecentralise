@@ -40,6 +40,9 @@ namespace SoftCaisse.Utils.Connection
                 throw new Exception($"Error: {ex.Message}");
             }
         }
+
+
+
         public static string GetConnectionString(string fichierTxt)
         {
             string connectionString = "";
@@ -59,5 +62,14 @@ namespace SoftCaisse.Utils.Connection
             }
             return connectionString;
         }
+
+
+
+
+
+
+
+
+
     }
 }

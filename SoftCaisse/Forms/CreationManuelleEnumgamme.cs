@@ -98,7 +98,7 @@ namespace SoftCaisse.Forms
             F_ARTGAMME f_ARTGAMME2 = _f_ARTGAMMERepository.GetByAG_No(AG_No2);
             F_ARTICLE _selectedArt = _f_ARTICLERepository.GetF_ARTICLEByAR_Ref(AR_Ref);
             string EG_Enumere1 = f_ARTGAMME1.EG_Enumere;
-            string EG_Enumere2 = f_ARTGAMME2.EG_Enumere;
+            string EG_Enumere2 = f_ARTGAMME2 == null ? "" : f_ARTGAMME2.EG_Enumere;
 
             labelEnumere.Text = "Enuméré : " + EG_Enumere1 + EG_Enumere2;
             txtBxPrixAch.Text = _selectedArt.AR_PrixAch.ToString();

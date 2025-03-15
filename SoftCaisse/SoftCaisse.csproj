@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>cash-register_icon-icons.com_72250.ico</ApplicationIcon>
+    <ApplicationIcon>IconeSoftCaisse.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -227,6 +227,12 @@
     </Compile>
     <Compile Include="Forms\SelectionEcheancesARegler.Designer.cs">
       <DependentUpon>SelectionEcheancesARegler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CurrentRGPiece.cs" />
     <Compile Include="Models\F_AGENDA.cs" />
@@ -577,6 +583,334 @@
     <Compile Include="Utils\EnterKeyDownEventHadler.cs" />
     <Compile Include="Utils\Global\CaisseOuvert.cs" />
     <Compile Include="Utils\Global\ConnectedUser.cs" />
+    <Compile Include="Views\BlurForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BlurForm.Designer.cs">
+      <DependentUpon>BlurForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\Articles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\Articles.Designer.cs">
+      <DependentUpon>Articles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\ChoixInformationsArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\ChoixInformationsArticle.Designer.cs">
+      <DependentUpon>ChoixInformationsArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\ConditionnementArticles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\ConditionnementArticles.Designer.cs">
+      <DependentUpon>ConditionnementArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\ConditionnementChildForm\CreateUpdateConditionnement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\ConditionnementChildForm\CreateUpdateConditionnement.Designer.cs">
+      <DependentUpon>CreateUpdateConditionnement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\GammeChildForm\CreateUpdateEnumereGamme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\GammeChildForm\CreateUpdateEnumereGamme.Designer.cs">
+      <DependentUpon>CreateUpdateEnumereGamme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\GammesArticles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\GammesArticles.Designer.cs">
+      <DependentUpon>GammesArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\InformationsArticles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\InformationsArticles.Designer.cs">
+      <DependentUpon>InformationsArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\InterrogationDuStockArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\InterrogationDuStockArticle.Designer.cs">
+      <DependentUpon>InterrogationDuStockArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\MediasArticles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\MediasArticles.Designer.cs">
+      <DependentUpon>MediasArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\TarifsArticles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\ArticlesChildForm\TarifsArticles.Designer.cs">
+      <DependentUpon>TarifsArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\Caisses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\Caisses.Designer.cs">
+      <DependentUpon>Caisses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\CaissesChildForm\CreateUpdateCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\CaissesChildForm\CreateUpdateCaisse.Designer.cs">
+      <DependentUpon>CreateUpdateCaisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\Clients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\Clients.Designer.cs">
+      <DependentUpon>Clients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\Collaborateurs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\Collaborateurs.Designer.cs">
+      <DependentUpon>Collaborateurs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\CollaborateursChildForm\CreateUpdateCollaborateurs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\CollaborateursChildForm\CreateUpdateCollaborateurs.Designer.cs">
+      <DependentUpon>CreateUpdateCollaborateurs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Donnees\Familles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Donnees\Familles.Designer.cs">
+      <DependentUpon>Familles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FonctionsViews\BorderRadius.cs" />
+    <Compile Include="Views\FonctionsViews\GetDateExtension.cs" />
+    <Compile Include="Views\FonctionsViews\ResizeImage.cs" />
+    <Compile Include="Views\FonctionsViews\TextBoxKeyPressHandler.cs" />
+    <Compile Include="Views\Operations\ClotureDesCaisses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\ClotureDesCaisses.Designer.cs">
+      <DependentUpon>ClotureDesCaisses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesStocks.Designer.cs">
+      <DependentUpon>DocumentsDesStocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesStocksChildForm\ChoixCreationMouvementsDesStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesStocksChildForm\ChoixCreationMouvementsDesStocks.Designer.cs">
+      <DependentUpon>ChoixCreationMouvementsDesStocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesStocksChildForm\CreateDocumentsDesStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesStocksChildForm\CreateDocumentsDesStocks.Designer.cs">
+      <DependentUpon>CreateDocumentsDesStocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesStocksChildForm\UpdateDocumentsDesStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesStocksChildForm\UpdateDocumentsDesStocks.Designer.cs">
+      <DependentUpon>UpdateDocumentsDesStocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesVentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesVentes.Designer.cs">
+      <DependentUpon>DocumentsDesVentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesVentesChildForm\ChoixCreationDocumentDeVente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesVentesChildForm\ChoixCreationDocumentDeVente.Designer.cs">
+      <DependentUpon>ChoixCreationDocumentDeVente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesVentesChildForm\CreateDocumentDeVente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesVentesChildForm\CreateDocumentDeVente.Designer.cs">
+      <DependentUpon>CreateDocumentDeVente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesVentesChildForm\UpdateDocumentDeVente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\DocumentsDesVentesChildForm\UpdateDocumentDeVente.Designer.cs">
+      <DependentUpon>UpdateDocumentDeVente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\FermetureDeCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\FermetureDeCaisse.Designer.cs">
+      <DependentUpon>FermetureDeCaisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\MouvementDeCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\MouvementDeCaisse.Designer.cs">
+      <DependentUpon>MouvementDeCaisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\OuvertureDeCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\OuvertureDeCaisse.Designer.cs">
+      <DependentUpon>OuvertureDeCaisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglements.Designer.cs">
+      <DependentUpon>SaisieDesReglements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\CreateReglement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\CreateReglement.Designer.cs">
+      <DependentUpon>CreateReglement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\ReglerEtImputerEnMemeTemps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\ReglerEtImputerEnMemeTemps.Designer.cs">
+      <DependentUpon>ReglerEtImputerEnMemeTemps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\SelectionDesEcheancesARegler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\SelectionDesEcheancesARegler.Designer.cs">
+      <DependentUpon>SelectionDesEcheancesARegler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\UpdateReglement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\UpdateReglement.Designer.cs">
+      <DependentUpon>UpdateReglement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\VisualisationDUnReglement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\SaisieDesReglementsChildForm\VisualisationDUnReglement.Designer.cs">
+      <DependentUpon>VisualisationDUnReglement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\VenteComptoir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\VenteComptoir.Designer.cs">
+      <DependentUpon>VenteComptoir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\VenteComptoirClidForm\RappelDocumentsEnAttente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\VenteComptoirClidForm\RappelDocumentsEnAttente.Designer.cs">
+      <DependentUpon>RappelDocumentsEnAttente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operations\VenteComptoirClidForm\ReglementVenteComptoir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Operations\VenteComptoirClidForm\ReglementVenteComptoir.Designer.cs">
+      <DependentUpon>ReglementVenteComptoir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\GestionDesRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\GestionDesRoles.Designer.cs">
+      <DependentUpon>GestionDesRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\GestionDesRolesChildForm\CreateUpdateRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\GestionDesRolesChildForm\CreateUpdateRoles.Designer.cs">
+      <DependentUpon>CreateUpdateRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\GestionDesUtilisateurs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\GestionDesUtilisateurs.Designer.cs">
+      <DependentUpon>GestionDesUtilisateurs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\GestionDesUtilisateursChildForm\CreateUpdateUtilisateurs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\GestionDesUtilisateursChildForm\CreateUpdateUtilisateurs.Designer.cs">
+      <DependentUpon>CreateUpdateUtilisateurs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresDeLaBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresDeLaBase.Designer.cs">
+      <DependentUpon>ParametresDeLaBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresCaisses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresCaisses.Designer.cs">
+      <DependentUpon>ParametresCaisses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresComptabilisation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresComptabilisation.Designer.cs">
+      <DependentUpon>ParametresComptabilisation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresDevises.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresDevises.Designer.cs">
+      <DependentUpon>ParametresDevises.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresDevisesChildForm\Billetage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresDevisesChildForm\Billetage.Designer.cs">
+      <DependentUpon>Billetage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresGammes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresGammes.Designer.cs">
+      <DependentUpon>ParametresGammes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresGammesChildForm\ChoixCreationENUMGAMME.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresGammesChildForm\ChoixCreationENUMGAMME.Designer.cs">
+      <DependentUpon>ChoixCreationENUMGAMME.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresGammesChildForm\CreationManuelleEnumereGamme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocieteChildForm\ParametresGammesChildForm\CreationManuelleEnumereGamme.Designer.cs">
+      <DependentUpon>CreationManuelleEnumereGamme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocietes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Parametres\ParametresSocietes.Designer.cs">
+      <DependentUpon>ParametresSocietes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeConnecter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SeConnecter.Designer.cs">
+      <DependentUpon>SeConnecter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistiques\ControleDeCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Statistiques\ControleDeCaisse.Designer.cs">
+      <DependentUpon>ControleDeCaisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistiques\StatistiquesDesCaisses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Statistiques\StatistiquesDesCaisses.Designer.cs">
+      <DependentUpon>StatistiquesDesCaisses.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\ChoixCreationENUMGAMME.resx">
       <DependentUpon>ChoixCreationENUMGAMME.cs</DependentUpon>
     </EmbeddedResource>
@@ -600,6 +934,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MettreAJourEnumereDeGammeDansDetailsArticle.resx">
       <DependentUpon>MettreAJourEnumereDeGammeDansDetailsArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelesDocuments\DocumentDeVente.rdlc" />
     <EmbeddedResource Include="ModelesDocuments\ClotureFacture.rdlc" />
@@ -758,6 +1095,168 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ModelesDocuments\TicketCaisse.rdlc" />
+    <EmbeddedResource Include="Views\BlurForm.resx">
+      <DependentUpon>BlurForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\Articles.resx">
+      <DependentUpon>Articles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\ArticlesChildForm\ChoixInformationsArticle.resx">
+      <DependentUpon>ChoixInformationsArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\ArticlesChildForm\ConditionnementArticles.resx">
+      <DependentUpon>ConditionnementArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\ArticlesChildForm\ConditionnementChildForm\CreateUpdateConditionnement.resx">
+      <DependentUpon>CreateUpdateConditionnement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\ArticlesChildForm\GammeChildForm\CreateUpdateEnumereGamme.resx">
+      <DependentUpon>CreateUpdateEnumereGamme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\ArticlesChildForm\GammesArticles.resx">
+      <DependentUpon>GammesArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\ArticlesChildForm\InformationsArticles.resx">
+      <DependentUpon>InformationsArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\ArticlesChildForm\InterrogationDuStockArticle.resx">
+      <DependentUpon>InterrogationDuStockArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\ArticlesChildForm\MediasArticles.resx">
+      <DependentUpon>MediasArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\ArticlesChildForm\TarifsArticles.resx">
+      <DependentUpon>TarifsArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\Caisses.resx">
+      <DependentUpon>Caisses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\CaissesChildForm\CreateUpdateCaisse.resx">
+      <DependentUpon>CreateUpdateCaisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\Clients.resx">
+      <DependentUpon>Clients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\Collaborateurs.resx">
+      <DependentUpon>Collaborateurs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\CollaborateursChildForm\CreateUpdateCollaborateurs.resx">
+      <DependentUpon>CreateUpdateCollaborateurs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Donnees\Familles.resx">
+      <DependentUpon>Familles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\ClotureDesCaisses.resx">
+      <DependentUpon>ClotureDesCaisses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\DocumentsDesStocks.resx">
+      <DependentUpon>DocumentsDesStocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\DocumentsDesStocksChildForm\ChoixCreationMouvementsDesStocks.resx">
+      <DependentUpon>ChoixCreationMouvementsDesStocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\DocumentsDesStocksChildForm\CreateDocumentsDesStocks.resx">
+      <DependentUpon>CreateDocumentsDesStocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\DocumentsDesStocksChildForm\UpdateDocumentsDesStocks.resx">
+      <DependentUpon>UpdateDocumentsDesStocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\DocumentsDesVentes.resx">
+      <DependentUpon>DocumentsDesVentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\DocumentsDesVentesChildForm\ChoixCreationDocumentDeVente.resx">
+      <DependentUpon>ChoixCreationDocumentDeVente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\DocumentsDesVentesChildForm\CreateDocumentDeVente.resx">
+      <DependentUpon>CreateDocumentDeVente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\DocumentsDesVentesChildForm\UpdateDocumentDeVente.resx">
+      <DependentUpon>UpdateDocumentDeVente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\FermetureDeCaisse.resx">
+      <DependentUpon>FermetureDeCaisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\MouvementDeCaisse.resx">
+      <DependentUpon>MouvementDeCaisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\OuvertureDeCaisse.resx">
+      <DependentUpon>OuvertureDeCaisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\SaisieDesReglements.resx">
+      <DependentUpon>SaisieDesReglements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\SaisieDesReglementsChildForm\CreateReglement.resx">
+      <DependentUpon>CreateReglement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\SaisieDesReglementsChildForm\ReglerEtImputerEnMemeTemps.resx">
+      <DependentUpon>ReglerEtImputerEnMemeTemps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\SaisieDesReglementsChildForm\SelectionDesEcheancesARegler.resx">
+      <DependentUpon>SelectionDesEcheancesARegler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\SaisieDesReglementsChildForm\UpdateReglement.resx">
+      <DependentUpon>UpdateReglement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\SaisieDesReglementsChildForm\VisualisationDUnReglement.resx">
+      <DependentUpon>VisualisationDUnReglement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\VenteComptoir.resx">
+      <DependentUpon>VenteComptoir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\VenteComptoirClidForm\RappelDocumentsEnAttente.resx">
+      <DependentUpon>RappelDocumentsEnAttente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Operations\VenteComptoirClidForm\ReglementVenteComptoir.resx">
+      <DependentUpon>ReglementVenteComptoir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\GestionDesRoles.resx">
+      <DependentUpon>GestionDesRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\GestionDesRolesChildForm\CreateUpdateRoles.resx">
+      <DependentUpon>CreateUpdateRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\GestionDesUtilisateurs.resx">
+      <DependentUpon>GestionDesUtilisateurs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\GestionDesUtilisateursChildForm\CreateUpdateUtilisateurs.resx">
+      <DependentUpon>CreateUpdateUtilisateurs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\ParametresDeLaBase.resx">
+      <DependentUpon>ParametresDeLaBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\ParametresSocieteChildForm\ParametresCaisses.resx">
+      <DependentUpon>ParametresCaisses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\ParametresSocieteChildForm\ParametresComptabilisation.resx">
+      <DependentUpon>ParametresComptabilisation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\ParametresSocieteChildForm\ParametresDevises.resx">
+      <DependentUpon>ParametresDevises.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\ParametresSocieteChildForm\ParametresDevisesChildForm\Billetage.resx">
+      <DependentUpon>Billetage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\ParametresSocieteChildForm\ParametresGammes.resx">
+      <DependentUpon>ParametresGammes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\ParametresSocieteChildForm\ParametresGammesChildForm\ChoixCreationENUMGAMME.resx">
+      <DependentUpon>ChoixCreationENUMGAMME.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\ParametresSocieteChildForm\ParametresGammesChildForm\CreationManuelleEnumereGamme.resx">
+      <DependentUpon>CreationManuelleEnumereGamme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Parametres\ParametresSocietes.resx">
+      <DependentUpon>ParametresSocietes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SeConnecter.resx">
+      <DependentUpon>SeConnecter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Statistiques\ControleDeCaisse.resx">
+      <DependentUpon>ControleDeCaisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Statistiques\StatistiquesDesCaisses.resx">
+      <DependentUpon>StatistiquesDesCaisses.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="DataSetEnt.xsc">
       <DependentUpon>DataSetEnt.xsd</DependentUpon>
     </None>
@@ -784,7 +1283,36 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cash-register_icon-icons.com_72250.ico" />
+    <Content Include="Assets\IconesBoutons\Dollar bleu avec  cercle 30x30.png" />
+    <Content Include="Assets\IconesBoutons\Eye bleu avec cerccle 30x30.png" />
+    <Content Include="Assets\IconesBoutons\Eye.png" />
+    <Content Include="Assets\IconesBoutons\Fermer 2.png" />
+    <Content Include="Assets\IconesBoutons\Fermer.png" />
+    <Content Include="Assets\IconesBoutons\Icone Données.png" />
+    <Content Include="Assets\IconesBoutons\Icone Opérations.png" />
+    <Content Include="Assets\IconesBoutons\Icone Paramètre.png" />
+    <Content Include="Assets\IconesBoutons\Icone Sign-In.png" />
+    <Content Include="Assets\IconesBoutons\Icone Sign-Out.png" />
+    <Content Include="Assets\IconesBoutons\Icone Statistiques.png" />
+    <Content Include="Assets\IconesBoutons\Icône check bleu 30x30.png" />
+    <Content Include="Assets\IconesBoutons\Icône imprimer bleu 30x30.png" />
+    <Content Include="Assets\IconesBoutons\Icône Informations bleu 30x30.png" />
+    <Content Include="Assets\IconesBoutons\Rechercher.png" />
+    <Content Include="Assets\IconesBoutons\Reset.png" />
+    <Content Include="Assets\Images\Articles\Conditionnement 96x96.png" />
+    <Content Include="Assets\Images\Articles\Gammes 96x96.png" />
+    <Content Include="Assets\Images\Articles\Informations 96x96.png" />
+    <Content Include="Assets\Images\Articles\Multimedias 96x96.png" />
+    <Content Include="Assets\Images\Articles\stock 96x96.png" />
+    <Content Include="Assets\Images\Articles\Tarifs 96x96.png" />
+    <Content Include="Assets\Images\HomeAndSidebarImages\LogoSoftCaisseBackgroundHome.png" />
+    <Content Include="Assets\Images\HomeAndSidebarImages\SoftCaisseSidebarMenu.png" />
+    <Content Include="Assets\Images\Login\Utilisateur.png" />
+    <Content Include="Assets\Images\ParametresSociete\ArticleIcon.png" />
+    <Content Include="Assets\Images\ParametresSociete\Cash Register_96px.png" />
+    <Content Include="Assets\Images\ParametresSociete\Coins_96px.png" />
+    <Content Include="Assets\Images\ParametresSociete\comptabilite.png" />
+    <Content Include="IconeSoftCaisse.ico" />
     <Content Include="Images\Société\ArticleIcon.png" />
     <Content Include="Images\Société\comptabilite.png" />
     <Content Include="Images\Société\Cash Register_96px.png" />
@@ -805,6 +1333,9 @@
     </PackageReference>
     <PackageReference Include="EntityFramework.fr">
       <Version>6.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.Sharp">
+      <Version>6.6.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms">
       <Version>150.1652.0</Version>

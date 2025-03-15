@@ -125,7 +125,7 @@ namespace SoftCaisse.Services
             docligne.DL_Design = DL_Design;
             docligne.DL_Qte = DL_Qte;
             docligne.DL_QteBC = DL_Qte;
-            docligne.AF_RefFourniss = fournisseur.AF_RefFourniss;
+            docligne.AF_RefFourniss = fournisseur == null ? "" : fournisseur.AF_RefFourniss;
             docligne.DL_NoRef = DL_NoRef;
             docligne.DL_PUTTC = DL_PUTTC;
             docligne.DO_DateLivr = DO_DateLivr;

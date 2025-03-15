@@ -1,4 +1,5 @@
-﻿using SoftCaisse.Forms.ConnexBase;
+﻿using Soft_Caisse;
+using SoftCaisse.Forms.ConnexBase;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -28,7 +29,8 @@ namespace SoftCaisse
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                Application.Run(new MainForm());
+                Application.Run(new Home());
+                //Application.Run(new MainForm());
             }
             else
             {

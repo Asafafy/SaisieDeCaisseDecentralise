@@ -47,6 +47,8 @@ namespace SoftCaisse.Forms.ClotureCaisse
             CmbBxCaisseDebut.DataSource =_context.F_CAISSE.Select(u=>new {Value= u.CA_No,Text = u.CA_Intitule }).ToArray();
             CmbBxCaisseFin.DataSource =_context.F_CAISSE.Select(u=>new {Value= u.CA_No,Text = u.CA_Intitule }).ToArray();
             CmbBxSouche.DataSource =_context.P_SOUCHEVENTE.Where(u=> u.S_Valide==1 ).Select(u=>new {Value= u.cbMarq,Text=u.S_Intitule}).ToArray();
+
+            CmbBxRegroupementsTickets.DataSource = new List<string> { "Par jour", "Par semaine", "Par mois" };
             CmbBxCaisseDebut.ValueMember = "Value";
             CmbBxCaisseDebut.DisplayMember = "Text";
             CmbBxCaisseFin.ValueMember = "Value";

@@ -18,7 +18,7 @@ namespace SoftCaisse.Models
         public SageContexte()
         {
             _context = new AppDbContext();
-        }
+        } 
 
         public Parameter RetrieveAttribute()
         {

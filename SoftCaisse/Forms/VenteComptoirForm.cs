@@ -1239,6 +1239,11 @@ namespace SoftCaisse.Forms.VenteComptoir
             }
         }
 
+        private void BouttonCreerDoc_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         // ========================================= ILAINA ARY VE ITO ZAVATRA ITO =========================================
         //private void DataGridViewArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

@@ -79,7 +79,6 @@ namespace SoftCaisse.Forms.ConnexBase
             {
                 MessageBox.Show(ex.Message,"Erreur",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-
         }
 
 
@@ -158,7 +157,6 @@ namespace SoftCaisse.Forms.ConnexBase
                     FileInfo file = new FileInfo(openFileDialog1.FileName);
                     sagedataBaseName = Path.GetFileNameWithoutExtension(filePath);
                     comptabilite.Text = file.FullName;
-
                 }
                 catch (Exception ex)
                 {

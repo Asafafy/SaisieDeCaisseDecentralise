@@ -365,3 +365,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsdSoftCaisse/Views/Activations/AjoutCle.cs
 SoftCaisse/Views/Activations/SaisirActivation.cs
+SoftCaisse/Views/Activations/AjoutCle.cs
+SoftCaisse/Views/Activations/SaisirActivation.cs

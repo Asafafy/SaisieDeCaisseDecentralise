@@ -363,4 +363,5 @@ MigrationBackup/
 .ionide/
 
 # Fody - auto-generated XML schema
-FodyWeavers.xsd
+FodyWeavers.xsdSoftCaisse/Views/Activations/AjoutCle.cs
+SoftCaisse/Views/Activations/SaisirActivation.cs
